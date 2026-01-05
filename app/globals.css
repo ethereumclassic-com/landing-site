@@ -19,6 +19,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes etc-mesh-pan {
+  0% {
+    transform: translate3d(-2%, -2%, 0) scale(1.02);
+  }
+
+  50% {
+    transform: translate3d(2%, 1%, 0) scale(1.05);
+  }
+
+  100% {
+    transform: translate3d(-2%, -2%, 0) scale(1.02);
+  }
+}
+
+@keyframes etc-shimmer {
+  0% {
+    background-position-y: 0px;
+  }
+
+  100% {
+    background-position-y: 220px;
+  }
+}
+
 .bg-grid {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
