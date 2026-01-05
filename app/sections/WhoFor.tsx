@@ -1,11 +1,17 @@
 import { Section } from "../components/Section";
-import { FadeIn } from "../components/Motion";
+import { FadeIn, HoverLift } from "../components/Motion";
 
 const groups = [
     { title: "Users", body: "A stable execution layer to hold and use assets." },
     { title: "Miners", body: "Earn ETC securing the network with Proof-of-Work." },
-    { title: "Builders", body: "Deploy EVM apps on a chain optimized for longevity." },
-    { title: "Institutions", body: "A credible PoW smart contract base with clear routing." },
+    {
+        title: "Builders",
+        body: "Deploy EVM apps on a chain optimized for longevity.",
+    },
+    {
+        title: "Institutions",
+        body: "A credible PoW smart contract base with clear routing.",
+    },
 ];
 
 export function WhoFor() {
@@ -20,10 +26,12 @@ export function WhoFor() {
             <div className="mt-10 grid gap-4 md:grid-cols-2">
                 {groups.map((g, i) => (
                     <FadeIn key={g.title} delay={0.05 * i}>
-                        <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-                            <div className="text-lg font-medium">{g.title}</div>
-                            <div className="mt-2 text-sm text-white/70">{g.body}</div>
-                        </div>
+                        <HoverLift>
+                            <div className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-white/15 hover:bg-[var(--panel-strong)]">
+                                <div className="text-lg font-medium">{g.title}</div>
+                                <div className="mt-2 text-sm text-white/70">{g.body}</div>
+                            </div>
+                        </HoverLift>
                     </FadeIn>
                 ))}
             </div>
