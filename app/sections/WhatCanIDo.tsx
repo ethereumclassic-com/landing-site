@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Section } from "../components/Section";
 import { FadeIn, HoverLift } from "../components/Motion";
 import { Button } from "../components/Button";
@@ -5,24 +6,28 @@ import { Button } from "../components/Button";
 const cards = [
     {
         title: "Use ETC",
-        body: "Swap assets, use stablecoins, and access on-chain applications.",
-        cta: "Open ClassicOS",
-        href: "https://classicos.org", // update when ready
+        body: "Use ETC across decentralized applications on Ethereum Classic. ETC can be transferred, traded, collateralized, and programmed in smart contracts powering exchanges, stablecoins, payments, lending, liquidity provision, automation, and other on-chain services — with ETC as the native asset for fees and settlement.",
+        cta: "Explore applications",
+        href: "https://classicos.org",
         variant: "primary" as const,
+        external: true,
+        image: "/what/use-etc.png",
     },
     {
         title: "Earn ETC",
-        body: "Mine ETC, join a pool, and explore yield opportunities responsibly.",
+        body: "Ethereum Classic is secured by global miners running real hardware. By contributing hash power, miners validate blocks, secure transactions, and earn ETC through a transparent Proof-of-Work reward system.",
         cta: "Start mining",
-        href: "#", // TODO: replace with mining destination (real link) before deploy
+        href: "#", // TODO: replace with real mining destination before deploy
         variant: "ghost" as const,
+        image: "/what/earn-etc.png",
     },
     {
-        title: "Build on ETC",
-        body: "Deploy EVM contracts, run clients, and ship infrastructure that lasts.",
-        cta: "Developer path",
-        href: "#", // TODO: replace with build destination (real link) before deploy
+        title: "Build on Ethereum Classic",
+        body: "Build and deploy EVM-compatible smart contracts on a decentralized execution layer designed for longevity. Ethereum Classic supports familiar EVM tooling while prioritizing stability, neutrality, and final settlement.",
+        cta: "Build on ETC",
+        href: "#", // TODO: replace with real builder destination before deploy
         variant: "ghost" as const,
+        image: "/what/build-etc.png",
     },
 ];
 
@@ -31,32 +36,75 @@ export function WhatCanIDo() {
         <Section id="do">
             <FadeIn>
                 <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-                    What can I do on ETC today?
+                    What can I do with ETC?
                 </h2>
-                <p className="mt-3 max-w-2xl text-white/75">
-                    Choose a path. Each route is action-first and leads to real ETC activity.
+                <p className="mt-3 text-white/75 leading-relaxed">
+                    Ethereum Classic supports real economic activity across the full range of EVM capabilities.
+                    ETC can be transferred, traded, and held as sound digital money, while also being used directly
+                    in smart contracts that power exchanges, stablecoins, lending markets, payments, and programmable
+                    financial infrastructure. These primitives support liquidity provision, market making, and
+                    automated strategies, alongside broader automation and agent-based systems. ETC is also widely
+                    accessible through established centralized exchanges and long-standing traditional finance
+                    products, providing liquidity and integration into global markets.
                 </p>
             </FadeIn>
 
             <div className="mt-10 grid gap-4 md:grid-cols-3">
-                {cards.map((c, i) => (
-                    <FadeIn key={c.title} delay={0.06 * i}>
-                        <HoverLift className="h-full">
-                            <div className="flex h-full flex-col justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-white/15 hover:bg-[var(--panel-strong)]">
-                                <div>
-                                    <div className="text-lg font-medium">{c.title}</div>
-                                    <div className="mt-2 text-sm text-white/70">{c.body}</div>
-                                </div>
+                {cards.map((c, i) => {
+                    const isExternal =
+                        c.external === true ||
+                        (typeof c.href === "string" &&
+                            /^https?:\/\//.test(c.href) &&
+                            !c.href.startsWith("https://ethereumclassic.com"));
 
-                                <div className="mt-6">
-                                    <Button href={c.href} variant={c.variant}>
-                                        {c.cta}
-                                    </Button>
+                    return (
+                        <FadeIn key={c.title} delay={0.06 * i}>
+                            <HoverLift className="h-full">
+                                <div className="flex h-full flex-col justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-white/15 hover:bg-[var(--panel-strong)]">
+                                    {/* Visual */}
+                                    <div className="mb-4 flex justify-center">
+                                        <div className="relative h-40 w-full max-w-[220px]">
+                                            <Image
+                                                src={c.image}
+                                                alt=""
+                                                aria-hidden="true"
+                                                fill
+                                                sizes="220px"
+                                                className="pointer-events-none select-none object-contain opacity-85"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Copy */}
+                                    <div>
+                                        <div className="text-lg font-medium">
+                                            {c.title}
+                                        </div>
+                                        <div className="mt-2 text-sm text-white/70 leading-relaxed">
+                                            {c.body}
+                                        </div>
+                                    </div>
+
+                                    {/* CTA */}
+                                    <div className="mt-6">
+                                        <Button
+                                            href={c.href}
+                                            variant={c.variant}
+                                            {...(isExternal
+                                                ? {
+                                                    target: "_blank",
+                                                    rel: "noopener noreferrer",
+                                                }
+                                                : {})}
+                                        >
+                                            {c.cta}
+                                        </Button>
+                                    </div>
                                 </div>
-                            </div>
-                        </HoverLift>
-                    </FadeIn>
-                ))}
+                            </HoverLift>
+                        </FadeIn>
+                    );
+                })}
             </div>
         </Section>
     );

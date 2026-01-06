@@ -12,7 +12,6 @@ export function SiteFooter() {
             <div className="flex flex-col gap-6 rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-8 md:flex-row md:items-center md:justify-between">
                 {/* Left: Identity + description */}
                 <div className="flex items-start gap-4">
-                    {/* Prism micro-mark */}
                     <Image
                         src="/etc-prism.png"
                         alt="Ethereum Classic"
@@ -25,12 +24,13 @@ export function SiteFooter() {
                     <div>
                         <div className="text-sm text-white/70">Ethereum Classic</div>
                         <div className="mt-1 text-lg font-medium">
-                            Proof-of-Work smart contracts.
+                            Programmable Proof-of-Work.
                         </div>
                         <div className="mt-2 max-w-md text-sm text-white/60">
-                            A routing layer for using, earning, and building on Ethereum
-                            Classic — including on-chain applications, mining, and fiat
-                            on-ramps.
+                            A Proof-of-Work smart-contract network where the ETC asset can be used, earned, and built with directly on-chain.
+                        </div>
+                        <div className="mt-3 text-xs text-white/50">
+                            Global public network • Open participation • Protocol-enforced rules
                         </div>
                     </div>
                 </div>
@@ -67,9 +67,8 @@ export function SiteFooter() {
                         <span className="whitespace-nowrap">ETCswap</span>
                     </a>
 
-                    {/* Protocol-adjacent institution (kept quieter) */}
                     <a
-                        href="https://olympiadao.com"
+                        href="https://olympiadao.org"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Open Olympia DAO in a new tab"
@@ -78,7 +77,6 @@ export function SiteFooter() {
                         <span className="whitespace-nowrap">Olympia DAO</span>
                     </a>
 
-                    {/* Internal link stays same-tab */}
                     <a
                         href="#top"
                         className={externalLinkBase}
