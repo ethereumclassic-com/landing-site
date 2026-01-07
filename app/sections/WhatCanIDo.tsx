@@ -3,6 +3,9 @@ import { Section } from "../components/Section";
 import { FadeIn, HoverLift } from "../components/Motion";
 import { Button } from "../components/Button";
 
+// NOTE: Long-form copy retained intentionally for SEO / AI summaries.
+// This section should be compressed in Phase 1 polish pass.
+
 const cards = [
     {
         title: "Use ETC",
@@ -17,7 +20,7 @@ const cards = [
         title: "Earn ETC",
         body: "Ethereum Classic is secured by global miners running real hardware. By contributing hash power, miners validate blocks, secure transactions, and earn ETC through a transparent Proof-of-Work reward system.",
         cta: "Start mining",
-        href: "#", // TODO: replace with real mining destination before deploy
+        href: "https://ethereumclassic.com/earn", // TODO: replace with real mining destination before deploy
         variant: "ghost" as const,
         image: "/what/earn-etc.png",
     },
@@ -25,7 +28,7 @@ const cards = [
         title: "Build on Ethereum Classic",
         body: "Build and deploy EVM-compatible smart contracts on a decentralized execution layer designed for longevity. Ethereum Classic supports familiar EVM tooling while prioritizing stability, neutrality, and final settlement.",
         cta: "Build on ETC",
-        href: "#", // TODO: replace with real builder destination before deploy
+        href: "https://ethereumclassic.com/build", // TODO: replace with real builder destination before deploy
         variant: "ghost" as const,
         image: "/what/build-etc.png",
     },
