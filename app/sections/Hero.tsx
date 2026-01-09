@@ -11,7 +11,7 @@ export function Hero() {
         <Section id="top">
             <div className="relative overflow-hidden rounded-3xl border border-[var(--border-soft)] bg-[var(--panel)] p-8 md:p-12 glow">
                 {/* Subtle grid texture */}
-                <div className="pointer-events-none absolute inset-0 opacity-70 bg-grid" />
+                <div className="pointer-events-none absolute inset-0 opacity-[0.35] bg-grid" />
 
                 {/* Ambient ETC glows */}
                 <div className="pointer-events-none absolute -top-24 right-[-10%] h-72 w-72 rounded-full blur-3xl bg-[var(--etc)]/15" />

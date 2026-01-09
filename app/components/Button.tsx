@@ -1,38 +1,57 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 type Variant = "primary" | "ghost";
+
+type ButtonProps = {
+    href: string;
+    children: ReactNode;
+    variant?: Variant;
+    className?: string;
+} & Omit<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    "href" | "className" | "children"
+>;
 
 export function Button({
     href,
     children,
-    variant = "ghost",
-}: {
-    href: string;
-    children: React.ReactNode;
-    variant?: Variant;
-}) {
+    variant = "primary",
+    className,
+    ...rest
+}: ButtonProps) {
+    const isExternal = /^https?:\/\//.test(href);
+
     const base =
-        "inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-white/20";
+        "inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40";
+    const styles =
+        variant === "primary"
+            ? "bg-emerald-400/15 text-white border border-emerald-300/30 hover:bg-emerald-400/20"
+            : "border border-white/15 bg-white/5 text-white/80 hover:bg-white/10";
 
-    const styles: Record<Variant, string> = {
-        primary:
-            "bg-[var(--etc)] text-black hover:opacity-90 shadow-[0_12px_40px_rgba(51,255,153,0.12)]",
-        ghost:
-            "border border-white/15 bg-white/5 text-white hover:bg-white/10",
-    };
+    const cls = [base, styles, className].filter(Boolean).join(" ");
 
-    const isHash = href.startsWith("#");
+    if (isExternal) {
+        const target = rest.target;
+        const rel =
+            target === "_blank"
+                ? typeof rest.rel === "string" && rest.rel.length > 0
+                    ? rest.rel
+                    : "noopener noreferrer"
+                : rest.rel;
 
-    if (isHash) {
         return (
-            <a href={href} className={`${base} ${styles[variant]}`}>
+            <a href={href} className={cls} {...rest} rel={rel}>
                 {children}
             </a>
         );
     }
 
+    // avoid forwarding external-only props to Link
+    const { target, rel, ...internalRest } = rest;
+
     return (
-        <Link href={href} className={`${base} ${styles[variant]}`}>
+        <Link href={href} className={cls} {...internalRest}>
             {children}
         </Link>
     );

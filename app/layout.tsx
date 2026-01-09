@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Background from "./components/Background";
+import BackgroundSystem from "./components/BackgroundSystem";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
@@ -9,17 +9,9 @@ export const metadata: Metadata = {
     "Ethereum Classic is the only mature Proof-of-Work blockchain with smart contracts. Use ETC, earn ETC, and build on ETC.",
   openGraph: {
     title: "Ethereum Classic — Proof-of-Work Smart Contracts",
-    description:
-      "Use ETC, earn ETC, and build on ETC — secured by Nakamoto consensus.",
+    description: "Use ETC, earn ETC, and build on ETC — secured by Nakamoto consensus.",
     type: "website",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Ethereum Classic",
-      },
-    ],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ethereum Classic" }],
   },
   icons: {
     icon: [
@@ -37,9 +29,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="min-h-dvh bg-[#0B0F14] text-white antialiased">
-        <Background />
-        {children}
+      {/* isolate = background stays behind even if future components create stacking contexts */}
+      <body className="relative isolate min-h-dvh bg-[#0B0F14] text-white antialiased">
+        <BackgroundSystem />
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );
