@@ -1,18 +1,29 @@
 # EthereumClassic.com
 
-Top-of-funnel awareness site for Ethereum Classic ecosystem.
+Commercial/consumer gateway for Ethereum Classic - modeled after Bitcoin.com.
 
 **Live at:** ethereumclassic.com
 
 ---
 
+## Strategic Vision
+
+**EthereumClassic.com** is the **commercial portal** for Ethereum Classic (like Bitcoin.com is to Bitcoin.org):
+
+- **EthereumClassic.org** = Open source project, protocol docs (community-run)
+- **EthereumClassic.com** = Consumer gateway, product suite (THIS SITE)
+
+**Advisory:** Roger Ver (Bitcoin.com founder) advised positioning as consumer product platform with no external investment.
+
+---
+
 ## Ecosystem Context
 
-This site is the **awareness layer** in a coordinated product ecosystem:
+This site is the **awareness layer** and evolving into a **multi-section product platform**:
 
 ```
 EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org → docs.classicos.org
-      (awareness)                  (consideration)    (conversion)       (onboarding)
+   (awareness + products)         (consideration)    (conversion)       (onboarding)
 ```
 
 **Architect:** Christopher Mercer
@@ -23,11 +34,13 @@ EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org → docs
 
 ---
 
-## Purpose
+## Current State (v0.1)
 
-Answer one question: **"Why should I use Ethereum Classic, and where do I go next?"**
+**Purpose:** Answer "Why should I use Ethereum Classic, and where do I go next?"
 
 **Goal:** Route visitors to real ETC activity within 60 seconds.
+
+**Structure:** Single landing page, five sections, router model.
 
 ---
 
@@ -72,7 +85,9 @@ npm run lint
 
 ---
 
-## Site Structure (v0.1)
+## Site Structure
+
+### v0.1 (Current - Locked)
 
 **Five sections (locked):**
 
@@ -84,13 +99,36 @@ npm run lint
 
 **See:** [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md) for complete locked scope.
 
+### v0.2+ (Roadmap)
+
+**Multi-section consumer platform:**
+
+```
+Navigation: News | Wallet | Apps | Buy | Learn | Build | [Launch App]
+```
+
+**Sections:**
+- **Wallet** - Classic OS hub, download CTAs
+- **Buy/Sell** - Fiat on-ramps, exchange links
+- **Apps** - Curated dApp directory (ETCswap, ClassicUSD, Olympia DAO)
+- **News** - ETC ecosystem blog
+- **Learn** - Education center (What is ETC?, guides)
+- **Markets** - Price, charts, network stats
+- **Build** - Developer resources
+
+**Model:** Bitcoin.com multi-section product platform
+
+**See:** [docs/SCOPE-v0.2-roadmap.md](docs/SCOPE-v0.2-roadmap.md) for complete vision and implementation plan.
+
 ---
 
 ## For Developers
 
 ### Documentation
 
-- **Locked scope:** [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md)
+- **Current scope (v0.1):** [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md)
+- **Future roadmap (v0.2+):** [docs/SCOPE-v0.2-roadmap.md](docs/SCOPE-v0.2-roadmap.md)
+- **Strategic positioning:** [/docs/ecosystem/positioning-ethereumclassic-com.md](../../docs/ecosystem/positioning-ethereumclassic-com.md)
 - **Product docs:** [docs/README.md](docs/README.md)
 - **Ecosystem context:** [/docs/ecosystem/phase-0/](../../docs/ecosystem/phase-0/)
 
