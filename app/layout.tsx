@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import BackgroundSystem from "./components/BackgroundSystem";
+import Navigation from "./components/Navigation";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
   title: "Ethereum Classic — Proof-of-Work Smart Contracts",
   description:
-    "Ethereum Classic is the only mature Proof-of-Work blockchain with smart contracts. Use ETC, earn ETC, and build on ETC.",
+    "Ethereum Classic is the only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
   openGraph: {
     title: "Ethereum Classic — Proof-of-Work Smart Contracts",
-    description: "Use ETC, earn ETC, and build on ETC — secured by Nakamoto consensus.",
+    description: "The only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
     type: "website",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ethereum Classic" }],
   },
@@ -32,7 +33,8 @@ export default function RootLayout({
       {/* isolate = background stays behind even if future components create stacking contexts */}
       <body className="relative isolate min-h-dvh bg-[#0B0F14] text-white antialiased">
         <BackgroundSystem />
-        <div className="relative z-10">{children}</div>
+        <Navigation />
+        <div className="relative z-10 pt-16">{children}</div>
       </body>
     </html>
   );

@@ -1,81 +1,115 @@
-import { Section } from "../components/Section";
-import { FadeIn } from "../components/Motion";
-import { Button } from "../components/Button";
-import type { Metadata } from "next";
+import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
-    title: "Build on Ethereum Classic",
-    description:
-        "Build EVM-compatible smart contracts on Ethereum Classic, a Proof-of-Work network designed for longevity.",
-};
+  title: 'Build | Ethereum Classic',
+  description: 'Developer resources for Ethereum Classic',
+}
 
 export default function BuildPage() {
-    return (
-        <main>
-            <Section>
-                <FadeIn>
-                    <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                        Build on Ethereum Classic
-                    </h1>
-                    <p className="mt-3 text-white/75 leading-relaxed max-w-2xl">
-                        Ethereum Classic is an EVM network designed for long-lived infrastructure.
-                        Use familiar Ethereum tooling to write, deploy, and operate smart contracts.
-                    </p>
+  return (
+    <main className="px-6 py-20 md:px-10 lg:px-12">
+      <div className="mx-auto max-w-4xl text-center">
+        <h1 className="text-4xl font-bold md:text-5xl">Build on ETC</h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60">
+          Ethereum Classic is EVM-compatible. Use familiar Ethereum tooling to write, deploy, and operate smart contracts.
+        </p>
+        <p className="mt-4 text-white/50">
+          Full developer resources coming in Phase 3
+        </p>
+      </div>
 
-                    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                        <Button
-                            href="https://docs.soliditylang.org/"
-                            variant="primary"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Solidity docs
-                        </Button>
+      {/* Developer tools grid */}
+      <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a
+          className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
+          href="https://hardhat.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="font-semibold">Hardhat</div>
+          <div className="mt-1 text-sm text-white/60">
+            Local dev, testing, deployment workflows.
+          </div>
+        </a>
 
-                        <Button href="/" variant="ghost">
-                            Back to homepage
-                        </Button>
-                    </div>
+        <a
+          className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
+          href="https://book.getfoundry.sh/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="font-semibold">Foundry</div>
+          <div className="mt-1 text-sm text-white/60">
+            Fast toolchain for Solidity testing and scripts.
+          </div>
+        </a>
 
-                    <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                        <a
-                            className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 hover:bg-[var(--panel-strong)] transition"
-                            href="https://hardhat.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <div className="font-medium">Hardhat</div>
-                            <div className="mt-1 text-sm text-white/70">
-                                Local dev, testing, deployment workflows.
-                            </div>
-                        </a>
+        <a
+          className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
+          href="https://docs.soliditylang.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="font-semibold">Solidity Docs</div>
+          <div className="mt-1 text-sm text-white/60">
+            Smart contract programming language.
+          </div>
+        </a>
 
-                        <a
-                            className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 hover:bg-[var(--panel-strong)] transition"
-                            href="https://book.getfoundry.sh/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <div className="font-medium">Foundry</div>
-                            <div className="mt-1 text-sm text-white/70">
-                                Fast toolchain for Solidity testing and scripts.
-                            </div>
-                        </a>
+        <a
+          className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
+          href="https://eips.ethereum.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="font-semibold">EVM Standards (EIPs)</div>
+          <div className="mt-1 text-sm text-white/60">
+            Token and interface standards used across EVM chains.
+          </div>
+        </a>
 
-                        <a
-                            className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 hover:bg-[var(--panel-strong)] transition"
-                            href="https://eips.ethereum.org/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <div className="font-medium">EVM standards (EIPs)</div>
-                            <div className="mt-1 text-sm text-white/70">
-                                Token and interface standards used across EVM chains.
-                            </div>
-                        </a>
-                    </div>
-                </FadeIn>
-            </Section>
-        </main>
-    );
+        <a
+          className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
+          href="https://ethereumclassic.org/network/endpoints"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="font-semibold">RPC Endpoints</div>
+          <div className="mt-1 text-sm text-white/60">
+            Public endpoints for ETC mainnet and testnet.
+          </div>
+        </a>
+
+        <a
+          className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
+          href="https://blockscout.com/etc/mainnet"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="font-semibold">BlockScout</div>
+          <div className="mt-1 text-sm text-white/60">
+            Block explorer for ETC mainnet.
+          </div>
+        </a>
+      </div>
+
+      <div className="mt-12 text-center">
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3 font-medium text-white/80 transition hover:bg-white/10"
+          >
+            Back to Home
+          </Link>
+          <Link
+            href="/apps"
+            className="inline-flex items-center justify-center rounded-xl border border-emerald-300/30 bg-emerald-400/15 px-6 py-3 font-medium text-white transition hover:bg-emerald-400/20"
+          >
+            View Infrastructure
+          </Link>
+        </div>
+      </div>
+    </main>
+  )
 }
