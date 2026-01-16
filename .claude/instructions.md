@@ -24,21 +24,25 @@ docs.classicos.org
     ↓ (documentation / onboarding)
 ```
 
-### Current Role (v0.1)
+### Current State (v0.2 Phase 1 - ACTIVE)
 
-Answer "Why should I use Ethereum Classic, and where do I go next?" Route visitors to real ETC activity within 60 seconds.
+**v0.1 is archived** - See [`docs/archive/SCOPE-v0.1-complete.md`](../docs/archive/SCOPE-v0.1-complete.md)
 
-### Evolution (v0.2+)
+**Now implementing v0.2 Phase 1** - Transform into multi-section consumer platform (Bitcoin.com model):
 
-Transform into multi-section consumer platform (Bitcoin.com model):
-- Wallet hub (Classic OS)
-- Apps directory (ETCswap, ClassicUSD, Olympia DAO)
-- Buy/Sell (fiat on-ramps, exchanges)
-- News section (ecosystem blog)
-- Learn section (education center)
-- Markets (price, charts, stats)
+**Phase 1 deliverables (current focus):**
+- ✅ Navigation with sections: News, Wallet, Apps, Buy, Learn, Build
+- ✅ Homepage redesign: Product cards, stats, ecosystem showcase
+- ✅ Wallet page: Classic OS promotion
+- ✅ Apps directory: Curated dApps (ETCswap, ClassicUSD, Olympia DAO)
 
-**See:** [`docs/SCOPE-v0.2-roadmap.md`](../docs/SCOPE-v0.2-roadmap.md) for complete vision.
+**Future phases:**
+- Phase 2: Learn section, News section, Markets page
+- Phase 3: Buy page, Build section, enhanced Apps directory
+- Phase 4: User accounts, newsletter, events, multilingual
+
+**See:** [`docs/PHASE-1-implementation-plan.md`](../docs/PHASE-1-implementation-plan.md) for detailed implementation steps
+**See:** [`docs/SCOPE-v0.2-roadmap.md`](../docs/SCOPE-v0.2-roadmap.md) for complete vision
 
 **Architect:** Christopher Mercer (ETCswap V2/V3/Launchpad founder, USC primary organizer, ETC core dev, Fukuii contributor)
 
@@ -66,21 +70,41 @@ npm run lint         # ESLint
 
 ---
 
-## Locked Scope
+## Site Structure (v0.2 Phase 1)
 
-**This scope is locked.** See [`docs/SCOPE-v0.1.md`](../docs/SCOPE-v0.1.md) for complete definition.
+**v0.1 single-page structure is archived.** Now implementing multi-section platform:
 
-Any change requires:
-- Written decision in `control/decisions/`
-- Architect approval
+### Navigation Structure (New)
+```
+[ETC Logo] News | Wallet | Apps | Buy | Learn | Build | [Launch App]
+```
 
-### Five Sections (Fixed)
+### Page Structure (Phase 1)
 
-1. **Hero** - Clear positioning, one CTA
-2. **Why Ethereum Classic** - 3-4 value statements (PoW, longevity, smart contracts, EVM)
-3. **What Can I Do on ETC?** - Three paths: Use, Earn, Build
-4. **Who Is ETC For?** - Segmentation: users, miners, builders, institutions
-5. **Footer** - Essential navigation, external links, legitimacy signals
+**Homepage (Redesigned):**
+1. Hero - Action-oriented ("The Home of Ethereum Classic")
+2. Stats Strip - Social proof (years running, transactions, TVL)
+3. Product Cards - Wallet, Buy, Apps, Learn
+4. Trending News - Recent articles (stub)
+5. Ecosystem Stats - Network activity
+6. Product Suite - Classic OS, ETCswap, ClassicUSD, Olympia DAO
+7. Trust Signals - Security, longevity, EVM compatibility
+8. Final CTA - Download wallet, buy ETC, browse apps
+9. Footer
+
+**Wallet Page (New):**
+- Dedicated Classic OS promotion
+- Four modules showcase (Produce, Portfolio, Deploy, Markets)
+- Download CTAs
+- Trust signals, comparison, screenshots
+
+**Apps Directory (New):**
+- Featured apps (ETCswap, ClassicUSD, Olympia DAO)
+- Categories: DeFi, Infrastructure, Governance, Tools
+- App cards with descriptions and links
+
+**Stub Pages (Phase 1):**
+- News, Buy, Learn, Build (coming in Phase 2/3)
 
 ---
 
@@ -98,22 +122,28 @@ Ethereum Classic is:
 
 ## Core Principles
 
-### This Is a Router
+### This Is a Consumer Gateway (v0.2)
 
+**Evolution from router to platform:**
+- **v0.1:** Simple router to Classic OS and ETCswap
+- **v0.2:** Multi-section consumer platform (Bitcoin.com model)
+
+**What this means:**
 - **For-profit funnel** - Track clicks, optimize conversion
 - **Legitimacy layer** - Establish credibility for ETC ecosystem
-- **Fast** - Mobile-first, minimal copy, action-oriented
-- **Success metric** - Downstream clicks, NOT time on site
+- **Product platform** - Wallet hub, Apps directory, Buy/Sell, News, Learn
+- **Fast** - Mobile-first, <3s load time, action-oriented
+- **Success metric (Phase 1)** - Wallet adoption, app discovery, downstream clicks
+- **Success metric (Phase 2+)** - Return visitors, content engagement, ecosystem growth
 
 ### What NOT to Add
 
-❌ **No wallet integration** - Router only, not an app
-❌ **No portfolio views** - Route to ClassicOS instead
-❌ **No DeFi interactions** - Route to ETCswap/ClassicOS
-❌ **No content engine** - No blog, no CMS, no ECIP content
+❌ **No wallet integration** - Promote Classic OS, don't build another wallet
+❌ **No portfolio views** - Route to Classic OS instead
+❌ **No DeFi interactions** - Route to ETCswap/Classic OS
 ❌ **No governance** - No historical debates or fork discussions
 
-**If it's interactive, it belongs in ClassicOS, not here.**
+**Philosophy:** EthereumClassic.com promotes products, it doesn't replace them.
 
 ---
 
@@ -206,67 +236,116 @@ These files define the project structure and shouldn't be modified without expli
 - `package.json` - Dependencies and scripts
 - `next.config.ts` - Next.js configuration
 - `tsconfig.json` - TypeScript configuration
-- `docs/SCOPE-v0.1.md` - Locked scope definition
+- `docs/SCOPE-v0.2-roadmap.md` - Complete v0.2 vision
+- `docs/PHASE-1-implementation-plan.md` - Phase 1 task breakdown
 
 ---
 
-## Development Workflow
+## Development Workflow (v0.2)
 
 ### Before Making Changes
 
-1. **Read locked scope** - [`docs/SCOPE-v0.1.md`](../docs/SCOPE-v0.1.md)
-2. **Verify it's in scope** - If not explicitly listed, it's out of scope
+1. **Read Phase 1 plan** - [`docs/PHASE-1-implementation-plan.md`](../docs/PHASE-1-implementation-plan.md)
+2. **Read v0.2 roadmap** - [`docs/SCOPE-v0.2-roadmap.md`](../docs/SCOPE-v0.2-roadmap.md)
 3. **Check existing code** - Understand patterns before adding
 
 ### When Adding Features
 
-1. **Ask:** Is this in the locked scope?
-   - If no → **Stop. Get architect approval first.**
-   - If yes → Proceed with small, focused changes
+1. **Ask:** Is this in Phase 1 scope?
+   - Navigation, Homepage, Wallet page, Apps directory → ✅ In scope
+   - News content, Markets data, Buy functionality → ❌ Phase 2/3, defer
 
-2. **Ask:** Does this require interactivity?
-   - If yes → **It belongs in ClassicOS, not here.**
+2. **Ask:** Does this require wallet connection or DeFi interaction?
+   - If yes → **It belongs in Classic OS, not here.**
 
-### Validation Requirements
+3. **Ask:** Does this require CMS or dynamic content?
+   - If yes → **Phase 2+, use static content/stubs for now**
+
+### Validation Requirements (Multi-Page Structure)
 
 Before committing:
 
 ```bash
 npm run lint         # Must pass
 npm run build        # Must succeed
+# Test all routes (/, /wallet, /apps, /news, /buy, /learn, /build)
+# Test mobile responsive
+# Test <3s load time
 ```
 
-**Both must pass.** Fix errors before committing.
+**All validation must pass.** Fix errors before committing.
 
 ---
 
 ## Component Patterns
 
-### Page Structure
+### Page Structure (v0.2)
 
 ```typescript
-// app/page.tsx
+// app/page.tsx (Homepage - Redesigned)
 import Hero from './components/Hero'
-import WhyETC from './components/WhyETC'
-import Paths from './components/Paths'
-// ...
+import StatsStrip from './components/StatsStrip'
+import ProductCards from './components/ProductCards'
+import TrendingNews from './components/TrendingNews'
+import EcosystemStats from './components/EcosystemStats'
+import ProductSuite from './components/ProductSuite'
+import TrustSignals from './components/TrustSignals'
+import FinalCTA from './components/FinalCTA'
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <WhyETC />
-      <Paths />
-      {/* ... */}
+      <StatsStrip />
+      <ProductCards />
+      <TrendingNews />
+      <EcosystemStats />
+      <ProductSuite />
+      <TrustSignals />
+      <FinalCTA />
     </>
   )
 }
 ```
 
-### Component Example
+```typescript
+// app/wallet/page.tsx (New)
+import WalletHero from './components/WalletHero'
+import ClassicOSFeatures from './components/ClassicOSFeatures'
+import DownloadCTAs from './components/DownloadCTAs'
+
+export default function WalletPage() {
+  return (
+    <>
+      <WalletHero />
+      <ClassicOSFeatures />
+      <DownloadCTAs />
+    </>
+  )
+}
+```
 
 ```typescript
-// app/components/Hero.tsx
+// app/apps/page.tsx (New)
+import AppsHero from './components/AppsHero'
+import FeaturedApps from './components/FeaturedApps'
+import CategorySections from './components/CategorySections'
+
+export default function AppsPage() {
+  return (
+    <>
+      <AppsHero />
+      <FeaturedApps />
+      <CategorySections />
+    </>
+  )
+}
+```
+
+### Component Example (v0.2)
+
+```typescript
+// app/components/Hero.tsx (Redesigned)
 'use client'
 
 import { motion } from 'framer-motion'
@@ -274,14 +353,17 @@ import { motion } from 'framer-motion'
 export default function Hero() {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       className="..."
     >
-      <h1>The Only Mature PoW Chain with Smart Contracts</h1>
-      <p>Ethereum Classic: EVM-native, immutable, and continuously operating since 2015</p>
-      <a href="https://classicos.org">Use ETC</a>
+      <h1>The Home of Ethereum Classic</h1>
+      <p>The only mature Proof-of-Work blockchain with smart contracts</p>
+      <div className="flex gap-4">
+        <a href="/wallet">Get Wallet</a>
+        <a href="/buy">Buy ETC</a>
+      </div>
     </motion.section>
   )
 }
@@ -289,22 +371,33 @@ export default function Hero() {
 
 ---
 
-## CTA Strategy
+## CTA Strategy (v0.2)
 
-### Primary CTAs
+### Primary CTAs (Phase 1)
 
-All CTAs route visitors to real ETC activity:
-- **Classic OS** - classicos.org (Complete economic OS)
-- **ETCswap** - etcswap.com (V2/V3 DEX)
-- **Mining resources** - Pools, clients (Fukuii, Core-Geth, Besu)
-- **Exchanges** - With referral codes where applicable
-- **Wallets** - MetaMask, hardware wallets (with referral codes)
+**Navigation:**
+- "Launch App" → app.classicos.org (most prominent)
 
-**All links tracked.** Success measured by downstream clicks.
+**Homepage:**
+- "Get Wallet" → /wallet (internal)
+- "Buy ETC" → /buy (internal, stub for Phase 3)
+- Product cards → /wallet, /buy, /apps, /learn
+
+**Wallet page:**
+- "Launch Classic OS" → app.classicos.org
+- "Read Documentation" → docs.classicos.org
+
+**Apps directory:**
+- Featured apps → ETCswap, ClassicUSD, Olympia DAO
+- Category apps → Fukuii, Core-Geth, Besu, BlockScout
+
+**All external links tracked.** Success measured by:
+- Phase 1: Wallet adoption, app discovery, downstream clicks
+- Phase 2+: Content engagement, return visitors
 
 ---
 
-## Explicitly Out of Scope (v0.1)
+## Phase 1 Focus (Current)
 
 The following are **NOT permitted**:
 
