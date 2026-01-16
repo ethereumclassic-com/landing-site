@@ -2,11 +2,20 @@
 
 ## Product Context
 
-You're working on **EthereumClassic.com**, the top-of-funnel awareness site in a coordinated ecosystem:
+You're working on **EthereumClassic.com**, the commercial/consumer gateway for Ethereum Classic modeled after Bitcoin.com.
+
+### Strategic Positioning
+
+**EthereumClassic.com** = Commercial portal, product suite (THIS SITE)
+**EthereumClassic.org** = Open source project, protocol docs (community-run)
+
+**Advisory:** Roger Ver (Bitcoin.com founder) advised positioning as consumer product platform with no external investment.
+
+### Ecosystem Funnel
 
 ```
 EthereumClassic.com (THIS SITE)
-    ↓ (awareness)
+    ↓ (awareness + products)
 ClassicOS.org
     ↓ (consideration)
 app.classicos.org
@@ -15,7 +24,21 @@ docs.classicos.org
     ↓ (documentation / onboarding)
 ```
 
-**Your role:** Answer "Why should I use Ethereum Classic, and where do I go next?" Route visitors to real ETC activity within 60 seconds.
+### Current Role (v0.1)
+
+Answer "Why should I use Ethereum Classic, and where do I go next?" Route visitors to real ETC activity within 60 seconds.
+
+### Evolution (v0.2+)
+
+Transform into multi-section consumer platform (Bitcoin.com model):
+- Wallet hub (Classic OS)
+- Apps directory (ETCswap, ClassicUSD, Olympia DAO)
+- Buy/Sell (fiat on-ramps, exchanges)
+- News section (ecosystem blog)
+- Learn section (education center)
+- Markets (price, charts, stats)
+
+**See:** [`docs/SCOPE-v0.2-roadmap.md`](../docs/SCOPE-v0.2-roadmap.md) for complete vision.
 
 **Architect:** Christopher Mercer (ETCswap V2/V3/Launchpad founder, USC primary organizer, ETC core dev, Fukuii contributor)
 
@@ -380,9 +403,18 @@ Examples:
 
 ### Documentation
 
-- **Locked scope:** [`docs/SCOPE-v0.1.md`](../docs/SCOPE-v0.1.md)
+**Product-Specific:**
+- **Current scope (v0.1):** [`docs/SCOPE-v0.1.md`](../docs/SCOPE-v0.1.md)
+- **Future roadmap (v0.2+):** [`docs/SCOPE-v0.2-roadmap.md`](../docs/SCOPE-v0.2-roadmap.md)
 - **Product context:** [`docs/README.md`](../docs/README.md)
-- **Ecosystem context:** [`/docs/ecosystem/phase-0/`](../../../docs/ecosystem/phase-0/)
+
+**Ecosystem-Wide:**
+- **Strategic positioning:** [`/docs/ecosystem/positioning-ethereumclassic-com.md`](../../../docs/ecosystem/positioning-ethereumclassic-com.md)
+- **Phase 0 context:** [`/docs/ecosystem/phase-0/`](../../../docs/ecosystem/phase-0/)
+
+**Related Products:**
+- **Classic OS app:** [`/products/classicos-app/docs/`](../classicos-app/docs/)
+- **ClassicOS landing:** [`/products/classicos-site/docs/`](../classicos-site/docs/)
 
 ### External Resources
 
@@ -392,15 +424,65 @@ Examples:
 
 ---
 
+## Ecosystem Awareness
+
+### Vertical Integration Context
+
+All products in the ecosystem are built by the same architect:
+
+- **EthereumClassic.com** (THIS SITE) - Consumer gateway
+- **Classic OS** - Complete economic operating system
+- **ETCswap V2/V3** - DEX protocols
+- **ClassicUSD (USC)** - ETC-native stablecoin
+- **Fukuii** - ETC client
+
+**Benefit:** Deep integration, unified vision, no compromises.
+
+### Cross-Product References
+
+When working on this site, be aware of:
+
+**Classic OS** (app.classicos.org)
+- Four modules: Produce, Portfolio, Deploy, Markets
+- Economic operating system positioning
+- Primary destination for "Use ETC" CTA
+
+**ClassicOS Landing** (classicos.org)
+- Product marketing for Classic OS
+- Consideration layer in funnel
+- Explains "what is Classic OS"
+
+**ETCswap** (etcswap.com)
+- DEX V2/V3/Launchpad
+- Featured in Apps directory (v0.2+)
+- Primary DeFi destination
+
+**ClassicUSD** (USC)
+- ETC-native stablecoin via Brale
+- Featured in Buy page (v0.2+)
+- Fiat on-ramp integration
+
+### Ecosystem Documentation
+
+**Always read ecosystem context before starting work:**
+
+1. [`/docs/ecosystem/phase-0/README.md`](../../../docs/ecosystem/phase-0/README.md) - Three-product launch strategy
+2. [`/docs/ecosystem/positioning-ethereumclassic-com.md`](../../../docs/ecosystem/positioning-ethereumclassic-com.md) - Strategic positioning
+
+**Why:** Understand how this site fits into the broader ecosystem strategy.
+
+---
+
 ## Summary
 
 **Remember:**
-1. **Respect the locked scope** - No features beyond v0.1 definition
-2. This is a **router**, not an app
-3. **Forward-looking positioning** - No fork debates, no governance
-4. Success = **downstream clicks** (not time on site)
-5. **Validate before committing** - lint and build must pass
-6. Route visitors to **ClassicOS, ETCswap, mining resources**
-7. Read **ecosystem context first** - understand the bigger picture
+1. **Respect current scope (v0.1)** - Locked until ready for v0.2
+2. **Be aware of v0.2 vision** - Bitcoin.com multi-section platform
+3. This is a **router evolving into product platform**
+4. **Forward-looking positioning** - No fork debates, no governance
+5. Success = **downstream clicks** (v0.1) then **wallet adoption** (v0.2+)
+6. **Validate before committing** - lint and build must pass
+7. **Read ecosystem docs** - Understand vertical integration strategy
+8. **Cross-product awareness** - Know how all products connect
 
-You're building the awareness layer in a coordinated product ecosystem. Orient visitors to Ethereum Classic and route them to real activity within 60 seconds.
+You're building the consumer gateway for Ethereum Classic. v0.1 orients visitors and routes them to activity. v0.2+ becomes the primary platform for wallet, apps, news, learning, and markets.
