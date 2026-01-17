@@ -226,12 +226,13 @@ Account: All pages
 - [x] Enhanced wallet data (Features, platforms, security levels, ease ratings)
 
 ### Milestone 3.2: Buy Section Expansion
+**Status**: Complete
 **Dependencies**: 2.3
 
 **Deliverables**:
-- [ ] Exchange listings page
-- [ ] ExchangeCard component
-- [ ] ExchangeTable component
+- [x] Exchange listings page (Full filtering, search, table/card views, sorting)
+- [x] ExchangeCard component (Enhanced with payment methods, fees, KYC status)
+- [x] ExchangeTable component (Comprehensive table with all exchange details)
 
 ### Milestone 3.3: Apps Section Expansion
 **Dependencies**: 2.4
@@ -507,16 +508,16 @@ Account: All pages
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 1 | 10% | (3.1 Complete)
+| Phase 3 | 10 | 2 | 20% | (3.1, 3.2 Complete)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **13** | **32%** |
+| **Total** | **41** | **14** | **34%** |
 
 ### Current Focus
 
 **Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: 3.2 - Buy Section Expansion
+**Next Up**: 3.3 - Apps Section Expansion
 
 ---
 

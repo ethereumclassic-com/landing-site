@@ -57,9 +57,9 @@ docs.classicos.org
   - [x] 2.5 Learn landing page
 - [ ] Phase 3: Secondary Pages (in progress)
   - [x] 3.1 Wallet Section Expansion (MetaMask guide, hardware wallets, comparison)
+  - [x] 3.2 Buy Section Expansion (Exchange listings page with filtering, table/card views)
 
 **Next Steps (Phase 3 - Secondary Pages):**
-- [ ] 3.2 Buy Section Expansion (Exchange listings)
 - [ ] 3.3 Apps Section Expansion (More app pages)
 - [ ] 3.4 Learn Section Expansion (More articles)
 - [ ] 3.5 News Section

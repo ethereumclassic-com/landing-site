@@ -1,3 +1,5 @@
+export type PaymentMethod = 'Card' | 'Bank' | 'Crypto' | 'P2P' | 'Wire' | 'Wallet'
+
 export interface Exchange {
   name: string
   type: 'CEX' | 'DEX'
@@ -6,6 +8,32 @@ export interface Exchange {
   pairs: string[]
   regions: string[]
   link: string
+  paymentMethods?: PaymentMethod[]
+  tradingFee?: string
+  withdrawalFee?: string
+  kycRequired?: boolean
+  description?: string
+}
+
+// Helper functions
+export function getExchangesByType(type: 'CEX' | 'DEX'): Exchange[] {
+  return exchanges.filter((ex) => ex.type === type)
+}
+
+export function getFeaturedExchanges(): Exchange[] {
+  return exchanges.filter((ex) => ex.featured)
+}
+
+export function getExchangesByRegion(region: string): Exchange[] {
+  return exchanges.filter((ex) => ex.regions.includes(region))
+}
+
+export function sortExchangesByVolume(exchangeList: Exchange[]): Exchange[] {
+  return [...exchangeList].sort((a, b) => {
+    const aVol = parseFloat(a.volume24h?.replace(/[$M,]/g, '') || '0')
+    const bVol = parseFloat(b.volume24h?.replace(/[$M,]/g, '') || '0')
+    return bVol - aVol
+  })
 }
 
 export const exchanges: Exchange[] = [
@@ -18,6 +46,10 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://etcswap.org',
     volume24h: 'DEX',
+    paymentMethods: ['Wallet'],
+    tradingFee: '0.3%',
+    kycRequired: false,
+    description: 'Native ETC decentralized exchange with concentrated liquidity (V3) and classic AMM (V2).',
   },
 
   // Top 10 CEXs by Volume (Featured)
@@ -29,6 +61,11 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.binance.com',
     volume24h: '$4.17M',
+    paymentMethods: ['Card', 'Bank', 'Crypto', 'P2P'],
+    tradingFee: '0.1%',
+    withdrawalFee: '0.01 ETC',
+    kycRequired: true,
+    description: 'World\'s largest crypto exchange by volume with extensive trading pairs and features.',
   },
   {
     name: 'MEXC',
@@ -38,6 +75,11 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.mexc.com',
     volume24h: '$2.84M',
+    paymentMethods: ['Card', 'Crypto', 'P2P'],
+    tradingFee: '0.2%',
+    withdrawalFee: '0.01 ETC',
+    kycRequired: false,
+    description: 'Fast-growing exchange with 0% maker fees and extensive altcoin selection.',
   },
   {
     name: 'Upbit',
@@ -47,6 +89,11 @@ export const exchanges: Exchange[] = [
     regions: ['Asia', 'Korea'],
     link: 'https://upbit.com',
     volume24h: '$2.48M',
+    paymentMethods: ['Bank', 'Crypto'],
+    tradingFee: '0.05%',
+    withdrawalFee: '0.01 ETC',
+    kycRequired: true,
+    description: 'South Korea\'s leading crypto exchange with high KRW liquidity.',
   },
   {
     name: 'Gate.io',
@@ -56,6 +103,11 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.gate.io',
     volume24h: '$1.48M',
+    paymentMethods: ['Card', 'Crypto', 'P2P'],
+    tradingFee: '0.2%',
+    withdrawalFee: '0.01 ETC',
+    kycRequired: false,
+    description: 'Established exchange with wide asset selection and competitive fees.',
   },
   {
     name: 'OKX',
@@ -65,6 +117,11 @@ export const exchanges: Exchange[] = [
     regions: ['Global', 'Asia', 'EU'],
     link: 'https://www.okx.com',
     volume24h: '$1.29M',
+    paymentMethods: ['Card', 'Bank', 'Crypto', 'P2P'],
+    tradingFee: '0.1%',
+    withdrawalFee: '0.008 ETC',
+    kycRequired: true,
+    description: 'Major exchange with advanced trading features and DeFi integration.',
   },
   {
     name: 'Coinbase',
@@ -74,6 +131,11 @@ export const exchanges: Exchange[] = [
     regions: ['US', 'EU', 'UK'],
     link: 'https://www.coinbase.com',
     volume24h: '$0.52M',
+    paymentMethods: ['Card', 'Bank', 'Wire', 'Crypto'],
+    tradingFee: '0.6%',
+    withdrawalFee: 'Network fee',
+    kycRequired: true,
+    description: 'US-based regulated exchange with strong security and insurance.',
   },
   {
     name: 'KuCoin',
@@ -83,6 +145,11 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.kucoin.com',
     volume24h: '$0.52M',
+    paymentMethods: ['Card', 'Crypto', 'P2P'],
+    tradingFee: '0.1%',
+    withdrawalFee: '0.01 ETC',
+    kycRequired: false,
+    description: 'Popular exchange known for early altcoin listings and low fees.',
   },
   {
     name: 'Bybit',
@@ -92,6 +159,11 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.bybit.com',
     volume24h: '$0.31M',
+    paymentMethods: ['Card', 'Crypto', 'P2P'],
+    tradingFee: '0.1%',
+    withdrawalFee: '0.01 ETC',
+    kycRequired: false,
+    description: 'Derivatives-focused exchange with competitive spot trading.',
   },
   {
     name: 'Kraken',
@@ -101,6 +173,11 @@ export const exchanges: Exchange[] = [
     regions: ['US', 'EU'],
     link: 'https://www.kraken.com',
     volume24h: '$0.11M',
+    paymentMethods: ['Bank', 'Wire', 'Crypto'],
+    tradingFee: '0.26%',
+    withdrawalFee: '0.005 ETC',
+    kycRequired: true,
+    description: 'Long-standing US exchange with strong security track record.',
   },
   {
     name: 'Bitget',
@@ -110,6 +187,11 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.bitget.com',
     volume24h: '$0.15M',
+    paymentMethods: ['Card', 'Crypto', 'P2P'],
+    tradingFee: '0.1%',
+    withdrawalFee: '0.01 ETC',
+    kycRequired: false,
+    description: 'Fast-growing exchange with copy trading and derivatives.',
   },
 
   // Additional CEXs
@@ -120,6 +202,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global', 'Asia'],
     link: 'https://www.htx.com',
     volume24h: '$0.07M',
+    paymentMethods: ['Card', 'Crypto', 'P2P'],
+    tradingFee: '0.2%',
+    kycRequired: true,
   },
   {
     name: 'WhiteBIT',
@@ -128,6 +213,9 @@ export const exchanges: Exchange[] = [
     regions: ['EU'],
     link: 'https://whitebit.com',
     volume24h: '$1.39M',
+    paymentMethods: ['Card', 'Bank', 'Crypto'],
+    tradingFee: '0.1%',
+    kycRequired: true,
   },
   {
     name: 'Bitfinex',
@@ -136,6 +224,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.bitfinex.com',
     volume24h: '$0.01M',
+    paymentMethods: ['Bank', 'Wire', 'Crypto'],
+    tradingFee: '0.2%',
+    kycRequired: true,
   },
   {
     name: 'Poloniex',
@@ -144,6 +235,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://poloniex.com',
     volume24h: '$2.70M',
+    paymentMethods: ['Crypto'],
+    tradingFee: '0.2%',
+    kycRequired: false,
   },
   {
     name: 'CoinEx',
@@ -152,6 +246,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.coinex.com',
     volume24h: '$0.12M',
+    paymentMethods: ['Crypto'],
+    tradingFee: '0.2%',
+    kycRequired: false,
   },
   {
     name: 'Bithumb',
@@ -160,6 +257,9 @@ export const exchanges: Exchange[] = [
     regions: ['Asia', 'Korea'],
     link: 'https://www.bithumb.com',
     volume24h: '$0.65M',
+    paymentMethods: ['Bank', 'Crypto'],
+    tradingFee: '0.04%',
+    kycRequired: true,
   },
   {
     name: 'Phemex',
@@ -168,6 +268,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://phemex.com',
     volume24h: '$0.93M',
+    paymentMethods: ['Card', 'Crypto'],
+    tradingFee: '0.1%',
+    kycRequired: false,
   },
   {
     name: 'BingX',
@@ -176,6 +279,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://bingx.com',
     volume24h: '$0.52M',
+    paymentMethods: ['Card', 'Crypto', 'P2P'],
+    tradingFee: '0.1%',
+    kycRequired: false,
   },
   {
     name: 'Crypto.com',
@@ -184,6 +290,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global', 'US', 'EU'],
     link: 'https://crypto.com',
     volume24h: '$0.01M',
+    paymentMethods: ['Card', 'Bank', 'Crypto'],
+    tradingFee: '0.4%',
+    kycRequired: true,
   },
   {
     name: 'Bitstamp',
@@ -192,6 +301,9 @@ export const exchanges: Exchange[] = [
     regions: ['US', 'EU'],
     link: 'https://www.bitstamp.net',
     volume24h: '$0.03M',
+    paymentMethods: ['Bank', 'Wire', 'Card', 'Crypto'],
+    tradingFee: '0.5%',
+    kycRequired: true,
   },
   {
     name: 'Gemini',
@@ -200,6 +312,9 @@ export const exchanges: Exchange[] = [
     regions: ['US'],
     link: 'https://www.gemini.com',
     volume24h: '$0.02M',
+    paymentMethods: ['Bank', 'Wire', 'Crypto'],
+    tradingFee: '0.35%',
+    kycRequired: true,
   },
   {
     name: 'Bitrue',
@@ -208,6 +323,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.bitrue.com',
     volume24h: '$0.08M',
+    paymentMethods: ['Crypto'],
+    tradingFee: '0.1%',
+    kycRequired: false,
   },
   {
     name: 'BitMart',
@@ -216,6 +334,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.bitmart.com',
     volume24h: '$0.04M',
+    paymentMethods: ['Card', 'Crypto'],
+    tradingFee: '0.25%',
+    kycRequired: false,
   },
   {
     name: 'Korbit',
@@ -224,6 +345,9 @@ export const exchanges: Exchange[] = [
     regions: ['Korea'],
     link: 'https://www.korbit.co.kr',
     volume24h: '$0.01M',
+    paymentMethods: ['Bank'],
+    tradingFee: '0.2%',
+    kycRequired: true,
   },
   {
     name: 'Coinone',
@@ -232,6 +356,9 @@ export const exchanges: Exchange[] = [
     regions: ['Korea'],
     link: 'https://coinone.co.kr',
     volume24h: '$0.01M',
+    paymentMethods: ['Bank'],
+    tradingFee: '0.2%',
+    kycRequired: true,
   },
   {
     name: 'DigiFinex',
@@ -240,6 +367,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global', 'Asia'],
     link: 'https://www.digifinex.com',
     volume24h: '$0.05M',
+    paymentMethods: ['Crypto'],
+    tradingFee: '0.2%',
+    kycRequired: false,
   },
   {
     name: 'AscendEX',
@@ -248,6 +378,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://ascendex.com',
     volume24h: '$0.01M',
+    paymentMethods: ['Crypto'],
+    tradingFee: '0.1%',
+    kycRequired: false,
   },
   {
     name: 'LBank',
@@ -256,6 +389,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.lbank.com',
     volume24h: '$0.03M',
+    paymentMethods: ['Crypto'],
+    tradingFee: '0.1%',
+    kycRequired: false,
   },
   {
     name: 'XT.com',
@@ -264,6 +400,9 @@ export const exchanges: Exchange[] = [
     regions: ['Global'],
     link: 'https://www.xt.com',
     volume24h: '$0.02M',
+    paymentMethods: ['Crypto'],
+    tradingFee: '0.2%',
+    kycRequired: false,
   },
   {
     name: 'Bitvavo',
@@ -272,5 +411,8 @@ export const exchanges: Exchange[] = [
     regions: ['EU'],
     link: 'https://bitvavo.com',
     volume24h: '$0.01M',
+    paymentMethods: ['Bank', 'Card'],
+    tradingFee: '0.25%',
+    kycRequired: true,
   },
 ]
