@@ -47,7 +47,8 @@ export function Button({
         );
     }
 
-    // avoid forwarding external-only props to Link
+    // avoid forwarding external-only props to Link (destructure to exclude them)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { target, rel, ...internalRest } = rest;
 
     return (

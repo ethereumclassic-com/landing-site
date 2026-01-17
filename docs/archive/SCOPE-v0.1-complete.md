@@ -1,4 +1,9 @@
-# ethereumclassic.com v0.1 — Locked Scope
+# ethereumclassic.com v0.1 — Locked Scope (ARCHIVED)
+
+**Status:** COMPLETE - Archived on 2026-01-16
+**Replaced by:** v0.2 implementation - See [../SCOPE-v0.2-roadmap.md](../SCOPE-v0.2-roadmap.md)
+
+---
 
 This document defines the complete and exclusive scope for
 **ethereumclassic.com v0.1**.
@@ -14,7 +19,7 @@ Anything not explicitly listed here is out of scope.
 
 ethereumclassic.com answers one question:
 
-> “Why should I use Ethereum Classic, and where do I go next?”
+> "Why should I use Ethereum Classic, and where do I go next?"
 
 It exists to:
 - orient new users
@@ -70,13 +75,13 @@ No technical deep dives.
 
 Three equal paths:
 
-1. **Use ETC**  
+1. **Use ETC**
    → On-chain applications (ClassicOS, ETCswap)
 
-2. **Earn ETC**  
+2. **Earn ETC**
    → Mining, pools, yield opportunities
 
-3. **Build on ETC**  
+3. **Build on ETC**
    → Clients, infrastructure, protocol development
 
 Each path has a single CTA.
@@ -178,7 +183,7 @@ ethereumclassic.com should avoid a flat, static appearance.
 Design principles:
 - Subtle motion and transitions are encouraged
 - Component-based layouts over long static sections
-- Modern, protocol-grade aesthetic (not “Web3 startup”)
+- Modern, protocol-grade aesthetic (not "Web3 startup")
 
 Visual inspiration may be taken from sites such as:
 - aura.build
@@ -193,7 +198,7 @@ not distract from routing and CTAs.
 
 ---
 
-## 7. Definition of “Done”
+## 7. Definition of "Done"
 
 ethereumclassic.com v0.1 is complete when:
 

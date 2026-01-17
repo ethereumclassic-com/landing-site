@@ -1,26 +1,32 @@
 /**
- * ethereumclassic.com v0.1
- * MUST follow locked scope:
- * - 5 sections only
- * - No dashboards
- * - No wallet connections
- * - Router, not destination
+ * ethereumclassic.com v0.2 Phase 1
+ * Multi-section consumer platform (Bitcoin.com model)
  */
 
-import { Hero } from "./sections/Hero";
-import { Why } from "./sections/Why";
-import { WhatCanIDo } from "./sections/WhatCanIDo";
-import { WhoFor } from "./sections/WhoFor";
-import { SiteFooter } from "./sections/SiteFooter";
+import {
+  Hero,
+  StatsStrip,
+  ProductCards,
+  TrendingNews,
+  EcosystemStats,
+  ProductSuite,
+  TrustSignals,
+  FinalCTA,
+} from './components/homepage'
+import { SiteFooter } from './sections/SiteFooter'
 
 export default function Page() {
   return (
     <main>
       <Hero />
-      <Why />
-      <WhatCanIDo />
-      <WhoFor />
+      <StatsStrip />
+      <ProductCards />
+      <TrendingNews />
+      <EcosystemStats />
+      <ProductSuite />
+      <TrustSignals />
+      <FinalCTA />
       <SiteFooter />
     </main>
-  );
+  )
 }
