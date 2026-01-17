@@ -71,23 +71,23 @@ export default function BuildPage() {
 
         <a
           className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
-          href="https://ethereumclassic.org/network/endpoints"
+          href="https://chainlist.org/chain/61"
           target="_blank"
           rel="noopener noreferrer"
         >
           <div className="font-semibold">RPC Endpoints</div>
           <div className="mt-1 text-sm text-white/60">
-            Public endpoints for ETC mainnet and testnet.
+            Public endpoints for ETC mainnet via Chainlist.
           </div>
         </a>
 
         <a
           className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 transition hover:border-[var(--etc)]/30 hover:bg-[var(--panel-strong)]"
-          href="https://blockscout.com/etc/mainnet"
+          href="https://etc.blockscout.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="font-semibold">BlockScout</div>
+          <div className="font-semibold">Blockscout</div>
           <div className="mt-1 text-sm text-white/60">
             Block explorer for ETC mainnet.
           </div>

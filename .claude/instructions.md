@@ -55,9 +55,10 @@ docs.classicos.org
   - [x] 2.3 Buy landing page
   - [x] 2.4 Apps directory
   - [x] 2.5 Learn landing page
+- [ ] Phase 3: Secondary Pages (in progress)
+  - [x] 3.1 Wallet Section Expansion (MetaMask guide, hardware wallets, comparison)
 
 **Next Steps (Phase 3 - Secondary Pages):**
-- [ ] 3.1 Wallet Section Expansion (MetaMask guide, hardware wallets)
 - [ ] 3.2 Buy Section Expansion (Exchange listings)
 - [ ] 3.3 Apps Section Expansion (More app pages)
 - [ ] 3.4 Learn Section Expansion (More articles)
@@ -340,6 +341,77 @@ This site promotes products, it doesn't replace them:
 ### Other Products
 | Product | Description |
 |---------|-------------|
+
+---
+
+## Referral Links (IMPORTANT)
+
+**All referral/affiliate links must use these URLs throughout the website.**
+
+| Partner | Referral URL | Notes |
+|---------|--------------|-------|
+| Trezor | https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561 | Hardware wallet (recommended) |
+
+**Usage:** When linking to partner products anywhere on the site, always use the referral URL from this table instead of the direct product URL. This ensures consistent tracking and revenue attribution.
+
+**Adding new referrals:** When a new referral partnership is established, add the URL here first, then update all links across the site to use it.
+
+---
+
+## ETC Network Configuration
+
+### Mainnet (Chain ID: 61)
+
+Use these canonical values when configuring wallets, dApps, or documentation:
+
+| Parameter | Value |
+|-----------|-------|
+| Network Name | Ethereum Classic |
+| Chain ID | 61 |
+| Currency Symbol | ETC |
+| Block Explorer | https://etc.blockscout.com |
+
+### RPC Endpoints
+
+| Provider | URL | Notes |
+|----------|-----|-------|
+| Rivet | https://etc.rivet.link | Primary recommended |
+| Blockscout | https://etc.blockscout.com/api/eth-rpc | Official explorer RPC |
+| ETC Cooperative | https://www.ethercluster.com/etc | Community maintained |
+| GETH Classic | https://geth-de.etc-network.info | Core-Geth node |
+
+**Reference:** [Chainlist ETC Mainnet](https://chainlist.org/chain/61) - Full list of public RPC endpoints
+
+### Block Explorer APIs
+
+| Service | Explorer URL | API Endpoint |
+|---------|--------------|--------------|
+| Blockscout | https://etc.blockscout.com | https://etc.blockscout.com/api |
+| Blockscout RPC | - | https://etc.blockscout.com/api/eth-rpc |
+
+**Note:** Always use `etc.blockscout.com` (not the legacy `blockscout.com/etc/mainnet` path).
+
+### Mordor Testnet (Chain ID: 63)
+
+Mordor is Ethereum Classic's only testnet, used for development and testing.
+
+| Parameter | Value |
+|-----------|-------|
+| Network Name | Mordor Testnet |
+| Chain ID | 63 |
+| Currency Symbol | METC |
+| Block Explorer | https://etc-mordor.blockscout.com |
+
+### Mordor RPC Endpoints
+
+| Provider | URL | Notes |
+|----------|-----|-------|
+| ETC Cooperative | https://rpc.mordor.etccooperative.org | Primary testnet RPC |
+| GETH Mordor | https://geth-mordor.etc-network.info | Core-Geth node |
+| 0xRPC | https://0xrpc.io/mordor | No tracking |
+| 0xRPC WS | wss://0xrpc.io/mordor | WebSocket endpoint |
+
+**Reference:** [Chainlist Mordor Testnet](https://chainlist.org/chain/63) - Full list of testnet RPC endpoints
 
 ---
 

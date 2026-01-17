@@ -266,10 +266,16 @@ export default function Navigation() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
-  // Close mobile menu on route change
+  // Close mobile menu on route change - this is intentional UI behavior
+  const prevPathname = useRef(pathname)
   useEffect(() => {
-    setMobileMenuOpen(false)
-    setSearchOpen(false)
+    if (prevPathname.current !== pathname) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setMobileMenuOpen(false)
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSearchOpen(false)
+      prevPathname.current = pathname
+    }
   }, [pathname])
 
   // Check if a nav item or its children are active

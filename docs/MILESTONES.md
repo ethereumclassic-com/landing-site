@@ -215,13 +215,15 @@ Account: All pages
 **Goal**: Build priority P1 pages expanding core sections.
 
 ### Milestone 3.1: Wallet Section Expansion
+**Status**: Complete
 **Dependencies**: 2.2
 
 **Deliverables**:
-- [ ] MetaMask setup guide
-- [ ] Hardware wallet guide
-- [ ] Wallet comparison page
-- [ ] WalletComparison component
+- [x] MetaMask setup guide (Step-by-step with network config, RPC endpoints, troubleshooting)
+- [x] Hardware wallet guide (Ledger vs Trezor comparison, security benefits, setup steps)
+- [x] Wallet comparison page (Table/card views, filtering, sorting)
+- [x] WalletComparison component (Feature matrix, security levels, ease of use)
+- [x] Enhanced wallet data (Features, platforms, security levels, ease ratings)
 
 ### Milestone 3.2: Buy Section Expansion
 **Dependencies**: 2.3
@@ -505,16 +507,16 @@ Account: All pages
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 0 | 0% |
+| Phase 3 | 10 | 1 | 10% | (3.1 Complete)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **12** | **29%** |
+| **Total** | **41** | **13** | **32%** |
 
 ### Current Focus
 
 **Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: 3.1 - Wallet Section Expansion
+**Next Up**: 3.2 - Buy Section Expansion
 
 ---
 

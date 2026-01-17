@@ -847,10 +847,10 @@ export const apps: App[] = [
 
   // Tools
   {
-    name: 'BlockScout',
+    name: 'Blockscout',
     description: 'Ethereum Classic block explorer for viewing transactions, addresses, and contracts.',
-    category: 'Tools',
-    link: 'https://blockscout.com/etc/mainnet'
+    category: 'Infrastructure',
+    link: 'https://etc.blockscout.com'
   },
   {
     name: 'Classic OS',
@@ -1604,7 +1604,7 @@ export const wallets: Wallet[] = [
     name: 'Trezor',
     type: 'Hardware',
     description: 'Popular hardware wallet with open-source firmware',
-    link: 'https://trezor.io',
+    link: 'https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561',
     supportsClassicOS: true
   },
   {
