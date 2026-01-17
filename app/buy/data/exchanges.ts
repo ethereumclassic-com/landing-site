@@ -16,7 +16,7 @@ export const exchanges: Exchange[] = [
     featured: true,
     pairs: ['ETC/USDC', 'ETC/USC', 'ETC/WBTC'],
     regions: ['Global'],
-    link: 'https://etcswap.com',
+    link: 'https://etcswap.org',
     volume24h: 'DEX',
   },
 

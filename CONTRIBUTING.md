@@ -180,7 +180,7 @@ Ethereum Classic is:
 ### 1. Use ETC
 Route to:
 - Classic OS (classicos.org) - Primary
-- ETCswap (etcswap.com)
+- ETCswap (etcswap.org)
 - Wallets (MetaMask, hardware wallets)
 
 ### 2. Earn ETC

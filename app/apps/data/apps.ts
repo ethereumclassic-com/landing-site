@@ -12,14 +12,14 @@ export const apps: App[] = [
     name: 'ETCswap',
     description: 'Decentralized exchange with V2/V3/Launchpad. Swap, provide liquidity, and farm yields on Ethereum Classic.',
     category: 'DeFi',
-    link: 'https://etcswap.com',
+    link: 'https://etcswap.org',
     featured: true,
   },
   {
     name: 'ClassicUSD',
     description: 'ETC-native stablecoin via Brale. Fiat on-ramp with ACH deposits and DeFi integration.',
     category: 'DeFi',
-    link: '#',
+    link: 'https://classicusd.com',
     featured: true,
   },
   {

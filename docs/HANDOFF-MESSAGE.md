@@ -245,7 +245,7 @@ Phase 1 is successful when:
 - ✅ Stub pages exist for News, Learn, Build
 - ✅ All validation passes (lint, build, mobile, <3s load)
 - ✅ No broken links
-- ✅ All external CTAs correct (app.classicos.org, docs.classicos.org, etcswap.com)
+- ✅ All external CTAs correct (app.classicos.org, docs.classicos.org, etcswap.org)
 
 ---
 

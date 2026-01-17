@@ -60,7 +60,7 @@ Both must pass.
 ## Primary CTAs
 
 - ClassicOS → classicos.org
-- ETCswap → etcswap.com
+- ETCswap → etcswap.org
 - Mining/Clients → pool/client links
 
 ## What's Out of Scope (v0.1)

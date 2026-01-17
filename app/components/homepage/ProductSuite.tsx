@@ -52,7 +52,7 @@ export default function ProductSuite() {
         'Yield farming rewards',
         'Token launchpad',
       ],
-      link: 'https://etcswap.com',
+      link: 'https://etcswap.org',
     },
     {
       name: 'ClassicUSD',
@@ -63,7 +63,7 @@ export default function ProductSuite() {
         'DeFi integration',
         'Low transaction fees',
       ],
-      link: '#',
+      link: 'https://classicusd.com',
     },
     {
       name: 'Olympia DAO',

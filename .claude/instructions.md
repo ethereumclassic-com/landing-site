@@ -309,13 +309,52 @@ This site promotes products, it doesn't replace them:
 
 ## Key Products Promoted
 
-| Product | Description | Destination |
-|---------|-------------|-------------|
-| Classic OS | Economic operating system | app.classicos.org |
-| ETCswap | DEX V2/V3 | etcswap.com |
-| ClassicUSD (USC) | ETC-native stablecoin | - |
-| Olympia DAO | Governance | - |
-| Fukuii | ETC client | - |
+### Classic OS
+| Property | URL |
+|----------|-----|
+| Landing Page | https://classicos.org |
+| App | https://app.classicos.org |
+| Docs | https://docs.classicos.org |
+
+### ETCswap
+| Property | URL |
+|----------|-----|
+| Landing Site | https://etcswap.org |
+| V2 DEX | https://v2.etcswap.org |
+| V3 DEX | https://v3.etcswap.org |
+| Launchpad (ILO) | https://launchpad.etcswap.org |
+| Docs | https://docs.etcswap.org |
+| V3 Market Data | https://info.etcswap.org |
+
+### Classic USD (USC)
+| Property | URL |
+|----------|-----|
+| Landing Site | https://classicusd.com |
+| Brale (Licensed Operator) | https://brale.xyz |
+| Mint/Redeem Platform | https://app.brale.xyz |
+| CoinGecko | https://www.coingecko.com/en/coins/classic-usd |
+| CoinGecko API ID | `classic-usd` |
+
+### Wrapped Ether (WETC)
+| Property | URL |
+|----------|-----|
+| Website | https://wrappedether.org |
+| GitHub | https://github.com/wrappedether |
+| CoinGecko | https://www.coingecko.com/en/coins/wrapped-ether |
+| CoinGecko API ID | `wrapped-ether` |
+
+### GeckoTerminal / Market Data
+| Market | URL |
+|--------|-----|
+| ETC DEX Markets (All) | https://www.geckoterminal.com/ethereum_classic/pools |
+| ETCswap V3 Pools | https://www.geckoterminal.com/ethereum_classic/etcswap-v3/pools |
+| ETCswap V2 Pools | https://www.geckoterminal.com/ethereum_classic/etcswap-v2/pools |
+
+### Other Products
+| Product | Description |
+|---------|-------------|
+| Olympia DAO | Governance protocol |
+| Fukuii | ETC client |
 
 ---
 

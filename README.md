@@ -200,7 +200,7 @@ Ethereum Classic is:
 | Product | Description | URL |
 |---------|-------------|-----|
 | Classic OS | Complete economic operating system | app.classicos.org |
-| ETCswap | DEX protocol V2/V3 | etcswap.com |
+| ETCswap | DEX protocol V2/V3 | etcswap.org |
 | ClassicUSD (USC) | ETC-native stablecoin | - |
 | Olympia DAO | Governance protocol | - |
 

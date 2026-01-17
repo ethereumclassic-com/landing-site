@@ -563,7 +563,7 @@ export default function ProductSuite() {
         'Yield farming',
         'Token launchpad'
       ],
-      link: 'https://etcswap.com'
+      link: 'https://etcswap.org'
     },
     {
       name: 'ClassicUSD',
@@ -807,7 +807,7 @@ export const apps: App[] = [
     name: 'ETCswap',
     description: 'Decentralized exchange with V2/V3/Launchpad. Swap, provide liquidity, and farm yields on Ethereum Classic.',
     category: 'DeFi',
-    link: 'https://etcswap.com',
+    link: 'https://etcswap.org',
     featured: true
   },
   {
@@ -1078,7 +1078,7 @@ export const exchanges: Exchange[] = [
     featured: true,
     pairs: ['ETC/USDC', 'ETC/USC', 'ETC/WBTC'],
     regions: ['Global'],
-    link: 'https://etcswap.com',
+    link: 'https://etcswap.org',
     volume24h: 'DEX'
   },
 
