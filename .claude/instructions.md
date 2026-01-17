@@ -62,11 +62,12 @@ docs.classicos.org
   - [x] 3.4 Learn Section Expansion (15 articles: 7 basics, 4 wallets, 4 mining)
   - [x] 3.5 News Section (Hub page, NewsCard component, 15 articles, category filtering)
   - [x] 3.6 Markets Section (Hub page, price page, PriceDisplay, PriceChart components)
+  - [x] 3.7 Mining Section (Hub page, getting started, pools, PoolCard, HashRateChart)
 
 **Next Steps (Phase 3 - Secondary Pages):**
-- [ ] 3.7 Mining Section
 - [ ] 3.8 Build Section
 - [ ] 3.9 Exchanges Section
+- [ ] 3.10 Directory Section
 
 ---
 
@@ -364,7 +365,8 @@ This site promotes products, it doesn't replace them:
 
 | Partner | Referral URL | Notes |
 |---------|--------------|-------|
-| Trezor | https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561 | Hardware wallet (recommended) |
+| Trezor | https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561 | Hardware wallet (featured - open source, ERC-20 support) |
+| Ledger | https://shop.ledger.com/?r=bbf4d7f32e72 | Hardware wallet |
 
 **Usage:** When linking to partner products anywhere on the site, always use the referral URL from this table instead of the direct product URL. This ensures consistent tracking and revenue attribution.
 
@@ -554,4 +556,4 @@ The git commit captures the actual code changes, so detailed implementation cont
 7. Route to ecosystem products, don't rebuild them
 
 **Current Focus:** Phase 3 - Secondary Pages
-**Current Milestone:** 3.7 - Mining Section
+**Current Milestone:** 3.8 - Build Section

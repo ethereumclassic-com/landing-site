@@ -80,7 +80,7 @@ const hardwareWallets = [
       openSource: false,
       classicOSSupport: true,
     },
-    link: 'https://www.ledger.com',
+    link: 'https://shop.ledger.com/?r=bbf4d7f32e72',
     setupSteps: [
       'Download Ledger Live from ledger.com',
       'Connect your Ledger device via USB',
@@ -579,13 +579,13 @@ export default function HardwarePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
-                Get Trezor (Recommended)
+                Get Trezor
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>
               <a
-                href="https://www.ledger.com"
+                href="https://shop.ledger.com/?r=bbf4d7f32e72"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"

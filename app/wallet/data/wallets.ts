@@ -49,7 +49,7 @@ export const wallets: Wallet[] = [
     name: 'Ledger',
     type: 'Hardware',
     description: 'Popular hardware wallet with secure element chip',
-    link: 'https://www.ledger.com',
+    link: 'https://shop.ledger.com/?r=bbf4d7f32e72',
     supportsClassicOS: true,
     platforms: ['Hardware', 'Desktop', 'iOS', 'Android'],
     features: {

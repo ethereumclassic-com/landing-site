@@ -279,14 +279,15 @@ Account: All pages
 - [x] Market data file (Price sources, trading pairs, stats, milestones, resources)
 
 ### Milestone 3.7: Mining Section
-**Dependencies**: Phase 1
+**Status**: Complete
 
 **Deliverables**:
-- [ ] Mining hub page
-- [ ] Getting started guide
-- [ ] Pool directory page
-- [ ] PoolCard component
-- [ ] HashRateChart component
+- [x] Mining hub page (Full hub with network stats, pool distribution, resource cards, external resources)
+- [x] Getting started guide (5-step guide with requirements, recommended pools, tips)
+- [x] Pool directory page (Cards/table views, sorting, hashrate chart, payout scheme explanations)
+- [x] PoolCard component (Full card and compact variants, table row variant)
+- [x] HashRateChart component (Pie chart for pool distribution, stats bar, stat display components)
+- [x] Mining data file (6 pools, 11 hardware items, network stats, software, resources)
 
 ### Milestone 3.8: Build Section
 **Dependencies**: Phase 1
@@ -517,16 +518,16 @@ Account: All pages
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 6 | 60% | (3.1, 3.2, 3.3, 3.4, 3.5, 3.6 Complete)
+| Phase 3 | 10 | 7 | 70% | (3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 Complete)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **18** | **44%** |
+| **Total** | **41** | **19** | **46%** |
 
 ### Current Focus
 
 **Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: 3.7 - Mining Section
+**Next Up**: 3.8 - Build Section
 
 ---
 
