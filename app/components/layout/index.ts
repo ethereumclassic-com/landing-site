@@ -25,15 +25,6 @@ export type { BreadcrumbsProps, BreadcrumbItem } from './Breadcrumbs'
 export { Sidebar, SidebarLayout } from './Sidebar'
 export type { SidebarProps, SidebarLayoutProps, SidebarPosition } from './Sidebar'
 
-// Navigation
-export { Navigation } from './Navigation'
-export type {
-  NavigationProps,
-  NavItem,
-  NavDropdownItem,
-  NavEntry,
-} from './Navigation'
-
 // Footer
 export { Footer } from './Footer'
 export type {

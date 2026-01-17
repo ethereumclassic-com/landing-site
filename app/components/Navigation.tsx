@@ -14,10 +14,11 @@ const navItems = [
     label: 'Wallet',
     dropdown: [
       { href: '/wallet', label: 'Wallet Hub' },
-      { href: '/wallet/classic-os', label: 'Classic OS' },
-      { href: '/wallet/metamask', label: 'MetaMask Setup' },
-      { href: '/wallet/hardware', label: 'Hardware Wallets' },
+      { href: '/wallet/reviews', label: 'Reviews' },
       { href: '/wallet/compare', label: 'Compare Wallets' },
+      { href: '/wallet/hardware', label: 'Hardware Wallets' },
+      { href: '/wallet/metamask', label: 'MetaMask Setup' },
+      { href: '/wallet/classic-os', label: 'Classic OS' },
     ],
   },
   {
