@@ -406,14 +406,14 @@ Account: All pages
 - [x] Network stats page (hashrate tracker, difficulty, block reward)
 
 ### Milestone 4.8: Build Expansion
+**Status**: Complete
 **Dependencies**: 3.8
 
 **Deliverables**:
-- [ ] Tools directory
-- [ ] Individual client pages
-- [ ] Network info page
-- [ ] Testnet faucets page
-- [ ] METC faucet for Mordor Testnet (host in this repo)
+- [x] Tools directory (/build/tools - 11 tools across 4 categories with config examples)
+- [x] Individual client pages (/build/clients/[client] - Core-Geth, Besu, Fukuii with install/config guides)
+- [x] Network info page (/build/networks - Chain IDs, RPC endpoints, wallet config, Chainlist links)
+- [x] Testnet faucets page (/build/faucets - 2 faucets with METC info, how-to guide, troubleshooting)
 
 ### Milestone 4.9: Research Section
 **Dependencies**: Phase 1
@@ -684,17 +684,17 @@ Account: All pages
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 7 | 58% | (4.1-4.7 Complete)
+| Phase 4 | 12 | 8 | 67% | (4.1-4.8 Complete)
 | Phase 5 | 7 | 0 | 0% |
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **52** | **29** | **56%** |
+| **Total** | **52** | **30** | **58%** |
 
 ### Current Focus
 
-**Just Completed**: Milestone 4.7 - Mining Expansion (Individual pool pages, software guide, profitability tools)
+**Just Completed**: Milestone 4.8 - Build Expansion (Tools directory, client pages, network info, faucets)
 
-**Next Up**: Continue with remaining Phase 4 milestones (4.8-4.12)
+**Next Up**: Continue with remaining Phase 4 milestones (4.9-4.12)
 
 ---
 
