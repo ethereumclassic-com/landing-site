@@ -350,11 +350,19 @@ This site promotes products, it doesn't replace them:
 | ETCswap V3 Pools | https://www.geckoterminal.com/ethereum_classic/etcswap-v3/pools |
 | ETCswap V2 Pools | https://www.geckoterminal.com/ethereum_classic/etcswap-v2/pools |
 
+### Olympia DAO
+| Property | URL |
+|----------|-----|
+| Website | https://olympiadao.org |
+
+### Fukuii
+| Property | URL |
+|----------|-----|
+| GitHub | https://github.com/chippr-robotics/fukuii |
+
 ### Other Products
 | Product | Description |
 |---------|-------------|
-| Olympia DAO | Governance protocol |
-| Fukuii | ETC client |
 
 ---
 
