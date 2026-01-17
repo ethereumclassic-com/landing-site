@@ -1,18 +1,43 @@
+'use client'
+
+import { motion } from 'framer-motion'
+
 interface TrustCardProps {
   title: string
   description: string
   icon: React.ReactNode
+  index: number
 }
 
-function TrustCard({ title, description, icon }: TrustCardProps) {
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: 'easeOut' as const,
+    },
+  }),
+}
+
+function TrustCard({ title, description, icon, index }: TrustCardProps) {
   return (
-    <div className="text-center">
-      <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--panel)] text-2xl">
+    <motion.div
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-50px' }}
+      variants={fadeInUp}
+      className="group text-center"
+    >
+      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] transition-all group-hover:scale-110 group-hover:bg-[var(--color-primary)]/20">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <p className="mt-2 text-sm text-white/60">{description}</p>
-    </div>
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+      <p className="mt-2 text-sm text-[var(--color-text-muted)]">{description}</p>
+    </motion.div>
   )
 }
 
@@ -67,12 +92,26 @@ export default function TrustSignals() {
   return (
     <section className="px-6 py-20 md:px-10 lg:px-12">
       <div className="mx-auto max-w-6xl">
-        <h2 className="mb-12 text-center text-3xl font-bold md:text-4xl">
-          Why Ethereum Classic?
-        </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 text-center"
+        >
+          <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
+            Core Values
+          </span>
+          <h2 className="mt-4 text-3xl font-bold text-white md:text-4xl">
+            Why Ethereum Classic?
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
+            Built on principles of decentralization, immutability, and censorship resistance
+          </p>
+        </motion.div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {signals.map((signal) => (
-            <TrustCard key={signal.title} {...signal} />
+          {signals.map((signal, index) => (
+            <TrustCard key={signal.title} {...signal} index={index} />
           ))}
         </div>
       </div>
