@@ -384,12 +384,13 @@ Account: All pages
 - [x] Related content (smart algorithm: same category, matching tags, recent fallback)
 
 ### Milestone 4.6: Markets Expansion
+**Status**: Complete
 **Dependencies**: 3.6
 
 **Deliverables**:
-- [ ] Additional price pairs
-- [ ] Price converter tool
-- [ ] Investment calculator
+- [x] Additional price pairs (16 pairs: USD, USDT, USDC, BUSD, DAI, BTC, ETH, BNB, EUR, GBP, KRW, JPY, CAD, AUD, TRY, BRL)
+- [x] Price converter tool (/markets/converter - 17 currencies with real-time conversion)
+- [x] Investment calculator (/markets/calculator - ROI projections, price scenarios, DCA tables)
 
 ### Milestone 4.7: Mining Expansion
 **Status**: In Progress
@@ -683,17 +684,17 @@ Account: All pages
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 5 | 42% | (4.1-4.5 Complete)
+| Phase 4 | 12 | 6 | 50% | (4.1-4.6 Complete)
 | Phase 5 | 7 | 0 | 0% |
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **52** | **27** | **52%** |
+| **Total** | **52** | **28** | **54%** |
 
 ### Current Focus
 
-**Just Completed**: Milestone 4.5 - News Full Implementation (All deliverables complete)
+**Just Completed**: Milestone 4.6 - Markets Expansion (Price converter, investment calculator, expanded price pairs)
 
-**Next Up**: Continue with remaining Phase 4 milestones (4.6-4.12)
+**Next Up**: Continue with remaining Phase 4 milestones (4.7-4.12)
 
 ---
 
