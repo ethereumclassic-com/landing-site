@@ -196,14 +196,17 @@ Account: All pages
 - [x] Individual app pages (Dynamic [app] route with features, stats, CTAs)
 
 ### Milestone 2.5: Learn Landing
+**Status**: Complete
 **Dependencies**: Phase 1
 
 **Deliverables**:
-- [ ] Learn hub page
-- [ ] "What is Ethereum Classic?" article
-- [ ] Category tabs
-- [ ] ArticleCard component
-- [ ] Basics category landing
+- [x] Learn hub page (Hero with gradient, staggered animations, article count badge)
+- [x] "What is Ethereum Classic?" article (Full content with prose styling)
+- [x] Category tabs (7 categories with icons and article counts)
+- [x] ArticleCard component (Framer Motion animations, 3 variants: default/featured/compact)
+- [x] Basics category landing (Feature cards, article grid, CTA section)
+- [x] Article data structure (app/learn/data/articles.ts with 24 articles defined)
+- [x] ArticlePageClient component (Breadcrumbs, tags, prose content, related articles)
 
 ---
 
@@ -469,7 +472,19 @@ Account: All pages
 - [ ] Language selector
 - [ ] Initial translations (ES, ZH)
 
-### Milestone 5.6: Advanced Features
+### Milestone 5.6: Content Review & Polish
+**Dependencies**: Phase 4
+
+**Deliverables**:
+- [ ] Deep content review of all Learn articles
+- [ ] Article formatting and prose styling improvements
+- [ ] Content accuracy verification (technical details, links)
+- [ ] Source content from ethereumclassic.org (with vetting per instructions)
+- [ ] Add remaining article content (currently placeholder)
+- [ ] SEO optimization for article pages
+- [ ] Image/diagram additions where appropriate
+
+### Milestone 5.7: Advanced Features
 **Dependencies**: Phase 4
 
 **Deliverables**:
@@ -489,17 +504,17 @@ Account: All pages
 | Phase | Milestones | Completed | Progress |
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
-| Phase 2 | 5 | 4 | 80% |
+| Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 0 | 0% |
 | Phase 4 | 12 | 0 | 0% |
-| Phase 5 | 6 | 0 | 0% |
-| **Total** | **40** | **11** | **27.5%** |
+| Phase 5 | 7 | 0 | 0% |
+| **Total** | **41** | **12** | **29%** |
 
 ### Current Focus
 
-**Active Milestone**: 2.5 - Learn Landing
+**Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: Phase 3 - Secondary Pages
+**Next Up**: 3.1 - Wallet Section Expansion
 
 ---
 

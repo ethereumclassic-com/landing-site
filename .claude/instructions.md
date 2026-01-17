@@ -41,52 +41,29 @@ docs.classicos.org
 
 ## Current Development Phase
 
-### Phase 1: Framework & Shell (Active)
+### Phase 2: Core Pages (Complete)
 
-**Goal:** Establish complete site architecture with all URL endpoints defined.
+**Goal:** Build primary user-facing pages for core sections.
 
-**Current Milestone:** 1.5 Section Components (Next)
+**Current Milestone:** Phase 3 - Secondary Pages
 
-**Completed:**
-- [x] 1.1 RESEARCH.md - Bitcoin.com analysis
-- [x] 1.1 URL-STRUCTURE.md - Complete endpoint mapping (180+ URLs)
-- [x] 1.1 ARCHITECTURE.md - Technical architecture
-- [x] 1.1 COMPONENTS.md - Component specifications
-- [x] 1.1 MILESTONES.md - Development phases
-- [x] 1.1 README.md - Updated
-- [x] 1.1 instructions.md - Updated
-- [x] 1.2 Design tokens (colors, typography, spacing)
-- [x] 1.2 Tailwind configuration
-- [x] 1.2 Base CSS variables
-- [x] 1.2 Dark theme setup
-- [x] 1.3 Button component (all variants)
-- [x] 1.3 Card component (all variants)
-- [x] 1.3 Badge component
-- [x] 1.3 Input/Select components
-- [x] 1.3 Tabs component
-- [x] 1.3 Table component
-- [x] 1.3 Modal component
-- [x] 1.3 Tooltip component
-- [x] 1.3 Skeleton/Loading states
-- [x] 1.3 Icon system
-- [x] 1.4 Navigation (desktop + mobile)
-- [x] 1.4 Footer
-- [x] 1.4 Container
-- [x] 1.4 Section
-- [x] 1.4 Grid
-- [x] 1.4 PageHeader
-- [x] 1.4 Breadcrumbs
-- [x] 1.4 Sidebar
+**Completed Phases:**
+- [x] Phase 1: Framework & Shell (1.1 - 1.7)
+- [x] Phase 2: Core Pages (2.1 - 2.5)
+  - [x] 2.1 Homepage rebuild
+  - [x] 2.2 Wallet landing page
+  - [x] 2.3 Buy landing page
+  - [x] 2.4 Apps directory
+  - [x] 2.5 Learn landing page
 
-**Next Steps (Milestone 1.5 - Section Components):**
-- [ ] Hero (home, page, minimal variants)
-- [ ] StatsStrip
-- [ ] ProductCards
-- [ ] FeatureGrid
-- [ ] CTABanner
-- [ ] FAQAccordion
-- [ ] NewsletterSignup
-- [ ] TrustSignals
+**Next Steps (Phase 3 - Secondary Pages):**
+- [ ] 3.1 Wallet Section Expansion (MetaMask guide, hardware wallets)
+- [ ] 3.2 Buy Section Expansion (Exchange listings)
+- [ ] 3.3 Apps Section Expansion (More app pages)
+- [ ] 3.4 Learn Section Expansion (More articles)
+- [ ] 3.5 News Section
+- [ ] 3.6 Markets Section
+- [ ] 3.7 Mining Section
 
 ---
 
@@ -490,5 +467,5 @@ The git commit captures the actual code changes, so detailed implementation cont
 6. Forward-looking ETC positioning
 7. Route to ecosystem products, don't rebuild them
 
-**Current Focus:** Phase 1 - Framework & Shell
-**Current Milestone:** 1.5 - Section Components
+**Current Focus:** Phase 3 - Secondary Pages
+**Current Milestone:** 3.1 - Wallet Section Expansion
