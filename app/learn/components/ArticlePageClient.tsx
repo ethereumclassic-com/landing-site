@@ -122,7 +122,7 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-white prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-a:text-[var(--color-primary)] prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-[var(--color-text-secondary)] prose-ol:text-[var(--color-text-secondary)] prose-li:my-1 prose-code:text-[var(--color-primary)] prose-code:bg-[var(--color-primary)]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-[var(--panel)] prose-pre:border prose-pre:border-[var(--border)]"
+            className="article-content"
           >
             {content}
           </motion.div>

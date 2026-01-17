@@ -248,13 +248,14 @@ Account: All pages
 - [x] Individual app pages (Dynamic route with 12 apps)
 
 ### Milestone 3.4: Learn Section Expansion
+**Status**: Complete
 **Dependencies**: 2.5
 
 **Deliverables**:
-- [ ] Basics category with articles
-- [ ] Wallets category with guides
-- [ ] Mining category with guides
-- [ ] 10+ core articles
+- [x] Basics category with articles (7 articles with full content)
+- [x] Wallets category with guides (4 articles with full content)
+- [x] Mining category with guides (4 articles with full content)
+- [x] 10+ core articles (15 total articles with full content)
 
 ### Milestone 3.5: News Section
 **Dependencies**: Phase 1
@@ -377,12 +378,14 @@ Account: All pages
 ### Milestone 4.7: Mining Expansion
 **Dependencies**: 3.7
 
+**Reference**: https://whattomine.com/coins/162-etc-etchash (calculator, network stats, ASIC/GPU tables)
+
 **Deliverables**:
 - [ ] Individual pool pages
-- [ ] Hardware guide
+- [ ] Hardware guide with ASIC/GPU profitability tables
 - [ ] Software guide
-- [ ] Profitability calculator
-- [ ] Network stats page
+- [ ] Profitability calculator (hashrate, power, electricity inputs)
+- [ ] Network stats page (hashrate tracker, difficulty, block reward)
 
 ### Milestone 4.8: Build Expansion
 **Dependencies**: 3.8
@@ -512,16 +515,16 @@ Account: All pages
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 3 | 30% | (3.1, 3.2, 3.3 Complete)
+| Phase 3 | 10 | 4 | 40% | (3.1, 3.2, 3.3, 3.4 Complete)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **15** | **37%** |
+| **Total** | **41** | **16** | **39%** |
 
 ### Current Focus
 
 **Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: 3.4 - Learn Section Expansion
+**Next Up**: 3.5 - News Section
 
 ---
 

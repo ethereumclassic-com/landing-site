@@ -3,6 +3,12 @@ import { notFound } from 'next/navigation'
 import { getArticlesByCategory, getArticleBySlug } from '../../data/articles'
 import ArticlePageClient from '../../components/ArticlePageClient'
 import WhatIsEthereumClassic from './content/what-is-ethereum-classic'
+import WhyProofOfWork from './content/why-proof-of-work'
+import GettingStarted from './content/getting-started'
+import WhatIsBlockchain from './content/what-is-blockchain'
+import WhatAreSmartContracts from './content/what-are-smart-contracts'
+import ETCvsETH from './content/etc-vs-eth'
+import ETCTokenomics from './content/etc-tokenomics'
 
 interface Props {
   params: Promise<{ article: string }>
@@ -34,6 +40,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Content mapping for articles with full content
 const articleContent: Record<string, React.ReactNode> = {
   'what-is-ethereum-classic': <WhatIsEthereumClassic />,
+  'why-proof-of-work': <WhyProofOfWork />,
+  'getting-started': <GettingStarted />,
+  'what-is-blockchain': <WhatIsBlockchain />,
+  'what-are-smart-contracts': <WhatAreSmartContracts />,
+  'etc-vs-eth': <ETCvsETH />,
+  'etc-tokenomics': <ETCTokenomics />,
 }
 
 // Placeholder content for articles without full content yet

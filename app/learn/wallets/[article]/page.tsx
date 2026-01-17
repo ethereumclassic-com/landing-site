@@ -1,41 +1,83 @@
 import type { Metadata } from 'next'
-import { StubPage } from '../../../components/templates'
+import { notFound } from 'next/navigation'
+import { getArticlesByCategory, getArticleBySlug } from '../../data/articles'
+import ArticlePageClient from '../../components/ArticlePageClient'
+import TypesOfWallets from './content/types-of-wallets'
+import HowToSecureWallet from './content/how-to-secure-wallet'
+import MetaMaskSetup from './content/metamask-setup'
+import BackupRecovery from './content/backup-recovery'
 
 interface Props {
   params: Promise<{ article: string }>
 }
 
+export async function generateStaticParams() {
+  const articles = getArticlesByCategory('wallets')
+  return articles.map((article) => ({
+    article: article.slug,
+  }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article) {
+    return {
+      title: 'Article Not Found | Ethereum Classic',
+    }
+  }
 
   return {
-    title: `${articleTitle} | Ethereum Classic`,
-    description: `Wallet guide: ${articleTitle.toLowerCase()}. Learn about wallet setup and security.`,
+    title: `${article.title} | Ethereum Classic`,
+    description: article.description,
   }
 }
 
-export default async function WalletArticlePage({ params }: Props) {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+// Content mapping for articles with full content
+const articleContent: Record<string, React.ReactNode> = {
+  'types-of-wallets': <TypesOfWallets />,
+  'how-to-secure-wallet': <HowToSecureWallet />,
+  'metamask-setup': <MetaMaskSetup />,
+  'backup-recovery': <BackupRecovery />,
+}
 
+// Placeholder content for articles without full content yet
+function PlaceholderContent({ description }: { description: string }) {
   return (
-    <StubPage
-      title={articleTitle}
-      description={`Complete guide to ${articleTitle.toLowerCase()}. Part of our wallet guides series to help you securely manage your Ethereum Classic.`}
-      expectedPhase="Phase 2"
-      backLink={{ label: 'Back to Wallet Guides', href: '/learn/wallets' }}
-      relatedLinks={[
-        { label: 'Wallet Guides', href: '/learn/wallets' },
-        { label: 'Wallet Hub', href: '/wallet' },
-        { label: 'Security Guide', href: '/learn/security' },
-      ]}
-    />
+    <div>
+      <p className="text-lg">{description}</p>
+
+      <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
+            <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+            </svg>
+          </div>
+          <div>
+            <h3 className="font-semibold text-white">Content Coming Soon</h3>
+            <p className="text-sm text-[var(--color-text-muted)]">
+              This article is being developed. Check back soon for the full content.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   )
+}
+
+export default async function WalletArticlePage({ params }: Props) {
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article || article.category !== 'wallets') {
+    notFound()
+  }
+
+  const content = articleContent[slug] || (
+    <PlaceholderContent description={article.description} />
+  )
+
+  return <ArticlePageClient article={article} content={content} />
 }
