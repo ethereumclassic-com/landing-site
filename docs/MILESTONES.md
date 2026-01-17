@@ -336,14 +336,14 @@ Account: All pages
 - [x] Review template (WalletReviewContent component with full review layout)
 - [x] Rating system (5-star ratings with breakdown: security, usability, features, support)
 
-### Milestone 4.2: Exchange Reviews
+### Milestone 4.2: Exchange Reviews ✅
 **Dependencies**: 3.9
 
 **Deliverables**:
-- [ ] Exchange reviews listing
-- [ ] Individual exchange review pages
-- [ ] Review template
-- [ ] Feature comparison tool
+- [x] Exchange reviews listing (/buy/reviews with search, filter by type/verdict, sort by rating/name/fees)
+- [x] Individual exchange review pages (/buy/reviews/[exchange] with 10 in-depth reviews)
+- [x] Review template (ExchangeReviewContent component with full review layout)
+- [x] Rating system (5-star ratings with breakdown: security, fees, liquidity, UX, support)
 
 ### Milestone 4.3: Buy/Sell Expansion
 **Dependencies**: 3.2
@@ -500,6 +500,25 @@ Account: All pages
 **Dependencies**: Phase 4
 
 **Deliverables**:
+
+**Public-Facing Copy Audit:**
+- [ ] Remove internal/technical language from all user-visible text (see instructions.md)
+- [ ] Fix homepage ProductSuite section - remove "Product Suite", "Vertically integrated", "same architect"
+- [ ] Audit all section headers and taglines for consumer-friendly language
+- [ ] Verify no development jargon (milestone numbers, phase references, etc.) appears in UI
+
+**ETCswap Product Separation:**
+- [ ] Display ETCswap V2, ETCswap V3, ETCswap Launchpad as separate products in Apps/DeFi sections
+- [ ] Update homepage ProductSuite to show separate ETCswap products
+- [ ] Update any combined "ETCswap" listings across the site
+
+**Olympia DAO Repositioning:**
+- [ ] Position Olympia DAO as Core Infrastructure (alongside Fukuii, Core-Geth, Blockscout, Rivet)
+- [ ] Remove from DeFi/Product Suite sections
+- [ ] Update status to "In Development" (not Alpha)
+- [ ] Remove any "Coming Soon" or "Alpha" badges
+
+**Content Quality:**
 - [ ] Deep content review of all Learn articles
 - [ ] Article formatting and prose styling improvements
 - [ ] Content accuracy verification (technical details, links)
@@ -507,6 +526,8 @@ Account: All pages
 - [ ] Add remaining article content (currently placeholder)
 - [ ] SEO optimization for article pages
 - [ ] Image/diagram additions where appropriate
+
+**Data Accuracy:**
 - [ ] Sanity check metrics/numbers across the website (Block rewards showing inconsistent values like "@ ETC" vs "2.56 ETC")
 - [ ] Create list of BlockScout API endpoints for live metrics
 - [ ] Populate accurate mining pool information with live data endpoints

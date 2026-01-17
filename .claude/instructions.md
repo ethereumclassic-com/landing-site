@@ -223,6 +223,36 @@ Ethereum Classic is:
 
 ---
 
+## Public-Facing Copy Guidelines (CRITICAL)
+
+**All text visible to users must be consumer-friendly.** Internal terminology and development language should never appear in the UI.
+
+### DO NOT USE (Internal/Technical):
+- "Product Suite" → Use "ETC Ecosystem" or "Ecosystem Products"
+- "Vertically integrated" → Avoid; describe benefits instead
+- "Built by the same architect" → Do not reference internal org structure
+- "Architecture", "infrastructure", "protocol" in consumer headlines
+- Development status badges like "Alpha", "Beta" unless clearly appropriate
+- Milestone numbers, phase references, or roadmap terminology
+
+### USE INSTEAD (Consumer-Friendly):
+- Focus on **user benefits**, not technical architecture
+- Describe **what users can do**, not how it's built
+- Use action-oriented language: "Trade", "Earn", "Store", "Learn"
+- Simple value propositions: "The easiest way to...", "Your gateway to..."
+
+### Examples:
+| ❌ Internal | ✅ Consumer |
+|------------|------------|
+| "Product Suite" | "ETC Ecosystem" |
+| "Vertically integrated products" | "Products designed to work together" |
+| "Built by the same architect" | (omit - not relevant to users) |
+| "Core infrastructure layer" | "Essential tools for ETC" |
+
+**Review requirement:** Before committing any page with user-facing copy, verify no internal/technical language leaked into headlines, descriptions, or CTAs.
+
+---
+
 ## Content Curation Requirements
 
 ### App Vetting (CRITICAL)
@@ -298,7 +328,13 @@ This site promotes products, it doesn't replace them:
 | App | https://app.classicos.org |
 | Docs | https://docs.classicos.org |
 
-### ETCswap
+### ETCswap (Display as Separate Products)
+
+**IMPORTANT:** Display ETCswap protocols as separate products in listings (Apps, DeFi sections):
+- **ETCswap V2** - Classic AMM DEX (constant product)
+- **ETCswap V3** - Concentrated liquidity DEX
+- **ETCswap Launchpad** - Token launchpad (ILO platform)
+
 | Property | URL |
 |----------|-----|
 | Landing Site | https://etcswap.org |
@@ -332,7 +368,15 @@ This site promotes products, it doesn't replace them:
 | ETCswap V3 Pools | https://www.geckoterminal.com/ethereum_classic/etcswap-v3/pools |
 | ETCswap V2 Pools | https://www.geckoterminal.com/ethereum_classic/etcswap-v2/pools |
 
-### Olympia DAO
+### Olympia DAO (Core Infrastructure - In Development)
+
+**IMPORTANT:** Olympia DAO is:
+- **Core Infrastructure**, NOT a DeFi product
+- Position alongside Fukuii, Core-Geth, Blockscout, Rivet
+- **Status: In Development** (not alpha, not launched)
+- Do NOT feature in DeFi sections or product suites
+- Do NOT display "Alpha" or "Coming Soon" badges
+
 | Property | URL |
 |----------|-----|
 | Website | https://olympiadao.org |

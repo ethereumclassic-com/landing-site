@@ -14,7 +14,7 @@ const navItems = [
     label: 'Wallet',
     dropdown: [
       { href: '/wallet', label: 'Wallet Hub' },
-      { href: '/wallet/reviews', label: 'Reviews' },
+      { href: '/wallet/reviews', label: 'Wallet Reviews' },
       { href: '/wallet/compare', label: 'Compare Wallets' },
       { href: '/wallet/hardware', label: 'Hardware Wallets' },
       { href: '/wallet/metamask', label: 'MetaMask Setup' },
@@ -38,6 +38,7 @@ const navItems = [
     label: 'Buy',
     dropdown: [
       { href: '/buy', label: 'Buy ETC' },
+      { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/buy/exchanges', label: 'Exchanges' },
       { href: '/buy/instant', label: 'Instant Buy' },
       { href: '/buy/card', label: 'Buy with Card' },
