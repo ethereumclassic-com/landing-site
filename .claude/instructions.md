@@ -401,6 +401,20 @@ This keeps documents reflective of development reality. Documentation updates sh
 
 ---
 
+## Context Compaction (MANDATORY)
+
+**After every commit and push, perform a context compaction using `/compact`.**
+
+This keeps the conversation efficient by summarizing completed work while preserving:
+- Current milestone progress
+- Key decisions made
+- File locations and structure
+- Any blockers or next steps
+
+The git commit captures the actual code changes, so detailed implementation context can be safely compacted.
+
+---
+
 ## External References
 
 - [Next.js App Router](https://nextjs.org/docs/app)
