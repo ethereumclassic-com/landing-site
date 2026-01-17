@@ -45,7 +45,7 @@ docs.classicos.org
 
 **Goal:** Establish complete site architecture with all URL endpoints defined.
 
-**Current Milestone:** 1.4 Layout Components (Next)
+**Current Milestone:** 1.5 Section Components (Next)
 
 **Completed:**
 - [x] 1.1 RESEARCH.md - Bitcoin.com analysis
@@ -69,16 +69,24 @@ docs.classicos.org
 - [x] 1.3 Tooltip component
 - [x] 1.3 Skeleton/Loading states
 - [x] 1.3 Icon system
+- [x] 1.4 Navigation (desktop + mobile)
+- [x] 1.4 Footer
+- [x] 1.4 Container
+- [x] 1.4 Section
+- [x] 1.4 Grid
+- [x] 1.4 PageHeader
+- [x] 1.4 Breadcrumbs
+- [x] 1.4 Sidebar
 
-**Next Steps (Milestone 1.4 - Layout Components):**
-- [ ] Navigation (desktop + mobile)
-- [ ] Footer
-- [ ] Container
-- [ ] Section
-- [ ] Grid
-- [ ] PageHeader
-- [ ] Breadcrumbs
-- [ ] Sidebar
+**Next Steps (Milestone 1.5 - Section Components):**
+- [ ] Hero (home, page, minimal variants)
+- [ ] StatsStrip
+- [ ] ProductCards
+- [ ] FeatureGrid
+- [ ] CTABanner
+- [ ] FAQAccordion
+- [ ] NewsletterSignup
+- [ ] TrustSignals
 
 ---
 
@@ -436,4 +444,4 @@ The git commit captures the actual code changes, so detailed implementation cont
 7. Route to ecosystem products, don't rebuild them
 
 **Current Focus:** Phase 1 - Framework & Shell
-**Current Milestone:** 1.4 - Layout Components
+**Current Milestone:** 1.5 - Section Components
