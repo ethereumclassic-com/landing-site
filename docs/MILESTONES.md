@@ -39,13 +39,14 @@ Phase 5: Advanced Features (P3)
 - [x] Updated .claude/instructions.md
 
 ### Milestone 1.2: Design System Foundation
+**Status**: Complete
 **Dependencies**: 1.1
 
 **Deliverables**:
-- [ ] Design tokens (colors, typography, spacing)
-- [ ] Tailwind configuration
-- [ ] Base CSS variables
-- [ ] Dark theme setup
+- [x] Design tokens (colors, typography, spacing)
+- [x] Tailwind configuration
+- [x] Base CSS variables
+- [x] Dark theme setup
 
 ### Milestone 1.3: UI Component Library
 **Dependencies**: 1.2
@@ -478,18 +479,18 @@ Account: All pages
 
 | Phase | Milestones | Completed | Progress |
 |-------|------------|-----------|----------|
-| Phase 1 | 7 | 1 | 14% | (1.1 Complete)
+| Phase 1 | 7 | 2 | 29% | (1.1, 1.2 Complete)
 | Phase 2 | 5 | 0 | 0% |
 | Phase 3 | 10 | 0 | 0% |
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 6 | 0 | 0% |
-| **Total** | **40** | **1** | **2.5%** |
+| **Total** | **40** | **2** | **5%** |
 
 ### Current Focus
 
-**Active Milestone**: 1.1 - Project Setup & Documentation
+**Active Milestone**: 1.3 - UI Component Library
 
-**Next Up**: 1.2 - Design System Foundation
+**Next Up**: 1.4 - Layout Components
 
 ---
 

@@ -45,22 +45,32 @@ docs.classicos.org
 
 **Goal:** Establish complete site architecture with all URL endpoints defined.
 
-**Current Milestone:** 1.1 Documentation (Complete) → 1.2 Design System (Next)
+**Current Milestone:** 1.3 UI Component Library (Next)
 
 **Completed:**
-- [x] RESEARCH.md - Bitcoin.com analysis
-- [x] URL-STRUCTURE.md - Complete endpoint mapping (180+ URLs)
-- [x] ARCHITECTURE.md - Technical architecture
-- [x] COMPONENTS.md - Component specifications
-- [x] MILESTONES.md - Development phases
-- [x] README.md - Updated
-- [x] instructions.md - Updated
+- [x] 1.1 RESEARCH.md - Bitcoin.com analysis
+- [x] 1.1 URL-STRUCTURE.md - Complete endpoint mapping (180+ URLs)
+- [x] 1.1 ARCHITECTURE.md - Technical architecture
+- [x] 1.1 COMPONENTS.md - Component specifications
+- [x] 1.1 MILESTONES.md - Development phases
+- [x] 1.1 README.md - Updated
+- [x] 1.1 instructions.md - Updated
+- [x] 1.2 Design tokens (colors, typography, spacing)
+- [x] 1.2 Tailwind configuration
+- [x] 1.2 Base CSS variables
+- [x] 1.2 Dark theme setup
 
-**Next Steps (Milestone 1.2):**
-- [ ] Design tokens (colors, typography, spacing)
-- [ ] Tailwind configuration
-- [ ] Base CSS variables
-- [ ] Dark theme setup
+**Next Steps (Milestone 1.3 - UI Component Library):**
+- [ ] Button component (all variants)
+- [ ] Card component (all variants)
+- [ ] Badge component
+- [ ] Input/Select components
+- [ ] Tabs component
+- [ ] Table component
+- [ ] Modal component
+- [ ] Tooltip component
+- [ ] Skeleton/Loading states
+- [ ] Icon system
 
 ---
 
@@ -367,7 +377,19 @@ Test:
 2. **Check current milestone** - What's the immediate focus?
 3. **Follow component specs** - Use COMPONENTS.md
 4. **Validate before commit** - lint + build must pass
-5. **Update docs if needed** - Keep milestones current
+5. **Update docs after milestone completion** - REQUIRED (see below)
+
+---
+
+## Documentation Update Requirement (MANDATORY)
+
+**After completing EVERY milestone, update documentation:**
+
+1. **MILESTONES.md** - Mark deliverables as complete `[x]`, update status to "Complete", update Progress Summary table, update Current Focus section
+2. **.claude/instructions.md** - Update "Current Milestone" if needed
+3. **Any relevant docs** - If implementation differs from spec, update accordingly
+
+This keeps documents reflective of development reality. Documentation updates should be committed with the milestone completion commit or immediately after.
 
 ---
 
@@ -392,4 +414,4 @@ Test:
 7. Route to ecosystem products, don't rebuild them
 
 **Current Focus:** Phase 1 - Framework & Shell
-**Next Milestone:** 1.2 - Design System Foundation
+**Current Milestone:** 1.3 - UI Component Library
