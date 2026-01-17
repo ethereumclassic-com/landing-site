@@ -124,15 +124,16 @@ Account: All pages
 ```
 
 ### Milestone 1.7: Navigation & Routing
+**Status**: Complete
 **Dependencies**: 1.6
 
 **Deliverables**:
-- [ ] Full navigation with all sections
-- [ ] Mobile navigation (hamburger menu)
-- [ ] Dropdown menus
-- [ ] Active state indicators
-- [ ] Breadcrumb system
-- [ ] Search placeholder
+- [x] Full navigation with all sections
+- [x] Mobile navigation (hamburger menu)
+- [x] Dropdown menus
+- [x] Active state indicators
+- [x] Breadcrumb system (useBreadcrumbs hook + StubPage integration)
+- [x] Search placeholder (modal with ⌘K shortcut)
 
 ---
 
@@ -483,18 +484,18 @@ Account: All pages
 
 | Phase | Milestones | Completed | Progress |
 |-------|------------|-----------|----------|
-| Phase 1 | 7 | 6 | 86% | (1.1, 1.2, 1.3, 1.4, 1.5, 1.6 Complete)
+| Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 0 | 0% |
 | Phase 3 | 10 | 0 | 0% |
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 6 | 0 | 0% |
-| **Total** | **40** | **6** | **15%** |
+| **Total** | **40** | **7** | **17.5%** |
 
 ### Current Focus
 
-**Active Milestone**: 1.7 - Navigation & Routing
+**Active Milestone**: 2.1 - Homepage
 
-**Next Up**: 2.1 - Homepage
+**Next Up**: 2.2 - Wallet Hub
 
 ---
 

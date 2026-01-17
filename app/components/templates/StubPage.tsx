@@ -4,8 +4,10 @@ import { type ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Container } from '../layout/Container'
+import { Breadcrumbs } from '../layout/Breadcrumbs'
 import { Button } from '../ui/Button'
 import { NewsletterSignup } from '../sections/NewsletterSignup'
+import { useBreadcrumbs, type BreadcrumbItem } from '../../hooks/useBreadcrumbs'
 
 export interface StubPageProps {
   title: string
@@ -15,6 +17,10 @@ export interface StubPageProps {
   relatedLinks?: { label: string; href: string }[]
   showNewsletter?: boolean
   backLink?: { label: string; href: string }
+  /** Show auto-generated breadcrumbs (default: true) */
+  showBreadcrumbs?: boolean
+  /** Custom breadcrumb items (overrides auto-generated) */
+  breadcrumbs?: BreadcrumbItem[]
 }
 
 const fadeInUp = {
@@ -61,9 +67,23 @@ export function StubPage({
   relatedLinks,
   showNewsletter = true,
   backLink = { label: 'Back to Home', href: '/' },
+  showBreadcrumbs = true,
+  breadcrumbs: customBreadcrumbs,
 }: StubPageProps) {
+  const autoBreadcrumbs = useBreadcrumbs({ currentLabel: title })
+  const breadcrumbItems = customBreadcrumbs || autoBreadcrumbs
+
   return (
     <main className="min-h-screen">
+      {/* Breadcrumbs */}
+      {showBreadcrumbs && breadcrumbItems.length > 1 && (
+        <div className="border-b border-[var(--border)]">
+          <Container size="xl">
+            <Breadcrumbs items={breadcrumbItems} className="py-4" />
+          </Container>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="py-20 md:py-32">
         <Container size="md">
