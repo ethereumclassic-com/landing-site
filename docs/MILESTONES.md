@@ -384,16 +384,17 @@ Account: All pages
 - [ ] Investment calculator
 
 ### Milestone 4.7: Mining Expansion
+**Status**: In Progress
 **Dependencies**: 3.7
 
 **Reference**: https://whattomine.com/coins/162-etc-etchash (calculator, network stats, ASIC/GPU tables)
 
 **Deliverables**:
 - [ ] Individual pool pages
-- [ ] Hardware guide with ASIC/GPU profitability tables
+- [x] Hardware guide with ASIC/GPU profitability tables
 - [ ] Software guide
-- [ ] Profitability calculator (hashrate, power, electricity inputs)
-- [ ] Network stats page (hashrate tracker, difficulty, block reward)
+- [x] Profitability calculator (hashrate, power, electricity inputs)
+- [x] Network stats page (hashrate tracker, difficulty, block reward)
 
 ### Milestone 4.8: Build Expansion
 **Dependencies**: 3.8
@@ -403,6 +404,7 @@ Account: All pages
 - [ ] Individual client pages
 - [ ] Network info page
 - [ ] Testnet faucets page
+- [ ] METC faucet for Mordor Testnet (host in this repo)
 
 ### Milestone 4.9: Research Section
 **Dependencies**: Phase 1
@@ -432,6 +434,9 @@ Account: All pages
 - [ ] Tools category
 - [ ] Submit app page
 - [ ] All individual app pages
+- [ ] Add FairWins (Alpha status) - Prediction Market with offline CLOB matching (https://github.com/chippr-robotics/prediction-dao-research)
+- [ ] Add ClearPath (Coming Soon) - Futarchy Prediction markets for Olympia DAO
+- [ ] Add TokenMint (Coming Soon) - Enterprise token management app
 
 ### Milestone 4.12: Community Section
 **Dependencies**: Phase 1
@@ -501,6 +506,10 @@ Account: All pages
 - [ ] Add remaining article content (currently placeholder)
 - [ ] SEO optimization for article pages
 - [ ] Image/diagram additions where appropriate
+- [ ] Sanity check metrics/numbers across the website (Block rewards showing inconsistent values like "@ ETC" vs "2.56 ETC")
+- [ ] Create list of BlockScout API endpoints for live metrics
+- [ ] Populate accurate mining pool information with live data endpoints
+- [ ] Network hashrate information from live sources
 
 ### Milestone 5.7: Advanced Features
 **Dependencies**: Phase 4
@@ -515,6 +524,127 @@ Account: All pages
 
 ---
 
+## Phase 6: Platform & Revenue (P4)
+
+**Goal**: Build revenue streams, improve UX, and establish platform presence.
+
+### Milestone 6.1: UI/UX Fixes
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Fix mobile navigation - Move "Launch App" CTA to top (currently hidden by Safari iOS URL bar)
+- [ ] Fix "Launch App" button color - adjust green to better match website theme
+- [ ] General mobile UX audit and fixes
+
+### Milestone 6.2: SEO & Discovery Optimization
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Research 2025 SEO best practices for LLM/AI agent summaries
+- [ ] Implement XML content structure for LLM search engines
+- [ ] Rich metadata implementation (OG images, Twitter cards, favicons)
+- [ ] Structured data markup (JSON-LD)
+- [ ] Build RSS feed for news following best practices
+- [ ] Backfill relevant content from ethereumclassic.org/news (polish formatting issues from .org feed)
+- [ ] Position site as authoritative news source for aggregation websites
+
+### Milestone 6.3: Social Media Presence
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Create EthereumClassic.com social accounts (separate from ETC open source project socials)
+- [ ] Automate content generation flows from website to social outlets
+- [ ] Research 2025 best practices for social automation
+- [ ] Social sharing optimization
+
+### Milestone 6.4: Revenue Streams - Referrals
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Review centralized exchanges for referral programs
+- [ ] Create list of exchanges with referral programs
+- [ ] Sign up for exchange referral programs
+- [ ] Embed referral links throughout website (Buy/Exchanges pages)
+- [ ] Track referral performance
+
+### Milestone 6.5: Merchandise Store
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Set up drop shipping service integration
+- [ ] Design ETC merchandise (shirts, hats, hoodies, socks)
+- [ ] Build store page/section
+- [ ] Product photography and descriptions
+- [ ] Checkout/payment integration
+
+### Milestone 6.6: Mining Hardware Marketplace
+**Dependencies**: 4.7
+
+**Deliverables**:
+- [ ] Hardware marketplace/store section for ETChash ASICs and GPUs
+- [ ] Research hardware retailers with referral/affiliate programs
+- [ ] Embed affiliate links to hardware stores
+- [ ] Product listings with specs, pricing, availability
+- [ ] Price comparison features
+
+### Milestone 6.7: Classic USD Integration
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Position Classic USD as primary fiat on-ramp for ETC
+- [ ] Document USD → USC stablecoin → ETCswap DEX (WETC/USC) flow
+- [ ] USDC/USDP to USC converter/bridge documentation (may live in Classic OS)
+- [ ] Funnel integration from ethereumclassic.com to Classic OS for on-ramp
+
+### Milestone 6.8: EthereumClassic.com Pool Announcement
+**Dependencies**: 4.7
+
+**Deliverables**:
+- [ ] "Coming Soon" announcement for EthereumClassic.com Pool
+- [ ] Feature pool in mining sections of website
+- [ ] Pool landing page with waitlist/notification signup
+- [ ] Integration documentation with Classic OS and Fukuii client
+
+---
+
+## Phase 7: Mining Pool & Advanced Products (P5)
+
+**Goal**: Launch EthereumClassic.com mining pool and integrate advanced ecosystem products.
+
+### Milestone 7.1: Mining Pool Development
+**Dependencies**: Phase 6
+
+**Deliverables**:
+- [ ] EthereumClassic.com mining pool infrastructure
+- [ ] Pool dashboard and statistics
+- [ ] Miner registration and management
+- [ ] Payout system
+- [ ] Pool guides and documentation
+- [ ] Classic OS integration
+- [ ] Fukuii client integration (recommended client)
+
+### Milestone 7.2: Fukuii & FairWins Integration
+**Dependencies**: 7.1
+
+**Reference**: https://github.com/chippr-robotics/prediction-dao-research
+
+**Deliverables**:
+- [ ] Fukuii client promotion and guides
+- [ ] FairWins Prediction Market integration
+- [ ] Offline CLOB matching fees documentation (rewards for Fukuii client runners)
+- [ ] Full production launch of FairWins (from Alpha)
+
+### Milestone 7.3: Advanced Ecosystem Products
+**Dependencies**: Phase 6
+
+**Deliverables**:
+- [ ] ClearPath (Futarchy Prediction Markets for Olympia DAO) - full launch
+- [ ] TokenMint (Enterprise Token Management) - full launch
+- [ ] Ecosystem product integration guides
+- [ ] Cross-product documentation
+
+---
+
 ## Milestone Tracking
 
 ### Progress Summary
@@ -526,13 +656,15 @@ Account: All pages
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **22** | **54%** |
+| Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
+| Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
+| **Total** | **52** | **22** | **42%** |
 
 ### Current Focus
 
-**Active Milestone**: Phase 4 - Content Expansion
+**Active Milestone**: Phase 4.7 - Mining Expansion (In Progress - 3/5 deliverables complete)
 
-**Next Up**: 4.1 - Wallet Reviews
+**Next Up**: Complete 4.7, then 4.1 - Wallet Reviews
 
 ---
 
