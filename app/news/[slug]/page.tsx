@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound, useParams } from 'next/navigation'
-import { getArticleBySlug, getRecentArticles, type ArticleCategory } from '../data/articles'
+import { getArticleBySlug, getRelatedArticles, getAuthorInfo, type ArticleCategory } from '../data/articles'
 import NewsCard from '../components/NewsCard'
 
 const fadeInUp = {
@@ -63,6 +63,276 @@ function formatDate(dateString: string): string {
   })
 }
 
+// Simple markdown-like content renderer
+function renderContent(content: string): React.ReactNode {
+  const lines = content.split('\n')
+  const elements: React.ReactNode[] = []
+  let currentList: string[] = []
+  let listType: 'ul' | 'ol' | null = null
+  let inCodeBlock = false
+  let codeBlockContent: string[] = []
+  let codeBlockLang = ''
+  let inTable = false
+  let tableRows: string[][] = []
+
+  const flushList = () => {
+    if (currentList.length > 0) {
+      if (listType === 'ol') {
+        elements.push(
+          <ol key={elements.length} className="my-4 ml-6 list-decimal space-y-2 text-[var(--color-text-secondary)]">
+            {currentList.map((item, i) => (
+              <li key={i}>{renderInlineContent(item)}</li>
+            ))}
+          </ol>
+        )
+      } else {
+        elements.push(
+          <ul key={elements.length} className="my-4 ml-6 list-disc space-y-2 text-[var(--color-text-secondary)]">
+            {currentList.map((item, i) => (
+              <li key={i}>{renderInlineContent(item)}</li>
+            ))}
+          </ul>
+        )
+      }
+      currentList = []
+      listType = null
+    }
+  }
+
+  const flushTable = () => {
+    if (tableRows.length > 1) {
+      const [header, ...rows] = tableRows
+      elements.push(
+        <div key={elements.length} className="my-6 overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-[var(--border)]">
+                {header.map((cell, i) => (
+                  <th key={i} className="px-4 py-2 text-left font-semibold text-white">
+                    {cell.trim()}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.filter((row) => !row.every((cell) => /^[-|:]+$/.test(cell.trim()))).map((row, i) => (
+                <tr key={i} className="border-b border-[var(--border)]/50">
+                  {row.map((cell, j) => (
+                    <td key={j} className="px-4 py-2 text-[var(--color-text-secondary)]">
+                      {cell.trim()}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+      tableRows = []
+      inTable = false
+    }
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+
+    // Code block handling
+    if (line.startsWith('```')) {
+      if (inCodeBlock) {
+        elements.push(
+          <pre
+            key={elements.length}
+            className="my-4 overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4"
+          >
+            <code className="text-sm text-[var(--color-text-secondary)]">{codeBlockContent.join('\n')}</code>
+          </pre>
+        )
+        codeBlockContent = []
+        inCodeBlock = false
+      } else {
+        flushList()
+        flushTable()
+        inCodeBlock = true
+        codeBlockLang = line.slice(3)
+      }
+      continue
+    }
+
+    if (inCodeBlock) {
+      codeBlockContent.push(line)
+      continue
+    }
+
+    // Table handling
+    if (line.includes('|') && line.trim().startsWith('|')) {
+      flushList()
+      inTable = true
+      const cells = line.split('|').slice(1, -1)
+      tableRows.push(cells)
+      continue
+    } else if (inTable) {
+      flushTable()
+    }
+
+    // Empty line
+    if (line.trim() === '') {
+      flushList()
+      continue
+    }
+
+    // Headers
+    if (line.startsWith('## ')) {
+      flushList()
+      elements.push(
+        <h2 key={elements.length} className="mb-4 mt-8 text-xl font-bold text-white">
+          {line.slice(3)}
+        </h2>
+      )
+      continue
+    }
+
+    if (line.startsWith('### ')) {
+      flushList()
+      elements.push(
+        <h3 key={elements.length} className="mb-3 mt-6 text-lg font-semibold text-white">
+          {line.slice(4)}
+        </h3>
+      )
+      continue
+    }
+
+    // Ordered list
+    const orderedMatch = line.match(/^(\d+)\.\s+(.+)$/)
+    if (orderedMatch) {
+      if (listType !== 'ol') {
+        flushList()
+        listType = 'ol'
+      }
+      currentList.push(orderedMatch[2])
+      continue
+    }
+
+    // Unordered list
+    if (line.startsWith('- ')) {
+      if (listType !== 'ul') {
+        flushList()
+        listType = 'ul'
+      }
+      currentList.push(line.slice(2))
+      continue
+    }
+
+    // Checkbox list
+    if (line.startsWith('- [ ] ') || line.startsWith('- [x] ')) {
+      flushList()
+      const checked = line.startsWith('- [x] ')
+      const text = line.slice(6)
+      elements.push(
+        <div key={elements.length} className="my-1 flex items-center gap-2 text-[var(--color-text-secondary)]">
+          <span className={`flex h-5 w-5 items-center justify-center rounded border ${checked ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/20 text-[var(--color-primary)]' : 'border-[var(--border)]'}`}>
+            {checked && (
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+            )}
+          </span>
+          {text}
+        </div>
+      )
+      continue
+    }
+
+    // Regular paragraph
+    flushList()
+    elements.push(
+      <p key={elements.length} className="my-4 text-[var(--color-text-secondary)] leading-relaxed">
+        {renderInlineContent(line)}
+      </p>
+    )
+  }
+
+  flushList()
+  flushTable()
+
+  return elements
+}
+
+// Render inline content (bold, links, code)
+function renderInlineContent(text: string): React.ReactNode {
+  const parts: React.ReactNode[] = []
+  let remaining = text
+  let keyCounter = 0
+
+  while (remaining.length > 0) {
+    // Bold text
+    const boldMatch = remaining.match(/\*\*(.+?)\*\*/)
+    // Links
+    const linkMatch = remaining.match(/\[([^\]]+)\]\(([^)]+)\)/)
+    // Inline code
+    const codeMatch = remaining.match(/`([^`]+)`/)
+
+    const matches = [
+      boldMatch ? { type: 'bold', match: boldMatch, index: boldMatch.index! } : null,
+      linkMatch ? { type: 'link', match: linkMatch, index: linkMatch.index! } : null,
+      codeMatch ? { type: 'code', match: codeMatch, index: codeMatch.index! } : null,
+    ].filter(Boolean).sort((a, b) => a!.index - b!.index)
+
+    if (matches.length === 0) {
+      parts.push(remaining)
+      break
+    }
+
+    const firstMatch = matches[0]!
+
+    // Add text before match
+    if (firstMatch.index > 0) {
+      parts.push(remaining.slice(0, firstMatch.index))
+    }
+
+    if (firstMatch.type === 'bold') {
+      parts.push(
+        <strong key={keyCounter++} className="font-semibold text-white">
+          {firstMatch.match![1]}
+        </strong>
+      )
+      remaining = remaining.slice(firstMatch.index + firstMatch.match![0].length)
+    } else if (firstMatch.type === 'link') {
+      const href = firstMatch.match![2]
+      const isExternal = href.startsWith('http')
+      parts.push(
+        isExternal ? (
+          <a
+            key={keyCounter++}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-primary)] hover:underline"
+          >
+            {firstMatch.match![1]}
+          </a>
+        ) : (
+          <Link key={keyCounter++} href={href} className="text-[var(--color-primary)] hover:underline">
+            {firstMatch.match![1]}
+          </Link>
+        )
+      )
+      remaining = remaining.slice(firstMatch.index + firstMatch.match![0].length)
+    } else if (firstMatch.type === 'code') {
+      parts.push(
+        <code
+          key={keyCounter++}
+          className="rounded bg-[var(--panel)] px-1.5 py-0.5 text-sm text-[var(--color-primary)]"
+        >
+          {firstMatch.match![1]}
+        </code>
+      )
+      remaining = remaining.slice(firstMatch.index + firstMatch.match![0].length)
+    }
+  }
+
+  return parts.length === 1 ? parts[0] : parts
+}
+
 export default function NewsArticlePage() {
   const params = useParams()
   const slug = params.slug as string
@@ -72,8 +342,8 @@ export default function NewsArticlePage() {
     notFound()
   }
 
-  // Get related articles (excluding current article)
-  const relatedArticles = getRecentArticles(4).filter((a) => a.slug !== article.slug).slice(0, 3)
+  const authorInfo = article.author ? getAuthorInfo(article.author) : undefined
+  const relatedArticles = getRelatedArticles(article, 3)
 
   return (
     <main className="min-h-screen">
@@ -127,24 +397,48 @@ export default function NewsArticlePage() {
           {/* Excerpt */}
           <p className="mt-6 text-lg text-[var(--color-text-secondary)]">{article.excerpt}</p>
 
-          {/* Author */}
-          {article.author && (
-            <div className="mt-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-[var(--color-primary)]">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                  />
+          {/* Author & Meta */}
+          <div className="mt-6 flex flex-wrap items-center gap-6">
+            {article.author && (
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-[var(--color-primary)]">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium text-white">{article.author}</span>
+                    {authorInfo?.twitter && (
+                      <a
+                        href={`https://twitter.com/${authorInfo.twitter}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
+                      >
+                        <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                  <div className="text-sm text-[var(--color-text-muted)]">{authorInfo?.role || 'Author'}</div>
+                </div>
+              </div>
+            )}
+            {article.readTime && (
+              <div className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
+                {article.readTime} min read
               </div>
-              <div>
-                <div className="font-medium text-white">{article.author}</div>
-                <div className="text-sm text-[var(--color-text-muted)]">Author</div>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Tags */}
           {article.tags && article.tags.length > 0 && (
@@ -163,7 +457,7 @@ export default function NewsArticlePage() {
         </motion.div>
       </section>
 
-      {/* Article Content Placeholder */}
+      {/* Article Content */}
       <section className="border-y border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -171,41 +465,46 @@ export default function NewsArticlePage() {
           transition={{ delay: 0.2 }}
           className="mx-auto max-w-3xl"
         >
-          <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8 text-center">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
-              <svg
-                className="h-8 w-8 text-[var(--color-primary)]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
-                />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-white">Full Article Coming Soon</h3>
-            <p className="mx-auto mt-3 max-w-md text-[var(--color-text-secondary)]">
-              This is a placeholder for the full article content. The news section will be integrated with a CMS in a
-              future update.
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-4">
-              <a
-                href="https://twitter.com/eth_classic"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline"
-              >
-                Follow @eth_classic for updates
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          {article.content ? (
+            <article className="prose prose-invert max-w-none">
+              {renderContent(article.content)}
+            </article>
+          ) : (
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8 text-center">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
+                <svg
+                  className="h-8 w-8 text-[var(--color-primary)]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"
+                  />
                 </svg>
-              </a>
+              </div>
+              <h3 className="text-xl font-semibold text-white">Full Article Coming Soon</h3>
+              <p className="mx-auto mt-3 max-w-md text-[var(--color-text-secondary)]">
+                This article content is being prepared. Check back soon for the full story.
+              </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-4">
+                <a
+                  href="https://twitter.com/eth_classic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline"
+                >
+                  Follow @eth_classic for updates
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+              </div>
             </div>
-          </div>
+          )}
         </motion.div>
       </section>
 

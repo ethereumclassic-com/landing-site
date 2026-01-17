@@ -372,15 +372,16 @@ Account: All pages
 - [x] 30+ total articles (35 articles in articles.ts)
 - [x] Glossary page (60+ terms across 6 categories with search and filtering)
 
-### Milestone 4.5: o Full Implementation
+### Milestone 4.5: News Full Implementation
+**Status**: Complete
 **Dependencies**: 3.5
 
 **Deliverables**:
-- [ ] Individual article pages
-- [ ] Category pages
-- [ ] Tag filtering
-- [ ] Author attribution
-- [ ] Related content
+- [x] Individual article pages (15 articles with full markdown content)
+- [x] Category pages (4 categories: Updates, Security, Ecosystem, Community)
+- [x] Tag filtering (tag pages with article lists)
+- [x] Author attribution (author profiles with roles and Twitter links)
+- [x] Related content (smart algorithm: same category, matching tags, recent fallback)
 
 ### Milestone 4.6: Markets Expansion
 **Dependencies**: 3.6
@@ -682,17 +683,17 @@ Account: All pages
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 4 | 33% | (4.1-4.4 Complete)
+| Phase 4 | 12 | 5 | 42% | (4.1-4.5 Complete)
 | Phase 5 | 7 | 0 | 0% |
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **52** | **26** | **50%** |
+| **Total** | **52** | **27** | **52%** |
 
 ### Current Focus
 
-**Just Completed**: Milestone 4.4 - Learn Full Expansion (All deliverables complete)
+**Just Completed**: Milestone 4.5 - News Full Implementation (All deliverables complete)
 
-**Next Up**: Continue with remaining Phase 4 milestones (4.5-4.12)
+**Next Up**: Continue with remaining Phase 4 milestones (4.6-4.12)
 
 ---
 
