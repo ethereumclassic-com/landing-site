@@ -34,22 +34,22 @@ const categories = [
     ),
   },
   {
+    name: 'Payments',
+    slug: 'payments',
+    description: 'Fiat on/off ramps and spending',
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
+      </svg>
+    ),
+  },
+  {
     name: 'Infrastructure',
     slug: 'infrastructure',
     description: 'Core network infrastructure',
     icon: (
       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Governance',
-    slug: 'governance',
-    description: 'DAOs and voting systems',
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
       </svg>
     ),
   },
@@ -66,7 +66,7 @@ const categories = [
 ]
 
 function CategoryCard({ category, index }: { category: typeof categories[0]; index: number }) {
-  const categoryApps = getAppsByCategory(category.name as 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools')
+  const categoryApps = getAppsByCategory(category.name as 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools' | 'Payments')
 
   return (
     <motion.div
@@ -216,7 +216,7 @@ export default function AppsPage() {
 
       {/* All Apps by Category */}
       {categories.map((category) => {
-        const categoryApps = getAppsByCategory(category.name as 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools')
+        const categoryApps = getAppsByCategory(category.name as 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools' | 'Payments')
 
         if (categoryApps.length === 0) return null
 

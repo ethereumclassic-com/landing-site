@@ -3,7 +3,7 @@ export interface App {
   slug: string
   description: string
   longDescription?: string
-  category: 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools'
+  category: 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools' | 'Payments'
   link: string
   featured?: boolean
   tags?: string[]
@@ -110,12 +110,11 @@ export const apps: App[] = [
   {
     name: 'Olympia DAO',
     slug: 'olympia-dao',
-    description: 'Governance for the ETC ecosystem. Proposals, voting, and treasury management.',
+    description: 'Governance infrastructure for the ETC ecosystem. Proposals, voting, and treasury management.',
     longDescription: 'Olympia DAO is the decentralized governance framework for the Ethereum Classic ecosystem. Token holders can create proposals, vote on key decisions, and participate in treasury management. Olympia DAO ensures the community has a voice in the future direction of ETC.',
-    category: 'Governance',
+    category: 'Infrastructure',
     link: 'https://olympiadao.org/',
-    featured: true,
-    tags: ['DAO', 'Voting', 'Treasury'],
+    tags: ['DAO', 'Voting', 'Treasury', 'Governance'],
     features: [
       'On-chain voting',
       'Proposal creation',
@@ -127,7 +126,7 @@ export const apps: App[] = [
     stats: [
       { label: 'Type', value: 'DAO' },
       { label: 'Voting', value: 'On-chain' },
-      { label: 'Status', value: 'Alpha' },
+      { label: 'Status', value: 'In Development' },
     ],
   },
 
@@ -284,6 +283,98 @@ export const apps: App[] = [
       'Free tier available',
       'High availability',
       'Community maintained',
+    ],
+  },
+
+  // Payments & Financial Infrastructure
+  {
+    name: 'Brale',
+    slug: 'brale',
+    description: 'Fiat on/off ramp for ClassicUSD (USC). ACH bank transfers to purchase or redeem stablecoins.',
+    longDescription: 'Brale is the issuer and redemption platform for ClassicUSD (USC). Connect your bank account to purchase USC via ACH transfer, or redeem USC for USD directly to your bank. Brale provides the critical fiat bridge for the ETC ecosystem, enabling users to move between traditional finance and on-chain assets without centralized exchanges.',
+    category: 'Payments',
+    link: 'https://brale.xyz',
+    featured: true,
+    tags: ['Fiat', 'On-Ramp', 'Off-Ramp', 'ACH', 'Stablecoin'],
+    features: [
+      'ACH bank transfers',
+      'USD to USC conversion',
+      'USC to USD redemption',
+      'No CEX required',
+      'Direct bank connection',
+      'USC issuer',
+    ],
+    stats: [
+      { label: 'Type', value: 'Fiat Bridge' },
+      { label: 'Method', value: 'ACH' },
+      { label: 'Asset', value: 'USC' },
+    ],
+  },
+  {
+    name: 'Rain Cards',
+    slug: 'rain-cards',
+    description: 'Spend ETC and USC at any point-of-sale terminal with an on-chain wallet-funded debit card.',
+    longDescription: 'Rain Cards lets you spend your ETC or ClassicUSD holdings directly at any merchant that accepts debit cards. Your card is funded from your on-chain wallet, and Rain handles the conversion at checkout. No need to sell to an exchange first - spend your crypto wherever cards are accepted.',
+    category: 'Payments',
+    link: 'https://rain.xyz',
+    featured: true,
+    tags: ['Debit Card', 'Spending', 'Payments', 'POS'],
+    features: [
+      'Wallet-funded card',
+      'Instant conversion',
+      'Global acceptance',
+      'ETC & USC support',
+      'No pre-selling required',
+      'Mobile app',
+    ],
+    stats: [
+      { label: 'Type', value: 'Debit Card' },
+      { label: 'Assets', value: 'ETC, USC' },
+      { label: 'Acceptance', value: 'Global' },
+    ],
+  },
+  {
+    name: '1Konto',
+    slug: '1konto',
+    description: 'OTC desk for ClassicUSD. Institutional-grade liquidity for large ETC transactions.',
+    longDescription: '1Konto provides over-the-counter (OTC) trading services for ClassicUSD, enabling institutional investors and high-volume traders to move large amounts of liquidity on and off Ethereum Classic. Get personalized service, competitive rates, and direct USD settlement for significant transactions.',
+    category: 'Payments',
+    link: 'https://1konto.com',
+    tags: ['OTC', 'Institutional', 'Liquidity', 'Trading'],
+    features: [
+      'Large volume trades',
+      'Personalized service',
+      'Competitive rates',
+      'USD settlement',
+      'Institutional grade',
+      'ClassicUSD focus',
+    ],
+    stats: [
+      { label: 'Type', value: 'OTC Desk' },
+      { label: 'Target', value: 'Institutional' },
+      { label: 'Asset', value: 'USC' },
+    ],
+  },
+  {
+    name: 'Coinflow',
+    slug: 'coinflow',
+    description: 'Global payment infrastructure for businesses to accept USC payments and settle instantly.',
+    longDescription: 'Coinflow provides payment infrastructure that empowers businesses to accept ClassicUSD (USC) payments, settle funds, and expand globally. Instant, secure, and frictionless payment processing for merchants who want to tap into the ETC ecosystem.',
+    category: 'Payments',
+    link: 'https://coinflow.cash',
+    tags: ['Payments', 'Merchant', 'Business', 'Settlement'],
+    features: [
+      'Accept USC payments',
+      'Instant settlement',
+      'Global reach',
+      'Merchant tools',
+      'Business integration',
+      'Secure processing',
+    ],
+    stats: [
+      { label: 'Type', value: 'Payment Processor' },
+      { label: 'Target', value: 'Business' },
+      { label: 'Asset', value: 'USC' },
     ],
   },
 ]

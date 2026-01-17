@@ -345,6 +345,98 @@ export default function BuyPage() {
         </section>
       )}
 
+      {/* Native On-Ramp Path */}
+      <section className="border-b border-[var(--border)] bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-8 text-center"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              ETC Native
+            </span>
+            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+              Buy ETC via ClassicUSD
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
+              Use Brale to purchase ClassicUSD (USC) with ACH bank transfer, then swap to ETC on ETCswap - no centralized exchange needed
+            </p>
+          </motion.div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                step: 1,
+                title: 'Fund via Brale',
+                description: 'Connect your bank and purchase ClassicUSD (USC) stablecoin via ACH transfer.',
+              },
+              {
+                step: 2,
+                title: 'Swap on ETCswap',
+                description: 'Use ETCswap DEX to swap your USC for ETC at market rates.',
+              },
+              {
+                step: 3,
+                title: 'Hold in Wallet',
+                description: 'Your ETC is now in your wallet - no exchange custody needed.',
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
+              >
+                <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
+                  {item.step}
+                </div>
+                <h3 className="mt-2 font-semibold text-white">{item.title}</h3>
+                <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-8 flex flex-wrap justify-center gap-4"
+          >
+            <a
+              href="https://brale.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-medium text-white transition-all hover:bg-emerald-600"
+            >
+              Get USC on Brale
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </a>
+            <a
+              href="https://etcswap.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-5 py-2.5 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+            >
+              Swap on ETCswap
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+              </svg>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Major Exchanges */}
       <section id="exchanges" className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">

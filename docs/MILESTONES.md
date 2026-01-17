@@ -346,14 +346,19 @@ Account: All pages
 - [x] Rating system (5-star ratings with breakdown: security, fees, liquidity, UX, support)
 
 ### Milestone 4.3: Buy/Sell Expansion
+**Status**: Complete
 **Dependencies**: 3.2
 
 **Deliverables**:
-- [ ] Instant buy options page
-- [ ] P2P trading page
-- [ ] Buy with card guide
-- [ ] Buy with bank guide
-- [ ] Sell hub and pages
+- [x] Instant buy options page (/buy/instant)
+- [x] P2P trading page (/buy/p2p)
+- [x] Buy with card guide (/buy/card)
+- [x] Buy with bank guide (/buy/bank)
+- [x] Sell hub and pages (/sell, /sell/exchanges)
+- [x] Native on-ramp path via Brale/ClassicUSD (added to /buy)
+- [x] Native off-ramp path via Brale/ClassicUSD (added to /sell)
+- [x] Ecosystem payment products (Rain Cards, 1Konto, Coinflow)
+- [x] New Payments category in Apps directory (/apps/payments)
 
 ### Milestone 4.4: Learn Full Expansion
 **Dependencies**: 3.4
