@@ -1,69 +1,87 @@
 # EthereumClassic.com
 
-Commercial/consumer gateway for Ethereum Classic - modeled after Bitcoin.com.
+> The commercial/consumer gateway for Ethereum Classic - modeled after Bitcoin.com.
 
 **Live at:** ethereumclassic.com
 
 ---
 
+## Project Status: v0.2 Rebuild
+
+We are rebuilding EthereumClassic.com from scratch with comprehensive planning based on deep analysis of Bitcoin.com's structure and features.
+
+**Approach:** All URL endpoints defined upfront. Features built incrementally. Stub pages for unbuilt sections.
+
+---
+
 ## Strategic Vision
 
-**EthereumClassic.com** is the **commercial portal** for Ethereum Classic (like Bitcoin.com is to Bitcoin.org):
+**EthereumClassic.com** is the **commercial portal** for Ethereum Classic:
 
-- **EthereumClassic.org** = Open source project, protocol docs (community-run)
-- **EthereumClassic.com** = Consumer gateway, product suite (THIS SITE)
+| Site | Purpose |
+|------|---------|
+| EthereumClassic.org | Open source project, protocol docs (community-run) |
+| **EthereumClassic.com** | Consumer gateway, product suite (THIS SITE) |
 
 **Advisory:** Roger Ver (Bitcoin.com founder) advised positioning as consumer product platform with no external investment.
+
+**Architect:** Christopher Mercer - ETCswap V2/V3/Launchpad founder, Classic USD (USC) primary organizer, Ethereum Classic core developer, Fukuii client contributor
 
 ---
 
 ## Ecosystem Context
 
-This site is the **awareness layer** and evolving into a **multi-section product platform**:
+This site is the **awareness layer** for the ETC ecosystem:
 
 ```
 EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org → docs.classicos.org
    (awareness + products)         (consideration)    (conversion)       (onboarding)
 ```
 
-**Architect:** Christopher Mercer
-- ETCswap V2/V3/Launchpad founder
-- Classic USD (USC) primary organizer
-- Ethereum Classic core developer
-- Fukuii client contributor
-
 ---
 
-## Current State (v0.1)
+## Site Structure (v0.2 Target)
 
-**Purpose:** Answer "Why should I use Ethereum Classic, and where do I go next?"
+### Primary Navigation
+```
+[Logo] News | Wallet | Apps | Buy | Learn | Mining | Build | [Markets ▼] [Launch App]
+```
 
-**Goal:** Route visitors to real ETC activity within 60 seconds.
+### Complete Section Map
 
-**Structure:** Single landing page, five sections, router model.
+| Section | Description | Status |
+|---------|-------------|--------|
+| **Homepage** | Hero, products, stats, CTAs | Rebuild |
+| **Wallet** | Classic OS + wallet reviews | Rebuild |
+| **Buy** | Exchanges, on-ramps, guides | Rebuild |
+| **Apps** | dApp directory (DeFi, NFT, Tools) | Rebuild |
+| **Learn** | Education center, guides, glossary | Build |
+| **News** | Ecosystem news and updates | Build |
+| **Mining** | Pools, hardware, profitability | Build |
+| **Build** | Developer resources, clients | Build |
+| **Exchanges** | Exchange directory and reviews | Build |
+| **Markets** | Price data, charts, tools | Build |
+| **Research** | Reports and analysis | Stub |
+| **Tools** | Calculators, converters | Stub |
+| **Directory** | Ecosystem listings | Build |
+| **Community** | Social links, events | Stub |
 
----
+**Total Endpoints:** 180+ URLs mapped
 
-## Positioning
-
-Ethereum Classic is:
-- The **only mature Proof-of-Work blockchain with smart contracts**
-- Live and operating continuously since 2015
-- EVM-native and interoperable with Ethereum ecosystem
-- A first-class execution layer for real on-chain activity
-
-**Forward-looking** - No historical disputes, forks, or governance debates.
+See [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md) for complete URL mapping.
 
 ---
 
 ## Tech Stack
 
-- **Next.js:** 16.1.1 (App Router)
-- **React:** 19.2.3
-- **Tailwind CSS:** 4.x
-- **Framer Motion:** 12.24.0
-- **TypeScript:** 5.x
-- **Node:** 22.x
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Next.js | 16.x | App Router, SSG/SSR |
+| React | 19.x | UI components |
+| TypeScript | 5.x | Type safety |
+| Tailwind CSS | 4.x | Styling |
+| Framer Motion | 12.x | Animations |
+| Node.js | 22.x | Runtime |
 
 ---
 
@@ -85,79 +103,106 @@ npm run lint
 
 ---
 
-## Site Structure
+## Documentation
 
-### v0.1 (Current - Locked)
+### Planning & Research
+| Document | Purpose |
+|----------|---------|
+| [docs/RESEARCH.md](docs/RESEARCH.md) | Bitcoin.com analysis and findings |
+| [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md) | Complete URL endpoint mapping |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Technical architecture |
+| [docs/COMPONENTS.md](docs/COMPONENTS.md) | Component specifications |
+| [docs/MILESTONES.md](docs/MILESTONES.md) | Phased development plan |
 
-**Five sections (locked):**
-
-1. **Hero** - Clear positioning, one CTA
-2. **Why Ethereum Classic** - 3-4 value statements
-3. **What Can I Do on ETC?** - Three paths: Use, Earn, Build
-4. **Who Is ETC For?** - Segmentation: users, miners, builders, institutions
-5. **Footer** - Essential navigation, external links
-
-**See:** [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md) for complete locked scope.
-
-### v0.2+ (Roadmap)
-
-**Multi-section consumer platform:**
-
-```
-Navigation: News | Wallet | Apps | Buy | Learn | Build | [Launch App]
-```
-
-**Sections:**
-- **Wallet** - Classic OS hub, download CTAs
-- **Buy/Sell** - Fiat on-ramps, exchange links
-- **Apps** - Curated dApp directory (ETCswap, ClassicUSD, Olympia DAO)
-- **News** - ETC ecosystem blog
-- **Learn** - Education center (What is ETC?, guides)
-- **Markets** - Price, charts, network stats
-- **Build** - Developer resources
-
-**Model:** Bitcoin.com multi-section product platform
-
-**See:** [docs/SCOPE-v0.2-roadmap.md](docs/SCOPE-v0.2-roadmap.md) for complete vision and implementation plan.
+### Development
+| Document | Purpose |
+|----------|---------|
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Development guidelines |
+| [.claude/instructions.md](.claude/instructions.md) | AI agent instructions |
+| [.github/copilot-instructions.md](.github/copilot-instructions.md) | GitHub Copilot context |
 
 ---
 
-## For Developers
+## Development Phases
 
-### Documentation
+### Phase 1: Framework & Shell (Current)
+- Design system and tokens
+- UI component library
+- Layout components
+- Stub page system for all URLs
+- Navigation and routing
 
-- **Current scope (v0.1):** [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md)
-- **Future roadmap (v0.2+):** [docs/SCOPE-v0.2-roadmap.md](docs/SCOPE-v0.2-roadmap.md)
-- **Strategic positioning:** [/docs/ecosystem/positioning-ethereumclassic-com.md](../../docs/ecosystem/positioning-ethereumclassic-com.md)
-- **Product docs:** [docs/README.md](docs/README.md)
-- **Ecosystem context:** [/docs/ecosystem/phase-0/](../../docs/ecosystem/phase-0/)
+### Phase 2: Core Pages (P0)
+- Homepage
+- Wallet hub + Classic OS
+- Buy ETC hub
+- Apps directory
+- Learn landing
 
-### Contributing
+### Phase 3: Secondary Pages (P1)
+- Wallet section expansion
+- Buy section expansion
+- Apps expansion
+- Learn articles
+- News, Markets, Mining, Build sections
+- Exchange directory
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
+### Phase 4: Content Expansion (P2)
+- Wallet and exchange reviews
+- Full learn section (30+ articles)
+- Mining guides and tools
+- Research section
+- Tools section
 
-### For AI Agents
+### Phase 5: Advanced Features (P3)
+- User accounts
+- CMS integration
+- API layer
+- Internationalization
 
-- **Claude Code:** [.claude/instructions.md](.claude/instructions.md)
-- **GitHub Copilot:** [.github/copilot-instructions.md](.github/copilot-instructions.md)
+See [docs/MILESTONES.md](docs/MILESTONES.md) for detailed milestone breakdown.
+
+---
+
+## Positioning
+
+Ethereum Classic is:
+- The **only mature Proof-of-Work blockchain with smart contracts**
+- Live and operating continuously since 2015
+- EVM-native and interoperable with Ethereum ecosystem
+- A first-class execution layer for real on-chain activity
+
+**Forward-looking:** No historical disputes, forks, or governance debates.
 
 ---
 
 ## What This Site Is
 
-- **Router** - Direct visitors to real ETC activity
+- **Consumer gateway** - Entry point for ETC users
+- **Product platform** - Wallet, Apps, Buy/Sell, Learn, Mining
 - **For-profit funnel** - Track clicks, optimize conversion
 - **Legitimacy layer** - Establish credibility for ETC ecosystem
-- **Fast** - Mobile-first, minimal copy, action-oriented
+- **Fast** - Mobile-first, <3s load time
 
 ## What This Site Is NOT
 
 - **Not a community site** - No forums, governance, ECIP content
-- **Not documentation** - No tutorials or technical guides
-- **Not the app** - No wallet connection, no DeFi interactions
-- **Not a blog** - No content engine or CMS
+- **Not the app** - No wallet connection, no DeFi interactions (route to Classic OS)
+- **Not documentation** - Route to docs.classicos.org
+- **Not a blog CMS** - Static content, CMS in Phase 5
 
-**Success = downstream clicks, NOT time on site.**
+**Success = wallet adoption + app discovery + downstream clicks**
+
+---
+
+## Key Products Promoted
+
+| Product | Description | URL |
+|---------|-------------|-----|
+| Classic OS | Complete economic operating system | app.classicos.org |
+| ETCswap | DEX protocol V2/V3 | etcswap.com |
+| ClassicUSD (USC) | ETC-native stablecoin | - |
+| Olympia DAO | Governance protocol | - |
 
 ---
 
