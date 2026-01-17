@@ -58,9 +58,9 @@ docs.classicos.org
 - [ ] Phase 3: Secondary Pages (in progress)
   - [x] 3.1 Wallet Section Expansion (MetaMask guide, hardware wallets, comparison)
   - [x] 3.2 Buy Section Expansion (Exchange listings page with filtering, table/card views)
+  - [x] 3.3 Apps Section Expansion (Featured, Tools, Submit pages, all category pages)
 
 **Next Steps (Phase 3 - Secondary Pages):**
-- [ ] 3.3 Apps Section Expansion (More app pages)
 - [ ] 3.4 Learn Section Expansion (More articles)
 - [ ] 3.5 News Section
 - [ ] 3.6 Markets Section
@@ -344,6 +344,18 @@ This site promotes products, it doesn't replace them:
 
 ---
 
+## Blocklist (DO NOT DISPLAY)
+
+**These products must NOT be featured, linked, or mentioned anywhere on the website.**
+
+| Product | Reason |
+|---------|--------|
+| HebeSwap | Do not promote |
+
+**Important:** Before adding any new app, exchange, or product to the site, check this blocklist first. If a product is listed here, do not include it under any circumstances.
+
+---
+
 ## Referral Links (IMPORTANT)
 
 **All referral/affiliate links must use these URLs throughout the website.**
@@ -540,4 +552,4 @@ The git commit captures the actual code changes, so detailed implementation cont
 7. Route to ecosystem products, don't rebuild them
 
 **Current Focus:** Phase 3 - Secondary Pages
-**Current Milestone:** 3.1 - Wallet Section Expansion
+**Current Milestone:** 3.4 - Learn Section Expansion

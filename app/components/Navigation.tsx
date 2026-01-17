@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -311,9 +312,16 @@ export default function Navigation() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-xl font-bold text-white transition hover:text-[var(--etc)]"
+            className="flex items-center gap-2.5 text-xl font-bold text-white transition hover:opacity-80"
           >
-            <span className="text-[var(--etc)]">ETC</span>
+            <Image
+              src="/etc-prism.png"
+              alt="Ethereum Classic"
+              width={20}
+              height={32}
+              className="h-8 w-auto"
+            />
+            <span className="hidden text-white sm:inline">Ethereum Classic</span>
           </Link>
 
           {/* Desktop Navigation */}

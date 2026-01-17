@@ -9,6 +9,7 @@ import {
   type HTMLAttributes,
 } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Container } from './Container'
 
 // Navigation item types
@@ -65,10 +66,14 @@ const SearchIcon = () => (
 
 // Default ETC Logo
 const ETCLogo = () => (
-  <Link href="/" className="flex items-center gap-2">
-    <div className="w-8 h-8 bg-[var(--color-primary)] rounded-full flex items-center justify-center">
-      <span className="text-white font-bold text-sm">ETC</span>
-    </div>
+  <Link href="/" className="flex items-center gap-2.5">
+    <Image
+      src="/etc-prism.png"
+      alt="Ethereum Classic"
+      width={32}
+      height={32}
+      className="h-8 w-8"
+    />
     <span className="hidden sm:inline font-semibold text-[var(--color-text-primary)]">
       Ethereum Classic
     </span>
