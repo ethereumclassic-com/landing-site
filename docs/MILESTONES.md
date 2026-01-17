@@ -258,13 +258,14 @@ Account: All pages
 - [x] 10+ core articles (15 total articles with full content)
 
 ### Milestone 3.5: News Section
+**Status**: Complete
 **Dependencies**: Phase 1
 
 **Deliverables**:
-- [ ] News hub page
-- [ ] News card component
-- [ ] Static news entries (placeholder for CMS)
-- [ ] Category filtering
+- [x] News hub page (Full hub with hero, category navigation, featured articles, category sections)
+- [x] News card component (NewsCard with category icons, date formatting, tags, featured variant)
+- [x] Static news entries (15 articles across 4 categories: Updates, Security, Ecosystem, Community)
+- [x] Category filtering (Category pages with tab navigation, tag pages)
 
 ### Milestone 3.6: Markets Section
 **Dependencies**: Phase 1
@@ -515,16 +516,16 @@ Account: All pages
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 4 | 40% | (3.1, 3.2, 3.3, 3.4 Complete)
+| Phase 3 | 10 | 5 | 50% | (3.1, 3.2, 3.3, 3.4, 3.5 Complete)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **16** | **39%** |
+| **Total** | **41** | **17** | **41%** |
 
 ### Current Focus
 
 **Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: 3.5 - News Section
+**Next Up**: 3.6 - Markets Section
 
 ---
 
