@@ -45,7 +45,7 @@ docs.classicos.org
 
 **Goal:** Establish complete site architecture with all URL endpoints defined.
 
-**Current Milestone:** 1.3 UI Component Library (Next)
+**Current Milestone:** 1.4 Layout Components (Next)
 
 **Completed:**
 - [x] 1.1 RESEARCH.md - Bitcoin.com analysis
@@ -59,18 +59,26 @@ docs.classicos.org
 - [x] 1.2 Tailwind configuration
 - [x] 1.2 Base CSS variables
 - [x] 1.2 Dark theme setup
+- [x] 1.3 Button component (all variants)
+- [x] 1.3 Card component (all variants)
+- [x] 1.3 Badge component
+- [x] 1.3 Input/Select components
+- [x] 1.3 Tabs component
+- [x] 1.3 Table component
+- [x] 1.3 Modal component
+- [x] 1.3 Tooltip component
+- [x] 1.3 Skeleton/Loading states
+- [x] 1.3 Icon system
 
-**Next Steps (Milestone 1.3 - UI Component Library):**
-- [ ] Button component (all variants)
-- [ ] Card component (all variants)
-- [ ] Badge component
-- [ ] Input/Select components
-- [ ] Tabs component
-- [ ] Table component
-- [ ] Modal component
-- [ ] Tooltip component
-- [ ] Skeleton/Loading states
-- [ ] Icon system
+**Next Steps (Milestone 1.4 - Layout Components):**
+- [ ] Navigation (desktop + mobile)
+- [ ] Footer
+- [ ] Container
+- [ ] Section
+- [ ] Grid
+- [ ] PageHeader
+- [ ] Breadcrumbs
+- [ ] Sidebar
 
 ---
 
@@ -414,4 +422,4 @@ This keeps documents reflective of development reality. Documentation updates sh
 7. Route to ecosystem products, don't rebuild them
 
 **Current Focus:** Phase 1 - Framework & Shell
-**Current Milestone:** 1.3 - UI Component Library
+**Current Milestone:** 1.4 - Layout Components
