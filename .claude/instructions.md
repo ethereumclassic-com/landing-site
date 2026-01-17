@@ -61,11 +61,12 @@ docs.classicos.org
   - [x] 3.3 Apps Section Expansion (Featured, Tools, Submit pages, all category pages)
   - [x] 3.4 Learn Section Expansion (15 articles: 7 basics, 4 wallets, 4 mining)
   - [x] 3.5 News Section (Hub page, NewsCard component, 15 articles, category filtering)
+  - [x] 3.6 Markets Section (Hub page, price page, PriceDisplay, PriceChart components)
 
 **Next Steps (Phase 3 - Secondary Pages):**
-- [ ] 3.6 Markets Section
 - [ ] 3.7 Mining Section
 - [ ] 3.8 Build Section
+- [ ] 3.9 Exchanges Section
 
 ---
 
@@ -553,4 +554,4 @@ The git commit captures the actual code changes, so detailed implementation cont
 7. Route to ecosystem products, don't rebuild them
 
 **Current Focus:** Phase 3 - Secondary Pages
-**Current Milestone:** 3.6 - Markets Section
+**Current Milestone:** 3.7 - Mining Section

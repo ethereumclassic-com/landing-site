@@ -268,14 +268,15 @@ Account: All pages
 - [x] Category filtering (Category pages with tab navigation, tag pages)
 
 ### Milestone 3.6: Markets Section
+**Status**: Complete
 **Dependencies**: Phase 1
 
 **Deliverables**:
-- [ ] Markets overview page
-- [ ] ETC price page
-- [ ] PriceDisplay component
-- [ ] PriceChart component (basic)
-- [ ] External API integration (CoinGecko)
+- [x] Markets overview page (Full hub with price display, chart, stats, trading pairs, price sources, timeline)
+- [x] ETC price page (Dedicated price page with multi-currency display, metrics, milestones)
+- [x] PriceDisplay component (Multiple variants: standard, compact, stat card)
+- [x] PriceChart component (Basic SVG chart with time range selection, sparkline variant)
+- [x] Market data file (Price sources, trading pairs, stats, milestones, resources)
 
 ### Milestone 3.7: Mining Section
 **Dependencies**: Phase 1
@@ -516,16 +517,16 @@ Account: All pages
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 5 | 50% | (3.1, 3.2, 3.3, 3.4, 3.5 Complete)
+| Phase 3 | 10 | 6 | 60% | (3.1, 3.2, 3.3, 3.4, 3.5, 3.6 Complete)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **17** | **41%** |
+| **Total** | **41** | **18** | **44%** |
 
 ### Current Focus
 
 **Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: 3.6 - Markets Section
+**Next Up**: 3.7 - Mining Section
 
 ---
 

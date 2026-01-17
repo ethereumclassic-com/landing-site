@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import PriceDisplay, { PriceStat } from '../markets/components/PriceDisplay'
-import PriceChart from '../markets/components/PriceChart'
+import PriceDisplay, { PriceStat } from '../components/PriceDisplay'
+import PriceChart from '../components/PriceChart'
 import {
   priceSources,
   sampleMarketStats,
   priceMilestones,
   getPopularPairs,
-} from '../markets/data/markets'
+} from '../data/markets'
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -46,6 +46,19 @@ export default function ETCPricePage() {
           variants={staggerContainer}
           className="relative mx-auto max-w-4xl text-center"
         >
+          {/* Breadcrumb */}
+          <motion.div variants={fadeInUp} className="mb-6">
+            <Link
+              href="/markets"
+              className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+              Back to Markets
+            </Link>
+          </motion.div>
+
           <motion.div variants={fadeInUp} className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <span className="relative flex h-2 w-2">
@@ -98,10 +111,9 @@ export default function ETCPricePage() {
           {/* Multi-currency prices */}
           <motion.div variants={fadeInUp} className="mt-6 flex flex-wrap justify-center gap-4">
             {popularPairs.map((pair) => (
-              <Link
+              <div
                 key={pair.id}
-                href={`/price/${pair.id}`}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 transition-all hover:border-[var(--color-primary)]/30"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2"
               >
                 <p className="text-xs text-[var(--color-text-muted)]">{pair.displayName}</p>
                 <p className="font-semibold text-white">
@@ -110,7 +122,7 @@ export default function ETCPricePage() {
                   {pair.quote === 'BTC' && '0.00018 BTC'}
                   {pair.quote === 'ETH' && '0.0056 ETH'}
                 </p>
-              </Link>
+              </div>
             ))}
           </motion.div>
         </motion.div>
