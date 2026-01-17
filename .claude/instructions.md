@@ -64,9 +64,9 @@ docs.classicos.org
   - [x] 3.6 Markets Section (Hub page, price page, PriceDisplay, PriceChart components)
   - [x] 3.7 Mining Section (Hub page, getting started, pools, PoolCard, HashRateChart)
   - [x] 3.8 Build Section (Developer hub, getting started, docs, node clients)
+  - [x] 3.9 Exchanges Section (Exchange directory, filters, sortable table, 30+ exchanges)
 
 **Next Steps (Phase 3 - Secondary Pages):**
-- [ ] 3.9 Exchanges Section
 - [ ] 3.10 Directory Section
 
 ---
