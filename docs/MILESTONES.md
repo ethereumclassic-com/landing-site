@@ -393,15 +393,15 @@ Account: All pages
 - [x] Investment calculator (/markets/calculator - ROI projections, price scenarios, DCA tables)
 
 ### Milestone 4.7: Mining Expansion
-**Status**: In Progress
+**Status**: Complete
 **Dependencies**: 3.7
 
 **Reference**: https://whattomine.com/coins/162-etc-etchash (calculator, network stats, ASIC/GPU tables)
 
 **Deliverables**:
-- [ ] Individual pool pages
+- [x] Individual pool pages (/mining/pools/[pool] - 6 pools with detailed info, server addresses, payout schemes)
 - [x] Hardware guide with ASIC/GPU profitability tables
-- [ ] Software guide
+- [x] Software guide (/mining/software - 4 miners with comparison table, config examples, optimization tips)
 - [x] Profitability calculator (hashrate, power, electricity inputs)
 - [x] Network stats page (hashrate tracker, difficulty, block reward)
 
@@ -684,17 +684,17 @@ Account: All pages
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 6 | 50% | (4.1-4.6 Complete)
+| Phase 4 | 12 | 7 | 58% | (4.1-4.7 Complete)
 | Phase 5 | 7 | 0 | 0% |
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **52** | **28** | **54%** |
+| **Total** | **52** | **29** | **56%** |
 
 ### Current Focus
 
-**Just Completed**: Milestone 4.6 - Markets Expansion (Price converter, investment calculator, expanded price pairs)
+**Just Completed**: Milestone 4.7 - Mining Expansion (Individual pool pages, software guide, profitability tools)
 
-**Next Up**: Continue with remaining Phase 4 milestones (4.7-4.12)
+**Next Up**: Continue with remaining Phase 4 milestones (4.8-4.12)
 
 ---
 
