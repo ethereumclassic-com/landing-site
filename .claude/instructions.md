@@ -45,7 +45,7 @@ docs.classicos.org
 
 **Goal:** Build primary user-facing pages for core sections.
 
-**Current Milestone:** Phase 3 - Secondary Pages
+**Current Milestone:** Phase 4 - Content Expansion
 
 **Completed Phases:**
 - [x] Phase 1: Framework & Shell (1.1 - 1.7)
@@ -55,7 +55,7 @@ docs.classicos.org
   - [x] 2.3 Buy landing page
   - [x] 2.4 Apps directory
   - [x] 2.5 Learn landing page
-- [ ] Phase 3: Secondary Pages (in progress)
+- [x] Phase 3: Secondary Pages (Complete)
   - [x] 3.1 Wallet Section Expansion (MetaMask guide, hardware wallets, comparison)
   - [x] 3.2 Buy Section Expansion (Exchange listings page with filtering, table/card views)
   - [x] 3.3 Apps Section Expansion (Featured, Tools, Submit pages, all category pages)
@@ -65,9 +65,10 @@ docs.classicos.org
   - [x] 3.7 Mining Section (Hub page, getting started, pools, PoolCard, HashRateChart)
   - [x] 3.8 Build Section (Developer hub, getting started, docs, node clients)
   - [x] 3.9 Exchanges Section (Exchange directory, filters, sortable table, 30+ exchanges)
+  - [x] 3.10 Directory Section (Hub, wallet directory, exchange directory)
 
-**Next Steps (Phase 3 - Secondary Pages):**
-- [ ] 3.10 Directory Section
+**Next Steps (Phase 4 - Content Expansion):**
+- [ ] 4.1 Wallet Reviews
 
 ---
 
