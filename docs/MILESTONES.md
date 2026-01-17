@@ -361,15 +361,16 @@ Account: All pages
 - [x] New Payments category in Apps directory (/apps/payments)
 
 ### Milestone 4.4: Learn Full Expansion
+**Status**: Complete
 **Dependencies**: 3.4
 
 **Deliverables**:
-- [ ] All category landing pages
-- [ ] Trading guides
-- [ ] DeFi guides
-- [ ] Security guides
-- [ ] 30+ total articles
-- [ ] Glossary page
+- [x] All category landing pages (Trading, DeFi, Security, Staking)
+- [x] Trading guides (category page with trading features, exchange info)
+- [x] DeFi guides (category page with protocol info, safety notices)
+- [x] Security guides (category page with security tips, hardware wallet CTA)
+- [x] 30+ total articles (35 articles in articles.ts)
+- [x] Glossary page (60+ terms across 6 categories with search and filtering)
 
 ### Milestone 4.5: o Full Implementation
 **Dependencies**: 3.5
@@ -681,17 +682,17 @@ Account: All pages
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 0 | 0% |
+| Phase 4 | 12 | 4 | 33% | (4.1-4.4 Complete)
 | Phase 5 | 7 | 0 | 0% |
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **52** | **22** | **42%** |
+| **Total** | **52** | **26** | **50%** |
 
 ### Current Focus
 
-**Active Milestone**: Phase 4.7 - Mining Expansion (In Progress - 3/5 deliverables complete)
+**Just Completed**: Milestone 4.4 - Learn Full Expansion (All deliverables complete)
 
-**Next Up**: Complete 4.7, then 4.1 - Wallet Reviews
+**Next Up**: Continue with remaining Phase 4 milestones (4.5-4.12)
 
 ---
 
