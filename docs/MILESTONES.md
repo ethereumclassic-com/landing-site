@@ -290,13 +290,14 @@ Account: All pages
 - [x] Mining data file (6 pools, 11 hardware items, network stats, software, resources)
 
 ### Milestone 3.8: Build Section
-**Dependencies**: Phase 1
+**Status**: Complete
 
 **Deliverables**:
-- [ ] Developer hub page
-- [ ] Getting started guide
-- [ ] Documentation links
-- [ ] Node clients page
+- [x] Developer hub page (Full hub with network config, recommended tools, node clients, learning resources)
+- [x] Getting started guide (6-step guide with prerequisites, code examples, network config, tips)
+- [x] Documentation links (Categorized docs, RPC endpoints, block explorers, APIs)
+- [x] Node clients page (Core-Geth, Besu, Erigon with features, install commands, hardware requirements)
+- [x] Build data file (Networks, RPC endpoints, node clients, dev tools, docs, faucets)
 
 ### Milestone 3.9: Exchanges Section
 **Dependencies**: Phase 1
@@ -360,7 +361,7 @@ Account: All pages
 - [ ] 30+ total articles
 - [ ] Glossary page
 
-### Milestone 4.5: News Full Implementation
+### Milestone 4.5: o Full Implementation
 **Dependencies**: 3.5
 
 **Deliverables**:
@@ -518,16 +519,16 @@ Account: All pages
 |-------|------------|-----------|----------|
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 7 | 70% | (3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 Complete)
+| Phase 3 | 10 | 8 | 80% | (3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8 Complete)
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **19** | **46%** |
+| **Total** | **41** | **20** | **49%** |
 
 ### Current Focus
 
 **Active Milestone**: Phase 3 - Secondary Pages
 
-**Next Up**: 3.8 - Build Section
+**Next Up**: 3.9 - Exchanges Section
 
 ---
 
