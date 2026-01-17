@@ -264,7 +264,7 @@ export default function ClassicOSPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6"
           >
-            {compatibleWallets.map((wallet, index) => (
+            {compatibleWallets.map((wallet) => (
               <div
                 key={wallet.name}
                 className="flex flex-col items-center rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center transition-all hover:border-[var(--color-primary)]/30"

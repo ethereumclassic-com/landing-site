@@ -271,7 +271,7 @@ function BannerNewsletter({
 }
 
 export const NewsletterSignup = forwardRef<HTMLElement, NewsletterSignupProps>(
-  ({ variant = 'card', ...props }, _ref) => {
+  ({ variant = 'card', ...props }) => {
     // Note: ref forwarding not implemented as each variant renders differently
     switch (variant) {
       case 'inline':

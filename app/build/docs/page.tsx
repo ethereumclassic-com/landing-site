@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { docResources, explorerAPIs, rpcEndpoints, getDocsByCategory, getMainnetEndpoints, getTestnetEndpoints } from '../data/build'
+import { explorerAPIs, getDocsByCategory, getMainnetEndpoints, getTestnetEndpoints } from '../data/build'
 
 const staggerContainer = {
   hidden: { opacity: 0 },

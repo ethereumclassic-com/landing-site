@@ -28,52 +28,6 @@ type PulseHub = {
     delay: number;
 };
 
-type AnchorSpec = {
-    top: string;
-    left: string;
-    size: number;
-    tint: "white" | "etc";
-    phase: number; // seconds offset
-};
-
-function pct(n: number) {
-    return `${n}%`;
-}
-
-// Parse "-22%" -> -22
-function parsePct(s: string) {
-    const v = Number(String(s).replace("%", ""));
-    return Number.isFinite(v) ? v : 0;
-}
-
-// Place anchors along a lane (in screen space) so they visually "sit on" the filament.
-function anchorsForLane(l: Lane, count: number, phaseBase: number): AnchorSpec[] {
-    const top = parsePct(l.top);
-    const left = parsePct(l.left);
-    const len = parsePct(l.len);
-
-    // clamp: if len isn't parseable, avoid placing garbage
-    if (!Number.isFinite(len) || len <= 0) return [];
-
-    // We rotate the whole lane container; anchors go inside that container at x positions.
-    // We'll approximate this by placing anchors in the lane container coordinate system:
-    // left/top remain lane container origin; anchors are placed at x% positions within that lane.
-    // To do that in DOM, we render anchors inside the rotated lane wrapper with left: `${x}%`.
-    // So anchors returned here are relative to lane container (we’ll render them accordingly).
-    // We'll encode relative x as left, and use top = "50%" within lane wrapper.
-    // But since AnchorSpec uses absolute positions, we’ll instead return markers with a special flag.
-    // Simpler: we’ll render anchors INSIDE the lane wrapper directly (below), no absolute conversion needed.
-    // => This helper is not used for DOM coords; we’ll generate x stops in-place.
-
-    // (kept for structure; actual anchor rendering happens inside lane map)
-    return Array.from({ length: count }).map((_, i) => ({
-        top: pct(top),
-        left: pct(left + (len * (i + 1)) / (count + 1)),
-        size: i % 3 === 0 ? 3 : 2,
-        tint: i % 7 === 0 ? "etc" : "white",
-        phase: phaseBase + i * 0.35,
-    }));
-}
 
 export default function BackgroundSystem() {
     const reduceMotion = useReducedMotion();

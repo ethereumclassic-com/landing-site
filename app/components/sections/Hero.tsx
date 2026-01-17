@@ -300,7 +300,7 @@ function MinimalHero({
 }
 
 export const Hero = forwardRef<HTMLElement, HeroProps>(
-  ({ variant = 'home', ...props }, _ref) => {
+  ({ variant = 'home', ...props }) => {
     // Note: ref forwarding not implemented as each variant renders differently
     switch (variant) {
       case 'home':

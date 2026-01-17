@@ -2,6 +2,64 @@
 
 import { motion } from 'framer-motion'
 
+const sizeClasses = {
+  sm: {
+    price: 'text-lg font-semibold',
+    change: 'text-xs',
+    icon: 'h-4 w-4',
+    label: 'text-xs',
+  },
+  md: {
+    price: 'text-2xl font-bold',
+    change: 'text-sm',
+    icon: 'h-5 w-5',
+    label: 'text-sm',
+  },
+  lg: {
+    price: 'text-3xl font-bold md:text-4xl',
+    change: 'text-base',
+    icon: 'h-6 w-6',
+    label: 'text-base',
+  },
+  xl: {
+    price: 'text-4xl font-bold md:text-5xl lg:text-6xl',
+    change: 'text-lg',
+    icon: 'h-8 w-8',
+    label: 'text-lg',
+  },
+}
+
+const changeColors = {
+  up: 'text-emerald-400',
+  down: 'text-red-400',
+  neutral: 'text-[var(--color-text-muted)]',
+}
+
+const changeBgColors = {
+  up: 'bg-emerald-500/10',
+  down: 'bg-red-500/10',
+  neutral: 'bg-[var(--panel)]',
+}
+
+// Change icon component moved outside to avoid recreation during render
+function ChangeIcon({ direction, iconClass }: { direction: 'up' | 'down' | 'neutral'; iconClass: string }) {
+  if (direction === 'up') {
+    return (
+      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+      </svg>
+    )
+  }
+  if (direction === 'down') {
+    return (
+      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+      </svg>
+    )
+  }
+  return null
+}
+
 interface PriceDisplayProps {
   price: string
   change?: string
@@ -25,63 +83,6 @@ export default function PriceDisplay({
   showIcon = true,
   animated = true,
 }: PriceDisplayProps) {
-  const sizeClasses = {
-    sm: {
-      price: 'text-lg font-semibold',
-      change: 'text-xs',
-      icon: 'h-4 w-4',
-      label: 'text-xs',
-    },
-    md: {
-      price: 'text-2xl font-bold',
-      change: 'text-sm',
-      icon: 'h-5 w-5',
-      label: 'text-sm',
-    },
-    lg: {
-      price: 'text-3xl font-bold md:text-4xl',
-      change: 'text-base',
-      icon: 'h-6 w-6',
-      label: 'text-base',
-    },
-    xl: {
-      price: 'text-4xl font-bold md:text-5xl lg:text-6xl',
-      change: 'text-lg',
-      icon: 'h-8 w-8',
-      label: 'text-lg',
-    },
-  }
-
-  const changeColors = {
-    up: 'text-emerald-400',
-    down: 'text-red-400',
-    neutral: 'text-[var(--color-text-muted)]',
-  }
-
-  const changeBgColors = {
-    up: 'bg-emerald-500/10',
-    down: 'bg-red-500/10',
-    neutral: 'bg-[var(--panel)]',
-  }
-
-  const ChangeIcon = () => {
-    if (changeDirection === 'up') {
-      return (
-        <svg className={sizeClasses[size].icon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        </svg>
-      )
-    }
-    if (changeDirection === 'down') {
-      return (
-        <svg className={sizeClasses[size].icon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-        </svg>
-      )
-    }
-    return null
-  }
-
   const Wrapper = animated ? motion.div : 'div'
   const wrapperProps = animated
     ? {
@@ -102,7 +103,7 @@ export default function PriceDisplay({
           <span
             className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 ${sizeClasses[size].change} ${changeColors[changeDirection]} ${changeBgColors[changeDirection]}`}
           >
-            {showIcon && <ChangeIcon />}
+            {showIcon && <ChangeIcon direction={changeDirection} iconClass={sizeClasses[size].icon} />}
             {changePercent || change}
           </span>
         )}

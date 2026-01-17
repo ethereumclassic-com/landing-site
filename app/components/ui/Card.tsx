@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { forwardRef, type ReactNode, type HTMLAttributes } from 'react'
 
 export type CardVariant = 'default' | 'elevated' | 'outlined' | 'interactive'
@@ -124,7 +125,7 @@ export const CardIcon = forwardRef<HTMLDivElement, CardIconProps>(
       {...props}
     >
       {src ? (
-        <img src={src} alt={alt || ''} className="w-6 h-6 object-contain" />
+        <Image src={src} alt={alt || ''} width={24} height={24} className="w-6 h-6 object-contain" />
       ) : (
         children
       )}

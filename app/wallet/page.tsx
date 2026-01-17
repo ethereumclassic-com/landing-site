@@ -1,6 +1,5 @@
 'use client'
 
-import type { Metadata } from 'next'
 import { motion } from 'framer-motion'
 import { wallets } from './data/wallets'
 import WalletCard from './components/WalletCard'

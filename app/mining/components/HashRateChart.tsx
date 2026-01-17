@@ -47,13 +47,13 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
 
   // Calculate SVG arc paths
   const total = segments.reduce((sum, s) => sum + s.value, 0)
-  let currentAngle = -90 // Start from top
 
-  const arcs = segments.map((segment) => {
+  // Calculate arcs using reduce to avoid variable reassignment
+  const arcs = segments.reduce<{ name: string; value: number; color: string; id: string; path: string; startAngle: number; endAngle: number }[]>((acc, segment) => {
+    const prevAngle = acc.length === 0 ? -90 : acc[acc.length - 1].endAngle
     const angle = (segment.value / total) * 360
-    const startAngle = currentAngle
-    const endAngle = currentAngle + angle
-    currentAngle = endAngle
+    const startAngle = prevAngle
+    const endAngle = prevAngle + angle
 
     const startRad = (startAngle * Math.PI) / 180
     const endRad = (endAngle * Math.PI) / 180
@@ -67,13 +67,13 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
 
     const path = `M 50 50 L ${x1} ${y1} A 40 40 0 ${largeArc} 1 ${x2} ${y2} Z`
 
-    return {
+    return [...acc, {
       ...segment,
       path,
       startAngle,
       endAngle,
-    }
-  })
+    }]
+  }, [])
 
   return (
     <div className={`rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 ${className}`}>

@@ -218,7 +218,7 @@ export default function SubmitAppPage() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            {submissionFields.map((field, index) => (
+            {submissionFields.map((field) => (
               <div
                 key={field.label}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"

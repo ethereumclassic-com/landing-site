@@ -271,10 +271,10 @@ export default function Navigation() {
   const prevPathname = useRef(pathname)
   useEffect(() => {
     if (prevPathname.current !== pathname) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      /* eslint-disable react-hooks/set-state-in-effect -- intentional: sync UI on route change */
       setMobileMenuOpen(false)
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSearchOpen(false)
+      /* eslint-enable react-hooks/set-state-in-effect */
       prevPathname.current = pathname
     }
   }, [pathname])

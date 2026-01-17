@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { nodeClients, networks, getActiveClients } from '../data/build'
+import { networks, getActiveClients } from '../data/build'
 
 const staggerContainer = {
   hidden: { opacity: 0 },

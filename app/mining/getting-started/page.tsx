@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { gettingStartedSteps, networkStats, miningPools, getRecommendedPools } from '../data/mining'
+import { gettingStartedSteps, networkStats, getRecommendedPools } from '../data/mining'
 
 const staggerContainer = {
   hidden: { opacity: 0 },

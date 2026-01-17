@@ -365,12 +365,12 @@ export default function GettingStartedPage() {
 {`module.exports = {
   networks: {
     etc: {
-      url: `}<span className="text-[var(--color-primary)]">"https://etc.rivet.link"</span>{`,
+      url: `}<span className="text-[var(--color-primary)]">&quot;https://etc.rivet.link&quot;</span>{`,
       chainId: `}<span className="text-[var(--color-primary)]">61</span>{`,
       accounts: [process.env.PRIVATE_KEY]
     },
     mordor: {
-      url: `}<span className="text-[var(--color-primary)]">"https://rpc.mordor.etccooperative.org"</span>{`,
+      url: `}<span className="text-[var(--color-primary)]">&quot;https://rpc.mordor.etccooperative.org&quot;</span>{`,
       chainId: `}<span className="text-[var(--color-primary)]">63</span>{`,
       accounts: [process.env.PRIVATE_KEY]
     }
