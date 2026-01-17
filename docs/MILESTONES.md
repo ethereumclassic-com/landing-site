@@ -79,17 +79,18 @@ Phase 5: Advanced Features (P3)
 - [x] Sidebar
 
 ### Milestone 1.5: Section Components
+**Status**: Complete
 **Dependencies**: 1.3
 
 **Deliverables**:
-- [ ] Hero (home, page, minimal variants)
-- [ ] StatsStrip
-- [ ] ProductCards
-- [ ] FeatureGrid
-- [ ] CTABanner
-- [ ] FAQAccordion
-- [ ] NewsletterSignup
-- [ ] TrustSignals
+- [x] Hero (home, page, minimal variants)
+- [x] StatsStrip
+- [x] ProductCards
+- [x] FeatureGrid
+- [x] CTABanner
+- [x] FAQAccordion
+- [x] NewsletterSignup
+- [x] TrustSignals
 
 ### Milestone 1.6: Stub Page System
 **Dependencies**: 1.4
@@ -481,18 +482,18 @@ Account: All pages
 
 | Phase | Milestones | Completed | Progress |
 |-------|------------|-----------|----------|
-| Phase 1 | 7 | 4 | 57% | (1.1, 1.2, 1.3, 1.4 Complete)
+| Phase 1 | 7 | 5 | 71% | (1.1, 1.2, 1.3, 1.4, 1.5 Complete)
 | Phase 2 | 5 | 0 | 0% |
 | Phase 3 | 10 | 0 | 0% |
 | Phase 4 | 12 | 0 | 0% |
 | Phase 5 | 6 | 0 | 0% |
-| **Total** | **40** | **4** | **10%** |
+| **Total** | **40** | **5** | **12.5%** |
 
 ### Current Focus
 
-**Active Milestone**: 1.5 - Section Components
+**Active Milestone**: 1.6 - Stub Page System
 
-**Next Up**: 1.6 - Stub Page System
+**Next Up**: 1.7 - Navigation & Routing
 
 ---
 
