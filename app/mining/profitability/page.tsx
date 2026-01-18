@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { miningHardware, networkStats, type MiningHardware } from '../data/mining'
@@ -99,15 +99,15 @@ export default function MiningProfitabilityPage() {
   const [powerWatts, setPowerWatts] = useState(200)
   const [electricityRate, setElectricityRate] = useState(0.10)
   const [poolFeePercent, setPoolFeePercent] = useState(1)
-  const [etcPrice, setEtcPrice] = useState(NETWORK_CONSTANTS.etcPriceUSD)
+  // User-adjustable ETC price (null means use live price)
+  const [userEtcPrice, setUserEtcPrice] = useState<number | null>(null)
   const [selectedHardware, setSelectedHardware] = useState<string | null>(null)
 
-  // Update ETC price when live data loads
-  useEffect(() => {
-    if (liveStats.source === 'live' && liveStats.etcPriceUSD > 0) {
-      setEtcPrice(liveStats.etcPriceUSD)
-    }
-  }, [liveStats.source, liveStats.etcPriceUSD])
+  // Effective price: user override or live price or fallback
+  const etcPrice = userEtcPrice ?? (liveStats.source === 'live' && liveStats.etcPriceUSD > 0 ? liveStats.etcPriceUSD : NETWORK_CONSTANTS.etcPriceUSD)
+
+  // Handler to update user price
+  const setEtcPrice = (price: number) => setUserEtcPrice(price)
 
   // Calculate results using live network stats
   const results: ProfitabilityResult = useMemo(() => {

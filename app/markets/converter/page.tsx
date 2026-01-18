@@ -73,7 +73,7 @@ export default function ConverterPage() {
   const [amount, setAmount] = useState('1')
 
   // Fetch live exchange rates
-  const { rates: liveRates, isLoading: ratesLoading, source: ratesSource, lastUpdated } = useExchangeRates()
+  const { rates: liveRates, isLoading: ratesLoading, source: ratesSource } = useExchangeRates()
 
   const fromInfo = getCurrencyByCode(fromCurrency)
   const toInfo = getCurrencyByCode(toCurrency)

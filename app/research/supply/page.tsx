@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import {
   EMISSION_CONSTANTS,
   calculateSupplyStats,
@@ -34,17 +34,29 @@ const staggerContainer = {
 
 // Fifthening Countdown Component
 function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  })
+  // Calculate initial time left based on stats
+  const initialTimeLeft = useMemo(() => {
+    if (!stats) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    const totalSeconds = stats.timeUntilNextEra.totalSeconds
+    return {
+      days: Math.floor(totalSeconds / 86400),
+      hours: Math.floor((totalSeconds % 86400) / 3600),
+      minutes: Math.floor((totalSeconds % 3600) / 60),
+      seconds: Math.floor(totalSeconds % 60),
+    }
+  }, [stats])
 
+  const [timeLeft, setTimeLeft] = useState(initialTimeLeft)
+
+  // Reset timeLeft when stats change
+  useEffect(() => {
+    setTimeLeft(initialTimeLeft)
+  }, [initialTimeLeft])
+
+  // Countdown timer
   useEffect(() => {
     if (!stats) return
 
-    // Initialize with stats
     let totalSeconds = stats.timeUntilNextEra.totalSeconds
 
     const timer = setInterval(() => {
@@ -61,14 +73,6 @@ function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; i
         seconds: Math.floor(totalSeconds % 60),
       })
     }, 1000)
-
-    // Initial set
-    setTimeLeft({
-      days: Math.floor(totalSeconds / 86400),
-      hours: Math.floor((totalSeconds % 86400) / 3600),
-      minutes: Math.floor((totalSeconds % 3600) / 60),
-      seconds: Math.floor(totalSeconds % 60),
-    })
 
     return () => clearInterval(timer)
   }, [stats])
@@ -254,7 +258,7 @@ function EraScheduleTable() {
             </tr>
           </thead>
           <tbody>
-            {displayedEras.map((era, idx) => {
+            {displayedEras.map((era) => {
               // Current era is 5 (blocks 20M-25M)
               const isCurrent = era.number === 5
               const isPast = era.number < 5
@@ -329,7 +333,6 @@ function EmissionMilestones() {
         {emissionMilestones.map((milestone, idx) => {
           const isPast = milestone.era < 5
           const isCurrent = milestone.era === 5
-          const isFuture = milestone.era > 5
 
           return (
             <div
@@ -394,7 +397,7 @@ export default function SupplyTrackerPage() {
           // Use fallback block height
           setStats(calculateSupplyStats(23816658))
         }
-      } catch (error) {
+      } catch {
         // Use fallback
         setStats(calculateSupplyStats(23816658))
       } finally {

@@ -325,7 +325,6 @@ interface UseSearchReturn {
 export function useSearch(debounceMs: number = 150): UseSearchReturn {
   const [query, setQuery] = useState('')
   const [debouncedQuery, setDebouncedQuery] = useState('')
-  const [isSearching, setIsSearching] = useState(false)
 
   // Build index once
   const searchIndex = useMemo(() => buildSearchIndex(), [])
@@ -333,14 +332,15 @@ export function useSearch(debounceMs: number = 150): UseSearchReturn {
 
   // Debounce query
   useEffect(() => {
-    setIsSearching(true)
     const timer = setTimeout(() => {
       setDebouncedQuery(query)
-      setIsSearching(false)
     }, debounceMs)
 
     return () => clearTimeout(timer)
   }, [query, debounceMs])
+
+  // Derive isSearching from whether query is pending
+  const isSearching = query !== debouncedQuery && query.length >= 2
 
   // Perform search
   const results = useMemo(() => {

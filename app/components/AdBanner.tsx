@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -99,14 +99,9 @@ function getAdForPlacement(placement: AdPlacement): Ad | null {
  * AdBanner component - displays ads in various formats based on placement
  */
 export function AdBanner({ placement, className = '' }: AdBannerProps) {
-  const [ad, setAd] = useState<Ad | null>(null)
+  // Get ad for placement - computed directly, no effect needed
+  const ad = useMemo(() => getAdForPlacement(placement), [placement])
   const [dismissed, setDismissed] = useState(false)
-
-  useEffect(() => {
-    // In production, this would fetch from an API
-    const selectedAd = getAdForPlacement(placement)
-    setAd(selectedAd)
-  }, [placement])
 
   if (!ad || dismissed) return null
 

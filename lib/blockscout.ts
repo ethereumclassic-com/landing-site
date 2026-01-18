@@ -82,7 +82,7 @@ function writeFileCache<T>(data: T): void {
 /**
  * Get cached data (memory first, then file)
  */
-function getCached<T>(key: string): T | null {
+function getCached<T>(): T | null {
   // Check memory cache first
   if (memoryCache && Date.now() - memoryCache.timestamp <= CACHE_DURATION_MS) {
     return memoryCache.data as T
@@ -101,7 +101,7 @@ function getCached<T>(key: string): T | null {
 /**
  * Set cache (both memory and file)
  */
-function setCache<T>(key: string, data: T): void {
+function setCache<T>(data: T): void {
   writeFileCache(data)
 }
 
@@ -197,8 +197,7 @@ export interface RecentBlock {
  * Fetch network statistics from Blockscout
  */
 export async function fetchNetworkStats(): Promise<NetworkStats | null> {
-  const cacheKey = 'network-stats'
-  const cached = getCached<NetworkStats>(cacheKey)
+  const cached = getCached<NetworkStats>()
   if (cached) return cached
 
   try {
@@ -253,7 +252,7 @@ export async function fetchNetworkStats(): Promise<NetworkStats | null> {
       lastUpdated: new Date().toISOString(),
     }
 
-    setCache(cacheKey, networkStats)
+    setCache(networkStats)
     return networkStats
   } catch (error) {
     console.error('Failed to fetch Blockscout stats:', error)
@@ -265,10 +264,6 @@ export async function fetchNetworkStats(): Promise<NetworkStats | null> {
  * Fetch recent blocks from Blockscout
  */
 export async function fetchRecentBlocks(limit: number = 10): Promise<RecentBlock[]> {
-  const cacheKey = `recent-blocks-${limit}`
-  const cached = getCached<RecentBlock[]>(cacheKey)
-  if (cached) return cached
-
   try {
     const response = await fetch(`${BLOCKSCOUT_API_BASE}/blocks?type=block`, {
       next: { revalidate: 60 },
@@ -300,7 +295,6 @@ export async function fetchRecentBlocks(limit: number = 10): Promise<RecentBlock
       }
     })
 
-    setCache(cacheKey, recentBlocks)
     return recentBlocks
   } catch (error) {
     console.error('Failed to fetch Blockscout blocks:', error)
