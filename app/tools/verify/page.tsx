@@ -289,13 +289,13 @@ export default function VerifyPage() {
             transition={{ delay: 0.35 }}
             className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">What You'll Need</h2>
+            <h2 className="mb-4 text-lg font-semibold text-white">What You Need</h2>
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-white">Contract Address</strong> - The deployed contract's address on mainnet or testnet</span>
+                <span><strong className="text-white">Contract Address</strong> - The deployed contract address on mainnet or testnet</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

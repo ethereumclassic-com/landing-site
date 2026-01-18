@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { devTools, getToolsByCategory, type DevTool } from '../data/build'
+import { getToolsByCategory, type DevTool } from '../data/build'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -143,7 +143,6 @@ function CategorySection({ category }: { category: DevTool['category'] }) {
 }
 
 export default function BuildToolsPage() {
-  const recommendedTools = devTools.filter((t) => t.recommended)
   const categories: DevTool['category'][] = ['framework', 'library', 'ide', 'testing']
 
   return (

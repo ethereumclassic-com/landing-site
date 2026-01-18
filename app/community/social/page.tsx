@@ -291,7 +291,7 @@ export default function SocialPage() {
             <h2 className="text-2xl font-bold text-white">Stay Connected</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Follow official channels to never miss important updates, participate in governance,
-              and be part of ETC's future.
+              and be part of ETC&apos;s future.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <a

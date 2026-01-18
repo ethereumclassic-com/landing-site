@@ -8,7 +8,6 @@ import {
   getVerdictLabel,
   getVerdictColor,
   formatRating,
-  getRatingLabel,
   type ExchangeReview,
 } from '../data/reviews'
 

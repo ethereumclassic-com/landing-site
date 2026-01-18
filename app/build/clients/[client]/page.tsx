@@ -4,7 +4,7 @@ import { use } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { nodeClients, getClientById, type NodeClient } from '../../data/build'
+import { getClientById, type NodeClient } from '../../data/build'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },

@@ -71,7 +71,6 @@ function renderContent(content: string): React.ReactNode {
   let listType: 'ul' | 'ol' | null = null
   let inCodeBlock = false
   let codeBlockContent: string[] = []
-  let codeBlockLang = ''
   let inTable = false
   let tableRows: string[][] = []
 
@@ -153,7 +152,6 @@ function renderContent(content: string): React.ReactNode {
         flushList()
         flushTable()
         inCodeBlock = true
-        codeBlockLang = line.slice(3)
       }
       continue
     }

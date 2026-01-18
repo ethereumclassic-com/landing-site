@@ -113,13 +113,6 @@ function ConfigExample({ title, command, description }: { title: string; command
 }
 
 export default function MiningSoftwarePage() {
-  // Group by GPU support
-  const nvidiaSoftware = miningSoftware.filter((s) => s.supports.includes('NVIDIA'))
-  const amdSoftware = miningSoftware.filter((s) => s.supports.includes('AMD'))
-  const crossPlatformSoftware = miningSoftware.filter(
-    (s) => s.supports.includes('NVIDIA') && s.supports.includes('AMD')
-  )
-
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}

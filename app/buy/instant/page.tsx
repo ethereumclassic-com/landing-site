@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { exchanges } from '../data/exchanges'
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -130,11 +129,6 @@ function StepCard({ number, title, description, icon, index }: StepCardProps) {
 }
 
 export default function InstantBuyPage() {
-  // Filter exchanges that support instant card purchases
-  const instantBuyProviders = exchanges
-    .filter((ex) => ex.paymentMethods?.includes('Card') && ex.type === 'CEX')
-    .slice(0, 6)
-
   const providers: InstantBuyProviderProps[] = [
     {
       name: 'Coinbase',

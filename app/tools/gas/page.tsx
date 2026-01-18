@@ -274,7 +274,7 @@ export default function GasTrackerPage() {
                 <div>
                   <h3 className="font-medium text-white">Set Gas Limits Correctly</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
-                    Don't overset gas limits. Unused gas is refunded but wallet estimates can be high.
+                    Do not overset gas limits. Unused gas is refunded but wallet estimates can be high.
                   </p>
                 </div>
               </div>

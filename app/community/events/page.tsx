@@ -143,7 +143,7 @@ export default function EventsPage() {
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Connect with the Ethereum Classic community at events around the world.
-                From online calls to global conferences, there's always a way to participate.
+                From online calls to global conferences, there&apos;s always a way to participate.
               </p>
             </motion.div>
           </motion.div>
@@ -304,7 +304,7 @@ export default function EventsPage() {
             <h2 className="mb-4 text-lg font-semibold text-white">Want to Host an Event?</h2>
             <p className="text-sm text-[var(--color-text-muted)]">
               The ETC community supports local organizers who want to host meetups, workshops, or
-              educational events. Whether you're planning an in-person gathering or an online webinar,
+              educational events. Whether you&apos;re planning an in-person gathering or an online webinar,
               we can help with resources and promotion.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
