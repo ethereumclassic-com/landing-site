@@ -468,23 +468,25 @@ Account: All pages
 **Goal**: Add advanced functionality and future features.
 
 ### Milestone 5.1: User Accounts
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] Authentication system
-- [ ] Account dashboard
-- [ ] Login/Register pages
-- [ ] Settings page
-- [ ] Watchlist feature
-- [ ] Portfolio tracker (basic)
+- [x] Authentication system (AuthContext with localStorage persistence)
+- [x] Account dashboard (/account with portfolio/watchlist summary)
+- [x] Login/Register pages (/account/login, /account/register)
+- [x] Settings page (/account/settings with profile, preferences, danger zone)
+- [x] Watchlist feature (/account/watchlist with add/remove/search)
+- [x] Portfolio tracker (/account/portfolio with holdings management)
 
 ### Milestone 5.2: Advanced Mining
+**Status**: Complete
 **Dependencies**: 4.7
 
 **Deliverables**:
-- [ ] ATM locator
-- [ ] Mining OS integration
-- [ ] Advanced profitability tools
+- [x] ATM locator (/buy/atm with 6 providers, filters, aggregator links)
+- [x] Mining OS integration (/mining/os with HiveOS, minerstat, RaveOS, MMPOS, Simple Mining)
+- [x] Advanced profitability tools (already complete from Phase 4 - /mining/profitability, /mining/hardware)
 
 ### Milestone 5.3: CMS Integration
 **Dependencies**: Phase 4
@@ -729,20 +731,18 @@ Account: All pages
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
 | Phase 4 | 12 | 12 | 100% | (All Complete - 4.1 through 4.12)
-| Phase 5 | 8 | 0 | 0% | (includes 5.8 Final Testing & QA)
+| Phase 5 | 8 | 2 | 25% | (5.1-5.2 Complete)
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **53** | **34** | **64%** |
+| **Total** | **53** | **36** | **68%** |
 
 ### Current Focus
 
-**Just Completed**: Phase 4 - All Content Expansion milestones (4.1-4.12)
-- 4.9 Research Section (hub, reports, network analysis)
-- 4.10 Tools Section (hub, converter, calculator, gas, explorer, verify)
-- 4.11 Apps Expansion (NFT, Games, 10 new apps)
-- 4.12 Community Section (hub, social, events)
+**Just Completed**: Phase 5 Milestones 5.1-5.2
+- 5.1 User Accounts (auth system, dashboard, login/register, settings, watchlist, portfolio)
+- 5.2 Advanced Mining (ATM locator, Mining OS page)
 
-**Next Up**: Phase 5 - Advanced Features (User Accounts, CMS, API, i18n)
+**Next Up**: Phase 5 - Remaining milestones (CMS, API, i18n, Content Review, Advanced Features, Final Testing)
 
 ---
 
