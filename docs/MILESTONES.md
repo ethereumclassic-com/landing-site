@@ -715,9 +715,10 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 
 **Deliverables**:
 - [ ] Hardware marketplace page structure for ETChash ASICs and GPUs
-- [ ] Product listings with specs, pricing, availability (affiliate links to be added in Phase 7)
+- [ ] Product listings with specs, pricing, availability
 - [ ] Profitability rankings based on current network difficulty and ETC price
 - [ ] Hardware comparison tool (efficiency, ROI calculator per device)
+- [ ] Affiliate link placeholders (actual links added in Phase 7)
 
 ### Milestone 6.6: Classic USD Documentation
 **Status**: Not Started
@@ -728,144 +729,292 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 - [ ] Document USD → USC stablecoin → ETCswap DEX (WETC/USC) flow
 - [ ] Create on-ramp funnel from ethereumclassic.com to Classic OS
 
-### Milestone 6.7: Pool Announcement Page
+### Milestone 6.7: Mining Pool Dashboard Scaffolding
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Reference**: https://etc.2miners.com/, https://etc.f2pool.com/, https://k1pool.com/pool/etc
+
+**Goal**: Build full mining pool UI with sample data, emulating existing pools. When pool infrastructure is ready (Phase 7), simply connect to real backend.
+
+**Deliverables**:
+
+**Pool Hub (/pool)**:
+- [ ] Pool landing page with key stats (hashrate, miners, blocks found, luck)
+- [ ] Getting started guide (how to connect, recommended software)
+- [ ] Stratum server addresses (placeholder endpoints)
+- [ ] Payout information (thresholds, fees, schedule)
+
+**Pool Dashboard (/pool/dashboard)**:
+- [ ] Miner dashboard (requires wallet address input)
+- [ ] Worker stats table (name, hashrate, shares, last seen)
+- [ ] Hashrate chart (24h worker performance)
+- [ ] Payment history table
+- [ ] Estimated earnings calculator
+
+**Pool Statistics (/pool/stats)**:
+- [ ] Pool hashrate chart (with sample historical data)
+- [ ] Blocks found table (block #, reward, finder, time)
+- [ ] Pool luck indicator
+- [ ] Active miners count over time
+- [ ] Network vs pool hashrate comparison
+
+**Pool Blocks (/pool/blocks)**:
+- [ ] Paginated blocks found list
+- [ ] Block details (hash, reward, uncle status, maturity)
+- [ ] Confirmation status indicators
+
+**Pool Miners (/pool/miners)**:
+- [ ] Top miners leaderboard (anonymized addresses)
+- [ ] Miner distribution chart
+
+**Data Architecture**:
+- [ ] Sample pool data file (/app/pool/data/sample-pool.ts)
+- [ ] Pool API structure (/api/pool/* returning sample data)
+- [ ] Real-time simulation with mock WebSocket events (optional)
+
+### Milestone 6.8: Merchandise Store Shell
 **Status**: Not Started
 **Dependencies**: Phase 5
 
 **Deliverables**:
-- [ ] "Coming Soon" announcement page for EthereumClassic.com Pool
-- [ ] Feature pool in mining sections of website
-- [ ] Pool landing page with waitlist/notification signup
-- [ ] Integration documentation outline with Classic OS and Fukuii client
+- [ ] Store page layout (/store or /merch)
+- [ ] Product card components
+- [ ] Sample merchandise items (placeholder images, descriptions)
+- [ ] Category navigation (Apparel, Accessories, etc.)
+- [ ] "Coming Soon" or cart placeholder (actual checkout in Phase 7)
+
+### Milestone 6.9: Historical Charts with Sample Data
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Chart components for hashrate/difficulty/fees over time
+- [ ] Sample/mock historical data for chart demonstration
+- [ ] Time range selectors (1D, 1W, 1M, 1Y, ALL)
+- [ ] API endpoint structure for historical data (returns sample data)
+- [ ] "Data powered by local node" attribution with note about upcoming live data
+
+### Milestone 6.10: Referral Infrastructure
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Referral link component with tracking parameter support
+- [ ] Exchange referral link placeholders on /buy pages
+- [ ] Hardware affiliate link placeholders on /mining/hardware
+- [ ] Config file for easy referral code updates (/lib/referrals.ts)
+- [ ] UTM parameter tracking structure
+
+### Milestone 6.11: Network Health Dashboard Scaffolding
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Goal**: Build comprehensive ETC network monitoring dashboard for core contributors and stakeholders. Unified data hub for informed decision-making. Uses sample/mock data until local node infrastructure is ready.
+
+**Reference**: https://ethernodes.org/, https://2miners.com/etc-network-hashrate, https://miningpoolstats.stream/ethereumclassic
+
+**Network Health Hub (/network or /network-health)**:
+- [ ] Dashboard overview with key health indicators
+- [ ] Status summary cards (network healthy/degraded/warning)
+- [ ] Quick links to detailed monitors
+- [ ] Last updated timestamp with data source attribution
+
+**Block Explorer (/network/explorer)**:
+- [ ] Latest blocks table with real-time updates (sample data)
+- [ ] Block detail page (/network/explorer/block/[number])
+- [ ] Transaction detail page (/network/explorer/tx/[hash])
+- [ ] Address lookup (/network/explorer/address/[address])
+- [ ] Search functionality (block, tx, address)
+
+**Node Monitor (/network/nodes)**:
+- [ ] World map visualization of known node locations
+- [ ] Node count by country/region
+- [ ] Client version distribution (Core-Geth versions, Besu, Fukuii)
+- [ ] Node version health (% on latest vs outdated)
+- [ ] Historical node count chart
+
+**Hashrate & Security (/network/security)**:
+- [ ] Network hashrate display (live + historical chart)
+- [ ] Security budget calculator (hashrate × electricity cost estimate)
+- [ ] 51% attack cost estimation
+- [ ] Hashrate centralization risk monitor:
+  - [ ] Top pools by hashrate percentage
+  - [ ] Nakamoto coefficient (pools needed for 51%)
+  - [ ] Warning indicators for dangerous concentration
+- [ ] Mining pool distribution pie chart
+
+**Network Statistics (/network/stats)**:
+- [ ] Current difficulty and difficulty chart
+- [ ] Block time average and chart
+- [ ] Gas usage and gas price trends
+- [ ] Transaction throughput (TPS)
+- [ ] Active addresses (daily unique)
+- [ ] Supply metrics (circulating, inflation rate)
+
+**RPC Endpoint Status (/network/rpc)**:
+- [ ] Public RPC endpoint list with health status
+- [ ] Latency monitoring for each endpoint
+- [ ] Endpoint recommendation based on user location
+- [ ] "Add to MetaMask" buttons
+- [ ] Uptime history
+
+**Data Architecture**:
+- [ ] Sample network data file (/app/network/data/sample-network.ts)
+- [ ] Network API structure (/api/network-health/* returning sample data)
+- [ ] Mock node list with geographic distribution
+- [ ] Mock pool distribution data
+- [ ] Placeholder for real data connection points
+
+**Components**:
+- [ ] WorldMap component (node locations)
+- [ ] HealthIndicator component (status badges)
+- [ ] NetworkChart component (reusable time-series)
+- [ ] PoolDistributionChart component
+- [ ] NodeVersionChart component
 
 ---
 
 ## Phase 7: Human Review & Infrastructure
 
-**Goal**: Tasks requiring human involvement - content review, account creation, infrastructure setup, business operations.
+**Goal**: Tasks that ONLY humans can complete - account creation, program signups, infrastructure provisioning, content approval, product launches.
 
-### Milestone 7.1: Content Accuracy Review (HUMAN REQUIRED)
+> **Note**: Phase 6 builds all scaffolding, shells, and sample data. Phase 7 contains ONLY the specific actions requiring human involvement.
+
+### Milestone 7.1: Content Accuracy Review
 **Status**: Not Started
 **Dependencies**: Phase 6
-**Blocker**: Requires human sanity check of all public-facing content
+**Blocker**: Human judgment required
 
-**Deliverables**:
+**What Claude Built** (Phase 6): All pages, components, copy
+**Human Must Do**:
 - [ ] Review all page copy for accuracy and consumer-friendliness
-- [ ] Verify all statistics displayed are accurate and verifiable
-- [ ] Review ETC Knowledge Bank placeholders
+- [ ] Verify all statistics are accurate and verifiable
+- [ ] Fill in ETC Knowledge Bank [PLACEHOLDER] tags
 - [ ] Approve or revise homepage messaging
-- [ ] Final approval of all section hub pages
 - [ ] Cross-browser testing sign-off (Chrome, Firefox, Safari, Edge)
 - [ ] Mobile responsiveness sign-off (375px, 768px, 1024px, 1440px)
 
-### Milestone 7.2: Social & Account Setup (HUMAN REQUIRED)
+### Milestone 7.2: Social Account Creation
 **Status**: Not Started
 **Dependencies**: Phase 6
-**Blocker**: Requires human to create accounts
+**Blocker**: Account registration requires human
 
-**Deliverables**:
+**What Claude Built** (Phase 6): Footer with "#" placeholder links
+**Human Must Do**:
 - [ ] Create EthereumClassic.com Twitter/X account
-- [ ] Create EthereumClassic.com Discord server (if separate from ETC community)
-- [ ] Update footer social links with real URLs
-- [ ] Set up social automation tools (research 2025 best practices)
+- [ ] Create EthereumClassic.com Discord server (if separate)
+- [ ] Update /lib/config.ts or footer with real social URLs
 
-### Milestone 7.3: Revenue Setup (HUMAN REQUIRED)
+### Milestone 7.3: Affiliate Program Signups
 **Status**: Not Started
-**Dependencies**: Phase 6
-**Blocker**: Requires human to sign up for programs
+**Dependencies**: 6.10 (Referral Infrastructure)
+**Blocker**: Program registration requires human
 
-**Deliverables**:
-- [ ] Review centralized exchanges for referral programs
-- [ ] Sign up for exchange referral programs (Binance, Coinbase, Kraken, etc.)
-- [ ] Embed referral links throughout website
-- [ ] Research hardware retailers with affiliate programs
-- [ ] Sign up for hardware affiliate programs
-- [ ] Set up referral tracking
+**What Claude Built** (Phase 6): Referral link infrastructure, placeholder URLs, /lib/referrals.ts config
+**Human Must Do**:
+- [ ] Sign up for Binance referral program → add code to config
+- [ ] Sign up for Coinbase referral program → add code to config
+- [ ] Sign up for Kraken referral program → add code to config
+- [ ] Sign up for hardware affiliate programs (Amazon, Newegg, etc.) → add codes
+- [ ] Test tracking is working
 
-### Milestone 7.4: Merchandise Store (HUMAN REQUIRED)
+### Milestone 7.4: Merchandise Store Launch
 **Status**: Not Started
-**Dependencies**: Phase 6
-**Blocker**: Requires business decisions and vendor setup
+**Dependencies**: 6.8 (Store Shell)
+**Blocker**: Vendor selection and product creation requires human
 
-**Deliverables**:
-- [ ] Select drop shipping service
-- [ ] Design ETC merchandise (shirts, hats, hoodies, socks)
-- [ ] Set up store integration
-- [ ] Product photography and descriptions
-- [ ] Checkout/payment integration
+**What Claude Built** (Phase 6): Store page, product cards, sample items, category nav
+**Human Must Do**:
+- [ ] Select drop shipping vendor (Printful, Printify, etc.)
+- [ ] Create actual product designs
+- [ ] Upload real product images
+- [ ] Configure payment integration (Stripe, etc.)
+- [ ] Enable checkout functionality
 
-### Milestone 7.5: Local Node Infrastructure (HUMAN REQUIRED)
+### Milestone 7.5: Local Node Infrastructure
 **Status**: Not Started
 **Dependencies**: Phase 7.1
-**Blocker**: Requires server provisioning and maintenance
+**Blocker**: Server provisioning requires human
 
-**Deliverables**:
-- [ ] Provision server for ETC node operation
-- [ ] Install and sync Core-Geth (archive node)
-- [ ] Configure node for internal API access
-- [ ] Set up monitoring and alerting
-- [ ] Document maintenance procedures
+**What Claude Built** (Phase 6): N/A (pure infrastructure)
+**Human Must Do**:
+- [ ] Provision server (500GB+ storage)
+- [ ] Install Core-Geth
+- [ ] Sync archive node from genesis (~1-3 days)
+- [ ] Configure internal API access
+- [ ] Set up monitoring/alerting
 
 **Technical Notes**:
-- Archive node required for historical state queries
-- Storage requirement: ~500GB+ for archive node
-- **Note**: Erigon does NOT support ETC (see docs/ETC-KNOWLEDGE.md)
+- Erigon does NOT support ETC
+- Core-Geth is the only production archive node option
 
-### Milestone 7.6: Mining Pool Operations (HUMAN REQUIRED)
+### Milestone 7.6: Historical Data Activation
 **Status**: Not Started
-**Dependencies**: 7.5
-**Blocker**: Requires infrastructure and operational commitment
+**Dependencies**: 7.5 (Node Infrastructure), 6.9 (Chart Components)
+**Blocker**: Requires synced local node
 
-**Deliverables**:
-- [ ] EthereumClassic.com mining pool infrastructure
-- [ ] Pool dashboard and statistics
-- [ ] Miner registration and management
-- [ ] Payout system
-- [ ] Classic OS integration
-- [ ] Fukuii client integration
+**What Claude Built** (Phase 6): Chart components, API structure, sample data display
+**Human Must Do**:
+- [ ] Point API endpoints to local node
+- [ ] Run backfill script from genesis to present
+- [ ] Verify data accuracy
+- [ ] Switch charts from sample to live data
+- [ ] Set up daily snapshot cron job
 
-### Milestone 7.7: Historical Data System (HUMAN REQUIRED)
+### Milestone 7.7: Mining Pool Launch
 **Status**: Not Started
-**Dependencies**: 7.5
-**Blocker**: Requires local node to be synced
+**Dependencies**: 7.5 (Node Infrastructure), 6.7 (Pool Dashboard Scaffolding)
+**Blocker**: Pool infrastructure requires human ops
 
-**Design**: Daily snapshots at 00:00 UTC, backfilled from local node
+**What Claude Built** (Phase 6): Full pool dashboard UI with sample data:
+- Pool hub, dashboard, stats, blocks, miners pages
+- Worker management interface
+- Payment history tables
+- Hashrate charts
+- All using mock/sample data
 
-**Deliverables**:
-- [ ] Design snapshot data schema
-- [ ] Build daily snapshot collection job
-- [ ] Implement retroactive data backfill from genesis
-- [ ] Hashrate/difficulty historical charts
-- [ ] Pool distribution from block winner analysis
-- [ ] Fee market historical analytics
+**Human Must Do**:
+- [ ] Set up stratum server infrastructure
+- [ ] Configure payout system and thresholds
+- [ ] Point pool dashboard to real backend APIs
+- [ ] Test with real miners
+- [ ] Launch pool and switch from sample to live data
 
-### Milestone 7.8: Advanced Ecosystem Products (HUMAN REQUIRED)
+### Milestone 7.8: Ecosystem Product Launches
 **Status**: Not Started
-**Dependencies**: Phase 7.6
-**Blocker**: Product development timelines
+**Dependencies**: Product development timelines
+**Blocker**: External product readiness
 
-**Deliverables**:
-- [ ] FairWins full production launch (from Alpha)
-- [ ] ClearPath (Futarchy Prediction Markets) launch
-- [ ] TokenMint (Enterprise Token Management) launch
-- [ ] Fukuii client promotion post-Olympia upgrade
+**What Claude Built** (Phase 6): App pages already show "Alpha"/"Coming Soon" status
+**Human Must Do**:
+- [ ] FairWins: Update status from "Alpha" to "Live" when ready
+- [ ] ClearPath: Update status from "Coming Soon" to "Live" when ready
+- [ ] TokenMint: Update status from "Coming Soon" to "Live" when ready
+- [ ] Fukuii: Add promotion content post-Olympia upgrade
 
-### Milestone 7.9: Network Public Goods Planning (HUMAN REQUIRED)
+### Milestone 7.9: Network Health Dashboard Activation
 **Status**: Not Started
-**Dependencies**: Phase 7.5
-**Blocker**: Requires planning session and resource allocation
+**Dependencies**: 7.5 (Node Infrastructure), 6.11 (Dashboard Scaffolding)
+**Blocker**: Requires node infrastructure and data sources
 
-**Domain Structure Planning**:
-- `ethereumclassic.net` - Network infrastructure hub
-- `explorer.ethereumclassic.net` - Block explorer
-- `rpc.ethereumclassic.net` - Public RPC endpoint
-- `faucet.ethereumclassic.net` - Mordor testnet faucet
+**What Claude Built** (Phase 6): Complete Network Health Dashboard UI:
+- Dashboard hub with health indicators
+- Block explorer (blocks, transactions, addresses)
+- Node monitor with world map
+- Security & hashrate centralization monitor
+- Network statistics page
+- RPC endpoint status page
+- All using mock/sample data
 
-**Deliverables**:
-- [ ] Planning session for EthereumClassic.net scope
-- [ ] Architecture document
-- [ ] Resource and cost estimation
-- [ ] Timeline and phasing
+**Human Must Do**:
+- [ ] Connect block explorer to local node RPC
+- [ ] Set up node discovery/crawling for node map
+- [ ] Configure RPC endpoint health checks
+- [ ] Point dashboard APIs to live data sources
+- [ ] Verify data accuracy across all monitors
+- [ ] Switch from sample to live data
+- [ ] Set up alerting for network anomalies (optional)
 
 ---
 
@@ -880,32 +1029,40 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 | Phase 3 | 10 | 10 | 100% |
 | Phase 4 | 12 | 12 | 100% |
 | Phase 5 | 7 | 7 | 100% |
-| Phase 6 | 7 | 0 | 0% | (Autonomous - Claude can complete)
-| Phase 7 | 9 | 0 | 0% | (Human-blocked - requires involvement)
-| **Total** | **57** | **41** | **72%** |
+| Phase 6 | 11 | 0 | 0% | (Autonomous - Claude builds all scaffolding)
+| Phase 7 | 9 | 0 | 0% | (Human-only - specific blockers)
+| **Total** | **61** | **41** | **67%** |
 
 ### Current Focus
 
 **Just Completed**: Phase 5 (All milestones 5.1-5.7)
-- 5.1 User Accounts
-- 5.2 Advanced Mining
-- 5.3 CMS Integration
-- 5.4 API Layer
-- 5.5 Internationalization
-- 5.6 Content Review & Polish
-- 5.7 Advanced Features (Search, Newsletter, Contact, Ads, Partners, Grants)
 
-**Next Up**: Phase 6 - Autonomous Completion
-Claude Code can proceed through Phase 6 milestones without blocking on human involvement.
+**Next Up**: Phase 6 - Autonomous Scaffolding
+Claude Code builds all shells, layouts, components, and sample data:
+- 6.1 Sitemap & Technical SEO
+- 6.2 UI/UX Code Fixes
+- 6.3 Performance & Accessibility
+- 6.4 Link Verification
+- 6.5 Mining Hardware Affiliate Pages
+- 6.6 Classic USD Documentation
+- 6.7 Mining Pool Dashboard Scaffolding (full pool UI with sample data)
+- 6.8 Merchandise Store Shell
+- 6.9 Historical Charts with Sample Data
+- 6.10 Referral Infrastructure
+- 6.11 Network Health Dashboard (explorer, nodes, security, stats with sample data)
 
-**Deferred to Phase 7** (Human-blocked):
-- Content accuracy review (human sanity check)
-- Social account creation
-- Exchange referral signups
-- Merchandise store setup
-- Local node infrastructure
-- Mining pool operations
-- Historical data collection
+**Phase 7** (Human-only blockers):
+| Milestone | What Human Must Do |
+|-----------|-------------------|
+| 7.1 Content Review | Approve all public copy |
+| 7.2 Social Accounts | Create Twitter/X, Discord |
+| 7.3 Affiliate Signups | Register for referral programs |
+| 7.4 Store Launch | Select vendor, create products |
+| 7.5 Node Infrastructure | Provision server, sync node |
+| 7.6 Historical Data | Point APIs to node, run backfill |
+| 7.7 Mining Pool Launch | Set up stratum server, connect to UI |
+| 7.8 Product Launches | Update status when ready |
+| 7.9 Network Dashboard | Connect to live data sources |
 
 ---
 
