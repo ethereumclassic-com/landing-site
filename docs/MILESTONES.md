@@ -618,20 +618,24 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 - [x] Comparison to block reward (visualize fee market growth relative to declining block rewards)
 
 ### Milestone 5.7: Advanced Features
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] Search functionality
-- [ ] Newsletter integration
-- [ ] Contact form
-- [ ] Advertising system
-- [ ] Partner directory
-- [ ] Grants/funding page
+- [x] Search functionality (Fuse.js-powered fuzzy search with keyboard navigation, grouped results)
+- [x] Newsletter integration (Newsletter component with 3 variants: default, compact, inline)
+- [x] Contact form (/contact with form validation, community channels, FAQ)
+- [x] Advertising system (AdBanner component with 4 placements, /advertise info page)
+- [x] Partner directory (/partners with category filtering, 20+ partners)
+- [x] Grants/funding page (/build/grants with funding sources, project ideas, application process)
 
 ### Milestone 5.8: Final Testing & QA
 **Dependencies**: Phase 4
 
 **Deliverables**:
+
+**Sitemap Update:**
+- [ ] Update sitemap with all new pages
 
 **Manual Review:**
 - [ ] Review all new pages for content accuracy and completeness
