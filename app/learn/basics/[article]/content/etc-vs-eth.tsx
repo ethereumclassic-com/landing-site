@@ -107,7 +107,7 @@ export default function ETCvsETH() {
         <li><strong>ETCswap:</strong> Primary DEX with V2 and V3 pools</li>
         <li><strong>Classic USD (USC):</strong> USD-backed stablecoin</li>
         <li><strong>Classic OS:</strong> DeFi dashboard and economic control center</li>
-        <li><strong>BlockScout:</strong> Block explorer at etc.blockscout.com</li>
+        <li><strong>Blockscout:</strong> Block explorer at etc.blockscout.com</li>
       </ul>
 
       <h3>ETH Ecosystem</h3>

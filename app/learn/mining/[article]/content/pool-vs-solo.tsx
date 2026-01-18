@@ -118,7 +118,7 @@ export default function PoolVsSolo() {
       <h3>Advantages</h3>
       <ul>
         <li><strong>No fees:</strong> Keep 100% of block rewards</li>
-        <li><strong>Full block reward:</strong> Currently ~2 ETC plus transaction fees (decreases over time per emission schedule)</li>
+        <li><strong>Full block reward:</strong> Approximately 2.05 ETC including uncle rewards plus transaction fees (decreases over time per emission schedule)</li>
         <li><strong>No trust required:</strong> You verify everything yourself</li>
         <li><strong>Supports decentralization:</strong> Running your own node helps the network</li>
         <li><strong>Privacy:</strong> No pool tracking your activity</li>
@@ -160,18 +160,18 @@ export default function PoolVsSolo() {
         Estimate your expected time between solo blocks:
       </p>
       <ol>
-        <li>Check current network hashrate (etc-network.info)</li>
+        <li>Check current network hashrate (<a href="https://etc.blockscout.com/stats" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">Blockscout</a>)</li>
         <li>Calculate your percentage: (Your hashrate / Network hashrate) × 100</li>
-        <li>Average block time is ~13 seconds</li>
-        <li>Expected blocks per day: Your % × (86400 / 13)</li>
+        <li>Average block time is ~15.6 seconds</li>
+        <li>Expected blocks per day: Your % × (86400 / 15.6)</li>
       </ol>
       <p>
-        Example: With 500 MH/s on a 200 TH/s network:
+        Example: With 500 MH/s on a 185 TH/s network:
       </p>
       <ul>
-        <li>Your share: 0.00025%</li>
-        <li>Expected blocks/day: 0.00025 × 6646 ≈ 0.0017</li>
-        <li>Average days per block: ~600 days</li>
+        <li>Your share: 0.00027%</li>
+        <li>Expected blocks/day: 0.0000027 × 5538 ≈ 0.015</li>
+        <li>Average days per block: ~67 days</li>
       </ul>
 
       <h2>Hybrid Approaches</h2>

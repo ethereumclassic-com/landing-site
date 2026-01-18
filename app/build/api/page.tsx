@@ -105,9 +105,9 @@ const rpcEndpoints = [
     rateLimit: '100 req/s',
   },
   {
-    name: 'BlockScout RPC',
+    name: 'Blockscout RPC',
     url: 'https://etc.blockscout.com/api/eth-rpc',
-    description: 'BlockScout-powered RPC endpoint',
+    description: 'Blockscout-powered RPC endpoint',
     rateLimit: '50 req/s',
   },
   {
@@ -379,7 +379,7 @@ export default function ApiDocsPage() {
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30"
             >
               <h3 className="mb-2 font-semibold text-white group-hover:text-[var(--color-primary)]">
-                BlockScout API
+                Blockscout API
               </h3>
               <p className="text-sm text-[var(--color-text-secondary)]">
                 Full blockchain explorer API with address, transaction, and token data.

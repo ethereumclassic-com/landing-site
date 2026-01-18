@@ -109,7 +109,7 @@ export default function GettingStarted() {
 
       <h3>Block Explorers</h3>
       <p>
-        You can view your transactions and account balance on BlockScout, the most popular Ethereum Classic block explorer, at etc.blockscout.com.
+        You can view your transactions and account balance on Blockscout, the most popular Ethereum Classic block explorer, at etc.blockscout.com.
       </p>
 
       <h2>Getting Help</h2>

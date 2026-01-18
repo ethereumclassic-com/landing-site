@@ -2,8 +2,59 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { networkStats, miningPools, miningResources } from '../data/mining'
+import { useState, useEffect } from 'react'
+import { miningPools, miningResources } from '../data/mining'
 import HashRateChart from '../components/HashRateChart'
+import { useNetworkStats } from '../hooks/useNetworkStats'
+
+// Types for mining API response
+interface MiningStats {
+  difficulty: number
+  difficultyFormatted: string
+  hashrate: number
+  hashrateFormatted: string
+  blockHeight: number
+  blockTime: number
+  blockTimeFormatted: string
+  latestBlock: {
+    number: number
+    hash: string
+    miner: string
+    timestamp: string
+    txCount: number
+    gasUsed: number
+    gasLimit: number
+  }
+  source: 'rpc' | 'fallback'
+  lastUpdated: string
+  cacheAgeMinutes: number
+}
+
+// Hook for mining-specific stats from RPC
+function useMiningStats() {
+  const [stats, setStats] = useState<MiningStats | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await fetch('/api/mining')
+        if (!response.ok) throw new Error('Failed to fetch mining stats')
+        const data = await response.json()
+        setStats(data)
+        setError(null)
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchStats()
+  }, [])
+
+  return { stats, isLoading, error }
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -106,6 +157,14 @@ function ResourceCard({
 }
 
 export default function MiningStatsPage() {
+  // Live network stats from Blockscout API
+  const { stats: liveStats, isLoading: statsLoading } = useNetworkStats()
+  // Mining-specific stats from RPC (hashrate, difficulty)
+  const { stats: miningStats, isLoading: miningLoading } = useMiningStats()
+
+  const isLoading = statsLoading || miningLoading
+  const isLive = liveStats.source === 'live' || miningStats?.source === 'rpc'
+
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
@@ -122,9 +181,27 @@ export default function MiningStatsPage() {
               Back to Mining
             </Link>
 
-            <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-              Network Statistics
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+                Network Statistics
+              </h1>
+              {isLoading ? (
+                <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1 text-xs text-amber-400">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                  Loading...
+                </span>
+              ) : isLive ? (
+                <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-xs text-green-400">
+                  <span className="h-2 w-2 rounded-full bg-green-400" />
+                  Live
+                </span>
+              ) : (
+                <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1 text-xs text-amber-400">
+                  <span className="h-2 w-2 rounded-full bg-amber-400" />
+                  Cached
+                </span>
+              )}
+            </div>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
               Ethereum Classic network metrics and mining statistics. Monitor hashrate, difficulty,
               and other key metrics that affect mining profitability.
@@ -144,7 +221,7 @@ export default function MiningStatsPage() {
           >
             <StatCard
               label="Network Hashrate"
-              value={networkStats.hashrate}
+              value={miningStats?.hashrateFormatted || '~169 TH/s'}
               description="Total mining power on the network"
               highlight
               icon={
@@ -155,7 +232,7 @@ export default function MiningStatsPage() {
             />
             <StatCard
               label="Difficulty"
-              value={networkStats.difficulty}
+              value={miningStats?.difficultyFormatted || '~2.45 PH'}
               description="Current mining difficulty"
               icon={
                 <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -165,7 +242,7 @@ export default function MiningStatsPage() {
             />
             <StatCard
               label="Block Time"
-              value={networkStats.blockTime}
+              value={miningStats?.blockTimeFormatted || `~${liveStats.blockTimeSeconds.toFixed(1)}s`}
               description="Average time between blocks"
               icon={
                 <svg className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -175,8 +252,8 @@ export default function MiningStatsPage() {
             />
             <StatCard
               label="Block Reward"
-              value={networkStats.blockReward}
-              description="Per block miner reward"
+              value={`~${liveStats.blockReward.toFixed(3)} ETC`}
+              description="Average reward per block"
               icon={
                 <svg className="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1012 10.125M12 4.875a2.625 2.625 0 00-2.625 2.625M12 4.875v5.25m0-5.25a2.625 2.625 0 012.625 2.625M12 10.125v5.25m0 0a2.625 2.625 0 012.625 2.625M12 15.375a2.625 2.625 0 00-2.625 2.625m5.25 0h3.375a.375.375 0 00.375-.375v-3a.375.375 0 00-.375-.375H17.25m-5.25 3.75v3.75m0-3.75a2.625 2.625 0 00-2.625-2.625H6.375a.375.375 0 01-.375-.375v-3a.375.375 0 01.375-.375h3.375" />
@@ -186,6 +263,59 @@ export default function MiningStatsPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Latest Block Info */}
+      {miningStats && (
+        <section className="px-6 pb-12 md:px-10 lg:px-12">
+          <div className="mx-auto max-w-6xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <h2 className="text-lg font-semibold text-white">Latest Block</h2>
+                <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                  #{miningStats.latestBlock.number.toLocaleString()}
+                </span>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                  <p className="text-xs text-[var(--color-text-muted)]">Block Height</p>
+                  <p className="mt-1 font-mono text-lg font-bold text-white">
+                    {miningStats.blockHeight.toLocaleString()}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-[var(--color-text-muted)]">Miner</p>
+                  <p className="mt-1 font-mono text-sm text-white truncate">
+                    {miningStats.latestBlock.miner.slice(0, 10)}...{miningStats.latestBlock.miner.slice(-8)}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-[var(--color-text-muted)]">Gas Used</p>
+                  <p className="mt-1 text-lg font-bold text-white">
+                    {((miningStats.latestBlock.gasUsed / miningStats.latestBlock.gasLimit) * 100).toFixed(1)}%
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-[var(--color-text-muted)]">Transactions</p>
+                  <p className="mt-1 text-lg font-bold text-white">
+                    {miningStats.latestBlock.txCount}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 text-xs text-[var(--color-text-muted)]">
+                Data updated {miningStats.cacheAgeMinutes < 60
+                  ? `${miningStats.cacheAgeMinutes} minutes ago`
+                  : `${Math.round(miningStats.cacheAgeMinutes / 60)} hours ago`
+                } from ETC RPC
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Additional Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
@@ -200,12 +330,12 @@ export default function MiningStatsPage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Daily Blocks</p>
-                <p className="mt-1 text-2xl font-bold text-white">~{networkStats.dailyBlocks.toLocaleString()}</p>
+                <p className="mt-1 text-2xl font-bold text-white">~{liveStats.blocksPerDay.toLocaleString()}</p>
                 <p className="text-xs text-[var(--color-text-muted)]">Blocks mined per day</p>
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Daily ETC Emission</p>
-                <p className="mt-1 text-2xl font-bold text-white">~{(networkStats.dailyBlocks * 2).toLocaleString()} ETC</p>
+                <p className="mt-1 text-2xl font-bold text-white">~{Math.round(liveStats.blocksPerDay * liveStats.blockReward).toLocaleString()} ETC</p>
                 <p className="text-xs text-[var(--color-text-muted)]">New ETC created daily</p>
               </div>
               <div>
@@ -214,9 +344,9 @@ export default function MiningStatsPage() {
                 <p className="text-xs text-[var(--color-text-muted)]">ASIC and GPU mineable</p>
               </div>
               <div>
-                <p className="text-sm text-[var(--color-text-muted)]">Last Updated</p>
-                <p className="mt-1 text-2xl font-bold text-white">{networkStats.lastUpdated}</p>
-                <p className="text-xs text-[var(--color-text-muted)]">Reference data date</p>
+                <p className="text-sm text-[var(--color-text-muted)]">ETC Price</p>
+                <p className="mt-1 text-2xl font-bold text-white">${liveStats.etcPriceUSD.toFixed(2)}</p>
+                <p className="text-xs text-[var(--color-text-muted)]">From Blockscout</p>
               </div>
             </div>
           </motion.div>
@@ -366,8 +496,25 @@ export default function MiningStatsPage() {
       <section className="px-6 pt-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <p className="text-center text-xs text-[var(--color-text-muted)]">
-            Network statistics are reference values and may not reflect real-time conditions.
-            For live data, please visit{' '}
+            Hashrate and difficulty from ETC RPC. Block rewards from{' '}
+            <a
+              href="https://etc.blockscout.com/stats"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-primary)] hover:underline"
+            >
+              Blockscout
+            </a>
+            . Data cached for 24 hours. Additional resources:{' '}
+            <a
+              href="https://2miners.com/etc-network-hashrate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-primary)] hover:underline"
+            >
+              2Miners Stats
+            </a>
+            {' '}|{' '}
             <a
               href="https://whattomine.com/coins/162-etc-etchash"
               target="_blank"
@@ -376,7 +523,7 @@ export default function MiningStatsPage() {
             >
               WhatToMine
             </a>
-            {' '}or{' '}
+            {' '}|{' '}
             <a
               href="https://miningpoolstats.stream/ethereumclassic"
               target="_blank"
@@ -385,7 +532,6 @@ export default function MiningStatsPage() {
             >
               MiningPoolStats
             </a>
-            .
           </p>
         </div>
       </section>

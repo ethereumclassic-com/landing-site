@@ -135,50 +135,53 @@ export const currencies: CurrencyInfo[] = [
   { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', type: 'fiat', decimals: 2 },
 ]
 
-// Sample exchange rates (in production, fetch from API)
+// Sample exchange rates (fallback values - in production, fetch from API)
+// Updated: Jan 2026 - These should be replaced with live API data
+// TODO: Implement /api/rates endpoint with 24-hour caching
 export const sampleRates: Record<string, number> = {
-  'ETC-USD': 18.42,
-  'ETC-EUR': 16.95,
-  'ETC-GBP': 14.52,
-  'ETC-JPY': 2765,
-  'ETC-KRW': 24150,
-  'ETC-CAD': 25.18,
-  'ETC-AUD': 28.35,
-  'ETC-TRY': 597.50,
-  'ETC-BRL': 92.10,
-  'ETC-BTC': 0.00018,
-  'ETC-ETH': 0.0056,
-  'ETC-BNB': 0.030,
-  'ETC-USDT': 18.42,
-  'ETC-USDC': 18.42,
-  'ETC-BUSD': 18.42,
-  'ETC-DAI': 18.42,
+  'ETC-USD': 12.75,
+  'ETC-EUR': 12.24,      // ~0.96 EUR/USD
+  'ETC-GBP': 10.20,      // ~0.80 GBP/USD
+  'ETC-JPY': 1976,       // ~155 JPY/USD
+  'ETC-KRW': 18488,      // ~1450 KRW/USD
+  'ETC-CAD': 18.34,      // ~1.44 CAD/USD
+  'ETC-AUD': 20.53,      // ~1.61 AUD/USD
+  'ETC-TRY': 447.00,     // ~35 TRY/USD
+  'ETC-BRL': 78.54,      // ~6.16 BRL/USD
+  'ETC-BTC': 0.00012,    // ~$106k BTC
+  'ETC-ETH': 0.0038,     // ~$3350 ETH
+  'ETC-BNB': 0.019,      // ~$670 BNB
+  'ETC-USDT': 12.75,
+  'ETC-USDC': 12.75,
+  'ETC-BUSD': 12.75,
+  'ETC-DAI': 12.75,
 }
 
-// Sample market stats (these would be fetched from API in production)
+// Sample market stats (fallback values - should be fetched from API in production)
+// Updated: Jan 2026
 export const sampleMarketStats: MarketStat[] = [
   {
     label: 'Price',
-    value: '$18.42',
-    change: '+2.34%',
-    changeDirection: 'up',
+    value: '$12.75',
+    change: '-0.70%',
+    changeDirection: 'down',
   },
   {
     label: 'Market Cap',
-    value: '$2.71B',
-    change: '+2.15%',
-    changeDirection: 'up',
+    value: '$1.98B',
+    change: '-0.70%',
+    changeDirection: 'down',
     tooltip: 'Circulating supply × current price',
   },
   {
     label: '24h Volume',
-    value: '$89.2M',
-    change: '-5.12%',
+    value: '$45M',
+    change: '-3.5%',
     changeDirection: 'down',
   },
   {
     label: 'Circulating Supply',
-    value: '147.1M ETC',
+    value: '148.3M ETC',
     tooltip: 'Total ETC in circulation',
   },
   {

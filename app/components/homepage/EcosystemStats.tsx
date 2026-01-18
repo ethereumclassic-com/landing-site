@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 interface StatCardProps {
   label: string
@@ -68,30 +69,84 @@ const AddressIcon = () => (
   </svg>
 )
 
+interface NetworkStats {
+  price: number
+  priceFormatted: string
+  blockHeight: number
+  blockHeightFormatted: string
+  totalTransactions: number
+  totalTransactionsFormatted: string
+  avgBlockTime: number
+  avgBlockTimeFormatted: string
+  source: 'blockscout' | 'fallback'
+}
+
+// Fallback values based on Jan 2026 network data
+const defaultStats = {
+  price: 12.75,
+  priceFormatted: '$12.75',
+  blockHeight: 23820000,
+  blockHeightFormatted: '23.8M+',
+  totalTransactions: 142000000,
+  totalTransactionsFormatted: '142M+',
+  avgBlockTime: 13.0,
+  avgBlockTimeFormatted: '~13s',
+  source: 'fallback' as const,
+}
+
 export default function EcosystemStats() {
+  const [networkStats, setNetworkStats] = useState<NetworkStats>(defaultStats)
+  const [isLive, setIsLive] = useState(false)
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const response = await fetch('/api/network')
+        if (response.ok) {
+          const data = await response.json()
+          setNetworkStats({
+            price: data.price,
+            priceFormatted: data.priceFormatted,
+            blockHeight: data.blockHeight,
+            blockHeightFormatted: data.blockHeightFormatted,
+            totalTransactions: data.totalTransactions,
+            totalTransactionsFormatted: data.totalTransactionsFormatted,
+            avgBlockTime: data.avgBlockTime,
+            avgBlockTimeFormatted: data.avgBlockTimeFormatted,
+            source: data.source,
+          })
+          setIsLive(data.source === 'blockscout')
+        }
+      } catch {
+        // Keep default stats on error
+      }
+    }
+    fetchStats()
+  }, [])
+
   const stats = [
     {
-      label: 'Network Hashrate',
-      value: '200+ TH/s',
-      description: 'Secured by real mining power',
+      label: 'ETC Price',
+      value: networkStats.priceFormatted,
+      description: 'Current market price',
       icon: <HashrateIcon />,
     },
     {
       label: 'Block Time',
-      value: '~13s',
-      description: 'Fast transaction confirmations',
+      value: networkStats.avgBlockTimeFormatted,
+      description: 'Average confirmation time',
       icon: <TimeIcon />,
     },
     {
       label: 'Total Blocks',
-      value: '20M+',
+      value: networkStats.blockHeightFormatted,
       description: 'Uninterrupted since 2015',
       icon: <BlockIcon />,
     },
     {
-      label: 'Unique Addresses',
-      value: '35M+',
-      description: 'Growing global community',
+      label: 'Transactions',
+      value: networkStats.totalTransactionsFormatted,
+      description: 'Total processed on-chain',
       icon: <AddressIcon />,
     },
   ]
@@ -106,9 +161,17 @@ export default function EcosystemStats() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <h2 className="text-3xl font-bold text-white md:text-4xl">Network Activity</h2>
+          <div className="mb-2 flex items-center justify-center gap-2">
+            <h2 className="text-3xl font-bold text-white md:text-4xl">Network Activity</h2>
+            {isLive && (
+              <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                Live
+              </span>
+            )}
+          </div>
           <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
-            Real-time statistics from the Ethereum Classic blockchain
+            Statistics from the Ethereum Classic blockchain
           </p>
         </motion.div>
 
@@ -135,6 +198,25 @@ export default function EcosystemStats() {
             </svg>
           </Link>
         </motion.div>
+
+        {/* Data source attribution */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-6 text-center text-xs text-[var(--color-text-muted)]"
+        >
+          Data from{' '}
+          <a
+            href="https://etc.blockscout.com/stats"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-primary)] hover:underline"
+          >
+            Blockscout
+          </a>
+        </motion.p>
       </div>
     </section>
   )

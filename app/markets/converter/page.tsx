@@ -1,9 +1,51 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { currencies, sampleRates, getCurrencyByCode, formatCurrency } from '../data/markets'
+
+// Hook to fetch live exchange rates
+function useExchangeRates() {
+  const [rates, setRates] = useState<Record<string, number>>(sampleRates)
+  const [isLoading, setIsLoading] = useState(true)
+  const [source, setSource] = useState<'live' | 'fallback'>('fallback')
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchRates() {
+      try {
+        const response = await fetch('/api/rates')
+        if (!response.ok) throw new Error('Failed to fetch rates')
+        const data = await response.json()
+
+        // Convert API response to our rate format
+        const newRates: Record<string, number> = { ...sampleRates }
+
+        if (data.prices) {
+          // Map API prices to our format
+          Object.entries(data.prices).forEach(([key, value]) => {
+            // Convert ETC_USD to ETC-USD format
+            const formattedKey = key.replace('_', '-')
+            newRates[formattedKey] = value as number
+          })
+        }
+
+        setRates(newRates)
+        setSource(data.source === 'coingecko' ? 'live' : 'fallback')
+        setLastUpdated(data.lastUpdated)
+      } catch {
+        // Keep using fallback rates
+        setSource('fallback')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchRates()
+  }, [])
+
+  return { rates, isLoading, source, lastUpdated }
+}
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -30,6 +72,9 @@ export default function ConverterPage() {
   const [toCurrency, setToCurrency] = useState('USD')
   const [amount, setAmount] = useState('1')
 
+  // Fetch live exchange rates
+  const { rates: liveRates, isLoading: ratesLoading, source: ratesSource, lastUpdated } = useExchangeRates()
+
   const fromInfo = getCurrencyByCode(fromCurrency)
   const toInfo = getCurrencyByCode(toCurrency)
 
@@ -42,21 +87,21 @@ export default function ConverterPage() {
 
     // Direct ETC rate
     if (fromCurrency === 'ETC') {
-      rate = sampleRates[`ETC-${toCurrency}`]
+      rate = liveRates[`ETC-${toCurrency}`]
     } else if (toCurrency === 'ETC') {
-      const inverseRate = sampleRates[`ETC-${fromCurrency}`]
+      const inverseRate = liveRates[`ETC-${fromCurrency}`]
       rate = inverseRate ? 1 / inverseRate : undefined
     } else {
       // Cross rate through ETC
-      const fromEtcRate = sampleRates[`ETC-${fromCurrency}`]
-      const toEtcRate = sampleRates[`ETC-${toCurrency}`]
+      const fromEtcRate = liveRates[`ETC-${fromCurrency}`]
+      const toEtcRate = liveRates[`ETC-${toCurrency}`]
       if (fromEtcRate && toEtcRate) {
         rate = toEtcRate / fromEtcRate
       }
     }
 
     return rate ? numAmount * rate : 0
-  }, [amount, fromCurrency, toCurrency])
+  }, [amount, fromCurrency, toCurrency, liveRates])
 
   const swapCurrencies = () => {
     setFromCurrency(toCurrency)
@@ -65,19 +110,19 @@ export default function ConverterPage() {
 
   const rate = useMemo(() => {
     if (fromCurrency === 'ETC') {
-      return sampleRates[`ETC-${toCurrency}`]
+      return liveRates[`ETC-${toCurrency}`]
     } else if (toCurrency === 'ETC') {
-      const inverseRate = sampleRates[`ETC-${fromCurrency}`]
+      const inverseRate = liveRates[`ETC-${fromCurrency}`]
       return inverseRate ? 1 / inverseRate : undefined
     } else {
-      const fromEtcRate = sampleRates[`ETC-${fromCurrency}`]
-      const toEtcRate = sampleRates[`ETC-${toCurrency}`]
+      const fromEtcRate = liveRates[`ETC-${fromCurrency}`]
+      const toEtcRate = liveRates[`ETC-${toCurrency}`]
       if (fromEtcRate && toEtcRate) {
         return toEtcRate / fromEtcRate
       }
     }
     return undefined
-  }, [fromCurrency, toCurrency])
+  }, [fromCurrency, toCurrency, liveRates])
 
   // Group currencies by type
   const cryptoCurrencies = currencies.filter((c) => c.type === 'crypto')
@@ -281,12 +326,32 @@ export default function ConverterPage() {
           </motion.div>
 
           {/* Data source note */}
-          <p className="mt-4 text-center text-sm text-[var(--color-text-muted)]">
-            Rates are indicative. Actual rates may vary by exchange.{' '}
-            <Link href="https://www.coingecko.com/en/coins/ethereum-classic" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
-              View live rates
-            </Link>
-          </p>
+          <div className="mt-4 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[var(--panel)] px-3 py-1.5">
+              {ratesLoading ? (
+                <span className="flex items-center gap-1.5 text-xs text-amber-400">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                  Loading rates...
+                </span>
+              ) : ratesSource === 'live' ? (
+                <span className="flex items-center gap-1.5 text-xs text-green-400">
+                  <span className="h-2 w-2 rounded-full bg-green-400" />
+                  Live rates from CoinGecko
+                </span>
+              ) : (
+                <span className="flex items-center gap-1.5 text-xs text-amber-400">
+                  <span className="h-2 w-2 rounded-full bg-amber-400" />
+                  Fallback rates
+                </span>
+              )}
+            </div>
+            <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+              Rates are indicative. Actual rates may vary by exchange.{' '}
+              <Link href="https://www.coingecko.com/en/coins/ethereum-classic" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
+                View on CoinGecko
+              </Link>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -327,16 +392,16 @@ export default function ConverterPage() {
                   >
                     <td className="px-4 py-3 font-medium text-white">{etcAmount} ETC</td>
                     <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">
-                      ${(etcAmount * (sampleRates['ETC-USD'] || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      ${(etcAmount * (liveRates['ETC-USD'] || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
                     <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">
-                      &euro;{(etcAmount * (sampleRates['ETC-EUR'] || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      &euro;{(etcAmount * (liveRates['ETC-EUR'] || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
                     <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">
-                      {(etcAmount * (sampleRates['ETC-BTC'] || 0)).toFixed(8)} BTC
+                      {(etcAmount * (liveRates['ETC-BTC'] || 0)).toFixed(8)} BTC
                     </td>
                     <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">
-                      {(etcAmount * (sampleRates['ETC-ETH'] || 0)).toFixed(6)} ETH
+                      {(etcAmount * (liveRates['ETC-ETH'] || 0)).toFixed(6)} ETH
                     </td>
                   </motion.tr>
                 ))}
@@ -363,10 +428,10 @@ export default function ConverterPage() {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { from: 'ETC', to: 'USD', rate: sampleRates['ETC-USD'] },
-              { from: 'ETC', to: 'EUR', rate: sampleRates['ETC-EUR'] },
-              { from: 'ETC', to: 'BTC', rate: sampleRates['ETC-BTC'] },
-              { from: 'ETC', to: 'ETH', rate: sampleRates['ETC-ETH'] },
+              { from: 'ETC', to: 'USD', rate: liveRates['ETC-USD'] },
+              { from: 'ETC', to: 'EUR', rate: liveRates['ETC-EUR'] },
+              { from: 'ETC', to: 'BTC', rate: liveRates['ETC-BTC'] },
+              { from: 'ETC', to: 'ETH', rate: liveRates['ETC-ETH'] },
             ].map(({ from, to, rate: pairRate }) => (
               <motion.div
                 key={`${from}-${to}`}

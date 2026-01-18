@@ -38,10 +38,10 @@ const navItems = [
     label: 'Buy',
     dropdown: [
       { href: '/buy', label: 'Buy ETC' },
-      { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/buy/exchanges', label: 'Exchanges' },
       { href: '/buy/instant', label: 'Instant Buy' },
       { href: '/buy/card', label: 'Buy with Card' },
+      { href: '/buy/atm', label: 'Find ATM' },
       { href: '/sell', label: 'Sell ETC' },
     ],
   },
@@ -85,6 +85,7 @@ const navItems = [
       { href: '/markets', label: 'Markets' },
       { href: '/price', label: 'ETC Price' },
       { href: '/exchanges', label: 'Exchanges Directory' },
+      { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/research', label: 'Research' },
       { href: '/tools', label: 'Tools' },
       { href: '/directory', label: 'Directory' },
@@ -244,7 +245,7 @@ function Dropdown({ items, isOpen, onClose }: DropdownProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}
           transition={{ duration: 0.15 }}
-          className="absolute left-0 top-full z-50 mt-1 min-w-[200px] rounded-xl border border-[var(--border)] bg-[var(--panel)] p-2 shadow-xl"
+          className="absolute left-0 top-full z-50 mt-1 min-w-[200px] rounded-xl border border-[var(--border)] bg-[var(--bg)] p-2 shadow-2xl backdrop-blur-xl"
           onMouseLeave={onClose}
         >
           {items.map((item) => (
@@ -252,7 +253,7 @@ function Dropdown({ items, isOpen, onClose }: DropdownProps) {
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className="block rounded-lg px-4 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:bg-white/5 hover:text-white"
+              className="block rounded-lg px-4 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:bg-white/10 hover:text-white"
             >
               {item.label}
             </Link>
@@ -309,7 +310,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--bg)]/90 backdrop-blur-md">
+      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--bg)]/95 backdrop-blur-lg">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
           {/* Logo */}
           <Link

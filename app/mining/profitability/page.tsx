@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { miningHardware, networkStats, type MiningHardware } from '../data/mining'
@@ -13,6 +13,7 @@ import {
   NETWORK_CONSTANTS,
   type ProfitabilityResult,
 } from '../lib/calculations'
+import { useNetworkStats } from '../hooks/useNetworkStats'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -90,6 +91,9 @@ function HardwarePresetButton({
 }
 
 export default function MiningProfitabilityPage() {
+  // Live network stats from Blockscout API
+  const { stats: liveStats, isLoading: statsLoading } = useNetworkStats()
+
   // Input state
   const [hashrateMH, setHashrateMH] = useState(100)
   const [powerWatts, setPowerWatts] = useState(200)
@@ -98,7 +102,14 @@ export default function MiningProfitabilityPage() {
   const [etcPrice, setEtcPrice] = useState(NETWORK_CONSTANTS.etcPriceUSD)
   const [selectedHardware, setSelectedHardware] = useState<string | null>(null)
 
-  // Calculate results
+  // Update ETC price when live data loads
+  useEffect(() => {
+    if (liveStats.source === 'live' && liveStats.etcPriceUSD > 0) {
+      setEtcPrice(liveStats.etcPriceUSD)
+    }
+  }, [liveStats.source, liveStats.etcPriceUSD])
+
+  // Calculate results using live network stats
   const results: ProfitabilityResult = useMemo(() => {
     return calculateProfitability({
       hashrateMH,
@@ -298,7 +309,25 @@ export default function MiningProfitabilityPage() {
 
             {/* Network Info */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Network Stats</h2>
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-white">Network Stats</h2>
+                {statsLoading ? (
+                  <span className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                    Loading...
+                  </span>
+                ) : liveStats.source === 'live' ? (
+                  <span className="flex items-center gap-1.5 text-xs text-green-400">
+                    <span className="h-2 w-2 rounded-full bg-green-400" />
+                    Live from Blockscout
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-1.5 text-xs text-amber-400">
+                    <span className="h-2 w-2 rounded-full bg-amber-400" />
+                    Cached data
+                  </span>
+                )}
+              </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-[var(--color-text-muted)]">Network Hashrate</p>
@@ -306,19 +335,27 @@ export default function MiningProfitabilityPage() {
                 </div>
                 <div>
                   <p className="text-[var(--color-text-muted)]">Block Reward</p>
-                  <p className="font-medium text-white">{networkStats.blockReward}</p>
+                  <p className="font-medium text-white">~{liveStats.blockReward.toFixed(3)} ETC</p>
                 </div>
                 <div>
                   <p className="text-[var(--color-text-muted)]">Block Time</p>
-                  <p className="font-medium text-white">{networkStats.blockTime}</p>
+                  <p className="font-medium text-white">~{liveStats.blockTimeSeconds.toFixed(1)}s</p>
                 </div>
                 <div>
                   <p className="text-[var(--color-text-muted)]">Daily Blocks</p>
-                  <p className="font-medium text-white">~{networkStats.dailyBlocks.toLocaleString()}</p>
+                  <p className="font-medium text-white">~{liveStats.blocksPerDay.toLocaleString()}</p>
                 </div>
               </div>
               <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-                Last updated: {networkStats.lastUpdated}
+                Data source:{' '}
+                <a
+                  href="https://etc.blockscout.com/stats"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-primary)] hover:underline"
+                >
+                  Blockscout
+                </a>
               </p>
             </div>
           </motion.div>
@@ -482,7 +519,16 @@ export default function MiningProfitabilityPage() {
           <p className="text-center text-xs text-[var(--color-text-muted)]">
             These calculations are estimates based on current network conditions. Actual results may vary due to
             difficulty changes, luck variance, and hardware performance. Always do your own research before investing.
-            Data reference:{' '}
+            Network data from{' '}
+            <a
+              href="https://etc.blockscout.com/stats"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-primary)] hover:underline"
+            >
+              Blockscout
+            </a>
+            . Additional reference:{' '}
             <a
               href="https://whattomine.com/coins/162-etc-etchash"
               target="_blank"

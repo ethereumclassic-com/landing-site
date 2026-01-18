@@ -223,6 +223,36 @@ Ethereum Classic is:
 
 ---
 
+## ETC Knowledge Bank (CRITICAL - READ FIRST)
+
+**Document:** [docs/ETC-KNOWLEDGE.md](../docs/ETC-KNOWLEDGE.md)
+
+The ETC Knowledge Bank contains authoritative technical details, historical context, and insider knowledge from ETC Core Contributors. **This is the single source of truth** for all ETC-specific information.
+
+### When to Use the Knowledge Bank
+
+1. **Before writing public-facing copy** - Verify technical accuracy
+2. **When referencing node clients** - Client landscape is nuanced (see Knowledge Bank)
+3. **When describing network upgrades** - Use official names and accurate scope
+4. **When listing organizations** - Roles and responsibilities change
+5. **To correct outdated information** - Search results and old docs may be wrong
+
+### Key Corrections (Common Misconceptions)
+
+| Wrong | Correct | Reference |
+|-------|---------|-----------|
+| "Erigon supports ETC" | Erigon does NOT support ETC | Knowledge Bank: Node Clients |
+| "Core-Geth, Erigon" as clients | Core-Geth, Fukuii (+ Besu for testing) | Knowledge Bank: Node Clients |
+| "ETC will switch to PoS" | ETC is committed to PoW | Knowledge Bank: Common Misconceptions |
+
+### Updating the Knowledge Bank
+
+- **[PLACEHOLDER]** tags indicate information needed from Core Contributors
+- When you receive authoritative information, update the Knowledge Bank first
+- All public-facing copy should derive from the Knowledge Bank
+
+---
+
 ## Public-Facing Copy Guidelines (CRITICAL)
 
 **All text visible to users must be consumer-friendly.** Internal terminology and development language should never appear in the UI.
@@ -262,7 +292,7 @@ ETC ecosystem has significant scam app prevalence. **Never list unvetted apps.**
 **Trusted Apps (Approved):**
 - ETCswap (architect-built)
 - Classic USD (architect-organized)
-- BlockScout (established infrastructure)
+- Blockscout (established infrastructure)
 
 **Vetting Criteria:**
 1. Manually approved by architect

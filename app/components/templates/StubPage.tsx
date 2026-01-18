@@ -12,6 +12,7 @@ import { useBreadcrumbs, type BreadcrumbItem } from '../../hooks/useBreadcrumbs'
 export interface StubPageProps {
   title: string
   description: string
+  /** @deprecated No longer displayed - kept for backwards compatibility */
   expectedPhase?: string
   icon?: ReactNode
   relatedLinks?: { label: string; href: string }[]
@@ -62,7 +63,7 @@ function DefaultIcon() {
 export function StubPage({
   title,
   description,
-  expectedPhase,
+  // expectedPhase - deprecated, no longer displayed
   icon,
   relatedLinks,
   showNewsletter = true,
@@ -127,16 +128,6 @@ export function StubPage({
             >
               {description}
             </motion.p>
-
-            {/* Expected Phase */}
-            {expectedPhase && (
-              <motion.p
-                variants={fadeInUp}
-                className="mt-4 text-sm text-[var(--color-text-muted)]"
-              >
-                Expected in: <span className="font-medium">{expectedPhase}</span>
-              </motion.p>
-            )}
 
             {/* Back Link */}
             <motion.div variants={fadeInUp} className="mt-8">
