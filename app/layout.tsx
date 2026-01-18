@@ -51,9 +51,18 @@ export default function RootLayout({
       {/* isolate = background stays behind even if future components create stacking contexts */}
       <body className="relative isolate min-h-dvh bg-[#0B0F14] text-white antialiased">
         <Providers>
+          {/* Skip to main content link for keyboard accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--color-primary)] focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+          >
+            Skip to main content
+          </a>
           <BackgroundSystem />
           <Navigation />
-          <div className="relative z-10 pt-16">{children}</div>
+          <main id="main-content" className="relative z-10 pt-16">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
