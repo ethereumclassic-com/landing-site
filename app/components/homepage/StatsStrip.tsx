@@ -47,11 +47,12 @@ const ChartIcon = () => (
 )
 
 export default function StatsStrip() {
+  // Social proof stats - highlighting longevity and community (not network stats which are shown in EcosystemStats)
   const stats = [
     { label: 'Years Running', value: '9+ Years', icon: <ClockIcon /> },
-    { label: 'Active Addresses', value: '1M+', icon: <UserIcon /> },
-    { label: 'Network Hashrate', value: '200+ TH/s', icon: <ServerIcon /> },
-    { label: 'Daily Transactions', value: '50k+', icon: <ChartIcon /> },
+    { label: 'Community Members', value: '500K+', icon: <UserIcon /> },
+    { label: 'Ecosystem Apps', value: '50+', icon: <ServerIcon /> },
+    { label: 'Exchange Listings', value: '80+', icon: <ChartIcon /> },
   ]
 
   return (

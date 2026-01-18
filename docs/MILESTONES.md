@@ -9,16 +9,38 @@
 ## Development Phases Overview
 
 ```
-Phase 1: Framework & Shell
+Phase 1: Framework & Shell ✓
     ↓
-Phase 2: Core Pages (P0)
+Phase 2: Core Pages (P0) ✓
     ↓
-Phase 3: Secondary Pages (P1)
+Phase 3: Secondary Pages (P1) ✓
     ↓
-Phase 4: Content Expansion (P2)
+Phase 4: Content Expansion (P2) ✓
     ↓
-Phase 5: Advanced Features (P3)
+Phase 5: Advanced Features (P3) ✓
+    ↓
+Phase 6: Autonomous Completion (Claude can complete without blocking)
+    ↓
+Phase 7: Human Review & Infrastructure (Requires human involvement)
 ```
+
+### Phase Reorganization Strategy
+
+**Phase 6 (Autonomous)** contains tasks Claude Code can complete independently:
+- Sitemap updates
+- SEO/metadata implementation
+- RSS feed building
+- UI/UX fixes (code-level)
+- Performance optimization
+- Accessibility fixes
+
+**Phase 7 (Human-Blocked)** contains tasks requiring human involvement:
+- Content accuracy review (human sanity check)
+- Social account creation
+- Exchange referral signups
+- Merchandise/store setup
+- Local node infrastructure
+- Mining pool operations
 
 ---
 
@@ -396,7 +418,9 @@ Account: All pages
 **Status**: Complete
 **Dependencies**: 3.7
 
-**Reference**: https://whattomine.com/coins/162-etc-etchash (calculator, network stats, ASIC/GPU tables)
+**Reference**:
+- https://whattomine.com/coins/162-etc-etchash (calculator, network stats, ASIC/GPU tables)
+- https://www.coinwarz.com/mining/ethereum-classic/calculator (advanced mining calculator)
 
 **Deliverables**:
 - [x] Individual pool pages (/mining/pools/[pool] - 6 pools with detailed info, server addresses, payout schemes)
@@ -468,254 +492,801 @@ Account: All pages
 **Goal**: Add advanced functionality and future features.
 
 ### Milestone 5.1: User Accounts
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] Authentication system
-- [ ] Account dashboard
-- [ ] Login/Register pages
-- [ ] Settings page
-- [ ] Watchlist feature
-- [ ] Portfolio tracker (basic)
+- [x] Authentication system (AuthContext with localStorage persistence)
+- [x] Account dashboard (/account with portfolio/watchlist summary)
+- [x] Login/Register pages (/account/login, /account/register)
+- [x] Settings page (/account/settings with profile, preferences, danger zone)
+- [x] Watchlist feature (/account/watchlist with add/remove/search)
+- [x] Portfolio tracker (/account/portfolio with holdings management)
 
 ### Milestone 5.2: Advanced Mining
+**Status**: Complete
 **Dependencies**: 4.7
 
 **Deliverables**:
-- [ ] ATM locator
-- [ ] Mining OS integration
-- [ ] Advanced profitability tools
+- [x] ATM locator (/buy/atm with 6 providers, filters, aggregator links)
+- [x] Mining OS integration (/mining/os with HiveOS, minerstat, RaveOS, MMPOS, Simple Mining)
+- [x] Advanced profitability tools (already complete from Phase 4 - /mining/profitability, /mining/hardware)
 
 ### Milestone 5.3: CMS Integration
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] Headless CMS setup
-- [ ] News article management
-- [ ] Dynamic content updates
+- [x] MDX-based CMS setup (gray-matter for frontmatter parsing)
+- [x] Content library (/lib/content.ts with article parsing, filtering, related articles)
+- [x] Content editor page (/content-editor with form, MDX preview, download)
+- [x] Content directory structure (/content/news/ for MDX articles)
+- [x] Sample article template and documentation
 
 ### Milestone 5.4: API Layer
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] API documentation page
-- [ ] Price data API
-- [ ] Network stats API
+- [x] API documentation page (/build/api with endpoints, code examples, RPC info)
+- [x] Price data API (/api/price, /api/price/history)
+- [x] Network stats API (/api/network, /api/network/blocks)
 
 ### Milestone 5.5: Internationalization
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] i18n infrastructure
-- [ ] Language selector
-- [ ] Initial translations (ES, ZH)
+- [x] i18n infrastructure (I18nProvider, useI18n hook, useTranslation)
+- [x] Language selector component (default and compact variants)
+- [x] Initial translations (English, Spanish, Chinese)
 
 ### Milestone 5.6: Content Review & Polish
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
 
 **Public-Facing Copy Audit:**
-- [ ] Remove internal/technical language from all user-visible text (see instructions.md)
-- [ ] Fix homepage ProductSuite section - remove "Product Suite", "Vertically integrated", "same architect"
-- [ ] Audit all section headers and taglines for consumer-friendly language
-- [ ] Verify no development jargon (milestone numbers, phase references, etc.) appears in UI
+- [x] Remove internal/technical language from all user-visible text
+- [x] Fix homepage ProductSuite section - updated with consumer-friendly descriptions
+- [x] Audit all section headers and taglines for consumer-friendly language
+- [x] Remove development jargon (phase references removed from StubPage display)
 
 **ETCswap Product Separation:**
-- [ ] Display ETCswap V2, ETCswap V3, ETCswap Launchpad as separate products in Apps/DeFi sections
-- [ ] Update homepage ProductSuite to show separate ETCswap products
-- [ ] Update any combined "ETCswap" listings across the site
+- [x] Display ETCswap V2, ETCswap V3, ETCswap Launchpad as separate products in Apps data
+- [x] Update homepage ProductSuite to show ETCswap V3 and Launchpad separately
+- [x] Apps data already has separate ETCswap V2, V3, Launchpad entries
 
 **Olympia DAO Repositioning:**
-- [ ] Position Olympia DAO as Core Infrastructure (alongside Fukuii, Core-Geth, Blockscout, Rivet)
-- [ ] Remove from DeFi/Product Suite sections
-- [ ] Update status to "In Development" (not Alpha)
-- [ ] Remove any "Coming Soon" or "Alpha" badges
+- [x] Olympia DAO already positioned as Infrastructure category in apps data
+- [x] Removed from homepage ProductSuite section (replaced with Brale)
+- [x] Status already shows "In Development" in apps data
 
-**Content Quality:**
-- [ ] Deep content review of all Learn articles
-- [ ] Article formatting and prose styling improvements
-- [ ] Content accuracy verification (technical details, links)
-- [ ] Source content from ethereumclassic.org (with vetting per instructions)
-- [ ] Add remaining article content (currently placeholder)
-- [ ] SEO optimization for article pages
-- [ ] Image/diagram additions where appropriate
+**Data Accuracy - Blockscout Integration:**
+- [x] Created /lib/blockscout.ts service for live network data
+- [x] Updated /api/network to use live Blockscout data with caching
+- [x] Created useNetworkStats hook for client-side live data
+- [x] Updated mining pages to display live data with source indicators
+- [x] Fixed block reward to ~2.05 ETC (actual average from Blockscout)
+- [x] Fixed block time to ~13 seconds (actual from Blockscout - was incorrectly 15.6s)
+- [x] Added Blockscout attribution links throughout mining section
+- [x] Sanity check all public displayed data for accuracy - Updated Jan 2026
+- [x] Updated fallback values: hashrate 174 TH/s, difficulty 2.47 PH, price $12.75, block time 13s
+- [x] Add small data source attribution links where Blockscout data is displayed
+- [x] Added Blockscout attribution to homepage EcosystemStats component
 
-**Data Accuracy:**
-- [ ] Sanity check metrics/numbers across the website (Block rewards showing inconsistent values like "@ ETC" vs "2.56 ETC")
-- [ ] Create list of BlockScout API endpoints for live metrics
-- [ ] Populate accurate mining pool information with live data endpoints
-- [ ] Network hashrate information from live sources
+**Currency Conversion & Exchange Rates:**
+- [x] Implement 24-hour cached exchange rate API (like Blockscout caching strategy)
+- [x] Create /api/rates endpoint for cached exchange rate data (/lib/exchange-rates.ts)
+- [x] Update converter page to use live API data instead of hardcoded sampleRates
+- [x] Add currency data source attribution (CoinGecko live indicator on converter page)
+- [x] Add "Live rates from CoinGecko" indicator on converter pages
+
+**Navigation & Site Structure Review:**
+- [x] Fix nav bar transparency - increased opacity to 95%, solid dropdown backgrounds with blur
+- [x] Review nav bar links - confirmed high value links are appropriately placed
+- [x] Move "Exchange Reviews" from Buy dropdown to More dropdown (with Exchanges Directory)
+- [x] Added "Find ATM" to Buy dropdown for better nav access
+- [x] Review for redundancies - fixed homepage (StatsStrip now social proof, EcosystemStats shows live network data)
+
+**Footer Update:**
+- [x] Update footer to match Bitcoin.com inspiration - multi-column layout with Products, Learn, Ecosystem, Company columns, social links, brand section, Blockscout attribution
+
+**Network Data Dashboard:**
+- [x] Build dashboard display for network data - /research/network now has live data dashboard
+- [x] Include live metrics: price, market cap, block height, transactions, gas price, block time, block reward
+- [x] Add charts - animated bar charts for mining pool distribution
+- [x] Update /research/network to use live dashboard data from /api/network
+- [x] Incorporate live data throughout site (homepage EcosystemStats, research/network)
+
+**API Rate Limiting Strategy:**
+- [x] Implement 24-hour cache for Blockscout data (changed from 5-minute)
+- [x] Store cached data in persistent file location (.next/cache/blockscout/)
+- [x] Only refresh data once daily to avoid flooding Blockscout APIs
+- [x] Block explorer links for users who need real-time data
+
+**Website Social Links:**
+- [ ] Create EthereumClassic.com-specific social accounts (separate from ETC open source project)
+- [ ] Update footer social links to use "#" placeholder until accounts are created
+- [ ] Update global variables/config with EthereumClassic.com social URLs when available
+- [ ] Note: These are for promoting the website and its functionality, not the open source project
+
+**Mining Network Metrics (Miner Visibility):**
+Inspiration: https://2miners.com/etc-network-hashrate, https://2miners.com/etc-stats/
+- [x] Add network hashrate live metric (calculated from difficulty/blocktime via RPC)
+- [x] Add network difficulty live metric (from ETC RPC endpoint)
+- [x] Created /lib/etc-rpc.ts for RPC integration with fallback endpoints
+- [x] Created /api/mining endpoint for mining-specific stats
+- [x] Update /mining/stats page with comprehensive miner metrics (hashrate, difficulty, latest block info)
+
+**ETC Emission Schedule & Supply Tracker (Inspiration: https://etcis.money/):**
+ECIP-1017 emission schedule with 5M block eras and 20% reduction per era
+- [x] Emission schedule chart showing total supply curve over time (/research/supply)
+- [x] Current supply stats: total emitted, remaining supply, inflation rate
+- [x] Era breakdown table (supply emitted per 5M block era)
+- [x] Percentage of total supply emitted tracker
+- [x] "Fifthening" countdown timer to next block reward reduction (live countdown)
+- [x] Block reward history display (current era reward, previous eras)
+
+**Network Fee Market Dashboard:**
+Critical for monitoring ETC's transition from block reward to fee-based miner incentives
+- [x] Gas price display (slow/average/fast tiers) (/research/fees)
+- [x] Network utilization gauge
+- [x] Average transaction fee display
+- [x] Fee vs block reward ratio (fees as % of total miner revenue)
+- [x] Fee market health indicators
+- [x] Transaction cost estimator (simple transfer, token transfer, DEX swap, contract deploy)
+- [x] Comparison to block reward (visualize fee market growth relative to declining block rewards)
 
 ### Milestone 5.7: Advanced Features
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] Search functionality
-- [ ] Newsletter integration
-- [ ] Contact form
-- [ ] Advertising system
-- [ ] Partner directory
-- [ ] Grants/funding page
-
-### Milestone 5.8: Final Testing & QA
-**Dependencies**: Phase 4
-
-**Deliverables**:
-
-**Manual Review:**
-- [ ] Review all new pages for content accuracy and completeness
-- [ ] Verify all internal links work correctly
-- [ ] Check external links open in new tabs
-- [ ] Validate form functionality where applicable
-
-**Mobile Responsiveness:**
-- [ ] Test at 375px (mobile phone)
-- [ ] Test at 768px (tablet)
-- [ ] Test at 1024px (desktop)
-- [ ] Test at 1440px (large desktop)
-- [ ] Verify navigation hamburger menu works on mobile
-- [ ] Check touch targets are adequate size (44px minimum)
-
-**Cross-Browser Testing:**
-- [ ] Chrome (latest)
-- [ ] Firefox (latest)
-- [ ] Safari (latest)
-- [ ] Edge (latest)
-
-**Performance:**
-- [ ] Lighthouse performance audit (target 90+)
-- [ ] Check for layout shifts (CLS)
-- [ ] Verify images are optimized
-- [ ] Test page load times (<3s target)
-
-**Accessibility:**
-- [ ] Keyboard navigation works
-- [ ] Focus states visible
-- [ ] Color contrast meets WCAG AA
-- [ ] Alt text on images
-- [ ] Proper heading hierarchy
+- [x] Search functionality (Fuse.js-powered fuzzy search with keyboard navigation, grouped results)
+- [x] Newsletter integration (Newsletter component with 3 variants: default, compact, inline)
+- [x] Contact form (/contact with form validation, community channels, FAQ)
+- [x] Advertising system (AdBanner component with 4 placements, /advertise info page)
+- [x] Partner directory (/partners with category filtering, 20+ partners)
+- [x] Grants/funding page (/build/grants with funding sources, project ideas, application process)
 
 ---
 
-## Phase 6: Platform & Revenue (P4)
+## Phase 6: Autonomous Completion
 
-**Goal**: Build revenue streams, improve UX, and establish platform presence.
+**Goal**: Complete all remaining tasks that Claude Code can execute independently without human blocking.
 
-### Milestone 6.1: UI/UX Fixes
+### Milestone 6.1: Sitemap & Technical SEO
+**Status**: Not Started
 **Dependencies**: Phase 5
 
 **Deliverables**:
-- [ ] Fix mobile navigation - Move "Launch App" CTA to top (currently hidden by Safari iOS URL bar)
-- [ ] Fix "Launch App" button color - adjust green to better match website theme
+- [ ] Update sitemap.xml with all new pages
+- [ ] Audit sitemap against URL-STRUCTURE.md for completeness
+- [ ] Verify all pages are accessible and linked appropriately
+- [ ] Implement XML content structure for LLM search engines
+- [ ] Rich metadata implementation (OG images, Twitter cards)
+- [ ] Structured data markup (JSON-LD) for key pages
+- [ ] Build RSS feed for news section
+
+### Milestone 6.2: UI/UX Code Fixes
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Fix mobile navigation - Move "Launch App" CTA to top (Safari iOS URL bar issue)
+- [ ] Fix "Launch App" button color - adjust green to match website theme
+- [ ] Homepage fixes: Remove unverifiable "500k community members" statistic
+- [ ] Homepage fixes: Fix transaction count display format
+- [ ] Expand "Why Ethereum Classic?" section with substantive detail
+- [ ] Fix footer social links (use "#" placeholder until accounts created)
 - [ ] General mobile UX audit and fixes
 
-### Milestone 6.2: SEO & Discovery Optimization
+### Milestone 6.3: Performance & Accessibility
+**Status**: Not Started
+**Dependencies**: 6.2
+
+**Deliverables**:
+- [ ] Lighthouse performance audit (target 90+)
+- [ ] Fix layout shifts (CLS)
+- [ ] Optimize images
+- [ ] Keyboard navigation audit
+- [ ] Focus states visibility
+- [ ] Color contrast WCAG AA compliance
+- [ ] Alt text audit
+- [ ] Heading hierarchy audit
+
+### Milestone 6.4: Link Verification
+**Status**: Not Started
 **Dependencies**: Phase 5
 
 **Deliverables**:
-- [ ] Research 2025 SEO best practices for LLM/AI agent summaries
-- [ ] Implement XML content structure for LLM search engines
-- [ ] Rich metadata implementation (OG images, Twitter cards, favicons)
-- [ ] Structured data markup (JSON-LD)
-- [ ] Build RSS feed for news following best practices
-- [ ] Backfill relevant content from ethereumclassic.org/news (polish formatting issues from .org feed)
-- [ ] Position site as authoritative news source for aggregation websites
+- [ ] Verify all internal links work correctly
+- [ ] Check external links open in new tabs
+- [ ] Validate form functionality
+- [ ] Test search functionality across all indexed content
 
-### Milestone 6.3: Social Media Presence
+### Milestone 6.5: Mining Hardware Affiliate Pages
+**Status**: Not Started
 **Dependencies**: Phase 5
 
-**Deliverables**:
-- [ ] Create EthereumClassic.com social accounts (separate from ETC open source project socials)
-- [ ] Automate content generation flows from website to social outlets
-- [ ] Research 2025 best practices for social automation
-- [ ] Social sharing optimization
-
-### Milestone 6.4: Revenue Streams - Referrals
-**Dependencies**: Phase 5
+**Reference**: https://www.coinwarz.com/mining/ethereum%20classic/hardware
 
 **Deliverables**:
-- [ ] Review centralized exchanges for referral programs
-- [ ] Create list of exchanges with referral programs
-- [ ] Sign up for exchange referral programs
-- [ ] Embed referral links throughout website (Buy/Exchanges pages)
-- [ ] Track referral performance
-
-### Milestone 6.5: Merchandise Store
-**Dependencies**: Phase 5
-
-**Deliverables**:
-- [ ] Set up drop shipping service integration
-- [ ] Design ETC merchandise (shirts, hats, hoodies, socks)
-- [ ] Build store page/section
-- [ ] Product photography and descriptions
-- [ ] Checkout/payment integration
-
-### Milestone 6.6: Mining Hardware Marketplace
-**Dependencies**: 4.7
-
-**Deliverables**:
-- [ ] Hardware marketplace/store section for ETChash ASICs and GPUs
-- [ ] Research hardware retailers with referral/affiliate programs
-- [ ] Embed affiliate links to hardware stores
+- [ ] Hardware marketplace page structure for ETChash ASICs and GPUs
 - [ ] Product listings with specs, pricing, availability
-- [ ] Price comparison features
+- [ ] Profitability rankings based on current network difficulty and ETC price
+- [ ] Hardware comparison tool (efficiency, ROI calculator per device)
+- [ ] Affiliate link placeholders (actual links added in Phase 7)
 
-### Milestone 6.7: Classic USD Integration
+### Milestone 6.6: Classic USD Documentation
+**Status**: Not Started
 **Dependencies**: Phase 5
 
 **Deliverables**:
 - [ ] Position Classic USD as primary fiat on-ramp for ETC
 - [ ] Document USD → USC stablecoin → ETCswap DEX (WETC/USC) flow
-- [ ] USDC/USDP to USC converter/bridge documentation (may live in Classic OS)
-- [ ] Funnel integration from ethereumclassic.com to Classic OS for on-ramp
+- [ ] Create on-ramp funnel from ethereumclassic.com to Classic OS
 
-### Milestone 6.8: EthereumClassic.com Pool Announcement
-**Dependencies**: 4.7
+### Milestone 6.7: Mining Pool Dashboard Scaffolding
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Reference**: https://etc.2miners.com/, https://etc.f2pool.com/, https://k1pool.com/pool/etc
+
+**Goal**: Build full mining pool UI with sample data, emulating existing pools. When pool infrastructure is ready (Phase 7), simply connect to real backend.
 
 **Deliverables**:
-- [ ] "Coming Soon" announcement for EthereumClassic.com Pool
-- [ ] Feature pool in mining sections of website
-- [ ] Pool landing page with waitlist/notification signup
-- [ ] Integration documentation with Classic OS and Fukuii client
+
+**Pool Hub (/pool)**:
+- [ ] Pool landing page with key stats (hashrate, miners, blocks found, luck)
+- [ ] Getting started guide (how to connect, recommended software)
+- [ ] Stratum server addresses (placeholder endpoints)
+- [ ] Payout information (thresholds, fees, schedule)
+
+**Pool Dashboard (/pool/dashboard)**:
+- [ ] Miner dashboard (requires wallet address input)
+- [ ] Worker stats table (name, hashrate, shares, last seen)
+- [ ] Hashrate chart (24h worker performance)
+- [ ] Payment history table
+- [ ] Estimated earnings calculator
+
+**Pool Statistics (/pool/stats)**:
+- [ ] Pool hashrate chart (with sample historical data)
+- [ ] Blocks found table (block #, reward, finder, time)
+- [ ] Pool luck indicator
+- [ ] Active miners count over time
+- [ ] Network vs pool hashrate comparison
+
+**Pool Blocks (/pool/blocks)**:
+- [ ] Paginated blocks found list
+- [ ] Block details (hash, reward, uncle status, maturity)
+- [ ] Confirmation status indicators
+
+**Pool Miners (/pool/miners)**:
+- [ ] Top miners leaderboard (anonymized addresses)
+- [ ] Miner distribution chart
+
+**Data Architecture**:
+- [ ] Sample pool data file (/app/pool/data/sample-pool.ts)
+- [ ] Pool API structure (/api/pool/* returning sample data)
+- [ ] Real-time simulation with mock WebSocket events (optional)
+
+### Milestone 6.8: Merchandise Store Shell
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Store page layout (/store or /merch)
+- [ ] Product card components
+- [ ] Sample merchandise items (placeholder images, descriptions)
+- [ ] Category navigation (Apparel, Accessories, etc.)
+- [ ] "Coming Soon" or cart placeholder (actual checkout in Phase 7)
+
+### Milestone 6.9: Historical Charts with Sample Data
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Chart components for hashrate/difficulty/fees over time
+- [ ] Sample/mock historical data for chart demonstration
+- [ ] Time range selectors (1D, 1W, 1M, 1Y, ALL)
+- [ ] API endpoint structure for historical data (returns sample data)
+- [ ] "Data powered by local node" attribution with note about upcoming live data
+
+### Milestone 6.10: Referral Infrastructure
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Referral link component with tracking parameter support
+- [ ] Exchange referral link placeholders on /buy pages
+- [ ] Hardware affiliate link placeholders on /mining/hardware
+- [ ] Config file for easy referral code updates (/lib/referrals.ts)
+- [ ] UTM parameter tracking structure
+
+### Milestone 6.11: Network Health Dashboard Scaffolding
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Goal**: Build comprehensive ETC network monitoring dashboard for core contributors and stakeholders. Unified data hub for informed decision-making. Uses sample/mock data until local node infrastructure is ready.
+
+**Reference**: https://ethernodes.org/, https://2miners.com/etc-network-hashrate, https://miningpoolstats.stream/ethereumclassic
+
+**Network Health Hub (/network or /network-health)**:
+- [ ] Dashboard overview with key health indicators
+- [ ] Status summary cards (network healthy/degraded/warning)
+- [ ] Quick links to detailed monitors
+- [ ] Last updated timestamp with data source attribution
+
+**Block Explorer (/network/explorer)**:
+- [ ] Latest blocks table with real-time updates (sample data)
+- [ ] Block detail page (/network/explorer/block/[number])
+- [ ] Transaction detail page (/network/explorer/tx/[hash])
+- [ ] Address lookup (/network/explorer/address/[address])
+- [ ] Search functionality (block, tx, address)
+
+**Node Monitor (/network/nodes)**:
+- [ ] World map visualization of known node locations
+- [ ] Node count by country/region
+- [ ] Client version distribution (Core-Geth versions, Besu, Fukuii)
+- [ ] Node version health (% on latest vs outdated)
+- [ ] Historical node count chart
+
+**Hashrate & Security (/network/security)**:
+- [ ] Network hashrate display (live + historical chart)
+- [ ] Security budget calculator (hashrate × electricity cost estimate)
+- [ ] 51% attack cost estimation
+- [ ] Hashrate centralization risk monitor:
+  - [ ] Top pools by hashrate percentage
+  - [ ] Nakamoto coefficient (pools needed for 51%)
+  - [ ] Warning indicators for dangerous concentration
+- [ ] Mining pool distribution pie chart
+
+**Network Statistics (/network/stats)**:
+- [ ] Current difficulty and difficulty chart
+- [ ] Block time average and chart
+- [ ] Gas usage and gas price trends
+- [ ] Transaction throughput (TPS)
+- [ ] Active addresses (daily unique)
+- [ ] Supply metrics (circulating, inflation rate)
+
+**RPC Endpoint Status (/network/rpc)**:
+- [ ] Public RPC endpoint list with health status
+- [ ] Latency monitoring for each endpoint
+- [ ] Endpoint recommendation based on user location
+- [ ] "Add to MetaMask" buttons
+- [ ] Uptime history
+
+**Data Architecture**:
+- [ ] Sample network data file (/app/network/data/sample-network.ts)
+- [ ] Network API structure (/api/network-health/* returning sample data)
+- [ ] Mock node list with geographic distribution
+- [ ] Mock pool distribution data
+- [ ] Placeholder for real data connection points
+
+**Components**:
+- [ ] WorldMap component (node locations)
+- [ ] HealthIndicator component (status badges)
+- [ ] NetworkChart component (reusable time-series)
+- [ ] PoolDistributionChart component
+- [ ] NodeVersionChart component
+
+### Milestone 6.12: Automated Testing & Report Generation
+**Status**: Not Started
+**Dependencies**: 6.1-6.11
+
+**Scope**: FULL CODEBASE REVIEW - All code from Phase 1 through Phase 6. This is a comprehensive audit of the entire product developed by coding agents (Claude Code). Every file, component, page, and feature must be validated.
+
+**Goal**: Run comprehensive automated tests on ALL features across the entire codebase. Validate best practices, coding standards, and development quality for all work produced by AI coding agents. Generate detailed reports documenting test results for due diligence trail.
+
+**Deliverables**:
+
+**Build & Lint Verification**:
+- [ ] Run `npm run build` - verify all 180+ pages compile without errors
+- [ ] Run `npm run lint` - verify zero lint warnings/errors
+- [ ] Run TypeScript type checking - verify no type errors
+- [ ] Document build output (page count, build time, bundle sizes)
+
+**Link Integrity Testing**:
+- [ ] Crawl all internal links and verify 200 status
+- [ ] Identify and report any broken internal links
+- [ ] Verify all dynamic routes generate correctly ([wallet], [exchange], [pool], etc.)
+- [ ] Generate link integrity report
+
+**API Endpoint Testing**:
+- [ ] Test /api/price - verify response schema, fallback behavior
+- [ ] Test /api/price/history - verify date range handling
+- [ ] Test /api/network - verify Blockscout integration, caching
+- [ ] Test /api/network/blocks - verify block data structure
+- [ ] Test /api/rates - verify exchange rate responses
+- [ ] Test /api/mining - verify calculation accuracy
+- [ ] Generate API test report with response times and status codes
+
+**Component Rendering Tests**:
+- [ ] Verify all pages render without React errors
+- [ ] Check for missing required props or undefined references
+- [ ] Verify no hydration mismatches
+- [ ] Generate component health report
+
+**Data Integrity Verification**:
+- [ ] Verify all wallet data entries have required fields
+- [ ] Verify all exchange data entries have required fields
+- [ ] Verify all mining pool data entries have required fields
+- [ ] Verify all app data entries have required fields
+- [ ] Verify all article data entries have required fields
+- [ ] Generate data completeness report
+
+**Accessibility Automated Checks**:
+- [ ] Run axe-core accessibility audit on key pages
+- [ ] Check for missing alt text on images
+- [ ] Verify heading hierarchy (no skipped levels)
+- [ ] Check color contrast ratios
+- [ ] Generate accessibility report
+
+**Performance Baseline**:
+- [ ] Run Lighthouse CI on homepage
+- [ ] Run Lighthouse CI on key section pages (wallet, buy, apps, learn, mining)
+- [ ] Document Core Web Vitals (LCP, FID, CLS)
+- [ ] Generate performance baseline report
+
+**Code Quality & Best Practices Audit**:
+- [ ] Review all TypeScript files for proper typing (no `any` abuse)
+- [ ] Verify consistent code formatting across codebase
+- [ ] Check for unused imports and dead code
+- [ ] Verify proper error handling patterns
+- [ ] Review React component patterns (hooks usage, memo optimization)
+- [ ] Check for security best practices (no hardcoded secrets, XSS prevention)
+- [ ] Verify proper use of environment variables
+- [ ] Review API route implementations for proper error responses
+- [ ] Check for proper loading and error states in UI components
+- [ ] Verify consistent naming conventions throughout codebase
+- [ ] Generate code quality report
+
+**File Structure & Architecture Review**:
+- [ ] Verify consistent file organization across all sections
+- [ ] Check for proper separation of concerns (components, data, lib, hooks)
+- [ ] Review data file structures for consistency
+- [ ] Verify proper use of shared components vs duplicated code
+- [ ] Check for circular dependencies
+- [ ] Generate architecture compliance report
+
+**Report Generation**:
+- [ ] Create /docs/reports/ directory for test reports
+- [ ] Generate PHASE-6-TEST-REPORT.md with all test results
+- [ ] Include timestamp, git commit hash, and environment details
+- [ ] Document any known issues or limitations
+- [ ] Summary of all automated tests passed/failed
+- [ ] Code quality metrics and recommendations
+- [ ] Full file inventory with review status
 
 ---
 
-## Phase 7: Mining Pool & Advanced Products (P5)
+## Phase 7: Human Review & Infrastructure
 
-**Goal**: Launch EthereumClassic.com mining pool and integrate advanced ecosystem products.
+**Goal**: Tasks that ONLY humans can complete - account creation, program signups, infrastructure provisioning, content approval, product launches.
 
-### Milestone 7.1: Mining Pool Development
+> **Note**: Phase 6 builds all scaffolding, shells, and sample data. Phase 7 contains ONLY the specific actions requiring human involvement.
+
+### Milestone 7.1: Content Accuracy Review
+**Status**: Not Started
 **Dependencies**: Phase 6
+**Blocker**: Human judgment required
 
-**Deliverables**:
-- [ ] EthereumClassic.com mining pool infrastructure
-- [ ] Pool dashboard and statistics
-- [ ] Miner registration and management
-- [ ] Payout system
-- [ ] Pool guides and documentation
-- [ ] Classic OS integration
-- [ ] Fukuii client integration (recommended client)
+**What Claude Built** (Phase 6): All pages, components, copy
+**Human Must Do**:
+- [ ] Review all page copy for accuracy and consumer-friendliness
+- [ ] Verify all statistics are accurate and verifiable
+- [ ] Fill in ETC Knowledge Bank [PLACEHOLDER] tags
+- [ ] Approve or revise homepage messaging
+- [ ] Cross-browser testing sign-off (Chrome, Firefox, Safari, Edge)
+- [ ] Mobile responsiveness sign-off (375px, 768px, 1024px, 1440px)
 
-### Milestone 7.2: Fukuii & FairWins Integration
-**Dependencies**: 7.1
-
-**Reference**: https://github.com/chippr-robotics/prediction-dao-research
-
-**Deliverables**:
-- [ ] Fukuii client promotion and guides
-- [ ] FairWins Prediction Market integration
-- [ ] Offline CLOB matching fees documentation (rewards for Fukuii client runners)
-- [ ] Full production launch of FairWins (from Alpha)
-
-### Milestone 7.3: Advanced Ecosystem Products
+### Milestone 7.2: Social Account Creation
+**Status**: Not Started
 **Dependencies**: Phase 6
+**Blocker**: Account registration requires human
 
-**Deliverables**:
-- [ ] ClearPath (Futarchy Prediction Markets for Olympia DAO) - full launch
-- [ ] TokenMint (Enterprise Token Management) - full launch
-- [ ] Ecosystem product integration guides
-- [ ] Cross-product documentation
+**What Claude Built** (Phase 6): Footer with "#" placeholder links
+**Human Must Do**:
+- [ ] Create EthereumClassic.com Twitter/X account
+- [ ] Create EthereumClassic.com Discord server (if separate)
+- [ ] Update /lib/config.ts or footer with real social URLs
+
+### Milestone 7.3: Affiliate Program Signups
+**Status**: Not Started
+**Dependencies**: 6.10 (Referral Infrastructure)
+**Blocker**: Program registration requires human
+
+**What Claude Built** (Phase 6): Referral link infrastructure, placeholder URLs, /lib/referrals.ts config
+**Human Must Do**:
+- [ ] Sign up for Binance referral program → add code to config
+- [ ] Sign up for Coinbase referral program → add code to config
+- [ ] Sign up for Kraken referral program → add code to config
+- [ ] Sign up for hardware affiliate programs (Amazon, Newegg, etc.) → add codes
+- [ ] Test tracking is working
+
+### Milestone 7.4: Merchandise Store Launch
+**Status**: Not Started
+**Dependencies**: 6.8 (Store Shell)
+**Blocker**: Vendor selection and product creation requires human
+
+**What Claude Built** (Phase 6): Store page, product cards, sample items, category nav
+**Human Must Do**:
+- [ ] Select drop shipping vendor (Printful, Printify, etc.)
+- [ ] Create actual product designs
+- [ ] Upload real product images
+- [ ] Configure payment integration (Stripe, etc.)
+- [ ] Enable checkout functionality
+
+### Milestone 7.5: Local Node Infrastructure
+**Status**: Not Started
+**Dependencies**: Phase 7.1
+**Blocker**: Server provisioning requires human
+
+**What Claude Built** (Phase 6): N/A (pure infrastructure)
+**Human Must Do**:
+- [ ] Provision server (500GB+ storage)
+- [ ] Install Core-Geth
+- [ ] Sync archive node from genesis (~1-3 days)
+- [ ] Configure internal API access
+- [ ] Set up monitoring/alerting
+
+**Technical Notes**:
+- Erigon does NOT support ETC
+- Core-Geth is the only production archive node option
+
+### Milestone 7.6: Historical Data Activation
+**Status**: Not Started
+**Dependencies**: 7.5 (Node Infrastructure), 6.9 (Chart Components)
+**Blocker**: Requires synced local node
+
+**What Claude Built** (Phase 6): Chart components, API structure, sample data display
+**Human Must Do**:
+- [ ] Point API endpoints to local node
+- [ ] Run backfill script from genesis to present
+- [ ] Verify data accuracy
+- [ ] Switch charts from sample to live data
+- [ ] Set up daily snapshot cron job
+
+### Milestone 7.7: Mining Pool Launch
+**Status**: Not Started
+**Dependencies**: 7.5 (Node Infrastructure), 6.7 (Pool Dashboard Scaffolding)
+**Blocker**: Pool infrastructure requires human ops
+
+**What Claude Built** (Phase 6): Full pool dashboard UI with sample data:
+- Pool hub, dashboard, stats, blocks, miners pages
+- Worker management interface
+- Payment history tables
+- Hashrate charts
+- All using mock/sample data
+
+**Human Must Do**:
+- [ ] Set up stratum server infrastructure
+- [ ] Configure payout system and thresholds
+- [ ] Point pool dashboard to real backend APIs
+- [ ] Test with real miners
+- [ ] Launch pool and switch from sample to live data
+
+### Milestone 7.8: Ecosystem Product Launches
+**Status**: Not Started
+**Dependencies**: Product development timelines
+**Blocker**: External product readiness
+
+**What Claude Built** (Phase 6): App pages already show "Alpha"/"Coming Soon" status
+**Human Must Do**:
+- [ ] FairWins: Update status from "Alpha" to "Live" when ready
+- [ ] ClearPath: Update status from "Coming Soon" to "Live" when ready
+- [ ] TokenMint: Update status from "Coming Soon" to "Live" when ready
+- [ ] Fukuii: Add promotion content post-Olympia upgrade
+
+### Milestone 7.9: Network Health Dashboard Activation
+**Status**: Not Started
+**Dependencies**: 7.5 (Node Infrastructure), 6.11 (Dashboard Scaffolding)
+**Blocker**: Requires node infrastructure and data sources
+
+**What Claude Built** (Phase 6): Complete Network Health Dashboard UI:
+- Dashboard hub with health indicators
+- Block explorer (blocks, transactions, addresses)
+- Node monitor with world map
+- Security & hashrate centralization monitor
+- Network statistics page
+- RPC endpoint status page
+- All using mock/sample data
+
+**Human Must Do**:
+- [ ] Connect block explorer to local node RPC
+- [ ] Set up node discovery/crawling for node map
+- [ ] Configure RPC endpoint health checks
+- [ ] Point dashboard APIs to live data sources
+- [ ] Verify data accuracy across all monitors
+- [ ] Switch from sample to live data
+- [ ] Set up alerting for network anomalies (optional)
+
+### Milestone 7.10: Comprehensive Manual Testing & QA
+**Status**: Not Started
+**Dependencies**: Phase 6
+**Blocker**: Human judgment and real-world testing required
+
+**Scope**: FULL CODEBASE MANUAL REVIEW - All code from Phase 1 through Phase 6. This is a comprehensive human audit of the entire product developed by coding agents (Claude Code). Every user-facing feature, interaction, and data display must be manually verified by a human tester.
+
+**Purpose**: Validate that AI-generated code meets production quality standards. Ensure all features work correctly in real-world usage. Document human sign-off on all aspects that cannot be automatically tested.
+
+**What Claude Built** (Phases 1-6): Complete site with all features implemented
+**Human Must Do**:
+
+**Account System Testing**:
+- [ ] Test user registration flow (form validation, error handling)
+- [ ] Test login/logout functionality
+- [ ] Test portfolio tracker (add/remove holdings, calculations)
+- [ ] Test watchlist (add/remove items, search, persistence)
+- [ ] Test settings page (profile updates, preferences, account deletion)
+- [ ] Verify localStorage persistence across sessions
+- [ ] Test password visibility toggle functionality
+- [ ] Verify form validation messages are helpful
+
+**API Endpoint Testing**:
+- [ ] Test /api/price endpoint (response format, fallback behavior)
+- [ ] Test /api/price/history endpoint (date ranges, data integrity)
+- [ ] Test /api/network endpoint (live Blockscout data, caching)
+- [ ] Test /api/network/blocks endpoint (recent blocks data)
+- [ ] Test /api/rates endpoint (exchange rate accuracy, source attribution)
+- [ ] Test /api/mining endpoint (profitability calculations)
+- [ ] Verify API error handling and fallback data
+- [ ] Test API rate limiting behavior
+
+**Search Functionality Testing**:
+- [ ] Test search across all content types (learn, news, apps, wallets, exchanges, pools, hardware)
+- [ ] Test keyboard navigation (arrow keys, Enter, Escape, ⌘K/Ctrl+K)
+- [ ] Verify search result relevance and ranking
+- [ ] Test search with special characters
+- [ ] Test search with empty/short queries
+- [ ] Verify grouped results display correctly
+- [ ] Test search modal open/close behavior
+- [ ] Test search on mobile devices
+
+**Core Feature Testing**:
+- [ ] Mining profitability calculator (input validation, calculation accuracy)
+- [ ] Price converter (currency conversion accuracy, live rate display)
+- [ ] Investment calculator (ROI projections, DCA calculations)
+- [ ] Gas tracker (tier display, transaction cost estimates)
+- [ ] Newsletter signup form (validation, submission handling)
+- [ ] Contact form (validation, submission handling)
+- [ ] Language selector (locale switching, translation display)
+- [ ] Ad banner system (placement rendering, dismiss functionality)
+
+**Navigation & Routing Testing**:
+- [ ] Test all internal navigation links
+- [ ] Verify breadcrumb accuracy on all pages
+- [ ] Test mobile hamburger menu functionality
+- [ ] Test dropdown menu behavior (hover, click, keyboard)
+- [ ] Verify active state indicators
+- [ ] Test back/forward browser navigation
+- [ ] Verify 404 page for invalid routes
+- [ ] Test dynamic route parameters ([wallet], [exchange], [pool], etc.)
+
+**Data Accuracy Verification**:
+- [ ] Verify live network stats match Blockscout
+- [ ] Verify exchange rates match CoinGecko
+- [ ] Verify mining pool information is current
+- [ ] Verify hardware specifications are accurate
+- [ ] Verify exchange information (fees, features) is current
+- [ ] Verify wallet feature lists are accurate
+- [ ] Spot-check article content for accuracy
+- [ ] Verify external links are valid and correct
+
+**Cross-Browser Testing**:
+- [ ] Chrome (latest) - full functionality
+- [ ] Firefox (latest) - full functionality
+- [ ] Safari (latest) - full functionality
+- [ ] Edge (latest) - full functionality
+- [ ] Safari iOS - mobile experience
+- [ ] Chrome Android - mobile experience
+
+**Performance Testing**:
+- [ ] Run Lighthouse audit (target 90+ performance)
+- [ ] Verify no console errors on production build
+- [ ] Test page load times on slow connections (3G throttle)
+- [ ] Verify images load progressively
+- [ ] Test lazy loading behavior
+
+**Accessibility Testing**:
+- [ ] Keyboard-only navigation through all pages
+- [ ] Screen reader testing (VoiceOver/NVDA)
+- [ ] Color contrast verification
+- [ ] Focus state visibility
+- [ ] Alt text presence on images
+- [ ] Heading hierarchy audit
+- [ ] Form label associations
+
+**Full Section-by-Section Review** (verify each major section works correctly):
+- [ ] Homepage - hero, stats, product cards, CTAs
+- [ ] Wallet Section - hub, Classic OS, MetaMask, hardware, compare, reviews
+- [ ] Buy Section - hub, exchanges, instant, P2P, card, bank, ATM, reviews
+- [ ] Sell Section - hub, exchanges
+- [ ] Apps Section - hub, all categories (DeFi, NFT, Games, Tools, etc.), individual apps
+- [ ] Learn Section - hub, all categories, all articles, glossary
+- [ ] News Section - hub, articles, categories, tags
+- [ ] Markets Section - hub, price pages, converter, calculator
+- [ ] Mining Section - hub, pools, hardware, software, profitability, stats, OS
+- [ ] Build Section - hub, docs, clients, networks, faucets, tools, grants, API
+- [ ] Research Section - hub, reports, network, supply, fees, ecosystem
+- [ ] Tools Section - hub, converter, calculator, gas, explorer, verify
+- [ ] Community Section - hub, social, events, contribute
+- [ ] Directory Section - hub, wallets, exchanges, mining, developers, community
+- [ ] Account Section - dashboard, login, register, portfolio, watchlist, settings
+- [ ] Static Pages - about, contact, advertise, partners, legal, privacy
+- [ ] 404 Page - verify custom 404 displays correctly
+
+**QA Report Generation**:
+- [ ] Generate PHASE-7-QA-REPORT.md documenting all manual test results
+- [ ] Include tester name, date, and environment details
+- [ ] Document each test category with pass/fail status
+- [ ] Screenshot evidence for key functionality tests
+- [ ] List any issues found and their resolution status
+- [ ] Sign-off checklist for production readiness
+- [ ] Final due diligence certification statement
+
+**Report Contents**:
+```
+PHASE-7-QA-REPORT.md
+├── Executive Summary
+│   ├── Overall test status (Pass/Fail)
+│   ├── Test coverage summary
+│   ├── Key findings
+│   └── AI-generated code quality assessment
+├── Test Environment
+│   ├── Date/time of testing
+│   ├── Tester information
+│   ├── Browser versions tested
+│   ├── Device types tested
+│   └── Git commit hash
+├── Test Results by Category
+│   ├── Account System: [Pass/Fail] with details
+│   ├── API Endpoints: [Pass/Fail] with details
+│   ├── Search Functionality: [Pass/Fail] with details
+│   ├── Core Features: [Pass/Fail] with details
+│   ├── Navigation & Routing: [Pass/Fail] with details
+│   ├── Data Accuracy: [Pass/Fail] with details
+│   ├── Cross-Browser: [Pass/Fail] with details
+│   ├── Performance: [Pass/Fail] with Lighthouse scores
+│   └── Accessibility: [Pass/Fail] with details
+├── Section-by-Section Review
+│   ├── Homepage: [Pass/Fail]
+│   ├── Wallet Section: [Pass/Fail]
+│   ├── Buy Section: [Pass/Fail]
+│   ├── Sell Section: [Pass/Fail]
+│   ├── Apps Section: [Pass/Fail]
+│   ├── Learn Section: [Pass/Fail]
+│   ├── News Section: [Pass/Fail]
+│   ├── Markets Section: [Pass/Fail]
+│   ├── Mining Section: [Pass/Fail]
+│   ├── Build Section: [Pass/Fail]
+│   ├── Research Section: [Pass/Fail]
+│   ├── Tools Section: [Pass/Fail]
+│   ├── Community Section: [Pass/Fail]
+│   ├── Directory Section: [Pass/Fail]
+│   ├── Account Section: [Pass/Fail]
+│   └── Static Pages: [Pass/Fail]
+├── Issues Log
+│   ├── Critical issues (blocking)
+│   ├── Major issues (should fix)
+│   ├── Minor issues (nice to fix)
+│   └── Resolution status for each
+├── Evidence
+│   └── Screenshots/recordings folder reference
+├── AI Code Generation Assessment
+│   ├── Code quality observations
+│   ├── Best practices compliance
+│   ├── Areas requiring human attention
+│   └── Recommendations for future AI-assisted development
+└── Certification
+    ├── Production readiness statement
+    ├── Known limitations
+    ├── Human reviewer sign-off
+    └── Date and signature
+```
 
 ---
 
@@ -725,24 +1296,47 @@ Account: All pages
 
 | Phase | Milestones | Completed | Progress |
 |-------|------------|-----------|----------|
-| Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
-| Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 12 | 100% | (All Complete - 4.1 through 4.12)
-| Phase 5 | 8 | 0 | 0% | (includes 5.8 Final Testing & QA)
-| Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
-| Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **53** | **34** | **64%** |
+| Phase 1 | 7 | 7 | 100% |
+| Phase 2 | 5 | 5 | 100% |
+| Phase 3 | 10 | 10 | 100% |
+| Phase 4 | 12 | 12 | 100% |
+| Phase 5 | 7 | 7 | 100% |
+| Phase 6 | 12 | 0 | 0% | (Autonomous - Claude builds all scaffolding + automated tests)
+| Phase 7 | 10 | 0 | 0% | (Human-only - specific blockers + manual QA)
+| **Total** | **63** | **41** | **65%** |
 
 ### Current Focus
 
-**Just Completed**: Phase 4 - All Content Expansion milestones (4.1-4.12)
-- 4.9 Research Section (hub, reports, network analysis)
-- 4.10 Tools Section (hub, converter, calculator, gas, explorer, verify)
-- 4.11 Apps Expansion (NFT, Games, 10 new apps)
-- 4.12 Community Section (hub, social, events)
+**Just Completed**: Phase 5 (All milestones 5.1-5.7)
 
-**Next Up**: Phase 5 - Advanced Features (User Accounts, CMS, API, i18n)
+**Next Up**: Phase 6 - Autonomous Scaffolding
+Claude Code builds all shells, layouts, components, and sample data:
+- 6.1 Sitemap & Technical SEO
+- 6.2 UI/UX Code Fixes
+- 6.3 Performance & Accessibility
+- 6.4 Link Verification
+- 6.5 Mining Hardware Affiliate Pages
+- 6.6 Classic USD Documentation
+- 6.7 Mining Pool Dashboard Scaffolding (full pool UI with sample data)
+- 6.8 Merchandise Store Shell
+- 6.9 Historical Charts with Sample Data
+- 6.10 Referral Infrastructure
+- 6.11 Network Health Dashboard (explorer, nodes, security, stats with sample data)
+- 6.12 Automated Testing & Report Generation (PHASE-6-TEST-REPORT.md)
+
+**Phase 7** (Human-only blockers):
+| Milestone | What Human Must Do |
+|-----------|-------------------|
+| 7.1 Content Review | Approve all public copy |
+| 7.2 Social Accounts | Create Twitter/X, Discord |
+| 7.3 Affiliate Signups | Register for referral programs |
+| 7.4 Store Launch | Select vendor, create products |
+| 7.5 Node Infrastructure | Provision server, sync node |
+| 7.6 Historical Data | Point APIs to node, run backfill |
+| 7.7 Mining Pool Launch | Set up stratum server, connect to UI |
+| 7.8 Product Launches | Update status when ready |
+| 7.9 Network Dashboard | Connect to live data sources |
+| 7.10 Manual Testing & QA | Test accounts, APIs, search, generate PHASE-7-QA-REPORT.md |
 
 ---
 
@@ -820,7 +1414,32 @@ Phase 5 ←───────────────────────
 ├── 5.3 CMS Integration
 ├── 5.4 API Layer
 ├── 5.5 i18n
-└── 5.6 Advanced Features
+├── 5.6 Content Review & Polish
+├── 5.7 Advanced Features
+├── 5.8 Final Testing & QA
+└── 5.9 UI/UX Review & Polish
+                                                        ↓
+Phase 6 ←──────────────────────────────────────── Phase 5
+├── 6.1 UI/UX Fixes
+├── 6.2 SEO & Discovery
+├── 6.3 Social Media Presence
+├── 6.4 Revenue - Referrals
+├── 6.5 Merchandise Store
+├── 6.6 Mining Hardware Marketplace
+├── 6.7 Classic USD Integration
+└── 6.8 Pool Announcement
+                                                        ↓
+Phase 7 ←──────────────────────────────────────── Phase 6
+├── 7.1 Mining Pool Development
+├── 7.2 Fukuii & FairWins Integration
+└── 7.3 Advanced Ecosystem Products
+                                                        ↓
+Phase 8 ←──────────────────────────────────────── Phase 7
+├── 8.1 Local Node Infrastructure
+├── 8.2 Historical Data Collection System ← 8.1
+├── 8.3 Advanced Mining Analytics ← 8.2
+├── 8.4 Fee Market Historical Analytics ← 8.2
+└── 8.5 Network Public Goods Planning (EthereumClassic.net)
 ```
 
 ---

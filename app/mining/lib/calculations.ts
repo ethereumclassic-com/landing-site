@@ -1,18 +1,24 @@
 // Mining profitability calculations for Ethereum Classic
 // Based on ETChash algorithm
+// Network data sourced from Blockscout API: https://etc.blockscout.com/api/v2/stats
 
 import { networkStats } from '../data/mining'
 
-// Network constants - updated from WhatToMine reference data
+// Network constants - fallback values when live API unavailable
+// These are updated from Blockscout API data (Jan 2026)
+// For live calculations, use /api/network endpoint
 export const NETWORK_CONSTANTS = {
-  // Parse network hashrate from string (e.g., "185 TH/s" -> 185000000000000)
-  // For calculations, we use MH/s as base unit
-  networkHashrateMH: 185000000, // 185 TH/s = 185,000,000 MH/s
-  blockReward: 2.0, // ~2 ETC per block
-  blockTimeSeconds: 13.5, // ~13.5 seconds per block
-  blocksPerDay: 6400, // ~6,400 blocks per day
-  // Reference ETC price (for display, should be updated from API in future)
-  etcPriceUSD: 25.0,
+  // Network hashrate in MH/s (174 TH/s = 174,000,000 MH/s)
+  networkHashrateMH: 174000000,
+  // Average block reward including uncle rewards (~2.048 ETC typical)
+  // Base reward is 2.048 ETC, varies with uncle rewards
+  blockReward: 2.048,
+  // Average block time from Blockscout (~13 seconds)
+  blockTimeSeconds: 13.0,
+  // Calculated: 86400 / 13.0 ≈ 6646 blocks per day
+  blocksPerDay: 6646,
+  // Reference ETC price (fallback, should use live price from API)
+  etcPriceUSD: 12.75,
 }
 
 export interface MiningInput {

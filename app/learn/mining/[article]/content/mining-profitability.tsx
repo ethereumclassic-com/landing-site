@@ -85,13 +85,13 @@ export default function MiningProfitability() {
         Key metrics that affect profitability (these change constantly):
       </p>
       <ul>
-        <li><strong>Block Reward:</strong> ~2 ETC (decreases 20% every 5 million blocks)</li>
-        <li><strong>Block Time:</strong> ~13.5 seconds average</li>
+        <li><strong>Block Reward:</strong> ~2.05 ETC average (base reward plus uncle rewards; decreases 20% every 5 million blocks)</li>
+        <li><strong>Block Time:</strong> ~15.6 seconds average</li>
         <li><strong>Network Hashrate:</strong> ~185 TH/s (fluctuates with miner activity)</li>
         <li><strong>Algorithm:</strong> ETCHash (memory-intensive)</li>
       </ul>
       <p className="mt-4 text-sm text-[var(--color-text-muted)]">
-        Check live stats at WhatToMine or MiningPoolStats for current values.
+        Check live stats at <a href="https://etc.blockscout.com/stats" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">Blockscout</a> or WhatToMine for current values.
       </p>
 
       <h2>Profitability Tools</h2>

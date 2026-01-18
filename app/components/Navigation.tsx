@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { useState, useEffect, useRef } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useSearch, getTypeLabel, getTypeIcon, type SearchResult, type SearchResultType } from '@/hooks/useSearch'
 
 // Navigation structure with dropdowns
 const navItems = [
@@ -38,10 +39,10 @@ const navItems = [
     label: 'Buy',
     dropdown: [
       { href: '/buy', label: 'Buy ETC' },
-      { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/buy/exchanges', label: 'Exchanges' },
       { href: '/buy/instant', label: 'Instant Buy' },
       { href: '/buy/card', label: 'Buy with Card' },
+      { href: '/buy/atm', label: 'Find ATM' },
       { href: '/sell', label: 'Sell ETC' },
     ],
   },
@@ -85,6 +86,7 @@ const navItems = [
       { href: '/markets', label: 'Markets' },
       { href: '/price', label: 'ETC Price' },
       { href: '/exchanges', label: 'Exchanges Directory' },
+      { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/research', label: 'Research' },
       { href: '/tools', label: 'Tools' },
       { href: '/directory', label: 'Directory' },
@@ -135,26 +137,85 @@ interface SearchModalProps {
 
 function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef<HTMLInputElement>(null)
+  const resultsRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
+  const { query, setQuery, results, groupedResults, isSearching, totalResults, clearSearch } = useSearch(150)
+  const [selectedIndex, setSelectedIndex] = useState(-1)
 
+  // Focus input when modal opens
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus()
+      clearSearch()
+      setSelectedIndex(-1)
     }
-  }, [isOpen])
+  }, [isOpen, clearSearch])
 
+  // Handle keyboard navigation
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+
+      if (results.length === 0) return
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        setSelectedIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0))
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : results.length - 1))
+      } else if (e.key === 'Enter' && selectedIndex >= 0) {
+        e.preventDefault()
+        const result = results[selectedIndex]
+        if (result) {
+          router.push(result.url)
+          onClose()
+        }
+      }
     }
+
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape)
+      document.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
     }
     return () => {
-      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
     }
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, results, selectedIndex, router])
+
+  // Scroll selected item into view
+  useEffect(() => {
+    if (selectedIndex >= 0 && resultsRef.current) {
+      const selectedElement = resultsRef.current.querySelector(`[data-index="${selectedIndex}"]`)
+      selectedElement?.scrollIntoView({ block: 'nearest' })
+    }
+  }, [selectedIndex])
+
+  // Reset selection when results change
+  useEffect(() => {
+    setSelectedIndex(-1)
+  }, [results])
+
+  const handleResultClick = useCallback(
+    (result: SearchResult) => {
+      router.push(result.url)
+      onClose()
+    },
+    [router, onClose]
+  )
+
+  // Group results for display
+  const displayGroups = Object.entries(groupedResults).filter(([, items]) => items.length > 0) as [
+    SearchResultType,
+    SearchResult[],
+  ][]
+
+  // Track flat index for keyboard navigation
+  let flatIndex = -1
 
   return (
     <AnimatePresence>
@@ -173,11 +234,12 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-4 right-4 top-20 z-[70] mx-auto max-w-2xl rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 shadow-2xl"
+            className="fixed left-4 right-4 top-20 z-[70] mx-auto flex max-h-[70vh] max-w-2xl flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] shadow-2xl"
           >
-            <div className="relative">
+            {/* Search Input */}
+            <div className="relative shrink-0 p-4">
               <svg
-                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--color-text-muted)]"
+                className="absolute left-8 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--color-text-muted)]"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -192,36 +254,114 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
               <input
                 ref={inputRef}
                 type="search"
-                placeholder="Search EthereumClassic.com..."
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] py-4 pl-12 pr-4 text-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search pages, articles, apps, wallets..."
+                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] py-4 pl-12 pr-20 text-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
               />
-              <kbd className="absolute right-4 top-1/2 -translate-y-1/2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2 py-1 text-xs text-[var(--color-text-muted)]">
-                ESC
-              </kbd>
-            </div>
-            <div className="mt-6">
-              <p className="text-sm text-[var(--color-text-muted)]">
-                Search functionality coming soon. Quick links:
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {[
-                  { href: '/wallet', label: 'Wallet' },
-                  { href: '/buy', label: 'Buy ETC' },
-                  { href: '/apps', label: 'Apps' },
-                  { href: '/learn', label: 'Learn' },
-                  { href: '/mining', label: 'Mining' },
-                ].map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={onClose}
-                    className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              <div className="absolute right-8 top-1/2 flex -translate-y-1/2 items-center gap-2">
+                {isSearching && (
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--color-primary)] border-t-transparent" />
+                )}
+                <kbd className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2 py-1 text-xs text-[var(--color-text-muted)]">
+                  ESC
+                </kbd>
               </div>
             </div>
+
+            {/* Search Results */}
+            <div ref={resultsRef} className="overflow-y-auto px-4 pb-4">
+              {query.length >= 2 && results.length === 0 && !isSearching && (
+                <div className="py-8 text-center">
+                  <p className="text-[var(--color-text-muted)]">No results found for &quot;{query}&quot;</p>
+                  <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                    Try different keywords or browse quick links below
+                  </p>
+                </div>
+              )}
+
+              {displayGroups.length > 0 && (
+                <div className="space-y-4">
+                  {displayGroups.map(([type, items]) => (
+                    <div key={type}>
+                      <h3 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                        <span>{getTypeIcon(type)}</span>
+                        <span>{getTypeLabel(type)}</span>
+                        <span className="rounded-full bg-[var(--bg)] px-2 py-0.5 text-xs">
+                          {items.length}
+                        </span>
+                      </h3>
+                      <div className="space-y-1">
+                        {items.map((result) => {
+                          flatIndex++
+                          const currentIndex = flatIndex
+                          return (
+                            <button
+                              key={result.id}
+                              data-index={currentIndex}
+                              onClick={() => handleResultClick(result)}
+                              className={`w-full rounded-lg px-3 py-2 text-left transition ${
+                                selectedIndex === currentIndex
+                                  ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]'
+                                  : 'hover:bg-[var(--bg)]'
+                              }`}
+                            >
+                              <div className="font-medium text-[var(--color-text-primary)]">{result.title}</div>
+                              <div className="mt-0.5 line-clamp-1 text-sm text-[var(--color-text-muted)]">
+                                {result.description}
+                              </div>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Quick Links (shown when no search or empty) */}
+              {(query.length < 2 || (results.length === 0 && !isSearching)) && (
+                <div className="mt-2">
+                  <p className="mb-3 text-sm text-[var(--color-text-muted)]">Quick links:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { href: '/wallet', label: 'Wallet' },
+                      { href: '/buy', label: 'Buy ETC' },
+                      { href: '/apps', label: 'Apps' },
+                      { href: '/learn', label: 'Learn' },
+                      { href: '/mining', label: 'Mining' },
+                      { href: '/build', label: 'Build' },
+                      { href: '/research', label: 'Research' },
+                    ].map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={onClose}
+                        className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            {totalResults > 0 && (
+              <div className="shrink-0 border-t border-[var(--border)] px-4 py-2">
+                <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
+                  <span>{totalResults} results</span>
+                  <span>
+                    <kbd className="rounded border border-[var(--border)] px-1.5 py-0.5">↑</kbd>
+                    <kbd className="ml-1 rounded border border-[var(--border)] px-1.5 py-0.5">↓</kbd>
+                    <span className="ml-2">to navigate</span>
+                    <kbd className="ml-2 rounded border border-[var(--border)] px-1.5 py-0.5">↵</kbd>
+                    <span className="ml-1">to select</span>
+                  </span>
+                </div>
+              </div>
+            )}
           </motion.div>
         </>
       )}
@@ -244,7 +384,7 @@ function Dropdown({ items, isOpen, onClose }: DropdownProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}
           transition={{ duration: 0.15 }}
-          className="absolute left-0 top-full z-50 mt-1 min-w-[200px] rounded-xl border border-[var(--border)] bg-[var(--panel)] p-2 shadow-xl"
+          className="absolute left-0 top-full z-50 mt-1 min-w-[200px] rounded-xl border border-[var(--border)] bg-[var(--bg)] p-2 shadow-2xl backdrop-blur-xl"
           onMouseLeave={onClose}
         >
           {items.map((item) => (
@@ -252,7 +392,7 @@ function Dropdown({ items, isOpen, onClose }: DropdownProps) {
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className="block rounded-lg px-4 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:bg-white/5 hover:text-white"
+              className="block rounded-lg px-4 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:bg-white/10 hover:text-white"
             >
               {item.label}
             </Link>
@@ -309,7 +449,7 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--bg)]/90 backdrop-blur-md">
+      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--bg)]/95 backdrop-blur-lg">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
           {/* Logo */}
           <Link

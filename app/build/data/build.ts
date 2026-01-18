@@ -107,7 +107,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://etclabscore.github.io/core-geth/',
     github: 'https://github.com/etclabscore/core-geth',
     description:
-      'Official Ethereum Classic node client. Fork of go-ethereum with full ETC support and enhanced features.',
+      'Current primary production client for Ethereum Classic. Fork of go-ethereum maintained by ETC Cooperative. Expected to transition to Fukuii after the Olympia network upgrade.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
@@ -129,7 +129,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://www.hyperledger.org/projects/besu',
     github: 'https://github.com/hyperledger/besu',
     description:
-      'Enterprise-grade Ethereum client with ETC support. Designed for both public and private permissioned network use cases.',
+      'EVM testing and development client with ETC support. Suitable for development environments but not recommended for production mining nodes as upstream deprecated PoW support.',
     language: 'Java',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
@@ -142,7 +142,7 @@ export const nodeClients: NodeClient[] = [
     status: 'active',
     installCommand: 'docker pull hyperledger/besu:latest',
     configNotes:
-      'Use --network=classic for ETC mainnet, --network=mordor for testnet',
+      'Use --network=classic for ETC mainnet, --network=mordor for testnet. Development use recommended.',
   },
   {
     id: 'fukuii',
@@ -150,7 +150,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://github.com/chippr-robotics/fukuii',
     github: 'https://github.com/chippr-robotics/fukuii',
     description:
-      'High-performance Scala 3 implementation of the Ethereum Classic protocol. Continuation of the Mantis client with modern architecture.',
+      'The only native ETC client. Revived fork of the Mantis client (IOHK) with modern Scala 3 architecture. Currently in Alpha testing for the Olympia network upgrade (2026), after which it will become the primary production client.',
     language: 'Scala',
     platforms: ['Linux', 'macOS', 'Docker'],
     features: [
@@ -158,11 +158,11 @@ export const nodeClients: NodeClient[] = [
       'Built on Scala 3.3.4 LTS and JDK 21',
       'Interactive TUI and CLI utilities',
       'AI integration via MCP support',
-      'Comprehensive test suites',
+      'Native ETC-first design',
     ],
     status: 'active',
     installCommand: 'docker pull ghcr.io/chippr-robotics/fukuii:latest',
-    configNotes: 'Use network=etc for mainnet, network=mordor for testnet',
+    configNotes: 'Use network=etc for mainnet, network=mordor for testnet. Alpha testing on Gorgoroth Trials network.',
   },
 ]
 

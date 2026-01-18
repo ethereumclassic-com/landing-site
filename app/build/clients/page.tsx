@@ -402,8 +402,8 @@ export default function ClientsPage() {
           >
             <h2 className="text-2xl font-bold text-white md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
-              Start with Core-Geth for the best ETC experience, or choose Hyperledger Besu for
-              enterprise features.
+              Start with Core-Geth for production use, or try Fukuii to help test the next-generation
+              ETC native client.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a

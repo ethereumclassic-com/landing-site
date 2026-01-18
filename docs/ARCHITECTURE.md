@@ -118,6 +118,10 @@ ethereumclassic-com/
 │   ├── news/
 │   └── ...
 ├── docs/                         # Project documentation
+│   ├── ETC-KNOWLEDGE.md          # Authoritative ETC technical & historical info
+│   ├── MILESTONES.md             # Development phases
+│   ├── ARCHITECTURE.md           # This file
+│   └── ...
 ├── .claude/                      # AI agent instructions
 └── .github/                      # GitHub config
 ```
@@ -484,7 +488,7 @@ ETC ecosystem has significant scam app prevalence. All apps listed must be:
 **Trusted Apps (Current):**
 - ETCswap (architect-built)
 - Classic USD (architect-organized)
-- BlockScout (established infrastructure)
+- Blockscout (established infrastructure)
 
 New apps require explicit approval before listing.
 
@@ -541,7 +545,7 @@ async function getETCPrice(): Promise<PriceData> {
 
 ### Network Stats
 ```typescript
-// BlockScout or custom API
+// Blockscout or custom API
 async function getNetworkStats(): Promise<NetworkStats> {
   // Hashrate, difficulty, block time, etc.
 }

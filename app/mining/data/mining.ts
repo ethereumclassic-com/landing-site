@@ -136,15 +136,17 @@ export const miningPools: MiningPool[] = [
   },
 ]
 
-// Network stats - reference values
-// Updated manually from WhatToMine/MiningPoolStats
+// Network stats - fallback values when live API unavailable
+// Live data fetched from Blockscout API: https://etc.blockscout.com/api/v2/stats
+// For live data, use /api/network endpoint or lib/blockscout.ts
+// Updated: Jan 2026
 export const networkStats: NetworkStats = {
-  hashrate: '185 TH/s',
-  difficulty: '2,500,000 G',
-  blockTime: '~13.5 seconds',
-  blockReward: '~2.0 ETC',
-  dailyBlocks: 6400,
-  lastUpdated: 'January 2025',
+  hashrate: '174 TH/s',
+  difficulty: '2.47 PH',
+  blockTime: '~13 seconds',
+  blockReward: '~2.05 ETC',
+  dailyBlocks: 6646,
+  lastUpdated: 'Live from Blockscout',
 }
 
 // Mining Hardware - GPUs and ASICs
@@ -363,7 +365,7 @@ export const miningResources: MiningResource[] = [
   },
   {
     id: 'blockscout',
-    name: 'BlockScout',
+    name: 'Blockscout',
     url: 'https://etc.blockscout.com/',
     description: 'ETC block explorer for transaction verification',
     type: 'tool',

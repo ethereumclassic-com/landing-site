@@ -1,6 +1,5 @@
 /**
- * ethereumclassic.com v0.2 Phase 1
- * Multi-section consumer platform (Bitcoin.com model)
+ * EthereumClassic.com Homepage
  */
 
 import {
