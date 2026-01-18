@@ -713,12 +713,16 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 
 **Reference**: https://www.coinwarz.com/mining/ethereum%20classic/hardware
 
+**Clarification**: EthereumClassic.com will act as an affiliate for hardware manufacturers. Pages will include product links that may become affiliate links in Phase 7 if programs exist. Research and include relevant ETChash ASIC manufacturers (Bitmain, Innosilicon, iPollo, Jasminer) and GPU manufacturers (NVIDIA, AMD) with applicable mining hardware.
+
 **Deliverables**:
 - [ ] Hardware marketplace page structure for ETChash ASICs and GPUs
-- [ ] Product listings with specs, pricing, availability
+- [ ] Product listings with specs, pricing, availability, manufacturer links
 - [ ] Profitability rankings based on current network difficulty and ETC price
 - [ ] Hardware comparison tool (efficiency, ROI calculator per device)
-- [ ] Affiliate link placeholders (actual links added in Phase 7)
+- [ ] Direct manufacturer/retailer links (converted to affiliate links in Phase 7 if programs exist)
+- [ ] Research: Bitmain E9/E9 Pro, Innosilicon A10/A11, iPollo V1, Jasminer X4/X16
+- [ ] Research: NVIDIA RTX 30/40 series, AMD RX 6000/7000 series for GPU mining
 
 ### Milestone 6.6: Classic USD Documentation
 **Status**: Not Started
@@ -734,6 +738,8 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 **Dependencies**: Phase 5
 
 **Reference**: https://etc.2miners.com/, https://etc.f2pool.com/, https://k1pool.com/pool/etc
+
+**Clarification**: This is a NEW section at `/pool` for the EthereumClassic.com Mining Pool product. This will be a competitive mining pool service competing with F2Pool, 2Miners, and K1Pool for ETC hashrate. The existing `/mining/pools` comparison pages remain separate (they compare third-party pools).
 
 **Goal**: Build full mining pool UI with sample data, emulating existing pools. When pool infrastructure is ready (Phase 7), simply connect to real backend.
 
@@ -777,23 +783,46 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 **Status**: Not Started
 **Dependencies**: Phase 5
 
+**Clarification**: Full e-commerce store at `/store` following best practices for the codebase. Products include:
+1. **Mining Hardware** (affiliate links to manufacturers/retailers):
+   - ETChash ASICs (Bitmain, Innosilicon, iPollo, Jasminer)
+   - GPU hardware (NVIDIA, AMD)
+   - Mining accessories (PSUs, risers, frames, cooling)
+2. **Ethereum Classic Branded Merchandise** (via Printful.com dropshipping):
+   - Apparel: T-shirts, hoodies, hats
+   - Accessories: Stickers, mugs, phone cases
+   - Blockchain/computer nerd focused items
+
+Hardware uses affiliate links (configured in Phase 7). Merch uses Printful API integration (configured in Phase 7).
+
 **Deliverables**:
-- [ ] Store page layout (/store or /merch)
-- [ ] Product card components
-- [ ] Sample merchandise items (placeholder images, descriptions)
-- [ ] Category navigation (Apparel, Accessories, etc.)
-- [ ] "Coming Soon" or cart placeholder (actual checkout in Phase 7)
+- [ ] Store hub page (/store) with featured products and categories
+- [ ] Product listing pages (/store/hardware, /store/merch, /store/accessories)
+- [ ] Product detail pages (/store/product/[slug])
+- [ ] Product card components with pricing, images, specs
+- [ ] Shopping cart functionality (localStorage-based)
+- [ ] Checkout flow UI (actual payment integration in Phase 7)
+- [ ] Category navigation (Hardware, Merch, Accessories)
+- [ ] Sample products for all categories with placeholder images
+- [ ] Wishlist/favorites functionality
+- [ ] Product filtering and sorting
 
 ### Milestone 6.9: Historical Charts with Sample Data
 **Status**: Not Started
 **Dependencies**: Phase 5
 
+**Clarification**: Use a modern charting library (Recharts recommended for React/Next.js 2025 best practices) for interactive time-series visualizations. Sample data will demonstrate chart functionality until live node data is available in Phase 7.
+
 **Deliverables**:
+- [ ] Install and configure Recharts charting library
+- [ ] Reusable TimeSeriesChart component with responsive design
 - [ ] Chart components for hashrate/difficulty/fees over time
-- [ ] Sample/mock historical data for chart demonstration
+- [ ] Sample/mock historical data for chart demonstration (realistic ETC network values)
 - [ ] Time range selectors (1D, 1W, 1M, 1Y, ALL)
 - [ ] API endpoint structure for historical data (returns sample data)
 - [ ] "Data powered by local node" attribution with note about upcoming live data
+- [ ] Chart theming to match site design system (dark mode compatible)
+- [ ] Tooltip and legend components for data exploration
 
 ### Milestone 6.10: Referral Infrastructure
 **Status**: Not Started
@@ -810,74 +839,42 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 **Status**: Not Started
 **Dependencies**: Phase 5
 
-**Goal**: Build comprehensive ETC network monitoring dashboard for core contributors and stakeholders. Unified data hub for informed decision-making. Uses sample/mock data until local node infrastructure is ready.
+**Clarification**: This milestone creates STUB PAGES with basic scaffolding and "Coming Soon" notes for the public goods network monitoring tools. Full implementation moves to Phase 7 when live infrastructure is ready. Reference existing open-source tools like Blockscout for explorer patterns.
 
-**Reference**: https://ethernodes.org/, https://2miners.com/etc-network-hashrate, https://miningpoolstats.stream/ethereumclassic
+**Goal**: Create placeholder pages for comprehensive ETC network monitoring dashboard. These are public goods for the ETC community. Full functionality deferred to Phase 7 when node infrastructure is available.
 
-**Network Health Hub (/network or /network-health)**:
-- [ ] Dashboard overview with key health indicators
-- [ ] Status summary cards (network healthy/degraded/warning)
-- [ ] Quick links to detailed monitors
-- [ ] Last updated timestamp with data source attribution
+**Reference**: https://ethernodes.org/, https://2miners.com/etc-network-hashrate, https://miningpoolstats.stream/ethereumclassic, https://etc.blockscout.com
 
-**Block Explorer (/network/explorer)**:
-- [ ] Latest blocks table with real-time updates (sample data)
-- [ ] Block detail page (/network/explorer/block/[number])
-- [ ] Transaction detail page (/network/explorer/tx/[hash])
-- [ ] Address lookup (/network/explorer/address/[address])
-- [ ] Search functionality (block, tx, address)
+**Network Health Hub (/network)**:
+- [ ] Dashboard hub page with "Coming Soon" sections
+- [ ] Brief description of each planned feature
+- [ ] Links to external resources (Blockscout, MiningPoolStats) as interim solution
+- [ ] Last updated timestamp placeholder
 
-**Node Monitor (/network/nodes)**:
-- [ ] World map visualization of known node locations
-- [ ] Node count by country/region
-- [ ] Client version distribution (Core-Geth versions, Besu, Fukuii)
-- [ ] Node version health (% on latest vs outdated)
-- [ ] Historical node count chart
+**Stub Pages (basic layout + coming soon message)**:
+- [ ] /network/explorer - Block explorer stub (links to Blockscout for now)
+- [ ] /network/nodes - Node monitor stub (links to Ethernodes for now)
+- [ ] /network/security - Security monitor stub with brief explanation
+- [ ] /network/stats - Network statistics stub (links to MiningPoolStats for now)
+- [ ] /network/rpc - RPC endpoint status stub with manual endpoint list
 
-**Hashrate & Security (/network/security)**:
-- [ ] Network hashrate display (live + historical chart)
-- [ ] Security budget calculator (hashrate × electricity cost estimate)
-- [ ] 51% attack cost estimation
-- [ ] Hashrate centralization risk monitor:
-  - [ ] Top pools by hashrate percentage
-  - [ ] Nakamoto coefficient (pools needed for 51%)
-  - [ ] Warning indicators for dangerous concentration
-- [ ] Mining pool distribution pie chart
+**Minimal Sample Data**:
+- [ ] Basic sample data structure (/app/network/data/sample-network.ts)
+- [ ] Placeholder API structure (/api/network-health/* returning sample data)
 
-**Network Statistics (/network/stats)**:
-- [ ] Current difficulty and difficulty chart
-- [ ] Block time average and chart
-- [ ] Gas usage and gas price trends
-- [ ] Transaction throughput (TPS)
-- [ ] Active addresses (daily unique)
-- [ ] Supply metrics (circulating, inflation rate)
+**Components (basic versions)**:
+- [ ] HealthIndicator component (simple status badges)
+- [ ] ComingSoonCard component for feature placeholders
 
-**RPC Endpoint Status (/network/rpc)**:
-- [ ] Public RPC endpoint list with health status
-- [ ] Latency monitoring for each endpoint
-- [ ] Endpoint recommendation based on user location
-- [ ] "Add to MetaMask" buttons
-- [ ] Uptime history
-
-**Data Architecture**:
-- [ ] Sample network data file (/app/network/data/sample-network.ts)
-- [ ] Network API structure (/api/network-health/* returning sample data)
-- [ ] Mock node list with geographic distribution
-- [ ] Mock pool distribution data
-- [ ] Placeholder for real data connection points
-
-**Components**:
-- [ ] WorldMap component (node locations)
-- [ ] HealthIndicator component (status badges)
-- [ ] NetworkChart component (reusable time-series)
-- [ ] PoolDistributionChart component
-- [ ] NodeVersionChart component
+**Note**: Full implementation (world map, live charts, real-time data) moves to Phase 7.9 when node infrastructure is ready.
 
 ### Milestone 6.12: Automated Testing & Report Generation
 **Status**: Not Started
 **Dependencies**: 6.1-6.11
 
 **Scope**: FULL CODEBASE REVIEW - All code from Phase 1 through Phase 6. This is a comprehensive audit of the entire product developed by coding agents (Claude Code). Every file, component, page, and feature must be validated.
+
+**Clarification**: Claude will EXECUTE all automated tests, fix any issues discovered, and generate comprehensive reports. Any tests that require human intervention (e.g., visual inspection, real browser testing, manual accessibility checks) will be documented and deferred to Phase 7.10 for human completion.
 
 **Goal**: Run comprehensive automated tests on ALL features across the entire codebase. Validate best practices, coding standards, and development quality for all work produced by AI coding agents. Generate detailed reports documenting test results for due diligence trail.
 
@@ -1004,7 +1001,14 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 - [ ] Sign up for Binance referral program → add code to config
 - [ ] Sign up for Coinbase referral program → add code to config
 - [ ] Sign up for Kraken referral program → add code to config
-- [ ] Sign up for hardware affiliate programs (Amazon, Newegg, etc.) → add codes
+- [ ] Research and sign up for hardware manufacturer affiliate programs:
+  - [ ] Bitmain affiliate program (if available)
+  - [ ] Innosilicon affiliate program (if available)
+  - [ ] iPollo affiliate program (if available)
+  - [ ] Jasminer affiliate program (if available)
+  - [ ] Amazon Associates (for GPU/accessories)
+  - [ ] Newegg affiliate program
+- [ ] Update links in /lib/referrals.ts with affiliate codes (or keep as direct links if no program)
 - [ ] Test tracking is working
 
 ### Milestone 7.4: Merchandise Store Launch
@@ -1012,13 +1016,22 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 **Dependencies**: 6.8 (Store Shell)
 **Blocker**: Vendor selection and product creation requires human
 
-**What Claude Built** (Phase 6): Store page, product cards, sample items, category nav
+**What Claude Built** (Phase 6): Full e-commerce store shell with:
+- Store hub, category pages, product detail pages
+- Shopping cart (localStorage-based)
+- Checkout flow UI
+- Sample products for hardware, merch, accessories
+- Wishlist functionality
+
 **Human Must Do**:
-- [ ] Select drop shipping vendor (Printful, Printify, etc.)
-- [ ] Create actual product designs
-- [ ] Upload real product images
-- [ ] Configure payment integration (Stripe, etc.)
-- [ ] Enable checkout functionality
+- [ ] Create Printful.com account for merch dropshipping
+- [ ] Design ETC branded merchandise (shirts, hoodies, hats, stickers, mugs)
+- [ ] Upload designs to Printful and sync products
+- [ ] Configure Printful API integration for real product data
+- [ ] Set up Stripe payment integration
+- [ ] Enable real checkout flow
+- [ ] Update hardware products with real pricing/availability
+- [ ] Configure affiliate links for hardware products
 
 ### Milestone 7.5: Local Node Infrastructure
 **Status**: Not Started
