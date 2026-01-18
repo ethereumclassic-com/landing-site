@@ -489,12 +489,15 @@ Account: All pages
 - [x] Advanced profitability tools (already complete from Phase 4 - /mining/profitability, /mining/hardware)
 
 ### Milestone 5.3: CMS Integration
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] Headless CMS setup
-- [ ] News article management
-- [ ] Dynamic content updates
+- [x] MDX-based CMS setup (gray-matter for frontmatter parsing)
+- [x] Content library (/lib/content.ts with article parsing, filtering, related articles)
+- [x] Content editor page (/content-editor with form, MDX preview, download)
+- [x] Content directory structure (/content/news/ for MDX articles)
+- [x] Sample article template and documentation
 
 ### Milestone 5.4: API Layer
 **Dependencies**: Phase 4
@@ -731,18 +734,19 @@ Account: All pages
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
 | Phase 4 | 12 | 12 | 100% | (All Complete - 4.1 through 4.12)
-| Phase 5 | 8 | 2 | 25% | (5.1-5.2 Complete)
+| Phase 5 | 8 | 3 | 38% | (5.1-5.3 Complete)
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **53** | **36** | **68%** |
+| **Total** | **53** | **37** | **70%** |
 
 ### Current Focus
 
-**Just Completed**: Phase 5 Milestones 5.1-5.2
+**Just Completed**: Phase 5 Milestones 5.1-5.3
 - 5.1 User Accounts (auth system, dashboard, login/register, settings, watchlist, portfolio)
 - 5.2 Advanced Mining (ATM locator, Mining OS page)
+- 5.3 CMS Integration (MDX-based content system, content editor page)
 
-**Next Up**: Phase 5 - Remaining milestones (CMS, API, i18n, Content Review, Advanced Features, Final Testing)
+**Next Up**: Phase 5 - Remaining milestones (API, i18n, Content Review, Advanced Features, Final Testing)
 
 ---
 
