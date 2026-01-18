@@ -1,30 +1,30 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import {
-  walletReviews,
+  exchangeReviews,
   getReviewBySlug,
   getAllReviewSlugs,
   getVerdictLabel,
 } from '../../data/reviews'
-import { WalletReviewContent } from './WalletReviewContent'
+import { ExchangeReviewContent } from './ExchangeReviewContent'
 
 interface Props {
-  params: Promise<{ wallet: string }>
+  params: Promise<{ exchange: string }>
 }
 
 export async function generateStaticParams() {
   return getAllReviewSlugs().map((slug) => ({
-    wallet: slug,
+    exchange: slug,
   }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { wallet } = await params
-  const review = getReviewBySlug(wallet)
+  const { exchange } = await params
+  const review = getReviewBySlug(exchange)
 
   if (!review) {
     return {
-      title: 'Wallet Review Not Found | Ethereum Classic',
+      title: 'Exchange Review Not Found | Ethereum Classic',
     }
   }
 
@@ -38,19 +38,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function WalletReviewPage({ params }: Props) {
-  const { wallet } = await params
-  const review = getReviewBySlug(wallet)
+export default async function ExchangeReviewPage({ params }: Props) {
+  const { exchange } = await params
+  const review = getReviewBySlug(exchange)
 
   if (!review) {
     notFound()
   }
 
-  // Get related reviews (same verdict or top rated, excluding current)
-  const relatedReviews = walletReviews
+  // Get related reviews (same type or top rated, excluding current)
+  const relatedReviews = exchangeReviews
     .filter((r) => r.id !== review.id)
     .sort((a, b) => b.rating.overall - a.rating.overall)
     .slice(0, 3)
 
-  return <WalletReviewContent review={review} relatedReviews={relatedReviews} />
+  return <ExchangeReviewContent review={review} relatedReviews={relatedReviews} />
 }

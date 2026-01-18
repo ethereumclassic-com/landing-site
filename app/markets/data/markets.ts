@@ -82,15 +82,78 @@ export const priceSources: PriceSource[] = [
 
 // Available trading pairs
 export const marketPairs: MarketPair[] = [
+  // Stablecoins
   { id: 'etc-usd', base: 'ETC', quote: 'USD', displayName: 'ETC/USD', popular: true },
   { id: 'etc-usdt', base: 'ETC', quote: 'USDT', displayName: 'ETC/USDT', popular: true },
+  { id: 'etc-usdc', base: 'ETC', quote: 'USDC', displayName: 'ETC/USDC', popular: true },
+  { id: 'etc-busd', base: 'ETC', quote: 'BUSD', displayName: 'ETC/BUSD', popular: false },
+  { id: 'etc-dai', base: 'ETC', quote: 'DAI', displayName: 'ETC/DAI', popular: false },
+  // Crypto pairs
   { id: 'etc-btc', base: 'ETC', quote: 'BTC', displayName: 'ETC/BTC', popular: true },
   { id: 'etc-eth', base: 'ETC', quote: 'ETH', displayName: 'ETC/ETH', popular: true },
+  { id: 'etc-bnb', base: 'ETC', quote: 'BNB', displayName: 'ETC/BNB', popular: false },
+  // Fiat pairs
   { id: 'etc-eur', base: 'ETC', quote: 'EUR', displayName: 'ETC/EUR', popular: false },
   { id: 'etc-gbp', base: 'ETC', quote: 'GBP', displayName: 'ETC/GBP', popular: false },
   { id: 'etc-krw', base: 'ETC', quote: 'KRW', displayName: 'ETC/KRW', popular: false },
   { id: 'etc-jpy', base: 'ETC', quote: 'JPY', displayName: 'ETC/JPY', popular: false },
+  { id: 'etc-cad', base: 'ETC', quote: 'CAD', displayName: 'ETC/CAD', popular: false },
+  { id: 'etc-aud', base: 'ETC', quote: 'AUD', displayName: 'ETC/AUD', popular: false },
+  { id: 'etc-try', base: 'ETC', quote: 'TRY', displayName: 'ETC/TRY', popular: false },
+  { id: 'etc-brl', base: 'ETC', quote: 'BRL', displayName: 'ETC/BRL', popular: false },
 ]
+
+// Currency metadata for converter
+export interface CurrencyInfo {
+  code: string
+  name: string
+  symbol: string
+  type: 'fiat' | 'crypto' | 'stablecoin'
+  decimals: number
+}
+
+export const currencies: CurrencyInfo[] = [
+  // Crypto
+  { code: 'ETC', name: 'Ethereum Classic', symbol: 'ETC', type: 'crypto', decimals: 8 },
+  { code: 'BTC', name: 'Bitcoin', symbol: 'BTC', type: 'crypto', decimals: 8 },
+  { code: 'ETH', name: 'Ethereum', symbol: 'ETH', type: 'crypto', decimals: 8 },
+  { code: 'BNB', name: 'BNB', symbol: 'BNB', type: 'crypto', decimals: 8 },
+  // Stablecoins
+  { code: 'USDT', name: 'Tether', symbol: 'USDT', type: 'stablecoin', decimals: 2 },
+  { code: 'USDC', name: 'USD Coin', symbol: 'USDC', type: 'stablecoin', decimals: 2 },
+  { code: 'BUSD', name: 'Binance USD', symbol: 'BUSD', type: 'stablecoin', decimals: 2 },
+  { code: 'DAI', name: 'Dai', symbol: 'DAI', type: 'stablecoin', decimals: 2 },
+  // Fiat
+  { code: 'USD', name: 'US Dollar', symbol: '$', type: 'fiat', decimals: 2 },
+  { code: 'EUR', name: 'Euro', symbol: '\u20AC', type: 'fiat', decimals: 2 },
+  { code: 'GBP', name: 'British Pound', symbol: '\u00A3', type: 'fiat', decimals: 2 },
+  { code: 'JPY', name: 'Japanese Yen', symbol: '\u00A5', type: 'fiat', decimals: 0 },
+  { code: 'KRW', name: 'South Korean Won', symbol: '\u20A9', type: 'fiat', decimals: 0 },
+  { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', type: 'fiat', decimals: 2 },
+  { code: 'AUD', name: 'Australian Dollar', symbol: 'A$', type: 'fiat', decimals: 2 },
+  { code: 'TRY', name: 'Turkish Lira', symbol: '\u20BA', type: 'fiat', decimals: 2 },
+  { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', type: 'fiat', decimals: 2 },
+]
+
+// Sample exchange rates (in production, fetch from API)
+export const sampleRates: Record<string, number> = {
+  'ETC-USD': 18.42,
+  'ETC-EUR': 16.95,
+  'ETC-GBP': 14.52,
+  'ETC-JPY': 2765,
+  'ETC-KRW': 24150,
+  'ETC-CAD': 25.18,
+  'ETC-AUD': 28.35,
+  'ETC-TRY': 597.50,
+  'ETC-BRL': 92.10,
+  'ETC-BTC': 0.00018,
+  'ETC-ETH': 0.0056,
+  'ETC-BNB': 0.030,
+  'ETC-USDT': 18.42,
+  'ETC-USDC': 18.42,
+  'ETC-BUSD': 18.42,
+  'ETC-DAI': 18.42,
+}
 
 // Sample market stats (these would be fetched from API in production)
 export const sampleMarketStats: MarketStat[] = [
@@ -212,4 +275,51 @@ export function getSourcesByType(type: PriceSource['type']): PriceSource[] {
 
 export function getResourcesByType(type: MarketResource['type']): MarketResource[] {
   return marketResources.filter((resource) => resource.type === type)
+}
+
+export function getCurrencyByCode(code: string): CurrencyInfo | undefined {
+  return currencies.find((c) => c.code === code)
+}
+
+export function getCurrenciesByType(type: CurrencyInfo['type']): CurrencyInfo[] {
+  return currencies.filter((c) => c.type === type)
+}
+
+export function getRate(from: string, to: string): number | undefined {
+  // Direct rate
+  const directKey = `${from}-${to}`
+  if (sampleRates[directKey]) return sampleRates[directKey]
+
+  // Inverse rate
+  const inverseKey = `${to}-${from}`
+  if (sampleRates[inverseKey]) return 1 / sampleRates[inverseKey]
+
+  // Cross rate through USD
+  if (from !== 'USD' && to !== 'USD') {
+    const fromUsd = sampleRates[`${from}-USD`] || (sampleRates[`USD-${from}`] ? 1 / sampleRates[`USD-${from}`] : undefined)
+    const toUsd = sampleRates[`${to}-USD`] || (sampleRates[`USD-${to}`] ? 1 / sampleRates[`USD-${to}`] : undefined)
+    if (fromUsd && toUsd) return fromUsd / toUsd
+  }
+
+  // ETC cross rate
+  if (from !== 'ETC' && to !== 'ETC') {
+    const fromEtc = getRate(from, 'ETC')
+    const toEtc = getRate('ETC', to)
+    if (fromEtc && toEtc) return fromEtc * toEtc
+  }
+
+  return undefined
+}
+
+export function formatCurrency(amount: number, currency: CurrencyInfo): string {
+  const absAmount = Math.abs(amount)
+  const formatted = absAmount.toLocaleString('en-US', {
+    minimumFractionDigits: currency.decimals,
+    maximumFractionDigits: currency.decimals,
+  })
+
+  if (currency.type === 'fiat') {
+    return `${currency.symbol}${formatted}`
+  }
+  return `${formatted} ${currency.symbol}`
 }

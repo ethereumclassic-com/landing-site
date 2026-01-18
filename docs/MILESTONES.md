@@ -327,119 +327,139 @@ Account: All pages
 **Goal**: Build all P2 pages and expand content.
 
 ### Milestone 4.1: Wallet Reviews
+**Status**: Complete
 **Dependencies**: 3.1
 
 **Deliverables**:
-- [ ] Wallet reviews listing
-- [ ] Individual wallet review pages
-- [ ] Review template
-- [ ] Rating system
+- [x] Wallet reviews listing (/wallet/reviews with filtering, sorting, search)
+- [x] Individual wallet review pages (/wallet/reviews/[wallet] with 10 in-depth reviews)
+- [x] Review template (WalletReviewContent component with full review layout)
+- [x] Rating system (5-star ratings with breakdown: security, usability, features, support)
 
-### Milestone 4.2: Exchange Reviews
+### Milestone 4.2: Exchange Reviews ✅
 **Dependencies**: 3.9
 
 **Deliverables**:
-- [ ] Exchange reviews listing
-- [ ] Individual exchange review pages
-- [ ] Review template
-- [ ] Feature comparison tool
+- [x] Exchange reviews listing (/buy/reviews with search, filter by type/verdict, sort by rating/name/fees)
+- [x] Individual exchange review pages (/buy/reviews/[exchange] with 10 in-depth reviews)
+- [x] Review template (ExchangeReviewContent component with full review layout)
+- [x] Rating system (5-star ratings with breakdown: security, fees, liquidity, UX, support)
 
 ### Milestone 4.3: Buy/Sell Expansion
+**Status**: Complete
 **Dependencies**: 3.2
 
 **Deliverables**:
-- [ ] Instant buy options page
-- [ ] P2P trading page
-- [ ] Buy with card guide
-- [ ] Buy with bank guide
-- [ ] Sell hub and pages
+- [x] Instant buy options page (/buy/instant)
+- [x] P2P trading page (/buy/p2p)
+- [x] Buy with card guide (/buy/card)
+- [x] Buy with bank guide (/buy/bank)
+- [x] Sell hub and pages (/sell, /sell/exchanges)
+- [x] Native on-ramp path via Brale/ClassicUSD (added to /buy)
+- [x] Native off-ramp path via Brale/ClassicUSD (added to /sell)
+- [x] Ecosystem payment products (Rain Cards, 1Konto, Coinflow)
+- [x] New Payments category in Apps directory (/apps/payments)
 
 ### Milestone 4.4: Learn Full Expansion
+**Status**: Complete
 **Dependencies**: 3.4
 
 **Deliverables**:
-- [ ] All category landing pages
-- [ ] Trading guides
-- [ ] DeFi guides
-- [ ] Security guides
-- [ ] 30+ total articles
-- [ ] Glossary page
+- [x] All category landing pages (Trading, DeFi, Security, Staking)
+- [x] Trading guides (category page with trading features, exchange info)
+- [x] DeFi guides (category page with protocol info, safety notices)
+- [x] Security guides (category page with security tips, hardware wallet CTA)
+- [x] 30+ total articles (35 articles in articles.ts)
+- [x] Glossary page (60+ terms across 6 categories with search and filtering)
 
-### Milestone 4.5: o Full Implementation
+### Milestone 4.5: News Full Implementation
+**Status**: Complete
 **Dependencies**: 3.5
 
 **Deliverables**:
-- [ ] Individual article pages
-- [ ] Category pages
-- [ ] Tag filtering
-- [ ] Author attribution
-- [ ] Related content
+- [x] Individual article pages (15 articles with full markdown content)
+- [x] Category pages (4 categories: Updates, Security, Ecosystem, Community)
+- [x] Tag filtering (tag pages with article lists)
+- [x] Author attribution (author profiles with roles and Twitter links)
+- [x] Related content (smart algorithm: same category, matching tags, recent fallback)
 
 ### Milestone 4.6: Markets Expansion
+**Status**: Complete
 **Dependencies**: 3.6
 
 **Deliverables**:
-- [ ] Additional price pairs
-- [ ] Price converter tool
-- [ ] Investment calculator
+- [x] Additional price pairs (16 pairs: USD, USDT, USDC, BUSD, DAI, BTC, ETH, BNB, EUR, GBP, KRW, JPY, CAD, AUD, TRY, BRL)
+- [x] Price converter tool (/markets/converter - 17 currencies with real-time conversion)
+- [x] Investment calculator (/markets/calculator - ROI projections, price scenarios, DCA tables)
 
 ### Milestone 4.7: Mining Expansion
+**Status**: Complete
 **Dependencies**: 3.7
 
 **Reference**: https://whattomine.com/coins/162-etc-etchash (calculator, network stats, ASIC/GPU tables)
 
 **Deliverables**:
-- [ ] Individual pool pages
-- [ ] Hardware guide with ASIC/GPU profitability tables
-- [ ] Software guide
-- [ ] Profitability calculator (hashrate, power, electricity inputs)
-- [ ] Network stats page (hashrate tracker, difficulty, block reward)
+- [x] Individual pool pages (/mining/pools/[pool] - 6 pools with detailed info, server addresses, payout schemes)
+- [x] Hardware guide with ASIC/GPU profitability tables
+- [x] Software guide (/mining/software - 4 miners with comparison table, config examples, optimization tips)
+- [x] Profitability calculator (hashrate, power, electricity inputs)
+- [x] Network stats page (hashrate tracker, difficulty, block reward)
 
 ### Milestone 4.8: Build Expansion
+**Status**: Complete
 **Dependencies**: 3.8
 
 **Deliverables**:
-- [ ] Tools directory
-- [ ] Individual client pages
-- [ ] Network info page
-- [ ] Testnet faucets page
+- [x] Tools directory (/build/tools - 11 tools across 4 categories with config examples)
+- [x] Individual client pages (/build/clients/[client] - Core-Geth, Besu, Fukuii with install/config guides)
+- [x] Network info page (/build/networks - Chain IDs, RPC endpoints, wallet config, Chainlist links)
+- [x] Testnet faucets page (/build/faucets - 2 faucets with METC info, how-to guide, troubleshooting)
 
 ### Milestone 4.9: Research Section
+**Status**: Complete
 **Dependencies**: Phase 1
 
 **Deliverables**:
-- [ ] Research hub page
-- [ ] Reports listing
-- [ ] Network analysis page
-- [ ] Report template
+- [x] Research hub page (/research with hero, report categories, featured reports, research areas)
+- [x] Reports listing (Report cards with types, topics, key findings)
+- [x] Network analysis page (/research/network with metrics, charts, analysis sections)
+- [x] Report template (ReportCard component with category styling)
 
 ### Milestone 4.10: Tools Section
+**Status**: Complete
 **Dependencies**: Phase 1
 
 **Deliverables**:
-- [ ] Tools hub page
-- [ ] Price converter
-- [ ] Investment calculator
-- [ ] Gas tracker (basic)
-- [ ] Explorer links
+- [x] Tools hub page (/tools with hero, tool categories, featured tools, quick access cards)
+- [x] Price converter (/tools/converter with multi-currency conversion, live calculations)
+- [x] Investment calculator (/tools/calculator with ROI projections, price scenarios)
+- [x] Gas tracker (/tools/gas with gas tiers, transaction cost calculator, optimization tips)
+- [x] Block explorer page (/tools/explorer with mainnet/Mordor explorers, features, quick links)
+- [x] Contract verifier page (/tools/verify with verification methods, steps, requirements)
 
 ### Milestone 4.11: Apps Expansion
+**Status**: Complete
 **Dependencies**: 3.3
 
 **Deliverables**:
-- [ ] NFT category
-- [ ] Games category
-- [ ] Tools category
-- [ ] Submit app page
-- [ ] All individual app pages
+- [x] NFT category (/apps/nft with marketplaces, collections, creator tools, "Why NFTs on ETC")
+- [x] Games category (/apps/games with play-to-earn, casino, predictions, provably fair info)
+- [x] Tools category (ClearPath, GasWatch, Contract Wizard apps added)
+- [x] Submit app page (already existed)
+- [x] All individual app pages (dynamic [app] route with 22 apps)
+- [x] Add FairWins (Alpha status) - Prediction Market with offline CLOB matching
+- [x] Add ClearPath (Coming Soon) - Futarchy Prediction markets for Olympia DAO
+- [x] Add TokenMint (Coming Soon) - Enterprise token management app
+- [x] Additional apps: ClassicPunks, ETC Art Gallery, CryptoQuest ETC, ETC Lottery, ChainBet
 
 ### Milestone 4.12: Community Section
+**Status**: Complete
 **Dependencies**: Phase 1
 
 **Deliverables**:
-- [ ] Community hub page
-- [ ] Social media links
-- [ ] Events page (basic)
+- [x] Community hub page (/community with stats, social channels, ways to contribute, principles)
+- [x] Social media links (/community/social with official channels, regional communities, guidelines)
+- [x] Events page (/community/events with event types, recurring events, past events, host CTA)
 
 ---
 
@@ -494,6 +514,25 @@ Account: All pages
 **Dependencies**: Phase 4
 
 **Deliverables**:
+
+**Public-Facing Copy Audit:**
+- [ ] Remove internal/technical language from all user-visible text (see instructions.md)
+- [ ] Fix homepage ProductSuite section - remove "Product Suite", "Vertically integrated", "same architect"
+- [ ] Audit all section headers and taglines for consumer-friendly language
+- [ ] Verify no development jargon (milestone numbers, phase references, etc.) appears in UI
+
+**ETCswap Product Separation:**
+- [ ] Display ETCswap V2, ETCswap V3, ETCswap Launchpad as separate products in Apps/DeFi sections
+- [ ] Update homepage ProductSuite to show separate ETCswap products
+- [ ] Update any combined "ETCswap" listings across the site
+
+**Olympia DAO Repositioning:**
+- [ ] Position Olympia DAO as Core Infrastructure (alongside Fukuii, Core-Geth, Blockscout, Rivet)
+- [ ] Remove from DeFi/Product Suite sections
+- [ ] Update status to "In Development" (not Alpha)
+- [ ] Remove any "Coming Soon" or "Alpha" badges
+
+**Content Quality:**
 - [ ] Deep content review of all Learn articles
 - [ ] Article formatting and prose styling improvements
 - [ ] Content accuracy verification (technical details, links)
@@ -501,6 +540,12 @@ Account: All pages
 - [ ] Add remaining article content (currently placeholder)
 - [ ] SEO optimization for article pages
 - [ ] Image/diagram additions where appropriate
+
+**Data Accuracy:**
+- [ ] Sanity check metrics/numbers across the website (Block rewards showing inconsistent values like "@ ETC" vs "2.56 ETC")
+- [ ] Create list of BlockScout API endpoints for live metrics
+- [ ] Populate accurate mining pool information with live data endpoints
+- [ ] Network hashrate information from live sources
 
 ### Milestone 5.7: Advanced Features
 **Dependencies**: Phase 4
@@ -513,6 +558,165 @@ Account: All pages
 - [ ] Partner directory
 - [ ] Grants/funding page
 
+### Milestone 5.8: Final Testing & QA
+**Dependencies**: Phase 4
+
+**Deliverables**:
+
+**Manual Review:**
+- [ ] Review all new pages for content accuracy and completeness
+- [ ] Verify all internal links work correctly
+- [ ] Check external links open in new tabs
+- [ ] Validate form functionality where applicable
+
+**Mobile Responsiveness:**
+- [ ] Test at 375px (mobile phone)
+- [ ] Test at 768px (tablet)
+- [ ] Test at 1024px (desktop)
+- [ ] Test at 1440px (large desktop)
+- [ ] Verify navigation hamburger menu works on mobile
+- [ ] Check touch targets are adequate size (44px minimum)
+
+**Cross-Browser Testing:**
+- [ ] Chrome (latest)
+- [ ] Firefox (latest)
+- [ ] Safari (latest)
+- [ ] Edge (latest)
+
+**Performance:**
+- [ ] Lighthouse performance audit (target 90+)
+- [ ] Check for layout shifts (CLS)
+- [ ] Verify images are optimized
+- [ ] Test page load times (<3s target)
+
+**Accessibility:**
+- [ ] Keyboard navigation works
+- [ ] Focus states visible
+- [ ] Color contrast meets WCAG AA
+- [ ] Alt text on images
+- [ ] Proper heading hierarchy
+
+---
+
+## Phase 6: Platform & Revenue (P4)
+
+**Goal**: Build revenue streams, improve UX, and establish platform presence.
+
+### Milestone 6.1: UI/UX Fixes
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Fix mobile navigation - Move "Launch App" CTA to top (currently hidden by Safari iOS URL bar)
+- [ ] Fix "Launch App" button color - adjust green to better match website theme
+- [ ] General mobile UX audit and fixes
+
+### Milestone 6.2: SEO & Discovery Optimization
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Research 2025 SEO best practices for LLM/AI agent summaries
+- [ ] Implement XML content structure for LLM search engines
+- [ ] Rich metadata implementation (OG images, Twitter cards, favicons)
+- [ ] Structured data markup (JSON-LD)
+- [ ] Build RSS feed for news following best practices
+- [ ] Backfill relevant content from ethereumclassic.org/news (polish formatting issues from .org feed)
+- [ ] Position site as authoritative news source for aggregation websites
+
+### Milestone 6.3: Social Media Presence
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Create EthereumClassic.com social accounts (separate from ETC open source project socials)
+- [ ] Automate content generation flows from website to social outlets
+- [ ] Research 2025 best practices for social automation
+- [ ] Social sharing optimization
+
+### Milestone 6.4: Revenue Streams - Referrals
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Review centralized exchanges for referral programs
+- [ ] Create list of exchanges with referral programs
+- [ ] Sign up for exchange referral programs
+- [ ] Embed referral links throughout website (Buy/Exchanges pages)
+- [ ] Track referral performance
+
+### Milestone 6.5: Merchandise Store
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Set up drop shipping service integration
+- [ ] Design ETC merchandise (shirts, hats, hoodies, socks)
+- [ ] Build store page/section
+- [ ] Product photography and descriptions
+- [ ] Checkout/payment integration
+
+### Milestone 6.6: Mining Hardware Marketplace
+**Dependencies**: 4.7
+
+**Deliverables**:
+- [ ] Hardware marketplace/store section for ETChash ASICs and GPUs
+- [ ] Research hardware retailers with referral/affiliate programs
+- [ ] Embed affiliate links to hardware stores
+- [ ] Product listings with specs, pricing, availability
+- [ ] Price comparison features
+
+### Milestone 6.7: Classic USD Integration
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Position Classic USD as primary fiat on-ramp for ETC
+- [ ] Document USD → USC stablecoin → ETCswap DEX (WETC/USC) flow
+- [ ] USDC/USDP to USC converter/bridge documentation (may live in Classic OS)
+- [ ] Funnel integration from ethereumclassic.com to Classic OS for on-ramp
+
+### Milestone 6.8: EthereumClassic.com Pool Announcement
+**Dependencies**: 4.7
+
+**Deliverables**:
+- [ ] "Coming Soon" announcement for EthereumClassic.com Pool
+- [ ] Feature pool in mining sections of website
+- [ ] Pool landing page with waitlist/notification signup
+- [ ] Integration documentation with Classic OS and Fukuii client
+
+---
+
+## Phase 7: Mining Pool & Advanced Products (P5)
+
+**Goal**: Launch EthereumClassic.com mining pool and integrate advanced ecosystem products.
+
+### Milestone 7.1: Mining Pool Development
+**Dependencies**: Phase 6
+
+**Deliverables**:
+- [ ] EthereumClassic.com mining pool infrastructure
+- [ ] Pool dashboard and statistics
+- [ ] Miner registration and management
+- [ ] Payout system
+- [ ] Pool guides and documentation
+- [ ] Classic OS integration
+- [ ] Fukuii client integration (recommended client)
+
+### Milestone 7.2: Fukuii & FairWins Integration
+**Dependencies**: 7.1
+
+**Reference**: https://github.com/chippr-robotics/prediction-dao-research
+
+**Deliverables**:
+- [ ] Fukuii client promotion and guides
+- [ ] FairWins Prediction Market integration
+- [ ] Offline CLOB matching fees documentation (rewards for Fukuii client runners)
+- [ ] Full production launch of FairWins (from Alpha)
+
+### Milestone 7.3: Advanced Ecosystem Products
+**Dependencies**: Phase 6
+
+**Deliverables**:
+- [ ] ClearPath (Futarchy Prediction Markets for Olympia DAO) - full launch
+- [ ] TokenMint (Enterprise Token Management) - full launch
+- [ ] Ecosystem product integration guides
+- [ ] Cross-product documentation
+
 ---
 
 ## Milestone Tracking
@@ -524,15 +728,21 @@ Account: All pages
 | Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 0 | 0% |
-| Phase 5 | 7 | 0 | 0% |
-| **Total** | **41** | **22** | **54%** |
+| Phase 4 | 12 | 12 | 100% | (All Complete - 4.1 through 4.12)
+| Phase 5 | 8 | 0 | 0% | (includes 5.8 Final Testing & QA)
+| Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
+| Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
+| **Total** | **53** | **34** | **64%** |
 
 ### Current Focus
 
-**Active Milestone**: Phase 4 - Content Expansion
+**Just Completed**: Phase 4 - All Content Expansion milestones (4.1-4.12)
+- 4.9 Research Section (hub, reports, network analysis)
+- 4.10 Tools Section (hub, converter, calculator, gas, explorer, verify)
+- 4.11 Apps Expansion (NFT, Games, 10 new apps)
+- 4.12 Community Section (hub, social, events)
 
-**Next Up**: 4.1 - Wallet Reviews
+**Next Up**: Phase 5 - Advanced Features (User Accounts, CMS, API, i18n)
 
 ---
 

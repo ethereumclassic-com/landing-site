@@ -118,6 +118,30 @@ export default function ProductSuite() {
       link: '#',
       badge: 'Governance',
     },
+    {
+      name: 'Rain Cards',
+      description: 'Spend ETC & USC at any PoS terminal',
+      features: [
+        'On-chain wallet funded',
+        'Debit card spending',
+        'Instant conversion',
+        'Global acceptance',
+      ],
+      link: 'https://rain.xyz',
+      badge: 'Payments',
+    },
+    {
+      name: '1Konto',
+      description: 'OTC desk for institutional ClassicUSD liquidity',
+      features: [
+        'Large volume trades',
+        'Personalized service',
+        'Competitive rates',
+        'USD settlement',
+      ],
+      link: 'https://1konto.com',
+      badge: 'Institutional',
+    },
   ]
 
   return (
@@ -134,14 +158,14 @@ export default function ProductSuite() {
             Ecosystem
           </span>
           <h2 className="mt-4 text-3xl font-bold text-white md:text-4xl">
-            Product Suite
+            ETC Ecosystem
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
-            Vertically integrated products built by the same architect, designed to work together
+            Products designed to work together - trade, spend, and manage your Ethereum Classic
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product, index) => (
             <ProductFeatureCard key={product.name} {...product} index={index} />
           ))}

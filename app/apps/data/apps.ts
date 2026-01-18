@@ -3,7 +3,7 @@ export interface App {
   slug: string
   description: string
   longDescription?: string
-  category: 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools'
+  category: 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools' | 'Payments' | 'NFT' | 'Games'
   link: string
   featured?: boolean
   tags?: string[]
@@ -110,12 +110,11 @@ export const apps: App[] = [
   {
     name: 'Olympia DAO',
     slug: 'olympia-dao',
-    description: 'Governance for the ETC ecosystem. Proposals, voting, and treasury management.',
+    description: 'Governance infrastructure for the ETC ecosystem. Proposals, voting, and treasury management.',
     longDescription: 'Olympia DAO is the decentralized governance framework for the Ethereum Classic ecosystem. Token holders can create proposals, vote on key decisions, and participate in treasury management. Olympia DAO ensures the community has a voice in the future direction of ETC.',
-    category: 'Governance',
+    category: 'Infrastructure',
     link: 'https://olympiadao.org/',
-    featured: true,
-    tags: ['DAO', 'Voting', 'Treasury'],
+    tags: ['DAO', 'Voting', 'Treasury', 'Governance'],
     features: [
       'On-chain voting',
       'Proposal creation',
@@ -127,7 +126,7 @@ export const apps: App[] = [
     stats: [
       { label: 'Type', value: 'DAO' },
       { label: 'Voting', value: 'On-chain' },
-      { label: 'Status', value: 'Alpha' },
+      { label: 'Status', value: 'In Development' },
     ],
   },
 
@@ -286,6 +285,326 @@ export const apps: App[] = [
       'Community maintained',
     ],
   },
+
+  // Payments & Financial Infrastructure
+  {
+    name: 'Brale',
+    slug: 'brale',
+    description: 'Fiat on/off ramp for ClassicUSD (USC). ACH bank transfers to purchase or redeem stablecoins.',
+    longDescription: 'Brale is the issuer and redemption platform for ClassicUSD (USC). Connect your bank account to purchase USC via ACH transfer, or redeem USC for USD directly to your bank. Brale provides the critical fiat bridge for the ETC ecosystem, enabling users to move between traditional finance and on-chain assets without centralized exchanges.',
+    category: 'Payments',
+    link: 'https://brale.xyz',
+    featured: true,
+    tags: ['Fiat', 'On-Ramp', 'Off-Ramp', 'ACH', 'Stablecoin'],
+    features: [
+      'ACH bank transfers',
+      'USD to USC conversion',
+      'USC to USD redemption',
+      'No CEX required',
+      'Direct bank connection',
+      'USC issuer',
+    ],
+    stats: [
+      { label: 'Type', value: 'Fiat Bridge' },
+      { label: 'Method', value: 'ACH' },
+      { label: 'Asset', value: 'USC' },
+    ],
+  },
+  {
+    name: 'Rain Cards',
+    slug: 'rain-cards',
+    description: 'Spend ETC and USC at any point-of-sale terminal with an on-chain wallet-funded debit card.',
+    longDescription: 'Rain Cards lets you spend your ETC or ClassicUSD holdings directly at any merchant that accepts debit cards. Your card is funded from your on-chain wallet, and Rain handles the conversion at checkout. No need to sell to an exchange first - spend your crypto wherever cards are accepted.',
+    category: 'Payments',
+    link: 'https://rain.xyz',
+    featured: true,
+    tags: ['Debit Card', 'Spending', 'Payments', 'POS'],
+    features: [
+      'Wallet-funded card',
+      'Instant conversion',
+      'Global acceptance',
+      'ETC & USC support',
+      'No pre-selling required',
+      'Mobile app',
+    ],
+    stats: [
+      { label: 'Type', value: 'Debit Card' },
+      { label: 'Assets', value: 'ETC, USC' },
+      { label: 'Acceptance', value: 'Global' },
+    ],
+  },
+  {
+    name: '1Konto',
+    slug: '1konto',
+    description: 'OTC desk for ClassicUSD. Institutional-grade liquidity for large ETC transactions.',
+    longDescription: '1Konto provides over-the-counter (OTC) trading services for ClassicUSD, enabling institutional investors and high-volume traders to move large amounts of liquidity on and off Ethereum Classic. Get personalized service, competitive rates, and direct USD settlement for significant transactions.',
+    category: 'Payments',
+    link: 'https://1konto.com',
+    tags: ['OTC', 'Institutional', 'Liquidity', 'Trading'],
+    features: [
+      'Large volume trades',
+      'Personalized service',
+      'Competitive rates',
+      'USD settlement',
+      'Institutional grade',
+      'ClassicUSD focus',
+    ],
+    stats: [
+      { label: 'Type', value: 'OTC Desk' },
+      { label: 'Target', value: 'Institutional' },
+      { label: 'Asset', value: 'USC' },
+    ],
+  },
+  {
+    name: 'Coinflow',
+    slug: 'coinflow',
+    description: 'Global payment infrastructure for businesses to accept USC payments and settle instantly.',
+    longDescription: 'Coinflow provides payment infrastructure that empowers businesses to accept ClassicUSD (USC) payments, settle funds, and expand globally. Instant, secure, and frictionless payment processing for merchants who want to tap into the ETC ecosystem.',
+    category: 'Payments',
+    link: 'https://coinflow.cash',
+    tags: ['Payments', 'Merchant', 'Business', 'Settlement'],
+    features: [
+      'Accept USC payments',
+      'Instant settlement',
+      'Global reach',
+      'Merchant tools',
+      'Business integration',
+      'Secure processing',
+    ],
+    stats: [
+      { label: 'Type', value: 'Payment Processor' },
+      { label: 'Target', value: 'Business' },
+      { label: 'Asset', value: 'USC' },
+    ],
+  },
+
+  // NFT & Collectibles
+  {
+    name: 'ClassicPunks',
+    slug: 'classic-punks',
+    description: 'The first CryptoPunks-style NFT collection native to Ethereum Classic. 10,000 unique pixel art characters.',
+    longDescription: 'ClassicPunks is the original generative NFT collection on Ethereum Classic, featuring 10,000 unique pixel art characters. Each punk has randomly generated attributes and traits, making them collectible digital art pieces on the immutable ETC blockchain.',
+    category: 'NFT',
+    link: 'https://classicpunks.io',
+    featured: true,
+    tags: ['NFT', 'PFP', 'Collectibles', 'Art'],
+    features: [
+      '10,000 unique punks',
+      'On-chain metadata',
+      'Generative art',
+      'Community owned',
+      'Tradeable on DEX',
+      'Immutable on ETC',
+    ],
+    stats: [
+      { label: 'Collection', value: '10,000' },
+      { label: 'Type', value: 'PFP' },
+      { label: 'Chain', value: 'ETC' },
+    ],
+  },
+  {
+    name: 'ETC Art Gallery',
+    slug: 'etc-art-gallery',
+    description: 'Curated NFT marketplace for digital art on Ethereum Classic. Discover artists and unique creations.',
+    longDescription: 'ETC Art Gallery is a curated marketplace for digital artists to mint, showcase, and sell their NFT creations on Ethereum Classic. The platform emphasizes quality over quantity, featuring hand-picked artists and unique digital artwork.',
+    category: 'NFT',
+    link: 'https://etcartgallery.com',
+    tags: ['NFT', 'Marketplace', 'Art', 'Artists'],
+    features: [
+      'Curated artists',
+      'Low minting fees',
+      'Artist royalties',
+      'Collection support',
+      'Secondary sales',
+      'Community curation',
+    ],
+    stats: [
+      { label: 'Type', value: 'Marketplace' },
+      { label: 'Focus', value: 'Art' },
+      { label: 'Chain', value: 'ETC' },
+    ],
+  },
+  {
+    name: 'TokenMint',
+    slug: 'token-mint',
+    description: 'No-code NFT minting platform. Create ERC-721 and ERC-1155 collections without writing code.',
+    longDescription: 'TokenMint enables anyone to create NFT collections on Ethereum Classic without writing a single line of code. Launch ERC-721 single-edition NFTs or ERC-1155 multi-edition collections with customizable metadata, royalties, and mint settings.',
+    category: 'NFT',
+    link: 'https://tokenmint.etc',
+    tags: ['NFT', 'Minting', 'No-Code', 'Creator Tools'],
+    features: [
+      'No-code minting',
+      'ERC-721 support',
+      'ERC-1155 support',
+      'Custom metadata',
+      'Royalty settings',
+      'IPFS integration',
+    ],
+    stats: [
+      { label: 'Type', value: 'Minting Tool' },
+      { label: 'Standards', value: '721/1155' },
+      { label: 'Code', value: 'None' },
+    ],
+  },
+
+  // Games
+  {
+    name: 'FairWins Casino',
+    slug: 'fairwins',
+    description: 'Provably fair on-chain casino with classic games. Verifiable randomness powered by Chainlink VRF.',
+    longDescription: 'FairWins Casino offers provably fair gambling games on Ethereum Classic. Every game outcome uses Chainlink VRF for verifiable randomness, ensuring neither the house nor players can manipulate results. Play classic casino games with complete transparency.',
+    category: 'Games',
+    link: 'https://fairwins.etc',
+    featured: true,
+    tags: ['Casino', 'Gaming', 'Provably Fair', 'VRF'],
+    features: [
+      'Provably fair',
+      'Chainlink VRF',
+      'Classic games',
+      'Instant payouts',
+      'On-chain verification',
+      'Low house edge',
+    ],
+    stats: [
+      { label: 'Type', value: 'Casino' },
+      { label: 'RNG', value: 'VRF' },
+      { label: 'Fairness', value: 'Verifiable' },
+    ],
+  },
+  {
+    name: 'CryptoQuest ETC',
+    slug: 'cryptoquest-etc',
+    description: 'Play-to-earn RPG adventure game. Collect NFT heroes, battle monsters, and earn ETC rewards.',
+    longDescription: 'CryptoQuest ETC is a blockchain-based RPG where players collect NFT heroes, explore dungeons, battle monsters, and earn ETC rewards. All game assets are on-chain NFTs that players truly own and can trade freely.',
+    category: 'Games',
+    link: 'https://cryptoquest.etc',
+    tags: ['RPG', 'Play-to-Earn', 'NFT', 'Adventure'],
+    features: [
+      'Play-to-earn',
+      'NFT heroes',
+      'PvE battles',
+      'Item crafting',
+      'Guild system',
+      'ETC rewards',
+    ],
+    stats: [
+      { label: 'Type', value: 'RPG' },
+      { label: 'Model', value: 'P2E' },
+      { label: 'Assets', value: 'NFT' },
+    ],
+  },
+  {
+    name: 'ETC Lottery',
+    slug: 'etc-lottery',
+    description: 'Decentralized lottery with transparent drawings. Weekly jackpots and instant-win games.',
+    longDescription: 'ETC Lottery is a decentralized lottery platform with transparent, on-chain drawings. Participate in weekly jackpot draws or play instant-win games. All results are verifiable on-chain, ensuring complete fairness.',
+    category: 'Games',
+    link: 'https://etclottery.io',
+    tags: ['Lottery', 'Gaming', 'Jackpot', 'On-chain'],
+    features: [
+      'Weekly draws',
+      'Instant-win games',
+      'Transparent drawings',
+      'On-chain results',
+      'Auto payouts',
+      'Community pool',
+    ],
+    stats: [
+      { label: 'Type', value: 'Lottery' },
+      { label: 'Draws', value: 'Weekly' },
+      { label: 'Verification', value: 'On-chain' },
+    ],
+  },
+  {
+    name: 'ChainBet',
+    slug: 'chainbet',
+    description: 'Prediction markets and sports betting on ETC. Create markets or bet on outcomes.',
+    longDescription: 'ChainBet enables users to create and participate in prediction markets on Ethereum Classic. Bet on sports, crypto prices, or any verifiable outcome. Markets are settled by oracle data, ensuring trustless resolution.',
+    category: 'Games',
+    link: 'https://chainbet.etc',
+    tags: ['Betting', 'Predictions', 'Sports', 'Markets'],
+    features: [
+      'Prediction markets',
+      'Sports betting',
+      'Oracle settlement',
+      'Market creation',
+      'Liquidity pools',
+      'Multiple outcomes',
+    ],
+    stats: [
+      { label: 'Type', value: 'Betting' },
+      { label: 'Settlement', value: 'Oracle' },
+      { label: 'Markets', value: 'User-created' },
+    ],
+  },
+
+  // Additional Tools
+  {
+    name: 'ClearPath',
+    slug: 'clearpath',
+    description: 'Transaction tracer and analytics. Visualize fund flows and track wallet activity on ETC.',
+    longDescription: 'ClearPath provides advanced transaction tracing and analytics for Ethereum Classic. Visualize fund flows between addresses, track wallet activity over time, and generate reports for compliance or research purposes.',
+    category: 'Tools',
+    link: 'https://clearpath.etc',
+    tags: ['Analytics', 'Tracing', 'Compliance', 'Research'],
+    features: [
+      'Transaction tracing',
+      'Fund flow visualization',
+      'Wallet analytics',
+      'Report generation',
+      'Address labels',
+      'Export data',
+    ],
+    stats: [
+      { label: 'Type', value: 'Analytics' },
+      { label: 'Focus', value: 'Tracing' },
+      { label: 'Chain', value: 'ETC' },
+    ],
+  },
+  {
+    name: 'GasWatch',
+    slug: 'gaswatch',
+    description: 'Real-time gas price monitoring and alerts. Get notified when gas prices drop.',
+    longDescription: 'GasWatch monitors Ethereum Classic gas prices in real-time and sends alerts when prices reach your target. Set custom thresholds and receive notifications via email, Telegram, or Discord when it\'s optimal to transact.',
+    category: 'Tools',
+    link: 'https://gaswatch.etc',
+    tags: ['Gas', 'Monitoring', 'Alerts', 'Notifications'],
+    features: [
+      'Real-time monitoring',
+      'Price alerts',
+      'Email notifications',
+      'Telegram bot',
+      'Discord integration',
+      'Historical data',
+    ],
+    stats: [
+      { label: 'Type', value: 'Monitor' },
+      { label: 'Alerts', value: 'Multi-channel' },
+      { label: 'Chain', value: 'ETC' },
+    ],
+  },
+  {
+    name: 'Contract Wizard',
+    slug: 'contract-wizard',
+    description: 'No-code smart contract builder. Deploy tokens, NFTs, and DAOs without coding.',
+    longDescription: 'Contract Wizard is a no-code platform for deploying smart contracts on Ethereum Classic. Create ERC-20 tokens, NFT collections, multi-sig wallets, and simple DAOs using an intuitive visual interface.',
+    category: 'Tools',
+    link: 'https://contractwizard.etc',
+    tags: ['No-Code', 'Contracts', 'Tokens', 'Deploy'],
+    features: [
+      'No-code deployment',
+      'ERC-20 tokens',
+      'NFT contracts',
+      'Multi-sig wallets',
+      'DAO templates',
+      'Verified source',
+    ],
+    stats: [
+      { label: 'Type', value: 'Builder' },
+      { label: 'Templates', value: '10+' },
+      { label: 'Code', value: 'None' },
+    ],
+  },
 ]
 
 export function getAppBySlug(slug: string): App | undefined {
@@ -298,4 +617,12 @@ export function getAppsByCategory(category: App['category']): App[] {
 
 export function getFeaturedApps(): App[] {
   return apps.filter((app) => app.featured)
+}
+
+export function getNFTApps(): App[] {
+  return apps.filter((app) => app.category === 'NFT')
+}
+
+export function getGamesApps(): App[] {
+  return apps.filter((app) => app.category === 'Games')
 }
