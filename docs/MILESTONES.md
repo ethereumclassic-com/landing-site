@@ -9,16 +9,38 @@
 ## Development Phases Overview
 
 ```
-Phase 1: Framework & Shell
+Phase 1: Framework & Shell ✓
     ↓
-Phase 2: Core Pages (P0)
+Phase 2: Core Pages (P0) ✓
     ↓
-Phase 3: Secondary Pages (P1)
+Phase 3: Secondary Pages (P1) ✓
     ↓
-Phase 4: Content Expansion (P2)
+Phase 4: Content Expansion (P2) ✓
     ↓
-Phase 5: Advanced Features (P3)
+Phase 5: Advanced Features (P3) ✓
+    ↓
+Phase 6: Autonomous Completion (Claude can complete without blocking)
+    ↓
+Phase 7: Human Review & Infrastructure (Requires human involvement)
 ```
+
+### Phase Reorganization Strategy
+
+**Phase 6 (Autonomous)** contains tasks Claude Code can complete independently:
+- Sitemap updates
+- SEO/metadata implementation
+- RSS feed building
+- UI/UX fixes (code-level)
+- Performance optimization
+- Accessibility fixes
+
+**Phase 7 (Human-Blocked)** contains tasks requiring human involvement:
+- Content accuracy review (human sanity check)
+- Social account creation
+- Exchange referral signups
+- Merchandise/store setup
+- Local node infrastructure
+- Mining pool operations
 
 ---
 
@@ -629,367 +651,221 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 - [x] Partner directory (/partners with category filtering, 20+ partners)
 - [x] Grants/funding page (/build/grants with funding sources, project ideas, application process)
 
-### Milestone 5.8: Final Testing & QA
-**Dependencies**: Phase 4
-
-**Deliverables**:
-
-**Sitemap Update:**
-- [ ] Update sitemap with all new pages
-
-**Manual Review:**
-- [ ] Review all new pages for content accuracy and completeness
-- [ ] Verify all internal links work correctly
-- [ ] Check external links open in new tabs
-- [ ] Validate form functionality where applicable
-
-**Mobile Responsiveness:**
-- [ ] Test at 375px (mobile phone)
-- [ ] Test at 768px (tablet)
-- [ ] Test at 1024px (desktop)
-- [ ] Test at 1440px (large desktop)
-- [ ] Verify navigation hamburger menu works on mobile
-- [ ] Check touch targets are adequate size (44px minimum)
-
-**Cross-Browser Testing:**
-- [ ] Chrome (latest)
-- [ ] Firefox (latest)
-- [ ] Safari (latest)
-- [ ] Edge (latest)
-
-**Performance:**
-- [ ] Lighthouse performance audit (target 90+)
-- [ ] Check for layout shifts (CLS)
-- [ ] Verify images are optimized
-- [ ] Test page load times (<3s target)
-
-**Accessibility:**
-- [ ] Keyboard navigation works
-- [ ] Focus states visible
-- [ ] Color contrast meets WCAG AA
-- [ ] Alt text on images
-- [ ] Proper heading hierarchy
-
-### Milestone 5.9: UI/UX Review & Polish (v0.1 Cleanup)
-**Dependencies**: 5.8
-**Status**: Not Started
-
-**Sitemap & Page Inventory:**
-- [ ] Update sitemap to accurately reflect all pages in the repository
-- [ ] Audit for pages not currently accounted for in the sitemap
-- [ ] Ensure all pages are accessible and linked appropriately
-- [ ] Review sitemap against URL-STRUCTURE.md for completeness
-
-**Homepage Public Copy Improvements:**
-- [ ] Remove misleading "500k community members" statistic (inaccurate/unverifiable)
-- [ ] Fix transaction count display - currently showing as USD number format (incorrect)
-- [ ] Expand "Why Ethereum Classic?" section with meaningful, substantive detail
-- [ ] Review and fix other small copy errors throughout homepage
-- [ ] Ensure all statistics displayed are accurate and verifiable
-
-**Strategy for Efficient Fixes:**
-To minimize Claude Code usage while fixing many small UI/UX issues:
-1. **Batch by file/component** - Group all fixes for a single file together
-2. **Use issue lists** - Document all issues first, then fix in batches
-3. **Prioritize by impact** - Fix high-visibility issues first (homepage, nav, footer)
-4. **Component-level fixes** - Fix shared components once to propagate changes
-5. **CSS/design token fixes** - Adjust design tokens for global improvements
-
-**Layer 1: Core Pages & Global Components (High Priority)**
-These are seen by every visitor - fix first.
-- [ ] Homepage (/) - hero, stats strip, product cards, ecosystem stats, CTA
-- [ ] Navigation component - desktop dropdown menus, mobile hamburger, active states
-- [ ] Footer component - column layout, links, social icons, attribution
-- [ ] Layout components - Container, Section, PageHeader spacing/typography
-- [ ] Design tokens - colors, typography scale, spacing consistency
-
-**Layer 2: Section Hub Pages (Medium Priority)**
-Main entry points for each section.
-- [ ] /wallet - hero, wallet cards, security messaging
-- [ ] /buy - hero, exchange listings, purchase flow
-- [ ] /apps - hero, app cards, category navigation
-- [ ] /learn - hero, article cards, category tabs
-- [ ] /mining - hero, stats, pool cards, resource links
-- [ ] /markets - price display, chart, trading pairs
-- [ ] /build - developer hub, tools, documentation links
-- [ ] /news - news hub, category navigation, article cards
-- [ ] /community - social links, events, contribution guide
-
-**Layer 3: Secondary/Detail Pages (Lower Priority)**
-Individual item pages and deep content.
-- [ ] Wallet reviews (/wallet/reviews/[wallet])
-- [ ] Exchange reviews (/buy/reviews/[exchange])
-- [ ] Individual app pages (/apps/[app])
-- [ ] Learn articles (/learn/[category]/[article])
-- [ ] News articles (/news/[slug])
-- [ ] Mining pool pages (/mining/pools/[pool])
-- [ ] Build client pages (/build/clients/[client])
-- [ ] Tool pages (/tools/*)
-
-**Layer 4: Utility & Account Pages (Lowest Priority)**
-Less trafficked but still need polish.
-- [ ] Account pages (/account/*)
-- [ ] Directory pages (/directory/*)
-- [ ] Research pages (/research/*)
-- [ ] Legal/privacy/contact pages
-
-**Issue Tracking Template:**
-```
-Page: /example
-Issues:
-1. [Component] Description of issue
-2. [Component] Description of issue
-Fixes Applied: (date)
-```
-
 ---
 
-## Phase 6: Platform & Revenue (P4)
+## Phase 6: Autonomous Completion
 
-**Goal**: Build revenue streams, improve UX, and establish platform presence.
+**Goal**: Complete all remaining tasks that Claude Code can execute independently without human blocking.
 
-### Milestone 6.1: UI/UX Fixes
+### Milestone 6.1: Sitemap & Technical SEO
+**Status**: Not Started
 **Dependencies**: Phase 5
 
 **Deliverables**:
-- [ ] Fix mobile navigation - Move "Launch App" CTA to top (currently hidden by Safari iOS URL bar)
-- [ ] Fix "Launch App" button color - adjust green to better match website theme
+- [ ] Update sitemap.xml with all new pages
+- [ ] Audit sitemap against URL-STRUCTURE.md for completeness
+- [ ] Verify all pages are accessible and linked appropriately
+- [ ] Implement XML content structure for LLM search engines
+- [ ] Rich metadata implementation (OG images, Twitter cards)
+- [ ] Structured data markup (JSON-LD) for key pages
+- [ ] Build RSS feed for news section
+
+### Milestone 6.2: UI/UX Code Fixes
+**Status**: Not Started
+**Dependencies**: Phase 5
+
+**Deliverables**:
+- [ ] Fix mobile navigation - Move "Launch App" CTA to top (Safari iOS URL bar issue)
+- [ ] Fix "Launch App" button color - adjust green to match website theme
+- [ ] Homepage fixes: Remove unverifiable "500k community members" statistic
+- [ ] Homepage fixes: Fix transaction count display format
+- [ ] Expand "Why Ethereum Classic?" section with substantive detail
+- [ ] Fix footer social links (use "#" placeholder until accounts created)
 - [ ] General mobile UX audit and fixes
 
-### Milestone 6.2: SEO & Discovery Optimization
+### Milestone 6.3: Performance & Accessibility
+**Status**: Not Started
+**Dependencies**: 6.2
+
+**Deliverables**:
+- [ ] Lighthouse performance audit (target 90+)
+- [ ] Fix layout shifts (CLS)
+- [ ] Optimize images
+- [ ] Keyboard navigation audit
+- [ ] Focus states visibility
+- [ ] Color contrast WCAG AA compliance
+- [ ] Alt text audit
+- [ ] Heading hierarchy audit
+
+### Milestone 6.4: Link Verification
+**Status**: Not Started
 **Dependencies**: Phase 5
 
 **Deliverables**:
-- [ ] Research 2025 SEO best practices for LLM/AI agent summaries
-- [ ] Implement XML content structure for LLM search engines
-- [ ] Rich metadata implementation (OG images, Twitter cards, favicons)
-- [ ] Structured data markup (JSON-LD)
-- [ ] Build RSS feed for news following best practices
-- [ ] Backfill relevant content from ethereumclassic.org/news (polish formatting issues from .org feed)
-- [ ] Position site as authoritative news source for aggregation websites
+- [ ] Verify all internal links work correctly
+- [ ] Check external links open in new tabs
+- [ ] Validate form functionality
+- [ ] Test search functionality across all indexed content
 
-### Milestone 6.3: Social Media Presence
+### Milestone 6.5: Mining Hardware Affiliate Pages
+**Status**: Not Started
 **Dependencies**: Phase 5
-
-**Deliverables**:
-- [ ] Create EthereumClassic.com social accounts (separate from ETC open source project socials)
-- [ ] Automate content generation flows from website to social outlets
-- [ ] Research 2025 best practices for social automation
-- [ ] Social sharing optimization
-
-### Milestone 6.4: Revenue Streams - Referrals
-**Dependencies**: Phase 5
-
-**Deliverables**:
-- [ ] Review centralized exchanges for referral programs
-- [ ] Create list of exchanges with referral programs
-- [ ] Sign up for exchange referral programs
-- [ ] Embed referral links throughout website (Buy/Exchanges pages)
-- [ ] Track referral performance
-
-### Milestone 6.5: Merchandise Store
-**Dependencies**: Phase 5
-
-**Deliverables**:
-- [ ] Set up drop shipping service integration
-- [ ] Design ETC merchandise (shirts, hats, hoodies, socks)
-- [ ] Build store page/section
-- [ ] Product photography and descriptions
-- [ ] Checkout/payment integration
-
-### Milestone 6.6: Mining Hardware Marketplace
-**Dependencies**: 4.7
 
 **Reference**: https://www.coinwarz.com/mining/ethereum%20classic/hardware
 
 **Deliverables**:
-- [ ] Hardware marketplace/store section for ETChash ASICs and GPUs
-- [ ] Research hardware retailers with referral/affiliate programs
-- [ ] Embed affiliate links to hardware stores
-- [ ] Product listings with specs, pricing, availability
-- [ ] Price comparison features
+- [ ] Hardware marketplace page structure for ETChash ASICs and GPUs
+- [ ] Product listings with specs, pricing, availability (affiliate links to be added in Phase 7)
 - [ ] Profitability rankings based on current network difficulty and ETC price
 - [ ] Hardware comparison tool (efficiency, ROI calculator per device)
 
-### Milestone 6.7: Classic USD Integration
+### Milestone 6.6: Classic USD Documentation
+**Status**: Not Started
 **Dependencies**: Phase 5
 
 **Deliverables**:
 - [ ] Position Classic USD as primary fiat on-ramp for ETC
 - [ ] Document USD → USC stablecoin → ETCswap DEX (WETC/USC) flow
-- [ ] USDC/USDP to USC converter/bridge documentation (may live in Classic OS)
-- [ ] Funnel integration from ethereumclassic.com to Classic OS for on-ramp
+- [ ] Create on-ramp funnel from ethereumclassic.com to Classic OS
 
-### Milestone 6.8: EthereumClassic.com Pool Announcement
-**Dependencies**: 4.7
+### Milestone 6.7: Pool Announcement Page
+**Status**: Not Started
+**Dependencies**: Phase 5
 
 **Deliverables**:
-- [ ] "Coming Soon" announcement for EthereumClassic.com Pool
+- [ ] "Coming Soon" announcement page for EthereumClassic.com Pool
 - [ ] Feature pool in mining sections of website
 - [ ] Pool landing page with waitlist/notification signup
-- [ ] Integration documentation with Classic OS and Fukuii client
+- [ ] Integration documentation outline with Classic OS and Fukuii client
 
 ---
 
-## Phase 7: Mining Pool & Advanced Products (P5)
+## Phase 7: Human Review & Infrastructure
 
-**Goal**: Launch EthereumClassic.com mining pool and integrate advanced ecosystem products.
+**Goal**: Tasks requiring human involvement - content review, account creation, infrastructure setup, business operations.
 
-### Milestone 7.1: Mining Pool Development
+### Milestone 7.1: Content Accuracy Review (HUMAN REQUIRED)
+**Status**: Not Started
 **Dependencies**: Phase 6
+**Blocker**: Requires human sanity check of all public-facing content
+
+**Deliverables**:
+- [ ] Review all page copy for accuracy and consumer-friendliness
+- [ ] Verify all statistics displayed are accurate and verifiable
+- [ ] Review ETC Knowledge Bank placeholders
+- [ ] Approve or revise homepage messaging
+- [ ] Final approval of all section hub pages
+- [ ] Cross-browser testing sign-off (Chrome, Firefox, Safari, Edge)
+- [ ] Mobile responsiveness sign-off (375px, 768px, 1024px, 1440px)
+
+### Milestone 7.2: Social & Account Setup (HUMAN REQUIRED)
+**Status**: Not Started
+**Dependencies**: Phase 6
+**Blocker**: Requires human to create accounts
+
+**Deliverables**:
+- [ ] Create EthereumClassic.com Twitter/X account
+- [ ] Create EthereumClassic.com Discord server (if separate from ETC community)
+- [ ] Update footer social links with real URLs
+- [ ] Set up social automation tools (research 2025 best practices)
+
+### Milestone 7.3: Revenue Setup (HUMAN REQUIRED)
+**Status**: Not Started
+**Dependencies**: Phase 6
+**Blocker**: Requires human to sign up for programs
+
+**Deliverables**:
+- [ ] Review centralized exchanges for referral programs
+- [ ] Sign up for exchange referral programs (Binance, Coinbase, Kraken, etc.)
+- [ ] Embed referral links throughout website
+- [ ] Research hardware retailers with affiliate programs
+- [ ] Sign up for hardware affiliate programs
+- [ ] Set up referral tracking
+
+### Milestone 7.4: Merchandise Store (HUMAN REQUIRED)
+**Status**: Not Started
+**Dependencies**: Phase 6
+**Blocker**: Requires business decisions and vendor setup
+
+**Deliverables**:
+- [ ] Select drop shipping service
+- [ ] Design ETC merchandise (shirts, hats, hoodies, socks)
+- [ ] Set up store integration
+- [ ] Product photography and descriptions
+- [ ] Checkout/payment integration
+
+### Milestone 7.5: Local Node Infrastructure (HUMAN REQUIRED)
+**Status**: Not Started
+**Dependencies**: Phase 7.1
+**Blocker**: Requires server provisioning and maintenance
+
+**Deliverables**:
+- [ ] Provision server for ETC node operation
+- [ ] Install and sync Core-Geth (archive node)
+- [ ] Configure node for internal API access
+- [ ] Set up monitoring and alerting
+- [ ] Document maintenance procedures
+
+**Technical Notes**:
+- Archive node required for historical state queries
+- Storage requirement: ~500GB+ for archive node
+- **Note**: Erigon does NOT support ETC (see docs/ETC-KNOWLEDGE.md)
+
+### Milestone 7.6: Mining Pool Operations (HUMAN REQUIRED)
+**Status**: Not Started
+**Dependencies**: 7.5
+**Blocker**: Requires infrastructure and operational commitment
 
 **Deliverables**:
 - [ ] EthereumClassic.com mining pool infrastructure
 - [ ] Pool dashboard and statistics
 - [ ] Miner registration and management
 - [ ] Payout system
-- [ ] Pool guides and documentation
 - [ ] Classic OS integration
-- [ ] Fukuii client integration (recommended client)
+- [ ] Fukuii client integration
 
-### Milestone 7.2: Fukuii & FairWins Integration
-**Dependencies**: 7.1
-
-**Reference**: https://github.com/chippr-robotics/prediction-dao-research
-
-**Deliverables**:
-- [ ] Fukuii client promotion and guides
-- [ ] FairWins Prediction Market integration
-- [ ] Offline CLOB matching fees documentation (rewards for Fukuii client runners)
-- [ ] Full production launch of FairWins (from Alpha)
-
-### Milestone 7.3: Advanced Ecosystem Products
-**Dependencies**: Phase 6
-
-**Deliverables**:
-- [ ] ClearPath (Futarchy Prediction Markets for Olympia DAO) - full launch
-- [ ] TokenMint (Enterprise Token Management) - full launch
-- [ ] Ecosystem product integration guides
-- [ ] Cross-product documentation
-
----
-
-## Phase 8: Network Infrastructure & Historical Data (P6)
-
-**Goal**: Establish EthereumClassic.com as a source of authoritative network data by running local infrastructure and building historical data archives.
-
-**Strategy**:
-- **Live data (current)**: Fetch tip-of-chain data from public RPC endpoints with 24-hour rate-limited caching
-- **Historical data (this phase)**: Sync local ETC node to backfill historical data from genesis
-- **Data ownership**: Own our data to be authoritative source, not dependent on third-party APIs
-
-### Milestone 8.1: Local Node Infrastructure
-**Dependencies**: Phase 7
+### Milestone 7.7: Historical Data System (HUMAN REQUIRED)
 **Status**: Not Started
+**Dependencies**: 7.5
+**Blocker**: Requires local node to be synced
+
+**Design**: Daily snapshots at 00:00 UTC, backfilled from local node
 
 **Deliverables**:
-- [ ] Provision server for ETC node operation
-- [ ] Install and sync Core-Geth (primary production client)
-- [ ] Full chain sync from genesis (archive node preferred for historical queries)
-- [ ] Configure node for internal API access
-- [ ] Document node maintenance procedures
-- [ ] Set up monitoring and alerting for node health
-- [ ] Plan transition path to Fukuii post-Olympia upgrade
+- [ ] Design snapshot data schema
+- [ ] Build daily snapshot collection job
+- [ ] Implement retroactive data backfill from genesis
+- [ ] Hashrate/difficulty historical charts
+- [ ] Pool distribution from block winner analysis
+- [ ] Fee market historical analytics
 
-**Technical Notes**:
-- Archive node required for historical state queries
-- Estimated sync time: 1-3 days depending on hardware
-- Storage requirement: ~500GB+ for archive node
-- **Note**: Erigon does NOT support ETC (see docs/ETC-KNOWLEDGE.md)
-- Core-Geth is currently the only production-grade archive node option
-- Fukuii will be evaluated post-Olympia upgrade (2026)
-
-### Milestone 8.2: Historical Data Collection System
-**Dependencies**: 8.1
+### Milestone 7.8: Advanced Ecosystem Products (HUMAN REQUIRED)
 **Status**: Not Started
-
-**Design**: Daily snapshots at 00:00 UTC for all historical charts, backfilled from local node
+**Dependencies**: Phase 7.6
+**Blocker**: Product development timelines
 
 **Deliverables**:
-- [ ] Design snapshot data schema (hashrate, difficulty, price, block height, pool distribution, fees)
-- [ ] Build daily snapshot collection job (00:00 UTC cron trigger)
-- [ ] Create snapshot storage system (JSON files in /data/snapshots/ or lightweight DB)
-- [ ] Implement retroactive data backfill from local node (genesis to present)
-- [ ] Build chart data API endpoints with time range support (1D, 1W, 1M, 1Y, ALL)
-- [ ] Create reusable chart components for historical data visualization
+- [ ] FairWins full production launch (from Alpha)
+- [ ] ClearPath (Futarchy Prediction Markets) launch
+- [ ] TokenMint (Enterprise Token Management) launch
+- [ ] Fukuii client promotion post-Olympia upgrade
 
-**Data Points to Archive**:
-```typescript
-interface DailySnapshot {
-  date: string           // YYYY-MM-DD
-  blockHeight: number    // Block number at 00:00 UTC
-  difficulty: number     // Network difficulty
-  hashrate: number       // Calculated hashrate (difficulty / blocktime)
-  price: number          // ETC price in USD (from CoinGecko archive)
-  totalSupply: number    // Circulating supply at this block
-  totalFees: number      // Total fees collected in 24h period
-  avgGasPrice: number    // Average gas price for the day
-  txCount: number        // Transaction count for the day
-  activeAddresses: number // Unique addresses transacting
-}
-```
-
-### Milestone 8.3: Advanced Mining Analytics
-**Dependencies**: 8.2
+### Milestone 7.9: Network Public Goods Planning (HUMAN REQUIRED)
 **Status**: Not Started
-
-**Inspiration**: https://2miners.com/etc-stats/, https://2miners.com/etc-network-hashrate
-
-**Deliverables**:
-- [ ] Hashrate historical chart (1D, 1W, 1M, 1Y views)
-- [ ] Difficulty historical chart
-- [ ] Pool distribution pie chart (calculated from block winners)
-- [ ] Pool hashrate percentages with miner address attribution
-- [ ] Top miners leaderboard (addresses winning most blocks in period)
-- [ ] Block winner analysis API endpoint
-- [ ] Real-time block feed with pool/miner attribution
-- [ ] Mining pool percentage trends over time
-
-### Milestone 8.4: Fee Market Historical Analytics
-**Dependencies**: 8.2
-**Status**: Not Started
-
-**Deliverables**:
-- [ ] Daily network fees tracker (total fees generated per day)
-- [ ] Fee revenue trend chart (historical daily/weekly/monthly fees)
-- [ ] Gas price trends over time
-- [ ] Fee vs block reward ratio over time (critical for PoW sustainability analysis)
-- [ ] Network utilization historical trends
-- [ ] Supply calculator API endpoint (/api/supply)
-
-### Milestone 8.5: Network Public Goods Planning (Planning Session)
-**Dependencies**: Phase 7
-**Status**: Not Started
-
-**Goal**: Plan EthereumClassic.net infrastructure to complement EthereumClassic.com
+**Dependencies**: Phase 7.5
+**Blocker**: Requires planning session and resource allocation
 
 **Domain Structure Planning**:
 - `ethereumclassic.net` - Network infrastructure hub
-- `explorer.ethereumclassic.net` - Block explorer (self-hosted Blockscout or custom)
+- `explorer.ethereumclassic.net` - Block explorer
 - `rpc.ethereumclassic.net` - Public RPC endpoint
 - `faucet.ethereumclassic.net` - Mordor testnet faucet
-- `monitor.ethereumclassic.net` - Network health monitor
 
 **Deliverables**:
-- [ ] Planning session for EthereumClassic.net infrastructure scope
-- [ ] Architecture document for network public goods
-- [ ] Integration plan with Classic OS / Mining OS
+- [ ] Planning session for EthereumClassic.net scope
+- [ ] Architecture document
 - [ ] Resource and cost estimation
-- [ ] Timeline and phasing for infrastructure rollout
-- [ ] Document synergies with EthereumClassic.com website data needs
-
-**Public Goods to Consider**:
-- Mordor Faucet (currently hosted elsewhere, could self-host)
-- Block Explorer (reduce dependency on third-party Blockscout)
-- Public RPC Endpoints (community infrastructure)
-- Network Monitor (node health, peer count, version distribution)
-- Archive Node API (for dApps needing historical state)
-
-**Mining OS Integration Points**:
-- Pool statistics from self-hosted infrastructure
-- Miner dashboard powered by own data
-- Real-time block notifications
-- Hashrate verification
+- [ ] Timeline and phasing
 
 ---
 
@@ -999,60 +875,37 @@ interface DailySnapshot {
 
 | Phase | Milestones | Completed | Progress |
 |-------|------------|-----------|----------|
-| Phase 1 | 7 | 7 | 100% | (All Complete - 1.1 through 1.7)
-| Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
-| Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
-| Phase 4 | 12 | 12 | 100% | (All Complete - 4.1 through 4.12)
-| Phase 5 | 9 | 6 | 67% | (5.1-5.6 Complete, 5.7 Next)
-| Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
-| Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| Phase 8 | 5 | 0 | 0% | (Network Infrastructure & Historical Data)
-| **Total** | **59** | **40** | **68%** |
+| Phase 1 | 7 | 7 | 100% |
+| Phase 2 | 5 | 5 | 100% |
+| Phase 3 | 10 | 10 | 100% |
+| Phase 4 | 12 | 12 | 100% |
+| Phase 5 | 7 | 7 | 100% |
+| Phase 6 | 7 | 0 | 0% | (Autonomous - Claude can complete)
+| Phase 7 | 9 | 0 | 0% | (Human-blocked - requires involvement)
+| **Total** | **57** | **41** | **72%** |
 
 ### Current Focus
 
-**Just Completed**: Phase 5 Milestones 5.1-5.6
-- 5.1 User Accounts (auth system, dashboard, login/register, settings, watchlist, portfolio)
-- 5.2 Advanced Mining (ATM locator, Mining OS page)
-- 5.3 CMS Integration (MDX-based content system, content editor page)
-- 5.4 API Layer (API docs page, price API, network stats API)
-- 5.5 Internationalization (i18n infrastructure, language selector, ES/ZH translations)
-- 5.6 Content Review & Polish:
-  - Live network data from Blockscout/RPC with 24-hour caching
-  - ETC emission schedule & Fifthening countdown (/research/supply)
-  - Fee market dashboard (/research/fees)
-  - Currency conversion with CoinGecko API (/api/rates)
-  - ETC Knowledge Bank (docs/ETC-KNOWLEDGE.md) for authoritative ETC information
-  - Node client corrections (Erigon does NOT support ETC)
-  - "BlockScout" → "Blockscout" branding fix
+**Just Completed**: Phase 5 (All milestones 5.1-5.7)
+- 5.1 User Accounts
+- 5.2 Advanced Mining
+- 5.3 CMS Integration
+- 5.4 API Layer
+- 5.5 Internationalization
+- 5.6 Content Review & Polish
+- 5.7 Advanced Features (Search, Newsletter, Contact, Ads, Partners, Grants)
 
-**In Progress**: Milestone 5.7 - Advanced Features
-- [ ] Search functionality
-- [ ] Newsletter integration
-- [ ] Contact form
-- [ ] Advertising system
-- [ ] Partner directory
-- [ ] Grants/funding page
+**Next Up**: Phase 6 - Autonomous Completion
+Claude Code can proceed through Phase 6 milestones without blocking on human involvement.
 
-**Ongoing** (deferred from 5.6, requires external action):
-- [ ] Website social accounts creation
-- [ ] Backfill ETC Knowledge Bank with historical context (Core Contributor input needed)
-
-**ETC Knowledge Bank** (docs/ETC-KNOWLEDGE.md):
-Single source of truth for ETC-specific technical details, historical context, and insider knowledge.
-Contains [PLACEHOLDER] tags for information needing Core Contributor input.
-
-**Data Strategy**:
-- **Live data (NOW)**: Tip-of-chain from public RPC endpoints, 24-hour rate-limited cache
-- **Historical data (Phase 8)**: Backfill from local ETC node after sync from genesis
-
-**Next Up**: 5.7 Advanced Features → 5.8 Final Testing → 5.9 UI/UX Polish
-
-**Deferred to Phase 8** (requires local node infrastructure):
-- Historical hashrate/difficulty charts
-- Pool distribution from block winner analysis
-- Daily fee revenue trends
-- Mining pool percentage trends over time
+**Deferred to Phase 7** (Human-blocked):
+- Content accuracy review (human sanity check)
+- Social account creation
+- Exchange referral signups
+- Merchandise store setup
+- Local node infrastructure
+- Mining pool operations
+- Historical data collection
 
 ---
 
