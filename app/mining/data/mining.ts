@@ -44,7 +44,80 @@ export interface MiningHardware {
   releaseYear?: number
   availability: 'available' | 'limited' | 'discontinued'
   notes?: string
+  buyLink?: string // Direct manufacturer or affiliate link
 }
+
+// Hardware Manufacturer Links
+// For affiliate pages - links to manufacturer sites
+export interface HardwareManufacturer {
+  id: string
+  name: string
+  logo?: string
+  website: string
+  description: string
+  type: 'ASIC' | 'GPU' | 'Both'
+  featured?: boolean
+  products: string[] // List of product names
+}
+
+export const hardwareManufacturers: HardwareManufacturer[] = [
+  // ASIC Manufacturers
+  {
+    id: 'bitmain',
+    name: 'Bitmain',
+    website: 'https://shop.bitmain.com/',
+    description: 'Leading ASIC manufacturer producing the Antminer series. Known for high-quality mining hardware with global distribution.',
+    type: 'ASIC',
+    featured: true,
+    products: ['Antminer E9', 'Antminer E9 Pro'],
+  },
+  {
+    id: 'innosilicon',
+    name: 'Innosilicon',
+    website: 'https://www.innosilicon.com/',
+    description: 'Premium ASIC manufacturer specializing in high-efficiency mining hardware. Produces A11 series for ETChash.',
+    type: 'ASIC',
+    featured: true,
+    products: ['A11 Pro', 'A11 Pro ETH'],
+  },
+  {
+    id: 'ipollo',
+    name: 'iPollo',
+    website: 'https://ipollo.com/',
+    description: 'Innovative mining hardware company focused on energy-efficient ASIC miners for Ethereum Classic and other PoW chains.',
+    type: 'ASIC',
+    featured: true,
+    products: ['iPollo V1', 'iPollo V1 Mini', 'iPollo G1'],
+  },
+  {
+    id: 'jasminer',
+    name: 'Jasminer',
+    website: 'https://jasminer.com/',
+    description: 'Manufacturer of ultra-efficient ASIC miners. The X4 series offers industry-leading power efficiency for ETChash mining.',
+    type: 'ASIC',
+    featured: true,
+    products: ['Jasminer X4', 'Jasminer X16-Q'],
+  },
+  // GPU Manufacturers
+  {
+    id: 'nvidia',
+    name: 'NVIDIA',
+    website: 'https://www.nvidia.com/en-us/geforce/',
+    description: 'Leading GPU manufacturer with GeForce RTX series. Popular for mining due to excellent driver support and efficiency.',
+    type: 'GPU',
+    featured: true,
+    products: ['RTX 3080', 'RTX 3070', 'RTX 3060 Ti', 'RTX 4070'],
+  },
+  {
+    id: 'amd',
+    name: 'AMD',
+    website: 'https://www.amd.com/en/graphics/radeon-rx-graphics',
+    description: 'Major GPU manufacturer with Radeon RX series. Known for competitive mining performance and value.',
+    type: 'GPU',
+    featured: true,
+    products: ['RX 6800', 'RX 6700 XT', 'RX 6600 XT'],
+  },
+]
 
 // Mining Pools - ordered by approximate hashrate share
 // Data from miningpoolstats.stream for ETC
@@ -163,6 +236,7 @@ export const miningHardware: MiningHardware[] = [
     releaseYear: 2022,
     availability: 'limited',
     notes: 'Most efficient ASIC for ETChash',
+    buyLink: 'https://jasminer.com/',
   },
   {
     id: 'bitmain-e9',
@@ -175,6 +249,7 @@ export const miningHardware: MiningHardware[] = [
     releaseYear: 2022,
     availability: 'available',
     notes: 'High hashrate, widely available',
+    buyLink: 'https://shop.bitmain.com/',
   },
   {
     id: 'ipollo-v1',
@@ -186,6 +261,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.80,
     releaseYear: 2022,
     availability: 'available',
+    buyLink: 'https://ipollo.com/',
   },
   {
     id: 'innosilicon-a11-pro',
@@ -198,6 +274,7 @@ export const miningHardware: MiningHardware[] = [
     releaseYear: 2021,
     availability: 'discontinued',
     notes: 'Older model, less efficient',
+    buyLink: 'https://www.innosilicon.com/',
   },
   // GPUs - NVIDIA
   {
@@ -211,6 +288,7 @@ export const miningHardware: MiningHardware[] = [
     releaseYear: 2020,
     availability: 'available',
     notes: 'Top consumer GPU for mining',
+    buyLink: 'https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3080-3080ti/',
   },
   {
     id: 'rtx-3070',
@@ -223,6 +301,7 @@ export const miningHardware: MiningHardware[] = [
     releaseYear: 2020,
     availability: 'available',
     notes: 'Excellent efficiency for consumer GPU',
+    buyLink: 'https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3070-3070ti/',
   },
   {
     id: 'rtx-3060-ti',
@@ -234,6 +313,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 2.17,
     releaseYear: 2020,
     availability: 'available',
+    buyLink: 'https://www.nvidia.com/en-us/geforce/graphics-cards/30-series/rtx-3060-3060ti/',
   },
   {
     id: 'rtx-4070',
@@ -246,6 +326,7 @@ export const miningHardware: MiningHardware[] = [
     releaseYear: 2023,
     availability: 'available',
     notes: 'Newer generation, less efficient for mining',
+    buyLink: 'https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4070-family/',
   },
   // GPUs - AMD
   {
@@ -258,6 +339,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 2.42,
     releaseYear: 2020,
     availability: 'available',
+    buyLink: 'https://www.amd.com/en/products/graphics/amd-radeon-rx-6800',
   },
   {
     id: 'rx-6700-xt',
@@ -269,6 +351,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 2.61,
     releaseYear: 2021,
     availability: 'available',
+    buyLink: 'https://www.amd.com/en/products/graphics/amd-radeon-rx-6700-xt',
   },
   {
     id: 'rx-6600-xt',
@@ -281,6 +364,7 @@ export const miningHardware: MiningHardware[] = [
     releaseYear: 2021,
     availability: 'available',
     notes: 'Best efficiency among consumer GPUs',
+    buyLink: 'https://www.amd.com/en/products/graphics/amd-radeon-rx-6600-xt',
   },
 ]
 
