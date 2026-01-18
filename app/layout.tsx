@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import BackgroundSystem from "./components/BackgroundSystem";
 import Navigation from "./components/Navigation";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
@@ -32,9 +33,11 @@ export default function RootLayout({
     <html lang="en">
       {/* isolate = background stays behind even if future components create stacking contexts */}
       <body className="relative isolate min-h-dvh bg-[#0B0F14] text-white antialiased">
-        <BackgroundSystem />
-        <Navigation />
-        <div className="relative z-10 pt-16">{children}</div>
+        <Providers>
+          <BackgroundSystem />
+          <Navigation />
+          <div className="relative z-10 pt-16">{children}</div>
+        </Providers>
       </body>
     </html>
   );
