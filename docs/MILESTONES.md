@@ -520,7 +520,7 @@ Account: All pages
 - [x] Initial translations (English, Spanish, Chinese)
 
 ### Milestone 5.6: Content Review & Polish
-**Status**: In Progress
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
@@ -999,60 +999,50 @@ interface DailySnapshot {
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
 | Phase 4 | 12 | 12 | 100% | (All Complete - 4.1 through 4.12)
-| Phase 5 | 9 | 5 | 56% | (5.1-5.5 Complete, 5.6 In Progress, 5.9 NEW)
+| Phase 5 | 9 | 6 | 67% | (5.1-5.6 Complete, 5.7 Next)
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
 | Phase 8 | 5 | 0 | 0% | (Network Infrastructure & Historical Data)
-| **Total** | **59** | **39** | **66%** |
+| **Total** | **59** | **40** | **68%** |
 
 ### Current Focus
 
-**Just Completed**: Phase 5 Milestones 5.1-5.5 + 5.6 Live Data Features
+**Just Completed**: Phase 5 Milestones 5.1-5.6
 - 5.1 User Accounts (auth system, dashboard, login/register, settings, watchlist, portfolio)
 - 5.2 Advanced Mining (ATM locator, Mining OS page)
 - 5.3 CMS Integration (MDX-based content system, content editor page)
 - 5.4 API Layer (API docs page, price API, network stats API)
 - 5.5 Internationalization (i18n infrastructure, language selector, ES/ZH translations)
-- 5.6 Live network data from Blockscout/RPC with 24-hour caching
-- 5.6 ETC emission schedule & Fifthening countdown (/research/supply)
-- 5.6 Fee market dashboard (/research/fees)
-- 5.6 Currency conversion with CoinGecko API (/api/rates)
+- 5.6 Content Review & Polish:
+  - Live network data from Blockscout/RPC with 24-hour caching
+  - ETC emission schedule & Fifthening countdown (/research/supply)
+  - Fee market dashboard (/research/fees)
+  - Currency conversion with CoinGecko API (/api/rates)
+  - ETC Knowledge Bank (docs/ETC-KNOWLEDGE.md) for authoritative ETC information
+  - Node client corrections (Erigon does NOT support ETC)
+  - "BlockScout" → "Blockscout" branding fix
 
-**In Progress**: Milestone 5.6 - Content Review & Polish (remaining items)
-- [x] Blockscout API integration for live network data
-- [x] Mining pages updated with live data and source attribution
-- [x] Nav bar transparency fix (95% opacity, solid dropdown backgrounds with blur)
-- [x] Navigation structure review (Exchange Reviews moved to More, ATM added to Buy)
-- [x] Homepage redundancy review (StatsStrip now social proof, EcosystemStats shows live data)
-- [x] Footer update (Bitcoin.com-style multi-column layout)
-- [x] Network data dashboard build (/research/network with live data)
-- [x] 24-hour cache implementation (file-based persistent cache)
-- [x] Sanity check all public displayed data for accuracy
-- [x] Add small data source attribution links where Blockscout data is displayed
-- [x] Updated "BlockScout" → "Blockscout" (lowercase 's') across all public-facing copy
-- [x] Fixed node client info: Erigon does NOT support ETC, updated to "Core-Geth, Fukuii"
-- [x] Updated node client descriptions with accurate status (Core-Geth transitioning, Fukuii Alpha, Besu testing-only)
-- [x] Created ETC Knowledge Bank (docs/ETC-KNOWLEDGE.md) for authoritative ETC information
-- [x] Updated .claude/instructions.md to reference Knowledge Bank
-- [ ] Website social accounts creation (placeholder links for now)
+**In Progress**: Milestone 5.7 - Advanced Features
+- [ ] Search functionality
+- [ ] Newsletter integration
+- [ ] Contact form
+- [ ] Advertising system
+- [ ] Partner directory
+- [ ] Grants/funding page
+
+**Ongoing** (deferred from 5.6, requires external action):
+- [ ] Website social accounts creation
 - [ ] Backfill ETC Knowledge Bank with historical context (Core Contributor input needed)
 
 **ETC Knowledge Bank** (docs/ETC-KNOWLEDGE.md):
 Single source of truth for ETC-specific technical details, historical context, and insider knowledge.
-Contains [PLACEHOLDER] tags for information needing Core Contributor input:
-- Fukuii maintainer and development timeline
-- Mantis historical context (IOHK era)
-- Olympia upgrade specific scope (ECIP-1121 details)
-- Organization personnel and roles
-- 51% attack details and response
-- ETH Merge hashrate impact numbers
-- Ecosystem project details
+Contains [PLACEHOLDER] tags for information needing Core Contributor input.
 
 **Data Strategy**:
 - **Live data (NOW)**: Tip-of-chain from public RPC endpoints, 24-hour rate-limited cache
 - **Historical data (Phase 8)**: Backfill from local ETC node after sync from genesis
 
-**Next Up**: Complete 5.6, then 5.7 Advanced Features, 5.8 Final Testing, 5.9 UI/UX Polish
+**Next Up**: 5.7 Advanced Features → 5.8 Final Testing → 5.9 UI/UX Polish
 
 **Deferred to Phase 8** (requires local node infrastructure):
 - Historical hashrate/difficulty charts
