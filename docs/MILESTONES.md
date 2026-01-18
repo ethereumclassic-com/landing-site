@@ -500,20 +500,22 @@ Account: All pages
 - [x] Sample article template and documentation
 
 ### Milestone 5.4: API Layer
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] API documentation page
-- [ ] Price data API
-- [ ] Network stats API
+- [x] API documentation page (/build/api with endpoints, code examples, RPC info)
+- [x] Price data API (/api/price, /api/price/history)
+- [x] Network stats API (/api/network, /api/network/blocks)
 
 ### Milestone 5.5: Internationalization
+**Status**: Complete
 **Dependencies**: Phase 4
 
 **Deliverables**:
-- [ ] i18n infrastructure
-- [ ] Language selector
-- [ ] Initial translations (ES, ZH)
+- [x] i18n infrastructure (I18nProvider, useI18n hook, useTranslation)
+- [x] Language selector component (default and compact variants)
+- [x] Initial translations (English, Spanish, Chinese)
 
 ### Milestone 5.6: Content Review & Polish
 **Dependencies**: Phase 4
@@ -734,19 +736,21 @@ Account: All pages
 | Phase 2 | 5 | 5 | 100% | (All Complete - 2.1 through 2.5)
 | Phase 3 | 10 | 10 | 100% | (All Complete - 3.1 through 3.10)
 | Phase 4 | 12 | 12 | 100% | (All Complete - 4.1 through 4.12)
-| Phase 5 | 8 | 3 | 38% | (5.1-5.3 Complete)
+| Phase 5 | 8 | 5 | 63% | (5.1-5.5 Complete)
 | Phase 6 | 8 | 0 | 0% | (Platform & Revenue)
 | Phase 7 | 3 | 0 | 0% | (Mining Pool & Advanced Products)
-| **Total** | **53** | **37** | **70%** |
+| **Total** | **53** | **39** | **74%** |
 
 ### Current Focus
 
-**Just Completed**: Phase 5 Milestones 5.1-5.3
+**Just Completed**: Phase 5 Milestones 5.1-5.5
 - 5.1 User Accounts (auth system, dashboard, login/register, settings, watchlist, portfolio)
 - 5.2 Advanced Mining (ATM locator, Mining OS page)
 - 5.3 CMS Integration (MDX-based content system, content editor page)
+- 5.4 API Layer (API docs page, price API, network stats API)
+- 5.5 Internationalization (i18n infrastructure, language selector, ES/ZH translations)
 
-**Next Up**: Phase 5 - Remaining milestones (API, i18n, Content Review, Advanced Features, Final Testing)
+**Next Up**: Phase 5 - Remaining milestones (Content Review, Advanced Features, Final Testing)
 
 ---
 
