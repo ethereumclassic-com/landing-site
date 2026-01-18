@@ -873,6 +873,94 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 - [ ] PoolDistributionChart component
 - [ ] NodeVersionChart component
 
+### Milestone 6.12: Automated Testing & Report Generation
+**Status**: Not Started
+**Dependencies**: 6.1-6.11
+
+**Scope**: FULL CODEBASE REVIEW - All code from Phase 1 through Phase 6. This is a comprehensive audit of the entire product developed by coding agents (Claude Code). Every file, component, page, and feature must be validated.
+
+**Goal**: Run comprehensive automated tests on ALL features across the entire codebase. Validate best practices, coding standards, and development quality for all work produced by AI coding agents. Generate detailed reports documenting test results for due diligence trail.
+
+**Deliverables**:
+
+**Build & Lint Verification**:
+- [ ] Run `npm run build` - verify all 180+ pages compile without errors
+- [ ] Run `npm run lint` - verify zero lint warnings/errors
+- [ ] Run TypeScript type checking - verify no type errors
+- [ ] Document build output (page count, build time, bundle sizes)
+
+**Link Integrity Testing**:
+- [ ] Crawl all internal links and verify 200 status
+- [ ] Identify and report any broken internal links
+- [ ] Verify all dynamic routes generate correctly ([wallet], [exchange], [pool], etc.)
+- [ ] Generate link integrity report
+
+**API Endpoint Testing**:
+- [ ] Test /api/price - verify response schema, fallback behavior
+- [ ] Test /api/price/history - verify date range handling
+- [ ] Test /api/network - verify Blockscout integration, caching
+- [ ] Test /api/network/blocks - verify block data structure
+- [ ] Test /api/rates - verify exchange rate responses
+- [ ] Test /api/mining - verify calculation accuracy
+- [ ] Generate API test report with response times and status codes
+
+**Component Rendering Tests**:
+- [ ] Verify all pages render without React errors
+- [ ] Check for missing required props or undefined references
+- [ ] Verify no hydration mismatches
+- [ ] Generate component health report
+
+**Data Integrity Verification**:
+- [ ] Verify all wallet data entries have required fields
+- [ ] Verify all exchange data entries have required fields
+- [ ] Verify all mining pool data entries have required fields
+- [ ] Verify all app data entries have required fields
+- [ ] Verify all article data entries have required fields
+- [ ] Generate data completeness report
+
+**Accessibility Automated Checks**:
+- [ ] Run axe-core accessibility audit on key pages
+- [ ] Check for missing alt text on images
+- [ ] Verify heading hierarchy (no skipped levels)
+- [ ] Check color contrast ratios
+- [ ] Generate accessibility report
+
+**Performance Baseline**:
+- [ ] Run Lighthouse CI on homepage
+- [ ] Run Lighthouse CI on key section pages (wallet, buy, apps, learn, mining)
+- [ ] Document Core Web Vitals (LCP, FID, CLS)
+- [ ] Generate performance baseline report
+
+**Code Quality & Best Practices Audit**:
+- [ ] Review all TypeScript files for proper typing (no `any` abuse)
+- [ ] Verify consistent code formatting across codebase
+- [ ] Check for unused imports and dead code
+- [ ] Verify proper error handling patterns
+- [ ] Review React component patterns (hooks usage, memo optimization)
+- [ ] Check for security best practices (no hardcoded secrets, XSS prevention)
+- [ ] Verify proper use of environment variables
+- [ ] Review API route implementations for proper error responses
+- [ ] Check for proper loading and error states in UI components
+- [ ] Verify consistent naming conventions throughout codebase
+- [ ] Generate code quality report
+
+**File Structure & Architecture Review**:
+- [ ] Verify consistent file organization across all sections
+- [ ] Check for proper separation of concerns (components, data, lib, hooks)
+- [ ] Review data file structures for consistency
+- [ ] Verify proper use of shared components vs duplicated code
+- [ ] Check for circular dependencies
+- [ ] Generate architecture compliance report
+
+**Report Generation**:
+- [ ] Create /docs/reports/ directory for test reports
+- [ ] Generate PHASE-6-TEST-REPORT.md with all test results
+- [ ] Include timestamp, git commit hash, and environment details
+- [ ] Document any known issues or limitations
+- [ ] Summary of all automated tests passed/failed
+- [ ] Code quality metrics and recommendations
+- [ ] Full file inventory with review status
+
 ---
 
 ## Phase 7: Human Review & Infrastructure
@@ -1016,6 +1104,190 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 - [ ] Switch from sample to live data
 - [ ] Set up alerting for network anomalies (optional)
 
+### Milestone 7.10: Comprehensive Manual Testing & QA
+**Status**: Not Started
+**Dependencies**: Phase 6
+**Blocker**: Human judgment and real-world testing required
+
+**Scope**: FULL CODEBASE MANUAL REVIEW - All code from Phase 1 through Phase 6. This is a comprehensive human audit of the entire product developed by coding agents (Claude Code). Every user-facing feature, interaction, and data display must be manually verified by a human tester.
+
+**Purpose**: Validate that AI-generated code meets production quality standards. Ensure all features work correctly in real-world usage. Document human sign-off on all aspects that cannot be automatically tested.
+
+**What Claude Built** (Phases 1-6): Complete site with all features implemented
+**Human Must Do**:
+
+**Account System Testing**:
+- [ ] Test user registration flow (form validation, error handling)
+- [ ] Test login/logout functionality
+- [ ] Test portfolio tracker (add/remove holdings, calculations)
+- [ ] Test watchlist (add/remove items, search, persistence)
+- [ ] Test settings page (profile updates, preferences, account deletion)
+- [ ] Verify localStorage persistence across sessions
+- [ ] Test password visibility toggle functionality
+- [ ] Verify form validation messages are helpful
+
+**API Endpoint Testing**:
+- [ ] Test /api/price endpoint (response format, fallback behavior)
+- [ ] Test /api/price/history endpoint (date ranges, data integrity)
+- [ ] Test /api/network endpoint (live Blockscout data, caching)
+- [ ] Test /api/network/blocks endpoint (recent blocks data)
+- [ ] Test /api/rates endpoint (exchange rate accuracy, source attribution)
+- [ ] Test /api/mining endpoint (profitability calculations)
+- [ ] Verify API error handling and fallback data
+- [ ] Test API rate limiting behavior
+
+**Search Functionality Testing**:
+- [ ] Test search across all content types (learn, news, apps, wallets, exchanges, pools, hardware)
+- [ ] Test keyboard navigation (arrow keys, Enter, Escape, ⌘K/Ctrl+K)
+- [ ] Verify search result relevance and ranking
+- [ ] Test search with special characters
+- [ ] Test search with empty/short queries
+- [ ] Verify grouped results display correctly
+- [ ] Test search modal open/close behavior
+- [ ] Test search on mobile devices
+
+**Core Feature Testing**:
+- [ ] Mining profitability calculator (input validation, calculation accuracy)
+- [ ] Price converter (currency conversion accuracy, live rate display)
+- [ ] Investment calculator (ROI projections, DCA calculations)
+- [ ] Gas tracker (tier display, transaction cost estimates)
+- [ ] Newsletter signup form (validation, submission handling)
+- [ ] Contact form (validation, submission handling)
+- [ ] Language selector (locale switching, translation display)
+- [ ] Ad banner system (placement rendering, dismiss functionality)
+
+**Navigation & Routing Testing**:
+- [ ] Test all internal navigation links
+- [ ] Verify breadcrumb accuracy on all pages
+- [ ] Test mobile hamburger menu functionality
+- [ ] Test dropdown menu behavior (hover, click, keyboard)
+- [ ] Verify active state indicators
+- [ ] Test back/forward browser navigation
+- [ ] Verify 404 page for invalid routes
+- [ ] Test dynamic route parameters ([wallet], [exchange], [pool], etc.)
+
+**Data Accuracy Verification**:
+- [ ] Verify live network stats match Blockscout
+- [ ] Verify exchange rates match CoinGecko
+- [ ] Verify mining pool information is current
+- [ ] Verify hardware specifications are accurate
+- [ ] Verify exchange information (fees, features) is current
+- [ ] Verify wallet feature lists are accurate
+- [ ] Spot-check article content for accuracy
+- [ ] Verify external links are valid and correct
+
+**Cross-Browser Testing**:
+- [ ] Chrome (latest) - full functionality
+- [ ] Firefox (latest) - full functionality
+- [ ] Safari (latest) - full functionality
+- [ ] Edge (latest) - full functionality
+- [ ] Safari iOS - mobile experience
+- [ ] Chrome Android - mobile experience
+
+**Performance Testing**:
+- [ ] Run Lighthouse audit (target 90+ performance)
+- [ ] Verify no console errors on production build
+- [ ] Test page load times on slow connections (3G throttle)
+- [ ] Verify images load progressively
+- [ ] Test lazy loading behavior
+
+**Accessibility Testing**:
+- [ ] Keyboard-only navigation through all pages
+- [ ] Screen reader testing (VoiceOver/NVDA)
+- [ ] Color contrast verification
+- [ ] Focus state visibility
+- [ ] Alt text presence on images
+- [ ] Heading hierarchy audit
+- [ ] Form label associations
+
+**Full Section-by-Section Review** (verify each major section works correctly):
+- [ ] Homepage - hero, stats, product cards, CTAs
+- [ ] Wallet Section - hub, Classic OS, MetaMask, hardware, compare, reviews
+- [ ] Buy Section - hub, exchanges, instant, P2P, card, bank, ATM, reviews
+- [ ] Sell Section - hub, exchanges
+- [ ] Apps Section - hub, all categories (DeFi, NFT, Games, Tools, etc.), individual apps
+- [ ] Learn Section - hub, all categories, all articles, glossary
+- [ ] News Section - hub, articles, categories, tags
+- [ ] Markets Section - hub, price pages, converter, calculator
+- [ ] Mining Section - hub, pools, hardware, software, profitability, stats, OS
+- [ ] Build Section - hub, docs, clients, networks, faucets, tools, grants, API
+- [ ] Research Section - hub, reports, network, supply, fees, ecosystem
+- [ ] Tools Section - hub, converter, calculator, gas, explorer, verify
+- [ ] Community Section - hub, social, events, contribute
+- [ ] Directory Section - hub, wallets, exchanges, mining, developers, community
+- [ ] Account Section - dashboard, login, register, portfolio, watchlist, settings
+- [ ] Static Pages - about, contact, advertise, partners, legal, privacy
+- [ ] 404 Page - verify custom 404 displays correctly
+
+**QA Report Generation**:
+- [ ] Generate PHASE-7-QA-REPORT.md documenting all manual test results
+- [ ] Include tester name, date, and environment details
+- [ ] Document each test category with pass/fail status
+- [ ] Screenshot evidence for key functionality tests
+- [ ] List any issues found and their resolution status
+- [ ] Sign-off checklist for production readiness
+- [ ] Final due diligence certification statement
+
+**Report Contents**:
+```
+PHASE-7-QA-REPORT.md
+├── Executive Summary
+│   ├── Overall test status (Pass/Fail)
+│   ├── Test coverage summary
+│   ├── Key findings
+│   └── AI-generated code quality assessment
+├── Test Environment
+│   ├── Date/time of testing
+│   ├── Tester information
+│   ├── Browser versions tested
+│   ├── Device types tested
+│   └── Git commit hash
+├── Test Results by Category
+│   ├── Account System: [Pass/Fail] with details
+│   ├── API Endpoints: [Pass/Fail] with details
+│   ├── Search Functionality: [Pass/Fail] with details
+│   ├── Core Features: [Pass/Fail] with details
+│   ├── Navigation & Routing: [Pass/Fail] with details
+│   ├── Data Accuracy: [Pass/Fail] with details
+│   ├── Cross-Browser: [Pass/Fail] with details
+│   ├── Performance: [Pass/Fail] with Lighthouse scores
+│   └── Accessibility: [Pass/Fail] with details
+├── Section-by-Section Review
+│   ├── Homepage: [Pass/Fail]
+│   ├── Wallet Section: [Pass/Fail]
+│   ├── Buy Section: [Pass/Fail]
+│   ├── Sell Section: [Pass/Fail]
+│   ├── Apps Section: [Pass/Fail]
+│   ├── Learn Section: [Pass/Fail]
+│   ├── News Section: [Pass/Fail]
+│   ├── Markets Section: [Pass/Fail]
+│   ├── Mining Section: [Pass/Fail]
+│   ├── Build Section: [Pass/Fail]
+│   ├── Research Section: [Pass/Fail]
+│   ├── Tools Section: [Pass/Fail]
+│   ├── Community Section: [Pass/Fail]
+│   ├── Directory Section: [Pass/Fail]
+│   ├── Account Section: [Pass/Fail]
+│   └── Static Pages: [Pass/Fail]
+├── Issues Log
+│   ├── Critical issues (blocking)
+│   ├── Major issues (should fix)
+│   ├── Minor issues (nice to fix)
+│   └── Resolution status for each
+├── Evidence
+│   └── Screenshots/recordings folder reference
+├── AI Code Generation Assessment
+│   ├── Code quality observations
+│   ├── Best practices compliance
+│   ├── Areas requiring human attention
+│   └── Recommendations for future AI-assisted development
+└── Certification
+    ├── Production readiness statement
+    ├── Known limitations
+    ├── Human reviewer sign-off
+    └── Date and signature
+```
+
 ---
 
 ## Milestone Tracking
@@ -1029,9 +1301,9 @@ Critical for monitoring ETC's transition from block reward to fee-based miner in
 | Phase 3 | 10 | 10 | 100% |
 | Phase 4 | 12 | 12 | 100% |
 | Phase 5 | 7 | 7 | 100% |
-| Phase 6 | 11 | 0 | 0% | (Autonomous - Claude builds all scaffolding)
-| Phase 7 | 9 | 0 | 0% | (Human-only - specific blockers)
-| **Total** | **61** | **41** | **67%** |
+| Phase 6 | 12 | 0 | 0% | (Autonomous - Claude builds all scaffolding + automated tests)
+| Phase 7 | 10 | 0 | 0% | (Human-only - specific blockers + manual QA)
+| **Total** | **63** | **41** | **65%** |
 
 ### Current Focus
 
@@ -1050,6 +1322,7 @@ Claude Code builds all shells, layouts, components, and sample data:
 - 6.9 Historical Charts with Sample Data
 - 6.10 Referral Infrastructure
 - 6.11 Network Health Dashboard (explorer, nodes, security, stats with sample data)
+- 6.12 Automated Testing & Report Generation (PHASE-6-TEST-REPORT.md)
 
 **Phase 7** (Human-only blockers):
 | Milestone | What Human Must Do |
@@ -1063,6 +1336,7 @@ Claude Code builds all shells, layouts, components, and sample data:
 | 7.7 Mining Pool Launch | Set up stratum server, connect to UI |
 | 7.8 Product Launches | Update status when ready |
 | 7.9 Network Dashboard | Connect to live data sources |
+| 7.10 Manual Testing & QA | Test accounts, APIs, search, generate PHASE-7-QA-REPORT.md |
 
 ---
 
