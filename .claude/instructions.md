@@ -41,34 +41,36 @@ docs.classicos.org
 
 ## Current Development Phase
 
-### Phase 2: Core Pages (Complete)
+### Phase 8: Human Review, Infrastructure & Approvals (Current)
 
-**Goal:** Build primary user-facing pages for core sections.
+**Goal:** Complete human-only tasks including content review, account creation, infrastructure setup, and final QA.
 
-**Current Milestone:** Phase 4 - Content Expansion
+**Current Status:** 137 pages built, 83/99 milestones complete (84%)
 
 **Completed Phases:**
-- [x] Phase 1: Framework & Shell (1.1 - 1.7)
-- [x] Phase 2: Core Pages (2.1 - 2.5)
-  - [x] 2.1 Homepage rebuild
-  - [x] 2.2 Wallet landing page
-  - [x] 2.3 Buy landing page
-  - [x] 2.4 Apps directory
-  - [x] 2.5 Learn landing page
-- [x] Phase 3: Secondary Pages (Complete)
-  - [x] 3.1 Wallet Section Expansion (MetaMask guide, hardware wallets, comparison)
-  - [x] 3.2 Buy Section Expansion (Exchange listings page with filtering, table/card views)
-  - [x] 3.3 Apps Section Expansion (Featured, Tools, Submit pages, all category pages)
-  - [x] 3.4 Learn Section Expansion (15 articles: 7 basics, 4 wallets, 4 mining)
-  - [x] 3.5 News Section (Hub page, NewsCard component, 15 articles, category filtering)
-  - [x] 3.6 Markets Section (Hub page, price page, PriceDisplay, PriceChart components)
-  - [x] 3.7 Mining Section (Hub page, getting started, pools, PoolCard, HashRateChart)
-  - [x] 3.8 Build Section (Developer hub, getting started, docs, node clients)
-  - [x] 3.9 Exchanges Section (Exchange directory, filters, sortable table, 30+ exchanges)
-  - [x] 3.10 Directory Section (Hub, wallet directory, exchange directory)
+- [x] Phase 1: Framework & Shell (1.1 - 1.7) - 100%
+- [x] Phase 2: Core Pages (2.1 - 2.5) - 100%
+- [x] Phase 3: Secondary Pages (3.1 - 3.10) - 100%
+- [x] Phase 4: Content Expansion (4.1 - 4.12) - 100%
+- [x] Phase 5: Advanced Features (5.1 - 5.7) - 100%
+- [x] Phase 6: Launch Readiness (6.1 - 6.23) - 100%
+- [x] Phase 7: QA & Content Review (7.1 - 7.19) - 100%
+- [ ] **Phase 8: Human-Only Tasks (8A - 8F)** - Current
 
-**Next Steps (Phase 4 - Content Expansion):**
-- [ ] 4.1 Wallet Reviews
+**Phase 8 Sub-Phases (Organized by Blocker Type):**
+
+| Sub-Phase | Milestones | Focus | Primary Blocker |
+|-----------|------------|-------|-----------------|
+| **8A** | 4 | Content & Legal Review | Human judgment/legal expertise |
+| **8B** | 4 | Account & Program Signups | Human account creation |
+| **8C** | 2 | Infrastructure Setup | Server provisioning |
+| **8D** | 3 | Data Integration | API research/credentials |
+| **8E** | 3 | Product Launches | External product readiness |
+| **8F** | 1 | Final QA & Certification | Human testing/sign-off |
+
+**Parallel Execution:** 8A + 8B + 8C can run concurrently. 8D requires research. 8E depends on external timelines. 8F is the final gate.
+
+**See [docs/MILESTONES.md](../docs/MILESTONES.md) for full roadmap and detailed task lists.**
 
 ---
 
@@ -630,5 +632,5 @@ The git commit captures the actual code changes, so detailed implementation cont
 6. Forward-looking ETC positioning
 7. Route to ecosystem products, don't rebuild them
 
-**Current Focus:** Phase 3 - Secondary Pages
-**Current Milestone:** 3.9 - Exchanges Section
+**Current Focus:** Phase 8 - Human Review, Infrastructure & Approvals
+**Current Sub-Phase:** 8A/8B/8C can run in parallel (see MILESTONES.md for detailed tasks)
