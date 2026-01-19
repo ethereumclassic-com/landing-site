@@ -1,7 +1,7 @@
 # ethereumclassic.com v0.1 — Locked Scope (ARCHIVED)
 
 **Status:** COMPLETE - Archived on 2026-01-16
-**Replaced by:** v0.2 implementation - See [../SCOPE-v0.2-roadmap.md](../SCOPE-v0.2-roadmap.md)
+**Replaced by:** v0.2 implementation - See [../MILESTONES.md](../MILESTONES.md)
 
 ---
 
