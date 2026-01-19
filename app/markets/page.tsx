@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import PriceDisplay, { PriceStat } from './components/PriceDisplay'
+import { PriceStat } from './components/PriceDisplay'
 import PriceChart from './components/PriceChart'
+import LivePriceDisplay, { LiveMarketStats } from './components/LivePriceDisplay'
+import { usePrice } from '@/app/hooks/usePrice'
 import {
   priceSources,
   marketPairs,
-  sampleMarketStats,
   marketResources,
   priceMilestones,
 } from './data/markets'
@@ -45,6 +46,99 @@ const sourceTypeIcons = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
     </svg>
   ),
+}
+
+// Live market stats grid component
+function LiveMarketStatsGrid() {
+  const { data, loading } = usePrice('usd')
+
+  const changeStr = data ? `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}%` : undefined
+  const changeDir: 'up' | 'down' | 'neutral' = data ? (data.change24h >= 0 ? 'up' : 'down') : 'neutral'
+
+  const stats: Array<{
+    label: string
+    value: string
+    change?: string
+    changeDirection?: 'up' | 'down' | 'neutral'
+    tooltip?: string
+  }> = [
+    {
+      label: 'Price',
+      value: data ? `$${data.price.toFixed(2)}` : '...',
+      change: changeStr,
+      changeDirection: changeDir,
+    },
+    {
+      label: 'Market Cap',
+      value: data ? formatLargeNumber(data.marketCap) : '...',
+      change: changeStr,
+      changeDirection: changeDir,
+      tooltip: 'Circulating supply × current price',
+    },
+    {
+      label: '24h Volume',
+      value: data ? formatLargeNumber(data.volume24h) : '...',
+      tooltip: 'Trading volume in last 24 hours',
+    },
+    {
+      label: 'Circulating Supply',
+      value: '148.3M ETC',
+      tooltip: 'Total ETC in circulation',
+    },
+    {
+      label: 'All-Time High',
+      value: '$176.16',
+      tooltip: 'May 6, 2021',
+    },
+    {
+      label: 'All-Time Low',
+      value: '$0.45',
+      tooltip: 'July 25, 2016',
+    },
+  ]
+
+  if (loading && !data) {
+    return (
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 animate-pulse">
+            <div className="h-4 w-16 bg-[var(--border)] rounded mb-2" />
+            <div className="h-6 w-24 bg-[var(--border)] rounded" />
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {stats.map((stat, index) => (
+        <motion.div
+          key={stat.label}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.1 }}
+        >
+          <PriceStat
+            label={stat.label}
+            value={stat.value}
+            change={stat.change}
+            changeDirection={stat.changeDirection}
+            tooltip={stat.tooltip}
+          />
+        </motion.div>
+      ))}
+    </div>
+  )
+}
+
+function formatLargeNumber(num: number): string {
+  if (num >= 1e12) return `$${(num / 1e12).toFixed(2)}T`
+  if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`
+  if (num >= 1e6) return `$${(num / 1e6).toFixed(1)}M`
+  if (num >= 1e3) return `$${(num / 1e3).toFixed(1)}K`
+  return `$${num.toFixed(2)}`
 }
 
 export default function MarketsPage() {
@@ -92,38 +186,20 @@ export default function MarketsPage() {
           {/* Live Price Display */}
           <motion.div variants={fadeInUp} className="mt-8 flex justify-center">
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] px-8 py-6">
-              <PriceDisplay
-                price="$18.42"
-                changePercent="+2.34%"
-                changeDirection="up"
+              <LivePriceDisplay
+                currency="usd"
                 size="xl"
                 showLabel
                 label="ETC/USD"
+                showSource
+                refreshInterval={60000}
               />
-              <p className="mt-2 text-xs text-[var(--color-text-muted)]">
-                Data from CoinGecko • Updates every minute
-              </p>
             </div>
           </motion.div>
 
           {/* Quick Stats */}
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-6 text-sm">
-            <div className="text-center">
-              <p className="text-[var(--color-text-muted)]">Market Cap</p>
-              <p className="font-semibold text-white">$2.71B</p>
-            </div>
-            <div className="text-center">
-              <p className="text-[var(--color-text-muted)]">24h Volume</p>
-              <p className="font-semibold text-white">$89.2M</p>
-            </div>
-            <div className="text-center">
-              <p className="text-[var(--color-text-muted)]">Rank</p>
-              <p className="font-semibold text-white">#28</p>
-            </div>
-            <div className="text-center">
-              <p className="text-[var(--color-text-muted)]">Circulating</p>
-              <p className="font-semibold text-white">147.1M ETC</p>
-            </div>
+          <motion.div variants={fadeInUp} className="mt-8">
+            <LiveMarketStats showVolume showRank showSupply />
           </motion.div>
         </motion.div>
       </section>
@@ -150,25 +226,7 @@ export default function MarketsPage() {
             </p>
           </motion.div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {sampleMarketStats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <PriceStat
-                  label={stat.label}
-                  value={stat.value}
-                  change={stat.change}
-                  changeDirection={stat.changeDirection}
-                  tooltip={stat.tooltip}
-                />
-              </motion.div>
-            ))}
-          </div>
+          <LiveMarketStatsGrid />
         </div>
       </section>
 

@@ -6,11 +6,24 @@
 
 ---
 
-## Project Status: v0.2 Rebuild
+## Project Status: v0.2 - Phase 6 Complete (81%)
 
-We are rebuilding EthereumClassic.com from scratch with comprehensive planning based on deep analysis of Bitcoin.com's structure and features.
+**Last Updated:** January 2026
 
-**Approach:** All URL endpoints defined upfront. Features built incrementally. Stub pages for unbuilt sections.
+| Phase | Milestones | Complete | Status |
+|-------|------------|----------|--------|
+| Phase 1 | 8 | 8 | 100% |
+| Phase 2 | 5 | 5 | 100% |
+| Phase 3 | 10 | 10 | 100% |
+| Phase 4 | 12 | 12 | 100% |
+| Phase 5 | 7 | 7 | 100% |
+| Phase 6 | 23 | 21 | 91% |
+| Phase 7 | 11 | 0 | 0% (Human-only) |
+| **Total** | **75** | **63** | **84%** |
+
+**Current:** 137 pages built (~87% complete, ~17 stub pages remaining)
+
+See [docs/MILESTONES.md](docs/MILESTONES.md) for detailed milestone breakdown.
 
 ---
 
@@ -29,46 +42,35 @@ We are rebuilding EthereumClassic.com from scratch with comprehensive planning b
 
 ---
 
-## Ecosystem Context
-
-This site is the **awareness layer** for the ETC ecosystem:
-
-```
-EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org → docs.classicos.org
-   (awareness + products)         (consideration)    (conversion)       (onboarding)
-```
-
----
-
-## Site Structure (v0.2 Target)
+## Site Structure
 
 ### Primary Navigation
 ```
-[Logo] News | Wallet | Apps | Buy | Learn | Mining | Build | [Markets ▼] [Launch App]
+[Logo] News | Wallet | Apps | Buy | Learn | Mining | Build | [Markets] [Launch App]
 ```
 
 ### Complete Section Map
 
-| Section | Description | Status |
-|---------|-------------|--------|
-| **Homepage** | Hero, products, stats, CTAs | Rebuild |
-| **Wallet** | Classic OS + wallet reviews | Rebuild |
-| **Buy** | Exchanges, on-ramps, guides | Rebuild |
-| **Apps** | dApp directory (DeFi, NFT, Tools) | Rebuild |
-| **Learn** | Education center, guides, glossary | Build |
-| **News** | Ecosystem news and updates | Build |
-| **Mining** | Pools, hardware, profitability | Build |
-| **Build** | Developer resources, clients | Build |
-| **Exchanges** | Exchange directory and reviews | Build |
-| **Markets** | Price data, charts, tools | Build |
-| **Research** | Reports and analysis | Stub |
-| **Tools** | Calculators, converters | Stub |
-| **Directory** | Ecosystem listings | Build |
-| **Community** | Social links, events | Stub |
+| Section | Pages | Status | Features |
+|---------|-------|--------|----------|
+| **Homepage** | 1 | Complete | Hero, stats, ecosystem overview |
+| **Wallet** | 7 | Complete | Classic OS, hardware, compare, reviews |
+| **Buy/Sell** | 11 | Complete | Exchanges, reviews, methods |
+| **Exchanges** | 14 | Complete | Directory, compare, reviews by feature |
+| **Apps** | 11 | Complete | DeFi, NFT, games, tools, governance |
+| **Learn** | 20+ | Complete | Dynamic categories and articles |
+| **News** | 5 | Complete | Hub, articles, RSS feed |
+| **Mining** | 10 | Complete | Pools, hardware, software, stats |
+| **Build** | 10 | Complete | Clients, docs, tools, networks |
+| **Markets/Price** | 8 | Complete | Live charts, calculator, converter |
+| **Research** | 8 | Complete | Reports, network, supply tracker |
+| **Tools** | 6 | 4/6 | Gas tracker, explorer (2 stubs) |
+| **Directory** | 6 | Complete | Wallets, exchanges, mining, devs |
+| **Community** | 4 | Complete | Social, events, contribute |
+| **Network** | 1 | Complete | Live network status dashboard |
+| **Store** | 1 | Complete | Mining hardware e-commerce |
 
-**Total Endpoints:** 180+ URLs mapped
-
-See [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md) for complete URL mapping.
+**Total:** 137 page.tsx files | See [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md)
 
 ---
 
@@ -76,12 +78,16 @@ See [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md) for complete URL mapping.
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| Next.js | 16.x | App Router, SSG/SSR |
+| Next.js | 15.x | App Router, SSG/SSR |
 | React | 19.x | UI components |
 | TypeScript | 5.x | Type safety |
 | Tailwind CSS | 4.x | Styling |
 | Framer Motion | 12.x | Animations |
 | Node.js | 22.x | Runtime |
+
+### Live Data Integrations
+- **CoinGecko API** - ETC price, market cap, volume
+- **Blockscout API** - Block height, transactions, gas prices
 
 ---
 
@@ -105,62 +111,42 @@ npm run lint
 
 ## Documentation
 
-### Planning & Research
 | Document | Purpose |
 |----------|---------|
-| [docs/RESEARCH.md](docs/RESEARCH.md) | Bitcoin.com analysis and findings |
-| [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md) | Complete URL endpoint mapping |
+| [docs/MILESTONES.md](docs/MILESTONES.md) | Phased development plan (75 milestones) |
+| [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md) | Complete URL endpoint mapping (137 pages) |
+| [docs/STALE-DATA-AUDIT-REPORT.md](docs/STALE-DATA-AUDIT-REPORT.md) | Data freshness audit results |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Technical architecture |
 | [docs/COMPONENTS.md](docs/COMPONENTS.md) | Component specifications |
-| [docs/MILESTONES.md](docs/MILESTONES.md) | Phased development plan |
-
-### Development
-| Document | Purpose |
-|----------|---------|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Development guidelines |
-| [.claude/instructions.md](.claude/instructions.md) | AI agent instructions |
-| [.github/copilot-instructions.md](.github/copilot-instructions.md) | GitHub Copilot context |
 
 ---
 
-## Development Phases
+## Key Features
 
-### Phase 1: Framework & Shell (Current)
-- Design system and tokens
-- UI component library
-- Layout components
-- Stub page system for all URLs
-- Navigation and routing
+### Live Data Integration
+- Real-time ETC price from CoinGecko
+- Live network stats from Blockscout
+- Auto-refresh with fallback values
 
-### Phase 2: Core Pages (P0)
-- Homepage
-- Wallet hub + Classic OS
-- Buy ETC hub
-- Apps directory
-- Learn landing
+### Mining Section
+- Pool directory with hashrate data
+- Hardware profitability tables (ASICs & GPUs)
+- Mining software comparison
+- Getting started guides
 
-### Phase 3: Secondary Pages (P1)
-- Wallet section expansion
-- Buy section expansion
-- Apps expansion
-- Learn articles
-- News, Markets, Mining, Build sections
-- Exchange directory
+### E-Commerce Store
+- Mining hardware (ASICs, GPUs)
+- Equipment (PSUs, frames, cooling)
+- Network infrastructure
+- Hardware wallets
+- Merchandise
 
-### Phase 4: Content Expansion (P2)
-- Wallet and exchange reviews
-- Full learn section (30+ articles)
-- Mining guides and tools
-- Research section
-- Tools section
-
-### Phase 5: Advanced Features (P3)
-- User accounts
-- CMS integration
-- API layer
-- Internationalization
-
-See [docs/MILESTONES.md](docs/MILESTONES.md) for detailed milestone breakdown.
+### Exchange Integration
+- 80+ exchange listings
+- Feature-based filtering
+- Individual reviews
+- Comparison tools
 
 ---
 
@@ -171,27 +157,6 @@ Ethereum Classic is:
 - Live and operating continuously since 2015
 - EVM-native and interoperable with Ethereum ecosystem
 - A first-class execution layer for real on-chain activity
-
-**Forward-looking:** No historical disputes, forks, or governance debates.
-
----
-
-## What This Site Is
-
-- **Consumer gateway** - Entry point for ETC users
-- **Product platform** - Wallet, Apps, Buy/Sell, Learn, Mining
-- **For-profit funnel** - Track clicks, optimize conversion
-- **Legitimacy layer** - Establish credibility for ETC ecosystem
-- **Fast** - Mobile-first, <3s load time
-
-## What This Site Is NOT
-
-- **Not a community site** - No forums, governance, ECIP content
-- **Not the app** - No wallet connection, no DeFi interactions (route to Classic OS)
-- **Not documentation** - Route to docs.classicos.org
-- **Not a blog CMS** - Static content, CMS in Phase 5
-
-**Success = wallet adoption + app discovery + downstream clicks**
 
 ---
 

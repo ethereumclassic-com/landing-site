@@ -44,7 +44,7 @@
 
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
+  --color-text-muted: #7B8CA1;  /* Increased from #64748B for WCAG AA contrast */
   --color-text-disabled: #475569;
 
   /* Shorthand */

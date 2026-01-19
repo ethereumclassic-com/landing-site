@@ -2,6 +2,8 @@
 
 Welcome! This guide will help you contribute to EthereumClassic.com.
 
+**Last Updated:** January 2026
+
 ---
 
 ## Quick Start
@@ -22,54 +24,35 @@ Both lint and build **must pass** before committing.
 
 ---
 
-## What Is This Site?
+## Project Overview
 
-EthereumClassic.com is the **top-of-funnel awareness site** in our ecosystem:
+EthereumClassic.com is the **commercial gateway** for Ethereum Classic:
 
 ```
 EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org
+   (awareness + products)         (consideration)    (conversion)
 ```
 
-**Purpose:** Answer "Why should I use Ethereum Classic, and where do I go next?" Route visitors to real ETC activity within 60 seconds.
+**Purpose:** Answer "Why should I use Ethereum Classic, and where do I go next?"
 
----
-
-## IMPORTANT: Locked Scope
-
-**This site has a locked scope.** See [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md).
-
-Any change to the scope requires:
-- Written decision in `control/decisions/`
-- Architect approval
-
-**If it's not explicitly in the scope, it's out of scope.**
+**Current Status:** 137 pages built, Phase 6 complete (~81% of v0.2 roadmap)
 
 ---
 
 ## Key Principles
 
-### 1. This Is a Router, Not an App
+### 1. Consumer Gateway
 
-❌ **Do NOT add:**
-- Wallet integration
-- Portfolio views
-- DEX interfaces
-- Charts or dashboards
-- Governance or ECIP content
-- Historical debates
-- User accounts
-
-✅ **DO add:**
-- Clear positioning for Ethereum Classic
-- CTAs to ClassicOS, ETCswap, mining resources
-- Legitimacy signals (network age, clients, exchanges)
-
-**Rule:** If it needs interactivity, it belongs in ClassicOS, not here.
+This site is:
+- Entry point for ETC users
+- Product platform (Wallet, Apps, Buy/Sell, Learn, Mining)
+- For-profit funnel with click tracking
+- Legitimacy layer for ETC ecosystem
 
 ### 2. Forward-Looking Positioning
 
 - **Focus on:** PoW security, smart contracts, EVM compatibility, longevity
-- **Avoid:** Fork debates, governance disputes, historical timelines
+- **Avoid:** Fork debates, governance disputes, historical controversies
 
 ### 3. Success = Downstream Clicks
 
@@ -83,17 +66,10 @@ We measure success by **clicks to real ETC activity**, not time on site.
 
 Read these docs:
 - [README.md](README.md) - Project overview
-- [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md) - **Locked scope (CRITICAL)**
-- [docs/README.md](docs/README.md) - Product context
-- [/docs/ecosystem/phase-0/](../../docs/ecosystem/phase-0/) - Ecosystem context
+- [docs/MILESTONES.md](docs/MILESTONES.md) - Development roadmap
+- [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md) - URL mapping
 
-### 2. Verify Your Change Is In Scope
-
-**Ask:** Is this change explicitly allowed in the locked scope?
-- If **NO** → Stop. Get architect approval first.
-- If **YES** → Proceed.
-
-### 3. Making Changes
+### 2. Making Changes
 
 1. **Create a branch**
    ```bash
@@ -120,80 +96,74 @@ Read these docs:
    git commit -m "scope: brief description"
    ```
 
-   Examples:
-   - `hero: update positioning statement`
-   - `paths: add Classic OS as primary Use ETC CTA`
-   - `footer: add Fukuii client link`
-
-### 4. Submitting Changes
-
-1. Push your branch
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-2. Create a pull request with:
-   - Clear description of what changed
-   - **Confirmation that change is within locked scope**
-   - Screenshots (if visual changes)
-
 ---
 
 ## Tech Stack
 
-- **Next.js 16.1.1** (App Router)
-- **React 19.2.3**
-- **Tailwind CSS 4** for styling
-- **Framer Motion 12.24.0** for animations
-- **TypeScript 5**
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Next.js | 15.x | App Router, SSG/SSR |
+| React | 19.x | UI components |
+| TypeScript | 5.x | Type safety |
+| Tailwind CSS | 4.x | Styling |
+| Framer Motion | 12.x | Animations |
+| Node.js | 22.x | Runtime |
+
+### Data Integrations
+- **CoinGecko API** - Price data via `/api/price`
+- **Blockscout API** - Network stats via `/api/network`
 
 ---
 
-## Site Structure (v0.1 - Locked)
+## Site Structure
 
-**Five sections only:**
+### Primary Navigation
+```
+[Logo] News | Wallet | Apps | Buy | Learn | Mining | Build | [Markets] [Launch App]
+```
 
-1. **Hero** - Clear positioning, one CTA
-2. **Why Ethereum Classic** - 3-4 value statements (PoW, longevity, smart contracts, EVM)
-3. **What Can I Do on ETC?** - Three paths: Use, Earn, Build
-4. **Who Is ETC For?** - Segmentation: users, miners, builders, institutions
-5. **Footer** - Essential navigation, external links
+### Complete Sections
 
-**No additional sections without architect approval.**
+| Section | Pages | Description |
+|---------|-------|-------------|
+| Homepage | 1 | Hero, stats, ecosystem |
+| Wallet | 7 | Classic OS, hardware, compare, reviews |
+| Buy/Sell | 11 | Exchanges, methods, reviews |
+| Exchanges | 14 | Directory, compare, feature filters |
+| Apps | 11 | DeFi, NFT, games, tools |
+| Learn | 20+ | Dynamic categories and articles |
+| News | 5 | Hub, articles, RSS feed |
+| Mining | 10 | Pools, hardware, software |
+| Build | 10 | Clients, docs, tools |
+| Markets | 8 | Price, charts, calculator |
+| Research | 8 | Reports, network stats |
+| Tools | 6 | Gas tracker, explorer |
+| Directory | 6 | Ecosystem listings |
+| Community | 4 | Social, events |
+| Network | 1 | Live status dashboard |
+| Store | 1 | Hardware e-commerce |
+
+**Total:** 137 page.tsx files
 
 ---
 
-## Positioning (Non-Negotiable)
+## Hooks and Live Data
 
-Ethereum Classic is:
-- The **only mature Proof-of-Work blockchain with smart contracts**
-- Live and operating continuously since 2015
-- EVM-native and interoperable with Ethereum ecosystem
-- A first-class execution layer for real on-chain activity
+Use these hooks for live data:
 
-**Forward-looking** - No historical disputes or fork debates.
+```typescript
+// ETC Price
+import { usePrice } from '@/app/hooks/usePrice'
+const { price, change24h, marketCap } = usePrice('usd')
 
----
+// Network Stats
+import { useNetworkStats } from '@/app/hooks/useNetworkStats'
+const { stats, formatted, loading } = useNetworkStats()
 
-## Three Paths (Routing Strategy)
-
-### 1. Use ETC
-Route to:
-- Classic OS (classicos.org) - Primary
-- ETCswap (etcswap.org)
-- Wallets (MetaMask, hardware wallets)
-
-### 2. Earn ETC
-Route to:
-- Mining pools
-- Classic OS Mining OS (classicos.org)
-- ETCswap liquidity provision
-
-### 3. Build on ETC
-Route to:
-- Fukuii client
-- Core-Geth client
-- Developer docs
+// Gas Prices
+import { useGasPrices } from '@/app/hooks/useNetworkStats'
+const { slow, average, fast } = useGasPrices()
+```
 
 ---
 
@@ -202,125 +172,90 @@ Route to:
 ### Page Structure
 
 ```typescript
-// app/page.tsx
-import Hero from './components/Hero'
-import WhyETC from './components/WhyETC'
-
-export default function HomePage() {
-  return (
-    <>
-      <Hero />
-      <WhyETC />
-    </>
-  )
-}
-```
-
-### Component with Animation
-
-```typescript
-// app/components/Hero.tsx
+// app/section/page.tsx
 'use client'
 
 import { motion } from 'framer-motion'
 
-export default function Hero() {
+export default function SectionPage() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <h1>The Only Mature PoW Chain with Smart Contracts</h1>
-      <a href="https://classicos.org">Use ETC</a>
-    </motion.section>
+    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+      <section className="px-6 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          {/* Content */}
+        </div>
+      </section>
+    </main>
   )
 }
+```
+
+### Animation
+
+```typescript
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' as const },
+  },
+}
+
+<motion.div
+  initial="hidden"
+  animate="visible"
+  variants={fadeInUp}
+>
+  {/* Content */}
+</motion.div>
 ```
 
 ---
 
 ## Style Guidelines
 
-### Tailwind CSS
+### Design Tokens
 
-Use utility classes:
-
-```tsx
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <h1 className="text-4xl font-bold">Ethereum Classic</h1>
-</div>
+```css
+--color-primary: #3AB83A (ETC Green)
+--bg: #0a0a0a
+--panel: #111
+--border: #222
+--color-text-primary: #fff
+--color-text-secondary: #a0a0a0
+--color-text-muted: #666
 ```
 
 ### Responsive Design
 
-Mobile-first:
+Mobile-first approach:
 
 ```tsx
 className="text-base md:text-lg lg:text-xl"
+className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
 ```
-
-### Visual Inspiration
-
-Protocol-grade aesthetic inspired by **aura.build**:
-- Subtle motion
-- Component-based layouts
-- Modern, professional
 
 ---
 
-## Common Tasks
+## Code Review Checklist
 
-### Update Copy
-
-1. Verify change is in locked scope
-2. Find the component with the text
-3. Update to match positioning guidelines
-4. Test on mobile and desktop
-5. Validate and commit
-
-### Add/Update CTA
-
-1. Verify CTA destination is in locked scope
-2. Update component with new link
-3. Ensure clear value prop next to CTA
-4. Test on mobile and desktop
-5. Validate and commit
+Reviewers will check for:
+- ✅ Lint and build pass
+- ✅ Mobile-responsive
+- ✅ Fast load time
+- ✅ Forward-looking positioning
+- ✅ Uses live data hooks where applicable
+- ✅ Small, focused diffs
 
 ---
 
 ## Getting Help
 
-- **Locked scope:** [docs/SCOPE-v0.1.md](docs/SCOPE-v0.1.md)
-- **Product docs:** [docs/README.md](docs/README.md)
-- **Ecosystem context:** [/docs/ecosystem/phase-0/](../../docs/ecosystem/phase-0/)
-- **Agent instructions:** [.claude/instructions.md](.claude/instructions.md)
-
----
-
-## Code Review
-
-Reviewers will check for:
-- ✅ Change is within locked scope
-- ✅ Lint and build pass
-- ✅ Mobile-responsive
-- ✅ Fast load time
-- ✅ Forward-looking positioning (no fork debates)
-- ✅ Routes to real ETC activity
-- ✅ Small, focused diffs
-
----
-
-## Scope Change Process
-
-If you want to add something outside the locked scope:
-
-1. Document the proposed change in `control/decisions/`
-2. Explain why it's needed and how it fits the router model
-3. Get architect approval
-4. Only then implement
-
-**Do not implement scope changes without approval.**
+- **Documentation:** See `/docs` folder
+- **Milestones:** [docs/MILESTONES.md](docs/MILESTONES.md)
+- **URL Structure:** [docs/URL-STRUCTURE.md](docs/URL-STRUCTURE.md)
+- **Architecture:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ---
 

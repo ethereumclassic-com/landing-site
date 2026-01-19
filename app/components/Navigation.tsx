@@ -558,7 +558,7 @@ export default function Navigation() {
               href="https://app.classicos.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center justify-center rounded-xl border border-emerald-300/30 bg-emerald-400/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-400/20 md:inline-flex"
+              className="hidden items-center justify-center rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--color-primary)]/25 md:inline-flex"
             >
               Launch App
             </a>
@@ -598,6 +598,29 @@ export default function Navigation() {
               className="overflow-hidden border-t border-[var(--border-soft)] bg-[var(--bg)] lg:hidden"
             >
               <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-4">
+                {/* Mobile Launch App Button - at top for Safari iOS URL bar issue */}
+                <a
+                  href="https://app.classicos.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mb-4 flex w-full items-center justify-center rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/15 px-4 py-3 text-sm font-medium text-white transition hover:bg-[var(--color-primary)]/25"
+                >
+                  Launch App
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                    />
+                  </svg>
+                </a>
+
                 {/* Mobile Search */}
                 <button
                   onClick={() => {
@@ -653,31 +676,6 @@ export default function Navigation() {
                       </div>
                     </div>
                   ))}
-                </div>
-
-                {/* Mobile Launch App Button */}
-                <div className="mt-6 border-t border-[var(--border-soft)] pt-4">
-                  <a
-                    href="https://app.classicos.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center rounded-xl border border-emerald-300/30 bg-emerald-400/15 px-4 py-3 text-sm font-medium text-white transition hover:bg-emerald-400/20"
-                  >
-                    Launch App
-                    <svg
-                      className="ml-2 h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                      />
-                    </svg>
-                  </a>
                 </div>
               </div>
             </motion.div>

@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useGasPrices } from '@/app/hooks/useNetworkStats'
+import { usePrice } from '@/app/hooks/usePrice'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -21,34 +23,6 @@ const staggerContainer = {
   },
 }
 
-// Gas price tiers (in Gwei) - ETC typically has very low gas prices
-const gasTiers = [
-  {
-    name: 'Slow',
-    gwei: '1',
-    time: '~5 min',
-    description: 'Low priority, cheaper',
-    color: 'text-blue-400',
-    bgColor: 'bg-blue-500/10',
-  },
-  {
-    name: 'Standard',
-    gwei: '2',
-    time: '~1 min',
-    description: 'Average speed',
-    color: 'text-green-400',
-    bgColor: 'bg-green-500/10',
-  },
-  {
-    name: 'Fast',
-    gwei: '5',
-    time: '~15 sec',
-    description: 'High priority, faster',
-    color: 'text-amber-400',
-    bgColor: 'bg-amber-500/10',
-  },
-]
-
 // Common transaction types with typical gas limits
 const transactionTypes = [
   { name: 'ETC Transfer', gasLimit: 21000, description: 'Simple native token transfer' },
@@ -61,15 +35,49 @@ const transactionTypes = [
 ]
 
 export default function GasTrackerPage() {
-  const [selectedGas, setSelectedGas] = useState('2') // Standard by default
-  const etcPrice = 25 // Reference price in USD
+  // Use live gas prices and ETC price
+  const { slow, average, fast, loading: gasLoading } = useGasPrices()
+  const { price: etcPrice, loading: priceLoading } = usePrice('usd')
+
+  // Build gas tiers from live data
+  const gasTiers = [
+    {
+      name: 'Slow',
+      gwei: slow?.toFixed(2) ?? '1',
+      time: '~5 min',
+      description: 'Low priority, cheaper',
+      color: 'text-blue-400',
+      bgColor: 'bg-blue-500/10',
+    },
+    {
+      name: 'Standard',
+      gwei: average?.toFixed(2) ?? '2',
+      time: '~1 min',
+      description: 'Average speed',
+      color: 'text-green-400',
+      bgColor: 'bg-green-500/10',
+    },
+    {
+      name: 'Fast',
+      gwei: fast?.toFixed(2) ?? '5',
+      time: '~15 sec',
+      description: 'High priority, faster',
+      color: 'text-amber-400',
+      bgColor: 'bg-amber-500/10',
+    },
+  ]
+
+  const [selectedGas, setSelectedGas] = useState(average?.toFixed(2) ?? '2') // Standard by default
+  const liveEtcPrice = etcPrice ?? 25 // Fallback to reference price
 
   const calculateCost = (gasLimit: number, gweiPrice: string) => {
     const gasPriceEth = parseFloat(gweiPrice) / 1e9
     const costEtc = gasLimit * gasPriceEth
-    const costUsd = costEtc * etcPrice
+    const costUsd = costEtc * liveEtcPrice
     return { costEtc: costEtc.toFixed(8), costUsd: costUsd.toFixed(6) }
   }
+
+  const isLoading = gasLoading || priceLoading
 
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
@@ -142,23 +150,35 @@ export default function GasTrackerPage() {
             ))}
           </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
             className="mt-4 text-center text-sm text-[var(--color-text-muted)]"
           >
-            Reference values based on typical network conditions. Check{' '}
-            <a
-              href="https://etc.blockscout.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--color-primary)] hover:underline"
-            >
-              Blockscout
-            </a>{' '}
-            for real-time data.
-          </motion.p>
+            {isLoading ? (
+              <span className="inline-flex items-center gap-2">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                Loading live gas prices...
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                </span>
+                Live data from{' '}
+                <a
+                  href="https://etc.blockscout.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-primary)] hover:underline"
+                >
+                  Blockscout
+                </a>
+              </span>
+            )}
+          </motion.div>
         </div>
       </section>
 
@@ -222,7 +242,12 @@ export default function GasTrackerPage() {
               </table>
             </div>
             <div className="border-t border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-xs text-[var(--color-text-muted)]">
-              Costs calculated at {selectedGas} Gwei gas price and ${etcPrice} ETC reference price
+              Costs calculated at {selectedGas} Gwei gas price and ${liveEtcPrice.toFixed(2)} ETC{' '}
+              {etcPrice ? (
+                <span className="text-green-400">(live)</span>
+              ) : (
+                <span className="text-amber-400">(reference)</span>
+              )}
             </div>
           </motion.div>
         </div>
