@@ -1955,42 +1955,89 @@ Phase 8 is organized into **sub-phases** grouped by their primary dependency/blo
 - [ ] Update `/lib/config.ts` or footer with real social URLs
 
 ### Milestone 8B.2: Exchange Affiliate Programs
-**Status**: Not Started
+**Status**: Research Complete, Infrastructure Built - Awaiting Human Signups
 **Dependencies**: 6.10 (Referral Infrastructure)
 **Blocker**: Program registration requires human
 
-**Research Needed**:
-- Which exchanges offer affiliate programs for ETC?
-- Commission rates and terms?
-- Approval requirements?
+**Research Complete** (January 2026):
+- [x] Identified 45+ exchanges with ETC trading pairs via CoinGecko API
+- [x] Researched commission rates for Tier 1 exchanges (see below)
+- [x] Documented approval requirements and application URLs
+- [x] Created tiered priority list based on trading volume
 
-**What Claude Built**: Referral link infrastructure, `/lib/referrals.ts` config
+**Commission Research Summary**:
+| Exchange | Commission | Duration | Requirements |
+|----------|-----------|----------|--------------|
+| Binance | 41-50% trading fees | Lifetime | 5k+ followers |
+| Coinbase | 50% trading fees | 3 months | 45k+ monthly visitors |
+| Kraken | 20% ($1k cap/referral) | Lifetime | 5k+ followers |
+| Gate.io | Up to 60% | TBD | TBD |
+| OKX | Up to 50% | TBD | TBD |
+
+**What Claude Built**:
+- [x] Centralized affiliate link bank: `/lib/affiliates.ts`
+- [x] 58 affiliate configurations (exchanges, wallets, hardware)
+- [x] Helper functions: `getAffiliateLink()`, `getExchangeLink()`
+- [x] Auto-fallback to base URLs when affiliate not active
+- [x] Research documentation: `/docs/research/AFFILIATE-PROGRAMS.md`
+- [x] Migrated wallet data to use affiliate system
+- [x] Migrated 25+ exchange links to use affiliate system
+
 **Human Must Do**:
-- [ ] Sign up for Binance referral program → add code to config
-- [ ] Sign up for Coinbase referral program → add code to config
-- [ ] Sign up for Kraken referral program → add code to config
-- [ ] Sign up for other exchange programs as available
-- [ ] Update links in `/lib/referrals.ts` with affiliate codes
-- [ ] Test tracking is working
+- [ ] Sign up for Binance affiliate program → update `lib/affiliates.ts`
+- [ ] Sign up for Coinbase affiliate program → update `lib/affiliates.ts`
+- [ ] Sign up for Kraken affiliate program → update `lib/affiliates.ts`
+- [ ] Sign up for OKX affiliate program → update `lib/affiliates.ts`
+- [ ] Sign up for Bybit affiliate program → update `lib/affiliates.ts`
+- [ ] Sign up for additional exchanges as desired (see AFFILIATE-PROGRAMS.md)
+- [ ] Test affiliate links are tracking correctly
+
+**To Activate an Affiliate** (after signup):
+```typescript
+// In lib/affiliates.ts, update the exchange entry:
+binance: {
+  affiliateUrl: 'https://www.binance.com/en/register?ref=YOUR_CODE',
+  affiliateCode: 'YOUR_CODE',
+  isActive: true,
+  activatedDate: '2026-01',
+}
+```
 
 ### Milestone 8B.3: Hardware Affiliate Programs
-**Status**: Not Started
+**Status**: Partially Complete (Wallets Done) - Mining Hardware Pending
 **Dependencies**: 6.8 (E-Commerce Store)
 **Blocker**: Program registration requires human
 
-**Research Needed**:
-- Do ASIC manufacturers have affiliate programs?
-- What are retailer affiliate terms?
+**Completed** (January 2026):
+- [x] Trezor affiliate program - **ACTIVE** (12-15%, 90-day cookie)
+- [x] Ledger affiliate program - **ACTIVE** (10%, 30-day cookie)
+- [x] Integrated into `/lib/affiliates.ts` and wallet data
+
+**What Claude Built**:
+- [x] Hardware wallet affiliates in centralized system
+- [x] Wallet data uses `getAffiliateLink('trezor')` and `getAffiliateLink('ledger')`
+- [x] Infrastructure ready for additional hardware wallet programs
+
+**Research Needed** (ASIC Manufacturers):
+- Do Bitmain, Innosilicon, iPollo, Jasminer have affiliate/reseller programs?
+- Most ASIC manufacturers sell direct or via authorized resellers
 
 **Human Must Do**:
-- [ ] Bitmain affiliate program (research availability)
-- [ ] Innosilicon affiliate program (research availability)
-- [ ] iPollo affiliate program (research availability)
-- [ ] Jasminer affiliate program (research availability)
-- [ ] Amazon Associates signup
-- [ ] Newegg affiliate program signup
-- [ ] eBay Partner Network signup
-- [ ] Configure tracking codes in product links
+*Hardware Wallets (Additional):*
+- [ ] SafePal affiliate program (if available)
+- [ ] CoolWallet affiliate program (if available)
+- [ ] Ellipal affiliate program (if available)
+
+*Mining Hardware Retailers:*
+- [ ] Amazon Associates signup → update `lib/affiliates.ts`
+- [ ] Newegg affiliate program signup → update `lib/affiliates.ts`
+- [ ] eBay Partner Network signup → update `lib/affiliates.ts`
+
+*ASIC Manufacturers (Research First):*
+- [ ] Bitmain - check for reseller/affiliate program
+- [ ] Innosilicon - check for reseller/affiliate program
+- [ ] iPollo - check for reseller/affiliate program
+- [ ] Jasminer - check for reseller/affiliate program
 
 ### Milestone 8B.4: Merchandise Setup (Printful)
 **Status**: Not Started
@@ -2378,14 +2425,20 @@ All 19 milestones completed. See PHASE-7-QA-REPORT.md for details.
 
 **Phase 8 Sub-Phases** (Human-only blockers):
 
-| Sub-Phase | Milestones | Focus | Primary Blocker |
-|-----------|------------|-------|-----------------|
-| **8A** | 4 | Content & Legal Review | Human judgment/legal expertise |
-| **8B** | 4 | Account & Program Signups | Human account creation |
-| **8C** | 2 | Infrastructure Setup | Server provisioning |
-| **8D** | 3 | Data Integration | API research/credentials |
-| **8E** | 3 | Product Launches | External product readiness |
-| **8F** | 1 | Final QA & Certification | Human testing/sign-off |
+| Sub-Phase | Milestones | Focus | Status | Primary Blocker |
+|-----------|------------|-------|--------|-----------------|
+| **8A** | 4 | Content & Legal Review | Not Started | Human judgment/legal expertise |
+| **8B** | 4 | Account & Program Signups | **In Progress** | Human account creation |
+| **8C** | 2 | Infrastructure Setup | Not Started | Server provisioning |
+| **8D** | 3 | Data Integration | Not Started | API research/credentials |
+| **8E** | 3 | Product Launches | Not Started | External product readiness |
+| **8F** | 1 | Final QA & Certification | Not Started | Human testing/sign-off |
+
+**Phase 8 Progress** (January 2026):
+- **8B.2**: Exchange affiliate research complete, infrastructure built (`lib/affiliates.ts`)
+- **8B.3**: Hardware wallet affiliates active (Trezor, Ledger)
+- All exchange/wallet links now use centralized affiliate system
+- See `/docs/research/AFFILIATE-PROGRAMS.md` for signup guide
 
 **Parallel Execution**: 8A + 8B + 8C can run concurrently. 8D requires research. 8E depends on external timelines. 8F is the final gate.
 
