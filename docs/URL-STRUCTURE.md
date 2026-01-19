@@ -1,6 +1,10 @@
 # URL Structure - EthereumClassic.com
 
-> **Purpose**: Complete URL endpoint mapping for EthereumClassic.com v0.2
+> **Purpose**: Complete URL endpoint mapping for EthereumClassic.com
+>
+> **Last Updated**: January 2026 (Milestone 6.22)
+>
+> **Total Pages**: 137 page.tsx files | ~87% Complete
 >
 > **Principle**: All endpoints defined upfront. Features built incrementally. Stub pages for unbuilt sections.
 >
@@ -23,14 +27,16 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/` | Homepage | Build | P0 |
-| `/about` | About EthereumClassic.com | Stub | P2 |
-| `/contact` | Contact form | Stub | P3 |
+| `/` | Homepage | Complete | P0 |
+| `/about` | About EthereumClassic.com | Complete | P2 |
+| `/contact` | Contact form | Complete | P3 |
 | `/advertise` | Advertising info | Stub | P3 |
 | `/partners` | Partner directory | Stub | P3 |
-| `/legal` | Legal/Terms | Stub | P2 |
-| `/privacy` | Privacy policy | Stub | P2 |
-| `/sitemap` | HTML sitemap | Build | P1 |
+| `/legal` | Legal/Terms | Complete | P2 |
+| `/privacy` | Privacy policy | Complete | P2 |
+| `/site-map` | HTML sitemap | Complete | P1 |
+| `/network` | Network status dashboard | Complete | P1 |
+| `/store` | ETC Hardware Store | Complete | P2 |
 
 ---
 
@@ -40,13 +46,13 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/wallet` | Wallet hub (Classic OS featured) | Build | P0 |
-| `/wallet/classic-os` | Classic OS dedicated page | Build | P0 |
-| `/wallet/metamask` | MetaMask setup guide | Build | P1 |
-| `/wallet/hardware` | Hardware wallet guide | Build | P1 |
-| `/wallet/compare` | Wallet comparison table | Build | P1 |
-| `/wallet/reviews` | All wallet reviews | Stub | P2 |
-| `/wallet/reviews/[wallet]` | Individual wallet review | Stub | P2 |
+| `/wallet` | Wallet hub (Classic OS featured) | Complete | P0 |
+| `/wallet/classic-os` | Classic OS dedicated page | Complete | P0 |
+| `/wallet/metamask` | MetaMask setup guide | Complete | P1 |
+| `/wallet/hardware` | Hardware wallet guide | Complete | P1 |
+| `/wallet/compare` | Wallet comparison table | Complete | P1 |
+| `/wallet/reviews` | All wallet reviews | Complete | P2 |
+| `/wallet/reviews/[wallet]` | Individual wallet review | Complete | P2 |
 
 **Wallet Reviews (Dynamic):**
 ```
@@ -65,15 +71,17 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/buy` | Buy ETC hub | Build | P0 |
-| `/buy/exchanges` | Exchange listings | Build | P1 |
+| `/buy` | Buy ETC hub | Complete | P0 |
+| `/buy/exchanges` | Exchange listings | Complete | P1 |
+| `/buy/reviews` | Exchange reviews | Complete | P2 |
+| `/buy/reviews/[exchange]` | Individual exchange review | Complete | P2 |
 | `/buy/instant` | Instant buy options | Stub | P2 |
 | `/buy/p2p` | P2P trading | Stub | P2 |
 | `/buy/atm` | Crypto ATM locator | Stub | P3 |
 | `/buy/card` | Buy with card guide | Stub | P2 |
 | `/buy/bank` | Buy with bank guide | Stub | P2 |
-| `/sell` | Sell ETC hub | Stub | P2 |
-| `/sell/exchanges` | Sell on exchanges | Stub | P2 |
+| `/sell` | Sell ETC hub | Complete | P2 |
+| `/sell/exchanges` | Sell on exchanges | Complete | P2 |
 
 ---
 
@@ -83,10 +91,17 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/exchanges` | Exchange directory | Build | P1 |
-| `/exchanges/reviews` | All exchange reviews | Stub | P2 |
-| `/exchanges/reviews/[exchange]` | Individual review | Stub | P2 |
-| `/exchanges/compare` | Comparison tool | Stub | P2 |
+| `/exchanges` | Exchange directory | Complete | P1 |
+| `/exchanges/reviews` | All exchange reviews | Complete | P2 |
+| `/exchanges/reviews/[exchange]` | Individual review | Complete | P2 |
+| `/exchanges/compare` | Comparison tool | Complete | P2 |
+| `/exchanges/beginners` | Beginner-friendly exchanges | Complete | P2 |
+| `/exchanges/lowest-fees` | Low-fee exchanges | Complete | P2 |
+| `/exchanges/most-secure` | Secure exchanges | Complete | P2 |
+| `/exchanges/decentralized` | DEXs | Complete | P2 |
+| `/exchanges/no-kyc` | No-KYC exchanges | Complete | P2 |
+| `/exchanges/us-friendly` | US exchanges | Complete | P2 |
+| `/exchanges/staking` | Staking exchanges | Complete | P2 |
 
 **By Feature:**
 ```
@@ -132,15 +147,17 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/apps` | Apps directory hub | Build | P0 |
-| `/apps/featured` | Featured apps | Build | P0 |
-| `/apps/defi` | DeFi apps | Build | P1 |
-| `/apps/nft` | NFT platforms | Stub | P2 |
-| `/apps/games` | Games/gaming | Stub | P2 |
-| `/apps/tools` | Developer tools | Stub | P2 |
-| `/apps/infrastructure` | Infrastructure | Build | P1 |
-| `/apps/governance` | Governance/DAOs | Build | P1 |
-| `/apps/submit` | Submit an app | Stub | P3 |
+| `/apps` | Apps directory hub | Complete | P0 |
+| `/apps/featured` | Featured apps | Complete | P0 |
+| `/apps/defi` | DeFi apps | Complete | P1 |
+| `/apps/nft` | NFT platforms | Complete | P2 |
+| `/apps/games` | Games/gaming | Complete | P2 |
+| `/apps/tools` | Developer tools | Complete | P2 |
+| `/apps/infrastructure` | Infrastructure | Complete | P1 |
+| `/apps/governance` | Governance/DAOs | Complete | P1 |
+| `/apps/payments` | Payment apps | Complete | P2 |
+| `/apps/submit` | Submit an app | Complete | P3 |
+| `/apps/[app]` | Individual app page | Complete | P2 |
 
 **Individual App Pages:**
 ```
@@ -158,16 +175,26 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/learn` | Learning center hub | Build | P1 |
-| `/learn/basics` | ETC basics | Build | P1 |
-| `/learn/ethereum-classic` | What is ETC? | Build | P0 |
-| `/learn/wallets` | Wallet guides | Build | P1 |
-| `/learn/trading` | Trading guides | Stub | P2 |
-| `/learn/defi` | DeFi on ETC | Stub | P2 |
-| `/learn/mining` | Mining guides | Build | P1 |
-| `/learn/staking` | Staking/yield | Stub | P2 |
-| `/learn/security` | Security best practices | Stub | P2 |
-| `/learn/glossary` | Crypto glossary | Stub | P3 |
+| `/learn` | Learning center hub | Complete | P1 |
+| `/learn/basics` | ETC basics | Complete | P1 |
+| `/learn/basics/[article]` | Individual basics article | Complete | P2 |
+| `/learn/ethereum-classic` | What is ETC? | Complete | P0 |
+| `/learn/wallets` | Wallet guides | Complete | P1 |
+| `/learn/wallets/[article]` | Individual wallet article | Complete | P2 |
+| `/learn/trading` | Trading guides | Complete | P2 |
+| `/learn/trading/[article]` | Individual trading article | Complete | P2 |
+| `/learn/defi` | DeFi on ETC | Complete | P2 |
+| `/learn/defi/[article]` | Individual DeFi article | Complete | P2 |
+| `/learn/mining` | Mining guides | Complete | P1 |
+| `/learn/mining/[article]` | Individual mining article | Complete | P2 |
+| `/learn/staking` | Staking/yield | Complete | P2 |
+| `/learn/staking/[article]` | Individual staking article | Complete | P2 |
+| `/learn/security` | Security best practices | Complete | P2 |
+| `/learn/security/[article]` | Individual security article | Complete | P2 |
+| `/learn/on-ramp` | Getting started guide | Complete | P1 |
+| `/learn/glossary` | Crypto glossary | Complete | P3 |
+| `/learn/[category]` | Dynamic category | Complete | P2 |
+| `/learn/[category]/[article]` | Dynamic article | Complete | P2 |
 
 **Individual Articles (Examples):**
 ```
@@ -217,10 +244,11 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/news` | News hub | Build | P1 |
-| `/news/[slug]` | Individual article | Stub | P2 |
-| `/news/category/[category]` | Category filter | Stub | P2 |
-| `/news/tag/[tag]` | Tag filter | Stub | P2 |
+| `/news` | News hub | Complete | P1 |
+| `/news/[slug]` | Individual article | Complete | P2 |
+| `/news/category/[category]` | Category filter | Complete | P2 |
+| `/news/tag/[tag]` | Tag filter | Complete | P2 |
+| `/news/feed.xml` | RSS feed | Complete | P1 |
 
 **Categories:**
 ```
@@ -240,13 +268,14 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/markets` | Markets overview | Build | P1 |
-| `/price` | ETC price page | Build | P1 |
-| `/price/etc` | ETC detailed price | Build | P1 |
-| `/price/etc-usd` | ETC/USD pair | Stub | P2 |
-| `/price/etc-btc` | ETC/BTC pair | Stub | P2 |
-| `/converter` | Price converter | Stub | P2 |
-| `/calculator` | Investment calculator | Stub | P2 |
+| `/markets` | Markets overview | Complete | P1 |
+| `/markets/price` | Price page within markets | Complete | P1 |
+| `/markets/calculator` | Investment calculator | Complete | P2 |
+| `/markets/converter` | Price converter | Complete | P2 |
+| `/price` | ETC price page | Complete | P1 |
+| `/price/[pair]` | Trading pairs (ETC-USD, etc) | Complete | P2 |
+| `/converter` | Price converter (alt route) | Complete | P2 |
+| `/calculator` | Investment calculator (alt route) | Complete | P2 |
 
 ---
 
@@ -256,14 +285,16 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/mining` | Mining hub | Build | P1 |
-| `/mining/getting-started` | Beginner guide | Build | P1 |
-| `/mining/pools` | Pool directory | Build | P1 |
-| `/mining/pools/[pool]` | Individual pool | Stub | P2 |
-| `/mining/hardware` | Hardware guide | Stub | P2 |
-| `/mining/software` | Software guide | Stub | P2 |
-| `/mining/profitability` | Calculator | Stub | P2 |
-| `/mining/stats` | Network hashrate | Stub | P2 |
+| `/mining` | Mining hub | Complete | P1 |
+| `/mining/getting-started` | Beginner guide | Complete | P1 |
+| `/mining/pools` | Pool directory | Complete | P1 |
+| `/mining/pools/[pool]` | Individual pool | Complete | P2 |
+| `/mining/hardware` | Hardware guide | Complete | P2 |
+| `/mining/hardware/buy` | Hardware marketplace | Complete | P2 |
+| `/mining/software` | Software guide | Complete | P2 |
+| `/mining/os` | Mining OS options | Complete | P2 |
+| `/mining/profitability` | Profitability calculator | Complete | P2 |
+| `/mining/stats` | Network hashrate stats | Complete | P2 |
 
 **Pool Pages (by hashrate relevance):**
 
@@ -304,17 +335,16 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/build` | Developer hub | Build | P1 |
-| `/build/getting-started` | Quick start | Build | P1 |
-| `/build/docs` | Documentation links | Build | P1 |
-| `/build/tools` | Developer tools | Stub | P2 |
-| `/build/clients` | Node clients | Build | P1 |
-| `/build/clients/core-geth` | Core-Geth | Stub | P2 |
-| `/build/clients/hyperledger-besu` | Besu | Stub | P2 |
-| `/build/clients/fukuii` | Fukuii | Stub | P2 |
-| `/build/networks` | Network info | Stub | P2 |
-| `/build/faucets` | Testnet faucets | Stub | P2 |
-| `/build/grants` | Grants/funding | Stub | P3 |
+| `/build` | Developer hub | Complete | P1 |
+| `/build/getting-started` | Quick start | Complete | P1 |
+| `/build/docs` | Documentation links | Complete | P1 |
+| `/build/tools` | Developer tools | Complete | P2 |
+| `/build/api` | API documentation | Complete | P2 |
+| `/build/clients` | Node clients | Complete | P1 |
+| `/build/clients/[client]` | Individual client page | Complete | P2 |
+| `/build/networks` | Network info | Complete | P2 |
+| `/build/faucets` | Testnet faucets | Complete | P2 |
+| `/build/grants` | Grants/funding | Complete | P3 |
 
 ---
 
@@ -324,11 +354,14 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/research` | Research hub | Stub | P2 |
-| `/research/reports` | All reports | Stub | P2 |
-| `/research/reports/[slug]` | Individual report | Stub | P3 |
-| `/research/network` | Network analysis | Stub | P2 |
-| `/research/ecosystem` | Ecosystem reports | Stub | P3 |
+| `/research` | Research hub | Complete | P2 |
+| `/research/reports` | All reports | Complete | P2 |
+| `/research/reports/[slug]` | Individual report | Complete | P3 |
+| `/research/network` | Network analysis | Complete | P2 |
+| `/research/ecosystem` | Ecosystem reports | Complete | P3 |
+| `/research/fees` | Fee market analysis | Complete | P2 |
+| `/research/history` | ETC history | Complete | P2 |
+| `/research/supply` | Supply tracker & Fifthening | Complete | P2 |
 
 ---
 
@@ -338,11 +371,11 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/tools` | Tools hub | Stub | P2 |
+| `/tools` | Tools hub | Complete | P2 |
 | `/tools/converter` | Price converter | Stub | P2 |
-| `/tools/calculator` | Investment calc | Stub | P2 |
-| `/tools/gas` | Gas tracker | Stub | P2 |
-| `/tools/explorer` | Block explorer links | Stub | P2 |
+| `/tools/calculator` | Investment calc | Complete | P2 |
+| `/tools/gas` | Gas tracker (live) | Complete | P2 |
+| `/tools/explorer` | Block explorer links | Complete | P2 |
 | `/tools/verify` | Contract verifier | Stub | P3 |
 
 ---
@@ -353,12 +386,12 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/directory` | Directory hub | Stub | P2 |
-| `/directory/wallets` | Wallet directory | Build | P1 |
-| `/directory/exchanges` | Exchange directory | Build | P1 |
-| `/directory/mining` | Mining directory | Stub | P2 |
-| `/directory/developers` | Dev resources | Stub | P2 |
-| `/directory/community` | Community links | Stub | P3 |
+| `/directory` | Directory hub | Complete | P2 |
+| `/directory/wallets` | Wallet directory | Complete | P1 |
+| `/directory/exchanges` | Exchange directory | Complete | P1 |
+| `/directory/mining` | Mining directory | Complete | P2 |
+| `/directory/developers` | Dev resources | Complete | P2 |
+| `/directory/community` | Community links | Complete | P3 |
 
 ---
 
@@ -368,10 +401,10 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/community` | Community hub | Stub | P2 |
-| `/community/social` | Social media links | Stub | P2 |
-| `/community/events` | Events calendar | Stub | P3 |
-| `/community/contribute` | How to contribute | Stub | P3 |
+| `/community` | Community hub | Complete | P2 |
+| `/community/social` | Social media links | Complete | P2 |
+| `/community/events` | Events calendar | Complete | P3 |
+| `/community/contribute` | How to contribute | Complete | P3 |
 
 ---
 
@@ -387,6 +420,20 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 | `/account/settings` | Settings | Stub | P3 |
 | `/account/watchlist` | Price watchlist | Stub | P3 |
 | `/account/portfolio` | Portfolio tracker | Stub | P3 |
+
+---
+
+### Additional Pages
+
+**Miscellaneous pages.**
+
+| URL | Page | Status | Priority |
+|-----|------|--------|----------|
+| `/pool` | ETC Mining Pool (Future) | Stub | P3 |
+| `/earn` | Earning ETC | Stub | P3 |
+| `/referral` | Referral program | Stub | P3 |
+| `/referral/dashboard` | Referral dashboard | Stub | P3 |
+| `/content-editor` | Content management | Stub | P3 |
 
 ---
 
@@ -417,8 +464,10 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 
 | Status | Meaning |
 |--------|---------|
-| **Build** | Full page with content |
-| **Stub** | Placeholder page with "Coming Soon" |
+| **Complete** | Full page with content and functionality |
+| **Stub** | Placeholder page with "Coming Soon" message |
+
+> **Note**: Status updated January 2026 as part of Milestone 6.22 (URL-STRUCTURE.md Documentation Update)
 
 ---
 
@@ -435,24 +484,27 @@ All stub pages should include:
 
 ## URL Count Summary
 
-| Section | URLs | P0 | P1 | P2 | P3 |
-|---------|------|----|----|----|----|
-| Core | 8 | 1 | 1 | 4 | 2 |
-| Wallet | 12+ | 2 | 3 | 7+ | 0 |
-| Buy/Sell | 10 | 1 | 2 | 7 | 0 |
-| Exchanges | 30+ | 0 | 1 | 25+ | 0 |
-| Apps | 15+ | 2 | 3 | 10+ | 1 |
-| Learn | 40+ | 1 | 4 | 35+ | 1 |
-| News | 10+ | 1 | 0 | 10+ | 0 |
-| Markets | 8 | 0 | 3 | 5 | 0 |
-| Mining | 15+ | 0 | 3 | 12+ | 0 |
-| Build | 12+ | 0 | 3 | 8+ | 1 |
-| Research | 6 | 0 | 0 | 4 | 2 |
-| Tools | 6 | 0 | 0 | 5 | 1 |
-| Directory | 6 | 0 | 2 | 3 | 1 |
-| Community | 4 | 0 | 0 | 2 | 2 |
-| Account | 6 | 0 | 0 | 0 | 6 |
-| **TOTAL** | **180+** | **8** | **25** | **135+** | **17** |
+**Updated: January 2026** - Reflects actual page count from `app/` directory (137 page.tsx files)
+
+| Section | URLs | Complete | Stub | Notes |
+|---------|------|----------|------|-------|
+| Core | 10 | 8 | 2 | +network, +store |
+| Wallet | 7 | 7 | 0 | All complete |
+| Buy/Sell | 11 | 6 | 5 | Reviews complete |
+| Exchanges | 14 | 14 | 0 | All feature pages complete |
+| Apps | 11 | 11 | 0 | All complete |
+| Learn | 20+ | 20+ | 0 | Dynamic routes, all complete |
+| News | 5 | 5 | 0 | +RSS feed |
+| Markets | 8 | 8 | 0 | All complete |
+| Mining | 10 | 10 | 0 | All complete |
+| Build | 10 | 10 | 0 | All complete |
+| Research | 8 | 8 | 0 | All complete |
+| Tools | 6 | 4 | 2 | Converter, verify stub |
+| Directory | 6 | 6 | 0 | All complete |
+| Community | 4 | 4 | 0 | All complete |
+| Account | 6 | 0 | 6 | Future feature |
+| Misc | 5 | 0 | 5 | Pool, earn, referral |
+| **TOTAL** | **137** | **~120** | **~17** | **87% Complete** |
 
 ---
 

@@ -1,8 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -13,7 +13,8 @@ const fadeInUp = {
   },
 }
 
-const steps = [
+// Fiat USD (Bank Transfer) journey
+const fiatSteps = [
   {
     number: 1,
     title: 'Get USD Stablecoin (USC)',
@@ -43,17 +44,143 @@ const steps = [
   {
     number: 3,
     title: 'Swap USC for ETC',
-    description: 'Use ETCswap V3 to swap your USC stablecoin for WETC (Wrapped ETC), then unwrap to native ETC. No centralized exchange required.',
+    description: 'Use ETCswap V3 to swap your USC stablecoin directly for native ETC. ETCswap automatically unwraps to native ETC in a single atomic transaction.',
     action: 'Trade on ETCswap',
     actionLink: 'https://etcswap.org',
     details: [
-      'Select USC/WETC trading pair',
+      'Select USC/ETC trading pair',
       'Enter amount to swap',
       'Confirm transaction in wallet',
-      'Unwrap WETC to native ETC',
+      'Receive native ETC automatically',
     ],
   },
 ]
+
+// USDC journey (from other chains)
+const usdcSteps = [
+  {
+    number: 1,
+    title: 'Convert USDC to USC',
+    description: 'Use Brale to convert your USDC from Ethereum, Polygon, Arbitrum, Base, or Optimism to USC on Ethereum Classic at 1:1.',
+    action: 'Visit Brale',
+    actionLink: 'https://brale.xyz',
+    details: [
+      'Connect wallet with USDC',
+      'Select source chain (Ethereum, Polygon, etc.)',
+      'Convert USDC to USC (1:1, no slippage)',
+      'USC arrives on ETC network',
+    ],
+  },
+  {
+    number: 2,
+    title: 'Connect to Classic OS',
+    description: 'Use Classic OS, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
+    action: 'Launch Classic OS',
+    actionLink: 'https://app.classicos.org',
+    details: [
+      'Connect MetaMask or hardware wallet',
+      'Ensure wallet is on ETC network',
+      'Approve USC for trading',
+      'Access ETCswap DEX directly',
+    ],
+  },
+  {
+    number: 3,
+    title: 'Swap USC for ETC',
+    description: 'Use ETCswap V3 to swap your USC stablecoin directly for native ETC. ETCswap automatically unwraps to native ETC in a single atomic transaction.',
+    action: 'Trade on ETCswap',
+    actionLink: 'https://etcswap.org',
+    details: [
+      'Select USC/ETC trading pair',
+      'Enter amount to swap',
+      'Confirm transaction in wallet',
+      'Receive native ETC automatically',
+    ],
+  },
+]
+
+// USDP (Pax Dollar) journey
+const usdpSteps = [
+  {
+    number: 1,
+    title: 'Convert USDP to USC',
+    description: 'Use Brale to convert your USDP (Pax Dollar) from Ethereum to USC on Ethereum Classic at 1:1.',
+    action: 'Visit Brale',
+    actionLink: 'https://brale.xyz',
+    details: [
+      'Connect wallet with USDP on Ethereum',
+      'Select USDP as source stablecoin',
+      'Convert USDP to USC (1:1, no slippage)',
+      'USC arrives on ETC network',
+    ],
+  },
+  {
+    number: 2,
+    title: 'Connect to Classic OS',
+    description: 'Use Classic OS, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
+    action: 'Launch Classic OS',
+    actionLink: 'https://app.classicos.org',
+    details: [
+      'Connect MetaMask or hardware wallet',
+      'Ensure wallet is on ETC network',
+      'Approve USC for trading',
+      'Access ETCswap DEX directly',
+    ],
+  },
+  {
+    number: 3,
+    title: 'Swap USC for ETC',
+    description: 'Use ETCswap V3 to swap your USC stablecoin directly for native ETC. ETCswap automatically unwraps to native ETC in a single atomic transaction.',
+    action: 'Trade on ETCswap',
+    actionLink: 'https://etcswap.org',
+    details: [
+      'Select USC/ETC trading pair',
+      'Enter amount to swap',
+      'Confirm transaction in wallet',
+      'Receive native ETC automatically',
+    ],
+  },
+]
+
+type JourneyType = 'fiat' | 'usdc' | 'usdp'
+
+const journeys: Record<JourneyType, {
+  steps: typeof fiatSteps
+  title: string
+  subtitle: string
+  flowItems: { label: string; color: string }[]
+}> = {
+  fiat: {
+    steps: fiatSteps,
+    title: 'Fiat USD (Bank Transfer)',
+    subtitle: 'Bank account → USC → ETC',
+    flowItems: [
+      { label: 'USD (Bank)', color: 'blue' },
+      { label: 'USC (Brale)', color: 'amber' },
+      { label: 'ETC', color: 'primary' },
+    ],
+  },
+  usdc: {
+    steps: usdcSteps,
+    title: 'USDC (Multi-Chain)',
+    subtitle: 'USDC on any chain → USC → ETC',
+    flowItems: [
+      { label: 'USDC', color: 'blue' },
+      { label: 'USC (Brale)', color: 'amber' },
+      { label: 'ETC', color: 'primary' },
+    ],
+  },
+  usdp: {
+    steps: usdpSteps,
+    title: 'USDP (Pax Dollar)',
+    subtitle: 'USDP on Ethereum → USC → ETC',
+    flowItems: [
+      { label: 'USDP', color: 'green' },
+      { label: 'USC (Brale)', color: 'amber' },
+      { label: 'ETC', color: 'primary' },
+    ],
+  },
+}
 
 const benefits = [
   {
@@ -95,6 +222,19 @@ const benefits = [
 ]
 
 export default function OnRampGuidePage() {
+  const [activeJourney, setActiveJourney] = useState<JourneyType>('fiat')
+  const currentJourney = journeys[activeJourney]
+
+  const getColorClass = (color: string) => {
+    switch (color) {
+      case 'blue': return 'bg-blue-500/10 text-blue-400'
+      case 'amber': return 'bg-amber-500/10 text-amber-400'
+      case 'green': return 'bg-green-500/10 text-green-400'
+      case 'primary': return 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
+      default: return 'bg-white/10 text-white'
+    }
+  }
+
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
@@ -112,16 +252,45 @@ export default function OnRampGuidePage() {
             </Link>
 
             <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
-              Fiat On-Ramp Guide
+              Stablecoin On-Ramp Guide
             </span>
 
             <h1 className="mt-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
-              USD to ETC Without CEX
+              Stablecoins to ETC
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              The Classic USD (USC) stablecoin provides a direct path from your bank account to ETC
-              without using centralized exchanges. Here&apos;s how the flow works.
+              Convert USD, USDC, or USDP to ETC through the Classic USD (USC) stablecoin
+              without using centralized exchanges. Choose your starting point below.
             </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Journey Selector */}
+      <section className="px-6 pb-8 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            {(Object.keys(journeys) as JourneyType[]).map((key) => (
+              <button
+                key={key}
+                onClick={() => setActiveJourney(key)}
+                className={`rounded-lg px-4 py-3 text-left transition-all ${
+                  activeJourney === key
+                    ? 'bg-[var(--color-primary)] text-black'
+                    : 'border border-[var(--border)] bg-[var(--panel)] text-white hover:border-[var(--color-primary)]/50'
+                }`}
+              >
+                <div className="font-medium">{journeys[key].title}</div>
+                <div className={`text-xs ${activeJourney === key ? 'text-black/70' : 'text-[var(--color-text-muted)]'}`}>
+                  {journeys[key].subtitle}
+                </div>
+              </button>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -130,36 +299,28 @@ export default function OnRampGuidePage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <motion.div
+            key={activeJourney}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="flex flex-wrap items-center justify-center gap-4 text-center">
-              <div className="rounded-lg bg-blue-500/10 px-4 py-2 text-blue-400">
-                USD (Bank)
-              </div>
-              <svg className="h-6 w-6 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-              <div className="rounded-lg bg-amber-500/10 px-4 py-2 text-amber-400">
-                USC (Brale)
-              </div>
-              <svg className="h-6 w-6 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-              <div className="rounded-lg bg-purple-500/10 px-4 py-2 text-purple-400">
-                WETC (ETCswap)
-              </div>
-              <svg className="h-6 w-6 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-              <div className="rounded-lg bg-[var(--color-primary)]/10 px-4 py-2 text-[var(--color-primary)]">
-                ETC
-              </div>
+              {currentJourney.flowItems.map((item, index) => (
+                <div key={item.label} className="flex items-center gap-4">
+                  <div className={`rounded-lg px-4 py-2 ${getColorClass(item.color)}`}>
+                    {item.label}
+                  </div>
+                  {index < currentJourney.flowItems.length - 1 && (
+                    <svg className="h-6 w-6 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  )}
+                </div>
+              ))}
             </div>
             <p className="mt-4 text-center text-sm text-[var(--color-text-muted)]">
-              Full path: Bank → Brale (ACH) → Classic OS → ETCswap V3 → Unwrap
+              ETCswap automatically unwraps to native ETC in a single atomic transaction
             </p>
           </motion.div>
         </div>
@@ -178,7 +339,7 @@ export default function OnRampGuidePage() {
           </motion.h2>
 
           <div className="space-y-6">
-            {steps.map((step, index) => (
+            {currentJourney.steps.map((step, index) => (
               <motion.div
                 key={step.number}
                 initial={{ opacity: 0, y: 20 }}
@@ -293,6 +454,28 @@ export default function OnRampGuidePage() {
                 <p className="text-xs text-[var(--color-text-muted)]">Symbol</p>
               </div>
             </div>
+
+            {/* Supported Source Chains */}
+            <div className="mt-6 rounded-lg border border-amber-500/10 bg-amber-500/5 p-4">
+              <h4 className="text-sm font-medium text-amber-400">Supported USDC Source Chains</h4>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {['Ethereum', 'Polygon', 'Arbitrum', 'Base', 'Optimism', 'Avalanche'].map((chain) => (
+                  <span
+                    key={chain}
+                    className="rounded-full bg-white/5 px-3 py-1 text-xs text-[var(--color-text-muted)]"
+                  >
+                    {chain}
+                  </span>
+                ))}
+              </div>
+              <h4 className="mt-4 text-sm font-medium text-green-400">Supported USDP Source Chain</h4>
+              <div className="mt-2 flex flex-wrap gap-2">
+                <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-[var(--color-text-muted)]">
+                  Ethereum
+                </span>
+              </div>
+            </div>
+
             <div className="mt-4 flex flex-wrap gap-3">
               <a
                 href="https://classicusd.com"

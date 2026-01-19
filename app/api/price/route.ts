@@ -1,60 +1,86 @@
 import { NextResponse } from 'next/server'
+import { fetchExchangeRates, getFallbackRates, type ExchangeRates } from '@/lib/exchange-rates'
 
-// Mock price data - in production, this would fetch from CoinGecko or similar
-const getMockPriceData = (currency: string = 'usd') => {
-  // Base prices in USD
-  const basePrice = 25.42
-  const change24h = 3.5
-  const marketCap = 3650000000
-  const volume24h = 185000000
-  const high24h = 26.10
-  const low24h = 24.80
+/**
+ * ETC Price API - Returns live price data from CoinGecko
+ *
+ * GET /api/price?currency=usd
+ *
+ * Supports currencies: usd, eur, gbp, jpy, krw, cad, aud, try, brl, cny, inr, rub, btc, eth, bnb
+ *
+ * Cache: 60 seconds (server-side), 5 minutes stale-while-revalidate
+ */
 
-  // Currency conversion rates (simplified)
-  const conversionRates: Record<string, number> = {
-    usd: 1,
-    eur: 0.92,
-    gbp: 0.79,
-    jpy: 148.5,
-    cny: 7.19,
-    btc: 0.00059,
-    eth: 0.011,
-  }
+const validCurrencies = ['usd', 'eur', 'gbp', 'jpy', 'krw', 'cad', 'aud', 'try', 'brl', 'cny', 'inr', 'rub', 'btc', 'eth', 'bnb']
 
-  const rate = conversionRates[currency.toLowerCase()] || 1
+function formatResponse(rates: ExchangeRates, currency: string) {
+  const price = rates.etc[currency] ?? rates.etc.usd
+  const change24h = rates.etc_24h_change[currency] ?? rates.etc_24h_change.usd ?? 0
+
+  // Calculate market cap (price * circulating supply ~148M)
+  const circulatingSupply = 148300000 // Approximate, updates slowly
+  const marketCap = price * circulatingSupply
+
+  // Estimate 24h volume as ~3% of market cap (typical for ETC)
+  const volume24h = marketCap * 0.03
 
   return {
-    price: Math.round(basePrice * rate * 100) / 100,
-    change24h,
-    marketCap: Math.round(marketCap * rate),
-    volume24h: Math.round(volume24h * rate),
-    high24h: Math.round(high24h * rate * 100) / 100,
-    low24h: Math.round(low24h * rate * 100) / 100,
+    price: Math.round(price * 100) / 100,
+    change24h: Math.round(change24h * 100) / 100,
+    marketCap: Math.round(marketCap),
+    volume24h: Math.round(volume24h),
+    high24h: Math.round(price * 1.02 * 100) / 100, // Estimated
+    low24h: Math.round(price * 0.98 * 100) / 100, // Estimated
     currency: currency.toLowerCase(),
-    timestamp: new Date().toISOString(),
+    timestamp: rates.lastUpdated,
+    source: rates.source,
+    // All available prices for reference
+    prices: rates.etc,
+    changes: rates.etc_24h_change,
   }
 }
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const currency = searchParams.get('currency') || 'usd'
+  const currency = (searchParams.get('currency') || 'usd').toLowerCase()
 
   // Validate currency
-  const validCurrencies = ['usd', 'eur', 'gbp', 'jpy', 'cny', 'btc', 'eth']
-  if (!validCurrencies.includes(currency.toLowerCase())) {
+  if (!validCurrencies.includes(currency)) {
     return NextResponse.json(
-      { error: 'Invalid currency. Supported: usd, eur, gbp, jpy, cny, btc, eth' },
+      {
+        error: 'Invalid currency',
+        supported: validCurrencies,
+        message: `Supported currencies: ${validCurrencies.join(', ')}`
+      },
       { status: 400 }
     )
   }
 
-  const data = getMockPriceData(currency)
+  try {
+    // Fetch live rates from CoinGecko (with 24h caching)
+    const rates = await fetchExchangeRates()
+    const data = formatResponse(rates, currency)
 
-  return NextResponse.json(data, {
-    headers: {
-      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
-      'X-RateLimit-Limit': '100',
-      'X-RateLimit-Remaining': '99',
-    },
-  })
+    return NextResponse.json(data, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        'X-Data-Source': rates.source,
+        'X-Last-Updated': rates.lastUpdated,
+      },
+    })
+  } catch (error) {
+    console.error('Price API error:', error)
+
+    // Return fallback data on error
+    const fallback = getFallbackRates()
+    const data = formatResponse(fallback, currency)
+
+    return NextResponse.json(data, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+        'X-Data-Source': 'fallback',
+        'X-Error': 'API unavailable, using cached data',
+      },
+    })
+  }
 }
