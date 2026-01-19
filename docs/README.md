@@ -10,7 +10,7 @@ Commercial/consumer gateway for the Ethereum Classic ecosystem.
 
 | Document | Description |
 |----------|-------------|
-| [MILESTONES.md](MILESTONES.md) | Development roadmap - 75 milestones across 7 phases |
+| [MILESTONES.md](MILESTONES.md) | Development roadmap - 94 milestones across 8 phases |
 | [URL-STRUCTURE.md](URL-STRUCTURE.md) | Complete URL mapping - 137 pages |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Technical architecture |
 | [COMPONENTS.md](COMPONENTS.md) | Component specifications |
@@ -24,16 +24,17 @@ Commercial/consumer gateway for the Ethereum Classic ecosystem.
 
 | Phase | Milestones | Complete | Status |
 |-------|------------|----------|--------|
-| Phase 1 | 8 | 8 | 100% |
+| Phase 1 | 7 | 7 | 100% |
 | Phase 2 | 5 | 5 | 100% |
 | Phase 3 | 10 | 10 | 100% |
 | Phase 4 | 12 | 12 | 100% |
 | Phase 5 | 7 | 7 | 100% |
-| Phase 6 | 23 | 21 | 91% |
-| Phase 7 | 11 | 0 | 0% (Human-only) |
-| **Total** | **75** | **63** | **84%** |
+| Phase 6 | 23 | 23 | 100% |
+| Phase 7 | 19 | 0 | 0% (QA & Content Review) |
+| Phase 8 | 11 | 0 | 0% (Human-only) |
+| **Total** | **94** | **71** | **76%** |
 
-**Current:** 137 pages built (~87% complete)
+**Current:** Phase 7 - Comprehensive QA & Content Review
 
 ---
 
@@ -143,14 +144,23 @@ npm run lint
 
 ---
 
-## Phase 7 Remaining Work (Human-Required)
+## Current Phase: QA & Content Review (Phase 7)
+
+Comprehensive file-by-file review of the codebase:
+- Remove obsolete/unused files
+- Align documentation with current reality
+- Elevate copy from placeholder to professional standard
+- Complete stub pages or document blockers
+- Final cleanup and verification
+
+## Phase 8: Human-Required Work
 
 The following require human intervention:
 - Domain setup and DNS configuration
-- Exchange API keys
+- Exchange/affiliate API keys and signups
 - Manual accessibility testing
 - Mobile device testing
-- Content review
+- Content accuracy review
 - Data source research for live APIs
 
-See [MILESTONES.md](MILESTONES.md) for complete Phase 7 details.
+See [MILESTONES.md](MILESTONES.md) for complete details.

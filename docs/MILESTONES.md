@@ -19,9 +19,11 @@ Phase 4: Content Expansion (P2) ✓
     ↓
 Phase 5: Advanced Features (P3) ✓
     ↓
-Phase 6: Autonomous Completion (Claude can complete without blocking)
+Phase 6: Autonomous Completion ✓
     ↓
-Phase 7: Human Review & Infrastructure (Requires human involvement)
+Phase 7: Comprehensive QA & Content Review (Claude - thorough file-by-file review)
+    ↓
+Phase 8: Human Review & Infrastructure (Requires human involvement)
 ```
 
 ### Phase Reorganization Strategy
@@ -34,8 +36,16 @@ Phase 7: Human Review & Infrastructure (Requires human involvement)
 - Performance optimization
 - Accessibility fixes
 
-**Phase 7 (Human-Blocked)** contains tasks requiring human involvement:
-- Content accuracy review (human sanity check)
+**Phase 7 (QA & Content Review)** is a comprehensive quality assurance pass:
+- File-by-file codebase review
+- Remove obsolete/unused files
+- Update all documentation to reflect current reality
+- Elevate placeholder copy to professional, meaningful content
+- Complete stub pages or document blockers
+- Ensure every page adds value to the reader
+
+**Phase 8 (Human-Blocked)** contains tasks requiring human involvement:
+- Content accuracy final approval
 - Social account creation
 - Exchange referral signups
 - E-commerce store launch (hardware affiliate partnerships, payment integration)
@@ -1236,15 +1246,589 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 
 ---
 
-## Phase 7: Human Review & Infrastructure
+## Phase 7: Comprehensive QA & Content Review
+
+**Goal**: Transform the site from "first draft with functional pages" to "production-ready, professionally polished website" through systematic file-by-file review.
+
+> **Note**: This phase prioritizes accuracy and quality over speed. Every file will be read and evaluated. The goal is to ensure every page serves a purpose in the user journey and reflects the professional brand of EthereumClassic.com.
+
+### Phase 7 Objectives
+
+1. **Cleanup**: Remove obsolete/unused files, update docs to reflect current reality
+2. **Alignment**: Ensure planning docs match current state and future direction
+3. **Professional Copy**: Elevate every page from placeholder to meaningful, value-adding content
+4. **Completeness**: Finish stub pages or document what needs human involvement
+5. **Quality Assurance**: Systematic file-by-file review for accuracy and coherence
+
+---
+
+### Milestone 7.1: Documentation & Planning Cleanup
+**Status**: Not Started
+**Dependencies**: Phase 6
+
+**Objective**: Ensure all documentation accurately reflects the current codebase and future direction.
+
+**Files to Review**:
+- [ ] `/docs/ARCHITECTURE.md` - Verify reflects current technical architecture
+- [ ] `/docs/COMPONENTS.md` - Verify component specs match implementation
+- [ ] `/docs/ETC-KNOWLEDGE.md` - Verify all data is accurate and current
+- [ ] `/docs/RESEARCH.md` - Archive or update Bitcoin.com analysis
+- [ ] `/docs/SCOPE-v0.2-roadmap.md` - Verify alignment with MILESTONES.md
+- [ ] `/docs/PHASE-1-implementation-plan.md` - Archive (Phase 1 complete)
+- [ ] `/docs/HANDOFF-MESSAGE.md` - Update or archive
+- [ ] `/docs/timeline.yaml` - Verify accuracy or remove if obsolete
+- [ ] `/docs/archive/` - Review contents, ensure nothing needed is archived
+- [ ] `/.claude/instructions.md` - Update agent instructions to reflect current state
+- [ ] `/.github/copilot-instructions.md` - Update if exists
+
+**Deliverables**:
+- [ ] All docs accurately reflect January 2026 state
+- [ ] Obsolete files archived or removed
+- [ ] OBSOLETE-FILES-REMOVED.md log created listing deleted files
+
+---
+
+### Milestone 7.2: Codebase File Audit - Root & Config
+**Status**: Not Started
+**Dependencies**: 7.1
+
+**Objective**: Review all root-level files and configuration.
+
+**Files to Review**:
+- [ ] `package.json` - Verify dependencies, scripts, metadata
+- [ ] `tsconfig.json` - Verify TypeScript configuration
+- [ ] `tailwind.config.ts` - Verify Tailwind setup
+- [ ] `next.config.ts` - Verify Next.js configuration
+- [ ] `eslint.config.mjs` - Verify linting rules
+- [ ] `.env.example` - Ensure all required env vars documented
+- [ ] `.gitignore` - Verify appropriate ignores
+- [ ] `LICENSE` - Verify license file exists and is correct
+
+**Deliverables**:
+- [ ] All config files reviewed and cleaned
+- [ ] Unused dependencies removed from package.json
+- [ ] Documentation comments added where helpful
+
+---
+
+### Milestone 7.3: Codebase File Audit - Lib & Utilities
+**Status**: Not Started
+**Dependencies**: 7.2
+
+**Objective**: Review all library files, utilities, and shared code.
+
+**Directories to Review**:
+- [ ] `/lib/` - All utility files (exchange-rates, blockscout, etc.)
+- [ ] `/app/hooks/` - All custom React hooks
+- [ ] `/app/components/` - Shared components (not page-specific)
+
+**For Each File**:
+- [ ] Verify code is used (remove unused exports)
+- [ ] Verify code is correct and follows best practices
+- [ ] Verify comments/docs are accurate
+- [ ] Remove any placeholder/sample code that should be real
+
+**Deliverables**:
+- [ ] All utility code reviewed and cleaned
+- [ ] Unused code removed
+- [ ] Type definitions accurate
+
+---
+
+### Milestone 7.4: Codebase File Audit - Data Files
+**Status**: Not Started
+**Dependencies**: 7.3
+
+**Objective**: Review all static data files for accuracy, completeness, and professional quality.
+
+**Data Directories to Review**:
+- [ ] `/app/apps/data/` - App/dApp listings
+- [ ] `/app/buy/data/` - Exchange and payment data
+- [ ] `/app/exchanges/data/` - Exchange listings and reviews
+- [ ] `/app/learn/data/` - Educational content data
+- [ ] `/app/markets/data/` - Market data
+- [ ] `/app/mining/data/` - Mining pools, hardware, software
+- [ ] `/app/news/data/` - News articles
+- [ ] `/app/research/data/` - Research reports
+- [ ] `/app/wallet/data/` - Wallet listings and reviews
+- [ ] `/app/build/data/` - Developer resources
+- [ ] `/app/directory/data/` - Directory listings
+
+**For Each Data File**:
+- [ ] Verify all entries are real (no placeholder/fake data)
+- [ ] Verify all links work and are correct
+- [ ] Verify descriptions are professional and accurate
+- [ ] Verify data is current (not stale)
+- [ ] Add missing entries if gaps identified
+
+**Deliverables**:
+- [ ] All data files contain real, accurate, current information
+- [ ] No placeholder entries remain
+- [ ] DATA-AUDIT-LOG.md created documenting changes
+
+---
+
+### Milestone 7.5: Content Review - Homepage
+**Status**: Not Started
+**Dependencies**: 7.4
+
+**Objective**: Ensure homepage is compelling, accurate, and drives action.
+
+**Files to Review**:
+- [ ] `/app/page.tsx` - Main homepage
+- [ ] `/app/components/homepage/` - All homepage components
+
+**Content Criteria**:
+- [ ] Hero section has compelling, accurate value proposition
+- [ ] Stats are real and verifiable (not placeholder)
+- [ ] All CTAs are clear and lead to appropriate destinations
+- [ ] Product cards accurately represent offerings
+- [ ] Copy is professional, not placeholder
+- [ ] Every section serves a purpose in the user journey
+
+**Deliverables**:
+- [ ] Homepage copy elevated to professional standard
+- [ ] All stats verified or connected to live data
+- [ ] Clear user journey from awareness to action
+
+---
+
+### Milestone 7.6: Content Review - Wallet Section
+**Status**: Not Started
+**Dependencies**: 7.5
+
+**Objective**: Ensure wallet section provides real value to users choosing a wallet.
+
+**Pages to Review**:
+- [ ] `/app/wallet/page.tsx` - Wallet hub
+- [ ] `/app/wallet/classic-os/page.tsx` - Classic OS page
+- [ ] `/app/wallet/metamask/page.tsx` - MetaMask guide
+- [ ] `/app/wallet/hardware/page.tsx` - Hardware wallets
+- [ ] `/app/wallet/compare/page.tsx` - Comparison table
+- [ ] `/app/wallet/reviews/page.tsx` - Reviews hub
+- [ ] `/app/wallet/reviews/[wallet]/page.tsx` - Individual reviews
+
+**Content Criteria**:
+- [ ] Each wallet description is accurate and helpful
+- [ ] Setup instructions are correct and complete
+- [ ] Pros/cons are fair and accurate
+- [ ] Links to wallets are correct
+- [ ] Reviews provide genuine value, not filler content
+- [ ] Comparison data is accurate and current
+
+**Deliverables**:
+- [ ] All wallet content reviewed and elevated
+- [ ] Reviews contain substantive, helpful information
+- [ ] User can confidently choose a wallet from this section
+
+---
+
+### Milestone 7.7: Content Review - Buy/Sell Section
+**Status**: Not Started
+**Dependencies**: 7.6
+
+**Objective**: Ensure buy/sell section effectively guides users to acquire ETC.
+
+**Pages to Review**:
+- [ ] `/app/buy/page.tsx` - Buy hub
+- [ ] `/app/buy/exchanges/page.tsx` - Exchange listings
+- [ ] `/app/buy/instant/page.tsx` - Instant buy
+- [ ] `/app/buy/p2p/page.tsx` - P2P trading
+- [ ] `/app/buy/atm/page.tsx` - ATM locator
+- [ ] `/app/buy/card/page.tsx` - Card purchases
+- [ ] `/app/buy/bank/page.tsx` - Bank transfers
+- [ ] `/app/buy/reviews/` - Exchange reviews
+- [ ] `/app/sell/page.tsx` - Sell hub
+- [ ] `/app/sell/exchanges/page.tsx` - Sell on exchanges
+
+**Content Criteria**:
+- [ ] Exchange information is accurate (fees, features, regions)
+- [ ] Instructions are clear and actionable
+- [ ] Pros/cons are honest and helpful
+- [ ] No placeholder or filler content
+- [ ] Guides actually help users complete purchases
+
+**Deliverables**:
+- [ ] All buy/sell content elevated to professional standard
+- [ ] User can successfully navigate to purchase ETC
+
+---
+
+### Milestone 7.8: Content Review - Exchanges Section
+**Status**: Not Started
+**Dependencies**: 7.7
+
+**Objective**: Ensure exchange directory is comprehensive and helpful.
+
+**Pages to Review**:
+- [ ] `/app/exchanges/page.tsx` - Exchange directory
+- [ ] `/app/exchanges/compare/page.tsx` - Comparison tool
+- [ ] `/app/exchanges/reviews/page.tsx` - Reviews hub
+- [ ] `/app/exchanges/reviews/[exchange]/page.tsx` - Individual reviews
+- [ ] `/app/exchanges/beginners/page.tsx`
+- [ ] `/app/exchanges/lowest-fees/page.tsx`
+- [ ] `/app/exchanges/most-secure/page.tsx`
+- [ ] `/app/exchanges/decentralized/page.tsx`
+- [ ] `/app/exchanges/no-kyc/page.tsx`
+- [ ] `/app/exchanges/us-friendly/page.tsx`
+- [ ] `/app/exchanges/staking/page.tsx`
+
+**Content Criteria**:
+- [ ] All exchange data is accurate and current
+- [ ] Reviews are substantive and helpful
+- [ ] Feature pages genuinely filter by claimed criteria
+- [ ] Comparison tool provides real value
+- [ ] No placeholder reviews or fake data
+
+**Deliverables**:
+- [ ] All exchange content reviewed and verified
+- [ ] Reviews provide genuine user value
+
+---
+
+### Milestone 7.9: Content Review - Apps Section
+**Status**: Not Started
+**Dependencies**: 7.8
+
+**Objective**: Ensure apps directory showcases the ETC ecosystem accurately.
+
+**Pages to Review**:
+- [ ] `/app/apps/page.tsx` - Apps hub
+- [ ] `/app/apps/featured/page.tsx` - Featured apps
+- [ ] `/app/apps/defi/page.tsx` - DeFi apps
+- [ ] `/app/apps/nft/page.tsx` - NFT platforms
+- [ ] `/app/apps/games/page.tsx` - Games
+- [ ] `/app/apps/tools/page.tsx` - Tools
+- [ ] `/app/apps/infrastructure/page.tsx` - Infrastructure
+- [ ] `/app/apps/governance/page.tsx` - Governance
+- [ ] `/app/apps/payments/page.tsx` - Payments
+- [ ] `/app/apps/submit/page.tsx` - Submit app
+- [ ] `/app/apps/[app]/page.tsx` - Individual app pages
+
+**Content Criteria**:
+- [ ] All listed apps are real and active on ETC
+- [ ] Descriptions are accurate and helpful
+- [ ] Links work and go to correct destinations
+- [ ] Categories are appropriate
+- [ ] No placeholder or fake apps
+
+**Deliverables**:
+- [ ] All app listings verified as real and active
+- [ ] Descriptions provide genuine value
+- [ ] User can discover real ETC ecosystem
+
+---
+
+### Milestone 7.10: Content Review - Learn Section
+**Status**: Not Started
+**Dependencies**: 7.9
+
+**Objective**: Ensure educational content is accurate, helpful, and professionally written.
+
+**Pages to Review**:
+- [ ] `/app/learn/page.tsx` - Learn hub
+- [ ] `/app/learn/ethereum-classic/page.tsx` - What is ETC
+- [ ] `/app/learn/on-ramp/page.tsx` - Getting started guide
+- [ ] `/app/learn/glossary/page.tsx` - Glossary
+- [ ] `/app/learn/basics/` - Basics category + articles
+- [ ] `/app/learn/wallets/` - Wallet guides + articles
+- [ ] `/app/learn/trading/` - Trading guides + articles
+- [ ] `/app/learn/defi/` - DeFi guides + articles
+- [ ] `/app/learn/mining/` - Mining guides + articles
+- [ ] `/app/learn/staking/` - Staking guides + articles
+- [ ] `/app/learn/security/` - Security guides + articles
+
+**Content Criteria**:
+- [ ] All educational content is accurate
+- [ ] Articles are well-written and helpful
+- [ ] No placeholder paragraphs or filler text
+- [ ] Information is current and relevant
+- [ ] Glossary terms are accurate
+- [ ] Each article serves a clear educational purpose
+
+**Deliverables**:
+- [ ] All learn content elevated to professional standard
+- [ ] User can genuinely learn from this section
+
+---
+
+### Milestone 7.11: Content Review - News Section
+**Status**: Not Started
+**Dependencies**: 7.10
+
+**Objective**: Ensure news section contains real, valuable content.
+
+**Pages to Review**:
+- [ ] `/app/news/page.tsx` - News hub
+- [ ] `/app/news/[slug]/page.tsx` - Individual articles
+- [ ] `/app/news/category/[category]/page.tsx` - Category pages
+- [ ] `/app/news/tag/[tag]/page.tsx` - Tag pages
+- [ ] `/app/news/feed.xml/route.ts` - RSS feed
+
+**Content Criteria**:
+- [ ] All news articles are real (not placeholder)
+- [ ] Articles are well-written and informative
+- [ ] Dates are realistic and appropriate
+- [ ] Categories and tags are meaningful
+- [ ] RSS feed generates correctly
+
+**Deliverables**:
+- [ ] News section contains real, valuable articles
+- [ ] Or documented that news is stub pending CMS integration
+
+---
+
+### Milestone 7.12: Content Review - Mining Section
+**Status**: Not Started
+**Dependencies**: 7.11
+
+**Objective**: Ensure mining section provides comprehensive, accurate resources.
+
+**Pages to Review**:
+- [ ] `/app/mining/page.tsx` - Mining hub
+- [ ] `/app/mining/getting-started/page.tsx` - Beginner guide
+- [ ] `/app/mining/pools/page.tsx` - Pool directory
+- [ ] `/app/mining/pools/[pool]/page.tsx` - Individual pools
+- [ ] `/app/mining/hardware/page.tsx` - Hardware guide
+- [ ] `/app/mining/hardware/buy/page.tsx` - Hardware marketplace
+- [ ] `/app/mining/software/page.tsx` - Software guide
+- [ ] `/app/mining/os/page.tsx` - Mining OS
+- [ ] `/app/mining/profitability/page.tsx` - Calculator
+- [ ] `/app/mining/stats/page.tsx` - Network stats
+
+**Content Criteria**:
+- [ ] Pool data is accurate and current
+- [ ] Hardware specs are correct
+- [ ] Software recommendations are valid
+- [ ] Calculator produces accurate results
+- [ ] Getting started guide is genuinely helpful
+- [ ] No placeholder or fake pools
+
+**Deliverables**:
+- [ ] Mining section provides real value to miners
+- [ ] All data verified as accurate
+
+---
+
+### Milestone 7.13: Content Review - Build Section
+**Status**: Not Started
+**Dependencies**: 7.12
+
+**Objective**: Ensure developer section provides genuine value to builders.
+
+**Pages to Review**:
+- [ ] `/app/build/page.tsx` - Developer hub
+- [ ] `/app/build/getting-started/page.tsx` - Quick start
+- [ ] `/app/build/docs/page.tsx` - Documentation links
+- [ ] `/app/build/tools/page.tsx` - Developer tools
+- [ ] `/app/build/api/page.tsx` - API documentation
+- [ ] `/app/build/clients/page.tsx` - Node clients
+- [ ] `/app/build/clients/[client]/page.tsx` - Individual clients
+- [ ] `/app/build/networks/page.tsx` - Network info
+- [ ] `/app/build/faucets/page.tsx` - Testnet faucets
+- [ ] `/app/build/grants/page.tsx` - Grants/funding
+
+**Content Criteria**:
+- [ ] All links to external docs work
+- [ ] Client information is accurate
+- [ ] Faucet links are functional
+- [ ] Instructions are clear and accurate
+- [ ] Developer can actually start building from this section
+
+**Deliverables**:
+- [ ] Build section provides real developer value
+- [ ] All external links verified
+
+---
+
+### Milestone 7.14: Content Review - Markets & Research
+**Status**: Not Started
+**Dependencies**: 7.13
+
+**Objective**: Ensure market data and research sections provide accurate information.
+
+**Pages to Review**:
+- [ ] `/app/markets/page.tsx` - Markets hub
+- [ ] `/app/markets/price/page.tsx` - Price page
+- [ ] `/app/markets/calculator/page.tsx` - Calculator
+- [ ] `/app/markets/converter/page.tsx` - Converter
+- [ ] `/app/price/page.tsx` - Price page (alt)
+- [ ] `/app/price/[pair]/page.tsx` - Trading pairs
+- [ ] `/app/calculator/page.tsx` - Calculator (alt)
+- [ ] `/app/converter/page.tsx` - Converter (alt)
+- [ ] `/app/research/page.tsx` - Research hub
+- [ ] `/app/research/reports/page.tsx` - Reports
+- [ ] `/app/research/reports/[slug]/page.tsx` - Individual reports
+- [ ] `/app/research/network/page.tsx` - Network analysis
+- [ ] `/app/research/ecosystem/page.tsx` - Ecosystem
+- [ ] `/app/research/fees/page.tsx` - Fee analysis
+- [ ] `/app/research/history/page.tsx` - Historical data
+- [ ] `/app/research/supply/page.tsx` - Supply tracker
+
+**Content Criteria**:
+- [ ] Live data displays correctly
+- [ ] Calculators produce accurate results
+- [ ] Research content is substantive
+- [ ] Reports contain real analysis, not placeholder
+- [ ] Historical data is accurate
+
+**Deliverables**:
+- [ ] Markets/research sections verified accurate
+- [ ] Calculators tested and working
+
+---
+
+### Milestone 7.15: Content Review - Tools & Community
+**Status**: Not Started
+**Dependencies**: 7.14
+
+**Objective**: Ensure tools work and community section is valuable.
+
+**Pages to Review**:
+- [ ] `/app/tools/page.tsx` - Tools hub
+- [ ] `/app/tools/calculator/page.tsx` - Calculator
+- [ ] `/app/tools/converter/page.tsx` - Converter
+- [ ] `/app/tools/gas/page.tsx` - Gas tracker
+- [ ] `/app/tools/explorer/page.tsx` - Explorer links
+- [ ] `/app/tools/verify/page.tsx` - Contract verifier
+- [ ] `/app/community/page.tsx` - Community hub
+- [ ] `/app/community/social/page.tsx` - Social links
+- [ ] `/app/community/events/page.tsx` - Events
+- [ ] `/app/community/contribute/page.tsx` - How to contribute
+
+**Content Criteria**:
+- [ ] All tools function correctly
+- [ ] Social links are accurate
+- [ ] Community content is helpful
+- [ ] Events are real (or noted as placeholder)
+
+**Deliverables**:
+- [ ] Tools verified working
+- [ ] Community section provides value
+
+---
+
+### Milestone 7.16: Content Review - Directory & Store
+**Status**: Not Started
+**Dependencies**: 7.15
+
+**Objective**: Ensure directory listings are complete and store is professional.
+
+**Pages to Review**:
+- [ ] `/app/directory/page.tsx` - Directory hub
+- [ ] `/app/directory/wallets/page.tsx`
+- [ ] `/app/directory/exchanges/page.tsx`
+- [ ] `/app/directory/mining/page.tsx`
+- [ ] `/app/directory/developers/page.tsx`
+- [ ] `/app/directory/community/page.tsx`
+- [ ] `/app/store/page.tsx` - Hardware store
+- [ ] `/app/network/page.tsx` - Network dashboard
+
+**Content Criteria**:
+- [ ] Directory aggregates data correctly
+- [ ] Store products are real and links work
+- [ ] Network dashboard displays live data
+- [ ] No placeholder entries
+
+**Deliverables**:
+- [ ] Directory verified accurate
+- [ ] Store ready for affiliate links
+
+---
+
+### Milestone 7.17: Content Review - Static Pages & Account
+**Status**: Not Started
+**Dependencies**: 7.16
+
+**Objective**: Ensure all supporting pages are professional.
+
+**Pages to Review**:
+- [ ] `/app/about/page.tsx`
+- [ ] `/app/contact/page.tsx`
+- [ ] `/app/advertise/page.tsx`
+- [ ] `/app/partners/page.tsx`
+- [ ] `/app/legal/page.tsx`
+- [ ] `/app/privacy/page.tsx`
+- [ ] `/app/site-map/page.tsx`
+- [ ] `/app/account/page.tsx`
+- [ ] `/app/account/login/page.tsx`
+- [ ] `/app/account/register/page.tsx`
+- [ ] `/app/account/settings/page.tsx`
+- [ ] `/app/account/watchlist/page.tsx`
+- [ ] `/app/account/portfolio/page.tsx`
+- [ ] `/app/pool/page.tsx`
+- [ ] `/app/referral/page.tsx`
+- [ ] `/app/referral/dashboard/page.tsx`
+- [ ] `/app/earn/page.tsx`
+- [ ] `/app/content-editor/page.tsx`
+
+**Content Criteria**:
+- [ ] About page accurately describes the site
+- [ ] Contact form works or is documented as placeholder
+- [ ] Legal/privacy pages are appropriate
+- [ ] Account pages function correctly
+- [ ] Stub pages clearly indicate status
+
+**Deliverables**:
+- [ ] All static pages reviewed
+- [ ] Stub pages documented for Phase 8
+
+---
+
+### Milestone 7.18: Stub Page Completion
+**Status**: Not Started
+**Dependencies**: 7.17
+
+**Objective**: Complete as many stub pages as possible, document blockers.
+
+**Process**:
+1. Identify all remaining stub pages from review
+2. For each stub page:
+   - If completable by Claude → complete it
+   - If requires human → document in Phase 8
+
+**Deliverables**:
+- [ ] Stub pages completed where possible
+- [ ] STUB-PAGES-STATUS.md created listing:
+  - Completed stubs
+  - Stubs requiring human action (with reason)
+  - Stubs intentionally deferred
+
+---
+
+### Milestone 7.19: Final Cleanup & Verification
+**Status**: Not Started
+**Dependencies**: 7.18
+
+**Objective**: Final pass to ensure everything is clean and ready.
+
+**Tasks**:
+- [ ] Run `npm run lint` - fix any issues
+- [ ] Run `npm run build` - verify builds successfully
+- [ ] Verify no console errors in production build
+- [ ] Review all TODO comments in code - address or document
+- [ ] Remove any debug code or console.logs
+- [ ] Verify all images have alt text
+- [ ] Verify all links work (internal and external)
+- [ ] Generate PHASE-8-QA-REPORT.md
+
+**Deliverables**:
+- [ ] Clean codebase with no lint errors
+- [ ] Build passes successfully
+- [ ] PHASE-8-QA-REPORT.md documenting all changes made
+- [ ] Ready for Phase 8 human review
+
+---
+
+## Phase 8: Human Review & Infrastructure
 
 **Goal**: Tasks that ONLY humans can complete - account creation, program signups, infrastructure provisioning, content approval, product launches.
 
-> **Note**: Phase 6 builds all scaffolding, shells, and sample data. Phase 7 contains ONLY the specific actions requiring human involvement.
+> **Note**: Phase 7 builds all content to professional standard. Phase 8 contains ONLY the specific actions requiring human involvement.
 
-### Milestone 7.1: Content Accuracy Review
+### Milestone 8.1: Content Accuracy Review
 **Status**: Not Started
-**Dependencies**: Phase 6
+**Dependencies**: Phase 7
 **Blocker**: Human judgment required
 
 **What Claude Built** (Phase 6): All pages, components, copy
@@ -1256,9 +1840,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Cross-browser testing sign-off (Chrome, Firefox, Safari, Edge)
 - [ ] Mobile responsiveness sign-off (375px, 768px, 1024px, 1440px)
 
-### Milestone 7.2: Social Account Creation
+### Milestone 8.2: Social Account Creation
 **Status**: Not Started
-**Dependencies**: Phase 6
+**Dependencies**: Phase 7
 **Blocker**: Account registration requires human
 
 **What Claude Built** (Phase 6): Footer with "#" placeholder links
@@ -1267,7 +1851,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Create EthereumClassic.com Discord server (if separate)
 - [ ] Update /lib/config.ts or footer with real social URLs
 
-### Milestone 7.3: Affiliate Program Signups
+### Milestone 8.3: Affiliate Program Signups
 **Status**: Not Started
 **Dependencies**: 6.10 (Referral Infrastructure)
 **Blocker**: Program registration requires human
@@ -1287,7 +1871,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Update links in /lib/referrals.ts with affiliate codes (or keep as direct links if no program)
 - [ ] Test tracking is working
 
-### Milestone 7.4: E-Commerce Store Launch
+### Milestone 8.4: E-Commerce Store Launch
 **Status**: Not Started
 **Dependencies**: 6.8 (Professional E-Commerce Store)
 **Blocker**: Vendor partnerships, affiliate programs, and payment integration require human
@@ -1324,9 +1908,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Configure checkout flow for merchandise orders
 - [ ] Test affiliate link tracking and attribution
 
-### Milestone 7.5: Local Node Infrastructure
+### Milestone 8.5: Local Node Infrastructure
 **Status**: Not Started
-**Dependencies**: Phase 7.1
+**Dependencies**: 8.1 (Content Accuracy Review)
 **Blocker**: Server provisioning requires human
 
 **What Claude Built** (Phase 6): N/A (pure infrastructure)
@@ -1341,9 +1925,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - Erigon does NOT support ETC
 - Core-Geth is the only production archive node option
 
-### Milestone 7.6: Historical Data Activation
+### Milestone 8.6: Historical Data Activation
 **Status**: Not Started
-**Dependencies**: 7.5 (Node Infrastructure), 6.9 (Chart Components)
+**Dependencies**: 8.5 (Node Infrastructure), 6.9 (Chart Components)
 **Blocker**: Requires synced local node
 
 **What Claude Built** (Phase 6): Chart components, API structure, sample data display
@@ -1354,9 +1938,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Switch charts from sample to live data
 - [ ] Set up daily snapshot cron job
 
-### Milestone 7.7: Mining Pool Launch
+### Milestone 8.7: Mining Pool Launch
 **Status**: Not Started
-**Dependencies**: 7.5 (Node Infrastructure), 6.7 (Pool Dashboard Scaffolding)
+**Dependencies**: 8.5 (Node Infrastructure), 6.7 (Pool Dashboard Scaffolding)
 **Blocker**: Pool infrastructure requires human ops
 
 **What Claude Built** (Phase 6): Full pool dashboard UI with sample data:
@@ -1373,7 +1957,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Test with real miners
 - [ ] Launch pool and switch from sample to live data
 
-### Milestone 7.8: Ecosystem Product Launches
+### Milestone 8.8: Ecosystem Product Launches
 **Status**: Not Started
 **Dependencies**: Product development timelines
 **Blocker**: External product readiness
@@ -1385,9 +1969,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] TokenMint: Update status from "Coming Soon" to "Live" when ready
 - [ ] Fukuii: Add promotion content post-Olympia upgrade
 
-### Milestone 7.9: Network Health Dashboard Activation
+### Milestone 8.9: Network Health Dashboard Activation
 **Status**: Not Started
-**Dependencies**: 7.5 (Node Infrastructure), 6.11 (Dashboard Scaffolding)
+**Dependencies**: 8.5 (Node Infrastructure), 6.11 (Dashboard Scaffolding)
 **Blocker**: Requires node infrastructure and data sources
 
 **What Claude Built** (Phase 6): Complete Network Health Dashboard UI:
@@ -1408,9 +1992,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Switch from sample to live data
 - [ ] Set up alerting for network anomalies (optional)
 
-### Milestone 7.10: Comprehensive Manual Testing & QA
+### Milestone 8.10: Comprehensive Manual Testing & QA
 **Status**: Not Started
-**Dependencies**: Phase 6
+**Dependencies**: Phase 7
 **Blocker**: Human judgment and real-world testing required
 
 **Scope**: FULL CODEBASE MANUAL REVIEW - All code from Phase 1 through Phase 6. This is a comprehensive human audit of the entire product developed by coding agents (Claude Code). Every user-facing feature, interaction, and data display must be manually verified by a human tester.
@@ -1524,7 +2108,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] 404 Page - verify custom 404 displays correctly
 
 **QA Report Generation**:
-- [ ] Generate PHASE-7-QA-REPORT.md documenting all manual test results
+- [ ] Generate PHASE-8-QA-REPORT.md documenting all manual test results
 - [ ] Include tester name, date, and environment details
 - [ ] Document each test category with pass/fail status
 - [ ] Screenshot evidence for key functionality tests
@@ -1534,7 +2118,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 
 **Report Contents**:
 ```
-PHASE-7-QA-REPORT.md
+PHASE-8-QA-REPORT.md
 ├── Executive Summary
 │   ├── Overall test status (Pass/Fail)
 │   ├── Test coverage summary
@@ -1592,7 +2176,7 @@ PHASE-7-QA-REPORT.md
     └── Date and signature
 ```
 
-### Milestone 7.11: Data Sources for Live Data Integration
+### Milestone 8.11: Data Sources for Live Data Integration
 **Status**: Not Started
 **Dependencies**: 6.20 (Stale Data Audit)
 **Blocker**: Human must research and provide API access/credentials
@@ -1668,15 +2252,24 @@ PHASE-7-QA-REPORT.md
 | Phase 3 | 10 | 10 | 100% |
 | Phase 4 | 12 | 12 | 100% |
 | Phase 5 | 7 | 7 | 100% |
-| Phase 6 | 23 | 21 | 91% | (Autonomous - stale data audit, verification, URL doc, README cleanup)
-| Phase 7 | 11 | 0 | 0% | (Human-only - specific blockers + manual QA)
-| **Total** | **75** | **62** | **83%** |
+| Phase 6 | 23 | 23 | 100% | (Autonomous - complete)
+| Phase 7 | 19 | 0 | 0% | (QA & Content Review - Claude-driven)
+| Phase 8 | 11 | 0 | 0% | (Human-only - infrastructure & approvals)
+| **Total** | **94** | **71** | **76%** |
 
 ### Current Focus
 
-**Complete**: Phase 6 autonomous work complete (91%). Phase 7 requires human intervention.
+**Current Phase**: Phase 7 - Comprehensive QA & Content Review
 
-**Phase 6 Summary** (updated):
+**Phase 7 Objectives**:
+- File-by-file review of entire codebase
+- Remove obsolete/unused files
+- Align documentation with current reality
+- Elevate all copy from placeholder to professional standard
+- Complete stub pages or document blockers
+- Final cleanup and verification
+
+**Phase 6 Summary** (complete):
 - ✅ 6.1 Sitemap & Technical SEO - XML sitemap, RSS feed, JSON-LD
 - ✅ 6.2 UI/UX Code Fixes - Navigation improvements, stats strip updates
 - ✅ 6.3 Performance & Accessibility - WCAG AA contrast, skip links
@@ -1713,7 +2306,7 @@ PHASE-7-QA-REPORT.md
 | 7.7 Mining Pool Launch | Set up stratum server, connect to UI |
 | 7.8 Product Launches | Update status when ready |
 | 7.9 Network Dashboard | Connect to live data sources |
-| 7.10 Manual Testing & QA | Test accounts, APIs, search, generate PHASE-7-QA-REPORT.md |
+| 7.10 Manual Testing & QA | Test accounts, APIs, search, generate PHASE-8-QA-REPORT.md |
 | 7.11 Data Source Research | Provide APIs for hashrate, difficulty, node count, pool distribution |
 
 ---
