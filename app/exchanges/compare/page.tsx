@@ -23,6 +23,15 @@ const ExternalLinkIcon = () => (
 type SortField = 'name' | 'tradingFee' | 'volume' | 'pairs'
 type SortDirection = 'asc' | 'desc'
 
+function SortIcon({ field, sortField, sortDirection }: { field: SortField; sortField: SortField; sortDirection: SortDirection }) {
+  if (sortField !== field) return null
+  return (
+    <svg className="ml-1 inline h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d={sortDirection === 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'} />
+    </svg>
+  )
+}
+
 function parseFeePercent(fee: string | undefined): number {
   if (!fee) return Infinity
   const match = fee.match(/(\d+\.?\d*)%/)
@@ -46,12 +55,12 @@ export default function CompareExchangesPage() {
 
   // Filter and sort exchanges
   const sortedExchanges = useMemo(() => {
-    let filtered = exchanges.filter((ex) => {
+    const filtered = exchanges.filter((ex) => {
       if (filterType === 'all') return true
       return ex.type === filterType
     })
 
-    return filtered.sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       let comparison = 0
       switch (sortField) {
         case 'name':
@@ -78,15 +87,6 @@ export default function CompareExchangesPage() {
       setSortField(field)
       setSortDirection(field === 'tradingFee' ? 'asc' : 'desc')
     }
-  }
-
-  const SortIcon = ({ field }: { field: SortField }) => {
-    if (sortField !== field) return null
-    return (
-      <svg className="ml-1 inline h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d={sortDirection === 'asc' ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'} />
-      </svg>
-    )
   }
 
   return (
@@ -175,26 +175,26 @@ export default function CompareExchangesPage() {
                     className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('name')}
                   >
-                    Exchange <SortIcon field="name" />
+                    Exchange <SortIcon field="name" sortField={sortField} sortDirection={sortDirection} />
                   </th>
                   <th className="px-4 py-3 text-sm font-semibold text-white">Type</th>
                   <th
                     className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('tradingFee')}
                   >
-                    Trading Fee <SortIcon field="tradingFee" />
+                    Trading Fee <SortIcon field="tradingFee" sortField={sortField} sortDirection={sortDirection} />
                   </th>
                   <th
                     className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('volume')}
                   >
-                    24h Volume <SortIcon field="volume" />
+                    24h Volume <SortIcon field="volume" sortField={sortField} sortDirection={sortDirection} />
                   </th>
                   <th
                     className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('pairs')}
                   >
-                    Pairs <SortIcon field="pairs" />
+                    Pairs <SortIcon field="pairs" sortField={sortField} sortDirection={sortDirection} />
                   </th>
                   <th className="px-4 py-3 text-sm font-semibold text-white">KYC</th>
                   <th className="px-4 py-3 text-sm font-semibold text-white">Regions</th>
