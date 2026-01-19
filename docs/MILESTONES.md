@@ -1399,32 +1399,32 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 ---
 
 ### Milestone 7.6: Content Review - Wallet Section
-**Status**: Not Started
+**Status**: Complete
 **Dependencies**: 7.5
 
 **Objective**: Ensure wallet section provides real value to users choosing a wallet.
 
 **Pages to Review**:
-- [ ] `/app/wallet/page.tsx` - Wallet hub
-- [ ] `/app/wallet/classic-os/page.tsx` - Classic OS page
-- [ ] `/app/wallet/metamask/page.tsx` - MetaMask guide
-- [ ] `/app/wallet/hardware/page.tsx` - Hardware wallets
-- [ ] `/app/wallet/compare/page.tsx` - Comparison table
-- [ ] `/app/wallet/reviews/page.tsx` - Reviews hub
-- [ ] `/app/wallet/reviews/[wallet]/page.tsx` - Individual reviews
+- [x] `/app/wallet/page.tsx` - Wallet hub with categorized directory (Hardware, Browser, Mobile, Web)
+- [x] `/app/wallet/classic-os/page.tsx` - Classic OS page with features and integration
+- [x] `/app/wallet/metamask/page.tsx` - MetaMask guide with network setup
+- [x] `/app/wallet/hardware/page.tsx` - Hardware wallet comparison
+- [x] `/app/wallet/compare/page.tsx` - Full comparison table with filtering/sorting
+- [x] `/app/wallet/reviews/page.tsx` - Reviews hub with ratings and methodology
+- [x] `/app/wallet/reviews/[wallet]/page.tsx` - Individual detailed reviews
 
 **Content Criteria**:
-- [ ] Each wallet description is accurate and helpful
-- [ ] Setup instructions are correct and complete
-- [ ] Pros/cons are fair and accurate
-- [ ] Links to wallets are correct
-- [ ] Reviews provide genuine value, not filler content
-- [ ] Comparison data is accurate and current
+- [x] Each wallet description is accurate and helpful (24+ wallets with features)
+- [x] Setup instructions are correct and complete
+- [x] Pros/cons are fair and accurate (rating methodology documented)
+- [x] Links to wallets are correct (includes affiliate links where applicable)
+- [x] Reviews provide genuine value with security/usability/features/support ratings
+- [x] Comparison data is accurate with feature matrix
 
 **Deliverables**:
-- [ ] All wallet content reviewed and elevated
-- [ ] Reviews contain substantive, helpful information
-- [ ] User can confidently choose a wallet from this section
+- [x] All wallet content reviewed and elevated
+- [x] Reviews contain substantive, helpful information with star ratings
+- [x] User can confidently choose a wallet from this section
 
 ---
 
@@ -1846,7 +1846,46 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Cross-browser testing sign-off (Chrome, Firefox, Safari, Edge)
 - [ ] Mobile responsiveness sign-off (375px, 768px, 1024px, 1440px)
 
-### Milestone 8.2: Social Account Creation
+### Milestone 8.2: Stub Pages Requiring Human Content
+**Status**: Not Started
+**Dependencies**: Phase 7
+**Blocker**: Human-authored content required
+**Reference**: See `/STUB_PAGES.md` for full documentation
+
+**What Claude Built** (Phase 7): Documented all 22 stub pages with categories and priorities
+
+**Human Must Do**:
+
+*Legal/Policy Pages (High Priority):*
+- [ ] `/legal` - Write terms of service, disclaimers (legal review required)
+- [ ] `/privacy` - Write GDPR/CCPA compliant privacy policy
+- [ ] `/about` - Write company/project information, mission statement
+
+*Editorial Content (Medium Priority):*
+- [ ] `/exchanges/reviews` - Write exchange review hub content
+- [ ] `/exchanges/reviews/[exchange]` - Write detailed review for each major exchange
+- [ ] `/community/contribute` - Write contribution guide for ETC ecosystem
+
+*Directory Pages (Medium Priority):*
+- [ ] `/directory/community` - Curate community resources list
+- [ ] `/directory/developers` - Curate developer resources list
+- [ ] `/directory/mining` - Curate mining resources list
+
+*Calculator/Converter Duplicates (Low Priority):*
+- [ ] Decide: Keep both `/calculator` and `/tools/calculator` or redirect one
+- [ ] Decide: Keep both `/converter` and `/tools/converter` or redirect one
+
+*Research Section (Requires Data/API):*
+- [ ] `/research/ecosystem` - Requires ecosystem metrics data source
+- [ ] `/research/reports/[slug]` - Requires research report content
+
+*Learn Articles (Content Creation):*
+- [ ] `/learn/trading/[article]` - Write trading guide articles
+- [ ] `/learn/security/[article]` - Write security guide articles
+- [ ] `/learn/staking/[article]` - Write staking/PoW explanation articles
+- [ ] `/learn/defi/[article]` - Write DeFi guide articles
+
+### Milestone 8.3: Social Account Creation
 **Status**: Not Started
 **Dependencies**: Phase 7
 **Blocker**: Account registration requires human
@@ -1857,7 +1896,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Create EthereumClassic.com Discord server (if separate)
 - [ ] Update /lib/config.ts or footer with real social URLs
 
-### Milestone 8.3: Affiliate Program Signups
+### Milestone 8.4: Affiliate Program Signups
 **Status**: Not Started
 **Dependencies**: 6.10 (Referral Infrastructure)
 **Blocker**: Program registration requires human
@@ -1877,7 +1916,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Update links in /lib/referrals.ts with affiliate codes (or keep as direct links if no program)
 - [ ] Test tracking is working
 
-### Milestone 8.4: E-Commerce Store Launch
+### Milestone 8.5: E-Commerce Store Launch
 **Status**: Not Started
 **Dependencies**: 6.8 (Professional E-Commerce Store)
 **Blocker**: Vendor partnerships, affiliate programs, and payment integration require human
@@ -1914,7 +1953,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Configure checkout flow for merchandise orders
 - [ ] Test affiliate link tracking and attribution
 
-### Milestone 8.5: Local Node Infrastructure
+### Milestone 8.6: Local Node Infrastructure
 **Status**: Not Started
 **Dependencies**: 8.1 (Content Accuracy Review)
 **Blocker**: Server provisioning requires human
@@ -1931,9 +1970,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - Erigon does NOT support ETC
 - Core-Geth is the only production archive node option
 
-### Milestone 8.6: Historical Data Activation
+### Milestone 8.7: Historical Data Activation
 **Status**: Not Started
-**Dependencies**: 8.5 (Node Infrastructure), 6.9 (Chart Components)
+**Dependencies**: 8.6 (Node Infrastructure), 6.9 (Chart Components)
 **Blocker**: Requires synced local node
 
 **What Claude Built** (Phase 6): Chart components, API structure, sample data display
@@ -1944,9 +1983,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Switch charts from sample to live data
 - [ ] Set up daily snapshot cron job
 
-### Milestone 8.7: Mining Pool Launch
+### Milestone 8.8: Mining Pool Launch
 **Status**: Not Started
-**Dependencies**: 8.5 (Node Infrastructure), 6.7 (Pool Dashboard Scaffolding)
+**Dependencies**: 8.6 (Node Infrastructure), 6.7 (Pool Dashboard Scaffolding)
 **Blocker**: Pool infrastructure requires human ops
 
 **What Claude Built** (Phase 6): Full pool dashboard UI with sample data:
@@ -1963,7 +2002,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Test with real miners
 - [ ] Launch pool and switch from sample to live data
 
-### Milestone 8.8: Ecosystem Product Launches
+### Milestone 8.9: Ecosystem Product Launches
 **Status**: Not Started
 **Dependencies**: Product development timelines
 **Blocker**: External product readiness
@@ -1975,9 +2014,9 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] TokenMint: Update status from "Coming Soon" to "Live" when ready
 - [ ] Fukuii: Add promotion content post-Olympia upgrade
 
-### Milestone 8.9: Network Health Dashboard Activation
+### Milestone 8.10: Network Health Dashboard Activation
 **Status**: Not Started
-**Dependencies**: 8.5 (Node Infrastructure), 6.11 (Dashboard Scaffolding)
+**Dependencies**: 8.6 (Node Infrastructure), 6.11 (Dashboard Scaffolding)
 **Blocker**: Requires node infrastructure and data sources
 
 **What Claude Built** (Phase 6): Complete Network Health Dashboard UI:
@@ -1998,7 +2037,7 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Switch from sample to live data
 - [ ] Set up alerting for network anomalies (optional)
 
-### Milestone 8.10: Comprehensive Manual Testing & QA
+### Milestone 8.11: Comprehensive Manual Testing & QA
 **Status**: Not Started
 **Dependencies**: Phase 7
 **Blocker**: Human judgment and real-world testing required
