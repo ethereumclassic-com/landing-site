@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { reports, ecosystemStats, dataSources, getLatestReports } from './data/research'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
-import { usePrice } from '@/app/hooks/usePrice'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -135,7 +134,6 @@ function MetricCard({ metric }: { metric: LiveMetric }) {
 // Live Network Metrics component
 function LiveNetworkMetrics() {
   const { stats, formatted, loading } = useNetworkStats()
-  const { data: priceData } = usePrice('usd')
 
   if (loading || !stats || !formatted) {
     return (

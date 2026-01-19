@@ -9,7 +9,7 @@ import {
   getPopularPairs,
 } from '../markets/data/markets'
 import { usePrice, useAllPrices } from '@/app/hooks/usePrice'
-import LivePriceDisplay, { LiveMarketStats } from '../markets/components/LivePriceDisplay'
+import LivePriceDisplay from '../markets/components/LivePriceDisplay'
 
 const staggerContainer = {
   hidden: { opacity: 0 },

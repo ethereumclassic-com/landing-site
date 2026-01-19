@@ -89,12 +89,24 @@ const txHistory = [
 
 type ChartType = 'price' | 'hashrate' | 'transactions'
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+interface TooltipPayloadEntry {
+  name: string
+  value: number | string
+  color: string
+}
+
+interface CustomTooltipProps {
+  active?: boolean
+  payload?: TooltipPayloadEntry[]
+  label?: string
+}
+
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 shadow-lg">
         <p className="text-sm font-medium text-white">{label}</p>
-        {payload.map((entry: any, index: number) => (
+        {payload.map((entry: TooltipPayloadEntry, index: number) => (
           <p key={index} className="text-sm" style={{ color: entry.color }}>
             {entry.name}: {typeof entry.value === 'number' ? entry.value.toLocaleString() : entry.value}
           </p>
