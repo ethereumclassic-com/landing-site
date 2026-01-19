@@ -1,3 +1,5 @@
+import { getAffiliateLink } from '@/lib/affiliates'
+
 export type WalletType = 'Hardware' | 'Browser' | 'Mobile' | 'Web'
 
 export interface WalletFeatures {
@@ -16,6 +18,8 @@ export interface Wallet {
   type: WalletType
   description: string
   link: string
+  /** Affiliate ID for centralized link management (optional) */
+  affiliateId?: string
   supportsClassicOS?: boolean
   platforms?: ('iOS' | 'Android' | 'Desktop' | 'Browser' | 'Hardware')[]
   features?: WalletFeatures
@@ -29,7 +33,8 @@ export const wallets: Wallet[] = [
     name: 'Trezor',
     type: 'Hardware',
     description: 'The original hardware wallet with fully open-source firmware',
-    link: 'https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561',
+    link: getAffiliateLink('trezor'),
+    affiliateId: 'trezor',
     supportsClassicOS: true,
     platforms: ['Hardware', 'Desktop', 'Browser'],
     features: {
@@ -49,7 +54,8 @@ export const wallets: Wallet[] = [
     name: 'Ledger',
     type: 'Hardware',
     description: 'Popular hardware wallet with secure element chip',
-    link: 'https://shop.ledger.com/?r=bbf4d7f32e72',
+    link: getAffiliateLink('ledger'),
+    affiliateId: 'ledger',
     supportsClassicOS: true,
     platforms: ['Hardware', 'Desktop', 'iOS', 'Android'],
     features: {
