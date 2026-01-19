@@ -1840,7 +1840,37 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 
 > **Note**: Phase 7 builds all content to professional standard. Phase 8 contains ONLY the specific actions requiring human involvement.
 
-### Milestone 8.1: Content Accuracy Review
+---
+
+### Phase 8 Organization
+
+Phase 8 is organized into **sub-phases** grouped by their primary dependency/blocker. This allows parallel workstreams and efficient planning.
+
+| Sub-Phase | Focus | Primary Blocker |
+|-----------|-------|-----------------|
+| **8A** | Content & Legal Review | Human judgment/legal expertise |
+| **8B** | Account & Program Signups | Human account creation |
+| **8C** | Infrastructure Setup | Server provisioning |
+| **8D** | Data Integration | API research/credentials |
+| **8E** | Product Launches | External product readiness |
+| **8F** | Final QA & Certification | Human testing/sign-off |
+
+**Recommended Execution Order:**
+1. **8A + 8B** can run in parallel (no infrastructure dependency)
+2. **8C** can start alongside 8A/8B
+3. **8D** requires research, can start early but integration needs 8C
+4. **8E** depends on external product timelines
+5. **8F** is final gate before launch
+
+---
+
+## Sub-Phase 8A: Content & Legal Review
+
+**Blocker**: Human judgment, legal expertise, editorial oversight
+**Can Start**: Immediately after Phase 7
+**Parallel With**: 8B, 8C
+
+### Milestone 8A.1: Content Accuracy Review
 **Status**: Not Started
 **Dependencies**: Phase 7
 **Blocker**: Human judgment required
@@ -1854,136 +1884,204 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Cross-browser testing sign-off (Chrome, Firefox, Safari, Edge)
 - [ ] Mobile responsiveness sign-off (375px, 768px, 1024px, 1440px)
 
-### Milestone 8.2: Stub Pages Requiring Human Content
+### Milestone 8A.2: Legal & Policy Pages
 **Status**: Not Started
 **Dependencies**: Phase 7
-**Blocker**: Human-authored content required
-**Reference**: See `/STUB_PAGES.md` for full documentation
-
-**What Claude Built** (Phase 7): Documented all 22 stub pages with categories and priorities
+**Blocker**: Legal review/expertise required
+**Reference**: See `/STUB_PAGES.md`
 
 **Human Must Do**:
-
-*Legal/Policy Pages (High Priority):*
 - [ ] `/legal` - Write terms of service, disclaimers (legal review required)
 - [ ] `/privacy` - Write GDPR/CCPA compliant privacy policy
 - [ ] `/about` - Write company/project information, mission statement
+- [ ] Update LICENSE file (currently MIT - may need different license for production site)
 
-*Editorial Content (Medium Priority):*
+### Milestone 8A.3: Editorial Content
+**Status**: Not Started
+**Dependencies**: Phase 7
+**Blocker**: Human editorial oversight required
+
+**Human Must Do**:
+
+*Exchange Reviews:*
 - [ ] `/exchanges/reviews` - Write exchange review hub content
 - [ ] `/exchanges/reviews/[exchange]` - Write detailed review for each major exchange
+
+*Community Content:*
 - [ ] `/community/contribute` - Write contribution guide for ETC ecosystem
 
-*Directory Pages (Medium Priority):*
+*Directory Curation:*
 - [ ] `/directory/community` - Curate community resources list
 - [ ] `/directory/developers` - Curate developer resources list
 - [ ] `/directory/mining` - Curate mining resources list
 
-*Calculator/Converter Duplicates (Low Priority):*
-- [ ] Decide: Keep both `/calculator` and `/tools/calculator` or redirect one
-- [ ] Decide: Keep both `/converter` and `/tools/converter` or redirect one
-
-*Research Section (Requires Data/API):*
-- [ ] `/research/ecosystem` - Requires ecosystem metrics data source
-- [ ] `/research/reports/[slug]` - Requires research report content
-
-*Learn Articles (Content Creation):*
+*Learn Articles:*
 - [ ] `/learn/trading/[article]` - Write trading guide articles
 - [ ] `/learn/security/[article]` - Write security guide articles
 - [ ] `/learn/staking/[article]` - Write staking/PoW explanation articles
 - [ ] `/learn/defi/[article]` - Write DeFi guide articles
 
-### Milestone 8.3: Social Account Creation
+### Milestone 8A.4: Route Consolidation Decision
+**Status**: Not Started
+**Dependencies**: Phase 7
+**Blocker**: Human decision required
+
+**Issue**: Duplicate routes exist for calculator/converter tools
+
+**Human Must Decide**:
+- [ ] `/calculator` vs `/tools/calculator` vs `/markets/calculator` - which to keep?
+- [ ] `/converter` vs `/tools/converter` vs `/markets/converter` - which to keep?
+- [ ] Implement redirects for deprecated routes
+
+**Recommendation**: Redirect all to `/markets/*` (fully implemented)
+
+---
+
+## Sub-Phase 8B: Account & Program Signups
+
+**Blocker**: Human account creation, program registration
+**Can Start**: Immediately after Phase 7
+**Parallel With**: 8A, 8C
+
+### Milestone 8B.1: Social Account Creation
 **Status**: Not Started
 **Dependencies**: Phase 7
 **Blocker**: Account registration requires human
 
-**What Claude Built** (Phase 6): Footer with "#" placeholder links
+**What Claude Built**: Footer with "#" placeholder links
 **Human Must Do**:
 - [ ] Create EthereumClassic.com Twitter/X account
 - [ ] Create EthereumClassic.com Discord server (if separate)
-- [ ] Update /lib/config.ts or footer with real social URLs
+- [ ] Update `/lib/config.ts` or footer with real social URLs
 
-### Milestone 8.4: Affiliate Program Signups
+### Milestone 8B.2: Exchange Affiliate Programs
 **Status**: Not Started
 **Dependencies**: 6.10 (Referral Infrastructure)
 **Blocker**: Program registration requires human
 
-**What Claude Built** (Phase 6): Referral link infrastructure, placeholder URLs, /lib/referrals.ts config
+**Research Needed**:
+- Which exchanges offer affiliate programs for ETC?
+- Commission rates and terms?
+- Approval requirements?
+
+**What Claude Built**: Referral link infrastructure, `/lib/referrals.ts` config
 **Human Must Do**:
 - [ ] Sign up for Binance referral program → add code to config
 - [ ] Sign up for Coinbase referral program → add code to config
 - [ ] Sign up for Kraken referral program → add code to config
-- [ ] Research and sign up for hardware manufacturer affiliate programs:
-  - [ ] Bitmain affiliate program (if available)
-  - [ ] Innosilicon affiliate program (if available)
-  - [ ] iPollo affiliate program (if available)
-  - [ ] Jasminer affiliate program (if available)
-  - [ ] Amazon Associates (for GPU/accessories)
-  - [ ] Newegg affiliate program
-- [ ] Update links in /lib/referrals.ts with affiliate codes (or keep as direct links if no program)
+- [ ] Sign up for other exchange programs as available
+- [ ] Update links in `/lib/referrals.ts` with affiliate codes
 - [ ] Test tracking is working
 
-### Milestone 8.5: E-Commerce Store Launch
+### Milestone 8B.3: Hardware Affiliate Programs
 **Status**: Not Started
-**Dependencies**: 6.8 (Professional E-Commerce Store)
-**Blocker**: Vendor partnerships, affiliate programs, and payment integration require human
+**Dependencies**: 6.8 (E-Commerce Store)
+**Blocker**: Program registration requires human
 
-**What Claude Built** (Phase 6): Full professional e-commerce store with:
-- Store hub page with featured products across all categories
-- Product cards with specs, pricing, availability indicators
-- Category navigation (Mining Hardware, Equipment, Network Accessories, Merchandise)
-- Sample products with manufacturer links and specifications
-- Mining hardware from WhatToMine data (ASICs, GPUs with hashrate/power specs)
+**Research Needed**:
+- Do ASIC manufacturers have affiliate programs?
+- What are retailer affiliate terms?
 
 **Human Must Do**:
+- [ ] Bitmain affiliate program (research availability)
+- [ ] Innosilicon affiliate program (research availability)
+- [ ] iPollo affiliate program (research availability)
+- [ ] Jasminer affiliate program (research availability)
+- [ ] Amazon Associates signup
+- [ ] Newegg affiliate program signup
+- [ ] eBay Partner Network signup
+- [ ] Configure tracking codes in product links
 
-*Mining Hardware & Equipment:*
-- [ ] Establish affiliate partnerships with ASIC manufacturers (Bitmain, iPollo, Jasminer, Bombax, Innosilicon)
-- [ ] Sign up for retailer affiliate programs (eBay Partner Network, Newegg Affiliates, Amazon Associates)
-- [ ] Configure affiliate tracking codes in product links
-- [ ] Verify hardware specifications and current pricing
-- [ ] Add inventory/availability status where applicable
-
-*Network Accessories:*
-- [ ] Source suppliers for server-grade PSUs, mining frames, cooling equipment
-- [ ] Establish affiliate relationships with networking equipment suppliers
-- [ ] Add PDU and power infrastructure products
-
-*Merchandise:*
-- [ ] Create Printful.com account for dropshipping
-- [ ] Design ETC branded merchandise (apparel, accessories)
-- [ ] Upload designs to Printful and sync products
-- [ ] Configure Printful API integration for real product data
-
-*Payment & Checkout:*
-- [ ] Set up Stripe payment integration for direct purchases
-- [ ] Configure checkout flow for merchandise orders
-- [ ] Test affiliate link tracking and attribution
-
-### Milestone 8.6: Local Node Infrastructure
+### Milestone 8B.4: Merchandise Setup (Printful)
 **Status**: Not Started
-**Dependencies**: 8.1 (Content Accuracy Review)
+**Dependencies**: 6.8 (E-Commerce Store)
+**Blocker**: Account creation, design work
+
+**Human Must Do**:
+- [ ] Create Printful.com account
+- [ ] Design ETC branded merchandise (apparel, accessories)
+- [ ] Upload designs to Printful
+- [ ] Configure Printful API integration
+- [ ] Set up Stripe for merchandise checkout
+
+---
+
+## Sub-Phase 8C: Infrastructure Setup
+
+**Blocker**: Server provisioning, ops expertise
+**Can Start**: Immediately (no content dependency)
+**Required For**: 8D data integration
+
+### Milestone 8C.1: Local Node Infrastructure
+**Status**: Not Started
+**Dependencies**: None
 **Blocker**: Server provisioning requires human
 
-**What Claude Built** (Phase 6): N/A (pure infrastructure)
+**What Claude Built**: N/A (pure infrastructure)
+
+**Research Needed**:
+- Server hosting provider selection
+- Storage requirements (~500GB+ for archive)
+- Bandwidth/latency requirements
+
 **Human Must Do**:
 - [ ] Provision server (500GB+ storage)
-- [ ] Install Core-Geth
+- [ ] Install Core-Geth (NOT Erigon - doesn't support ETC)
 - [ ] Sync archive node from genesis (~1-3 days)
 - [ ] Configure internal API access
 - [ ] Set up monitoring/alerting
 
-**Technical Notes**:
-- Erigon does NOT support ETC
-- Core-Geth is the only production archive node option
-
-### Milestone 8.7: Historical Data Activation
+### Milestone 8C.2: Mining Pool Infrastructure
 **Status**: Not Started
-**Dependencies**: 8.6 (Node Infrastructure), 6.9 (Chart Components)
+**Dependencies**: 8C.1 (Node Infrastructure)
+**Blocker**: Pool infrastructure requires human ops
+
+**What Claude Built**: Full pool dashboard UI with sample data
+
+**Research Needed**:
+- Stratum server software selection
+- Payout threshold decisions
+- Fee structure
+
+**Human Must Do**:
+- [ ] Set up stratum server infrastructure
+- [ ] Configure payout system and thresholds
+- [ ] Test with real miners
+- [ ] Point pool dashboard to real backend APIs
+
+---
+
+## Sub-Phase 8D: Data Integration
+
+**Blocker**: API research, credentials, node infrastructure
+**Can Start**: Research immediately, integration after 8C
+**Parallel With**: 8A, 8B (research phase)
+
+### Milestone 8D.1: Live Data Source Research
+**Status**: Not Started
+**Dependencies**: None (research can start immediately)
+**Blocker**: Human must research and provide API access/credentials
+
+**Data Sources Needed** (see detailed list at end of Phase 8):
+
+| Data Type | Current Status | Potential Sources |
+|-----------|---------------|-------------------|
+| Network Hashrate | Hardcoded | MiningPoolStats, WhatToMine, Node RPC |
+| Mining Difficulty | Hardcoded | Blockscout, Node RPC |
+| Node Count/Distribution | Hardcoded | Ethernodes.org, Node crawler |
+| Pool Hashrate Distribution | Hardcoded | MiningPoolStats, 2Miners API |
+
+**Human Must Research**:
+- [ ] Which APIs are public vs require keys?
+- [ ] Rate limits and terms of service?
+- [ ] Accuracy and reliability of sources?
+
+### Milestone 8D.2: Historical Data Activation
+**Status**: Not Started
+**Dependencies**: 8C.1 (Node Infrastructure)
 **Blocker**: Requires synced local node
 
-**What Claude Built** (Phase 6): Chart components, API structure, sample data display
+**What Claude Built**: Chart components, API structure, sample data display
 **Human Must Do**:
 - [ ] Point API endpoints to local node
 - [ ] Run backfill script from genesis to present
@@ -1991,61 +2089,70 @@ Hardware products use affiliate links to authorized retailers (configured in Pha
 - [ ] Switch charts from sample to live data
 - [ ] Set up daily snapshot cron job
 
-### Milestone 8.8: Mining Pool Launch
+### Milestone 8D.3: Network Dashboard Activation
 **Status**: Not Started
-**Dependencies**: 8.6 (Node Infrastructure), 6.7 (Pool Dashboard Scaffolding)
-**Blocker**: Pool infrastructure requires human ops
+**Dependencies**: 8C.1 (Node Infrastructure), 8D.1 (Data Sources)
+**Blocker**: Requires node + external data sources
 
-**What Claude Built** (Phase 6): Full pool dashboard UI with sample data:
-- Pool hub, dashboard, stats, blocks, miners pages
-- Worker management interface
-- Payment history tables
-- Hashrate charts
-- All using mock/sample data
-
-**Human Must Do**:
-- [ ] Set up stratum server infrastructure
-- [ ] Configure payout system and thresholds
-- [ ] Point pool dashboard to real backend APIs
-- [ ] Test with real miners
-- [ ] Launch pool and switch from sample to live data
-
-### Milestone 8.9: Ecosystem Product Launches
-**Status**: Not Started
-**Dependencies**: Product development timelines
-**Blocker**: External product readiness
-
-**What Claude Built** (Phase 6): App pages already show "Alpha"/"Coming Soon" status
-**Human Must Do**:
-- [ ] FairWins: Update status from "Alpha" to "Live" when ready
-- [ ] ClearPath: Update status from "Coming Soon" to "Live" when ready
-- [ ] TokenMint: Update status from "Coming Soon" to "Live" when ready
-- [ ] Fukuii: Add promotion content post-Olympia upgrade
-
-### Milestone 8.10: Network Health Dashboard Activation
-**Status**: Not Started
-**Dependencies**: 8.6 (Node Infrastructure), 6.11 (Dashboard Scaffolding)
-**Blocker**: Requires node infrastructure and data sources
-
-**What Claude Built** (Phase 6): Complete Network Health Dashboard UI:
-- Dashboard hub with health indicators
-- Block explorer (blocks, transactions, addresses)
-- Node monitor with world map
-- Security & hashrate centralization monitor
-- Network statistics page
-- RPC endpoint status page
-- All using mock/sample data
-
+**What Claude Built**: Complete Network Health Dashboard UI with sample data
 **Human Must Do**:
 - [ ] Connect block explorer to local node RPC
 - [ ] Set up node discovery/crawling for node map
 - [ ] Configure RPC endpoint health checks
 - [ ] Point dashboard APIs to live data sources
 - [ ] Verify data accuracy across all monitors
-- [ ] Switch from sample to live data
-- [ ] Set up alerting for network anomalies (optional)
 
-### Milestone 8.11: Comprehensive Manual Testing & QA
+---
+
+## Sub-Phase 8E: Product Launches
+
+**Blocker**: External product readiness (independent timelines)
+**Can Start**: When products are ready
+**Parallel With**: All other sub-phases
+
+### Milestone 8E.1: E-Commerce Store Launch
+**Status**: Not Started
+**Dependencies**: 8B.2, 8B.3, 8B.4 (Affiliate/Merchandise setup)
+**Blocker**: Vendor partnerships complete
+
+**What Claude Built**: Full professional e-commerce store
+**Human Must Do**:
+- [ ] Verify all affiliate links are configured
+- [ ] Verify hardware specifications and pricing
+- [ ] Test checkout flow
+- [ ] Launch store section
+
+### Milestone 8E.2: Mining Pool Launch
+**Status**: Not Started
+**Dependencies**: 8C.2 (Pool Infrastructure)
+**Blocker**: Pool infrastructure operational
+
+**Human Must Do**:
+- [ ] Final testing with real miners
+- [ ] Switch from sample to live data
+- [ ] Announce pool launch
+
+### Milestone 8E.3: Ecosystem Product Updates
+**Status**: Not Started
+**Dependencies**: External product timelines
+**Blocker**: External product readiness
+
+**What Claude Built**: App pages showing "Alpha"/"Coming Soon" status
+**Human Must Do** (when ready):
+- [ ] FairWins: Update status from "Alpha" to "Live"
+- [ ] ClearPath: Update status from "Coming Soon" to "Live"
+- [ ] TokenMint: Update status from "Coming Soon" to "Live"
+- [ ] Fukuii: Add promotion content post-Olympia upgrade
+
+---
+
+## Sub-Phase 8F: Final QA & Certification
+
+**Blocker**: Human testing, judgment, sign-off
+**Can Start**: After 8A-8E substantially complete
+**Final Gate**: Before production launch
+
+### Milestone 8F.1: Comprehensive Manual Testing & QA
 **Status**: Not Started
 **Dependencies**: Phase 7
 **Blocker**: Human judgment and real-world testing required
@@ -2229,69 +2336,6 @@ PHASE-8-QA-REPORT.md
     └── Date and signature
 ```
 
-### Milestone 8.11: Data Sources for Live Data Integration
-**Status**: Not Started
-**Dependencies**: 6.20 (Stale Data Audit)
-**Blocker**: Human must research and provide API access/credentials
-
-**Purpose**: Claude identified the following data that needs live sources but no public API endpoint currently exists.
-
-**Data Sources Needed**:
-
-1. **Network Hashrate** (real-time)
-   - Current status: Hardcoded or missing
-   - Potential sources:
-     - [ ] MiningPoolStats API (may require key)
-     - [ ] WhatToMine API (may have rate limits)
-     - [ ] 2Miners API (public)
-     - [ ] Direct node RPC calculation
-   - Human action: Research best source, provide API access if needed
-
-2. **Mining Difficulty** (real-time)
-   - Current status: Hardcoded or missing
-   - Potential sources:
-     - [ ] Direct from Blockscout (may need additional endpoint)
-     - [ ] Node RPC `eth_getBlockByNumber` → difficulty field
-     - [ ] Mining pool APIs
-   - Human action: Verify Blockscout provides or find alternative
-
-3. **Node Count & Distribution** (geographic)
-   - Current status: Hardcoded estimates
-   - Potential sources:
-     - [ ] Ethernodes.org (may have API)
-     - [ ] Node crawler services
-     - [ ] Manual collection from known node lists
-   - Human action: Research if public API exists
-
-4. **Pool Hashrate Distribution**
-   - Current status: Hardcoded percentages
-   - Potential sources:
-     - [ ] MiningPoolStats API
-     - [ ] Individual pool APIs (F2Pool, 2Miners, etc.)
-   - Human action: Compile list of pool APIs with hashrate endpoints
-
-5. **24-Hour Trading Volume** (per exchange)
-   - Current status: Using CoinGecko aggregated only
-   - Potential sources:
-     - [ ] CoinGecko exchange-specific data (may be in current API)
-     - [ ] Individual exchange APIs
-   - Human action: Verify CoinGecko provides or need exchange APIs
-
-6. **Historical Hashrate/Difficulty Charts**
-   - Current status: No historical data
-   - Potential sources:
-     - [ ] Glassnode (paid)
-     - [ ] IntoTheBlock (paid)
-     - [ ] Build from node historical data
-   - Human action: Evaluate cost vs. self-hosting historical data
-
-**Deliverables**:
-- [ ] Research and document available APIs for each data type
-- [ ] Provide API keys/credentials where required
-- [ ] Document rate limits and caching requirements
-- [ ] Update lib/data-sources.ts with new endpoints
-- [ ] Claude implements integrations once sources provided
-
 ---
 
 ## Milestone Tracking
@@ -2305,62 +2349,45 @@ PHASE-8-QA-REPORT.md
 | Phase 3 | 10 | 10 | 100% |
 | Phase 4 | 12 | 12 | 100% |
 | Phase 5 | 7 | 7 | 100% |
-| Phase 6 | 23 | 23 | 100% | (Autonomous - complete)
-| Phase 7 | 19 | 5 | 26% | (QA & Content Review - Claude-driven)
-| Phase 8 | 11 | 0 | 0% | (Human-only - infrastructure & approvals)
-| **Total** | **94** | **76** | **81%** |
+| Phase 6 | 23 | 23 | 100% |
+| Phase 7 | 19 | 19 | 100% |
+| Phase 8 | 16 | 0 | 0% |
+| **Total** | **99** | **83** | **84%** |
 
 ### Current Focus
 
-**Current Phase**: Phase 7 - Comprehensive QA & Content Review
+**Current Phase**: Phase 8 - Human Review, Infrastructure & Approvals
 
-**Phase 7 Objectives**:
-- File-by-file review of entire codebase
-- Remove obsolete/unused files
-- Align documentation with current reality
-- Elevate all copy from placeholder to professional standard
-- Complete stub pages or document blockers
-- Final cleanup and verification
+**Phase 7 Complete** ✅:
+All 19 milestones completed. See PHASE-7-QA-REPORT.md for details.
+- ✅ 7.1-7.5 File Review (root through learn section)
+- ✅ 7.6 Wallet Section
+- ✅ 7.7 Buy/Sell Section
+- ✅ 7.8 Exchanges Section
+- ✅ 7.9 Apps Section
+- ✅ 7.10 Learn Section
+- ✅ 7.11 News Section
+- ✅ 7.12 Mining Section
+- ✅ 7.13 Build Section
+- ✅ 7.14 Markets/Research Section
+- ✅ 7.15 Tools/Community Section
+- ✅ 7.16 Directory/Store Section
+- ✅ 7.17 Static Pages
+- ✅ 7.18 Stub Page Documentation
+- ✅ 7.19 Final Cleanup & Build Verification
 
-**Phase 6 Summary** (complete):
-- ✅ 6.1 Sitemap & Technical SEO - XML sitemap, RSS feed, JSON-LD
-- ✅ 6.2 UI/UX Code Fixes - Navigation improvements, stats strip updates
-- ✅ 6.3 Performance & Accessibility - WCAG AA contrast, skip links
-- ✅ 6.4 Link Verification - All links validated
-- ✅ 6.5 Mining Hardware Affiliate Pages - Manufacturer links, buy page
-- ✅ 6.6 Classic USD Documentation - On-ramp guide at /learn/on-ramp
-- ✅ 6.7 Mining Pool Dashboard - /pool with sample stats
-- ✅ 6.8 Professional E-Commerce Store - /store with hardware, equipment, network gear
-- ✅ 6.9 Historical Charts - Recharts at /research/history
-- ✅ 6.10 Referral Infrastructure - /referral with tiers
-- ✅ 6.11 Network Health Dashboard - /network with health checks
-- ✅ 6.12 Automated Testing - Lighthouse 92-100%, PHASE6-REPORT.md generated
-- ✅ 6.13 On-Ramp Page Updates - USDC/USDP journeys, mining hardware store links
-- ✅ 6.14 Live Data Integration - CoinGecko/Blockscout hooks, live price/network display
-- ✅ 6.15 Store Mining Equipment - PSUs, frames, cooling, risers, PDUs
-- ✅ 6.16 Store Network Infrastructure - Switches, cabling, UPS, monitoring
-- ✅ 6.17 Store Professional Enhancement - Hero, stats, categories, disclaimers
-- 🔄 6.18 Data Source Attribution - Pending
-- 🔄 6.19 Data Freshness Indicators - Pending
-- 🔄 6.20 Codebase-Wide Stale Data Audit - **IN PROGRESS**
-- 🔄 6.21 Phase 1-6 Completion Verification - Pending
+**Phase 8 Sub-Phases** (Human-only blockers):
 
-**Next Up After Phase 6 Complete**: Phase 7 - Human Review & Infrastructure
+| Sub-Phase | Milestones | Focus | Primary Blocker |
+|-----------|------------|-------|-----------------|
+| **8A** | 4 | Content & Legal Review | Human judgment/legal expertise |
+| **8B** | 4 | Account & Program Signups | Human account creation |
+| **8C** | 2 | Infrastructure Setup | Server provisioning |
+| **8D** | 3 | Data Integration | API research/credentials |
+| **8E** | 3 | Product Launches | External product readiness |
+| **8F** | 1 | Final QA & Certification | Human testing/sign-off |
 
-**Phase 7** (Human-only blockers):
-| Milestone | What Human Must Do |
-|-----------|-------------------|
-| 7.1 Content Review | Approve all public copy |
-| 7.2 Social Accounts | Create Twitter/X, Discord |
-| 7.3 Affiliate Signups | Register for exchange referral programs |
-| 7.4 E-Commerce Store Launch | Establish hardware affiliate partnerships, Stripe integration, Printful setup |
-| 7.5 Node Infrastructure | Provision server, sync node |
-| 7.6 Historical Data | Point APIs to node, run backfill |
-| 7.7 Mining Pool Launch | Set up stratum server, connect to UI |
-| 7.8 Product Launches | Update status when ready |
-| 7.9 Network Dashboard | Connect to live data sources |
-| 7.10 Manual Testing & QA | Test accounts, APIs, search, generate PHASE-8-QA-REPORT.md |
-| 7.11 Data Source Research | Provide APIs for hashrate, difficulty, node count, pool distribution |
+**Parallel Execution**: 8A + 8B + 8C can run concurrently. 8D requires research. 8E depends on external timelines. 8F is the final gate.
 
 ---
 
