@@ -41,31 +41,36 @@ docs.classicos.org
 
 ## Current Development Phase
 
-### Phase 7: Comprehensive QA & Content Review (In Progress)
+### Phase 8: Human Review, Infrastructure & Approvals (Current)
 
-**Goal:** File-by-file review of the entire codebase to ensure quality, accuracy, and professionalism.
+**Goal:** Complete human-only tasks including content review, account creation, infrastructure setup, and final QA.
 
-**Current Status:** 137 pages built, 71/94 milestones complete (76%)
+**Current Status:** 137 pages built, 83/99 milestones complete (84%)
 
 **Completed Phases:**
 - [x] Phase 1: Framework & Shell (1.1 - 1.7) - 100%
 - [x] Phase 2: Core Pages (2.1 - 2.5) - 100%
 - [x] Phase 3: Secondary Pages (3.1 - 3.10) - 100%
-- [x] Phase 4: Content Expansion (4.1 - 4.10) - 100%
-- [x] Phase 5: Advanced Features (5.1 - 5.14) - 100%
+- [x] Phase 4: Content Expansion (4.1 - 4.12) - 100%
+- [x] Phase 5: Advanced Features (5.1 - 5.7) - 100%
 - [x] Phase 6: Launch Readiness (6.1 - 6.23) - 100%
-- [ ] **Phase 7: QA & Content Review (7.1 - 7.19)** - In Progress
-- [ ] Phase 8: Human-Only Tasks (8.1 - 8.11) - Pending
+- [x] Phase 7: QA & Content Review (7.1 - 7.19) - 100%
+- [ ] **Phase 8: Human-Only Tasks (8A - 8F)** - Current
 
-**Phase 7 Milestones:**
-- [ ] 7.1 Documentation & Planning Cleanup
-- [ ] 7.2-7.4 Codebase File Audit (root, lib, data)
-- [ ] 7.5-7.8 Component Audit (ui, layout, sections, features)
-- [ ] 7.9-7.17 Page Content Review (all sections)
-- [ ] 7.18 Cross-Site Link Verification
-- [ ] 7.19 Final Build & Performance Validation
+**Phase 8 Sub-Phases (Organized by Blocker Type):**
 
-**See [docs/MILESTONES.md](../docs/MILESTONES.md) for full roadmap.**
+| Sub-Phase | Milestones | Focus | Primary Blocker |
+|-----------|------------|-------|-----------------|
+| **8A** | 4 | Content & Legal Review | Human judgment/legal expertise |
+| **8B** | 4 | Account & Program Signups | Human account creation |
+| **8C** | 2 | Infrastructure Setup | Server provisioning |
+| **8D** | 3 | Data Integration | API research/credentials |
+| **8E** | 3 | Product Launches | External product readiness |
+| **8F** | 1 | Final QA & Certification | Human testing/sign-off |
+
+**Parallel Execution:** 8A + 8B + 8C can run concurrently. 8D requires research. 8E depends on external timelines. 8F is the final gate.
+
+**See [docs/MILESTONES.md](../docs/MILESTONES.md) for full roadmap and detailed task lists.**
 
 ---
 
@@ -627,5 +632,5 @@ The git commit captures the actual code changes, so detailed implementation cont
 6. Forward-looking ETC positioning
 7. Route to ecosystem products, don't rebuild them
 
-**Current Focus:** Phase 7 - Comprehensive QA & Content Review
-**Current Milestone:** 7.1 - Documentation & Planning Cleanup
+**Current Focus:** Phase 8 - Human Review, Infrastructure & Approvals
+**Current Sub-Phase:** 8A/8B/8C can run in parallel (see MILESTONES.md for detailed tasks)
