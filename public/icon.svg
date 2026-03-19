@@ -1,0 +1,8 @@
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top diamond half (upper facet, lighter) -->
+  <polygon points="16,3 26,16 16,12.5" fill="#3AB83A" opacity="0.72"/>
+  <polygon points="16,3 6,16 16,12.5" fill="#3AB83A"/>
+  <!-- Bottom diamond half -->
+  <polygon points="16,29 26,16 16,19.5" fill="#3AB83A" opacity="0.72"/>
+  <polygon points="16,29 6,16 16,19.5" fill="#3AB83A"/>
+</svg>

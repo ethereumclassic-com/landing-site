@@ -10,11 +10,28 @@ export const metadata: Metadata = {
   title: "Ethereum Classic — Proof-of-Work Smart Contracts",
   description:
     "Ethereum Classic is the only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
+  keywords: [
+    "Ethereum Classic",
+    "ETC",
+    "cryptocurrency",
+    "blockchain",
+    "proof of work",
+    "smart contracts",
+    "mining",
+    "DeFi",
+    "dApps",
+    "ETCHash",
+  ],
+  authors: [{ name: "Ethereum Classic" }],
+  creator: "Ethereum Classic",
   openGraph: {
     title: "Ethereum Classic — Proof-of-Work Smart Contracts",
     description: "The only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
+    url: "https://ethereumclassic.com",
+    siteName: "Ethereum Classic",
+    locale: "en_US",
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ethereum Classic" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ethereum Classic — Proof-of-Work Smart Contracts", type: "image/png" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -32,9 +49,17 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: {
+    canonical: "https://ethereumclassic.com",
     types: {
       'application/rss+xml': '/news/feed.xml',
     },
+  },
+  other: { "color-scheme": "dark" },
+  formatDetection: { telephone: false, email: false },
+  appleWebApp: {
+    capable: true,
+    title: "Ethereum Classic",
+    statusBarStyle: "black-translucent",
   },
 };
 
