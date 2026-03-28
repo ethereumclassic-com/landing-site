@@ -8,7 +8,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useSearch, getTypeLabel, getTypeIcon, type SearchResult, type SearchResultType } from '@/hooks/useSearch'
 
 // Navigation structure with dropdowns
-const navItems = [
+const navItems: {
+  href?: string
+  label: string
+  highlight?: boolean
+  dropdown?: { href: string; label: string }[]
+}[] = [
   { href: '/news', label: 'News' },
   {
     href: '/wallet',
@@ -81,6 +86,18 @@ const navItems = [
     ],
   },
   {
+    href: '/olympia',
+    label: 'Olympia',
+    highlight: true,
+    dropdown: [
+      { href: '/olympia', label: 'Olympia Hub' },
+      { href: '/olympia/upgrade', label: 'Upgrade Your Node' },
+      { href: '/olympia/governance', label: 'Governance' },
+      { href: '/olympia/contributors', label: 'Contributors' },
+      { href: '/upgrades', label: 'Fork History' },
+    ],
+  },
+  {
     label: 'More',
     dropdown: [
       { href: '/markets', label: 'Markets' },
@@ -118,6 +135,15 @@ const mobileNavGroups = [
       { href: '/mining', label: 'Mining' },
       { href: '/build', label: 'Build' },
       { href: '/exchanges', label: 'Exchanges' },
+    ],
+  },
+  {
+    label: 'Olympia Upgrade',
+    items: [
+      { href: '/olympia', label: 'Olympia Hub' },
+      { href: '/olympia/upgrade', label: 'Upgrade Your Node' },
+      { href: '/olympia/governance', label: 'Governance' },
+      { href: '/upgrades', label: 'Fork History' },
     ],
   },
   {
@@ -480,11 +506,18 @@ export default function Navigation() {
                     href={item.href}
                     className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm transition ${
                       isActive(item)
-                        ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                        : 'text-white/70 hover:bg-white/5 hover:text-white'
+                        ? item.highlight
+                          ? 'bg-[#00ffae]/10 text-[#00ffae]'
+                          : 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
+                        : item.highlight
+                          ? 'text-[#00ffae]/80 hover:bg-[#00ffae]/5 hover:text-[#00ffae]'
+                          : 'text-white/70 hover:bg-white/5 hover:text-white'
                     }`}
                   >
                     {item.label}
+                    {item.highlight && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#00ffae] shadow-[0_0_6px_rgba(0,255,174,0.6)]" />
+                    )}
                     {item.dropdown && (
                       <svg
                         className={`h-4 w-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
