@@ -16,23 +16,13 @@ const fadeInUp = {
 interface CDCEntry {
   date: string
   title: string
-  topics: string[]
+  summary: string
   recordingUrl?: string
   notesUrl?: string
 }
 
 const cdcEntries: CDCEntry[] = [
-  {
-    date: '2026-03-27',
-    title: 'CDC-23 — Olympia Specification Review',
-    topics: [
-      'ECIP-1111 through 1121 final review',
-      'Activation block discussion',
-      'Cross-client test matrix update',
-      'Mordor testnet deployment timeline',
-    ],
-  },
-  // Additional CDC entries will be added as calls happen
+  // CDC entries will be added as calls happen
 ]
 
 export default function CDCArchivePage() {
@@ -103,17 +93,7 @@ export default function CDCArchivePage() {
                   </span>
                 </div>
 
-                <ul className="mt-4 space-y-1.5">
-                  {entry.topics.map((topic) => (
-                    <li
-                      key={topic}
-                      className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]"
-                    >
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#00ffae]" />
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-3 text-sm text-[var(--color-text-muted)]">{entry.summary}</p>
 
                 <div className="mt-4 flex flex-wrap gap-3">
                   {entry.recordingUrl && (
@@ -135,11 +115,6 @@ export default function CDCArchivePage() {
                     >
                       Read Notes →
                     </a>
-                  )}
-                  {!entry.recordingUrl && !entry.notesUrl && (
-                    <span className="text-sm text-[var(--color-text-muted)]">
-                      Recording and notes will be posted after the call.
-                    </span>
                   )}
                 </div>
               </motion.div>

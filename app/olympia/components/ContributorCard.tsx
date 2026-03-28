@@ -16,7 +16,7 @@ export interface ContributorData {
   description: string
   stats: { label: string; value: string }[]
   githubUrl: string
-  organization: string
+  organization?: string
 }
 
 interface ContributorCardProps {
@@ -38,15 +38,12 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
         </span>
         <div>
           <h3 className="text-lg font-semibold text-white">{contributor.name}</h3>
-          <div className="flex items-center gap-2">
-            <span
-              className="rounded-full px-2 py-0.5 text-xs font-medium"
-              style={{ backgroundColor: `${contributor.roleColor}15`, color: contributor.roleColor }}
-            >
-              {contributor.role}
-            </span>
-            <span className="text-xs text-[var(--color-text-muted)]">{contributor.organization}</span>
-          </div>
+          <span
+            className="rounded-full px-2 py-0.5 text-xs font-medium"
+            style={{ backgroundColor: `${contributor.roleColor}15`, color: contributor.roleColor }}
+          >
+            {contributor.role}
+          </span>
         </div>
       </div>
 

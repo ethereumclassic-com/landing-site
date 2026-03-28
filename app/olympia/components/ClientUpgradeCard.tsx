@@ -29,7 +29,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
     return (
       <motion.div variants={fadeInUp}>
         <Link
-          href={`/olympia/upgrade/${client.id}`}
+          href={`/olympia/clients/${client.id}`}
           className="group block rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
         >
           <div className="flex items-center gap-3">
@@ -142,13 +142,6 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
           <code className="font-mono text-sm text-[#00ffae]">{client.verifyCommand}</code>
         </div>
       </div>
-
-      {/* Notes */}
-      {client.notes && (
-        <div className="rounded-xl border border-[#00ffae]/20 bg-[#00ffae]/5 p-4">
-          <p className="text-sm text-[var(--color-text-muted)]">{client.notes}</p>
-        </div>
-      )}
 
       {/* Links */}
       <div className="flex flex-wrap gap-3">

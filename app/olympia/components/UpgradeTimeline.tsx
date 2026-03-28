@@ -68,7 +68,19 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                     {new Date(fork.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                   </span>
                 )}
-                {fork.ecip && (
+                {fork.ecips ? (
+                  fork.ecips.map((e) => (
+                    <a
+                      key={e.name}
+                      href={e.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                    >
+                      {e.name}
+                    </a>
+                  ))
+                ) : fork.ecip ? (
                   <a
                     href={fork.ecipUrl ?? '#'}
                     target="_blank"
@@ -77,7 +89,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                   >
                     {fork.ecip}
                   </a>
-                )}
+                ) : null}
               </div>
 
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">{fork.summary}</p>

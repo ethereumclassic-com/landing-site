@@ -144,12 +144,11 @@ const staticRoutes = [
 
   // Olympia upgrade section
   { path: '/olympia', priority: 0.9, changeFrequency: 'weekly' as const },
-  { path: '/olympia/upgrade', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/olympia/upgrade/core-geth', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/olympia/upgrade/besu', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/olympia/upgrade/fukuii', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/olympia/clients', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/olympia/clients/core-geth', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/olympia/clients/besu', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/olympia/contributors', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/cdc', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/upgrades', priority: 0.8, changeFrequency: 'monthly' as const },

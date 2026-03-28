@@ -75,7 +75,7 @@ export default function MinersPage() {
             variants={fadeInUp}
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Block rewards remain completely untouched. Only the EIP-1559 basefee — the portion
+            Block rewards and tips remain completely untouched. Only the EIP-1559 basefee — the portion
             Ethereum burns — is redirected to the protocol treasury.
           </motion.p>
         </motion.div>
@@ -164,10 +164,10 @@ export default function MinersPage() {
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-4">
           <Link
-            href="/olympia/upgrade"
+            href="/olympia/clients"
             className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
           >
-            Upgrade Your Node
+            View Clients
           </Link>
           <Link
             href="/mining"

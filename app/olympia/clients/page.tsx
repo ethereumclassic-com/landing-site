@@ -44,15 +44,16 @@ export default function UpgradeHubPage() {
             variants={fadeInUp}
             className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
           >
-            Upgrade Your Node
+            Client Implementations
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Three independent client implementations support the Olympia upgrade. Choose your
-            client and follow the guide to stay on the canonical ETC chain.
+            Three independent client implementations ensure EVM parity, security maintenance,
+            and modern tooling for Ethereum Classic. Fukuii is recommended, Core-Geth is
+            maintained through the transition, and Besu serves as a reference for cross-client testing.
           </motion.p>
         </motion.div>
       </section>
@@ -79,30 +80,6 @@ export default function UpgradeHubPage() {
             ))}
           </motion.div>
         </div>
-      </section>
-
-      {/* What happens if you don't upgrade */}
-      <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
-          className="mx-auto max-w-3xl"
-        >
-          <motion.h2 variants={fadeInUp} className="text-xl font-bold text-white">
-            What if I don&apos;t upgrade?
-          </motion.h2>
-          <motion.p
-            variants={fadeInUp}
-            className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]"
-          >
-            Nodes that don&apos;t upgrade will follow the old chain rules and will fork off the
-            network at the Olympia activation block. You must upgrade your client software before
-            the activation block to stay on the canonical ETC chain. This is the same process as
-            every prior ETC hard fork (Atlantis, Phoenix, Thanos, Spiral, etc.).
-          </motion.p>
-        </motion.div>
       </section>
     </main>
   )

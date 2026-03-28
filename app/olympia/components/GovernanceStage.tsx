@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { governanceFlow, governanceStages, type GovernanceStep } from '../data/olympia'
+import { governanceFlow, type GovernanceStep } from '../data/olympia'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -34,12 +34,10 @@ function IconSvg({ name, className }: { name: string; className?: string }) {
 function FlowStep({ step, index }: { step: GovernanceStep; index: number }) {
   return (
     <motion.div variants={fadeInUp} className="relative flex flex-col items-center text-center">
-      {/* Number badge */}
       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10">
         <IconSvg name={step.icon} className="h-5 w-5 text-[#00ffae]" />
       </div>
 
-      {/* Connector line (not on last item) */}
       {index < governanceFlow.length - 1 && (
         <div className="absolute left-[calc(50%+24px)] top-6 hidden h-px w-[calc(100%-48px)] bg-gradient-to-r from-[#00ffae]/30 to-[var(--border)] lg:block" />
       )}
@@ -48,43 +46,6 @@ function FlowStep({ step, index }: { step: GovernanceStep; index: number }) {
       <p className="mt-1.5 text-xs leading-relaxed text-[var(--color-text-muted)]">
         {step.description}
       </p>
-    </motion.div>
-  )
-}
-
-function StageProgressBar() {
-  return (
-    <motion.div variants={fadeInUp} className="mt-12">
-      <h3 className="text-lg font-semibold text-white">Governance Evolution</h3>
-      <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-        Olympia governance matures through five stages.
-      </p>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {governanceStages.map((stage) => {
-          const statusColor =
-            stage.status === 'active' ? '#00ffae' : stage.status === 'next' ? '#38bdf8' : '#6b7280'
-
-          return (
-            <div
-              key={stage.name}
-              className="flex items-center gap-2 rounded-lg border px-3 py-2"
-              style={{
-                borderColor: `${statusColor}30`,
-                backgroundColor: `${statusColor}08`,
-              }}
-            >
-              <span
-                className="h-2 w-2 rounded-full"
-                style={{ backgroundColor: statusColor }}
-              />
-              <span className="text-sm font-medium" style={{ color: statusColor }}>
-                {stage.number}. {stage.name}
-              </span>
-              <span className="text-xs text-[var(--color-text-muted)]">{stage.description}</span>
-            </div>
-          )
-        })}
-      </div>
     </motion.div>
   )
 }
@@ -102,15 +63,11 @@ export default function GovernanceStageComponent() {
         Five stages from idea to execution — every step on-chain, transparent, and auditable.
       </p>
 
-      {/* Flow steps */}
       <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
         {governanceFlow.map((step, i) => (
           <FlowStep key={step.title} step={step} index={i} />
         ))}
       </div>
-
-      {/* Stage progression */}
-      <StageProgressBar />
     </motion.div>
   )
 }

@@ -3,9 +3,10 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import OlympiaCountdown from './components/OlympiaCountdown'
-import ECIPGrid from './components/ECIPGrid'
+import OlympiaRoadmap from './components/OlympiaRoadmap'
+import GovernanceStageComponent from './components/GovernanceStage'
 import { FAQAccordion } from '@/app/components/sections/FAQAccordion'
-import { olympiaStats, faqs as olympiaFAQ, olympiaLinks } from './data/olympia'
+import { faqs as olympiaFAQ, olympiaLinks } from './data/olympia'
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -17,29 +18,24 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 }
 
-const whatChanges = [
+const howItWorks = [
   {
-    title: 'EIP-1559 Fee Market',
-    description: 'Dynamic base fee brings predictable gas pricing to ETC. No more blind fee auctions.',
-    color: '#00ffae',
+    title: 'Basefee Revenue',
+    description:
+      'Every transaction pays a basefee via EIP-1559. The basefee is directed to the Treasury. Block rewards and tips remain completely untouched — miners are unaffected.',
+    color: '#F59E0B',
   },
   {
     title: 'Protocol Treasury',
     description:
-      'The basefee is directed to the Treasury. Block rewards remain completely untouched — miners are unaffected.',
-    color: '#F59E0B',
+      'Protocol-managed vault accumulates basefee revenue, voluntary donations, and mining rewards directed to the treasury address. Real-time monitoring via public dashboard.',
+    color: '#00ffae',
   },
   {
     title: 'On-Chain Governance',
     description:
-      'Soulbound NFT voting — one address, one vote. No governance token to buy, sell, or trade.',
+      'Two-layer governance: the CoreDAO handles critical protocol decisions — security maintenance, EVM parity, and client funding — ensuring a professional-grade blockchain experience for Ethereum Classic stakeholders. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
     color: '#38bdf8',
-  },
-  {
-    title: 'EVM Alignment',
-    description:
-      '13 EIPs from Shanghai and Cancun: MCOPY, TSTORE, AUTH, BLS precompile, and more.',
-    color: '#a78bfa',
   },
 ]
 
@@ -77,24 +73,24 @@ export default function OlympiaHubPage() {
             variants={fadeInUp}
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            On-chain governance and treasury infrastructure for Ethereum Classic. Transaction fee
-            revenue funds the protocol vault — block rewards remain completely untouched.
+            Active protocol development for Ethereum Classic — EVM modernization, maintained
+            clients, and funded development through sustainable basefee revenue.
           </motion.p>
 
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              href="/olympia/upgrade"
+              href="/olympia/clients"
               className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90 hover:shadow-lg hover:shadow-[#00ffae]/25"
             >
-              Upgrade Your Node
+              View Clients
             </Link>
             <a
-              href={olympiaLinks.ecipBase + 'ecip-1111'}
+              href={olympiaLinks.olympiaDAO}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
             >
-              Read ECIPs
+              OlympiaDAO.org
             </a>
           </motion.div>
         </motion.div>
@@ -107,19 +103,7 @@ export default function OlympiaHubPage() {
         </div>
       </section>
 
-      {/* Stats Strip */}
-      <section className="border-y border-[var(--border)] bg-[var(--panel)]">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-8 px-6 py-8 md:gap-16">
-          {olympiaStats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-2xl font-bold text-[#00ffae]">{stat.value}</p>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* What Changes */}
+      {/* How It Works */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -129,14 +113,14 @@ export default function OlympiaHubPage() {
             variants={staggerContainer}
           >
             <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
-              What Changes
+              How It Works
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              Four pillars define the Olympia upgrade.
+              Funded by basefee revenue, not inflation. Block rewards and tips remain untouched.
             </motion.p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {whatChanges.map((item) => (
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {howItWorks.map((item) => (
                 <motion.div
                   key={item.title}
                   variants={fadeInUp}
@@ -157,10 +141,83 @@ export default function OlympiaHubPage() {
         </div>
       </section>
 
-      {/* ECIPs */}
+      {/* Governance Process */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <ECIPGrid showFuture />
+          <GovernanceStageComponent />
+        </div>
+      </section>
+
+      {/* Olympia Roadmap */}
+      <section className="px-6 py-20 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-3xl">
+          <OlympiaRoadmap />
+        </div>
+      </section>
+
+      {/* Coordinating Organizations */}
+      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={staggerContainer}
+          >
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+              Coordinating Organizations
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+              Coordinating organizations working together to govern and advance the Ethereum Classic network.
+            </motion.p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  name: 'Ethereum Classic',
+                  role: 'Network Protocol',
+                  description: 'The largest Proof-of-Work smart contract platform. Coordinating network upgrades to maintain EVM parity and modern tooling.',
+                  href: 'https://ethereumclassic.com',
+                },
+                {
+                  name: 'Olympia Treasury',
+                  role: 'Protocol-Funded Treasury',
+                  description: 'Basefee revenue creates sustainable protocol funding. Real-time treasury monitoring via public dashboard.',
+                  href: olympiaLinks.treasuryDashboard,
+                },
+                {
+                  name: 'Olympia DAO',
+                  role: 'On-Chain Governance',
+                  description: 'CoreDAO membership NFTs for critical protocol decisions, futarchy prediction markets for public participation — all on-chain on Ethereum Classic.',
+                  href: olympiaLinks.olympiaDAO,
+                },
+                {
+                  name: 'Ethereum Classic DAO LLC',
+                  role: 'Legal Entity',
+                  description: 'The legal wrapper for the Olympia DAO under Wyoming\'s DAO LLC framework. Ensures regulatory compliance, proper reporting, and alignment with digital asset legislation.',
+                  href: olympiaLinks.ethereumClassicDAO,
+                },
+              ].map((entity) => (
+                <motion.a
+                  key={entity.name}
+                  variants={fadeInUp}
+                  href={entity.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition-all hover:-translate-y-0.5 hover:border-[#00ffae]/20"
+                >
+                  <h3 className="text-base font-semibold text-white">{entity.name}</h3>
+                  <p className="mt-1 text-xs text-[var(--color-text-muted)]">{entity.role}</p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    {entity.description}
+                  </p>
+                  <span className="mt-4 text-xs font-medium text-[#00ffae] transition group-hover:translate-x-0.5">
+                    Visit →
+                  </span>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -184,20 +241,20 @@ export default function OlympiaHubPage() {
             Ready to Upgrade?
           </motion.h2>
           <motion.p variants={fadeInUp} className="mt-3 text-[var(--color-text-muted)]">
-            Three client implementations are ready. Choose your client and follow the upgrade guide.
+            Fukuii is the recommended client. Core-Geth is maintained through the transition.
           </motion.p>
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              href="/olympia/upgrade"
+              href="/olympia/clients"
               className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90 hover:shadow-lg hover:shadow-[#00ffae]/25"
             >
-              Upgrade Your Node
+              View Clients
             </Link>
             <Link
               href="/olympia/governance"
               className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
             >
-              Read the Governance Framework
+              Governance Framework
             </Link>
           </motion.div>
         </motion.div>

@@ -7,12 +7,117 @@ export interface ForkData {
   date: string | null // null for TBD
   ecip: string | null
   ecipUrl: string | null
+  ecips?: { name: string; url: string }[] // multiple ECIPs (overrides ecip/ecipUrl when present)
   summary: string
   keyChanges: string[]
   isOlympia?: boolean
 }
 
 export const forks: ForkData[] = [
+  {
+    name: 'Frontier',
+    block: 1,
+    date: '2015-07-30',
+    ecip: null,
+    ecipUrl: null,
+    summary: 'Genesis block — the Ethereum network launches.',
+    keyChanges: [
+      'Initial network launch',
+      'Gas limit of 5,000 per block',
+      'Proof-of-Work consensus',
+    ],
+  },
+  {
+    name: 'Frontier Thawing',
+    block: 200_000,
+    date: '2015-09-07',
+    ecip: null,
+    ecipUrl: null,
+    summary: 'Increased gas limit from 5,000 to enable meaningful transactions and contract deployment.',
+    keyChanges: [
+      'Gas limit increase',
+      'Difficulty bomb introduced',
+      'Enabled contract deployment',
+    ],
+  },
+  {
+    name: 'Homestead',
+    block: 1_150_000,
+    date: '2016-03-14',
+    ecip: null,
+    ecipUrl: null,
+    summary: 'First major planned upgrade — EIP-2, EIP-7, EIP-8.',
+    keyChanges: [
+      'EIP-2 (transaction validity rules)',
+      'EIP-7 (DELEGATECALL opcode)',
+      'EIP-8 (devp2p forward compatibility)',
+    ],
+  },
+  {
+    name: 'DAO Fork (Rejected)',
+    block: 1_920_000,
+    date: '2016-07-20',
+    ecip: null,
+    ecipUrl: null,
+    summary: 'Ethereum forked to reverse the DAO hack. ETC rejected the irregular state change and continued the original chain.',
+    keyChanges: [
+      'ETC continued the original unaltered chain',
+      'Ethereum Classic identity established',
+      'Code is law principle preserved',
+    ],
+  },
+  {
+    name: 'Gas Reprice',
+    block: 2_500_000,
+    date: '2016-10-24',
+    ecip: null,
+    ecipUrl: null,
+    summary: 'EIP-150 — repriced I/O-heavy opcodes for DoS protection after the Shanghai attacks.',
+    keyChanges: [
+      'EIP-150 (gas cost increases for I/O operations)',
+      'DoS attack mitigation',
+      'CALL gas cost increase',
+    ],
+  },
+  {
+    name: 'Die Hard',
+    block: 3_000_000,
+    date: '2017-01-13',
+    ecip: 'ECIP-1015',
+    ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1015',
+    summary: 'Replay protection and difficulty bomb delay — the first ETC-specific hard fork.',
+    keyChanges: [
+      'EIP-155 (replay protection)',
+      'EIP-160 (EXP gas cost increase)',
+      'Difficulty bomb delay',
+    ],
+  },
+  {
+    name: 'Gotham',
+    block: 5_000_000,
+    date: '2017-12-11',
+    ecip: 'ECIP-1017',
+    ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1017',
+    summary: 'ECIP-1017 monetary policy — established the 210.7 million ETC supply cap with era-based emission reduction.',
+    keyChanges: [
+      'Fixed monetary policy (supply cap ~210.7M ETC)',
+      'Era-based emission reduction (20% per era)',
+      'Five million block eras',
+    ],
+  },
+  {
+    name: 'Defuse Difficulty Bomb',
+    block: 5_900_000,
+    date: '2018-05-29',
+    ecip: 'ECIP-1041',
+    ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1041',
+    summary: 'ECIP-1041 — permanently removed the difficulty bomb from ETC, ensuring stable block times.',
+    keyChanges: [
+      'Difficulty bomb permanently removed',
+      'Stable block times preserved',
+      'No forced upgrade pressure',
+    ],
+  },
   {
     name: 'Atlantis',
     block: 8_772_000,
@@ -118,17 +223,21 @@ export const forks: ForkData[] = [
     name: 'Olympia',
     block: null,
     date: null,
-    ecip: 'ECIP-1111',
-    ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1111',
+    ecip: null,
+    ecipUrl: null,
+    ecips: [
+      { name: 'ECIP-1111', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1111' },
+      { name: 'ECIP-1112', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1112' },
+      { name: 'ECIP-1121', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1121' },
+    ],
     summary:
-      'The most significant ETC upgrade — EIP-1559 fee market, protocol treasury, on-chain governance foundation, and EVM alignment with 13 additional EIPs.',
+      'EVM alignment to Fusaka — EIPs spanning London, Dencun, Pectra, and Fusaka. Introduces EIP-1559 fee market with basefee directed to protocol treasury.',
     keyChanges: [
-      'EIP-1559 dynamic base fee',
-      'Basefee directed to protocol treasury',
-      'On-chain governance framework',
-      'Soulbound NFT voting',
-      '13 EIPs from Shanghai/Cancun',
-      'Gas limit increase to 60M',
+      'EIP-1559 dynamic basefee (directed to treasury)',
+      'EVM parity with Ethereum Fusaka',
+      'EIPs from London, Dencun, Pectra, Fusaka',
+      'Protocol treasury funding mechanism',
+      'Three independent client implementations',
     ],
     isOlympia: true,
   },

@@ -34,7 +34,7 @@ function TBDState({ variant }: { variant: 'hero' | 'banner' }) {
             <span className="relative inline-flex h-3 w-3 rounded-full bg-[#00ffae]" />
           </span>
           <span className="text-sm font-medium text-[#00ffae]">Olympia Upgrade</span>
-          <span className="text-sm text-[var(--color-text-muted)]">Activation block announced after Community Developer Call</span>
+          <span className="text-sm text-[var(--color-text-muted)]">Block number to be announced on the Olympia Community Developer Calls</span>
         </div>
       </Link>
     )
@@ -50,7 +50,7 @@ function TBDState({ variant }: { variant: 'hero' | 'banner' }) {
         <span className="text-sm font-medium text-[#00ffae]">Activation Block: TBD</span>
       </div>
       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-        Block number will be announced after the Community Developer Call.
+        Block number to be announced on the Olympia Community Developer Calls.
       </p>
     </div>
   )

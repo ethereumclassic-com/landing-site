@@ -6,11 +6,11 @@ export const metadata: Metadata = {
     default: 'Olympia Network Upgrade — Ethereum Classic',
   },
   description:
-    'Olympia brings EIP-1559, on-chain governance, and a protocol treasury to Ethereum Classic. Three independent clients. Zero changes to block rewards.',
+    'Active protocol development for Ethereum Classic — EVM modernization, maintained clients, and funded development through sustainable basefee revenue. Block rewards and tips untouched.',
   openGraph: {
     title: 'Olympia Network Upgrade — Ethereum Classic',
     description:
-      'EIP-1559 fee market, protocol treasury, on-chain governance, and 13 EIPs from Shanghai/Cancun — all in one upgrade.',
+      'EVM alignment to Fusaka, EIP-1559 basefee directed to protocol treasury, and three independent client implementations.',
     type: 'website',
   },
 }

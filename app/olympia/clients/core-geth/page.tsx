@@ -12,7 +12,7 @@ export default function CoreGethUpgradePage() {
       <div className="mx-auto max-w-3xl">
         <div className="mb-8">
           <Link
-            href="/olympia/upgrade"
+            href="/olympia/clients"
             className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80"
           >
             ← All Clients

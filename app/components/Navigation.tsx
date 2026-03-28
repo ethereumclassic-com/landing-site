@@ -91,10 +91,9 @@ const navItems: {
     highlight: true,
     dropdown: [
       { href: '/olympia', label: 'Olympia Hub' },
-      { href: '/olympia/upgrade', label: 'Upgrade Your Node' },
+      { href: '/olympia/clients', label: 'Clients' },
       { href: '/olympia/governance', label: 'Governance' },
-      { href: '/olympia/contributors', label: 'Contributors' },
-      { href: '/upgrades', label: 'Fork History' },
+      { href: '/upgrades', label: 'Network Upgrades' },
     ],
   },
   {
@@ -141,9 +140,9 @@ const mobileNavGroups = [
     label: 'Olympia Upgrade',
     items: [
       { href: '/olympia', label: 'Olympia Hub' },
-      { href: '/olympia/upgrade', label: 'Upgrade Your Node' },
+      { href: '/olympia/clients', label: 'Clients' },
       { href: '/olympia/governance', label: 'Governance' },
-      { href: '/upgrades', label: 'Fork History' },
+      { href: '/upgrades', label: 'Network Upgrades' },
     ],
   },
   {

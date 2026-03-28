@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import GovernanceStageComponent from '../components/GovernanceStage'
-import { deployedContracts, olympiaLinks } from '../data/olympia'
+import { olympiaLinks } from '../data/olympia'
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -15,27 +15,29 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 }
 
-const treasuryInvariants = [
-  { label: 'No Minting', description: 'Cannot mint ETC — only holds received inflows.' },
-  { label: 'Immutable Code', description: 'No proxy patterns, no admin methods.' },
-  { label: 'Protocol-Controlled', description: 'Owned by protocol rules, not a multisig.' },
-  { label: 'Fully Transparent', description: 'All inflows/outflows visible on-chain.' },
+const fundingFlow = [
+  { label: 'Transactions', sublabel: 'Users pay gas fees' },
+  { label: 'Basefee Revenue', sublabel: 'EIP-1559 basefee collected' },
+  { label: 'Treasury', sublabel: 'Protocol-managed vault' },
+  { label: 'Governance', sublabel: 'Community proposals' },
+  { label: 'Ecosystem', sublabel: 'Development funding' },
 ]
 
 const safeguards = [
   {
     label: 'Timelock',
     description:
-      'Every approved proposal must wait through a configurable delay period before execution.',
+      'Every approved proposal must wait through a configurable delay period before execution. This gives the community time to review, object, or prepare.',
   },
   {
     label: 'Sanctions Screening',
     description:
-      'On-chain sanctions compliance at three layers: proposal submission, active voting, and execution.',
+      'On-chain sanctions compliance at three layers: proposal submission, active voting, and execution. Sanctioned addresses cannot participate in governance or receive treasury funds.',
   },
   {
-    label: 'Non-Transferable Voting',
-    description: 'Voting power is tied to non-transferable membership tokens.',
+    label: 'Two-Layer Governance',
+    description:
+      'CoreDAO membership NFTs are non-transferable, preventing vote buying and governance manipulation. Public participation is enabled through futarchy prediction markets — ensuring both protocol accountability and broad community input.',
   },
 ]
 
@@ -67,64 +69,29 @@ export default function GovernancePage() {
             variants={fadeInUp}
             className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
           >
-            Accumulate First, Govern Later
+            Olympia Governance Framework
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Olympia introduces a protocol treasury funded by EIP-1559 basefee revenue, governed by
-            soulbound NFT holders through on-chain proposals with timelock security.
+            Membership-based governance with on-chain proposals, voting, and execution.
+            Transparent, auditable, and built on Ethereum Classic.
           </motion.p>
         </motion.div>
       </section>
 
-      {/* Treasury Section */}
-      <section className="px-6 py-16 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
-          >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
-              Protocol Treasury
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              The basefee is directed to the Treasury. Block rewards remain completely untouched —
-              miners are unaffected. Stage 1 is receive-only: accumulate funds before governance
-              activates.
-            </motion.p>
-
-            {/* Treasury Invariants */}
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {treasuryInvariants.map((inv) => (
-                <motion.div
-                  key={inv.label}
-                  variants={fadeInUp}
-                  className="rounded-xl border border-[#F59E0B]/20 bg-[#F59E0B]/5 p-5"
-                >
-                  <h3 className="text-sm font-semibold text-[#F59E0B]">{inv.label}</h3>
-                  <p className="mt-2 text-sm text-[var(--color-text-muted)]">{inv.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Governance Flow */}
+      {/* How It Works — Governance Flow */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <GovernanceStageComponent />
         </div>
       </section>
 
-      {/* Soulbound NFTs */}
-      <section className="px-6 py-16 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
+      {/* Treasury Funding */}
+      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -132,20 +99,89 @@ export default function GovernancePage() {
             variants={staggerContainer}
           >
             <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
-              Soulbound Membership NFTs
+              Treasury Funding
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              Voting power is tied to non-transferable membership tokens. One address, one vote. No
-              governance token to buy, sell, or trade. This prevents vote buying and plutocratic
-              governance.
+              How the Olympia Treasury is funded — sustainably and without impacting miners.
             </motion.p>
+
+            {/* Callout */}
+            <motion.div
+              variants={fadeInUp}
+              className="mt-8 rounded-xl border border-[#F59E0B]/20 bg-[#F59E0B]/5 p-8"
+            >
+              <p className="text-lg font-semibold text-white">
+                Basefee revenue funds the Olympia Treasury
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                Block rewards and tips remain completely untouched — miners are unaffected.
+                The treasury receives basefee revenue, voluntary on-chain donations, and mining
+                rewards directed to the treasury address. This creates sustainable, transparent
+                funding without inflation or reduced miner compensation.
+              </p>
+            </motion.div>
+
+            {/* Funding Flow */}
+            <motion.div variants={fadeInUp} className="mt-10">
+              <p className="text-xs font-medium uppercase tracking-widest text-[var(--color-text-muted)]">
+                Funding Flow
+              </p>
+
+              {/* Desktop */}
+              <div className="mt-6 hidden md:block">
+                <div className="relative">
+                  <div className="absolute top-6 left-10 right-10 h-px bg-[var(--border)]" />
+                  <div className="relative grid grid-cols-5 gap-2">
+                    {fundingFlow.map((step) => (
+                      <div key={step.label} className="text-center">
+                        <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]">
+                          <span className="text-xs font-bold text-[#00ffae]">
+                            {fundingFlow.indexOf(step) + 1}
+                          </span>
+                        </div>
+                        <p className="mt-3 text-sm font-semibold text-white">{step.label}</p>
+                        <p className="mt-1 text-xs text-[var(--color-text-muted)]">{step.sublabel}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile */}
+              <div className="mt-6 space-y-4 md:hidden">
+                {fundingFlow.map((step) => (
+                  <div key={step.label} className="flex items-center gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]">
+                      <span className="text-xs font-bold text-[#00ffae]">
+                        {fundingFlow.indexOf(step) + 1}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white">{step.label}</p>
+                      <p className="text-xs text-[var(--color-text-muted)]">{step.sublabel}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="mt-8">
+              <a
+                href={olympiaLinks.treasuryDashboard}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+              >
+                View the Olympia Treasury Dashboard →
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Safeguards */}
-      <section className="px-6 py-16 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
+      <section className="px-6 py-20 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -153,90 +189,21 @@ export default function GovernancePage() {
             variants={staggerContainer}
           >
             <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
-              Security Safeguards
+              Safeguards
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              Three layers of defense at every stage of the governance process.
+              Built-in protections that keep governance secure and compliant.
             </motion.p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="mt-8 grid gap-6 sm:grid-cols-3">
               {safeguards.map((sg) => (
                 <motion.div
                   key={sg.label}
                   variants={fadeInUp}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/20"
                 >
                   <h3 className="text-sm font-semibold text-[#00ffae]">{sg.label}</h3>
-                  <p className="mt-2 text-sm text-[var(--color-text-muted)]">{sg.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* DAO LLC */}
-      <section className="px-6 py-16 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
-          >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
-              DAO LLC Legal Wrapper
-            </motion.h2>
-            <motion.p
-              variants={fadeInUp}
-              className="mt-2 max-w-3xl text-[var(--color-text-muted)]"
-            >
-              Ethereum Classic DAO LLC is registered in Wyoming (Filing ID 2025-001671865) as a legal
-              entity subordinate to on-chain governance. The LLC provides limited liability
-              protection to members while preserving decentralized decision-making. It cannot
-              override on-chain governance decisions.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Deployed Contracts */}
-      <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
-          >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
-              Deployed Contracts
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              Demo v0.3 — identical addresses on Mordor testnet and ETC mainnet.
-            </motion.p>
-
-            <div className="mt-6 space-y-2">
-              {deployedContracts.map((contract) => (
-                <motion.div
-                  key={contract.name}
-                  variants={fadeInUp}
-                  className="flex flex-col gap-1 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <div>
-                    <span className="text-sm font-medium text-white">{contract.name}</span>
-                    <span className="ml-2 text-xs text-[var(--color-text-muted)]">
-                      {contract.role}
-                    </span>
-                  </div>
-                  <a
-                    href={`${olympiaLinks.mainnetExplorer}/address/${contract.address}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-xs text-[#00ffae] transition hover:text-[#00ffae]/80"
-                  >
-                    {contract.address}
-                  </a>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{sg.description}</p>
                 </motion.div>
               ))}
             </div>

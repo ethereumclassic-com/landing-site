@@ -2,10 +2,9 @@
 //
 // COPY SAFETY: Treasury is funded by EIP-1559 basefee, NOT block rewards.
 // Block rewards (2.048 ETC/block, Era 4) remain untouched.
-// Never say "100%" in marketing copy. Never use specific block numbers until CDC-23 decides.
 
 // ============================================================================
-// Activation Block — Change this ONE value when CDC-23 sets the block number.
+// Activation Block — Change this ONE value when the block number is set.
 // All countdown components across the site read from here.
 // ============================================================================
 export const OLYMPIA_ACTIVATION_BLOCK: number | null = null
@@ -33,8 +32,6 @@ export interface ClientUpgrade {
   installCommands: { platform: string; command: string }[]
   verifyCommand: string
   prerequisites: string[]
-  notes: string
-  testStats?: string
 }
 
 export const clients: ClientUpgrade[] = [
@@ -44,23 +41,21 @@ export const clients: ClientUpgrade[] = [
     language: 'Scala',
     languageColor: '#DC322F',
     description:
-      'Next-generation ETC client built from the ground up. 143 RPC methods, 2,706 tests, full SNAP sync support. Becomes the primary production client after Olympia.',
+      'Next-generation ETC client purpose-built for Ethereum Classic. The recommended client for node operators upgrading to Olympia.',
     role: 'primary',
-    roleLabel: 'Primary Client',
+    roleLabel: 'Recommended',
     currentVersion: 'v0.1.240',
     olympiaVersion: 'TBD',
-    githubUrl: 'https://github.com/AlanVerbner/fukuii',
-    docsUrl: 'https://github.com/AlanVerbner/fukuii#readme',
-    dockerImage: 'ghcr.io/alanverbner/fukuii:latest',
+    githubUrl: 'https://github.com/ethereumclassic/fukuii',
+    docsUrl: 'https://github.com/ethereumclassic/fukuii#readme',
+    dockerImage: 'ghcr.io/ethereumclassic/fukuii:latest',
     platforms: ['Linux', 'macOS', 'Docker'],
     installCommands: [
-      { platform: 'Docker', command: 'docker pull ghcr.io/alanverbner/fukuii:latest' },
+      { platform: 'Docker', command: 'docker pull ghcr.io/ethereumclassic/fukuii:latest' },
       { platform: 'Source', command: 'sbt stage' },
     ],
     verifyCommand: 'fukuii --version',
     prerequisites: ['JDK 21+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
-    notes: 'Successfully completed SNAP sync on Mordor testnet in ~35 minutes.',
-    testStats: '2,706 tests, 143 RPC methods',
   },
   {
     id: 'core-geth',
@@ -68,22 +63,21 @@ export const clients: ClientUpgrade[] = [
     language: 'Go',
     languageColor: '#00ADD8',
     description:
-      'Battle-tested ETC client based on go-ethereum. The current primary client, transitioning to maintenance role after Olympia as Fukuii takes over.',
+      'Established ETC client based on go-ethereum. Maintained through the Olympia transition with continued security updates.',
     role: 'maintenance',
-    roleLabel: 'Maintenance',
-    currentVersion: 'v1.12.21',
+    roleLabel: 'Maintained',
+    currentVersion: 'v1.13.0',
     olympiaVersion: 'TBD',
-    githubUrl: 'https://github.com/etclabscore/core-geth',
-    docsUrl: 'https://etclabscore.github.io/core-geth/',
-    dockerImage: 'etclabscore/core-geth:latest',
+    githubUrl: 'https://github.com/ethereumclassic/core-geth',
+    docsUrl: 'https://github.com/ethereumclassic/core-geth#readme',
+    dockerImage: 'ghcr.io/ethereumclassic/core-geth:latest',
     platforms: ['Linux', 'macOS', 'Windows', 'Docker'],
     installCommands: [
-      { platform: 'Docker', command: 'docker pull etclabscore/core-geth:latest' },
+      { platform: 'Docker', command: 'docker pull ghcr.io/ethereumclassic/core-geth:latest' },
       { platform: 'Linux/macOS', command: 'make geth' },
     ],
     verifyCommand: 'geth version',
     prerequisites: ['Go 1.24+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
-    notes: 'Synced to Mordor chain head. SNAP serving fix targeted for v1.13.0.',
   },
   {
     id: 'besu',
@@ -91,133 +85,126 @@ export const clients: ClientUpgrade[] = [
     language: 'Java',
     languageColor: '#B07219',
     description:
-      'Enterprise-grade client maintained by the Hyperledger Foundation. Java 21 LTS, suited for institutional and enterprise deployments.',
+      'Enterprise-grade client from the Hyperledger Foundation. Serves as a reference implementation for cross-client testing and validation.',
     role: 'enterprise',
-    roleLabel: 'Enterprise',
+    roleLabel: 'Reference',
     currentVersion: 'v26.3',
     olympiaVersion: 'TBD',
-    githubUrl: 'https://github.com/hyperledger/besu',
-    docsUrl: 'https://besu.hyperledger.org/',
-    dockerImage: 'hyperledger/besu:latest',
+    githubUrl: 'https://github.com/ethereumclassic/besu',
+    docsUrl: 'https://github.com/ethereumclassic/besu#readme',
+    dockerImage: 'ghcr.io/ethereumclassic/besu:latest',
     platforms: ['Linux', 'macOS', 'Windows', 'Docker'],
     installCommands: [
-      { platform: 'Docker', command: 'docker pull hyperledger/besu:latest' },
+      { platform: 'Docker', command: 'docker pull ghcr.io/ethereumclassic/besu:latest' },
       { platform: 'Binary', command: 'Download from GitHub releases' },
     ],
     verifyCommand: 'besu --version',
     prerequisites: ['JDK 21+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
-    notes: 'Supports SNAP state serving. Enterprise features include permissioning and privacy.',
   },
 ]
 
 // ============================================================================
-// FAQ Data
+// Olympia Roadmap — from ethereumclassicdao.org/about
+// ============================================================================
+
+export interface RoadmapStage {
+  title: string
+  status: 'complete' | 'active' | 'research' | 'future'
+  description: string
+  deliverables: string[]
+}
+
+export const roadmapStages: RoadmapStage[] = [
+  {
+    title: 'Consensus Upgrades',
+    status: 'complete',
+    description:
+      'Fee market improvements, dynamic gas limits, and treasury funding mechanism. Independent client implementations complete.',
+    deliverables: ['Fee market', 'Dynamic gas limits', 'Treasury funding mechanism'],
+  },
+  {
+    title: 'Core Governance',
+    status: 'active',
+    description:
+      'Governance and treasury contracts deployed. Membership-based voting. Full proposal lifecycle: submit, vote, queue, execute.',
+    deliverables: ['Governance and treasury contracts', 'Membership voting system', 'Sanctions compliance layer'],
+  },
+  {
+    title: 'Prediction Markets',
+    status: 'research',
+    description:
+      'Futarchy-assisted governance using prediction markets to inform treasury allocation. Research phase exploring conditional token frameworks.',
+    deliverables: ['Conditional outcome tokens', 'Market-informed proposal ranking', 'Protocol specification'],
+  },
+  {
+    title: 'Treasury Distribution',
+    status: 'future',
+    description:
+      'Protocol-layer treasury smoothing to reduce per-block variance. Specification phase exploring miner-compatible mechanisms.',
+    deliverables: ['Treasury smoothing algorithm', 'Miner impact analysis', 'Cross-client specification'],
+  },
+  {
+    title: 'Protocol Integration',
+    status: 'future',
+    description:
+      'Permanent consensus integration of proven governance mechanisms. Moving governance from contract layer to protocol layer.',
+    deliverables: ['Consensus-level governance', 'Immutable treasury rules', 'Long-term sustainability'],
+  },
+]
+
+// ============================================================================
+// FAQ Data — aligned with ethereumclassicdao.org
 // ============================================================================
 
 export interface OlympiaFAQ {
   question: string
   answer: string
-  category: 'general' | 'mining' | 'governance' | 'technical'
 }
 
 export const faqs: OlympiaFAQ[] = [
   {
+    question: 'How is the Treasury funded?',
+    answer:
+      'The Olympia Treasury is funded by basefee revenue, voluntary on-chain donations, and mining rewards directed to the treasury address. Block rewards and tips remain completely untouched and go entirely to miners. This creates sustainable, transparent funding without inflation or miner impact.',
+  },
+  {
     question: 'Will my miner rewards change?',
     answer:
-      'No. Block rewards remain completely untouched at 2.048 ETC per block (Era 4). The Olympia upgrade redirects only the EIP-1559 basefee — the portion of transaction fees that Ethereum burns — to the protocol treasury. At current network usage (~1 gwei), this represents less than 0.01% of miner income.',
-    category: 'mining',
+      'No. All miner block rewards and priority tips are maintained. Olympia introduces an EIP-1559 basefee and redirects it from burn to the protocol treasury — miners keep everything they earn today.',
   },
   {
-    question: 'Who controls the treasury?',
+    question: 'How does voting work?',
     answer:
-      'The treasury is a protocol-managed vault with no admin keys, no proxy patterns, and no multisig. It can only receive funds in Stage 1 (accumulation phase). Future disbursements require on-chain governance proposals that pass community voting, a security timelock, and three-layer sanctions screening.',
-    category: 'governance',
+      'Governance operates on two layers. The CoreDAO uses non-transferable membership NFTs for critical protocol decisions — security maintenance, EVM parity, and client funding. Members cast on-chain votes during a defined voting period, and proposals require both quorum and majority to pass. Public participation is enabled through futarchy prediction markets, where anyone can stake on proposal outcomes to signal community sentiment and inform treasury allocation.',
   },
   {
-    question: 'Is there a governance token?',
+    question: 'Who can submit proposals?',
     answer:
-      'No. Olympia uses non-transferable soulbound membership NFTs for voting — one address, one vote. There is no governance token to buy, sell, or trade. This prevents vote buying and ensures only committed community members participate in governance decisions.',
-    category: 'governance',
+      'Anyone can submit governance proposals on-chain. Proposals define the action to execute and the supporting rationale.',
   },
   {
-    question: 'What if I don\'t upgrade my node?',
+    question: 'What is the Olympia upgrade?',
     answer:
-      'Nodes that don\'t upgrade will follow the old chain rules and will fork off the network at the Olympia activation block. You must upgrade your client software before the activation block to stay on the canonical ETC chain.',
-    category: 'technical',
+      'Olympia is active protocol development for Ethereum Classic — EVM modernization, maintained clients, and funded development through sustainable basefee revenue. Three independent client implementations ensure security maintenance, modern tooling, and continued EVM parity with the broader Ethereum ecosystem.',
   },
   {
-    question: 'What about chain splits?',
+    question: 'When does Olympia activate?',
     answer:
-      'Olympia follows the same upgrade process as every prior ETC hard fork (Atlantis, Phoenix, Thanos, Spiral, etc.). All three independent client implementations support the upgrade. The community has coordinated through Community Developer Calls, and miners who upgrade will follow the new consensus rules.',
-    category: 'technical',
+      'Olympia activates on the Mordor testnet first, followed by Ethereum Classic mainnet pending successful testnet validation. Exact activation dates are coordinated across the independent client teams.',
   },
   {
-    question: 'What EIPs are included in Olympia?',
+    question: 'How are funds protected from misuse?',
     answer:
-      'Olympia aligns ETC with 13 EIPs from Ethereum\'s Shanghai and Cancun upgrades, including EIP-1559 (fee market), EIP-1153 (transient storage), EIP-5656 (MCOPY), EIP-7702 (account abstraction), and EIP-2537 (BLS precompile). See the ECIP summaries below for full details.',
-    category: 'technical',
-  },
-  {
-    question: 'How is the DAO LLC structured?',
-    answer:
-      'Ethereum Classic DAO LLC is registered in Wyoming (Filing ID 2025-001671865) as a legal wrapper subordinate to on-chain governance. It provides limited liability protection to members while preserving decentralized decision-making. The LLC cannot override on-chain governance decisions.',
-    category: 'governance',
-  },
-  {
-    question: 'What is the ECFP process?',
-    answer:
-      'The Ethereum Classic Funding Proposal (ECFP) process allows anyone to submit proposals for treasury funding on-chain. Proposals go through: submit → community vote → timelock queue → execute. Hash-bound integrity ensures the approved proposal is exactly what executes.',
-    category: 'governance',
+      'Multiple safeguards protect treasury funds: a configurable timelock delay on all approved proposals, three-layer on-chain sanctions screening, non-transferable CoreDAO membership NFTs that prevent vote buying, futarchy markets that surface public sentiment, and full on-chain transparency for every transaction.',
   },
 ]
 
 // ============================================================================
-// Deployed Contracts (Demo v0.3)
-// ============================================================================
-
-export interface DeployedContract {
-  name: string
-  address: string
-  role: string
-}
-
-export const deployedContracts: DeployedContract[] = [
-  { name: 'OlympiaTreasury', address: '0x60d0A7394f9Cd5C469f9F5Ec4F9C803F5294d79b', role: 'Protocol-funded vault' },
-  { name: 'OlympiaGovernor', address: '0xe763f13cC89292C4F279BEF2aD54F1E89A3a87d3', role: 'Proposal & voting engine' },
-  { name: 'OlympiaExecutor', address: '0x292eBe07d11850Dfc94Cbf9c72C3A054d23cAB54', role: 'Treasury withdrawal executor' },
-  { name: 'TimelockController', address: '0x3d19fEfB093Abad60421B89CF48f4569aaae39b6', role: 'Security delay enforcement' },
-  { name: 'ECFPRegistry', address: '0xe2b437284B0fc7A1064Afd1f60686c7cEAa7343a', role: 'Proposal metadata registry' },
-  { name: 'SanctionsOracle', address: '0xAA93C0d1cCf9a0Ec43A2EE8CD1AfFC473b82f36A', role: 'OFAC compliance layer' },
-  { name: 'OlympiaMemberNFT', address: '0xb4D45A498994C89553A9c923c6b85F7623C0843e', role: 'Soulbound governance NFT' },
-  { name: 'OlympiaMemberRenderer', address: '0xE29d0f47043F40059AB5DE7C8F7E7B665a7caCCf', role: 'On-chain SVG art generator' },
-  { name: 'MembershipVerifier', address: '0xb6274251Fb8F1D865A0B62bba9fFF31c1bfEdccE6', role: 'Sybil resistance' },
-]
-
-// ============================================================================
-// Governance Stages
-// ============================================================================
-
-export interface GovernanceStage {
-  number: number
-  name: string
-  status: 'active' | 'next' | 'planned'
-  description: string
-}
-
-export const governanceStages: GovernanceStage[] = [
-  { number: 1, name: 'Accumulate', status: 'active', description: 'BaseFee + mining + donations' },
-  { number: 2, name: 'Govern', status: 'next', description: 'On-chain proposals and voting' },
-  { number: 3, name: 'Fund', status: 'planned', description: 'Treasury disbursements' },
-  { number: 4, name: 'Predict', status: 'planned', description: 'Futarchy governance' },
-  { number: 5, name: 'Optimize', status: 'planned', description: 'Protocol improvements' },
-]
-
-// ============================================================================
-// Governance Flow Steps
+// Governance Flow Steps — from olympiadao.org
 // ============================================================================
 
 export interface GovernanceStep {
-  icon: string // Lucide icon name
+  icon: string
   title: string
   description: string
 }
@@ -239,9 +226,6 @@ export const olympiaLinks = {
   treasuryDashboard: 'https://olympiatreasury.org',
   ethereumClassicDAO: 'https://ethereumclassicdao.org',
   olympiaDAO: 'https://olympiadao.org',
-  ecipBase: 'https://ecips.ethereumclassic.org/ECIPs/',
-  mordorExplorer: 'https://etc-mordor.blockscout.com',
-  mainnetExplorer: 'https://etc.blockscout.com',
 } as const
 
 // ============================================================================
@@ -249,8 +233,8 @@ export const olympiaLinks = {
 // ============================================================================
 
 export const olympiaStats = [
-  { label: 'Core ECIPs', value: '5' },
-  { label: 'EIPs Aligned', value: '13' },
   { label: 'Client Implementations', value: '3' },
-  { label: 'Cross-Client Tests', value: '2,706+' },
+  { label: 'Network', value: 'Proof-of-Work' },
+  { label: 'Governance', value: 'Membership-Based' },
+  { label: 'Treasury', value: 'Protocol-Funded' },
 ]

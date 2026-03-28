@@ -31,7 +31,7 @@ export default function UpgradesPage() {
         >
           <motion.div variants={fadeInUp} className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
-              Network History
+              Ethereum Classic History
             </span>
           </motion.div>
 
@@ -46,9 +46,9 @@ export default function UpgradesPage() {
             variants={fadeInUp}
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            From Atlantis to Olympia — every hard fork follows the same community-driven process:
-            specification, implementation across multiple clients, testnet deployment, and mainnet
-            activation.
+            Every ETC network upgrade follows the same process: ECIP specification, independent client
+            implementation, testnet validation, and mainnet activation. Olympia brings EVM alignment
+            to Fusaka with EIPs spanning London, Dencun, Pectra, and Fusaka.
           </motion.p>
         </motion.div>
       </section>
