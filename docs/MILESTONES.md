@@ -2352,7 +2352,8 @@ PHASE-8-QA-REPORT.md
 | Phase 6 | 23 | 23 | 100% |
 | Phase 7 | 19 | 19 | 100% |
 | Phase 8 | 16 | 0 | 0% |
-| **Total** | **99** | **83** | **84%** |
+| Phase 9 | 9 | 9 | 100% |
+| **Total** | **106** | **83** | **78%** |
 
 ### Current Focus
 
@@ -2491,7 +2492,130 @@ Phase 8 ←───────────────────────
 ├── 8.3 Advanced Mining Analytics ← 8.2
 ├── 8.4 Fee Market Historical Analytics ← 8.2
 └── 8.5 Network Public Goods Planning (EthereumClassic.net)
+                                                        ↓
+Phase 9 (Olympia) ←──── Can start immediately (P0 items)
+├── 9.1 Olympia Hub (P0) ← None
+├── 9.2 Client Upgrade Guides (P0) ← 9.1
+├── 9.3 Governance Explainer (P1) ← None
+├── 9.4 Upgrade History (P1) ← None
+├── 9.5 Contributors Page (P1) ← None
+├── 9.6 Miner Dashboard (P2) ← 8D (data integration)
+└── 9.7 CDC Archive (P2) ← None
 ```
+
+---
+
+## Phase 9: Olympia Network Upgrade Content
+
+**Goal**: Make ethereumclassic.com the authoritative source for Olympia upgrade information. This content may be needed if ethereumclassic.org refuses to publish upgrade documentation.
+
+**Priority**: HIGH — required before or at CDC-23 activation block announcement
+**Can Start**: Immediately (content is known, specs are written)
+
+---
+
+### Milestone 9.1: Olympia Upgrade Hub
+**Status**: COMPLETE ✓
+**Dependencies**: None
+**Priority**: P0
+
+**Deliverables**:
+- [x] `/olympia` — hub page with countdown, ECIP grid, stats, FAQ
+- [x] `/olympia/upgrade` — client upgrade hub with 3 client cards
+- [x] Countdown component (TBD/pending/activated states)
+- [x] Navigation integration (desktop dropdown + mobile group)
+
+### Milestone 9.2: Client Upgrade Guides
+**Status**: COMPLETE ✓
+**Dependencies**: 9.1
+**Priority**: P0
+
+**Deliverables**:
+- [x] `/olympia/upgrade/core-geth` — Core-Geth upgrade guide
+- [x] `/olympia/upgrade/besu` — Besu upgrade guide
+- [x] `/olympia/upgrade/fukuii` — Fukuii upgrade guide
+- [x] Per-page SEO metadata via layout.tsx pattern
+
+### Milestone 9.3: DAO Governance Explainer
+**Status**: COMPLETE ✓
+**Dependencies**: None
+**Priority**: P1
+
+**Deliverables**:
+- [x] `/olympia/governance` — treasury, soulbound NFTs, ECFP, sanctions defense, DAO LLC
+
+### Milestone 9.4: Network Upgrade History
+**Status**: COMPLETE ✓
+**Dependencies**: None
+**Priority**: P1
+
+**Deliverables**:
+- [x] `/upgrades` — vertical timeline (Atlantis → Olympia), 8 forks with block numbers and dates
+
+### Milestone 9.5: Core Developer & Contributors Page
+**Status**: COMPLETE ✓
+**Dependencies**: None
+**Priority**: P1
+
+**Deliverables**:
+- [x] `/olympia/contributors` — 3 client teams, test matrix stats, organizational structure
+
+### Milestone 9.6: Hashrate & Miner Dashboard
+**Status**: COMPLETE ✓
+**Dependencies**: None
+**Priority**: P2
+
+**Deliverables**:
+- [x] `/olympia/miners` — revenue impact analysis, block rewards unchanged, basefee redirect
+
+### Milestone 9.7: CDC Archive
+**Status**: COMPLETE ✓
+**Dependencies**: None
+**Priority**: P2
+
+**Deliverables**:
+- [x] `/olympia/cdc` — CDC call archive page
+
+### Milestone 9.8: Site-Wide SEO Metadata
+**Status**: COMPLETE ✓
+**Dependencies**: 9.1-9.7
+**Priority**: P0 — critical for search indexing
+
+**Deliverables**:
+- [x] 37 layout.tsx files providing unique per-page metadata (was ~88 pages sharing root title)
+- [x] Tier 1: 15 section layouts (wallet, buy, sell, mining, build, learn, apps, news, research, markets, tools, community, directory, price, account)
+- [x] Tier 2: 20 per-page layouts (8 Olympia, 5 wallet, 7 buy, 8 mining)
+- [x] Tier 3: noindex for account, referral, content-editor
+- [x] AI crawler robots.txt (Claude-Web, Cohere-AI, social bots added)
+- [x] Scaffold cleanup (removed 5 unused Next.js default SVGs)
+- [x] Lint fix (useOlympiaBlock.ts setState-in-effect)
+
+### Milestone 9.9: Cross-Site Olympia Content
+**Status**: COMPLETE ✓
+**Dependencies**: 9.1
+**Priority**: P1
+
+All 4 Olympia ecosystem sites updated with countdown banners and/or new pages:
+- [x] olympiadao.org — countdown in hero, /upgrade page, /clients page, SEO metadata
+- [x] olympiatreasury.org — countdown banner in dashboard
+- [x] ethereumclassicdao.org — /clients, /upgrade, /timeline pages, SEO metadata
+- [x] app.olympiadao.org — countdown banner in dashboard (wagmi/useBlockStats)
+
+---
+
+### Phase 9 Progress Summary
+
+| Milestone | Status | Priority | Blocker |
+|-----------|--------|----------|---------|
+| 9.1 Olympia Hub | COMPLETE ✓ | P0 | — |
+| 9.2 Client Guides | COMPLETE ✓ | P0 | — |
+| 9.3 Governance Explainer | COMPLETE ✓ | P1 | — |
+| 9.4 Upgrade History | COMPLETE ✓ | P1 | — |
+| 9.5 Contributors Page | COMPLETE ✓ | P1 | — |
+| 9.6 Miner Dashboard | COMPLETE ✓ | P2 | — |
+| 9.7 CDC Archive | COMPLETE ✓ | P2 | — |
+| 9.8 Site-Wide SEO | COMPLETE ✓ | P0 | — |
+| 9.9 Cross-Site Content | COMPLETE ✓ | P1 | — |
 
 ---
 
