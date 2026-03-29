@@ -5,113 +5,55 @@ const entry: CDCEntry = {
   title: 'Phoenix',
   date: '2020-06-01',
   summary:
-    'ECIP-1088 — Aligned ETC with Ethereum\'s Istanbul upgrade. Two Core Devs Calls addressed the broken Aztlan fork, rejected both ECIP-1061 and ECIP-1078, and rebuilt the upgrade from scratch as Phoenix.',
-  content: `## Core Devs Call — ECIP-1078 Phoenix Finalization (February 5, 2020)
+    'ECIP-1088 — Aligned ETC with Ethereum\'s Istanbul upgrade. Blake2, alt_bn128 repricing, ChainID opcode, trie-dependent opcode repricing, calldata reduction, and SSTORE rebalancing.',
+  content: `## Phoenix (ECIP-1088) Network Upgrade
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1078](https://ecips.ethereumclassic.org/ECIPs/ecip-1078)
-
-ref [#217](https://github.com/ethereumclassic/ECIPs/issues/217) [#226](https://github.com/ethereumclassic/ECIPs/issues/226) [#227](https://github.com/ethereumclassic/ECIPs/issues/227) [#262](https://github.com/ethereumclassic/ECIPs/issues/262)
-
-ref [ECIP-1078](https://ecips.ethereumclassic.org/ECIPs/ecip-1078) [ECIP-1079](https://ecips.ethereumclassic.org/ECIPs/ecip-1079) [ECIP-1080](https://ecips.ethereumclassic.org/ECIPs/ecip-1080)
-
-* When: Wednesday, February 05, 2020, 4pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel. Will use/create a voice channel *ad hoc*.
-
-### Agenda
-
-#### Quick client teams check-in
-
-* Parity Tech
-* ETC Core
-* ChainSafe
-* Multi-Geth
-
-#### Aztlan needs to be fixed, options are:
-
-* patch ECIP-1061 with EIP-1884 [#280](https://github.com/ethereumclassic/ECIPs/pull/280) - very unlikely
-    * because ecip-1061 already released in parity and multi-geth
-    * because ecip-1061 already activated on mordor testnet
-* replace ECIP-1061 with ECIP-1079 - unlikely
-    * because ECIP-1061 already released in parity and multi-geth
-    * because ECIP-1061 already activated on mordor testnet
-* update ECIP-1061 with ECIP-{1078,1080} - more likely
-    * because ECIP-{1078,1080} can be distinct fork "Phoenix"
-    * because ECIP-{1078,1080} can be activated on different testnet blocks but same mainnet block
-
-#### Phoenix (ECIP-1078) needs to be either accepted or updated (or rejected)
-
-* discuss included ECIP-1080 without gas repricing
-* discuss swap of EIP-2200 for EIP-1706 (1283 fix)
-* discuss a timeline for the protocol upgrade
-    * Mordor Classic and Kotti Classic testnet (March?)
-    * Ethereum Classic mainnet (June?)
-
-#### Anything else related to Aztlan and Phoenix
-
-#### Going through the pending ECIP PRs together
-
-#### Please comment to add items to the agenda.
-
-[https://github.com/ethereumclassic/ECIPs/issues/284](https://github.com/ethereumclassic/ECIPs/issues/284)
-
-### Recording of Core Devs Call
-
-[Core Devs Call: ECIP-1078 Phoenix Finalization](https://youtu.be/kqhr378Kmz8)
+**Activation Block:** 10,500,839\\
+**Activation Date:** June 1, 2020\\
+**ECIP Status:** Final
 
 ---
 
-## Core Devs Call — Phoenix Upgrade from Scratch (February 26, 2020)
+### Overview
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1088](https://ecips.ethereumclassic.org/ECIPs/ecip-1088)
+Phoenix completed ETC's alignment with the Ethereum Foundation's Istanbul upgrade, adding the Blake2 compression precompile, repricing alt_bn128 operations, introducing the \`CHAINID\` opcode, and rebalancing gas costs for trie-dependent and storage operations. The upgrade was rebuilt from scratch after the failed Aztlan (ECIP-1061) and initial Phoenix (ECIP-1078) proposals both introduced bugs — the final ECIP-1088 represented a clean reimplementation that was thoroughly tested before mainnet activation.
 
-ref [#297](https://github.com/ethereumclassic/ECIPs/pull/297)
+### Included Changes
 
-ref [ECIP-1061](https://github.com/ethereumclassic/ECIPs/blob/master/_specs/ecip-1061.md) [ECIP-1078](https://github.com/ethereumclassic/ECIPs/blob/master/_specs/ecip-1078.md) [ECIP-1086](https://github.com/ethereumclassic/ECIPs/blob/master/_specs/ecip-1086.md)
+| EIP | Title | Summary |
+|-----|-------|---------|
+| [EIP-152](https://eips.ethereum.org/EIPS/eip-152) | Blake2 Compression Function F | Precompiled contract for Blake2b compression |
+| [EIP-1108](https://eips.ethereum.org/EIPS/eip-1108) | Reduce alt_bn128 Gas Costs | Dramatically reduced precompile costs for elliptic curve operations |
+| [EIP-1344](https://eips.ethereum.org/EIPS/eip-1344) | ChainID Opcode | New opcode returning the chain ID (61 for ETC) |
+| [EIP-1884](https://eips.ethereum.org/EIPS/eip-1884) | Trie-Size-Dependent Opcode Repricing | Increased gas for SLOAD, BALANCE, EXTCODEHASH to reflect state growth |
+| [EIP-2028](https://eips.ethereum.org/EIPS/eip-2028) | Calldata Gas Cost Reduction | Reduced calldata cost from 68 to 16 gas per non-zero byte |
+| [EIP-2200](https://eips.ethereum.org/EIPS/eip-2200) | SSTORE Net Gas Metering | Rebalanced SSTORE costs considering SLOAD price change from EIP-1884 |
 
-* When: Wednesday, February 26, 2019, 1pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel. Will use/create a voice channel *ad hoc*.
+### Technical Details
 
-### Agenda
+- **EIP-152: Blake2b precompile** — Added a precompiled contract at address \`0x09\` for the Blake2b compression function. Enables efficient verification of Zcash block headers and Equihash proofs on-chain, supporting cross-chain bridges and interoperability protocols
+- **EIP-1108: alt_bn128 repricing** — Dramatically reduced the gas cost of the alt_bn128 elliptic curve precompiles introduced in Atlantis. \`ECADD\` dropped from 500 to 150 gas, \`ECMUL\` from 40,000 to 6,000, and pairing checks from 100,000+ to a base of 45,000. This made zk-SNARK verification economically practical for real applications
+- **EIP-1344: CHAINID opcode** — Returns the chain's EIP-155 chain ID (61 for ETC) as an EVM opcode. Enables smart contracts to verify which chain they are executing on at runtime, critical for cross-chain replay protection and multi-chain dApp deployments
+- **EIP-1884: Trie-dependent repricing** — Increased gas costs for \`SLOAD\` (200 → 800), \`BALANCE\` (400 → 700), and \`EXTCODEHASH\` (400 → 700) to reflect the growing state trie size. As the state grows, these operations require more disk I/O, and the gas costs must track the actual computation
+- **EIP-2028: Calldata reduction** — Reduced the cost of non-zero calldata bytes from 68 to 16 gas. This significantly reduced transaction costs for data-heavy operations like multi-signature wallet transactions, Layer 2 data availability, and batch operations
+- **EIP-2200: SSTORE rebalancing** — Introduced net gas metering for \`SSTORE\` that accounts for the increased \`SLOAD\` cost from EIP-1884. Ensures that contracts performing multiple writes to the same storage slot in a transaction are not unfairly penalized
 
-#### Quick client teams check-in
+### Context
 
-* Parity Tech
-* ETC Core
-* ChainSafe
-* Multi-Geth
+Phoenix has a notable backstory. The initial attempt to bring Istanbul changes to ETC — Aztlan (ECIP-1061) — omitted EIP-1884 but included EIP-2200, which depends on EIP-1884's SLOAD repricing. This caused a consensus bug on the Mordor testnet. ECIP-1078 attempted to patch the issue but was also deemed insufficient. The community rejected both proposals and rebuilt the upgrade from scratch as ECIP-1088, which included the full Istanbul EIP set. Two Core Devs Calls (February 2020) resolved the crisis.
 
-#### Aztlan needs to be rejected as it's having multiple issues:
+### Outcome
 
-* [#217](https://github.com/ethereumclassic/ECIPs/issues/217)
-* [#226](https://github.com/ethereumclassic/ECIPs/issues/226)
-* [#227](https://github.com/ethereumclassic/ECIPs/issues/227)
+Activated at block 10,500,839 on June 1, 2020. zk-SNARK verification became economically practical, cross-chain contract verification was enabled via \`CHAINID\`, and calldata costs were reduced for data-heavy transactions.
 
-#### Phoenix needs to be rejected as it's not of a sufficient patch especially with the context of the broken testnet activations:
+---
 
-* [#262](https://github.com/ethereumclassic/ECIPs/issues/262)
+### Related
 
-#### Testnet patch should be rejected to favor a clean new hardfork meta:
-
-* [#293](https://github.com/ethereumclassic/ECIPs/pull/293)
-* [#297](https://github.com/ethereumclassic/ECIPs/pull/297)
-
-#### It's still possible to do Phoenix on the same block number if we agree to activate one of the following options (ECIPs pending):
-
-* Phoenix hardfork same as ETH Istanbul (including EIP-1884)
-* Phoenix hardfork "classic flavor" (ECIP-1080 instead of 1884, EIP-1706 instead of EIP-2200)
-
-#### Anything else related to Aztlan and Phoenix
-
-#### Please comment to add items to the agenda.
-
-[https://github.com/ethereumclassic/ECIPs/issues/298](https://github.com/ethereumclassic/ECIPs/issues/298)
-
-### Recording of Core Devs Call
-
-[Core Devs Call: Phoenix Upgrade from Scratch](https://youtu.be/HzcJL3rVbpU)`,
-  ecipRefs: ['ecip-1088', 'ecip-1078', 'ecip-1079', 'ecip-1061'],
-  recordingUrl: 'https://youtu.be/HzcJL3rVbpU',
-  notesUrl: 'https://github.com/ethereumclassic/ECIPs/issues/284',
+- [ECIP-1088: Phoenix EVM and Protocol Upgrades](https://ecips.ethereumclassic.org/ECIPs/ecip-1088)`,
+  ecipRefs: ['ecip-1088'],
+  recordingUrl: null,
+  notesUrl: null,
   forkBlock: 10_500_839,
 }
 

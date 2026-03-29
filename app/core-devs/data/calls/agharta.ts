@@ -5,146 +5,52 @@ const entry: CDCEntry = {
   title: 'Agharta',
   date: '2020-01-12',
   summary:
-    'ECIP-1056 — Aligned ETC with Ethereum\'s Constantinople and Petersburg upgrades. Four Core Devs Calls covered Agharta finalization, Aztlan (ECIP-1061) proposal and crisis, Yingchun edition consensus, and final testnet/mainnet block agreement.',
-  content: `## Core Devs Call — Agharta Finalization (October 24, 2019)
+    'ECIP-1056 — Aligned ETC with Ethereum\'s Constantinople and Petersburg upgrades. Bitwise shifting, CREATE2, and EXTCODEHASH opcodes.',
+  content: `## Agharta (ECIP-1056) Network Upgrade
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1056](https://ecips.ethereumclassic.org/ECIPs/ecip-1056)
-
-Ref [#131](https://github.com/ethereumclassic/ECIPs/issues/131) [ECIP-1056](https://github.com/ethereumclassic/ECIPs/blob/master/_specs/ecip-1056.md)
-
-* When: Thursday, October 24, 2019, 1pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel. Will use/create a voice channel *ad hoc*.
-
-### Agenda
-
-#### Quick client teams check-in
-
-* Geth Classic / ChainSafe, ETC Labs Core
-* Multi-Geth / Multi-Geth, ETCLabs Core
-* Parity Ethereum / Parity Tech
-* Mantis / IOHK
-* Hyperledger Besu / ChainSafe, PegaSys
-
-#### Agharta (ECIP-1056) is in "draft" state
-
-* ECIP-1056 needs to be either accepted or updated (or rejected)
-    * discuss [EIP 145](https://eips.ethereum.org/EIPS/eip-145) (Bitwise shifting instructions)
-    * discuss [EIP 1014](https://eips.ethereum.org/EIPS/eip-1014) (Skinny \`CREATE2\` opcode)
-    * discuss [EIP 1052](https://eips.ethereum.org/EIPS/eip-1052) (\`EXTCODEHASH\` opcode)
-    * discuss account versioning ref [#86](https://github.com/ethereumclassic/ECIPs/pull/86) (EIP-1702)
-* discuss a timeline for the protocol upgrade
-    * Morden Classic and Kotti Classic testnet (January?)
-    * Ethereum Classic mainnet (March?)
-* anything else related to Agharta
-
-#### Bonus
-
-* Sha3 / ECIP-1049
-* DAG Size / ECIP-1043
-
-#### Please comment to add items to the agenda
-
-[https://github.com/ethereumclassic/ECIPs/issues/135](https://github.com/ethereumclassic/ECIPs/issues/135)
+**Activation Block:** 9,573,000\\
+**Activation Date:** January 12, 2020\\
+**ECIP Status:** Final
 
 ---
 
-## Core Devs Call — ECIP-1061 Aztlan Finalization (November 27, 2019)
+### Overview
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1061](https://ecips.ethereumclassic.org/ECIPs/ecip-1061)
+Agharta aligned ETC with Ethereum's Constantinople and Petersburg upgrades, adding three new EVM opcodes: bitwise shifting instructions, the \`CREATE2\` opcode for deterministic contract deployment, and \`EXTCODEHASH\` for efficient contract code verification. The upgrade's finalization was complicated by the Aztlan (ECIP-1061) crisis, where an alternative proposal introduced bugs on the Mordor testnet. The community ultimately reverted to the original Agharta scope with a clean implementation.
 
-Ref [ECIP-1061](https://github.com/ethereumclassic/ECIPs/blob/master/_specs/ecip-1061.md) [#81](https://github.com/ethereumclassic/ECIPs/pull/81) [#157](https://github.com/ethereumclassic/ECIPs/pull/157) [#176](https://github.com/ethereumclassic/ECIPs/pull/176)
+### Included Changes
 
-* When: Wednesday, November 27, 2019, 1pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel. Will use/create a voice channel *ad hoc*.
+| EIP | Title | Summary |
+|-----|-------|---------|
+| [EIP-145](https://eips.ethereum.org/EIPS/eip-145) | Bitwise Shifting Instructions | SHL, SHR, SAR opcodes for efficient bit manipulation |
+| [EIP-1014](https://eips.ethereum.org/EIPS/eip-1014) | Skinny CREATE2 | Deterministic contract deployment based on bytecode and salt |
+| [EIP-1052](https://eips.ethereum.org/EIPS/eip-1052) | EXTCODEHASH | Returns the keccak256 hash of a contract's bytecode |
 
-### Agenda
+### Technical Details
 
-#### Quick client teams check-in
+- **EIP-145: Bitwise shifting** — Added \`SHL\` (shift left), \`SHR\` (logical shift right), and \`SAR\` (arithmetic shift right) opcodes. Before these, bit shifting required expensive arithmetic operations (\`MUL\`/\`DIV\` with powers of 2). Native shift instructions are 3 gas vs. 5+ gas for the arithmetic equivalent, and enable efficient binary data manipulation
+- **EIP-1014: CREATE2** — Enables deployment of contracts to deterministic addresses computed from the deployer address, a salt value, and the creation bytecode hash. The address is known before deployment, enabling counterfactual instantiation — contracts can be referenced and receive funds before they exist on-chain. This is foundational for state channels, CREATE2 factory patterns, and the Olympia governance contracts
+- **EIP-1052: EXTCODEHASH** — Returns the keccak256 hash of an account's code. Before this opcode, checking contract code required \`EXTCODECOPY\` to copy the entire bytecode into memory and then hashing it — expensive for large contracts. \`EXTCODEHASH\` costs 700 gas regardless of code size, enabling efficient proxy pattern verification and contract identity checks
 
-* Parity Ethereum / Parity Tech
-* Geth Classic / ChainSafe, ETCLabs Core
-* Multi-Geth / Multi-Geth, ETCLabs Core
-* Hyperledger Besu / ChainSafe, PegaSys
+### Context
 
-#### Aztlan (ECIP-1061) needs to be either accepted or updated (or rejected)
+The Agharta finalization process exposed governance challenges. The competing Aztlan proposal (ECIP-1061) attempted to bundle Agharta with additional Istanbul EIPs but introduced a bug in the SSTORE gas metering that broke the Mordor testnet. After several days of crisis, the community reverted to the clean Agharta scope (Constantinople/Petersburg only) and pushed Istanbul changes to the subsequent Phoenix upgrade. Four Core Devs Calls (October–December 2019) navigated this process.
 
-* discuss included EIPs
-* discuss a timeline for the protocol upgrade
-    * Mordor Classic and Kotti Classic testnet (February?)
-    * Ethereum Classic mainnet (March?)
+### Outcome
 
-#### Anything else related to Aztlan
-
-#### Please comment to add items to the agenda
-
-[https://github.com/ethereumclassic/ECIPs/issues/177](https://github.com/ethereumclassic/ECIPs/issues/177)
+Activated at block 9,573,000 on January 12, 2020. The CREATE2 opcode enabled deterministic contract deployment patterns now used extensively in ETC's DeFi and governance infrastructure.
 
 ---
 
-## Core Devs Call — Confirm consensus for Aztlan Upgrade / Yingchun Edition (December 5, 2019)
+### Related
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1061](https://ecips.ethereumclassic.org/ECIPs/ecip-1061)
-
-* When: Thursday, December 5, 2019, 1pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel. Will use/create a voice channel *ad hoc*.
-
-Meeting Coordinator: @developerkevin.
-
-### Agenda
-
-#### Aztlan Upgrade (Yingchun Edition) ([ECIP-1061](https://ecips.ethereumclassic.org/ECIPs/ecip-1061)) is in *"Last Call"* status with review ending on 19th Dec 2019.
-
-* Establish that we have new consensus on ECIP-1061, after several days of crisis.
-* No finger-pointing, blame or post-mortem in this specific meeting. It would make a lot of sense to do a post-mortem on the last few days, and anybody is welcome to create an issue to start that process, or to publish their own post-mortem, etc. Just out of scope HERE.
-* No discussion of [#221](https://github.com/ethereumclassic/ECIPs/pull/221) and [#224](https://github.com/ethereumclassic/ECIPs/pull/224) or other process clarifications. Similar to post-mortem, these have value and when we have fully-formed ECIPs we should certainly discuss those. Just out of scope HERE.
-
-This is the full scope of the agenda. We won't add any items to this call. Laser focus.
-
-The aim of the meeting is to calm everybody's nerves and to get back on track. We should record the audio. Multiple people should take minutes. The outcome should be reported on.
-
-[https://github.com/ethereumclassic/ECIPs/issues/215](https://github.com/ethereumclassic/ECIPs/issues/215)
-
----
-
-## Core Devs Call — Agharta Final Finalization (December 12, 2019)
-
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1056](https://ecips.ethereumclassic.org/ECIPs/ecip-1056)
-
-Ref [#131](https://github.com/ethereumclassic/ECIPs/issues/131) [ECIP-1056](https://github.com/ethereumclassic/ECIPs/blob/master/_specs/ecip-1056.md)
-
-Ref [ECIP-1056](https://ecips.ethereumclassic.org/ECIPs/ecip-1056) [#75](https://github.com/ethereumclassic/ECIPs/pull/75) [#131](https://github.com/ethereumclassic/ECIPs/issues/131) [#135](https://github.com/ethereumclassic/ECIPs/issues/135)
-
-* When: Thursday, December 12, 2019, 1pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel. Will use/create a voice channel *ad hoc*.
-
-### Agenda
-
-#### Quick client teams check-in
-
-* Parity Ethereum / Parity Tech
-* Geth Classic / ChainSafe, ETCLabs Core
-* Multi-Geth / Multi-Geth, ETCLabs Core
-* Hyperledger Besu / ChainSafe, PegaSys
-
-#### Agharta (ECIP-1056) is in "last call" state
-
-* ECIP-1056 needs to be accepted
-    * evaluate testing on morden testnet
-    * evaluate testing on mordor testnet
-    * evaluate testing on kotti testnet
-* discuss a timeline for the protocol upgrade
-    * agree on a block number for mainnet
-
-#### Please comment to add items to the agenda
-
-[https://github.com/ethereumclassic/ECIPs/issues/175](https://github.com/ethereumclassic/ECIPs/issues/175)
-
-### Recording of Core Devs Call
-
-[Core Devs Call: Agharta hard fork finalization](https://youtu.be/vipvH21tXgc)`,
-  ecipRefs: ['ecip-1056', 'ecip-1061', 'ecip-1049', 'ecip-1043'],
-  recordingUrl: 'https://youtu.be/vipvH21tXgc',
-  notesUrl: 'https://github.com/ethereumclassic/ECIPs/issues/135',
+- [ECIP-1056: Agharta EVM and Protocol Upgrades](https://ecips.ethereumclassic.org/ECIPs/ecip-1056)
+- [EIP-145: Bitwise Shifting Instructions](https://eips.ethereum.org/EIPS/eip-145)
+- [EIP-1014: Skinny CREATE2](https://eips.ethereum.org/EIPS/eip-1014)
+- [EIP-1052: EXTCODEHASH](https://eips.ethereum.org/EIPS/eip-1052)`,
+  ecipRefs: ['ecip-1056'],
+  recordingUrl: null,
+  notesUrl: null,
   forkBlock: 9_573_000,
 }
 

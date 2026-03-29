@@ -5,154 +5,58 @@ const entry: CDCEntry = {
   title: 'Atlantis',
   date: '2019-09-12',
   summary:
-    'ECIP-1054 — Aligned ETC with Ethereum\'s Spurious Dragon and Byzantium upgrades. Four Core Devs Calls coordinated EIP-161 inclusion, client readiness, competing timeline proposals, testnet verification, and mainnet block number agreement.',
-  content: `## Core Devs Call — Atlantis Finalization (May 30, 2019)
+    'ECIP-1054 — Aligned ETC with Ethereum\'s Spurious Dragon and Byzantium upgrades. REVERT, STATICCALL, alt_bn128 precompiles, receipt status codes, and state trie clearing.',
+  content: `## Atlantis (ECIP-1054) Network Upgrade
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1054](https://ecips.ethereumclassic.org/ECIPs/ecip-1054)
-
-* When: Thursday, May 30, 2019, 3pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) #ecips channel. Will use/create a voice channel ad hoc.
-
-### Agenda
-
-#### Quick client teams check-in
-
-* Geth / Multi-Geth
-* Parity Ethereum
-* IOHK Mantis
-
-#### Atlantis (ECIP-1054) is in "last call" state
-
-#### ECIP-1054 needs to be either accepted or updated (or rejected)
-
-* discuss whether EIP-161 should be included or not @meowsbits @sorpaas
-* discuss any other EIP that might cause uncertainty
-* discuss timeline for the protocol upgrade
-    * Morden Classic and Kotti Classic testnet (August?)
-    * Ethereum Classic mainnet (September?)
-
-#### Anything else related to Atlantis
-
-#### Outlook: Agharta (ECIP-1056) if time permits
-
-#### Outlook: Astor SHA3 testnet if time permits
-
-#### Please comment to add items to the agenda
-
-[https://github.com/ethereumclassic/ECIPs/issues/78](https://github.com/ethereumclassic/ECIPs/issues/78)
+**Activation Block:** 8,772,000\\
+**Activation Date:** September 12, 2019\\
+**ECIP Status:** Final
 
 ---
 
-## Intermediate Atlantis Scheduling Call (June 7, 2019)
+### Overview
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1054](https://ecips.ethereumclassic.org/ECIPs/ecip-1054)
+Atlantis was a major compatibility upgrade that brought ETC's EVM up to parity with Ethereum's Spurious Dragon and Byzantium hard forks. It added critical opcodes (\`REVERT\`, \`STATICCALL\`, \`RETURNDATASIZE\`, \`RETURNDATACOPY\`), precompiled contracts for elliptic curve operations, and replaced intermediate state roots in receipts with transaction status codes. These changes enabled modern Solidity compilation targets and expanded the tooling available to ETC developers.
 
-It became apparent that certain parts of the Ethereum Classic community are appreciating an [accelerated hardfork schedule](https://medium.com/ethereum-classic-labs/etc-labs-upgrades-ethereum-classic-to-expand-functionality-and-improve-compatability-with-ethereum-e2ac7d9aad93). To avoid confusion, rushing protocol upgrades, and putting the network at risk of a potential split, I propose scheduling an intermediate atlantis-upgrade scheduling call to discuss and agree on a realistic timeline for ECIP-1054
+### Included Changes
 
-ref [#79](https://github.com/ethereumclassic/ECIPs/issues/79)
+| EIP | Title | Summary |
+|-----|-------|---------|
+| [EIP-100](https://eips.ethereum.org/EIPS/eip-100) | Difficulty Adjustment for Uncles | Target mean block time including uncles |
+| [EIP-140](https://eips.ethereum.org/EIPS/eip-140) | REVERT Instruction | Allows contracts to signal failure without consuming all gas |
+| [EIP-161](https://eips.ethereum.org/EIPS/eip-161) | State Trie Clearing | Removes empty accounts created during DoS attacks |
+| [EIP-170](https://eips.ethereum.org/EIPS/eip-170) | Contract Code Size Limit | Maximum 24,576 bytes for deployed contract bytecode |
+| [EIP-196](https://eips.ethereum.org/EIPS/eip-196) | alt_bn128 Addition and Scalar Multiplication | Precompiled contracts for elliptic curve operations |
+| [EIP-197](https://eips.ethereum.org/EIPS/eip-197) | alt_bn128 Pairing Check | Optimal ate pairing check precompile |
+| [EIP-198](https://eips.ethereum.org/EIPS/eip-198) | BIGINT Modular Exponentiation | Precompiled contract for modular exponentiation |
+| [EIP-211](https://eips.ethereum.org/EIPS/eip-211) | RETURNDATASIZE and RETURNDATACOPY | New opcodes for accessing return data from calls |
+| [EIP-214](https://eips.ethereum.org/EIPS/eip-214) | STATICCALL | New opcode for calls that cannot modify state |
+| [EIP-658](https://eips.ethereum.org/EIPS/eip-658) | Transaction Status Code in Receipts | Replace state root in receipts with success/failure status |
 
-* When: Friday, June 07, 2019, 1pm UTC, 30 minutes max.
-* Where: Youtube Livestream [https://www.youtube.com/watch?v=hDVrKDSOCWA&feature=youtu.be](https://www.youtube.com/watch?v=hDVrKDSOCWA&feature=youtu.be)
+### Technical Details
 
-### Agenda
+- **EIP-140: REVERT** — Before \`REVERT\`, a failing contract consumed all remaining gas. \`REVERT\` allows contracts to abort execution, return an error message, and refund unused gas. This is essential for modern Solidity error handling (\`require()\`, \`revert()\`)
+- **EIP-196/197: alt_bn128 precompiles** — Precompiled contracts for elliptic curve addition, scalar multiplication, and pairing checks on the alt_bn128 curve. These enable efficient zk-SNARK verification on-chain — the cryptographic foundation for privacy protocols and Layer 2 scaling solutions
+- **EIP-214: STATICCALL** — A call variant that guarantees no state modifications. Enables contracts to safely call untrusted code for read-only operations. Critical for the \`view\` and \`pure\` function modifiers in Solidity
+- **EIP-658: Receipt status codes** — Replaced the intermediate state root in transaction receipts with a simple boolean status (1 = success, 0 = failure). This simplified transaction verification and enabled dApps to reliably detect failed transactions
+- **EIP-170: Contract code size limit** — Capped deployed contract bytecode at 24,576 bytes (24 KB). Prevents DoS through deployment of arbitrarily large contracts, which would bloat the state trie
 
-#### Quick client teams check-in
+### Context
 
-* Geth / Multi-Geth
-* Parity Ethereum
-* IOHK Mantis
+By 2019, the gap between ETC's EVM and Ethereum's had grown significantly — Byzantium activated on ETH in October 2017, nearly two years prior. This gap meant that modern Solidity versions, development tools, and smart contracts could not be used on ETC. Atlantis closed this gap in a single upgrade, bringing ETC's EVM to Byzantium-level compatibility. The upgrade was coordinated across four Core Devs Calls (May–June 2019) with competing timeline proposals that were resolved through community consensus.
 
-#### Discuss timeline for the protocol upgrade
+### Outcome
 
-* Morden Classic and Kotti Classic testnet
-* Ethereum Classic mainnet
-
-#### There are two competing proposals right now, I will give them letters, and propose a 3rd as a compromise:
-
-* [A] Original ECIP-1054 schedule
-    * \`1_039_000\` on Kotti Classic PoA-testnet (early August 2019)
-    * \`4_723_000\` on Morden Classic PoW-testnet (early August 2019)
-    * \`8_750_000\` on Ethereum Classic PoW-mainnet (mid-September 2019)
-* [B] ETCLabs "July 1st" schedule
-    * \`N/A\` on Kotti Classic PoA-testnet
-    * immediately on Morden Classic PoW-testnet (early June 2019)
-    * \`8_343_000\` on Ethereum Classic PoW-mainnet (July 1st 2019)
-* [C] Moderately accelerated schedule
-    * \`716_617\` on Kotti Classic PoA-testnet (two weeks from now)
-    * \`4_729_274\` on Morden Classic PoW-testnet (two weeks from now)
-    * \`8_500_000\` on Ethereum Classic PoW-mainnet (six weeks after successfull testnet forks)
-
-#### Please comment to add items to the agenda
-
-[https://github.com/ethereumclassic/ECIPs/issues/80](https://github.com/ethereumclassic/ECIPs/issues/80)
+Activated at block 8,772,000 on September 12, 2019. ETC gained access to the modern Solidity compiler, zk-SNARK precompiles, and the full range of Ethereum development tooling for the first time.
 
 ---
 
-## Core Devs Call — Atlantis Finalization (June 13, 2019)
+### Related
 
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1054](https://ecips.ethereumclassic.org/ECIPs/ecip-1054)
-
-ref [etclabscore/ECIPs#25](https://github.com/etclabscore/ECIPs/issues/25)
-
-* When: Thursday, June 13, 2019, 3pm UTC, 60 minutes max.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel. Will use/create a voice channel *ad hoc*. Ask for invite here if you are not on that discord.
-
-### Agenda
-
-#### Quick client teams check-in
-
-* Geth / Multi-Geth
-* Parity Ethereum
-* IOHK Mantis
-
-#### Testing updates
-
-* Kensington Testnet
-* Kotti Testnet
-* Morden Testnet
-
-#### Atlantis (ECIP-1054) is in "last call" state
-
-#### ECIP-1054 needs to be either accepted or updated (or rejected)
-
-#### Ideally, we agree on how (and when) we accept Atlantis in this call
-
-#### Please comment to add items to the agenda
-
-[https://github.com/ethereumclassic/ECIPs/issues/79](https://github.com/ethereumclassic/ECIPs/issues/79)
-
----
-
-## Core Devs Call — Finalization of the Atlantis Finalization (June 20, 2019)
-
-[https://ecips.ethereumclassic.org/ECIPs/ecip-1054](https://ecips.ethereumclassic.org/ECIPs/ecip-1054)
-
-* When: Thursday, June 20, 2019, 3pm UTC.
-* Where: Ethereum Classic [Discord](https://discord.gg/hQs894U) \`#ecips\` channel.
-
-### Agenda
-
-#### Quick client teams check-in
-
-* Multi-Geth
-* Parity Ethereum
-* IOHK Mantis
-* Classic Geth
-
-#### Testnet status
-
-* Kensington
-* Kotti Hardfork
-* Morden Outlook
-
-#### Discussion about the hard fork block
-
-#### Please comment to add items to the agenda
-
-[https://github.com/ethereumclassic/ECIPs/issues/83](https://github.com/ethereumclassic/ECIPs/issues/83)`,
-  ecipRefs: ['ecip-1054', 'ecip-1056'],
-  recordingUrl: 'https://www.youtube.com/watch?v=hDVrKDSOCWA',
-  notesUrl: 'https://github.com/ethereumclassic/ECIPs/issues/78',
+- [ECIP-1054: Atlantis EVM and Protocol Upgrades](https://ecips.ethereumclassic.org/ECIPs/ecip-1054)`,
+  ecipRefs: ['ecip-1054'],
+  recordingUrl: null,
+  notesUrl: null,
   forkBlock: 8_772_000,
 }
 
