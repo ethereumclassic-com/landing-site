@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Community Development Calls',
+  title: 'Core Developer Calls',
   description:
-    'Archive of CDC calls coordinating the Olympia upgrade for Ethereum Classic.',
+    'Where Ethereum Classic protocol decisions are made. Redirecting to the Core Developer Calls archive.',
 }
 
 export default function CdcLayout({ children }: { children: React.ReactNode }) {

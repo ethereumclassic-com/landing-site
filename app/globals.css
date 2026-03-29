@@ -4,6 +4,7 @@
  */
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "./styles/tokens.css";
 
 /* ============================================
@@ -571,4 +572,42 @@ p {
 /* Last element shouldn't have bottom margin */
 .article-content > *:last-child {
   margin-bottom: 0;
+}
+
+/* CDC markdown content — table styling */
+.cdc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.cdc-content th {
+  text-align: left;
+  font-weight: 600;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cdc-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--color-text-secondary);
+}
+
+.cdc-content tr:last-child td {
+  border-bottom: none;
+}
+
+.cdc-content thead {
+  background: var(--panel);
+}
+
+.cdc-content tbody tr:hover {
+  background: var(--panel);
 }

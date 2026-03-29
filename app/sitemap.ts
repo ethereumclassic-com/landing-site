@@ -6,6 +6,7 @@ import { apps } from './apps/data/apps'
 import { articles as learnArticles } from './learn/data/articles'
 import { exchangeReviews } from './buy/data/reviews'
 import { reports } from './research/data/research'
+import { cdcEntries } from './core-devs/data/index'
 
 const baseUrl = 'https://ethereumclassic.com'
 
@@ -150,8 +151,10 @@ const staticRoutes = [
   { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/olympia/cdc', priority: 0.5, changeFrequency: 'monthly' as const },
   { path: '/upgrades', priority: 0.8, changeFrequency: 'monthly' as const },
+
+  // Core Devs Calls
+  { path: '/core-devs', priority: 0.7, changeFrequency: 'monthly' as const },
 
   // Account section (lower priority for crawling)
   { path: '/account', priority: 0.3, changeFrequency: 'monthly' as const },
@@ -246,6 +249,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
+  // Dynamic routes - Core Devs Call entries
+  const cdcSitemapEntries = cdcEntries
+    .filter((e) => !e.date.includes('TBD'))
+    .map((entry) => ({
+      url: `${baseUrl}/core-devs/${entry.slug}`,
+      lastModified: new Date(entry.date),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    }))
+
   // Dynamic routes - Research reports
   const reportEntries = reports.map((report) => ({
     url: `${baseUrl}/research/reports/${report.slug}`,
@@ -266,5 +279,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...exchangeReviewEntries,
     ...buyReviewEntries,
     ...reportEntries,
+    ...cdcSitemapEntries,
   ]
 }

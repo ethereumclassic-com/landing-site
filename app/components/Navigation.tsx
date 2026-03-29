@@ -83,6 +83,7 @@ const navItems: {
       { href: '/build/docs', label: 'Documentation' },
       { href: '/build/tools', label: 'Developer Tools' },
       { href: '/build/clients', label: 'Node Clients' },
+      { href: '/core-devs', label: 'Core Dev Calls' },
     ],
   },
   {
@@ -133,6 +134,7 @@ const mobileNavGroups = [
     items: [
       { href: '/mining', label: 'Mining' },
       { href: '/build', label: 'Build' },
+      { href: '/core-devs', label: 'Core Dev Calls' },
       { href: '/exchanges', label: 'Exchanges' },
     ],
   },
