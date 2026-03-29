@@ -71,13 +71,13 @@ function InstallationSection({ client }: { client: NodeClient }) {
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull etclabscore/core-geth:latest</code>
+                <code className="text-[var(--color-primary)]">docker pull ghcr.io/ethereumclassic/core-geth:latest</code>
               </div>
             </div>
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
-                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/etclabscore/core-geth.git</code>
+                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/ethereumclassic/core-geth.git</code>
                 <code className="block text-[var(--color-text-muted)]">cd core-geth</code>
                 <code className="block text-[var(--color-text-muted)]">make geth</code>
               </div>
@@ -90,14 +90,14 @@ function InstallationSection({ client }: { client: NodeClient }) {
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull hyperledger/besu:latest</code>
+                <code className="text-[var(--color-primary)]">docker pull ghcr.io/ethereumclassic/besu:latest</code>
               </div>
             </div>
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Package Managers</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
                 <code className="block text-[var(--color-text-muted)]"># Requires Java 17+</code>
-                <code className="block text-[var(--color-text-muted)]">brew install hyperledger/besu/besu</code>
+                <code className="block text-[var(--color-text-muted)]">brew install ethereumclassic/besu/besu</code>
               </div>
             </div>
           </div>
@@ -108,14 +108,14 @@ function InstallationSection({ client }: { client: NodeClient }) {
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull ghcr.io/chippr-robotics/fukuii:latest</code>
+                <code className="text-[var(--color-primary)]">docker pull ghcr.io/ethereumclassic/fukuii:latest</code>
               </div>
             </div>
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
                 <code className="block text-[var(--color-text-muted)]"># Requires JDK 21+ and sbt</code>
-                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/chippr-robotics/fukuii.git</code>
+                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/ethereumclassic/fukuii.git</code>
                 <code className="block text-[var(--color-text-muted)]">cd fukuii && sbt assembly</code>
               </div>
             </div>
@@ -228,9 +228,19 @@ export default function ClientPage({ params }: Props) {
                   <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
                     {client.name}
                   </h1>
-                  {client.recommended && (
+                  {client.role === 'recommended' && (
                     <span className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                       Recommended
+                    </span>
+                  )}
+                  {client.role === 'maintained' && (
+                    <span className="rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
+                      Maintained
+                    </span>
+                  )}
+                  {client.role === 'reference' && (
+                    <span className="rounded-full bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-400">
+                      Reference
                     </span>
                   )}
                   <span className={`rounded-full px-3 py-1 text-sm font-medium ${langInfo.bg} ${langInfo.text}`}>

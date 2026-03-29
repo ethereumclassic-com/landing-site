@@ -95,19 +95,53 @@ export interface NodeClient {
   platforms: ('Windows' | 'macOS' | 'Linux' | 'Docker')[]
   features: string[]
   status: 'active' | 'maintained' | 'deprecated'
+  role?: 'recommended' | 'maintained' | 'reference'
   recommended?: boolean
   installCommand?: string
   configNotes?: string
 }
 
+// Execution Client Plugins (Post-Olympia Roadmap)
+export interface ExecutionPlugin {
+  id: string
+  name: string
+  baseClient: string
+  language: string
+  github: string
+  description: string
+  status: 'planned'
+}
+
 export const nodeClients: NodeClient[] = [
+  {
+    id: 'fukuii',
+    name: 'Fukuii',
+    website: 'https://github.com/ethereumclassic/fukuii',
+    github: 'https://github.com/ethereumclassic/fukuii',
+    description:
+      'Recommended — Purpose-built for ETC, the only ETC-native client. Modern Scala 3 architecture with PoW consensus and mining capabilities. The primary and long-term supported client for Ethereum Classic in the post-Olympia world.',
+    language: 'Scala',
+    platforms: ['Linux', 'macOS', 'Docker'],
+    features: [
+      'Fast initial sync with SNAP protocol',
+      'Built on Scala 3.3.4 LTS and JDK 21',
+      'PoW consensus and mining support',
+      'Interactive TUI and CLI utilities',
+      'Native ETC-first design',
+    ],
+    status: 'active',
+    role: 'recommended',
+    recommended: true,
+    installCommand: 'docker pull ghcr.io/ethereumclassic/fukuii:latest',
+    configNotes: 'Use network=etc for mainnet, network=mordor for testnet.',
+  },
   {
     id: 'core-geth',
     name: 'Core-Geth',
-    website: 'https://etclabscore.github.io/core-geth/',
-    github: 'https://github.com/etclabscore/core-geth',
+    website: 'https://github.com/ethereumclassic/core-geth',
+    github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'Current primary production client for Ethereum Classic. Fork of go-ethereum maintained by ETC Cooperative. Expected to transition to Fukuii after the Olympia network upgrade.',
+      'Maintained — Established go-ethereum fork with all known security patches applied for the Olympia transition. Maintained through the upgrade period as the network transitions to Fukuii as the primary client.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
@@ -118,51 +152,83 @@ export const nodeClients: NodeClient[] = [
       'MEV-free transaction ordering',
     ],
     status: 'active',
-    recommended: true,
-    installCommand: 'brew install core-geth',
+    role: 'maintained',
+    recommended: false,
+    installCommand: 'docker pull ghcr.io/ethereumclassic/core-geth:latest',
     configNotes:
       'Use --classic flag for ETC mainnet, --mordor for testnet',
   },
   {
     id: 'hyperledger-besu',
     name: 'Hyperledger Besu',
-    website: 'https://www.hyperledger.org/projects/besu',
-    github: 'https://github.com/hyperledger/besu',
+    website: 'https://github.com/ethereumclassic/besu',
+    github: 'https://github.com/ethereumclassic/besu',
     description:
-      'EVM testing and development client with ETC support. Suitable for development environments but not recommended for production mining nodes as upstream deprecated PoW support.',
+      'Reference — Enterprise-grade Hyperledger client used for cross-client testing and validation. Ensures protocol correctness through independent implementation verification across all three Olympia clients.',
     language: 'Java',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
       'Enterprise features',
       'Comprehensive APIs',
-      'Permissioning',
-      'Privacy groups',
+      'Cross-client validation',
+      'SNAP sync serving',
       'Monitoring with Prometheus/Grafana',
     ],
     status: 'active',
-    installCommand: 'docker pull hyperledger/besu:latest',
+    role: 'reference',
+    recommended: false,
+    installCommand: 'docker pull ghcr.io/ethereumclassic/besu:latest',
     configNotes:
-      'Use --network=classic for ETC mainnet, --network=mordor for testnet. Development use recommended.',
+      'Use --network=classic for ETC mainnet, --network=mordor for testnet.',
+  },
+]
+
+// Execution Client Plugins (Post-Olympia Roadmap)
+// Upstream Ethereum clients separated consensus from execution for PoS.
+// ETC plugins leverage this separation — adding ETC chain support to the
+// execution layer only. No mining, no PoW consensus. These serve non-mining
+// infrastructure: exchanges, RPC providers, block explorers, and indexers.
+// Fukuii anchors the PoW consensus layer as the primary and LTS client.
+export const executionPlugins: ExecutionPlugin[] = [
+  {
+    id: 'geth-etc',
+    name: 'geth-etc',
+    baseClient: 'go-ethereum',
+    language: 'Go',
+    github: 'https://github.com/ethereumclassic/geth-etc',
+    description:
+      'ETC execution plugin for go-ethereum. Adds Ethereum Classic chain support to the most widely deployed EVM client.',
+    status: 'planned',
   },
   {
-    id: 'fukuii',
-    name: 'Fukuii',
-    website: 'https://github.com/chippr-robotics/fukuii',
-    github: 'https://github.com/chippr-robotics/fukuii',
+    id: 'nethermind-etc',
+    name: 'nethermind-etc',
+    baseClient: 'Nethermind',
+    language: 'C#',
+    github: 'https://github.com/ethereumclassic/nethermind-etc',
     description:
-      'The only native ETC client. Revived fork of the Mantis client (IOHK) with modern Scala 3 architecture. Currently in Alpha testing for the Olympia network upgrade (2026), after which it will become the primary production client.',
-    language: 'Scala',
-    platforms: ['Linux', 'macOS', 'Docker'],
-    features: [
-      'Fast initial sync with checkpoints',
-      'Built on Scala 3.3.4 LTS and JDK 21',
-      'Interactive TUI and CLI utilities',
-      'AI integration via MCP support',
-      'Native ETC-first design',
-    ],
-    status: 'active',
-    installCommand: 'docker pull ghcr.io/chippr-robotics/fukuii:latest',
-    configNotes: 'Use network=etc for mainnet, network=mordor for testnet. Alpha testing on Gorgoroth Trials network.',
+      'ETC execution plugin for Nethermind. Extends the high-performance .NET client with Ethereum Classic support.',
+    status: 'planned',
+  },
+  {
+    id: 'erigon-etc',
+    name: 'erigon-etc',
+    baseClient: 'Erigon',
+    language: 'Go',
+    github: 'https://github.com/ethereumclassic/erigon-etc',
+    description:
+      'ETC execution plugin for Erigon. Brings Ethereum Classic support to the storage-optimized archival client.',
+    status: 'planned',
+  },
+  {
+    id: 'besu-etc',
+    name: 'besu-etc',
+    baseClient: 'Hyperledger Besu',
+    language: 'Java',
+    github: 'https://github.com/ethereumclassic/besu-etc',
+    description:
+      'ETC execution plugin for Hyperledger Besu. Adds Ethereum Classic chain support to the enterprise-grade Java client.',
+    status: 'planned',
   },
 ]
 
@@ -525,4 +591,12 @@ export function getActiveClients(): NodeClient[] {
 
 export function getClientById(id: string): NodeClient | undefined {
   return nodeClients.find((c) => c.id === id)
+}
+
+export function getRecommendedClient(): NodeClient | undefined {
+  return nodeClients.find((c) => c.role === 'recommended')
+}
+
+export function getExecutionPlugins(): ExecutionPlugin[] {
+  return executionPlugins
 }

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { networks, getActiveClients } from '../data/build'
+import { networks, getActiveClients, executionPlugins } from '../data/build'
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -169,9 +169,19 @@ export default function ClientsPage() {
                   <div className="flex-1">
                     <div className="mb-4 flex items-center gap-3">
                       <h3 className="text-2xl font-bold text-white">{client.name}</h3>
-                      {client.recommended && (
+                      {client.role === 'recommended' && (
                         <span className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                           Recommended
+                        </span>
+                      )}
+                      {client.role === 'maintained' && (
+                        <span className="rounded-full bg-amber-500/20 px-3 py-1 text-sm font-medium text-amber-400">
+                          Maintained
+                        </span>
+                      )}
+                      {client.role === 'reference' && (
+                        <span className="rounded-full bg-blue-500/20 px-3 py-1 text-sm font-medium text-blue-400">
+                          Reference
                         </span>
                       )}
                       <span className="rounded-full bg-[var(--panel)] px-3 py-1 text-sm text-white">
@@ -392,6 +402,51 @@ export default function ClientsPage() {
         </div>
       </section>
 
+      {/* Execution Client Plugins — Post-Olympia Roadmap */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="mb-2 text-2xl font-bold text-white">
+              Execution Client Plugins
+            </h2>
+            <p className="mb-2 text-sm font-mono text-[var(--color-text-muted)]">Post-Olympia Roadmap</p>
+            <p className="mb-8 max-w-3xl text-[var(--color-text-muted)]">
+              Upstream Ethereum clients separated the consensus engine from the execution engine to support
+              Proof-of-Stake. ETC plugins leverage this separation — adding Ethereum Classic chain support
+              to the execution layer only. No mining, no PoW consensus. Products and infrastructure built on
+              geth, Nethermind, Erigon, or Besu can add ETC support via a lightweight plugin without running
+              a separate PoW consensus client. Fukuii remains the primary and long-term supported Proof-of-Work
+              client for the mining ecosystem.
+            </p>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {executionPlugins.map((plugin) => (
+                <div
+                  key={plugin.id}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 opacity-70"
+                >
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="font-mono text-sm font-semibold text-white">{plugin.name}</span>
+                    <span className="rounded-full bg-[var(--color-text-muted)]/10 px-2 py-0.5 text-[10px] font-mono text-[var(--color-text-muted)]">
+                      PLANNED
+                    </span>
+                  </div>
+                  <p className="mb-3 text-xs text-[var(--color-text-muted)]">{plugin.description}</p>
+                  <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
+                    <span>{plugin.language}</span>
+                    <span>Base: {plugin.baseClient}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--bg)] to-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
@@ -402,24 +457,24 @@ export default function ClientsPage() {
           >
             <h2 className="text-2xl font-bold text-white md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
-              Start with Core-Geth for production use, or try Fukuii to help test the next-generation
-              ETC native client.
+              Fukuii is the recommended client for Ethereum Classic — purpose-built for ETC with PoW
+              consensus and mining support. For upgrade-specific guidance, see the Olympia client details.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://etclabscore.github.io/core-geth/"
+                href="https://github.com/ethereumclassic/fukuii"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
               >
-                Get Core-Geth
+                Get Fukuii
                 <ExternalLinkIcon />
               </a>
               <Link
-                href="/build/docs"
+                href="/olympia/clients"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel-hover)]"
               >
-                View Documentation
+                Olympia Client Details
               </Link>
             </div>
           </motion.div>
