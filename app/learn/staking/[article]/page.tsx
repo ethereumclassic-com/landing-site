@@ -1,41 +1,54 @@
 import type { Metadata } from 'next'
-import { StubPage } from '../../../components/templates'
+import { notFound } from 'next/navigation'
+import { getArticlesByCategory, getArticleBySlug } from '../../data/articles'
+import ArticlePageClient from '../../components/ArticlePageClient'
+import LiquidityProvision from './content/liquidity-provision'
+import ImpermanentLoss from './content/impermanent-loss'
+import YieldFarmingStrategies from './content/yield-farming-strategies'
 
 interface Props {
   params: Promise<{ article: string }>
 }
 
+export async function generateStaticParams() {
+  const articles = getArticlesByCategory('staking')
+  return articles.map((article) => ({
+    article: article.slug,
+  }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article) {
+    return {
+      title: 'Article Not Found | Ethereum Classic',
+    }
+  }
 
   return {
-    title: `${articleTitle} | Ethereum Classic`,
-    description: `Yield guide: ${articleTitle.toLowerCase()}. Learn about earning with ETC.`,
+    title: `${article.title} | Ethereum Classic`,
+    description: article.description,
   }
 }
 
-export default async function StakingArticlePage({ params }: Props) {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+const articleContent: Record<string, React.ReactNode> = {
+  'liquidity-provision': <LiquidityProvision />,
+  'impermanent-loss': <ImpermanentLoss />,
+  'yield-farming-strategies': <YieldFarmingStrategies />,
+}
 
-  return (
-    <StubPage
-      title={articleTitle}
-      description={`Complete guide to ${articleTitle.toLowerCase()}. Part of our yield guides series to help you earn passive income with Ethereum Classic.`}
-      expectedPhase="Phase 2"
-      backLink={{ label: 'Back to Staking & Yield', href: '/learn/staking' }}
-      relatedLinks={[
-        { label: 'Staking & Yield', href: '/learn/staking' },
-        { label: 'DeFi on ETC', href: '/learn/defi' },
-        { label: 'DeFi Apps', href: '/apps/defi' },
-      ]}
-    />
-  )
+export default async function StakingArticlePage({ params }: Props) {
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article || article.category !== 'staking') {
+    notFound()
+  }
+
+  const content = articleContent[slug]
+  if (!content) notFound()
+
+  return <ArticlePageClient article={article} content={content} />
 }

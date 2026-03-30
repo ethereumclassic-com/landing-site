@@ -1,41 +1,58 @@
 import type { Metadata } from 'next'
-import { StubPage } from '../../../components/templates'
+import { notFound } from 'next/navigation'
+import { getArticlesByCategory, getArticleBySlug } from '../../data/articles'
+import ArticlePageClient from '../../components/ArticlePageClient'
+import HowToBuyEtc from './content/how-to-buy-etc'
+import UnderstandingExchanges from './content/understanding-exchanges'
+import TradingOrderTypes from './content/trading-order-types'
+import TechnicalAnalysisBasics from './content/technical-analysis-basics'
+import HowToSellEtc from './content/how-to-sell-etc'
 
 interface Props {
   params: Promise<{ article: string }>
 }
 
+export async function generateStaticParams() {
+  const articles = getArticlesByCategory('trading')
+  return articles.map((article) => ({
+    article: article.slug,
+  }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article) {
+    return {
+      title: 'Article Not Found | Ethereum Classic',
+    }
+  }
 
   return {
-    title: `${articleTitle} | Ethereum Classic`,
-    description: `Trading guide: ${articleTitle.toLowerCase()}. Learn trading strategies and techniques.`,
+    title: `${article.title} | Ethereum Classic`,
+    description: article.description,
   }
 }
 
-export default async function TradingArticlePage({ params }: Props) {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+const articleContent: Record<string, React.ReactNode> = {
+  'how-to-buy-etc': <HowToBuyEtc />,
+  'understanding-exchanges': <UnderstandingExchanges />,
+  'trading-order-types': <TradingOrderTypes />,
+  'technical-analysis-basics': <TechnicalAnalysisBasics />,
+  'how-to-sell-etc': <HowToSellEtc />,
+}
 
-  return (
-    <StubPage
-      title={articleTitle}
-      description={`Comprehensive guide to ${articleTitle.toLowerCase()}. Part of our trading guides series to help you trade Ethereum Classic effectively.`}
-      expectedPhase="Phase 2"
-      backLink={{ label: 'Back to Trading Guides', href: '/learn/trading' }}
-      relatedLinks={[
-        { label: 'Trading Guides', href: '/learn/trading' },
-        { label: 'Exchange Directory', href: '/exchanges' },
-        { label: 'Price Charts', href: '/price' },
-      ]}
-    />
-  )
+export default async function TradingArticlePage({ params }: Props) {
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article || article.category !== 'trading') {
+    notFound()
+  }
+
+  const content = articleContent[slug]
+  if (!content) notFound()
+
+  return <ArticlePageClient article={article} content={content} />
 }

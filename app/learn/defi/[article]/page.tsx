@@ -1,41 +1,60 @@
 import type { Metadata } from 'next'
-import { StubPage } from '../../../components/templates'
+import { notFound } from 'next/navigation'
+import { getArticlesByCategory, getArticleBySlug } from '../../data/articles'
+import ArticlePageClient from '../../components/ArticlePageClient'
+import WhatIsDefi from './content/what-is-defi'
+import LiquidityPools from './content/liquidity-pools'
+import DefiRisks from './content/defi-risks'
+import UsingEtcswap from './content/using-etcswap'
+import ClassicusdGuide from './content/classicusd-guide'
+import WrappedEtc from './content/wrapped-etc'
 
 interface Props {
   params: Promise<{ article: string }>
 }
 
+export async function generateStaticParams() {
+  const articles = getArticlesByCategory('defi')
+  return articles.map((article) => ({
+    article: article.slug,
+  }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article) {
+    return {
+      title: 'Article Not Found | Ethereum Classic',
+    }
+  }
 
   return {
-    title: `${articleTitle} | Ethereum Classic`,
-    description: `DeFi guide: ${articleTitle.toLowerCase()}. Learn about decentralized finance.`,
+    title: `${article.title} | Ethereum Classic`,
+    description: article.description,
   }
 }
 
-export default async function DeFiArticlePage({ params }: Props) {
-  const { article } = await params
-  const articleTitle = article
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+const articleContent: Record<string, React.ReactNode> = {
+  'what-is-defi': <WhatIsDefi />,
+  'liquidity-pools': <LiquidityPools />,
+  'defi-risks': <DefiRisks />,
+  'using-etcswap': <UsingEtcswap />,
+  'classicusd-guide': <ClassicusdGuide />,
+  'wrapped-etc': <WrappedEtc />,
+}
 
-  return (
-    <StubPage
-      title={articleTitle}
-      description={`Complete guide to ${articleTitle.toLowerCase()}. Part of our DeFi guides series to help you navigate decentralized finance on Ethereum Classic.`}
-      expectedPhase="Phase 2"
-      backLink={{ label: 'Back to DeFi Guides', href: '/learn/defi' }}
-      relatedLinks={[
-        { label: 'DeFi Guides', href: '/learn/defi' },
-        { label: 'DeFi Apps', href: '/apps/defi' },
-        { label: 'Security Guide', href: '/learn/security' },
-      ]}
-    />
-  )
+export default async function DeFiArticlePage({ params }: Props) {
+  const { article: slug } = await params
+  const article = getArticleBySlug(slug)
+
+  if (!article || article.category !== 'defi') {
+    notFound()
+  }
+
+  const content = articleContent[slug]
+  if (!content) notFound()
+
+  return <ArticlePageClient article={article} content={content} />
 }
