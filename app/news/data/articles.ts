@@ -2270,6 +2270,252 @@ The Gorgoroth Trials represent the first phase of a multi-stage testing process.
     author: 'ETC Community',
     readTime: 5,
   },
+
+  // ===========================================
+  // BATCH 4: EVM Ecosystem Monitoring
+  // ===========================================
+
+  {
+    slug: 'evm-ecosystem-origins',
+    title: 'The EVM Ecosystem: From One Chain to Many',
+    excerpt:
+      'How the Ethereum Virtual Machine grew from a single blockchain into a multi-chain standard, and Ethereum Classic\'s role as the original EVM chain.',
+    content: `When the Ethereum blockchain split in July 2016 following the DAO fork, two chains emerged running the same virtual machine: Ethereum (the fork) and Ethereum Classic (the original chain). This was the first instance of the Ethereum Virtual Machine operating across multiple independent networks — a pattern that would eventually define an entire ecosystem.
+
+## The EVM Standard
+
+The Ethereum Virtual Machine (EVM) is a stack-based execution environment that processes smart contract bytecode. Any blockchain implementing the EVM specification can execute the same smart contracts, use the same development tools, and share the same developer knowledge base. This compatibility created a powerful network effect.
+
+## Proliferation
+
+After 2016, the EVM standard spread rapidly:
+
+- **Binance Smart Chain (2020):** Launched as an EVM-compatible chain optimized for low fees, quickly attracting DeFi applications
+- **Polygon (2020):** An EVM sidechain and later L2 solution providing Ethereum scaling
+- **Avalanche C-Chain (2020):** An EVM-compatible chain within Avalanche's multi-chain architecture
+- **Fantom (2019):** A DAG-based chain with EVM compatibility
+- **Layer 2 rollups (2021+):** Optimism, Arbitrum, and zkSync brought EVM execution to rollup architectures
+
+Today, dozens of chains run EVM-compatible execution environments, from independent L1s to Ethereum rollups to application-specific chains.
+
+## ETC's Position
+
+Ethereum Classic occupies a unique position in the EVM ecosystem:
+
+**Original chain:** ETC preserved the state of the Ethereum blockchain as it existed before the DAO fork. Every transaction, contract deployment, and state change from Ethereum's launch through block 1,920,000 exists on ETC in its unaltered form.
+
+**Largest PoW EVM:** Following Ethereum's transition to Proof of Stake in September 2022, ETC became the largest Proof of Work blockchain running the EVM. This makes it the only major EVM chain where block production is secured by physical computational work rather than staked capital.
+
+**Full EVM compatibility:** ETC tracks relevant EVM improvements through its own upgrade process, maintaining compatibility with Solidity, Vyper, and the standard EVM development toolchain. Contracts written for any EVM chain can be deployed on ETC with minimal or no modification.
+
+## Developer Portability
+
+The shared EVM standard means developers can move between chains with near-zero switching costs. Tools like Hardhat, Foundry, and Remix work identically across EVM chains. ABIs, bytecode, and development patterns are universal. This portability benefits ETC directly — any developer experienced with Solidity on any EVM chain can build on ETC immediately.`,
+    date: '2016-07-20',
+    category: 'Ecosystem',
+    tags: ['EVM', 'Ecosystem', 'Multi-Chain', 'Compatibility', 'Smart Contracts'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'eth-shanghai-dencun-review',
+    title: 'Ethereum Shanghai and Dencun: What ETC Evaluates',
+    excerpt:
+      'A review of Ethereum\'s Shanghai and Dencun upgrades and which EVM improvements ETC evaluates for potential adoption.',
+    content: `Ethereum's Shanghai (April 2023) and Dencun (March 2024) upgrades introduced significant EVM changes. As the original EVM chain, Ethereum Classic actively monitors upstream improvements to evaluate which are beneficial for adoption — and which are irrelevant to a PoW chain.
+
+## Shanghai (April 2023)
+
+Shanghai's primary feature was enabling staking withdrawals (EIP-4895), which is PoS-specific and irrelevant to ETC. However, Shanghai also included EVM improvements that ETC evaluates:
+
+- **EIP-3651 (Warm COINBASE):** Reduces the gas cost of accessing the block producer's address. Relevant to ETC miners and contracts that interact with block.coinbase.
+- **EIP-3855 (PUSH0 instruction):** Adds a new opcode that pushes zero onto the stack, reducing bytecode size and gas costs. A pure EVM improvement applicable to any chain.
+- **EIP-3860 (Limit and meter initcode):** Caps the maximum size of contract initialization code and charges gas proportionally. Improves predictability of contract deployment costs.
+
+ETC's Spiral upgrade (February 2024) adopted equivalent EVM improvements, keeping the execution environment aligned with upstream where changes are chain-agnostic.
+
+## Dencun (March 2024)
+
+Dencun was primarily focused on Layer 2 scaling through blob transactions:
+
+- **EIP-4844 (Proto-danksharding):** Introduced blob-carrying transactions designed for rollup data availability. This is L2-specific infrastructure with limited relevance to ETC, which operates as a standalone L1.
+- **EIP-1153 (Transient storage):** Added TSTORE and TLOAD opcodes for storage that exists only during transaction execution, then is discarded. Useful for reentrancy locks and callback patterns — relevant to ETC smart contract development.
+- **EIP-5656 (MCOPY instruction):** Added an efficient memory copy opcode, improving gas costs for memory-intensive operations. A pure EVM improvement.
+- **EIP-6780 (SELFDESTRUCT restriction):** Limited the SELFDESTRUCT opcode to only send funds without deleting contract storage (unless called in the same transaction as creation). Improves state management predictability.
+
+## ETC's Evaluation Process
+
+ETC does not automatically adopt Ethereum upgrades. Each EIP is evaluated independently through the ECIP process:
+
+1. **PoS-specific changes** (withdrawals, validator logic, blob transactions) are generally excluded
+2. **Pure EVM improvements** (new opcodes, gas schedule changes) are strong candidates for adoption
+3. **Consensus changes** are evaluated for PoW compatibility
+4. **State management changes** are reviewed for impact on ETC's state model
+
+This selective approach allows ETC to benefit from the broader EVM ecosystem's development efforts while maintaining its distinct protocol characteristics.`,
+    date: '2024-03-13',
+    category: 'Ecosystem',
+    tags: ['Shanghai', 'Dencun', 'EIP-4844', 'EIP-1153', 'EVM Upgrades', 'Ethereum'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'evm-cross-chain-interop',
+    title: 'Cross-Chain Bridges and EVM Interoperability with ETC',
+    excerpt:
+      'An overview of cross-chain bridge infrastructure connecting Ethereum Classic to the broader EVM ecosystem, and the shared tooling that enables developer portability.',
+    content: `Ethereum Classic's EVM compatibility extends beyond smart contract execution to encompass the entire development and infrastructure ecosystem. Cross-chain bridges, shared tooling, and universal standards connect ETC to the broader multi-chain landscape.
+
+## Bridge Infrastructure
+
+Cross-chain bridges allow assets to move between ETC and other EVM chains. These bridges typically operate by locking assets on one chain and minting wrapped representations on another:
+
+- **ETC ↔ ETH bridges:** Allow movement of assets between Ethereum Classic and Ethereum, the two original EVM chains
+- **Multi-chain bridges:** Some bridge protocols support ETC alongside dozens of other EVM chains, providing broad interoperability
+
+Bridge usage enables ETC users to access DeFi protocols on other chains and allows users from other ecosystems to interact with ETC-native applications.
+
+**Security note:** Cross-chain bridges are high-value targets for attackers. Users should exercise caution, use established bridges with proven track records, and understand the trust assumptions involved. Not all bridges are created equal — some rely on multisig committees, others on optimistic verification, and others on zero-knowledge proofs.
+
+## Shared Development Tooling
+
+The EVM standard means that the entire Ethereum development toolchain works on ETC:
+
+**Development frameworks:**
+- **Hardhat:** Compile, test, and deploy contracts with network configuration pointing to ETC RPC endpoints
+- **Foundry:** Fast, Rust-based development toolkit works identically on ETC
+- **Remix:** Browser-based IDE connects to ETC through MetaMask or direct RPC
+
+**Languages:**
+- **Solidity:** The primary EVM smart contract language compiles to identical bytecode regardless of target chain
+- **Vyper:** Python-inspired EVM language works on any EVM chain
+
+**Testing and verification:**
+- Unit testing frameworks, fuzzing tools, and formal verification tools are chain-agnostic
+- Contract verification on Blockscout follows the same process as on Etherscan
+
+## Developer Skill Portability
+
+A developer who has built on any EVM chain can build on ETC with no additional training. This is a significant strategic advantage:
+
+- Smart contract patterns (ERC-20, ERC-721, proxy patterns) are universal
+- ABI encoding and decoding is identical
+- Transaction signing, gas estimation, and RPC methods follow the same standards
+- Frontend libraries (ethers.js, viem, wagmi) connect to ETC by changing a single RPC URL
+
+## RPC Compatibility
+
+ETC nodes expose the standard Ethereum JSON-RPC API, meaning wallets, dApps, and tooling built for Ethereum can connect to ETC by simply pointing to an ETC RPC endpoint. Public RPC providers serve the ETC network, making it accessible to any application that supports custom EVM chains.`,
+    date: '2023-06-01',
+    category: 'Ecosystem',
+    tags: ['Cross-Chain', 'Bridges', 'Interoperability', 'Tooling', 'Development'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'evm-l1-landscape',
+    title: 'The L1 EVM Landscape: Where Ethereum Classic Fits',
+    excerpt:
+      'A factual survey of the Layer 1 EVM ecosystem — from Ethereum PoS to Avalanche, BSC, and rollups — and ETC\'s unique position as the PoW original.',
+    content: `The EVM ecosystem has grown from two chains in 2016 to dozens of Layer 1 blockchains and Layer 2 rollups. Each chain makes different trade-offs in consensus, decentralization, throughput, and governance. Understanding the landscape helps contextualize Ethereum Classic's position.
+
+## Layer 1 EVM Chains
+
+**Ethereum (PoS)**
+The largest EVM chain by market capitalization and developer activity. Transitioned from Proof of Work to Proof of Stake in September 2022. Focuses on rollup-centric scaling through EIP-4844 blob transactions. Validator set is permissionless but requires 32 ETH minimum stake.
+
+**Binance Smart Chain (PoSA)**
+A high-throughput EVM chain using Proof of Staked Authority consensus with a limited validator set. Offers low fees and fast block times. Trade-off: smaller, permissioned validator set compared to fully decentralized chains.
+
+**Avalanche C-Chain (PoS)**
+An EVM-compatible chain within Avalanche's multi-chain architecture. Uses Snowball consensus for fast finality. Supports custom subnets for application-specific chains.
+
+**Fantom (PoS)**
+A DAG-based chain with EVM compatibility, offering fast transaction finality through its Lachesis consensus mechanism.
+
+**Ethereum Classic (PoW)**
+The original EVM chain, maintaining Proof of Work consensus and the unaltered pre-fork state. No minimum stake, no validator set, no identity requirements for block production.
+
+## Layer 2 Rollups
+
+Layer 2 solutions execute transactions off the main Ethereum chain while inheriting its security:
+
+- **Optimistic rollups** (Optimism, Arbitrum): Assume transactions are valid, with a challenge period for fraud proofs
+- **ZK rollups** (zkSync, Polygon zkEVM): Use zero-knowledge proofs to validate transaction batches cryptographically
+
+Rollups are Ethereum-specific infrastructure. ETC operates as a standalone L1 and does not currently have or require L2 solutions.
+
+## ETC's Distinguishing Characteristics
+
+In the L1 landscape, ETC is differentiated by several factors:
+
+**Consensus:** ETC is the only major EVM chain still secured by Proof of Work. Block production requires computational expenditure, making censorship economically costly rather than politically enforceable.
+
+**Immutable ledger:** ETC has never performed an irregular state change. The ledger reflects every transaction exactly as executed, without retroactive modifications.
+
+**Fixed supply:** ECIP-1017 established a hard cap of approximately 210.7 million ETC with a known, predictable emission schedule. No governance mechanism can alter this.
+
+**No validator set:** There is no identifiable group of validators who can be compelled to filter transactions. Mining is permissionless and pseudonymous.
+
+These characteristics are not claims of superiority — they are factual trade-offs. Higher throughput chains sacrifice some decentralization. More decentralized chains may have lower throughput. ETC has chosen maximum resistance to censorship and state modification as its primary design goals.`,
+    date: '2024-01-15',
+    category: 'Ecosystem',
+    tags: ['L1', 'EVM Landscape', 'Comparison', 'Ethereum', 'BSC', 'Avalanche', 'Rollups'],
+    author: 'ETC Community',
+    readTime: 6,
+  },
+  {
+    slug: 'eth-pectra-etc-implications',
+    title: 'Ethereum Pectra Upgrade: Implications for ETC',
+    excerpt:
+      'Ethereum\'s Pectra upgrade introduced EOF and EIP-7702 account abstraction. Here\'s what ETC evaluates for potential future adoption.',
+    content: `Ethereum's Pectra upgrade, activated in early 2025, introduced several significant changes to the EVM. As with previous Ethereum upgrades, the Ethereum Classic community evaluates each component independently to determine which improvements are worth adopting.
+
+## EVM Object Format (EOF)
+
+The most substantial EVM change in Pectra was the introduction of the EVM Object Format — a structured container format for smart contract bytecode:
+
+- **Separation of code and data:** EOF separates executable code from static data within contract bytecode, enabling better analysis and optimization
+- **Explicit function definitions:** Contracts declare functions with typed inputs and outputs, enabling static validation before deployment
+- **Removal of dynamic jumps:** EOF eliminates JUMP and JUMPI in favor of structured control flow, making bytecode more analyzable and potentially more gas-efficient
+- **Versioned bytecode:** EOF containers include a version field, allowing future EVM improvements without breaking existing contracts
+
+EOF is a pure EVM improvement with no dependency on Proof of Stake. It improves the execution environment for smart contracts regardless of the underlying consensus mechanism. This makes it a strong candidate for ETC evaluation.
+
+**Trade-off:** EOF is a complex change that introduces a dual-track execution environment — legacy bytecode and EOF bytecode must both be supported indefinitely. The implementation burden is significant across all client implementations.
+
+## EIP-7702: Account Abstraction
+
+EIP-7702 introduced a new transaction type that allows externally owned accounts (EOAs) to temporarily delegate to smart contract code during a transaction:
+
+- Users can batch multiple operations into a single transaction
+- Gas sponsorship becomes possible — a third party can pay gas fees on behalf of a user
+- Custom validation logic (multi-sig, social recovery) can be applied to regular accounts
+
+Account abstraction improves user experience significantly, particularly for onboarding new users who may not hold native tokens for gas. This is a chain-agnostic improvement applicable to any EVM network.
+
+## What ETC Evaluates
+
+For each Pectra component, ETC's evaluation criteria remain consistent:
+
+| Component | PoS Dependency | EVM Improvement | ETC Relevance |
+|-----------|---------------|-----------------|---------------|
+| EOF | None | Yes — structured bytecode | High — improves contract analysis |
+| EIP-7702 | None | Yes — account abstraction | High — improves UX |
+| Blob throughput increases | PoS/L2 specific | No | Low — ETC is standalone L1 |
+| Validator changes | PoS specific | No | None |
+
+## Protocol Stewardship
+
+ETC's approach to upstream monitoring reflects active protocol stewardship. Rather than either blindly adopting or ignoring Ethereum improvements, the community evaluates each change on its technical merits and compatibility with ETC's design principles. Changes that improve the EVM execution environment benefit all EVM users and are prioritized for adoption. Changes tied to PoS consensus or L2 infrastructure are documented but not adopted.
+
+This ongoing evaluation ensures ETC remains a modern, capable EVM platform while maintaining its distinct identity as a Proof of Work chain with an immutable ledger.`,
+    date: '2025-03-15',
+    category: 'Ecosystem',
+    tags: ['Pectra', 'EOF', 'EIP-7702', 'Account Abstraction', 'EVM Upgrades', 'Ethereum'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
 ]
 
 // Helper functions
