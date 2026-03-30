@@ -340,7 +340,7 @@ export default function NewsPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="https://twitter.com/eth_classic"
+              href="https://x.com/ETC_Network"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
@@ -360,7 +360,7 @@ export default function NewsPage() {
               News Feeds
             </Link>
             <a
-              href="https://discord.gg/ethereumclassic"
+              href="https://discord.com/invite/Tq57jxSwsa"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"

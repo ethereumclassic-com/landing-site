@@ -238,7 +238,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'How do I join the ETC community?',
         answer:
-          'The primary community channels are: Discord (real-time chat and development discussion), Reddit r/EthereumClassic (long-form discussion), Twitter @eth_classic (announcements), GitHub (code contributions), and Telegram (regional groups in multiple languages). Links to all channels are available at ethereumclassic.com/community.',
+          'The primary community channels are: Discord (real-time chat and development discussion), Reddit r/EthereumClassic (long-form discussion), X @ETC_Network (announcements), GitHub (code contributions), and Telegram (regional groups in multiple languages). Links to all channels are available at ethereumclassic.com/community.',
       },
       {
         question: 'What tasks can I help with?',

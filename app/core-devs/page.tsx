@@ -154,7 +154,7 @@ export default function CoreDevsPage() {
             <p className="mt-2 text-[var(--color-text-muted)] leading-relaxed">
               Join the{' '}
               <a
-                href="https://ethereumclassic.org/discord"
+                href="https://discord.com/invite/Tq57jxSwsa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:text-[var(--color-primary)]/80"

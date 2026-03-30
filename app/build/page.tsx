@@ -554,7 +554,7 @@ export default function BuildPage() {
                 Start Building
               </Link>
               <a
-                href="https://discord.gg/ethereumclassic"
+                href="https://discord.com/invite/Tq57jxSwsa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 font-semibold text-white transition hover:bg-[var(--panel-hover)]"

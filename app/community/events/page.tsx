@@ -28,7 +28,7 @@ const upcomingEvents = [
     time: '3:00 PM UTC',
     location: 'Discord Voice Channel',
     type: 'online',
-    link: 'https://ethereumclassic.org/discord',
+    link: 'https://discord.com/invite/Tq57jxSwsa',
   },
   {
     title: 'ETC Developer Sync',
@@ -37,7 +37,7 @@ const upcomingEvents = [
     time: '2:00 PM UTC',
     location: 'Discord Voice Channel',
     type: 'online',
-    link: 'https://ethereumclassic.org/discord',
+    link: 'https://discord.com/invite/Tq57jxSwsa',
   },
   {
     title: 'Mining Community Q&A',
@@ -309,7 +309,7 @@ export default function EventsPage() {
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a
-                href="https://ethereumclassic.org/discord"
+                href="https://discord.com/invite/Tq57jxSwsa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
@@ -343,7 +343,7 @@ export default function EventsPage() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <a
-                href="https://twitter.com/eth_classic"
+                href="https://x.com/ETC_Network"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"

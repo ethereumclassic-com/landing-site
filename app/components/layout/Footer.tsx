@@ -96,8 +96,8 @@ const GitHubIcon = () => (
 )
 
 const defaultSocialLinks: SocialLink[] = [
-  { label: 'Twitter', href: 'https://twitter.com/eth_classic', icon: <TwitterIcon /> },
-  { label: 'Discord', href: 'https://ethereumclassic.org/discord', icon: <DiscordIcon /> },
+  { label: 'Twitter', href: 'https://x.com/ETC_Network', icon: <TwitterIcon /> },
+  { label: 'Discord', href: 'https://discord.com/invite/Tq57jxSwsa', icon: <DiscordIcon /> },
   { label: 'Telegram', href: 'https://t.me/ethclassic', icon: <TelegramIcon /> },
   { label: 'GitHub', href: 'https://github.com/ethereumclassic', icon: <GitHubIcon /> },
 ]

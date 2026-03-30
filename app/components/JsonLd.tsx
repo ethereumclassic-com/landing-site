@@ -16,9 +16,9 @@ export function OrganizationJsonLd() {
       'Ethereum Classic is the original Ethereum blockchain, maintaining proof-of-work consensus and smart contract capabilities.',
     foundingDate: '2016-07-20',
     sameAs: [
-      'https://twitter.com/eth_classic',
+      'https://x.com/ETC_Network',
       'https://github.com/ethereumclassic',
-      'https://discord.gg/ethereumclassic',
+      'https://discord.com/invite/Tq57jxSwsa',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
