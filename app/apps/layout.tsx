@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: 'Ethereum Classic Apps & dApps',
   },
   description:
-    'Discover DeFi, NFTs, games, governance, and infrastructure apps built on Ethereum Classic.',
+    'Discover DeFi, governance, infrastructure, payments, and tools built on Ethereum Classic.',
 }
 
 export default function AppsLayout({ children }: { children: React.ReactNode }) {
