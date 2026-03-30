@@ -455,7 +455,7 @@ For significant holdings, hardware wallets like Ledger or Trezor provide strong 
 ### Protection
 - Official teams never DM you first asking for funds
 - Always verify URLs before connecting wallets
-- Use official links from ethereumclassic.org
+- Use official links from ethereumclassic.com
 
 Stay vigilant and protect your ETC.`,
     date: '2023-03-15',
