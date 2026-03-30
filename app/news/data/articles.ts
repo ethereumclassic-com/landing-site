@@ -1,4 +1,4 @@
-export type ArticleCategory = 'Updates' | 'Security' | 'Ecosystem' | 'Community'
+export type ArticleCategory = 'Updates' | 'Security' | 'Ecosystem' | 'Community' | 'Development'
 
 export interface Author {
   name: string
@@ -879,6 +879,516 @@ Treasury fund allocation will be governed by the Olympia decentralized governanc
     author: 'ETC Community',
     readTime: 4,
   },
+
+  // ═══════════════════════════════════════════════════════════════════
+  // BATCH 1: Historical Milestones & Founding Documents
+  // ═══════════════════════════════════════════════════════════════════
+
+  {
+    slug: 'crypto-decentralist-manifesto',
+    title: 'The Crypto-Decentralist Manifesto',
+    excerpt:
+      'Arvicco publishes the Crypto-Decentralist Manifesto, articulating the philosophical principles that define the Ethereum Classic community.',
+    content: `On July 11, 2016 — just days before the contentious DAO fork — a document appeared that would define the philosophical core of Ethereum Classic. The Crypto-Decentralist Manifesto, written by Arvicco, articulated why decentralization matters and what a truly decentralized blockchain must protect.
+
+## Core Principles
+
+The manifesto argues that blockchains are most useful as decentralized systems, and that true decentralization requires protecting three properties:
+
+### Open Architecture
+The protocol rules must be fully transparent and open source. Anyone can run a node, send transactions, and verify the chain's state without permission from any authority.
+
+### Neutrality
+The protocol must treat all participants equally. No transaction can be censored, no account can be frozen, and no rule change can be imposed by a minority — no matter how well-intentioned.
+
+### Immutability
+The blockchain's history is inviolable. Completed transactions cannot be reversed, and the ledger cannot be rewritten. This is not merely a technical preference but a fundamental property that gives blockchains their value.
+
+## Why It Mattered
+
+The manifesto was published during the most contentious period in Ethereum's history. The DAO had been exploited, and the community was debating whether to modify the blockchain to reverse the exploit's effects. The manifesto articulated why some community members believed that rewriting history — even to fix a clear wrong — would undermine the very properties that make blockchains valuable.
+
+## Legacy
+
+When the DAO fork occurred on July 20, 2016, the community members who rejected the irregular state change coalesced around these principles. The Crypto-Decentralist Manifesto became one of Ethereum Classic's foundational documents, alongside the Declaration of Independence.
+
+The full text remains available at [ethereumclassic.com](https://ethereumclassic.com).`,
+    date: '2016-07-11',
+    category: 'Community',
+    tags: ['History', 'Philosophy', 'Founding Documents'],
+    author: 'Arvicco',
+    readTime: 4,
+  },
+  {
+    slug: 'code-is-law',
+    title: 'Code Is Law and the Genesis of Ethereum Classic',
+    excerpt:
+      'The principle that smart contracts should execute exactly as written — without external intervention — becomes the defining ethos of Ethereum Classic.',
+    content: `"Code is law" is the principle that smart contract outcomes should be determined solely by the code that was deployed and the transactions that were submitted — not by the decisions of any external authority. This idea predates Ethereum, but it became the defining principle of Ethereum Classic after the events of 2016.
+
+## Origins
+
+When Ethereum launched in 2015, its founding promise was a platform for "applications that run exactly as programmed without any possibility of downtime, censorship, fraud, or third-party interference." Smart contracts were meant to be self-executing agreements where the code itself was the final arbiter.
+
+## The Test
+
+In June 2016, The DAO — a smart contract holding roughly 14% of all ETH — was exploited through a recursive calling vulnerability. The exploit was legal within the rules of the smart contract: the code permitted the withdrawals. But the financial impact was enormous.
+
+The Ethereum community faced a choice: intervene to reverse the exploit (violating the principle that code determines outcomes) or accept the result (preserving the principle at significant financial cost).
+
+## The Fork
+
+On July 20, 2016, at block 1,920,000, the majority of the network chose to implement an irregular state change that moved the exploited funds to a recovery contract. This was the DAO fork.
+
+## Ethereum Classic Continues
+
+Those who believed that "code is law" meant the blockchain should not be rewritten — regardless of the circumstances — continued mining and transacting on the original chain. This chain became Ethereum Classic.
+
+The principle does not mean all smart contract outcomes are desirable. It means the blockchain itself should not be the mechanism for correcting them. Courts, insurance, and governance layers can address harms without modifying the immutable ledger.
+
+## Significance
+
+"Code is law" is not a slogan — it is a design constraint. It means ETC's ledger has never been irregularly modified, and its history is a faithful record of every transaction since genesis block 0 on July 30, 2015.`,
+    date: '2016-09-15',
+    category: 'Community',
+    tags: ['Philosophy', 'History', 'Code Is Law'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'vitalik-endorses-etc',
+    title: 'Vitalik Buterin Endorses Ethereum Classic',
+    excerpt:
+      'Ethereum co-founder Vitalik Buterin publicly states that Ethereum Classic has a right to exist and is a legitimate project.',
+    content: `In the days following the DAO fork on July 20, 2016, Ethereum co-founder Vitalik Buterin publicly acknowledged Ethereum Classic's legitimacy.
+
+## The Statement
+
+Buterin stated that Ethereum Classic, as the continuation of the original unforked chain, had a right to exist. He recognized that the community members who rejected the irregular state change were acting on legitimate principles — specifically, the belief that blockchains should not have their history rewritten by any party, regardless of intent.
+
+## Context
+
+The DAO fork had divided the Ethereum community. The majority supported the fork to recover funds from the DAO exploit, but a significant minority believed the intervention violated blockchain immutability. When the original chain continued to receive mining support and exchange listings, it became clear that both chains would persist.
+
+## Significance
+
+Buterin's endorsement was notable because:
+
+- **Legitimacy**: It came from Ethereum's most prominent co-founder, lending credibility to ETC at a critical early moment
+- **Principle**: It acknowledged that reasonable people could disagree about whether the DAO fork was the right decision
+- **Precedent**: It established that blockchain forks could produce two legitimate chains with different governance philosophies
+
+## Two Chains, One Origin
+
+From this point forward, Ethereum and Ethereum Classic shared identical history up to block 1,920,000 but diverged in philosophy. Ethereum pursued pragmatic governance with the ability to make irregular state changes when community consensus supported them. Ethereum Classic committed to absolute immutability and the principle that the protocol should never override smart contract outcomes.
+
+Both chains trace their genesis to July 30, 2015. The difference is purely in governance philosophy.`,
+    date: '2016-07-23',
+    category: 'Community',
+    tags: ['History', 'Vitalik Buterin', 'Endorsement'],
+    author: 'ETC Community',
+    readTime: 3,
+  },
+  {
+    slug: 'monetary-policy-adopted',
+    title: 'ETC Adopts Fixed Monetary Policy with 210M Supply Cap',
+    excerpt:
+      'ECIP-1017 introduces a fixed monetary policy for Ethereum Classic with a hard supply cap of approximately 210.7 million ETC and a 20% emission reduction every 5 million blocks.',
+    content: `On March 1, 2017, the Ethereum Classic community formally adopted ECIP-1017, establishing a fixed monetary policy with a hard supply cap — differentiating ETC from Ethereum's uncapped supply model.
+
+## ECIP-1017: The Monetary Policy
+
+The proposal, authored by Matthew Spoke, introduced a predictable emission schedule:
+
+- **Era 1** (blocks 0–5,000,000): 5 ETC per block
+- **Era 2** (blocks 5,000,001–10,000,000): 4 ETC per block (20% reduction)
+- **Era 3** (blocks 10,000,001–15,000,000): 3.2 ETC per block
+- **Each subsequent era**: 20% reduction from the previous era
+
+This creates a geometric series that converges to a maximum supply of approximately **210,700,000 ETC**.
+
+## Why It Matters
+
+### Sound Money
+A fixed, predictable supply schedule makes ETC a deflationary asset. Unlike fiat currencies or uncapped cryptocurrencies, no authority can increase ETC's supply beyond the protocol-defined limit.
+
+### Predictability
+Miners, investors, and users can calculate exactly how many ETC will exist at any future point. There are no surprises and no discretionary monetary decisions.
+
+### Bitcoin Parallel
+The 20% reduction per era is ETC's equivalent of Bitcoin's halving events, though with a gentler reduction curve. The community calls these reductions "fifthenings" (keeping four-fifths of the previous reward).
+
+## Uncle/Nephew Rewards
+
+ECIP-1017 also reduces uncle and nephew block rewards proportionally in each era, ensuring that all emission — including stale block rewards — follows the same schedule.
+
+## Activation
+
+The monetary policy was activated at block 5,000,000 (Era 2) via the Gotham hard fork on December 11, 2017.
+
+[View the next block reward reduction →](/research/supply)`,
+    date: '2017-03-01',
+    category: 'Updates',
+    tags: ['Monetary Policy', 'ECIP-1017', 'Supply Cap'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'gotham-hard-fork',
+    title: 'Gotham Hard Fork: Monetary Policy Activated',
+    excerpt:
+      'At block 5,000,000, Ethereum Classic activates its fixed monetary policy via the Gotham hard fork, reducing block rewards from 5 ETC to 4 ETC.',
+    content: `On December 11, 2017, at block 5,000,000, the Ethereum Classic network activated the Gotham hard fork — implementing ECIP-1017's fixed monetary policy and beginning Era 2 of the emission schedule.
+
+## What Changed
+
+| Parameter | Before (Era 1) | After (Era 2) |
+|-----------|----------------|----------------|
+| Block reward | 5 ETC | 4 ETC |
+| Uncle reward | 0.15625 ETC (1/32) | 0.125 ETC |
+| Era | 1 | 2 |
+| Activation block | — | 5,000,000 |
+
+The 20% reduction from 5 ETC to 4 ETC per block marked the first "fifthening" — the beginning of ETC's deflationary emission curve.
+
+## Technical Details
+
+Gotham implemented:
+
+- **ECIP-1017**: Block reward reduction to 4 ETC per block, with proportional uncle/nephew reward reductions
+- **ECIP-1010**: Difficulty bomb delay, removing the inherited Ethereum difficulty bomb that would have made mining progressively harder
+
+## Why "Gotham"
+
+ETC network upgrades are named after locations in fiction and mythology, distinguishing them from Ethereum's naming conventions. Gotham was the first upgrade with a distinctly ETC identity.
+
+## Significance
+
+This was ETC's first monetary policy event — proving that the community could coordinate a protocol change through the ECIP process and activate it across the network without incident. Every ~2.5 years thereafter, the block reward reduces by another 20%.
+
+## Era Timeline
+
+| Era | Block Range | Reward | Date |
+|-----|-------------|--------|------|
+| 1 | 0 – 5M | 5 ETC | Jul 2015 |
+| 2 | 5M – 10M | 4 ETC | Dec 2017 |
+| 3 | 10M – 15M | 3.2 ETC | Mar 2020 |
+| 4 | 15M – 20M | 2.56 ETC | Apr 2022 |
+| 5 | 20M – 25M | 2.048 ETC | May 2024 |
+
+[View the next block reward reduction →](/research/supply)`,
+    date: '2017-12-11',
+    category: 'Updates',
+    tags: ['Network Upgrade', 'Gotham', 'ECIP-1017', 'Monetary Policy'],
+    author: 'ETC Community',
+    readTime: 3,
+  },
+  {
+    slug: 'mordor-testnet-launch',
+    title: 'Mordor PoW Testnet Launched for ETC Development',
+    excerpt:
+      'Ethereum Classic launches Mordor, a dedicated proof-of-work testnet using the ETChash algorithm, providing developers with an accurate testing environment.',
+    content: `In October 2019, the Ethereum Classic community launched the Mordor testnet — a dedicated proof-of-work test network that mirrors ETC mainnet conditions.
+
+## Why Mordor
+
+Previous ETC testnets had limitations: some used proof-of-authority consensus (which behaves differently from proof-of-work), and others suffered from instability. Mordor was designed from the ground up as a proper PoW testnet using the same ETChash algorithm as ETC mainnet.
+
+## Technical Details
+
+- **Chain ID**: 63 (0x3f)
+- **Consensus**: Proof-of-work (ETChash)
+- **Block time**: ~13 seconds (matching mainnet)
+- **Network upgrades**: Activates upgrades before mainnet for testing
+
+## What Mordor Provides
+
+### For Developers
+- Deploy and test smart contracts in a realistic PoW environment
+- Test gas estimation with real mining dynamics
+- Verify contract behavior under actual consensus conditions
+
+### For Client Teams
+- Test network upgrade implementations before mainnet activation
+- Run multi-client compatibility tests
+- Verify fork transitions at specific block numbers
+
+### For Miners
+- Test mining software configurations
+- Verify pool compatibility
+- Benchmark hardware performance
+
+## Testnet ETC
+
+Mordor ETC has no monetary value. Developers can obtain testnet ETC from community faucets to deploy contracts and test transactions without cost.
+
+## Ongoing Use
+
+Mordor continues to serve as ETC's primary testnet. All network upgrades — including Atlantis, Agharta, Phoenix, Magneto, Mystique, Thanos, and Spiral — were activated on Mordor before mainnet deployment. The upcoming Olympia upgrade will follow the same pattern.`,
+    date: '2019-10-03',
+    category: 'Updates',
+    tags: ['Testnet', 'Mordor', 'Development'],
+    author: 'ETC Community',
+    readTime: 3,
+  },
+  {
+    slug: 'era-3-block-reward-reduction',
+    title: 'Era 3 Block Reward Reduction to 3.2 ETC',
+    excerpt:
+      'At block 10,000,001, Ethereum Classic enters Era 3 of its monetary policy, reducing block rewards from 4 ETC to 3.2 ETC per block.',
+    content: `On March 17, 2020, at block 10,000,001, Ethereum Classic entered Era 3 of its fixed monetary policy under ECIP-1017. The block reward reduced from 4 ETC to 3.2 ETC — a 20% decrease.
+
+## The Numbers
+
+| Parameter | Era 2 | Era 3 |
+|-----------|-------|-------|
+| Block reward | 4 ETC | 3.2 ETC |
+| Uncle reward | 0.125 ETC | 0.1 ETC |
+| Daily emission | ~26,400 ETC | ~21,120 ETC |
+| Annual emission | ~9.64M ETC | ~7.71M ETC |
+
+## Cumulative Supply
+
+By the start of Era 3, approximately 113.4 million ETC had been minted — just over half of the ~210.7 million maximum supply.
+
+## What This Means
+
+The Era 3 reduction continued the predictable deflationary curve established by ECIP-1017. Each era lasts 5 million blocks (~2.5 years at 13-second block times), and each reduces the reward by exactly 20%.
+
+Unlike Bitcoin's abrupt halvings (50% reduction), ETC's fifthenings are a gentler 20% reduction. This provides miners with a more gradual revenue adjustment while still ensuring the supply converges to a hard cap.
+
+## Mining Economics
+
+The reduction to 3.2 ETC per block occurred during a period of relatively low ETC prices. Despite reduced block rewards, mining continued without disruption — miners had advance knowledge of the reduction schedule and could plan accordingly.
+
+## Looking Ahead
+
+Era 4 would arrive at block 15,000,001, reducing rewards further to 2.56 ETC per block.
+
+[View the next block reward reduction →](/research/supply)`,
+    date: '2020-03-17',
+    category: 'Updates',
+    tags: ['Monetary Policy', 'Era 3', 'Block Reward'],
+    author: 'ETC Community',
+    readTime: 3,
+  },
+  {
+    slug: 'era-4-block-reward',
+    title: 'Era 4: Block Reward Reduces to 2.56 ETC',
+    excerpt:
+      'At block 15,000,001, Ethereum Classic enters Era 4 of its monetary policy, reducing block rewards from 3.2 ETC to 2.56 ETC per block.',
+    content: `On April 25, 2022, at block 15,000,001, Ethereum Classic entered Era 4 of its fixed monetary policy. The block reward reduced from 3.2 ETC to 2.56 ETC — the fourth era of ECIP-1017's 20% reduction schedule.
+
+## The Numbers
+
+| Parameter | Era 3 | Era 4 |
+|-----------|-------|-------|
+| Block reward | 3.2 ETC | 2.56 ETC |
+| Uncle reward | 0.1 ETC | 0.08 ETC |
+| Daily emission | ~21,120 ETC | ~16,896 ETC |
+| Annual emission | ~7.71M ETC | ~6.17M ETC |
+
+## Cumulative Supply
+
+By the start of Era 4, approximately 131.1 million ETC had been minted — roughly 62% of the ~210.7 million maximum supply.
+
+## Context
+
+Era 4 began just five months before Ethereum's transition to proof-of-stake (The Merge, September 2022). The timing was significant: as ETC's emission rate decreased, a massive influx of hashrate from former Ethereum miners was about to arrive.
+
+The combination of reduced block rewards and dramatically increased hashrate meant miners earned less ETC per unit of computing power — but the network's security increased substantially.
+
+## The Emission Curve
+
+| Era | Block Range | Reward | Activation |
+|-----|-------------|--------|------------|
+| 1 | 0 – 5M | 5 ETC | Jul 2015 |
+| 2 | 5M – 10M | 4 ETC | Dec 2017 |
+| 3 | 10M – 15M | 3.2 ETC | Mar 2020 |
+| **4** | **15M – 20M** | **2.56 ETC** | **Apr 2022** |
+| 5 | 20M – 25M | 2.048 ETC | May 2024 |
+
+[View the next block reward reduction →](/research/supply)`,
+    date: '2022-04-25',
+    category: 'Updates',
+    tags: ['Monetary Policy', 'Era 4', 'Block Reward'],
+    author: 'ETC Community',
+    readTime: 3,
+  },
+  {
+    slug: 'era-5-fifthening',
+    title: "Era 5 'Fifthening': Block Reward Drops to 2.048 ETC",
+    excerpt:
+      'At block 20,000,001, Ethereum Classic enters its fifth monetary era, reducing block rewards from 2.56 ETC to 2.048 ETC per block.',
+    content: `On May 31, 2024, at block 20,000,001, Ethereum Classic entered Era 5 of its fixed monetary policy — the fifth "fifthening" since the ECIP-1017 emission schedule was established.
+
+## The Numbers
+
+| Parameter | Era 4 | Era 5 |
+|-----------|-------|-------|
+| Block reward | 2.56 ETC | 2.048 ETC |
+| Uncle reward | 0.08 ETC | 0.064 ETC |
+| Daily emission | ~16,896 ETC | ~13,517 ETC |
+| Annual emission | ~6.17M ETC | ~4.93M ETC |
+
+## Cumulative Supply
+
+By the start of Era 5, approximately 144.0 million ETC had been minted — roughly 68% of the ~210.7 million maximum supply. The remaining ~66.7 million ETC will be emitted over subsequent eras, with each era producing 20% fewer coins than the last.
+
+## Why "Fifthening"
+
+The ETC community uses the term "fifthening" because each era keeps four-fifths (80%) of the previous reward — or equivalently, reduces by one-fifth (20%). This distinguishes ETC's gentler reduction curve from Bitcoin's more aggressive halvings.
+
+## Network State at Era 5
+
+Era 5 began with ETC operating as one of the largest proof-of-work EVM chains by hashrate, following the post-Merge migration of GPU miners. The Spiral network upgrade was active, providing EVM parity with Ethereum's Shanghai execution-layer improvements.
+
+## Remaining Supply
+
+| Era | Reward | Approx. Dates | Emission |
+|-----|--------|---------------|----------|
+| 5 | 2.048 ETC | 2024–2027 | ~24.6M |
+| 6 | 1.6384 ETC | 2027–2029 | ~19.7M |
+| 7 | 1.3107 ETC | 2029–2032 | ~15.7M |
+| 8+ | Decreasing | 2032+ | ~6.7M remaining |
+
+The emission asymptotically approaches zero but never technically reaches it. In practice, block rewards become negligibly small by approximately Era 15.
+
+[View the next block reward reduction →](/research/supply)`,
+    date: '2024-05-31',
+    category: 'Updates',
+    tags: ['Monetary Policy', 'Era 5', 'Fifthening', 'Block Reward'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'etc-welcomes-ethash-miners',
+    title: 'ETC Welcomes Ethereum Miners After PoS Merge',
+    excerpt:
+      'Following Ethereum\'s transition to proof-of-stake, Ethereum Classic becomes the primary destination for displaced GPU miners seeking proof-of-work opportunities.',
+    content: `On September 15, 2022, Ethereum completed its transition from proof-of-work to proof-of-stake — "The Merge." This ended PoW mining on the Ethereum network and displaced thousands of GPU miners worldwide. Ethereum Classic emerged as the natural home for this mining community.
+
+## The Migration
+
+Within hours of The Merge, ETC's network hashrate began climbing dramatically:
+
+- **Pre-Merge hashrate**: ~25 TH/s
+- **Peak post-Merge**: Over 200 TH/s (8x increase)
+- **Stabilized level**: Significantly above pre-Merge baseline
+
+The migration was driven by practical factors: ETC uses the ETChash algorithm (derived from Ethash), meaning existing GPU mining hardware and software required minimal reconfiguration.
+
+## Why ETC
+
+Several factors made Ethereum Classic the primary destination:
+
+- **Algorithm compatibility**: ETChash works with the same GPU hardware used for ETH mining
+- **Established network**: ETC has operated continuously since 2015 with an active ecosystem
+- **Proof-of-work commitment**: ETC's community has repeatedly affirmed its commitment to PoW consensus
+- **EVM compatibility**: Developers can deploy the same smart contracts and tools
+
+## Security Impact
+
+The hashrate increase dramatically improved ETC's security posture. More hashrate means a higher cost to mount a 51% attack, making the network more resistant to the kind of chain reorganization attacks that affected ETC in 2020.
+
+## Community Response
+
+The ETC community welcomed the influx of miners. Mining pools expanded capacity, and infrastructure providers ensured their nodes could handle increased network activity. The community emphasized that ETC's value proposition — proof-of-work security, immutability, and sound monetary policy — aligns with the priorities of miners who value decentralized consensus.
+
+## A New Era
+
+Post-Merge, Ethereum Classic became the largest proof-of-work smart contract platform by hashrate and the original EVM chain still secured by mining. This position distinguishes ETC in the broader EVM ecosystem.`,
+    date: '2022-09-15',
+    category: 'Community',
+    tags: ['Mining', 'The Merge', 'Hashrate', 'PoW'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'mystique-upgrade-success',
+    title: 'Mystique Network Upgrade Successfully Activated',
+    excerpt:
+      'Ethereum Classic activates the Mystique network upgrade at block 14,525,000, implementing selected London EIPs while deliberately omitting EIP-1559.',
+    content: `On February 12, 2022, at block 14,525,000, the Ethereum Classic network successfully activated the Mystique network upgrade. The upgrade brought selected improvements from Ethereum's London release to ETC while deliberately omitting EIP-1559's fee-burning mechanism.
+
+## What Was Included
+
+Mystique implemented four EIPs from Ethereum's London upgrade:
+
+- **EIP-3529 — Reduced Refunds**: Removed gas refunds for SELFDESTRUCT and reduced SSTORE refunds. This eliminated gas token exploits that were distorting block gas usage.
+- **EIP-3541 — Reject 0xEF Bytecode**: Prevents deployment of contracts starting with the 0xEF byte, reserving the prefix for future EVM Object Format (EOF) standards.
+- **EIP-3198 — BASEFEE Opcode**: Makes the base fee accessible to smart contracts via a new opcode.
+- **EIP-3855 — PUSH0 Instruction**: Adds a zero-cost PUSH instruction for pushing the value 0 onto the stack, reducing gas costs for common operations.
+
+## What Was Omitted
+
+### EIP-1559 Base Fee Burning
+The most notable omission was EIP-1559's fee-burning mechanism. ETC chose not to implement the automatic burning of base fees because:
+
+- ETC has a **fixed supply cap** under ECIP-1017. Burning fees would reduce the effective supply below the intended ~210.7M cap.
+- The Olympia proposal (later formalized in ECIP-1109) would redirect the base fee to a community treasury instead of burning it.
+
+## ECIP Reference
+
+Mystique was specified in **ECIP-1104**.
+
+## Activation
+
+The upgrade activated smoothly across all ETC clients. No chain splits or network disruptions were observed. Miners and node operators had upgraded their software in advance following the successful Mordor testnet activation.
+
+## Significance
+
+Mystique demonstrated ETC's approach to protocol upgrades: adopt proven EVM improvements for compatibility while making independent decisions about economic mechanisms. The deliberate omission of EIP-1559 burning showed that ETC evaluates each change against its own principles rather than automatically following Ethereum.`,
+    date: '2022-02-12',
+    category: 'Updates',
+    tags: ['Network Upgrade', 'Mystique', 'ECIP-1104', 'London'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'spiral-upgrade-retrospective',
+    title: 'Spiral Upgrade: Six Months In Review',
+    excerpt:
+      'Six months after activation, the Spiral network upgrade has brought EVM parity with Ethereum\'s Shanghai execution layer to Ethereum Classic without incident.',
+    content: `Six months after its activation on February 5, 2024, the Spiral network upgrade has proven stable and successful — bringing Ethereum Classic's EVM to parity with Ethereum's Shanghai execution-layer improvements.
+
+## What Spiral Delivered
+
+Spiral (ECIP-1109) implemented seven EIPs from Ethereum's Shanghai upgrade:
+
+- **EIP-3651 — Warm COINBASE**: Reduced gas cost for accessing the block producer's address from 2,600 to 100 gas. Benefits MEV and staking-related contracts.
+- **EIP-3855 — PUSH0**: New opcode that pushes zero onto the stack at minimal cost. Reduces bytecode size across all new deployments.
+- **EIP-3860 — Limit and Meter initcode**: Caps initcode size at 49,152 bytes and charges 2 gas per 32-byte word. Prevents oversized deployment transactions.
+- **EIP-4200 — Static Relative Jumps**: Introduces RJUMP, RJUMPI, and RJUMPV opcodes for more efficient control flow in EVM bytecode.
+- **EIP-6049 — Deprecate SELFDESTRUCT**: Formal deprecation notice for the SELFDESTRUCT opcode.
+
+## Omitted EIPs
+
+As with previous upgrades, ETC excluded PoS-specific changes:
+
+- **EIP-4399 (PREVRANDAO)**: Replaces DIFFICULTY with beacon chain randomness — only applicable to proof-of-stake
+- **EIP-4895 (Beacon Chain Withdrawals)**: Validator withdrawals — only applicable to proof-of-stake
+
+## Network Impact
+
+### Stability
+Zero chain splits, zero client incompatibilities. All three ETC clients (Core-Geth, Besu, Fukuii) processed the fork boundary without issues.
+
+### Developer Experience
+EVM parity with Shanghai means developers can use the latest Solidity compiler features when deploying to ETC. Tools like Hardhat, Foundry, and Remix work without special configuration.
+
+### Gas Efficiency
+PUSH0 and Warm COINBASE have measurably reduced gas costs for common operations, benefiting all users.
+
+## Current Status
+
+Spiral represents ETC's current production EVM level. The next planned upgrade, Olympia, will introduce the treasury funding mechanism via EIP-1559 base fee redirection.`,
+    date: '2024-07-31',
+    category: 'Updates',
+    tags: ['Network Upgrade', 'Spiral', 'ECIP-1109', 'Shanghai'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
 ]
 
 // Helper functions
@@ -951,6 +1461,7 @@ export const categoryDescriptions: Record<ArticleCategory, string> = {
   Security: 'Security advisories, best practices, and network health',
   Ecosystem: 'DeFi, dApps, and project announcements',
   Community: 'Events, governance, and community initiatives',
+  Development: 'Protocol internals, technical education, and developer resources',
 }
 
 export const categoryIcons: Record<ArticleCategory, string> = {
@@ -958,4 +1469,5 @@ export const categoryIcons: Record<ArticleCategory, string> = {
   Security: '🛡️',
   Ecosystem: '🌐',
   Community: '👥',
+  Development: '⚙️',
 }
