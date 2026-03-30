@@ -1962,6 +1962,314 @@ The 2020 attacks and MESS response demonstrated ETC's ability to:
     author: 'ETC Community',
     readTime: 5,
   },
+
+  // ===========================================
+  // BATCH 3: Ecosystem & Recent Events
+  // ===========================================
+
+  {
+    slug: 'besu-etc-client',
+    title: 'Hyperledger Besu Adds Ethereum Classic Support',
+    excerpt:
+      'The enterprise-grade Ethereum client Hyperledger Besu integrated native Ethereum Classic support, expanding multi-client diversity for the network.',
+    content: `Hyperledger Besu, the enterprise-grade Ethereum client maintained under the Linux Foundation's Hyperledger project, added native support for Ethereum Classic. The integration brought a fourth client implementation to the ETC network, strengthening client diversity — a critical factor in blockchain resilience.
+
+## Background
+
+Besu was originally developed by ConsenSys under the name "Pantheon" before being donated to the Hyperledger Foundation. Written in Java, Besu was designed from the ground up with enterprise requirements in mind: permissioned network support, privacy features, and modular architecture. Its donation to the Linux Foundation made it a vendor-neutral, open-source project.
+
+## ETC Integration
+
+The integration added full support for Ethereum Classic's protocol rules, including the ETCHash mining algorithm and all ETC-specific hard forks. Running Besu on the ETC network requires a single configuration flag:
+
+\`\`\`
+besu --network=classic
+\`\`\`
+
+This simplicity made Besu an attractive option for node operators, particularly those already running Besu for Ethereum or private network deployments. The shared codebase means operators can leverage the same tooling and operational knowledge across multiple EVM chains.
+
+## Client Diversity
+
+Client diversity is essential for blockchain network health. If all nodes run the same software, a single bug can cause network-wide failures. With Besu joining Core-Geth as an actively maintained ETC client, the network gained meaningful protection against single-implementation risk.
+
+Besu's unique capabilities on ETC include:
+- **Enterprise features:** Private transactions and permissioned network support
+- **Node-as-a-Service:** Well-suited for infrastructure providers
+- **Cross-chain operation:** Operators can run ETC, ETH, and private networks from one client
+
+## Current Status
+
+Besu continues to track upstream Ethereum improvements while maintaining ETC compatibility. The client is actively used by node operators and infrastructure providers serving the ETC ecosystem.`,
+    date: '2020-06-15',
+    category: 'Ecosystem',
+    tags: ['Besu', 'Hyperledger', 'Client Diversity', 'Enterprise'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'derivation-path-standard',
+    title: 'ETC Adopts HD Derivation Path Standard',
+    excerpt:
+      'Ethereum Classic standardized its HD wallet derivation path as m/44\'/61\'/0\'/0, establishing proper key separation from Ethereum wallets.',
+    content: `The Ethereum Classic community formalized its hierarchical deterministic (HD) wallet derivation path standard, establishing \`m/44'/61'/0'/0\` as the canonical path for ETC addresses. This standard ensures proper key separation between ETC and ETH wallets, preventing address confusion and improving security.
+
+## The Problem
+
+When Ethereum Classic forked from Ethereum in 2016, both chains initially shared the same derivation path (\`m/44'/60'/0'/0\`), where \`60\` is Ethereum's coin type registered in SLIP-0044. This meant hardware wallets and HD wallet implementations generated identical addresses for both chains — a significant security and usability concern.
+
+Users could accidentally send ETC to an ETH-derived address or vice versa. While the funds weren't technically lost (the same private key controls both), the confusion created real problems for wallet software and users managing assets on both chains.
+
+## The Standard
+
+The BIP-44 standard defines a hierarchical path structure:
+
+\`\`\`
+m / purpose' / coin_type' / account' / change / address_index
+\`\`\`
+
+Ethereum Classic registered coin type **61** in the SLIP-0044 registry, establishing the standard derivation path:
+
+\`\`\`
+m/44'/61'/0'/0/0    (first address)
+m/44'/61'/1'/0/0    (second account)
+m/44'/61'/2'/0/0    (third account)
+\`\`\`
+
+This cleanly separates ETC key material from ETH (\`m/44'/60'/...\`), ensuring that wallet software generates distinct addresses for each chain.
+
+## Wallet Adoption
+
+Hardware wallet manufacturers including Ledger and Trezor implemented the standard, generating ETC-specific addresses when users select Ethereum Classic in their wallet interfaces. Software wallets and key management libraries followed, making the standard path the default for new ETC wallet implementations.
+
+## Why It Matters
+
+Proper derivation path separation is foundational infrastructure. It ensures that:
+
+1. **Key isolation:** ETC private keys are derived independently from ETH keys
+2. **Address clarity:** Users see distinct addresses for each chain
+3. **Wallet interoperability:** Any BIP-44 compliant wallet generates the same ETC addresses from the same seed phrase
+4. **Recovery reliability:** Users can recover ETC funds from seed phrases using any compliant wallet`,
+    date: '2018-08-20',
+    category: 'Development',
+    tags: ['BIP-44', 'SLIP-0044', 'HD Wallet', 'Derivation Path', 'Standards'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'false-dapp-warning',
+    title: 'Security Advisory: Fraudulent dApp Sites Targeting ETC Users',
+    excerpt:
+      'The ETC community issued warnings about fraudulent websites impersonating legitimate dApps to steal user funds through phishing and malicious smart contracts.',
+    content: `The Ethereum Classic community issued a security advisory warning users about a rise in fraudulent websites impersonating legitimate decentralized applications. These scam sites targeted ETC users through phishing, malicious contract approvals, and fake token offerings.
+
+## Common Attack Vectors
+
+### Phishing Sites
+Attackers created websites visually identical to popular DeFi interfaces, using similar domain names (typosquatting) to trick users into connecting their wallets. Once connected, the sites would prompt users to sign transactions that drained their funds.
+
+### Malicious Token Approvals
+Some fraudulent dApps requested unlimited token approval permissions. While legitimate dApps may request approvals for specific amounts, scam sites exploited the ERC-20 approval mechanism to gain permanent access to a user's token balances, which could be drained at any time.
+
+### Fake Token Contracts
+Scammers deployed token contracts designed to appear legitimate — complete with names, symbols, and even fake liquidity — but containing hidden mechanisms such as:
+- Transfer taxes that route funds to the deployer
+- Mint functions allowing unlimited supply creation
+- Blacklist functions preventing token sales (honeypots)
+- Self-destruct mechanisms to remove evidence
+
+## How to Stay Safe
+
+**Verify contract addresses:** Always confirm dApp contract addresses through official sources. Check addresses on [Blockscout](https://etc.blockscout.com) before interacting.
+
+**Bookmark trusted sites:** Access dApps through bookmarked URLs rather than search engine results or social media links. Scam sites frequently purchase ads to appear above legitimate results.
+
+**Review approvals:** Before signing any transaction, carefully review what permissions you're granting. Use token approval checker tools to audit and revoke unnecessary approvals.
+
+**Check contract verification:** Legitimate dApps typically have verified, open-source contracts on block explorers. Unverified contracts should be treated with extreme caution.
+
+**Use hardware wallets:** Hardware wallets provide an additional verification step, displaying transaction details on the device screen before signing.
+
+## Community Response
+
+The ETC community maintains awareness of known scam contracts and phishing domains. Users who encounter suspicious sites are encouraged to report them through community channels to help protect others.
+
+Always verify before you interact. If a deal seems too good to be true, it almost certainly is.`,
+    date: '2023-01-10',
+    category: 'Security',
+    tags: ['Phishing', 'Scams', 'Security Advisory', 'DeFi Safety'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'pow-censorship-resistance',
+    title: 'Proof of Work and Censorship Resistance: Why ETC Stays PoW',
+    excerpt:
+      'After Ethereum transitioned to Proof of Stake in September 2022, Ethereum Classic reaffirmed its commitment to Proof of Work as the foundation of censorship resistance.',
+    content: `When Ethereum completed its transition to Proof of Stake on September 15, 2022 — an event known as "The Merge" — Ethereum Classic became the largest Proof of Work smart contract platform. ETC's commitment to PoW was not a passive default but a deliberate choice rooted in the network's founding principles.
+
+## The Merge and Its Implications
+
+Ethereum's Merge eliminated mining from its consensus mechanism, replacing it with a validator staking model. This transition had significant implications for censorship resistance:
+
+- **Validator concentration:** A small number of large staking providers control substantial portions of the validator set
+- **Regulatory surface:** Identifiable validators can be compelled by jurisdictions to comply with transaction filtering requirements
+- **OFAC compliance incidents:** In the months following The Merge, a measurable percentage of Ethereum blocks were produced by validators complying with OFAC sanctions lists, temporarily excluding certain transactions
+
+## Why Proof of Work Matters
+
+Proof of Work provides censorship resistance through physical decentralization:
+
+**Permissionless participation:** Anyone with mining hardware and electricity can participate. There is no minimum stake, no approval process, and no identity requirement.
+
+**Geographic distribution:** Mining operations are distributed globally, often in jurisdictions with minimal regulatory overlap. No single government can effectively control the majority of hash power.
+
+**Transaction inclusion guarantee:** In PoW, miners are economically incentivized to include all fee-paying transactions regardless of content. Excluding valid transactions means forgoing fee revenue — a direct economic cost.
+
+**No slashing risk:** PoW miners cannot have their equipment confiscated through protocol-level penalties. Validators in PoS systems face slashing, creating leverage for entities that can influence validator behavior.
+
+## ETC's Position
+
+Ethereum Classic's commitment to Proof of Work predates The Merge. The network's monetary policy (ECIP-1017), immutability principles, and resistance to irregular state changes all reflect the same philosophy: protocol rules should be enforced by physics and economics, not by social consensus among identifiable parties.
+
+After The Merge, ETC absorbed significant hash power from former Ethereum miners, further strengthening its security. The network continues to operate as a permissionless, censorship-resistant platform where transaction inclusion depends solely on paying the required fee — not on the sender's identity or the transaction's purpose.`,
+    date: '2022-10-15',
+    category: 'Community',
+    tags: ['Proof of Work', 'Censorship Resistance', 'The Merge', 'PoW vs PoS'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'discord-migration',
+    title: 'ETC Community Migrates to Discord',
+    excerpt:
+      'The Ethereum Classic community established Discord as its primary real-time communication platform, centralizing developer and community discussion.',
+    content: `The Ethereum Classic community migrated its primary real-time communication to Discord, establishing a dedicated server as the main hub for developer coordination, community discussion, and ecosystem announcements.
+
+## Why Discord
+
+Prior to the migration, ETC community communication was fragmented across multiple platforms including Telegram groups, Reddit, and various chat services. This fragmentation made it difficult for newcomers to find the active community and for developers to coordinate effectively.
+
+Discord offered several advantages:
+
+- **Organized channels:** Topic-specific channels for development, mining, trading, and general discussion prevent conversations from getting lost in a single stream
+- **Role-based access:** Contributors, developers, and moderators can be identified through roles, building trust and accountability
+- **Bot integration:** Automated moderation, GitHub commit notifications, and price feeds keep the community informed without manual effort
+- **Voice channels:** Real-time voice discussion for developer calls and community meetings
+- **Persistent history:** Unlike some platforms, Discord maintains searchable message history
+
+## Server Structure
+
+The ETC Discord was organized to serve both technical and general community needs:
+
+- **Announcements:** Network upgrades, security advisories, and ecosystem news
+- **Development:** Protocol discussion, client development, smart contract development
+- **Mining:** Hash rate discussion, pool recommendations, hardware setup
+- **Community:** General discussion, newcomer questions, project showcases
+- **Governance:** ECIP discussion and community proposals
+
+## Moderation
+
+The server implemented automated anti-spam and anti-phishing measures to protect users from scam links and impersonation attempts — a persistent problem across cryptocurrency communities. Moderation rules were published transparently, and moderation actions were logged for accountability.
+
+## Joining
+
+The ETC Discord remains the primary real-time communication channel for the Ethereum Classic community. Developers, miners, and community members can join through the link at [ethereumclassic.com/community](/community).`,
+    date: '2019-11-01',
+    category: 'Community',
+    tags: ['Discord', 'Community', 'Communication', 'Social'],
+    author: 'ETC Community',
+    readTime: 3,
+  },
+  {
+    slug: 'olympia-ecips-review',
+    title: 'Olympia Network Upgrade: ECIP Review Begins',
+    excerpt:
+      'The Ethereum Classic community began formal review of the Olympia upgrade ECIPs, proposing EIP-1559 fee markets, a non-inflationary treasury, and on-chain governance.',
+    content: `The Ethereum Classic community opened formal review of the Olympia network upgrade — the most significant protocol change proposed for ETC since its founding. The upgrade introduces EIP-1559 dynamic fee markets, a non-inflationary treasury mechanism, and an on-chain governance framework.
+
+## The Olympia ECIPs
+
+The upgrade is defined across multiple Ethereum Classic Improvement Proposals:
+
+**ECIP-1111: Olympia Network Upgrade**
+The meta-ECIP that activates the upgrade at a specified block height. It bundles the individual protocol changes into a single coordinated activation, ensuring all nodes upgrade simultaneously.
+
+**ECIP-1112: Olympia Treasury Contract**
+Defines an immutable, non-custodial smart contract that receives redirected base fees from EIP-1559 transactions. Unlike the original EIP-1559 design where base fees are burned, Olympia redirects them to fund public goods development. The treasury contract has no admin keys and no upgrade mechanism — funds can only be disbursed through the governance process.
+
+**ECIP-1113: Olympia DAO Governance Framework**
+Establishes a modular on-chain governance system for managing treasury funds. The framework defines proposal submission, voting mechanisms, and execution processes. Governance decisions are enforced by smart contracts, not by social consensus among off-chain parties.
+
+**ECIP-1114: ETC Funding Proposal Process (ECFP)**
+Standardizes the lifecycle for funding proposals — from submission through review, voting, and disbursement. This creates a transparent, repeatable process for allocating treasury resources to development, infrastructure, and ecosystem growth.
+
+## Non-Inflationary Design
+
+A critical design decision: Olympia does not create new tokens. Miners continue to receive their full block rewards and priority fees (tips). Only the base fee — which EIP-1559 would otherwise burn — is redirected to the treasury. This means the monetary policy established by ECIP-1017 remains unchanged: the 210.7 million ETC supply cap is preserved.
+
+## Review Process
+
+The ECIPs were published in Draft status, opening a formal review period for the community to evaluate the proposals. Core developers, miners, node operators, and community members were invited to provide feedback through the standard ECIP process.
+
+## Testing Plan
+
+The upgrade targets deployment on the Mordor testnet before mainnet activation, allowing thorough multi-client testing across Core-Geth, Besu, and Fukuii — the three ETC client implementations preparing Olympia support.`,
+    date: '2025-09-01',
+    category: 'Updates',
+    tags: ['Olympia', 'ECIP', 'EIP-1559', 'Treasury', 'Governance', 'Network Upgrade'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'gorgoroth-trials-fukuii',
+    title: 'Gorgoroth Trials: Multi-Client Testing for Olympia',
+    excerpt:
+      'The Gorgoroth Trials testing campaign launched to validate multi-client compatibility between Fukuii, Core-Geth, and Besu ahead of the Olympia network upgrade.',
+    content: `The Gorgoroth Trials — a structured testing campaign for the Olympia network upgrade — launched to validate multi-client compatibility across the three Ethereum Classic client implementations. Named after the volcanic plateau in Tolkien's Mordor, the trials serve as a proving ground for protocol changes before testnet and mainnet activation.
+
+## Three-Client Testing
+
+The Olympia upgrade requires simultaneous support from all three ETC clients:
+
+- **Core-Geth:** The Go-based client derived from go-ethereum, maintained as the primary ETC implementation
+- **Hyperledger Besu:** The Java-based enterprise client maintained under the Linux Foundation
+- **Fukuii:** A new Scala 3 implementation built specifically for Ethereum Classic, bringing a third independent codebase to the network
+
+Testing across three independent implementations provides strong assurance that the protocol specification is unambiguous and correctly implemented. If all three clients — written in different languages by different teams — produce identical results, the specification is likely correct.
+
+## Test Configurations
+
+The trials defined progressively complex network configurations:
+
+1. **Single-client baseline:** Three Fukuii nodes verifying internal consistency
+2. **Fukuii + Core-Geth:** Mixed network testing Go and Scala implementations
+3. **Fukuii + Besu:** Mixed network testing Scala and Java implementations
+4. **Full mixed network:** All three clients operating together — the ultimate compatibility test
+
+Each configuration validated:
+- Block production and propagation across client boundaries
+- Transaction pool synchronization
+- Protocol rule enforcement consistency
+- Mining compatibility across implementations
+- Network discovery and peer management
+
+## What's Being Tested
+
+The Gorgoroth Trials specifically target Olympia protocol changes:
+
+- **EIP-1559 fee market:** All three clients must calculate identical base fees, validate transaction types consistently, and handle the fee market transition correctly
+- **Treasury redirection:** Base fee routing to the treasury contract must produce identical state transitions
+- **Fork activation:** The upgrade boundary must be handled identically by all clients
+
+## From Testing to Activation
+
+The Gorgoroth Trials represent the first phase of a multi-stage testing process. Successful completion leads to Mordor testnet activation, where the upgrade runs on a public proof-of-work network before mainnet deployment. This methodical approach — private testing, public testnet, then mainnet — follows established blockchain upgrade best practices.`,
+    date: '2026-02-15',
+    category: 'Updates',
+    tags: ['Gorgoroth', 'Olympia', 'Multi-Client', 'Testing', 'Fukuii', 'Core-Geth', 'Besu'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
 ]
 
 // Helper functions
