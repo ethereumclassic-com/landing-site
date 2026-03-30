@@ -353,9 +353,9 @@ export interface DocResource {
 export const docResources: DocResource[] = [
   {
     id: 'etc-docs',
-    name: 'EthereumClassic.org',
-    url: 'https://ethereumclassic.org/knowledge',
-    description: 'Official Ethereum Classic knowledge base with protocol documentation and guides.',
+    name: 'EthereumClassic.com',
+    url: 'https://ethereumclassic.com/learn',
+    description: 'Ethereum Classic learning resources with protocol documentation and guides.',
     category: 'official',
   },
   {
@@ -446,6 +446,33 @@ export const explorerAPIs: ExplorerAPI[] = [
     apiUrl: 'https://etc-mordor.blockscout.com/api',
     description: 'Mordor testnet block explorer.',
     network: 'testnet',
+  },
+  {
+    name: '3xpl',
+    url: 'https://3xpl.com/ethereum-classic',
+    description: 'Universal blockchain explorer supporting ETC with clean interface and API access.',
+    network: 'mainnet',
+  },
+  {
+    name: 'Blockchair',
+    url: 'https://blockchair.com/ethereum-classic',
+    apiUrl: 'https://api.blockchair.com/ethereum-classic',
+    description: 'Multi-chain explorer with advanced filtering, data exports, and privacy features.',
+    network: 'mainnet',
+  },
+  {
+    name: 'OKLink',
+    url: 'https://www.oklink.com/etc',
+    apiUrl: 'https://www.oklink.com/api/v5/explorer',
+    description: 'Enterprise blockchain data platform with ETC explorer and developer APIs.',
+    network: 'mainnet',
+  },
+  {
+    name: 'Tokenview',
+    url: 'https://etc.tokenview.io',
+    apiUrl: 'https://services.tokenview.io/vipapi',
+    description: 'Multi-chain explorer with token analytics, address monitoring, and notification APIs.',
+    network: 'mainnet',
   },
 ]
 
