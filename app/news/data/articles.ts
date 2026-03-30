@@ -1389,6 +1389,579 @@ Spiral represents ETC's current production EVM level. The next planned upgrade, 
     author: 'ETC Community',
     readTime: 4,
   },
+
+  // ═══════════════════════════════════════════════════════════════════
+  // BATCH 2: Technical Education
+  // ═══════════════════════════════════════════════════════════════════
+
+  {
+    slug: 'smart-contracts-overview',
+    title: 'Smart Contracts on Ethereum Classic: A Technical Overview',
+    excerpt:
+      'How smart contracts work on the EVM, from Solidity compilation to on-chain execution, and what makes ETC a reliable platform for immutable contract deployment.',
+    content: `Smart contracts are self-executing programs stored on the blockchain that run exactly as written. On Ethereum Classic, smart contracts benefit from the network's commitment to immutability — once deployed, a contract's code cannot be altered by any party.
+
+## How Smart Contracts Work
+
+### Compilation
+Developers write contracts in high-level languages like Solidity or Vyper. The compiler translates this code into EVM bytecode — the low-level instruction set that the Ethereum Virtual Machine understands.
+
+### Deployment
+The bytecode is included in a special transaction sent to the network. When miners include this transaction in a block, the contract is assigned an address and becomes part of the permanent blockchain state.
+
+### Execution
+When a user sends a transaction to a contract's address, nodes execute the bytecode against the current state. Each operation consumes gas — a unit of computational effort that prevents infinite loops and ensures fair resource allocation.
+
+### Determinism
+Every node executes the same bytecode with the same inputs and must arrive at the same result. This deterministic execution is what allows a decentralized network to agree on state without a central authority.
+
+## Gas and Execution Costs
+
+Every EVM operation has a gas cost:
+- **Simple transfer**: 21,000 gas
+- **Storage write**: 20,000 gas (new slot) or 5,000 gas (update)
+- **Computation**: Varies by opcode (ADD = 3 gas, MUL = 5 gas)
+
+Users set a gas limit and gas price per transaction. If execution exceeds the gas limit, the transaction reverts but the gas is still consumed.
+
+## ERC Standards
+
+Smart contracts on ETC follow the same token standards as Ethereum:
+- **ERC-20**: Fungible tokens (currencies, utility tokens)
+- **ERC-721**: Non-fungible tokens (unique digital assets)
+- **ERC-1155**: Multi-token standard (batch operations)
+
+## Why ETC for Smart Contracts
+
+ETC's immutability guarantee means deployed contracts will execute as written indefinitely. The blockchain has never undergone an irregular state change since the 2016 fork, making it a reliable platform for contracts that must remain unchanged.`,
+    date: '2017-05-10',
+    category: 'Development',
+    tags: ['Smart Contracts', 'EVM', 'Solidity', 'Development'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'keys-and-addresses',
+    title: 'Public Keys, Private Keys, and Addresses in ETC',
+    excerpt:
+      'A technical explanation of elliptic curve cryptography, key derivation, and address generation on Ethereum Classic.',
+    content: `Every Ethereum Classic account is secured by public-key cryptography. Understanding how keys and addresses work is fundamental to safe interaction with the network.
+
+## The Key Pair
+
+### Private Key
+A private key is a randomly generated 256-bit number — essentially a number between 1 and approximately 1.158 × 10⁷⁷. This number must be kept secret. Anyone who knows a private key has full control over the associated account.
+
+### Public Key
+The public key is derived from the private key using elliptic curve multiplication on the secp256k1 curve — the same curve used by Bitcoin. This operation is computationally easy in one direction but infeasible to reverse. Given a public key, there is no known way to determine the private key.
+
+### Address
+An ETC address is the last 20 bytes (160 bits) of the Keccak-256 hash of the public key, prefixed with "0x". For example: \`0x3b0952fB8eAAC74E56E176102eBA70BAB1C81537\`.
+
+## Key Derivation Path
+
+The derivation process follows a chain:
+
+1. **Random entropy** → Private key (256 bits)
+2. **Private key** → Public key (secp256k1 elliptic curve multiplication)
+3. **Public key** → Address (Keccak-256 hash, take last 20 bytes)
+
+Each step is a one-way function: you cannot reverse the process to recover the previous step.
+
+## HD Wallets
+
+Modern wallets use Hierarchical Deterministic (HD) key generation (BIP-32/BIP-44). A single seed phrase (12 or 24 words) deterministically generates an unlimited number of key pairs. ETC uses derivation path \`m/44'/61'/0'/0\` (where 61 is ETC's coin type per SLIP-44).
+
+## Security Implications
+
+- **Seed phrase = all keys**: Anyone with your seed phrase can derive every key your wallet has ever generated
+- **Private key = account control**: There is no password reset. If a private key is lost, the funds are permanently inaccessible
+- **Address = public identifier**: Addresses can be freely shared. They reveal no information about the private key
+
+## Checksummed Addresses
+
+EIP-55 mixed-case checksums encode error detection directly into the address string. Wallets should always validate checksums before sending transactions.`,
+    date: '2017-09-14',
+    category: 'Development',
+    tags: ['Cryptography', 'Keys', 'Addresses', 'Security'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'replay-attacks-explained',
+    title: 'Replay Attacks: What They Are and How ETC Handles Them',
+    excerpt:
+      'After the 2016 DAO fork created two chains with shared history, replay attacks became a real concern. How ETC and ETH addressed the problem.',
+    content: `When the Ethereum network split into ETH and ETC on July 20, 2016, both chains shared identical transaction formats and account histories. This created a vulnerability: a transaction signed on one chain could be "replayed" on the other.
+
+## What Is a Replay Attack?
+
+A replay attack occurs when a valid transaction from one blockchain is broadcast on another blockchain where it is also valid. After the DAO fork:
+
+- Alice sends 10 ETC to Bob on the ETC chain
+- An attacker copies that signed transaction and broadcasts it on the ETH chain
+- Since the transaction format and signing scheme were identical, Alice also sends 10 ETH to Bob — unintentionally
+
+## Why It Happened
+
+Both chains diverged from the same state at block 1,920,000. All accounts, balances, and contract code were identical on both chains. Signed transactions didn't specify which chain they were intended for, making them valid on both.
+
+## The Solution: Chain ID (EIP-155)
+
+EIP-155 introduced a chain identifier into the transaction signing process:
+
+- **Ethereum (ETH)**: Chain ID 1
+- **Ethereum Classic (ETC)**: Chain ID 61
+- **Mordor Testnet**: Chain ID 63
+
+With EIP-155, the chain ID is incorporated into the transaction hash before signing. A transaction signed for chain 61 produces an invalid signature on chain 1, and vice versa.
+
+## Implementation on ETC
+
+ETC implemented EIP-155 replay protection via the Spurious Dragon equivalent changes. After activation:
+
+- All new transactions include the chain ID in the signature
+- Legacy transactions (without chain ID) are still accepted for backward compatibility
+- Wallets and libraries automatically include the chain ID when constructing transactions
+
+## Practical Impact
+
+Today, replay attacks between ETH and ETC are effectively eliminated for any transaction using EIP-155 signing. All modern wallets and libraries use this format by default.
+
+The chain ID solution was one of the earliest examples of both chains cooperating on a technical standard that benefited users of both networks.`,
+    date: '2018-01-31',
+    category: 'Security',
+    tags: ['Replay Attack', 'EIP-155', 'Chain ID', 'Security'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'merkle-trees-explained',
+    title: 'Merkle Trees: The Data Structure Behind Blockchain Verification',
+    excerpt:
+      'How Merkle trees enable efficient and trustless verification of blockchain data, from transaction inclusion proofs to state verification.',
+    content: `Every block in Ethereum Classic contains three Merkle tree roots: one for transactions, one for receipts, and one for the world state. These trees are the foundation of trustless verification.
+
+## What Is a Merkle Tree?
+
+A Merkle tree (or hash tree) is a data structure where every leaf node contains the hash of a data block, and every non-leaf node contains the hash of its children. The topmost hash is called the root.
+
+## How It Works
+
+1. **Leaf nodes**: Each transaction in a block is hashed individually
+2. **Pairing**: Adjacent hashes are concatenated and hashed together
+3. **Recursion**: This continues up the tree until a single hash remains — the Merkle root
+4. **Inclusion proof**: To prove a transaction is in a block, you only need the transaction, the sibling hashes along the path to the root, and the root itself
+
+## Three Trees in Every Block
+
+### Transaction Trie
+Contains all transactions in the block. The transaction root in the block header commits to every transaction.
+
+### Receipt Trie
+Contains the execution results (logs, gas used, status) for each transaction. The receipt root commits to every execution outcome.
+
+### State Trie (Modified Merkle Patricia Trie)
+The most complex of the three. It maps every account address to its state (balance, nonce, storage root, code hash). ETC uses a Modified Merkle Patricia Trie — a combination of a Patricia trie (for key-based lookup) and a Merkle tree (for cryptographic verification).
+
+## Why Merkle Trees Matter
+
+### Efficient Verification
+A light client can verify that a transaction was included in a block using only ~log₂(n) hashes instead of downloading the entire block. For a block with 1,000 transactions, only ~10 hashes are needed.
+
+### Tamper Detection
+Changing any single transaction would change its leaf hash, which would cascade up the tree and change the root. Since the root is in the block header (which is part of the chain), any modification is immediately detectable.
+
+### State Proofs
+The state trie root allows anyone to prove the balance or storage of any account at any block height, without trusting the data provider.
+
+## In Practice
+
+When your wallet shows your ETC balance, it's ultimately verified against the state trie root in the latest block header. The entire security model of light clients and block explorers depends on these Merkle tree structures.`,
+    date: '2018-03-15',
+    category: 'Development',
+    tags: ['Merkle Trees', 'Data Structures', 'Verification'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'dos-attacks-blockchain',
+    title: 'Understanding DoS Attacks on Blockchain Networks',
+    excerpt:
+      'How denial-of-service attacks target blockchain networks, the 2016 attacks on Ethereum/ETC, and the protocol-level defenses that were implemented.',
+    content: `In September and October 2016, both Ethereum and Ethereum Classic experienced coordinated denial-of-service attacks that exploited underpriced EVM opcodes. The response shaped both networks' approach to gas pricing.
+
+## The 2016 Attacks
+
+### Transaction Spam (September 2016)
+Attackers discovered that certain opcodes — particularly EXTCODESIZE and BALANCE — were priced far below their actual computational cost. By constructing transactions that called these opcodes thousands of times, attackers could force nodes to perform expensive I/O operations for minimal gas cost.
+
+### State Bloat (October 2016)
+A second wave targeted state growth. The CREATE opcode was used to generate millions of empty accounts, bloating the state trie that every full node must store. At peak, the attack added over 19 million empty accounts to the state.
+
+## Impact
+
+- Block processing times increased from seconds to minutes
+- Some nodes ran out of memory and crashed
+- Network throughput dropped dramatically
+- Synchronizing new nodes became impractical
+
+## Protocol-Level Fixes
+
+Both ETH and ETC implemented the same fixes, known as the "Spurious Dragon" changes on ETH and equivalent changes on ETC:
+
+### Gas Repricing (EIP-150)
+Opcodes that performed I/O operations had their gas costs increased to reflect actual computational cost:
+- EXTCODESIZE: 20 → 700 gas
+- BALANCE: 20 → 400 gas
+- SLOAD: 50 → 200 gas
+- CALL variants: 40 → 700 gas
+
+### State Clearing (EIP-161)
+Empty accounts (zero balance, zero nonce, no code) could be removed from the state trie, allowing nodes to clean up the millions of accounts created during the attack.
+
+### EXP Repricing (EIP-160)
+The EXP opcode cost was increased from 10 + 10 per byte to 10 + 50 per byte to prevent computational DoS via exponentiation.
+
+## Lessons Learned
+
+The 2016 attacks demonstrated that gas pricing must accurately reflect actual resource consumption. Underpriced opcodes create economic attack vectors that are difficult to mitigate without protocol changes. Both networks now conduct more thorough gas cost analysis before introducing new opcodes.`,
+    date: '2018-06-21',
+    category: 'Security',
+    tags: ['DoS Attack', 'Gas Pricing', 'Network Security'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'accounts-states-explained',
+    title: 'Accounts and State in Ethereum Classic',
+    excerpt:
+      'How the ETC world state works: externally owned accounts, contract accounts, the state trie, and how every transaction modifies the global state.',
+    content: `Ethereum Classic maintains a global "world state" — a mapping from every account address to its current state. Understanding this data model is key to understanding how the EVM works.
+
+## Two Types of Accounts
+
+### Externally Owned Accounts (EOAs)
+Controlled by private keys. EOAs have:
+- **Balance**: Amount of ETC held
+- **Nonce**: Number of transactions sent (prevents replay)
+- No code, no storage
+
+### Contract Accounts
+Controlled by their deployed code. Contract accounts have:
+- **Balance**: Amount of ETC held
+- **Nonce**: Number of contracts created by this contract
+- **Code hash**: Hash of the EVM bytecode
+- **Storage root**: Root of the account's storage trie
+
+## The World State
+
+The world state is a mapping: \`address → {nonce, balance, storageRoot, codeHash}\`.
+
+This mapping is stored in a Modified Merkle Patricia Trie. The root hash of this trie is included in every block header as the \`stateRoot\`. This single 32-byte hash cryptographically commits to the entire state of every account on the network.
+
+## State Transitions
+
+Every transaction modifies the world state:
+
+1. **Sender's nonce** increments by 1
+2. **Sender's balance** decreases by (gas used × gas price) + value transferred
+3. **Recipient's balance** increases by the value transferred
+4. **Miner's balance** increases by gas used × gas price
+5. **Contract storage** may change if the transaction calls a contract
+
+The new state root after applying all transactions in a block becomes the block's \`stateRoot\`.
+
+## State Growth
+
+Every new account and every new storage slot adds to the state that full nodes must maintain. As of 2024, the ETC state contains millions of accounts and billions of storage entries. State growth management is an ongoing challenge for all EVM chains.
+
+## State Proofs
+
+Because the state is stored in a Merkle trie, anyone can construct a proof that a specific account has a specific balance at a specific block. This enables light clients and cross-chain verification without trusting the data provider.`,
+    date: '2018-09-20',
+    category: 'Development',
+    tags: ['State', 'Accounts', 'EVM', 'World State'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'transaction-lifecycle',
+    title: 'The Lifecycle of an ETC Transaction',
+    excerpt:
+      'From signing to finality: the complete journey of a transaction through the Ethereum Classic network, including mempool dynamics and block inclusion.',
+    content: `Every ETC transaction follows a specific lifecycle from creation to finality. Understanding this process helps users and developers reason about confirmation times, gas pricing, and transaction reliability.
+
+## 1. Creation and Signing
+
+The sender constructs a transaction with:
+- **To**: Recipient address (or empty for contract deployment)
+- **Value**: Amount of ETC to transfer
+- **Data**: Input data (empty for simple transfers, calldata for contract interactions)
+- **Gas limit**: Maximum gas the transaction may consume
+- **Gas price**: ETC per unit of gas the sender is willing to pay
+- **Nonce**: Sequential number matching the sender's current nonce
+- **Chain ID**: 61 for ETC mainnet (EIP-155 replay protection)
+
+The transaction is then signed with the sender's private key using ECDSA on the secp256k1 curve.
+
+## 2. Broadcast
+
+The signed transaction is broadcast to the sender's connected peers. Each peer validates the transaction (valid signature, sufficient balance, correct nonce) and forwards it to their peers. Within seconds, the transaction propagates across the network.
+
+## 3. Mempool
+
+Each node maintains a transaction pool (mempool) of valid but unconfirmed transactions. The mempool is not consensus-critical — different nodes may have different views of pending transactions.
+
+## 4. Block Inclusion
+
+Miners select transactions from their mempool to include in the next block, typically prioritizing by gas price (higher price = higher priority). When a miner finds a valid proof-of-work nonce, the block — including the selected transactions — is broadcast to the network.
+
+## 5. Confirmation
+
+Once included in a block, the transaction has one confirmation. Each subsequent block adds another confirmation. The probability of a transaction being reversed decreases exponentially with each confirmation:
+
+| Confirmations | Security Level |
+|--------------|----------------|
+| 1 | Low (possible reorganization) |
+| 6 | Moderate (standard for most transfers) |
+| 20 | High (recommended for large amounts) |
+| 40+ | Very high (exchange standard) |
+
+## 6. Finality
+
+Unlike proof-of-stake chains with deterministic finality, ETC uses probabilistic finality. A transaction is never mathematically "final" — but after sufficient confirmations, the cost of reversing it exceeds any rational economic incentive.
+
+## Failed Transactions
+
+If a transaction runs out of gas during execution, it reverts — but the gas is still consumed and the transaction appears on-chain as failed. The sender pays for the computation even though the state change was rolled back.`,
+    date: '2018-11-08',
+    category: 'Development',
+    tags: ['Transactions', 'Mempool', 'Confirmation', 'Gas'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'block-confirmations-security',
+    title: 'Block Confirmations and Transaction Security',
+    excerpt:
+      'Why confirmations matter on proof-of-work chains, how many are needed for different transaction sizes, and the economics of chain reorganizations.',
+    content: `On proof-of-work blockchains like Ethereum Classic, transaction security is measured in block confirmations. Each confirmation makes it exponentially more expensive to reverse a transaction.
+
+## What Is a Confirmation?
+
+When your transaction is included in block N, it has one confirmation. When block N+1 is mined on top of block N, your transaction has two confirmations. Each new block adds another confirmation.
+
+## Why Confirmations Matter
+
+In PoW, miners compete to extend the longest chain. Occasionally, two miners find valid blocks at nearly the same time, creating a temporary fork. The network resolves this by following the chain with more cumulative work — the "heaviest chain."
+
+Transactions in the shorter fork are returned to the mempool and may be re-included in a future block. This is a **chain reorganization** (reorg).
+
+## Confirmation Guidelines
+
+The appropriate number of confirmations depends on the value at stake:
+
+| Transaction Value | Recommended Confirmations | Wait Time (~13s/block) |
+|------------------|--------------------------|----------------------|
+| Small (< 100 ETC) | 6 | ~78 seconds |
+| Medium (100–10K ETC) | 20 | ~4.3 minutes |
+| Large (> 10K ETC) | 40 | ~8.7 minutes |
+| Exchange deposits | 40–100 | 8.7–21.7 minutes |
+
+## The Economics of Reorgs
+
+To reverse a transaction with N confirmations, an attacker must:
+
+1. Mine an alternative chain starting from the block before the transaction
+2. This chain must be longer than the current chain (requiring > 50% of network hashrate sustained for N blocks)
+3. The cost scales linearly with N: more confirmations = more mining power × more time needed
+
+After Ethereum's Merge, ETC's hashrate increased dramatically, making 51% attacks substantially more expensive than pre-Merge levels.
+
+## MESS and Additional Protections
+
+In 2020, following 51% attacks, ETC implemented MESS (Modified Exponential Subjective Scoring, ECBP-1100) to penalize deep reorganizations. MESS was later deprecated after the post-Merge hashrate increase made attacks economically infeasible.
+
+## Compared to PoS Finality
+
+Proof-of-stake chains like Ethereum offer deterministic finality — after a certain point, transactions cannot be reversed at all. PoW chains offer probabilistic finality — transactions become increasingly secure but are never mathematically irreversible. The tradeoff is that PoW finality requires no trusted validator set.`,
+    date: '2019-02-07',
+    category: 'Security',
+    tags: ['Confirmations', 'Security', 'Reorgs', 'Finality'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'zero-knowledge-proofs',
+    title: 'Zero-Knowledge Proofs and Their Potential on ETC',
+    excerpt:
+      'How zero-knowledge proofs work, their applications in blockchain privacy and scalability, and what they mean for EVM-compatible chains like Ethereum Classic.',
+    content: `Zero-knowledge proofs (ZKPs) are cryptographic protocols that allow one party to prove a statement is true without revealing any information beyond the statement's validity. They have significant implications for blockchain privacy and scalability.
+
+## How ZKPs Work
+
+A zero-knowledge proof satisfies three properties:
+
+1. **Completeness**: If the statement is true, an honest prover can convince an honest verifier
+2. **Soundness**: If the statement is false, no cheating prover can convince the verifier (except with negligible probability)
+3. **Zero-knowledge**: The verifier learns nothing beyond the fact that the statement is true
+
+## Types of ZKPs
+
+### zk-SNARKs
+Succinct Non-interactive Arguments of Knowledge. Small proof size (~288 bytes), fast verification, but requires a trusted setup ceremony.
+
+### zk-STARKs
+Scalable Transparent Arguments of Knowledge. Larger proofs but no trusted setup required. Quantum-resistant.
+
+### Groth16, PLONK, Halo 2
+Different proving systems with varying tradeoffs in proof size, verification time, and setup requirements.
+
+## Blockchain Applications
+
+### Privacy
+ZKPs can prove that a transaction is valid without revealing the sender, recipient, or amount. Projects like Zcash use this for private transactions.
+
+### Scalability (zk-Rollups)
+ZKPs can compress thousands of transactions into a single proof. A verifier on the base layer (like ETC) can verify the proof in a single transaction, enabling massive throughput scaling.
+
+### Identity
+Prove you are over 18 without revealing your birthdate. Prove you are a citizen without revealing which citizen. ZKPs enable selective disclosure of identity attributes.
+
+## ZKPs and the EVM
+
+The EVM includes precompiled contracts for elliptic curve operations (added in the Byzantium/Atlantis upgrades) that make on-chain ZKP verification feasible:
+
+- **ecAdd** (address 0x06): Elliptic curve addition
+- **ecMul** (address 0x07): Elliptic curve scalar multiplication
+- **ecPairing** (address 0x08): Pairing check for zk-SNARK verification
+
+These precompiles are available on Ethereum Classic, meaning ZKP-based applications built for Ethereum can be deployed on ETC.
+
+## Future Potential
+
+As ZKP technology matures, ETC's role as an immutable base layer could make it attractive for anchoring ZKP proofs. The combination of proof-of-work security, EVM compatibility, and cryptographic verification primitives positions ETC to benefit from advances in this field.`,
+    date: '2019-06-13',
+    category: 'Development',
+    tags: ['Zero-Knowledge Proofs', 'Privacy', 'Scalability', 'Cryptography'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
+    slug: 'ecip-process-explained',
+    title: 'The ECIP Process: How ETC Protocol Changes Work',
+    excerpt:
+      'The Ethereum Classic Improvement Proposal process governs all protocol-level changes to ETC, from initial draft through community review to network activation.',
+    content: `The Ethereum Classic Improvement Proposal (ECIP) process is the formal mechanism through which protocol changes are proposed, discussed, and implemented on the ETC network.
+
+## What Is an ECIP?
+
+An ECIP is a design document providing information to the ETC community about a proposed change to the protocol. ECIPs follow a structured format that includes motivation, specification, rationale, and backwards compatibility analysis.
+
+## ECIP Types
+
+### Standards Track
+Changes to the network protocol, including consensus changes, block or transaction format changes, and EVM opcode additions. These are the most significant ECIPs as they require all nodes to upgrade.
+
+### Informational
+Provides general guidelines or information. Does not propose protocol changes.
+
+### Meta
+Describes a process surrounding ETC (like the ECIP process itself).
+
+## The ECIP Lifecycle
+
+1. **Draft**: Author writes the proposal and submits it to the ECIP repository
+2. **Review**: Community discusses the proposal on GitHub, Discord, and community calls
+3. **Last Call**: Final review period before acceptance
+4. **Accepted**: The proposal is technically sound and has community support
+5. **Final**: Implemented and activated on the network
+6. **Withdrawn/Rejected**: Not moving forward
+
+## Key ECIPs in ETC History
+
+| ECIP | Title | Status |
+|------|-------|--------|
+| ECIP-1017 | Monetary Policy and Final Modification to the Ethereum Classic Emission Schedule | Final |
+| ECIP-1054 | Atlantis EVM and Protocol Upgrades | Final |
+| ECIP-1056 | Agharta EVM and Protocol Upgrades | Final |
+| ECIP-1061 | Blake2b, Derivation Path, and ECIP-1061 | Final |
+| ECIP-1078 | Phoenix EVM and Protocol Upgrades | Final |
+| ECIP-1099 | Calibrate Epoch Duration (Thanos/Etchash) | Final |
+| ECIP-1100 | MESS (Modified Exponential Subjective Scoring) | Deprecated |
+| ECIP-1103 | Magneto EVM and Protocol Upgrades | Final |
+| ECIP-1104 | Mystique EVM and Protocol Upgrades | Final |
+| ECIP-1109 | Spiral EVM and Protocol Upgrades | Final |
+
+## Relationship to EIPs
+
+ECIPs often reference Ethereum Improvement Proposals (EIPs) when adopting upstream EVM changes. ETC evaluates each EIP independently — some are adopted (execution-layer improvements), while others are rejected (PoS-specific changes, EIP-1559 fee burning).
+
+## How to Participate
+
+The ECIP process is open to anyone. Proposals are submitted as pull requests to the ECIP repository. Discussion happens publicly on GitHub and in community channels. There is no permissioned committee — acceptance is based on technical merit and rough consensus.`,
+    date: '2019-08-15',
+    category: 'Development',
+    tags: ['ECIP', 'Governance', 'Protocol', 'Process'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
+    slug: 'reorg-mitigation',
+    title: 'Chain Reorganization Mitigation on ETC',
+    excerpt:
+      'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations — and later deprecated it as hashrate grew.',
+    content: `In August 2020, Ethereum Classic experienced multiple 51% attacks that resulted in deep chain reorganizations and double-spend attempts. The community responded with MESS (Modified Exponential Subjective Scoring), a novel defense mechanism.
+
+## The 2020 Attacks
+
+Three separate 51% attacks occurred in August 2020:
+
+- **August 1**: 3,693 block reorganization (~12 hours of chain history rewritten)
+- **August 6**: 4,000+ block reorganization
+- **August 29**: 7,000+ block reorganization (the deepest)
+
+The attacker used rented hashrate to build alternative chains in secret, then broadcast them to reorganize the canonical chain. This enabled double-spend attacks against exchanges.
+
+## MESS: The Response
+
+ECBP-1100, known as MESS (Modified Exponential Subjective Scoring), was implemented in October 2020. The mechanism works by penalizing chain reorganizations that go back many blocks:
+
+### How MESS Worked
+- Each node tracks the "gravity" of the chain it's following
+- A competing chain that reorganizes N blocks back must demonstrate exponentially more work than the current chain tip
+- Short reorgs (1-2 blocks, normal PoW behavior) are unaffected
+- Deep reorgs (100+ blocks) become effectively impossible even with majority hashrate
+
+### Key Properties
+- **No consensus change**: MESS is a node-level policy, not a consensus rule
+- **Gradual penalty**: The penalty increases with reorganization depth
+- **Configurable**: Node operators could adjust or disable the penalty
+
+## The Merge Changes Everything
+
+When Ethereum transitioned to proof-of-stake in September 2022, GPU miners migrated to ETC in massive numbers. Network hashrate increased from ~25 TH/s to over 200 TH/s — an 8x increase.
+
+This dramatically changed the economics of 51% attacks. The cost to rent sufficient hashrate to attack ETC became prohibitively expensive.
+
+## Deprecation
+
+With the post-Merge hashrate providing strong natural protection, MESS was deprecated. The community determined that the economic security from high hashrate made the additional subjective penalty unnecessary — and removing it simplified the client codebase.
+
+## Lessons Learned
+
+The 2020 attacks and MESS response demonstrated ETC's ability to:
+1. Respond quickly to security incidents
+2. Implement novel defense mechanisms
+3. Remove temporary measures when they're no longer needed
+4. Rely on fundamental PoW economics for long-term security`,
+    date: '2020-11-10',
+    category: 'Security',
+    tags: ['51% Attack', 'MESS', 'ECBP-1100', 'Chain Reorganization'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
 ]
 
 // Helper functions
