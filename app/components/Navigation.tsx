@@ -113,13 +113,18 @@ const navItems: {
 ]
 
 // Mobile navigation groups
-const mobileNavGroups = [
+const mobileNavGroups: {
+  label: string
+  highlight?: boolean
+  items: { href: string; label: string }[]
+}[] = [
   {
     label: 'Products',
     items: [
       { href: '/wallet', label: 'Wallet' },
       { href: '/apps', label: 'Apps' },
       { href: '/buy', label: 'Buy ETC' },
+      { href: '/sell', label: 'Sell ETC' },
     ],
   },
   {
@@ -127,6 +132,7 @@ const mobileNavGroups = [
     items: [
       { href: '/learn', label: 'Learning Center' },
       { href: '/news', label: 'News' },
+      { href: '/research', label: 'Research' },
     ],
   },
   {
@@ -140,6 +146,7 @@ const mobileNavGroups = [
   },
   {
     label: 'Olympia Upgrade',
+    highlight: true,
     items: [
       { href: '/olympia', label: 'Olympia Hub' },
       { href: '/olympia/clients', label: 'Clients' },
@@ -151,7 +158,10 @@ const mobileNavGroups = [
     label: 'Resources',
     items: [
       { href: '/markets', label: 'Markets' },
+      { href: '/price', label: 'ETC Price' },
+      { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/tools', label: 'Tools' },
+      { href: '/directory', label: 'Directory' },
       { href: '/community', label: 'Community' },
     ],
   },
@@ -686,12 +696,18 @@ export default function Navigation() {
                 <div className="space-y-6">
                   {mobileNavGroups.map((group) => (
                     <div key={group.label}>
-                      <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                      <h3 className={`mb-2 text-xs font-semibold uppercase tracking-wider ${
+                        group.highlight ? 'text-[#00ffae]' : 'text-[var(--color-text-muted)]'
+                      }`}>
                         {group.label}
+                        {group.highlight && (
+                          <span className="ml-2 inline-block h-1.5 w-1.5 rounded-full bg-[#00ffae] shadow-[0_0_6px_rgba(0,255,174,0.6)]" />
+                        )}
                       </h3>
                       <div className="space-y-1">
                         {group.items.map((item) => {
                           const active = pathname === item.href || pathname.startsWith(item.href)
+                          const isOlympia = group.highlight
                           return (
                             <Link
                               key={item.href}
@@ -699,8 +715,12 @@ export default function Navigation() {
                               onClick={() => setMobileMenuOpen(false)}
                               className={`block rounded-lg px-4 py-3 transition ${
                                 active
-                                  ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                                  : 'text-white/70 hover:bg-white/5 hover:text-white'
+                                  ? isOlympia
+                                    ? 'bg-[#00ffae]/10 text-[#00ffae]'
+                                    : 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
+                                  : isOlympia
+                                    ? 'text-[#00ffae]/70 hover:bg-[#00ffae]/5 hover:text-[#00ffae]'
+                                    : 'text-white/70 hover:bg-white/5 hover:text-white'
                               }`}
                             >
                               {item.label}
