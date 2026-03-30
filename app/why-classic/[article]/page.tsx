@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { philosophyArticles, getPhilosophyArticle } from '../data/philosophy'
 import WhyClassicArticleClient from '../components/WhyClassicArticleClient'
+import { ArticleJsonLd } from '@/app/components/JsonLd'
 import Genesis from './content/genesis'
 import CodeIsLaw from './content/code-is-law'
 import Decentralism from './content/decentralism'
@@ -53,5 +54,15 @@ export default async function WhyClassicArticlePage({ params }: Props) {
   const content = articleContent[slug]
   if (!content) notFound()
 
-  return <WhyClassicArticleClient article={article} content={content} />
+  return (
+    <>
+      <ArticleJsonLd
+        title={article.title}
+        description={article.description}
+        url={`https://ethereumclassic.com/why-classic/${article.slug}`}
+        datePublished="2026-03-30"
+      />
+      <WhyClassicArticleClient article={article} content={content} />
+    </>
+  )
 }

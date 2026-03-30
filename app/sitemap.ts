@@ -7,6 +7,8 @@ import { articles as learnArticles } from './learn/data/articles'
 import { exchangeReviews } from './buy/data/reviews'
 import { reports } from './research/data/research'
 import { cdcEntries } from './core-devs/data/index'
+import { philosophyArticles } from './why-classic/data/philosophy'
+import { getAllFAQSections } from './faq/data/faqs'
 
 const baseUrl = 'https://ethereumclassic.com'
 
@@ -58,8 +60,7 @@ const staticRoutes = [
   { path: '/apps', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/apps/featured', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/apps/defi', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/apps/nft', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/apps/games', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/apps/payments', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/apps/tools', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/apps/infrastructure', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/apps/governance', priority: 0.6, changeFrequency: 'weekly' as const },
@@ -76,6 +77,17 @@ const staticRoutes = [
   { path: '/learn/staking', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/learn/security', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/learn/glossary', priority: 0.6, changeFrequency: 'monthly' as const },
+
+  // FAQ section
+  { path: '/faq', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/faq/users', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/faq/investors', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/faq/miners', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/faq/developers', priority: 0.7, changeFrequency: 'monthly' as const },
+  { path: '/faq/community', priority: 0.7, changeFrequency: 'monthly' as const },
+
+  // Why Classic section
+  { path: '/why-classic', priority: 0.8, changeFrequency: 'monthly' as const },
 
   // News section
   { path: '/news', priority: 0.9, changeFrequency: 'daily' as const },
@@ -267,6 +279,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
+  // Dynamic routes - Why Classic philosophy articles
+  const philosophyEntries = philosophyArticles.map((article) => ({
+    url: `${baseUrl}/why-classic/${article.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
   return [
     ...staticEntries,
     ...poolEntries,
@@ -280,5 +300,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...buyReviewEntries,
     ...reportEntries,
     ...cdcSitemapEntries,
+    ...philosophyEntries,
   ]
 }

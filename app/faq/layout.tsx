@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   },
   description:
     'Get answers to common questions about Ethereum Classic — for users, investors, miners, developers, and community members.',
+  openGraph: {
+    title: 'Ethereum Classic FAQ — 42 Questions Answered',
+    description:
+      'Common questions about ETC answered for users, investors, miners, developers, and community members.',
+    type: 'website',
+  },
 }
 
 export default function FAQLayout({ children }: { children: React.ReactNode }) {

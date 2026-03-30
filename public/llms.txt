@@ -20,8 +20,10 @@ Ethereum Classic (ETC) is a decentralized, open-source blockchain platform that 
 
 - [Wallet](https://ethereumclassic.com/wallet) — Download wallets and manage ETC
 - [Buy ETC](https://ethereumclassic.com/buy) — Purchase ETC on exchanges
-- [Apps](https://ethereumclassic.com/apps) — Discover DeFi, NFTs, and dApps on ETC
+- [Apps](https://ethereumclassic.com/apps) — Discover DeFi, infrastructure, and dApps on ETC
 - [Learn](https://ethereumclassic.com/learn) — Educational resources about Ethereum Classic
+- [FAQ](https://ethereumclassic.com/faq) — Frequently asked questions for users, investors, miners, developers, and community
+- [Why Classic](https://ethereumclassic.com/why-classic) — Philosophy: genesis, code is law, decentralism, proof of work, sound money
 - [Mining](https://ethereumclassic.com/mining) — Mining pools, hardware, and profitability
 - [Build](https://ethereumclassic.com/build) — Developer documentation and tools
 - [News](https://ethereumclassic.com/news) — Latest Ethereum Classic news and updates
