@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { apps, getAppBySlug } from '../data/apps'
+import { SoftwareJsonLd } from '@/app/components/JsonLd'
 import AppDetailClient from './AppDetailClient'
 
 interface Props {
@@ -24,9 +25,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${app.name} | Ethereum Classic`,
-    description: app.description,
+    title: `${app.name} — ${app.category} on Ethereum Classic`,
+    description: app.longDescription || app.description,
+    alternates: {
+      canonical: `https://ethereumclassic.com/apps/${app.slug}`,
+    },
+    openGraph: {
+      title: `${app.name} — ${app.category} on Ethereum Classic`,
+      description: app.description,
+      url: `https://ethereumclassic.com/apps/${app.slug}`,
+      type: 'website',
+    },
   }
+}
+
+const categoryMap: Record<string, string> = {
+  DeFi: 'FinanceApplication',
+  Infrastructure: 'WebApplication',
+  Governance: 'WebApplication',
+  Tools: 'WebApplication',
+  Payments: 'FinanceApplication',
 }
 
 export default async function AppPage({ params }: Props) {
@@ -37,5 +55,16 @@ export default async function AppPage({ params }: Props) {
     notFound()
   }
 
-  return <AppDetailClient app={app} />
+  return (
+    <>
+      <SoftwareJsonLd
+        name={app.name}
+        description={app.description}
+        url={app.link}
+        applicationCategory={categoryMap[app.category] || 'WebApplication'}
+        offers={{ price: '0', priceCurrency: 'USD' }}
+      />
+      <AppDetailClient app={app} />
+    </>
+  )
 }

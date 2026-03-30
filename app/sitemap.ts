@@ -63,7 +63,7 @@ const staticRoutes = [
   { path: '/apps/payments', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/apps/tools', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/apps/infrastructure', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/apps/governance', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/apps/governance', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/apps/submit', priority: 0.4, changeFrequency: 'monthly' as const },
 
   // Learn section

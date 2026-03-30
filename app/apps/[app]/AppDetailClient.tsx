@@ -142,12 +142,21 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </a>
-            <Link
-              href={`/apps/${app.category.toLowerCase()}`}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
-            >
-              More {app.category} Apps
-            </Link>
+            {app.internalUrl ? (
+              <Link
+                href={app.internalUrl}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              >
+                Learn More
+              </Link>
+            ) : (
+              <Link
+                href={`/apps/${app.category.toLowerCase()}`}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              >
+                More {app.category} Apps
+              </Link>
+            )}
           </motion.div>
         </motion.div>
       </section>
@@ -234,7 +243,9 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
             Ready to Get Started?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Start using {app.name} today and experience the power of decentralized applications on Ethereum Classic.
+            {app.internalUrl
+              ? `Learn more about ${app.name} and how it fits into the Ethereum Classic ecosystem.`
+              : `Start using ${app.name} today and experience the power of decentralized applications on Ethereum Classic.`}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
@@ -248,12 +259,21 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </a>
-            <Link
-              href="/apps"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
-            >
-              Explore More Apps
-            </Link>
+            {app.internalUrl ? (
+              <Link
+                href={app.internalUrl}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              >
+                Full Overview
+              </Link>
+            ) : (
+              <Link
+                href="/apps"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              >
+                Explore More Apps
+              </Link>
+            )}
           </div>
         </motion.div>
       </section>

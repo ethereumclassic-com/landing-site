@@ -5,6 +5,7 @@ export interface App {
   longDescription?: string
   category: 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools' | 'Payments'
   link: string
+  internalUrl?: string
   featured?: boolean
   tags?: string[]
   features?: string[]
@@ -110,23 +111,24 @@ export const apps: App[] = [
   {
     name: 'Olympia DAO',
     slug: 'olympia-dao',
-    description: 'Governance infrastructure for the ETC ecosystem. Proposals, voting, and treasury management.',
-    longDescription: 'Olympia DAO is the decentralized governance framework for the Ethereum Classic ecosystem. Token holders can create proposals, vote on key decisions, and participate in treasury management. Olympia DAO ensures the community has a voice in the future direction of ETC.',
-    category: 'Infrastructure',
+    description: 'On-chain governance for Ethereum Classic — basefee-funded treasury, CoreDAO membership voting, and futarchy prediction markets.',
+    longDescription: 'Olympia is active protocol development for Ethereum Classic — EVM modernization, maintained clients, and funded development through sustainable basefee revenue. The Treasury is funded by EIP-1559 basefee revenue, not block rewards or inflation. Governance operates on two layers: the CoreDAO uses non-transferable membership NFTs for critical protocol decisions (security maintenance, EVM parity, client funding), while futarchy prediction markets open public participation to inform treasury allocation. Three independent client implementations (Fukuii, Core-Geth, Hyperledger Besu) ensure network resilience. All governance actions are on-chain and auditable.',
+    category: 'Governance',
     link: 'https://olympiadao.org/',
-    tags: ['DAO', 'Voting', 'Treasury', 'Governance'],
+    internalUrl: '/olympia',
+    tags: ['DAO', 'Treasury', 'Governance', 'Basefee', 'Futarchy'],
     features: [
-      'On-chain voting',
-      'Proposal creation',
-      'Treasury management',
-      'Transparent governance',
-      'Community-driven',
-      'Weighted voting',
+      'Basefee-funded protocol treasury',
+      'CoreDAO membership NFT voting',
+      'Futarchy prediction markets',
+      'On-chain proposal lifecycle',
+      'Configurable timelock security',
+      'Three-layer sanctions compliance',
     ],
     stats: [
-      { label: 'Type', value: 'DAO' },
-      { label: 'Voting', value: 'On-chain' },
-      { label: 'Status', value: 'In Development' },
+      { label: 'Clients', value: '3' },
+      { label: 'Governance', value: 'Membership-Based' },
+      { label: 'Treasury', value: 'Protocol-Funded' },
     ],
   },
 
