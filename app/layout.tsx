@@ -52,6 +52,8 @@ export const metadata: Metadata = {
     canonical: "https://ethereumclassic.com",
     types: {
       'application/rss+xml': '/news/feed.xml',
+      'application/atom+xml': '/news/atom.xml',
+      'application/feed+json': '/news/feed.json',
     },
   },
   other: { "color-scheme": "dark" },
