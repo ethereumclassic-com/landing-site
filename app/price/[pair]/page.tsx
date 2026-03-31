@@ -1,35 +1,11 @@
-import type { Metadata } from 'next'
-import { StubPage } from '../../components/templates'
+import { redirect } from 'next/navigation'
 
 interface Props {
   params: Promise<{ pair: string }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { pair } = await params
-  const pairName = pair.toUpperCase().replace('-', '/')
-
-  return {
-    title: `${pairName} Price | Ethereum Classic`,
-    description: `Live ${pairName} price chart and trading data for Ethereum Classic.`,
-  }
-}
-
+// Price pair pages redirect to the markets page which has live data
+// The /markets page already handles all price display with CoinGecko API
 export default async function PricePairPage({ params }: Props) {
-  const { pair } = await params
-  const pairName = pair.toUpperCase().replace('-', '/')
-
-  return (
-    <StubPage
-      title={`${pairName} Price`}
-      description={`Live ${pairName} price with interactive charts, order book data, and trading information. Track historical prices and analyze market trends.`}
-      expectedPhase="Phase 2"
-      backLink={{ label: 'Back to Price', href: '/price' }}
-      relatedLinks={[
-        { label: 'All Prices', href: '/price' },
-        { label: 'Markets Overview', href: '/markets' },
-        { label: 'Price Converter', href: '/converter' },
-      ]}
-    />
-  )
+  redirect('/markets')
 }

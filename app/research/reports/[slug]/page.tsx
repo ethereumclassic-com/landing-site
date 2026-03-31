@@ -1,41 +1,46 @@
 import type { Metadata } from 'next'
-import { StubPage } from '../../../components/templates'
+import { notFound } from 'next/navigation'
+import { reports } from '../../data/research'
+import ReportDetailClient from './ReportDetailClient'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
+export async function generateStaticParams() {
+  return reports.map((r) => ({ slug: r.slug }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const title = slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const report = reports.find((r) => r.slug === slug)
+
+  if (!report) {
+    return { title: 'Report Not Found | Ethereum Classic' }
+  }
 
   return {
-    title: `${title} | Ethereum Classic Research`,
-    description: `Research report: ${title.toLowerCase()}. Ethereum Classic analysis and insights.`,
+    title: `${report.title} | Ethereum Classic Research`,
+    description: report.description,
+    alternates: {
+      canonical: `https://ethereumclassic.com/research/reports/${report.slug}`,
+    },
+    openGraph: {
+      title: report.title,
+      description: report.description,
+      url: `https://ethereumclassic.com/research/reports/${report.slug}`,
+      type: 'article',
+    },
   }
 }
 
 export default async function ResearchReportPage({ params }: Props) {
   const { slug } = await params
-  const title = slug
-    .split('-')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const report = reports.find((r) => r.slug === slug)
 
-  return (
-    <StubPage
-      title={title}
-      description="This research report is being prepared. Our team is conducting thorough analysis to bring you valuable insights about the Ethereum Classic ecosystem."
-      expectedPhase="Phase 3"
-      backLink={{ label: 'Back to Reports', href: '/research/reports' }}
-      relatedLinks={[
-        { label: 'All Reports', href: '/research/reports' },
-        { label: 'Research Hub', href: '/research' },
-        { label: 'Network Analysis', href: '/research/network' },
-      ]}
-    />
-  )
+  if (!report) {
+    notFound()
+  }
+
+  return <ReportDetailClient report={report} />
 }
