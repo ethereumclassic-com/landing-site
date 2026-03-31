@@ -513,7 +513,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`https://ethereumclassic.com/news/${article.slug}`)}`}
+              href={`https://x.com/intent/post?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`https://ethereumclassic.com/news/${article.slug}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"

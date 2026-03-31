@@ -38,13 +38,13 @@ const defaultSections: FooterSection[] = [
       { label: 'Wallet', href: '/wallet' },
       { label: 'Buy ETC', href: '/buy' },
       { label: 'Apps', href: '/apps' },
-      { label: 'Markets', href: '/price/etc' },
+      { label: 'Markets', href: '/markets' },
     ],
   },
   {
     title: 'Learn',
     links: [
-      { label: 'What is ETC?', href: '/learn/what-is-ethereum-classic' },
+      { label: 'What is ETC?', href: '/learn/basics/what-is-ethereum-classic' },
       { label: 'Basics', href: '/learn/basics' },
       { label: 'Mining Guides', href: '/learn/mining' },
       { label: 'Trading', href: '/learn/trading' },
@@ -103,9 +103,8 @@ const defaultSocialLinks: SocialLink[] = [
 ]
 
 const defaultLegalLinks: FooterLink[] = [
-  { label: 'Terms of Service', href: '/legal/terms' },
-  { label: 'Privacy Policy', href: '/legal/privacy' },
-  { label: 'Cookie Policy', href: '/legal/cookies' },
+  { label: 'Terms of Service', href: '/legal' },
+  { label: 'Privacy Policy', href: '/legal' },
 ]
 
 // Newsletter component

@@ -50,3 +50,6 @@ node_modules/
 # Env
 .env
 .env.*
+
+# Internal docs
+ARCHITECTURE.md

@@ -34,9 +34,9 @@ const navItems: {
       { href: '/apps', label: 'Apps Directory' },
       { href: '/apps/featured', label: 'Featured Apps' },
       { href: '/apps/defi', label: 'DeFi' },
-      { href: '/apps/nft', label: 'NFT Platforms' },
-      { href: '/apps/games', label: 'Games' },
+      { href: '/apps/governance', label: 'Governance' },
       { href: '/apps/infrastructure', label: 'Infrastructure' },
+      { href: '/apps/tools', label: 'Tools' },
     ],
   },
   {

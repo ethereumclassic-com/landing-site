@@ -50,7 +50,7 @@ const footerLinks = {
       { href: '/contact', label: 'Contact' },
       { href: '/advertise', label: 'Advertise' },
       { href: '/partners', label: 'Partners' },
-      { href: '/privacy', label: 'Privacy Policy' },
+      { href: '/legal', label: 'Privacy Policy' },
     ],
   },
 }
