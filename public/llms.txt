@@ -37,9 +37,9 @@ Ethereum Classic (ETC) is a decentralized, open-source blockchain platform that 
 
 ## Olympia Network Upgrade
 
-Olympia is Ethereum Classic's next hard fork — the most significant upgrade in the network's history. It introduces EIP-1559 dynamic fee market, a protocol-controlled treasury funded by basefee revenue (block rewards remain untouched), on-chain governance with soulbound NFT voting, and 13 EIPs from Ethereum's Shanghai/Cancun releases for EVM alignment.
+Olympia is Ethereum Classic's next hard fork — the most significant upgrade in the network's history. It introduces EIP-1559 dynamic fee market, a protocol-controlled treasury funded by basefee revenue (block rewards remain untouched), on-chain governance with soulbound NFT voting, and full EVM alignment with Ethereum's Fusaka execution layer.
 
-Five core ECIPs: ECIP-1111 (EIP-1559 Fee Market), ECIP-1112 (Protocol Treasury), ECIP-1113 (DAO Governance), ECIP-1114 (ECFP Funding Process), ECIP-1121 (EVM Alignment).
+Three client-facing ECIPs: ECIP-1111 (EIP-1559 Fee Market), ECIP-1112 (Protocol Treasury), ECIP-1121 (Fusaka EVM Alignment — brings ETC's EVM to full parity with Ethereum's Fusaka upgrade). Contract layer ECIPs: ECIP-1113 (DAO Governance), ECIP-1114 (ECFP Funding Process).
 
 Three independent client implementations:
 - Fukuii (Scala) — Primary client post-Olympia. 143 RPC methods, 2,706 tests, full SNAP sync.
