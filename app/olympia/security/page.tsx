@@ -152,7 +152,7 @@ export default function SecurityPage() {
 
           <motion.p variants={fadeInUp} className="mt-3 text-[var(--color-text-secondary)]">
             Assessment of the Core-Geth execution client covering the 21-month maintenance gap from
-            February 2024 through April 2026 — the longest gap since the 2016 chain split.
+            February 2024 through April 2026 — the longest maintenance gap in the network's history.
           </motion.p>
         </motion.div>
       </section>
