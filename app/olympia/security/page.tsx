@@ -101,7 +101,7 @@ const riskAssessment: RiskItem[] = [
   {
     area: 'No Release Cadence',
     risk: 'Medium',
-    description: 'The 21-month gap between releases is the longest since the 2016 chain split. No maintenance releases, no security advisories published.',
+    description: 'The 21-month gap between releases is the longest in the network\'s history. No maintenance releases, no security advisories published.',
     mitigation: 'Olympia establishes protocol-funded maintenance through the Treasury (ECIP-1112).',
   },
 ]

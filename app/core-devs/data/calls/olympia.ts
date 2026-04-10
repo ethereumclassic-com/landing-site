@@ -80,7 +80,7 @@ None of these need to be solved now with a $0 treasury. The governance layer can
 
 ## Network Security Context
 
-- ETC's primary execution client has not shipped a maintenance release in 21 months — the longest gap since the 2016 chain split
+- ETC's primary execution client has not shipped a maintenance release in 21 months — the longest maintenance gap in the network's history
 - Multiple disclosed CVEs remain unpatched in the current production release
 - No active maintainer — unresponsive to security disclosures, no redundancy in core development, effectively deprecated for two years
 - For the Olympia transition, Core-Geth has been brought forward with all known security patches under the [ethereumclassic](https://github.com/ethereumclassic) organization

@@ -1334,7 +1334,7 @@ Mystique was specified in **ECIP-1104**.
 
 ## Activation
 
-The upgrade activated smoothly across all ETC clients. No chain splits or network disruptions were observed. Miners and node operators had upgraded their software in advance following the successful Mordor testnet activation.
+The upgrade activated smoothly across all ETC clients. No network disruptions were observed. Miners and node operators had upgraded their software in advance following the successful Mordor testnet activation.
 
 ## Significance
 
@@ -1372,7 +1372,7 @@ As with previous upgrades, ETC excluded PoS-specific changes:
 ## Network Impact
 
 ### Stability
-Zero chain splits, zero client incompatibilities. All three ETC clients (Core-Geth, Besu, Fukuii) processed the fork boundary without issues.
+Zero client incompatibilities. All three ETC clients (Core-Geth, Besu, Fukuii) processed the fork boundary without issues.
 
 ### Developer Experience
 EVM parity with Shanghai means developers can use the latest Solidity compiler features when deploying to ETC. Tools like Hardhat, Foundry, and Remix work without special configuration.
