@@ -81,6 +81,107 @@ export default function UpgradeHubPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ETC Compatibility Plugins */}
+      <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={staggerContainer}
+          >
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+              ETC Compatibility Plugins
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+              Beyond the three primary implementations, Ethereum Classic is also accessible via
+              compatibility plugins for major EVM clients — enabling enterprise deployments,
+              archive nodes, and cross-chain infrastructure on any preferred execution environment.
+            </motion.p>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  name: 'Hyperledger Besu',
+                  language: 'Java',
+                  langColor: '#e76f00',
+                  description:
+                    'Enterprise-grade EVM client from the Hyperledger Foundation. Apache 2.0 licensed. Serves as a cross-client reference implementation for Olympia testing.',
+                  links: [
+                    { label: 'GitHub', href: 'https://github.com/hyperledger/besu' },
+                    { label: 'Docs', href: 'https://besu.hyperledger.org' },
+                  ],
+                },
+                {
+                  name: 'Erigon',
+                  language: 'Go',
+                  langColor: '#00acd7',
+                  description:
+                    'Archive-optimized EVM client designed for minimal disk usage and fast historical queries. Preferred for analytics infrastructure and full-history nodes.',
+                  links: [
+                    { label: 'GitHub', href: 'https://github.com/erigontech/erigon' },
+                  ],
+                },
+                {
+                  name: 'Go Ethereum',
+                  language: 'Go',
+                  langColor: '#00acd7',
+                  description:
+                    'The upstream geth client. ETC compatibility layer maintains parity with the canonical Go Ethereum codebase for maximum tooling compatibility.',
+                  links: [
+                    { label: 'GitHub', href: 'https://github.com/ethereum/go-ethereum' },
+                    { label: 'Docs', href: 'https://geth.ethereum.org' },
+                  ],
+                },
+                {
+                  name: 'Nethermind',
+                  language: 'C#',
+                  langColor: '#9b4993',
+                  description:
+                    'High-performance .NET EVM client. Enables ETC integration for the Microsoft and enterprise .NET ecosystem, with native Windows deployment support.',
+                  links: [
+                    { label: 'GitHub', href: 'https://github.com/NethermindEth/nethermind' },
+                    { label: 'Docs', href: 'https://docs.nethermind.io' },
+                  ],
+                },
+              ].map((plugin) => (
+                <motion.div
+                  key={plugin.name}
+                  variants={fadeInUp}
+                  className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="text-base font-semibold text-white">{plugin.name}</h3>
+                    <span
+                      className="shrink-0 rounded px-1.5 py-0.5 font-mono text-xs font-medium"
+                      style={{ backgroundColor: `${plugin.langColor}20`, color: plugin.langColor }}
+                    >
+                      {plugin.language}
+                    </span>
+                  </div>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    {plugin.description}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    {plugin.links.map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                      >
+                        {link.label} →
+                      </a>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </main>
   )
 }

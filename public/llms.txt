@@ -54,6 +54,21 @@ Activation block: TBD (announced after CDC-23 community call).
 - Mordor Testnet RPC: https://rpc.mordor.etccooperative.org
 - Block Explorer: https://etc.blockscout.com
 
+## Regulatory Positioning
+
+- United States: digital commodity classification under the CLARITY Act (CFTC jurisdiction)
+- United States: Proof-of-Work EVM platform for regulated stablecoin deployment under the GENIUS Act
+- European Union: decentralized asset under MiCA (Markets in Crypto-Assets Regulation), exempt from issuer obligations as a fully decentralized protocol
+- Japan: recognized crypto-asset on the FSA Green List (JVCEA), fast-track listing across all Japanese regulated exchanges
+
+## Olympia Ecosystem Properties
+
+- https://olympiadao.org — Governance landing page
+- https://olympiatreasury.org — Treasury monitoring dashboard
+- https://app.olympiadao.org — Proposal submission, voting, and execution
+- https://ethereumclassicdao.org — Institutional (Ethereum Classic DAO LLC)
+- https://github.com/olympiadao — Open-source governance repositories
+
 ## Contact
 
 - Website: https://ethereumclassic.com
