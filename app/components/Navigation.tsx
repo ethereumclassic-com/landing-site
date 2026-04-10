@@ -59,8 +59,9 @@ const navItems: {
       { href: '/learn/ethereum-classic', label: 'What is ETC?' },
       { href: '/learn/basics', label: 'ETC Basics' },
       { href: '/learn/wallets', label: 'Wallet Guides' },
-      { href: '/learn/mining', label: 'Mining Guides' },
       { href: '/learn/defi', label: 'DeFi on ETC' },
+      { href: '/regulation', label: 'Regulatory Framework' },
+      { href: '/environmental-impact', label: 'Energy Impact' },
     ],
   },
   {
@@ -104,6 +105,7 @@ const navItems: {
       { href: '/price', label: 'ETC Price' },
       { href: '/exchanges', label: 'Exchanges Directory' },
       { href: '/buy/reviews', label: 'Exchange Reviews' },
+      { href: '/investment-products', label: 'Investment Products' },
       { href: '/research', label: 'Research' },
       { href: '/tools', label: 'Tools' },
       { href: '/directory', label: 'Directory' },
@@ -131,6 +133,10 @@ const mobileNavGroups: {
     label: 'Learn',
     items: [
       { href: '/learn', label: 'Learning Center' },
+      { href: '/learn/ethereum-classic', label: 'What is ETC?' },
+      { href: '/learn/basics', label: 'ETC Basics' },
+      { href: '/regulation', label: 'Regulatory Framework' },
+      { href: '/environmental-impact', label: 'Energy Impact' },
       { href: '/news', label: 'News' },
       { href: '/research', label: 'Research' },
     ],
@@ -159,6 +165,7 @@ const mobileNavGroups: {
     items: [
       { href: '/markets', label: 'Markets' },
       { href: '/price', label: 'ETC Price' },
+      { href: '/investment-products', label: 'Investment Products' },
       { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/tools', label: 'Tools' },
       { href: '/directory', label: 'Directory' },

@@ -20,7 +20,7 @@ export const forks: ForkData[] = [
     date: '2015-07-30',
     ecip: null,
     ecipUrl: null,
-    summary: 'Genesis block — the Ethereum network launches.',
+    summary: 'Genesis block: the Ethereum network launches.',
     keyChanges: [
       'Initial network launch',
       'Gas limit of 5,000 per block',
@@ -46,7 +46,7 @@ export const forks: ForkData[] = [
     date: '2016-03-14',
     ecip: null,
     ecipUrl: null,
-    summary: 'First major planned upgrade — EIP-2, EIP-7, EIP-8.',
+    summary: 'First major planned upgrade: EIP-2, EIP-7, EIP-8.',
     keyChanges: [
       'EIP-2 (transaction validity rules)',
       'EIP-7 (DELEGATECALL opcode)',
@@ -72,7 +72,7 @@ export const forks: ForkData[] = [
     date: '2016-10-24',
     ecip: null,
     ecipUrl: null,
-    summary: 'EIP-150 — repriced I/O-heavy opcodes for DoS protection after the Shanghai attacks.',
+    summary: 'EIP-150 repriced I/O-heavy opcodes for DoS protection after the Shanghai attacks.',
     keyChanges: [
       'EIP-150 (gas cost increases for I/O operations)',
       'DoS attack mitigation',
@@ -85,7 +85,7 @@ export const forks: ForkData[] = [
     date: '2017-01-13',
     ecip: 'ECIP-1015',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1015',
-    summary: 'Replay protection and difficulty bomb delay — the first ETC-specific hard fork.',
+    summary: 'Replay protection and difficulty bomb delay. The first ETC-specific hard fork.',
     keyChanges: [
       'EIP-155 (replay protection)',
       'EIP-160 (EXP gas cost increase)',
@@ -98,7 +98,7 @@ export const forks: ForkData[] = [
     date: '2017-12-11',
     ecip: 'ECIP-1017',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1017',
-    summary: 'ECIP-1017 monetary policy — established the 210.7 million ETC supply cap with era-based emission reduction.',
+    summary: 'ECIP-1017 monetary policy: the 210.7 million ETC supply cap with era-based emission reduction.',
     keyChanges: [
       'Fixed monetary policy (supply cap ~210.7M ETC)',
       'Era-based emission reduction (20% per era)',
@@ -111,7 +111,7 @@ export const forks: ForkData[] = [
     date: '2018-05-29',
     ecip: 'ECIP-1041',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1041',
-    summary: 'ECIP-1041 — permanently removed the difficulty bomb from ETC, ensuring stable block times.',
+    summary: 'ECIP-1041 permanently removed the difficulty bomb from ETC, ensuring stable block times.',
     keyChanges: [
       'Difficulty bomb permanently removed',
       'Stable block times preserved',
@@ -231,7 +231,7 @@ export const forks: ForkData[] = [
       { name: 'ECIP-1121', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1121' },
     ],
     summary:
-      'EVM alignment to Fusaka — EIPs spanning London, Dencun, Pectra, and Fusaka. Introduces EIP-1559 fee market with basefee directed to protocol treasury.',
+      'EVM alignment to Fusaka: EIPs spanning London, Dencun, Pectra, and Fusaka. Introduces EIP-1559 fee market with basefee directed to protocol treasury.',
     keyChanges: [
       'EIP-1559 dynamic basefee (directed to treasury)',
       'EVM parity with Ethereum Fusaka',

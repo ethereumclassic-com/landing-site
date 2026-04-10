@@ -33,39 +33,41 @@ export interface FooterProps extends HTMLAttributes<HTMLElement> {
 // Default footer sections
 const defaultSections: FooterSection[] = [
   {
-    title: 'Products',
-    links: [
-      { label: 'Wallet', href: '/wallet' },
-      { label: 'Buy ETC', href: '/buy' },
-      { label: 'Apps', href: '/apps' },
-      { label: 'Markets', href: '/markets' },
-    ],
-  },
-  {
     title: 'Learn',
     links: [
       { label: 'What is ETC?', href: '/learn/basics/what-is-ethereum-classic' },
-      { label: 'Basics', href: '/learn/basics' },
-      { label: 'Mining Guides', href: '/learn/mining' },
-      { label: 'Trading', href: '/learn/trading' },
-    ],
-  },
-  {
-    title: 'Ecosystem',
-    links: [
-      { label: 'Exchanges', href: '/exchanges' },
-      { label: 'Mining', href: '/mining' },
-      { label: 'Build', href: '/build' },
+      { label: 'ETC Basics', href: '/learn/basics' },
+      { label: 'Regulatory Framework', href: '/regulation' },
+      { label: 'Energy Impact', href: '/environmental-impact' },
       { label: 'Research', href: '/research' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Olympia',
     links: [
+      { label: 'Olympia Hub', href: '/olympia' },
+      { label: 'Node Clients', href: '/olympia/clients' },
+      { label: 'Governance', href: '/olympia/governance' },
+      { label: 'Network Upgrades', href: '/upgrades' },
+    ],
+  },
+  {
+    title: 'Use ETC',
+    links: [
+      { label: 'Buy ETC', href: '/buy' },
+      { label: 'Wallet', href: '/wallet' },
+      { label: 'Exchanges', href: '/exchanges' },
+      { label: 'Investment Products', href: '/investment-products' },
+      { label: 'Apps', href: '/apps' },
+    ],
+  },
+  {
+    title: 'Build',
+    links: [
+      { label: 'Developer Docs', href: '/build' },
+      { label: 'Mining', href: '/mining' },
+      { label: 'Community', href: '/community' },
       { label: 'About', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'Advertise', href: '/advertise' },
-      { label: 'Partners', href: '/partners' },
     ],
   },
 ]

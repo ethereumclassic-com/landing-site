@@ -119,36 +119,55 @@ export const roadmapStages: RoadmapStage[] = [
     title: 'Consensus Upgrades',
     status: 'complete',
     description:
-      'Fee market improvements, dynamic gas limits, and treasury funding mechanism. Independent client implementations complete.',
-    deliverables: ['Fee market', 'Dynamic gas limits', 'Treasury funding mechanism'],
+      'EIP-1559 fee market, protocol treasury funded by basefee revenue, and full Fusaka EVM parity in a single upgrade. Every Ethereum tool and framework works on ETC without modification.',
+    deliverables: [
+      'EIP-1559 fee market (ECIP-1111)',
+      'Protocol treasury funded by basefee (ECIP-1112)',
+      'Fusaka EVM parity: Dencun, Pectra, Fusaka EIPs (ECIP-1121)',
+    ],
   },
   {
     title: 'Core Governance',
     status: 'active',
     description:
-      'Governance and treasury contracts deployed. Membership-based voting. Full proposal lifecycle: submit, vote, queue, execute.',
-    deliverables: ['Governance and treasury contracts', 'Membership voting system', 'Sanctions compliance layer'],
+      'On-chain governance with membership-based voting and a full proposal lifecycle: submit, vote, queue, execute. Core development funding moves to an open, transparent, on-chain process.',
+    deliverables: [
+      'Governance and treasury contracts with timelock execution',
+      'Membership-based voting with sanctions compliance',
+      'Open proposal process with competitive bidding',
+    ],
   },
   {
     title: 'Prediction Markets',
     status: 'research',
     description:
-      'Futarchy-assisted governance using prediction markets to inform treasury allocation. Research phase exploring conditional token frameworks.',
-    deliverables: ['Conditional outcome tokens', 'Market-informed proposal ranking', 'Protocol specification'],
+      'Futarchy-assisted governance uses prediction markets to inform treasury allocation, providing financially-backed public signals alongside on-chain member votes.',
+    deliverables: [
+      'Conditional outcome tokens',
+      'Market-informed proposal ranking',
+      'Open participation for any stakeholder',
+    ],
   },
   {
     title: 'Treasury Distribution',
     status: 'future',
     description:
-      'Protocol-layer treasury smoothing to reduce per-block variance. Specification phase exploring miner-compatible mechanisms.',
-    deliverables: ['Treasury smoothing algorithm', 'Miner impact analysis', 'Cross-client specification'],
+      'Governance-controlled smoothing curve (ECIP-1115) optionally supplements miner security budgets as fixed-emission block subsidies decline, without touching consensus-layer rewards.',
+    deliverables: [
+      'Treasury smoothing algorithm (ECIP-1115)',
+      'Modeling through ECIP-1017 emission events',
+      'Parameters adjustable without a hard fork',
+    ],
   },
   {
     title: 'Protocol Integration',
     status: 'future',
     description:
-      'Permanent consensus integration of proven governance mechanisms. Moving governance from contract layer to protocol layer.',
-    deliverables: ['Consensus-level governance', 'Immutable treasury rules', 'Long-term sustainability'],
+      'Proven governance mechanisms elevated from the contract layer to consensus, making treasury rules immutable at the protocol level.',
+    deliverables: [
+      'Consensus-level governance encoding',
+      'Immutable treasury rules',
+    ],
   },
 ]
 
