@@ -39,7 +39,19 @@ Ethereum Classic (ETC) is a decentralized, open-source blockchain platform that 
 
 Olympia is Ethereum Classic's next hard fork — the most significant upgrade in the network's history. It introduces EIP-1559 dynamic fee market, a protocol-controlled treasury funded by basefee revenue (block rewards remain untouched), on-chain governance with soulbound NFT voting, and full EVM alignment with Ethereum's Fusaka execution layer.
 
-Three client-facing ECIPs: ECIP-1111 (EIP-1559 Fee Market), ECIP-1112 (Protocol Treasury), ECIP-1121 (Fusaka EVM Alignment — brings ETC's EVM to full parity with Ethereum's Fusaka upgrade). Contract layer ECIPs: ECIP-1113 (DAO Governance), ECIP-1114 (ECFP Funding Process).
+Three client-facing ECIPs: ECIP-1111 (EIP-1559 Fee Market), ECIP-1112 (Protocol Treasury), ECIP-1121 (EVM Compatibility). Contract layer ECIPs: ECIP-1113 (DAO Governance), ECIP-1114 (ECFP Funding Process).
+
+**ECIP-1121 — EVM Compatibility:** Advances the ETC execution layer through Dencun (Cancun-Deneb), Pectra (Prague-Electra), and Fusaka (Fulu-Osaka). ETC implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deferring the EIP-1559 fee market for independent governance design. ECIP-1111 delivers those deferred London fee market EIPs (EIP-1559 + EIP-3198). ECIP-1121 delivers the remaining execution-layer EIPs from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability.
+
+Included EIP categories:
+- Gas & State Access: EIP-7702 (account delegation), EIP-7623 (calldata cost), EIP-7825 (gas limit cap), EIP-7883 (MCOPY price fix), EIP-7935 (jumpdest removal)
+- EVM Safety: EIP-6780 (SELFDESTRUCT restriction), EIP-7934 (stack size enforcement), EIP-7910 (call target constraint)
+- Cryptographic Precompiles: EIP-2537 (BLS12-381 for ZK-friendly proofs), EIP-7951 (P256VERIFY for WebAuthn / passkeys)
+- Execution Context: EIP-5656 (MCOPY memory copy), EIP-2935 (historical block hashes in state), EIP-1153 (transient storage TSTORE/TLOAD)
+
+Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain — blobs are L2 scaffolding ETC does not need.
+
+Developer impact: Solidity 0.8.x+, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification or ETC-specific forks after Olympia.
 
 Three independent client implementations:
 - Fukuii (Scala) — Primary client post-Olympia. 143 RPC methods, 2,706 tests, full SNAP sync.

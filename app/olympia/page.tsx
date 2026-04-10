@@ -156,7 +156,7 @@ export default function OlympiaHubPage() {
                   ecip: 'ECIP-1121',
                   title: 'Fusaka EVM Alignment',
                   description:
-                    'Advances the ETC execution layer through London, Dencun, Pectra, and Fusaka in a single upgrade. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework — one codebase, every EVM chain.',
+                    'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka — every improvement independent of Proof-of-Stake and blob data availability. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework — one codebase, every EVM chain.',
                   color: '#38bdf8',
                 },
               ].map((item) => (
@@ -173,6 +173,143 @@ export default function OlympiaHubPage() {
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {item.description}
                   </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ECIP-1121 EVM Deep Dive */}
+      <section className="px-6 py-20 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeInUp}>
+              <span className="font-mono text-xs uppercase tracking-widest text-[#38bdf8]">ECIP-1121</span>
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+              EVM Compatibility in Detail
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+              Three Ethereum upgrade cycles delivered to ETC in a single fork — every execution-layer improvement independent of Proof-of-Stake and blob data availability.
+            </motion.p>
+
+            {/* Fork Timeline */}
+            <motion.div variants={fadeInUp} className="mt-8 mb-6 relative">
+              <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[#00ffae]/30" />
+              <div className="flex flex-col md:flex-row gap-6 md:gap-0 md:justify-between">
+                {[
+                  { name: 'Dencun', fullName: 'Cancun-Deneb', year: '2024', eips: ['EIP-1153', 'EIP-5656', 'EIP-2935'] },
+                  { name: 'Pectra', fullName: 'Prague-Electra', year: '2025', eips: ['EIP-7702', 'EIP-2537', 'EIP-6780'] },
+                  { name: 'Fusaka', fullName: 'Fulu-Osaka', year: '2025', eips: ['EIP-7623', 'EIP-7951', 'EIP-7825'] },
+                ].map((fork, i, arr) => (
+                  <div key={fork.name} className="relative flex md:flex-col md:items-center md:w-1/3 gap-4 md:gap-0">
+                    {i < arr.length - 1 && (
+                      <div className="md:hidden absolute left-[17px] top-[38px] bottom-[-22px] w-px bg-[#00ffae]/30" />
+                    )}
+                    <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[#00ffae]/40 bg-[#00ffae]/10 font-mono text-xs font-bold text-[#00ffae] relative z-10">
+                      {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <div className="md:mt-4 md:text-center">
+                      <p className="font-semibold text-sm text-white">{fork.name}</p>
+                      <p className="text-xs text-[var(--color-text-muted)]">{fork.fullName} · {fork.year}</p>
+                      <div className="mt-2 flex flex-wrap gap-1 md:justify-center">
+                        {fork.eips.map((eip) => (
+                          <span key={eip} className="rounded-sm border border-[var(--border)] bg-[var(--background)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-text-muted)]">
+                            {eip}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Divergence callout */}
+            <motion.div variants={fadeInUp} className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
+              <span className="font-semibold text-white">ETC context: </span>
+              Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
+              ECIP-1111 now delivers those deferred London EIPs. ECIP-1121 advances the execution layer through Dencun, Pectra, and Fusaka — every EVM improvement that is independent of Proof-of-Stake and blob data availability.
+              Together, Olympia brings ETC to full Fusaka execution-layer parity.
+            </motion.div>
+
+            {/* EIP Categories */}
+            <div className="mb-6 grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  title: 'Gas & State Access',
+                  color: '#38bdf8',
+                  eips: ['EIP-7702', 'EIP-7623', 'EIP-7825', 'EIP-7883', 'EIP-7935'],
+                  description: 'Account delegation, cheaper calldata, gas limit enforcement, opcode repricing, and jumpdest removal. Reduces transaction costs and enables smart account patterns without protocol changes.',
+                },
+                {
+                  title: 'EVM Safety',
+                  color: '#F59E0B',
+                  eips: ['EIP-6780', 'EIP-7934', 'EIP-7910'],
+                  description: 'SELFDESTRUCT restricted to deployment context, stack size enforcement, and call target constraints. Makes contract behavior more predictable and reduces attack surface.',
+                },
+                {
+                  title: 'Cryptographic Precompiles',
+                  color: '#a78bfa',
+                  eips: ['EIP-2537', 'EIP-7951'],
+                  description: 'BLS12-381 pairing operations for ZK-friendly proof verification, P256VERIFY for WebAuthn and passkey authentication. Native cryptographic primitives for privacy and identity.',
+                },
+                {
+                  title: 'Execution Context',
+                  color: '#00ffae',
+                  eips: ['EIP-5656', 'EIP-2935', 'EIP-1153'],
+                  description: 'MCOPY for efficient memory operations, historical block hashes in state, transient storage TSTORE/TLOAD. Unlocks reentrancy guards, flash loans, and cross-contract patterns without persistent storage.',
+                },
+              ].map((cat) => (
+                <motion.div
+                  key={cat.title}
+                  variants={fadeInUp}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
+                >
+                  <div className="mb-3 flex items-center gap-3">
+                    <div className="h-1 w-12 rounded-full" style={{ backgroundColor: cat.color }} />
+                    <h3 className="text-sm font-semibold text-white">{cat.title}</h3>
+                  </div>
+                  <div className="mb-3 flex flex-wrap gap-1">
+                    {cat.eips.map((eip) => (
+                      <span key={eip} className="rounded-sm border border-[var(--border)] bg-[var(--background)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-text-muted)]">
+                        {eip}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{cat.description}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Blobs excluded note */}
+            <motion.p variants={fadeInUp} className="mb-8 text-xs text-[var(--color-text-muted)] italic">
+              Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain with no data availability requirement — blobs are L2 scaffolding ETC does not need.
+            </motion.p>
+
+            {/* Developer tooling */}
+            <motion.h3 variants={fadeInUp} className="mb-4 text-base font-semibold text-white">
+              Developer Tooling — Works Without Modification
+            </motion.h3>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                { name: 'Solidity 0.8.x+', description: 'All recent compiler versions produce compatible bytecode for ETC without modification.' },
+                { name: 'Foundry / Hardhat', description: 'Standard EVM testing and deployment toolchains work on ETC without ETC-specific forks or patches.' },
+                { name: 'wagmi / viem / ethers.js', description: 'Standard wallet libraries and RPC types work on ETC without patching or overrides — one codebase, every EVM chain.' },
+              ].map((tool) => (
+                <motion.div
+                  key={tool.name}
+                  variants={fadeInUp}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[#00ffae]/20"
+                >
+                  <p className="mb-1 text-sm font-semibold text-white">{tool.name}</p>
+                  <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
                 </motion.div>
               ))}
             </div>
