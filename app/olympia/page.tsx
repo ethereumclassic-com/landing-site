@@ -22,7 +22,7 @@ const howItWorks = [
   {
     title: 'Basefee Revenue',
     description:
-      'Every transaction pays a basefee via EIP-1559. The basefee is directed to the Treasury. Block rewards and tips remain completely untouched — miners are unaffected.',
+      'Every transaction pays a basefee via EIP-1559. The basefee is directed to the Treasury. Block rewards and tips remain completely untouched. Miners are unaffected.',
     color: '#F59E0B',
   },
   {
@@ -34,7 +34,7 @@ const howItWorks = [
   {
     title: 'On-Chain Governance',
     description:
-      'Two-layer governance: the CoreDAO handles critical protocol decisions — security maintenance, EVM parity, and client funding — ensuring a professional-grade blockchain experience for Ethereum Classic stakeholders. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
+      'Two-layer governance: the CoreDAO handles critical protocol decisions (security maintenance, EVM parity, and client funding), ensuring a professional-grade blockchain experience for Ethereum Classic stakeholders. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
     color: '#38bdf8',
   },
 ]
@@ -73,7 +73,7 @@ export default function OlympiaHubPage() {
             variants={fadeInUp}
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Active protocol development for Ethereum Classic — EVM modernization, maintained
+            Active protocol development for Ethereum Classic: EVM modernization, maintained
             clients, and funded development through sustainable basefee revenue.
           </motion.p>
 
@@ -82,10 +82,10 @@ export default function OlympiaHubPage() {
             className="mx-auto mt-6 max-w-2xl space-y-2 text-left text-sm text-[var(--color-text-muted)]"
           >
             {[
-              'EIP-1559 fee market — predictable gas pricing, basefee revenue redirected to protocol treasury',
-              'Protocol treasury — sustainable funding without new token issuance or miner reward changes',
-              'Fusaka EVM alignment — full parity with every Ethereum tool, library, and framework',
-              'Institutional infrastructure — Proof-of-Work foundation for regulated stablecoins under MiCA and the GENIUS Act, ETF-compliant digital assets, and regulatory recognition across the US, EU, and Japan',
+              'EIP-1559 fee market: predictable gas pricing, basefee revenue redirected to protocol treasury',
+              'Protocol treasury: sustainable funding without new token issuance or miner reward changes',
+              'Fusaka EVM alignment: full parity with every Ethereum tool, library, and framework',
+              'Institutional infrastructure: the PoW commodity classification path (CLARITY Act) combined with the programmable finance frameworks being built around smart contract platforms (GENIUS Act, MiCA)',
             ].map((point) => (
               <li key={point} className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00ffae]" />
@@ -149,14 +149,14 @@ export default function OlympiaHubPage() {
                   ecip: 'ECIP-1112',
                   title: 'Protocol Treasury',
                   description:
-                    'A protocol-controlled vault funded by basefee revenue and voluntary contributions. Institutions, developers, and stakeholders can fund Ethereum Classic core development without fielding their own team. No admin keys, no multisig — only on-chain governance can release funds.',
+                    'A protocol-controlled vault funded by basefee revenue and voluntary contributions. Institutions, developers, and stakeholders can fund Ethereum Classic core development without fielding their own team. No admin keys, no multisig. Only on-chain governance can release funds.',
                   color: '#00ffae',
                 },
                 {
                   ecip: 'ECIP-1121',
                   title: 'Fusaka EVM Alignment',
                   description:
-                    'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka — every improvement independent of Proof-of-Stake and blob data availability. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework — one codebase, every EVM chain.',
+                    'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka: every improvement independent of Proof-of-Stake and blob data availability. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework. One codebase, every EVM chain.',
                   color: '#38bdf8',
                 },
               ].map((item) => (
@@ -196,7 +196,7 @@ export default function OlympiaHubPage() {
               EVM Compatibility in Detail
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              Three Ethereum upgrade cycles delivered to ETC in a single fork — every execution-layer improvement independent of Proof-of-Stake and blob data availability.
+              Three Ethereum upgrade cycles delivered to ETC in a single fork: every execution-layer improvement independent of Proof-of-Stake and blob data availability.
             </motion.p>
 
             {/* Fork Timeline */}
@@ -235,7 +235,7 @@ export default function OlympiaHubPage() {
             <motion.div variants={fadeInUp} className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
               <span className="font-semibold text-white">ETC context: </span>
               Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
-              ECIP-1111 now delivers those deferred London EIPs. ECIP-1121 advances the execution layer through Dencun, Pectra, and Fusaka — every EVM improvement that is independent of Proof-of-Stake and blob data availability.
+              ECIP-1111 now delivers those deferred London EIPs. ECIP-1121 advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
               Together, Olympia brings ETC to full Fusaka execution-layer parity.
             </motion.div>
 
@@ -290,7 +290,7 @@ export default function OlympiaHubPage() {
 
             {/* Blobs excluded note */}
             <motion.p variants={fadeInUp} className="mb-8 text-xs text-[var(--color-text-muted)] italic">
-              Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain with no data availability requirement — blobs are L2 scaffolding ETC does not need.
+              Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain with no data availability requirement. Blobs are L2 scaffolding ETC does not need.
             </motion.p>
 
             {/* Developer tooling */}
@@ -301,7 +301,7 @@ export default function OlympiaHubPage() {
               {[
                 { name: 'Solidity 0.8.x+', description: 'All recent compiler versions produce compatible bytecode for ETC without modification.' },
                 { name: 'Foundry / Hardhat', description: 'Standard EVM testing and deployment toolchains work on ETC without ETC-specific forks or patches.' },
-                { name: 'wagmi / viem / ethers.js', description: 'Standard wallet libraries and RPC types work on ETC without patching or overrides — one codebase, every EVM chain.' },
+                { name: 'wagmi / viem / ethers.js', description: 'Standard wallet libraries and RPC types work on ETC without patching or overrides. One codebase, every EVM chain.' },
               ].map((tool) => (
                 <motion.div
                   key={tool.name}
@@ -473,7 +473,7 @@ export default function OlympiaHubPage() {
                 {
                   name: 'Olympia DAO',
                   role: 'On-Chain Governance',
-                  description: 'CoreDAO membership NFTs for critical protocol decisions, futarchy prediction markets for public participation — all on-chain on Ethereum Classic.',
+                  description: 'CoreDAO membership NFTs for critical protocol decisions, futarchy prediction markets for public participation. All on-chain on Ethereum Classic.',
                   href: olympiaLinks.olympiaDAO,
                 },
                 {
