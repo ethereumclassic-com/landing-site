@@ -25,12 +25,12 @@ const fundFacts = [
 ]
 
 const brokerages = [
-  { name: 'Charles Schwab', note: 'Full-service brokerage' },
-  { name: 'Fidelity Investments', note: 'Full-service brokerage' },
-  { name: 'Interactive Brokers', note: 'Full-service brokerage' },
-  { name: 'E*Trade (Morgan Stanley)', note: 'Full-service brokerage' },
-  { name: 'Webull', note: 'Commission-free trading' },
-  { name: 'OTC Markets Group', note: 'Direct via OTCQX platform' },
+  { name: 'Charles Schwab', tag: 'IRA · Taxable' },
+  { name: 'Fidelity Investments', tag: 'IRA · Taxable' },
+  { name: 'Interactive Brokers', tag: 'IRA · Taxable' },
+  { name: 'E*Trade (Morgan Stanley)', tag: 'IRA · Taxable' },
+  { name: 'Webull', tag: 'Taxable · Commission-free' },
+  { name: 'OTC Markets Group', tag: 'Direct · OTCQX' },
 ]
 
 const dataProviders = [
@@ -196,62 +196,47 @@ export default function InvestmentProductsPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
-              {/* Brokerages */}
-              <div className="flex-1">
-                <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
-                  Brokerage Access
-                </motion.p>
-                <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-white">
-                  Where to Access ETCG Today
-                </motion.h2>
-                <motion.p variants={fadeInUp} className="mt-2 text-sm text-[var(--color-text-muted)]">
-                  OTCQX-listed. Available through the same platforms used for equities and bonds.
-                  Eligible for IRA and taxable accounts.
-                </motion.p>
+            <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
+              Brokerage Access
+            </motion.p>
+            <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-white">
+              No crypto account required
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
+              ETCG is an OTCQX-listed grantor trust. Search the ticker at your existing brokerage — it trades alongside equities and ETFs. IRA-eligible at major full-service platforms.
+            </motion.p>
 
-                <motion.div variants={fadeInUp} className="mt-6 divide-y divide-[var(--border)]">
-                  {brokerages.map((brokerage) => (
-                    <div
-                      key={brokerage.name}
-                      className="flex items-center justify-between gap-4 border-l-2 border-[#F59E0B] py-3 pl-4"
-                    >
-                      <p className="text-sm font-semibold text-white">{brokerage.name}</p>
-                      <p className="shrink-0 text-xs text-[var(--color-text-muted)]">{brokerage.note}</p>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
+            {/* Brokerage grid */}
+            <motion.div
+              variants={fadeInUp}
+              className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3"
+            >
+              {brokerages.map((b) => (
+                <div
+                  key={b.name}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[#F59E0B]/30"
+                >
+                  <p className="text-sm font-semibold text-white">{b.name}</p>
+                  <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[#F59E0B]/70">{b.tag}</p>
+                </div>
+              ))}
+            </motion.div>
 
-              {/* Ticker / Data Providers */}
-              <div className="lg:w-72">
-                <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
-                  Track ETCG
-                </motion.p>
-                <motion.h3 variants={fadeInUp} className="mt-2 text-lg font-bold text-white">
-                  Market Data Platforms
-                </motion.h3>
-                <motion.p variants={fadeInUp} className="mt-2 text-sm text-[var(--color-text-muted)]">
-                  Real-time quotes and historical data on major financial platforms.
-                </motion.p>
-
-                <motion.div variants={fadeInUp} className="mt-6 space-y-3">
-                  {dataProviders.map((provider) => (
-                    <div
-                      key={provider.label}
-                      className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3"
-                    >
-                      <p className="text-sm text-[var(--color-text-muted)]">{provider.label}</p>
-                      <p className="font-mono text-sm font-bold text-[#F59E0B]">{provider.ticker}</p>
-                    </div>
-                  ))}
-                </motion.div>
-
-                <motion.p variants={fadeInUp} className="mt-6 text-xs text-[var(--color-text-muted)] italic">
-                  OTC security. Availability varies by brokerage. Not investment advice.
-                </motion.p>
-              </div>
-            </div>
+            {/* Data providers strip */}
+            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[var(--border)] pt-6">
+              <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-[var(--color-text-muted)]">
+                Track on
+              </span>
+              {dataProviders.map((p) => (
+                <span key={p.label} className="text-sm text-[var(--color-text-muted)]">
+                  {p.label}{' '}
+                  <span className="font-mono font-semibold text-[#F59E0B]">{p.ticker}</span>
+                </span>
+              ))}
+              <span className="ml-auto text-xs italic text-[var(--color-text-muted)] opacity-60">
+                OTC security. Not investment advice.
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </section>
