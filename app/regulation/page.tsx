@@ -61,6 +61,13 @@ const regulatoryProfiles = [
   },
 ]
 
+const FLAG_SVGS: Record<string, { src: string; alt: string }> = {
+  '🇺🇸': { src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1fa-1f1f8.svg', alt: 'US' },
+  '🇪🇺': { src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ea-1f1fa.svg', alt: 'EU' },
+  '🇯🇵': { src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f1ef-1f1f5.svg', alt: 'JP' },
+  '🌏': { src: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f30f.svg', alt: 'Asia-Pacific' },
+}
+
 const jurisdictions = [
   {
     region: 'United States',
@@ -330,7 +337,10 @@ export default function RegulationPage() {
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{j.flag}</span>
+                    {FLAG_SVGS[j.flag] && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={FLAG_SVGS[j.flag].src} alt={FLAG_SVGS[j.flag].alt} className="h-6 w-6 shrink-0" />
+                    )}
                     <div>
                       <p className="text-sm font-semibold text-white">{j.region}</p>
                       <p className="font-mono text-xs text-[#00ffae]">{j.framework}</p>
