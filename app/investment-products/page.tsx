@@ -25,19 +25,19 @@ const fundFacts = [
 ]
 
 const brokerages = [
-  { name: 'Charles Schwab', tag: 'IRA · Taxable' },
-  { name: 'Fidelity Investments', tag: 'IRA · Taxable' },
-  { name: 'Interactive Brokers', tag: 'IRA · Taxable' },
-  { name: 'E*Trade (Morgan Stanley)', tag: 'IRA · Taxable' },
-  { name: 'Webull', tag: 'Taxable · Commission-free' },
-  { name: 'OTC Markets Group', tag: 'Direct · OTCQX' },
+  { name: 'Charles Schwab', tag: 'IRA · Taxable', href: 'https://www.schwab.com' },
+  { name: 'Fidelity Investments', tag: 'IRA · Taxable', href: 'https://www.fidelity.com' },
+  { name: 'Interactive Brokers', tag: 'IRA · Taxable', href: 'https://www.interactivebrokers.com' },
+  { name: 'E*Trade (Morgan Stanley)', tag: 'IRA · Taxable', href: 'https://us.etrade.com' },
+  { name: 'Webull', tag: 'Taxable · Commission-free', href: 'https://www.webull.com' },
+  { name: 'OTC Markets Group', tag: 'Direct · OTCQX', href: 'https://www.otcmarkets.com/stock/ETCG/company-info' },
 ]
 
 const dataProviders = [
-  { label: 'Yahoo Finance', ticker: 'ETCG' },
-  { label: 'Bloomberg', ticker: 'ETCG:US' },
-  { label: 'Seeking Alpha', ticker: 'ETCG' },
-  { label: 'CNBC', ticker: 'ETCG' },
+  { label: 'Yahoo Finance', ticker: 'ETCG', href: 'https://finance.yahoo.com/quote/ETCG' },
+  { label: 'Bloomberg', ticker: 'ETCG:US', href: 'https://www.bloomberg.com/quote/ETCG:US' },
+  { label: 'Seeking Alpha', ticker: 'ETCG', href: 'https://seekingalpha.com/symbol/ETCG' },
+  { label: 'CNBC', ticker: 'ETCG', href: 'https://www.cnbc.com/quotes/ETCG' },
 ]
 
 const thesisPoints = [
@@ -200,7 +200,7 @@ export default function InvestmentProductsPage() {
               Brokerage Access
             </motion.p>
             <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-white">
-              No crypto account required
+              ETC in Traditional Finance
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
               ETCG is an OTCQX-listed grantor trust. Search the ticker at your existing brokerage — it trades alongside equities and ETFs. IRA-eligible at major full-service platforms.
@@ -212,13 +212,19 @@ export default function InvestmentProductsPage() {
               className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3"
             >
               {brokerages.map((b) => (
-                <div
+                <a
                   key={b.name}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[#F59E0B]/30"
+                  href={b.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col justify-between rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[#F59E0B]/30"
                 >
-                  <p className="text-sm font-semibold text-white">{b.name}</p>
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="text-sm font-semibold text-white">{b.name}</p>
+                    <span className="shrink-0 font-mono text-[10px] text-[var(--color-text-muted)] transition-colors group-hover:text-[#F59E0B]">↗</span>
+                  </div>
                   <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[#F59E0B]/70">{b.tag}</p>
-                </div>
+                </a>
               ))}
             </motion.div>
 
@@ -230,7 +236,14 @@ export default function InvestmentProductsPage() {
               {dataProviders.map((p) => (
                 <span key={p.label} className="text-sm text-[var(--color-text-muted)]">
                   {p.label}{' '}
-                  <span className="font-mono font-semibold text-[#F59E0B]">{p.ticker}</span>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono font-semibold text-[#F59E0B] transition-opacity hover:opacity-70"
+                  >
+                    {p.ticker}
+                  </a>
                 </span>
               ))}
               <span className="ml-auto text-xs italic text-[var(--color-text-muted)] opacity-60">
