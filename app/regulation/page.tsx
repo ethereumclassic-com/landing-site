@@ -139,10 +139,10 @@ export default function RegulationPage() {
             variants={fadeInUp}
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Ethereum Classic occupies two distinct regulatory trajectories: the commodity
-            classification path that Proof-of-Work networks established, and the programmable
-            finance frameworks being built around smart contract platforms. Its regulatory surface
-            is additive: it captures both.
+            Ethereum Classic sits at the intersection of every major regulatory trajectory being
+            legislated simultaneously: digital commodity under PoW consensus frameworks, decentralized
+            asset under MiCA, and live stablecoin infrastructure under the GENIUS Act. Its regulatory
+            surface is additive by design.
           </motion.p>
         </motion.div>
       </section>

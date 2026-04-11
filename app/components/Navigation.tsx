@@ -61,7 +61,7 @@ const navItems: {
       { href: '/learn/wallets', label: 'Wallet Guides' },
       { href: '/learn/defi', label: 'DeFi on ETC' },
       { href: '/regulation', label: 'Regulatory Framework' },
-      { href: '/environmental-impact', label: 'Energy Impact' },
+      { href: '/environmental-impact', label: 'PoW Energy' },
     ],
   },
   {
@@ -136,7 +136,7 @@ const mobileNavGroups: {
       { href: '/learn/ethereum-classic', label: 'What is ETC?' },
       { href: '/learn/basics', label: 'ETC Basics' },
       { href: '/regulation', label: 'Regulatory Framework' },
-      { href: '/environmental-impact', label: 'Energy Impact' },
+      { href: '/environmental-impact', label: 'PoW Energy' },
       { href: '/news', label: 'News' },
       { href: '/research', label: 'Research' },
     ],

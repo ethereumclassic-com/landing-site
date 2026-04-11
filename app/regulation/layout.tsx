@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Regulatory Framework — Ethereum Classic',
   description:
-    'ETC occupies two distinct regulatory trajectories: the commodity classification path that Proof-of-Work networks established, and the programmable finance frameworks being built around smart contract platforms.',
+    "ETC's regulatory surface is additive: digital commodity under PoW consensus frameworks, decentralized asset under MiCA, and live stablecoin infrastructure under the GENIUS Act. No single classification captures it.",
   openGraph: {
     title: 'Regulatory Framework — Ethereum Classic',
     description:

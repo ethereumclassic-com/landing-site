@@ -196,43 +196,62 @@ export default function InvestmentProductsPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
-              Where to Access ETCG Today
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              As an OTCQX-listed security, ETCG is available through most major US brokerages:
-              the same platforms used for equities and bonds. Eligible for IRA and taxable accounts.
-            </motion.p>
+            <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
+              {/* Brokerages */}
+              <div className="flex-1">
+                <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
+                  Brokerage Access
+                </motion.p>
+                <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-white">
+                  Where to Access ETCG Today
+                </motion.h2>
+                <motion.p variants={fadeInUp} className="mt-2 text-sm text-[var(--color-text-muted)]">
+                  OTCQX-listed. Available through the same platforms used for equities and bonds.
+                  Eligible for IRA and taxable accounts.
+                </motion.p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {brokerages.map((brokerage) => (
-                <motion.div
-                  key={brokerage.name}
-                  variants={fadeInUp}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--background)] px-5 py-4"
-                >
-                  <p className="text-sm font-semibold text-white">{brokerage.name}</p>
-                  <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{brokerage.note}</p>
+                <motion.div variants={fadeInUp} className="mt-6 divide-y divide-[var(--border)]">
+                  {brokerages.map((brokerage) => (
+                    <div
+                      key={brokerage.name}
+                      className="flex items-center justify-between gap-4 border-l-2 border-[#F59E0B] py-3 pl-4"
+                    >
+                      <p className="text-sm font-semibold text-white">{brokerage.name}</p>
+                      <p className="shrink-0 text-xs text-[var(--color-text-muted)]">{brokerage.note}</p>
+                    </div>
+                  ))}
                 </motion.div>
-              ))}
+              </div>
+
+              {/* Ticker / Data Providers */}
+              <div className="lg:w-72">
+                <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
+                  Track ETCG
+                </motion.p>
+                <motion.h3 variants={fadeInUp} className="mt-2 text-lg font-bold text-white">
+                  Market Data Platforms
+                </motion.h3>
+                <motion.p variants={fadeInUp} className="mt-2 text-sm text-[var(--color-text-muted)]">
+                  Real-time quotes and historical data on major financial platforms.
+                </motion.p>
+
+                <motion.div variants={fadeInUp} className="mt-6 space-y-3">
+                  {dataProviders.map((provider) => (
+                    <div
+                      key={provider.label}
+                      className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3"
+                    >
+                      <p className="text-sm text-[var(--color-text-muted)]">{provider.label}</p>
+                      <p className="font-mono text-sm font-bold text-[#F59E0B]">{provider.ticker}</p>
+                    </div>
+                  ))}
+                </motion.div>
+
+                <motion.p variants={fadeInUp} className="mt-6 text-xs text-[var(--color-text-muted)] italic">
+                  OTC security. Availability varies by brokerage. Not investment advice.
+                </motion.p>
+              </div>
             </div>
-
-            <motion.div variants={fadeInUp} className="mt-8 grid gap-4 sm:grid-cols-4">
-              {dataProviders.map((provider) => (
-                <div
-                  key={provider.label}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-center"
-                >
-                  <p className="font-mono text-sm font-bold text-[#F59E0B]">{provider.ticker}</p>
-                  <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{provider.label}</p>
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.p variants={fadeInUp} className="mt-6 text-xs text-[var(--color-text-muted)] italic">
-              ETCG is an OTC security. Availability varies by brokerage. Confirm with your broker
-              before investing. This is not investment advice.
-            </motion.p>
           </motion.div>
         </div>
       </section>
