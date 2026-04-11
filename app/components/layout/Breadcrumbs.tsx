@@ -14,7 +14,7 @@ export interface BreadcrumbsProps extends HTMLAttributes<HTMLElement> {
 }
 
 const DefaultSeparator = () => (
-  <svg
+  <svg aria-hidden="true"
     className="w-4 h-4 text-[var(--color-text-muted)]"
     fill="none"
     viewBox="0 0 24 24"

@@ -116,6 +116,7 @@ export const TrustSignals = forwardRef<HTMLElement, TrustSignalsProps>(
     return (
       <section
         ref={ref}
+        aria-labelledby={title ? 'trust-signals-heading' : undefined}
         className={[
           'py-12 md:py-16',
           'bg-[var(--color-bg-secondary)]',
@@ -140,7 +141,7 @@ export const TrustSignals = forwardRef<HTMLElement, TrustSignalsProps>(
                 </p>
               )}
               {title && (
-                <h2 className="text-2xl font-bold text-[var(--color-text-primary)] md:text-3xl">
+                <h2 id="trust-signals-heading" className="text-2xl font-bold text-[var(--color-text-primary)] md:text-3xl">
                   {title}
                 </h2>
               )}

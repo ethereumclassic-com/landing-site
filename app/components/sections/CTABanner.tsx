@@ -89,6 +89,7 @@ export const CTABanner = forwardRef<HTMLElement, CTABannerProps>(
     return (
       <section
         ref={ref}
+        aria-labelledby="cta-banner-heading"
         className={['py-16 md:py-24', className].filter(Boolean).join(' ')}
         {...props}
       >
@@ -112,6 +113,7 @@ export const CTABanner = forwardRef<HTMLElement, CTABannerProps>(
               hasImage ? 'lg:p-16' : 'text-center',
             ].filter(Boolean).join(' ')}>
               <h2
+                id="cta-banner-heading"
                 className={[
                   'text-2xl font-bold md:text-3xl lg:text-4xl',
                   styles.title,

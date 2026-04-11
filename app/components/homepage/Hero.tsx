@@ -88,7 +88,7 @@ export default function Hero() {
             href="/wallet"
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/15 px-6 py-3.5 text-base font-medium text-white transition-all hover:bg-[var(--color-primary)]/25 hover:shadow-lg hover:shadow-[var(--color-primary)]/20"
           >
-            <svg
+            <svg aria-hidden="true"
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
@@ -107,7 +107,7 @@ export default function Hero() {
             href="/buy"
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-base font-medium text-white/90 transition-all hover:bg-white/10"
           >
-            <svg
+            <svg aria-hidden="true"
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
@@ -127,7 +127,7 @@ export default function Hero() {
             className="inline-flex items-center justify-center gap-1 text-base font-medium text-[var(--color-text-secondary)] transition-colors hover:text-white"
           >
             Learn More
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </Link>

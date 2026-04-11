@@ -72,8 +72,8 @@ function FAQItemComponent({
             .filter(Boolean)
             .join(' ')}
         >
-          <svg
-            className={[
+          <svg aria-hidden="true"
+                        className={[
               'h-4 w-4 transition-colors',
               isOpen
                 ? 'text-[var(--color-primary)]'
@@ -151,6 +151,7 @@ export const FAQAccordion = forwardRef<HTMLElement, FAQAccordionProps>(
     return (
       <section
         ref={ref}
+        aria-labelledby={title ? 'faq-accordion-heading' : undefined}
         className={[
           'py-16 md:py-24',
           'bg-[var(--color-bg-primary)]',
@@ -175,7 +176,7 @@ export const FAQAccordion = forwardRef<HTMLElement, FAQAccordionProps>(
                 </p>
               )}
               {title && (
-                <h2 className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
+                <h2 id="faq-accordion-heading" className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
                   {title}
                 </h2>
               )}

@@ -35,11 +35,11 @@ const sizeStyles: Record<ButtonSize, string> = {
 
 const Spinner = ({ className }: { className?: string }) => (
   <svg
+    aria-hidden="true"
     className={`animate-spin ${className || 'h-4 w-4'}`}
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
-    aria-hidden="true"
   >
     <circle
       className="opacity-25"

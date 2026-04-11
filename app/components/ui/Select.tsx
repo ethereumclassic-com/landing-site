@@ -109,7 +109,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           <div
             className={`absolute top-1/2 -translate-y-1/2 ${chevronPosition} text-[var(--color-text-muted)] pointer-events-none`}
           >
-            <svg
+            <svg aria-hidden="true"
               className={chevronSize}
               fill="none"
               viewBox="0 0 24 24"

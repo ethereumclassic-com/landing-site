@@ -26,7 +26,7 @@ export interface TableProps<T> extends Omit<HTMLAttributes<HTMLTableElement>, 'c
 
 // Sort icon component
 const SortIcon = ({ direction }: { direction?: 'asc' | 'desc' | null }) => (
-  <svg
+  <svg aria-hidden="true"
     className="w-4 h-4 inline-block ml-1"
     fill="none"
     viewBox="0 0 24 24"

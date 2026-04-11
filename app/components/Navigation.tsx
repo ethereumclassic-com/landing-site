@@ -282,7 +282,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
           >
             {/* Search Input */}
             <div className="relative shrink-0 p-4">
-              <svg
+              <svg aria-hidden="true"
                 className="absolute left-8 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--color-text-muted)]"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -537,7 +537,7 @@ export default function Navigation() {
                       <span className="h-1.5 w-1.5 rounded-full bg-[#00ffae] shadow-[0_0_6px_rgba(0,255,174,0.6)]" />
                     )}
                     {item.dropdown && (
-                      <svg
+                      <svg aria-hidden="true"
                         className={`h-4 w-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
                         fill="none"
                         viewBox="0 0 24 24"
@@ -558,7 +558,7 @@ export default function Navigation() {
                   >
                     {item.label}
                     {item.dropdown && (
-                      <svg
+                      <svg aria-hidden="true"
                         className={`h-4 w-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
                         fill="none"
                         viewBox="0 0 24 24"
@@ -589,7 +589,7 @@ export default function Navigation() {
               className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70 transition hover:bg-white/5 hover:text-white"
               aria-label="Search"
             >
-              <svg
+              <svg aria-hidden="true"
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -621,7 +621,7 @@ export default function Navigation() {
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
-              <svg
+              <svg aria-hidden="true"
                 className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -657,7 +657,7 @@ export default function Navigation() {
                   className="mb-4 flex w-full items-center justify-center rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/15 px-4 py-3 text-sm font-medium text-white transition hover:bg-[var(--color-primary)]/25"
                 >
                   Launch App
-                  <svg
+                  <svg aria-hidden="true"
                     className="ml-2 h-4 w-4"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -680,7 +680,7 @@ export default function Navigation() {
                   }}
                   className="mb-4 flex w-full items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-left text-[var(--color-text-muted)]"
                 >
-                  <svg
+                  <svg aria-hidden="true"
                     className="h-5 w-5"
                     fill="none"
                     viewBox="0 0 24 24"

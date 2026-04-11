@@ -69,7 +69,7 @@ function NewsletterForm({
   if (status === 'success') {
     return (
       <div className="flex items-center justify-center gap-2 text-[var(--color-success)]">
-        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
         <span className="font-medium">Thanks for subscribing!</span>
@@ -165,6 +165,7 @@ function CardNewsletter({
 }: NewsletterSignupProps) {
   return (
     <section
+      aria-labelledby="newsletter-card-heading"
       className={['py-16 md:py-24', className].filter(Boolean).join(' ')}
       {...props}
     >
@@ -177,8 +178,8 @@ function CardNewsletter({
           variants={fadeInUp}
         >
           <div className="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
-            <svg
-              className="h-6 w-6 text-[var(--color-primary)]"
+            <svg aria-hidden="true"
+                            className="h-6 w-6 text-[var(--color-primary)]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -192,7 +193,7 @@ function CardNewsletter({
             </svg>
           </div>
 
-          <h2 className="text-2xl font-bold text-[var(--color-text-primary)] md:text-3xl">
+          <h2 id="newsletter-card-heading" className="text-2xl font-bold text-[var(--color-text-primary)] md:text-3xl">
             {title}
           </h2>
 
@@ -230,6 +231,7 @@ function BannerNewsletter({
 }: NewsletterSignupProps) {
   return (
     <section
+      aria-labelledby="newsletter-banner-heading"
       className={['py-12', className].filter(Boolean).join(' ')}
       {...props}
     >
@@ -247,7 +249,7 @@ function BannerNewsletter({
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="lg:flex-shrink-0">
-              <h2 className="text-2xl font-bold text-white md:text-3xl">
+              <h2 id="newsletter-banner-heading" className="text-2xl font-bold text-white md:text-3xl">
                 {title}
               </h2>
               {description && (

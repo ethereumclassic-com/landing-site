@@ -83,8 +83,8 @@ function ProductCardItem({ card }: { card: ProductCard }) {
         {/* CTA */}
         <div className="mt-6 flex items-center text-sm font-medium text-[var(--color-primary)] transition-transform group-hover:translate-x-1">
           {card.cta}
-          <svg
-            className="ml-2 h-4 w-4"
+          <svg aria-hidden="true"
+                        className="ml-2 h-4 w-4"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -109,6 +109,7 @@ export const ProductCards = forwardRef<HTMLElement, ProductCardsProps>(
   ) => (
     <section
       ref={ref}
+      aria-labelledby={title ? 'product-cards-heading' : undefined}
       className={['py-16 md:py-24', className].filter(Boolean).join(' ')}
       {...props}
     >
@@ -127,7 +128,7 @@ export const ProductCards = forwardRef<HTMLElement, ProductCardsProps>(
               </p>
             )}
             {title && (
-              <h2 className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
+              <h2 id="product-cards-heading" className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
                 {title}
               </h2>
             )}

@@ -101,6 +101,7 @@ export const FeatureGrid = forwardRef<HTMLElement, FeatureGridProps>(
   ) => (
     <section
       ref={ref}
+      aria-labelledby={title ? 'feature-grid-heading' : undefined}
       className={[
         'py-16 md:py-24',
         'bg-[var(--color-bg-primary)]',
@@ -130,7 +131,7 @@ export const FeatureGrid = forwardRef<HTMLElement, FeatureGridProps>(
               </p>
             )}
             {title && (
-              <h2 className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
+              <h2 id="feature-grid-heading" className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
                 {title}
               </h2>
             )}
