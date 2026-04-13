@@ -54,7 +54,7 @@ const thesisPoints = [
   {
     number: '03',
     title: 'Regulated Stablecoin Infrastructure',
-    body: 'Classic USD ($USC) is live on ETC mainnet, the first GENIUS Act-aligned stablecoin on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with ETCswap V2/V3.',
+    body: <>Classic USD ($USC) is live on ETC mainnet, the first GENIUS Act-aligned stablecoin on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[#00ffae] transition-opacity hover:opacity-80">ETCswap</a> V2/V3.</>,
   },
   {
     number: '04',
