@@ -53,10 +53,11 @@ Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Eth
 
 Developer impact: Solidity 0.8.x+, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification or ETC-specific forks after Olympia.
 
-Three independent client implementations:
-- Fukuii (Scala) — Primary client post-Olympia. 143 RPC methods, 2,706 tests, full SNAP sync.
-- Core-Geth (Go) — Battle-tested ETC client, transitioning to maintenance role.
-- Hyperledger Besu (Java) — Enterprise-grade, Apache 2.0 licensed.
+Two active clients at Olympia launch:
+- Fukuii — Primary client for the Olympia era. Purpose-built for Ethereum Classic and designed for long-term protocol stewardship.
+- Core-Geth — Legacy ETC client, actively maintained and carried through Olympia. Scheduled to phase out as Fukuii assumes the primary role.
+
+ETC plugins for Besu, Erigon, Go-Ethereum, and Nethermind are planned for future release — compatibility layers that bring ETC support to major upstream clients.
 
 Activation block: TBD (announced after CDC-23 community call).
 

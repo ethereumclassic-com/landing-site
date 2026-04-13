@@ -63,7 +63,7 @@ export const clients: ClientUpgrade[] = [
     language: 'Go',
     languageColor: '#00ADD8',
     description:
-      'Established ETC client based on go-ethereum. Maintained through the Olympia transition with continued security updates.',
+      'The legacy ETC client, actively maintained and carried forward through the Olympia upgrade for network continuity. Scheduled to phase out as Fukuii assumes the primary client role. The upstream go-ethereum plugin architecture is the long-term path.',
     role: 'maintenance',
     roleLabel: 'Maintained',
     currentVersion: 'v1.13.0',

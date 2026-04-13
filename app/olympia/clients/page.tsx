@@ -51,9 +51,10 @@ export default function UpgradeHubPage() {
             variants={fadeInUp}
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Three independent client implementations ensure EVM parity, security maintenance,
-            and modern tooling for Ethereum Classic. Fukuii is recommended, Core-Geth is
-            maintained through the transition, and Besu serves as a reference for cross-client testing.
+            Fukuii is the primary client for the Olympia era. Core-Geth is actively maintained
+            and carried through the upgrade for network continuity, then scheduled to phase out
+            as Fukuii assumes the primary role. ETC compatibility plugins for major upstream
+            clients are planned for future release.
           </motion.p>
         </motion.div>
       </section>
@@ -73,9 +74,9 @@ export default function UpgradeHubPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            className="grid gap-6 md:grid-cols-3"
+            className="grid gap-6 md:grid-cols-2"
           >
-            {clients.map((client) => (
+            {clients.filter((c) => c.id !== 'besu').map((client) => (
               <ClientUpgradeCard key={client.id} client={client} />
             ))}
           </motion.div>
@@ -95,9 +96,10 @@ export default function UpgradeHubPage() {
               ETC Compatibility Plugins
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
-              Beyond the three primary implementations, Ethereum Classic is also accessible via
-              compatibility plugins for major EVM clients — enabling enterprise deployments,
-              archive nodes, and cross-chain infrastructure on any preferred execution environment.
+              Planned for release after Olympia activation — compatibility layers that bring
+              Ethereum Classic support to major upstream EVM clients without maintaining full
+              forks. Enables enterprise deployments, archive nodes, and cross-chain infrastructure
+              on any preferred execution environment.
             </motion.p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -107,7 +109,7 @@ export default function UpgradeHubPage() {
                   language: 'Java',
                   langColor: '#e76f00',
                   description:
-                    'Enterprise-grade EVM client from the Hyperledger Foundation. Apache 2.0 licensed. Serves as a cross-client reference implementation for Olympia testing.',
+                    'Enterprise-grade EVM client from the Hyperledger Foundation. Apache 2.0 licensed. Planned ETC compatibility plugin for enterprise deployments and institutional infrastructure.',
                   links: [
                     { label: 'GitHub', href: 'https://github.com/hyperledger/besu' },
                     { label: 'Docs', href: 'https://besu.hyperledger.org' },
@@ -153,12 +155,17 @@ export default function UpgradeHubPage() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="text-base font-semibold text-white">{plugin.name}</h3>
-                    <span
-                      className="shrink-0 rounded px-1.5 py-0.5 font-mono text-xs font-medium"
-                      style={{ backgroundColor: `${plugin.langColor}20`, color: plugin.langColor }}
-                    >
-                      {plugin.language}
-                    </span>
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      <span
+                        className="rounded px-1.5 py-0.5 font-mono text-xs font-medium"
+                        style={{ backgroundColor: `${plugin.langColor}20`, color: plugin.langColor }}
+                      >
+                        {plugin.language}
+                      </span>
+                      <span className="rounded bg-[#f59e0b15] px-1.5 py-0.5 text-xs font-medium text-[#f59e0b]">
+                        Future
+                      </span>
+                    </div>
                   </div>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {plugin.description}
