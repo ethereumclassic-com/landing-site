@@ -34,7 +34,7 @@ const howItWorks = [
   {
     title: 'On-Chain Governance',
     description:
-      'Two-layer governance: the CoreDAO handles critical protocol decisions (security maintenance, EVM parity, and client funding), ensuring a professional-grade blockchain experience for Ethereum Classic stakeholders. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
+      'On-chain governance via the OpenZeppelin Governor 5.x contract suite. The Olympia DAO handles critical protocol decisions — security maintenance, EVM parity, and client funding — using non-transferable membership NFTs. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
     color: '#38bdf8',
   },
 ]
@@ -85,7 +85,7 @@ export default function OlympiaHubPage() {
               'EIP-1559 fee market: predictable gas pricing, basefee revenue redirected to protocol treasury',
               'Protocol treasury: sustainable funding without new token issuance or miner reward changes',
               'Fusaka EVM alignment: full parity with every Ethereum tool, library, and framework',
-              'Institutional infrastructure: the PoW commodity classification path (CLARITY Act) combined with the programmable finance frameworks being built around smart contract platforms (GENIUS Act, MiCA)',
+              'Institutional infrastructure: the Proof-of-Work foundation for regulated stablecoin issuance (Classic USD, MiCA and GENIUS Act-compliant), digital commodity classification under the CLARITY Act, and the broadest cross-jurisdictional institutional access profile of any Proof-of-Work smart contract network',
             ].map((point) => (
               <li key={point} className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00ffae]" />
@@ -473,7 +473,7 @@ export default function OlympiaHubPage() {
                 {
                   name: 'Olympia DAO',
                   role: 'On-Chain Governance',
-                  description: 'CoreDAO membership NFTs for critical protocol decisions, futarchy prediction markets for public participation. All on-chain on Ethereum Classic.',
+                  description: 'Olympia DAO membership NFTs for critical protocol decisions, futarchy prediction markets for public participation. All on-chain on Ethereum Classic.',
                   href: olympiaLinks.olympiaDAO,
                 },
                 {

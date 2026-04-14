@@ -111,15 +111,15 @@ export const apps: App[] = [
   {
     name: 'Olympia DAO',
     slug: 'olympia-dao',
-    description: 'On-chain governance for Ethereum Classic — basefee-funded treasury, CoreDAO membership voting, and futarchy prediction markets.',
-    longDescription: 'Olympia is active protocol development for Ethereum Classic — EVM modernization, maintained clients, and funded development through sustainable basefee revenue. The Treasury is funded by EIP-1559 basefee revenue, not block rewards or inflation. Governance operates on two layers: the CoreDAO uses non-transferable membership NFTs for critical protocol decisions (security maintenance, EVM parity, client funding), while futarchy prediction markets open public participation to inform treasury allocation. Three independent client implementations (Fukuii, Core-Geth, Hyperledger Besu) ensure network resilience. All governance actions are on-chain and auditable.',
+    description: 'On-chain governance for Ethereum Classic — basefee-funded treasury, Olympia DAO membership voting, and futarchy prediction markets.',
+    longDescription: 'Olympia is active protocol development for Ethereum Classic — EVM modernization, maintained clients, and funded development through sustainable basefee revenue. The Treasury is funded by EIP-1559 basefee revenue, not block rewards or inflation. Governance operates on two layers: the Olympia DAO uses non-transferable membership NFTs for critical protocol decisions (security maintenance, EVM parity, client funding), while futarchy prediction markets open public participation to inform treasury allocation. Multiple independent client implementations ensure network resilience. All governance actions are on-chain and auditable.',
     category: 'Governance',
     link: 'https://olympiadao.org/',
     internalUrl: '/olympia',
     tags: ['DAO', 'Treasury', 'Governance', 'Basefee', 'Futarchy'],
     features: [
       'Basefee-funded protocol treasury',
-      'CoreDAO membership NFT voting',
+      'Olympia DAO membership NFT voting',
       'Futarchy prediction markets',
       'On-chain proposal lifecycle',
       'Configurable timelock security',

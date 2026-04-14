@@ -65,7 +65,7 @@ The broader Olympia framework includes governance and funding ECIPs that operate
 
 | ECIP | Title | Stage |
 |------|-------|-------|
-| [ECIP-1113](https://ecips.ethereumclassic.org/ECIPs/ecip-1113) | CoreDAO Governance | Core Governance |
+| [ECIP-1113](https://ecips.ethereumclassic.org/ECIPs/ecip-1113) | Olympia DAO Governance | Core Governance |
 | [ECIP-1114](https://ecips.ethereumclassic.org/ECIPs/ecip-1114) | Funding Proposal Process (ECFP) | Core Governance |
 | [ECIP-1119](https://ecips.ethereumclassic.org/ECIPs/ecip-1119) | Sanctions Compliance Oracle | Core Governance |
 | [ECIP-1117](https://ecips.ethereumclassic.org/ECIPs/ecip-1117) | Futarchy DAO | Prediction Markets |
@@ -74,7 +74,7 @@ The broader Olympia framework includes governance and funding ECIPs that operate
 | [ECIP-1118](https://ecips.ethereumclassic.org/ECIPs/ecip-1118) | Fee Handling | Treasury Distribution |
 | [ECIP-1122](https://ecips.ethereumclassic.org/ECIPs/ecip-1122) | Basefee Smoothing | Treasury Distribution — Supersedes ECIP-1120 |
 
-None of these need to be solved now with a $0 treasury. The governance layer can evolve from the base CoreDAO once there are funds to govern.
+None of these need to be solved now with a $0 treasury. The governance layer can evolve from the base Olympia DAO once there are funds to govern.
 
 ---
 

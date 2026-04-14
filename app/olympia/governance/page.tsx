@@ -37,7 +37,7 @@ const safeguards = [
   {
     label: 'Two-Layer Governance',
     description:
-      'CoreDAO membership NFTs are non-transferable, preventing vote buying and governance manipulation. Public participation is enabled through futarchy prediction markets — ensuring both protocol accountability and broad community input.',
+      'Olympia DAO membership NFTs are non-transferable, preventing vote buying and governance manipulation. Public participation is enabled through futarchy prediction markets — ensuring both protocol accountability and broad community input.',
   },
 ]
 

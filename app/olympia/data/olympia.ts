@@ -194,7 +194,7 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'How does voting work?',
     answer:
-      'Governance operates on two layers. The CoreDAO uses non-transferable membership NFTs for critical protocol decisions — security maintenance, EVM parity, and client funding. Members cast on-chain votes during a defined voting period, and proposals require both quorum and majority to pass. Public participation is enabled through futarchy prediction markets, where anyone can stake on proposal outcomes to signal community sentiment and inform treasury allocation.',
+      'Governance operates on two layers. The Olympia DAO uses non-transferable membership NFTs for critical protocol decisions — security maintenance, EVM parity, and client funding. Members cast on-chain votes during a defined voting period via the OpenZeppelin Governor 5.x contract suite. Public participation is enabled through futarchy prediction markets, where anyone can stake on proposal outcomes to signal community sentiment and inform treasury allocation.',
   },
   {
     question: 'Who can submit proposals?',
@@ -214,7 +214,7 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'How are funds protected from misuse?',
     answer:
-      'Multiple safeguards protect treasury funds: a configurable timelock delay on all approved proposals, three-layer on-chain sanctions screening, non-transferable CoreDAO membership NFTs that prevent vote buying, futarchy markets that surface public sentiment, and full on-chain transparency for every transaction.',
+      'Multiple safeguards protect treasury funds: a configurable timelock delay on all approved proposals, three-layer on-chain sanctions screening, non-transferable Olympia DAO membership NFTs that prevent vote buying, futarchy markets that surface public sentiment, and full on-chain transparency for every transaction.',
   },
 ]
 
@@ -230,7 +230,7 @@ export interface GovernanceStep {
 
 export const governanceFlow: GovernanceStep[] = [
   { icon: 'FileText', title: 'Propose', description: 'Anyone can submit a governance proposal on-chain. Proposals define the action to execute and the supporting rationale.' },
-  { icon: 'Vote', title: 'Vote', description: 'Members cast on-chain votes during a defined voting period. A quorum threshold must be met for the proposal to pass.' },
+  { icon: 'Vote', title: 'Vote', description: 'Members cast on-chain votes during a defined voting period via the OpenZeppelin Governor 5.x contract suite. Voting is transparent and immutable.' },
   { icon: 'Timer', title: 'Queue', description: 'Approved proposals enter a security timelock. This delay provides the community time to review before execution.' },
   { icon: 'Zap', title: 'Execute', description: 'After the timelock expires, the proposal executes automatically. Treasury transfers happen on-chain with full auditability.' },
   { icon: 'Eye', title: 'Disclose', description: 'All outcomes are publicly reported and independently verifiable. Proposal records form a permanent on-chain record.' },
@@ -252,7 +252,7 @@ export const olympiaLinks = {
 // ============================================================================
 
 export const olympiaStats = [
-  { label: 'Client Implementations', value: '3' },
+  { label: 'Client Implementations', value: 'Multiple' },
   { label: 'Network', value: 'Proof-of-Work' },
   { label: 'Governance', value: 'Membership-Based' },
   { label: 'Treasury', value: 'Protocol-Funded' },
