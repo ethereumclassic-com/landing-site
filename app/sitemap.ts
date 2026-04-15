@@ -157,6 +157,7 @@ const staticRoutes = [
 
   // Olympia upgrade section
   { path: '/olympia', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/olympia/upgrade', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients/core-geth', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients/besu', priority: 0.7, changeFrequency: 'weekly' as const },

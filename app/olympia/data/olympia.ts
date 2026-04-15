@@ -182,14 +182,44 @@ export interface OlympiaFAQ {
 
 export const faqs: OlympiaFAQ[] = [
   {
+    question: 'Who is coordinating the Olympia upgrade?',
+    answer:
+      'Olympia is coordinated by the same developers, organizations, and community stewards who have delivered every Ethereum Classic network upgrade since 2016: Gotham, Die Hard, Defuse Difficulty Bomb, Thanos, and the full EVM compatibility series spanning Gas Reprice, Atlantis, Agharta, Phoenix, Magneto, Mystique, and Spiral. The ETC Cooperative, a US 501(c)(3) non-profit, funds Ethereum Classic\'s client development teams and has managed the hard fork coordination process throughout that history. Stakeholder outreach, client release sequencing, and cross-client testing are all established practice. Olympia is a significant upgrade carried forward by a team with a clean delivery record across a decade of ETC network upgrades.',
+  },
+  {
+    question: 'What role has the ETC Cooperative played, and what changes with Olympia?',
+    answer:
+      'The ETC Cooperative is a US 501(c)(3) non-profit that has funded Ethereum Classic\'s core client development for years, contributing millions of dollars to the network\'s client teams and infrastructure through every upgrade cycle. Every hard fork, every client release, and every cross-client coordination effort has been backed by their balance sheet. Olympia is what they were building toward: a protocol-native funding model that does not depend on any single organization\'s continued generosity. The Olympia Treasury, governed on-chain by the Olympia DAO and executed by the Wyoming DAO LLC, extends beyond institutional dependency with a durable financial foundation that scales with network usage. The model changes, not the commitment. The ETC Cooperative continues as an active steward, and any developer, mining operation, hardware manufacturer, or individual worldwide can now contribute directly on-chain without fielding a team or managing a non-profit to do it.',
+  },
+  {
+    question: "What is Grayscale's role in Ethereum Classic's development?",
+    answer:
+      "Grayscale launched the Grayscale Ethereum Classic Trust (ETCG) in 2018, years before Bitcoin ETFs existed as a product category, and became a major institutional donor to the ETC Cooperative, indirectly funding the network's core client development at a time when no other investment product issuer was doing anything comparable. What Grayscale was practicing on Ethereum Classic in 2018 is now a recognized trend: ETF issuers funding protocol development, corporate treasury strategies reinvesting in network ecosystems. Taking that model on-chain is only possible on Ethereum Classic because ETC is the only Proof-of-Work blockchain with native smart contracts. Olympia DAO makes it permissionless, opening a direct on-chain contribution path to every holder, whether through ETCG, a direct wallet, or any future investment product.",
+  },
+  {
+    question: 'What does EVM alignment to Fusaka actually mean for builders?',
+    answer:
+      'ECIP-1121 closes years of EVM divergence in a single upgrade, delivering every execution-layer improvement from Dencun, Pectra, and Fusaka that is independent of Proof-of-Stake and blob data availability. Before Olympia, ETC lagged behind on these EIPs, creating real friction for developers deploying across EVM chains. After Olympia, Solidity 0.8.x, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim full tooling compatibility before Olympia. After Olympia, it can.',
+  },
+  {
     question: 'How is the Treasury funded?',
     answer:
-      'The Olympia Treasury is funded by basefee revenue, voluntary on-chain donations, and mining rewards directed to the treasury address. Block rewards and tips remain completely untouched and go entirely to miners. This creates sustainable, transparent funding without inflation or miner impact.',
+      'The Olympia Treasury is funded by EIP-1559 basefee revenue, voluntary on-chain donations, and mining rewards directed to the treasury address. Block rewards and tips remain completely untouched and go entirely to miners. The basefee is a value that would otherwise be destroyed and has never been part of miner compensation. This creates sustainable, transparent funding without inflation or any impact on miner income.',
   },
   {
     question: 'Will my miner rewards change?',
     answer:
-      'No. All miner block rewards and priority tips are maintained. Olympia introduces an EIP-1559 basefee and redirects it from burn to the protocol treasury — miners keep everything they earn today.',
+      'No. Block rewards and tips remain completely untouched. Olympia redirects the EIP-1559 basefee to the protocol treasury. The basefee is a value that would otherwise be destroyed and has never been part of miner compensation. Miner revenue is unchanged.',
+  },
+  {
+    question: 'How was Olympia tested before mainnet?',
+    answer:
+      'Olympia activates on the Mordor testnet first. Mordor is Ethereum Classic\'s Proof-of-Work testnet and mirrors mainnet conditions closely. Multiple independent client implementations run the Mordor fork before any mainnet activation is scheduled. Cross-client validation using the Hive integration testing framework confirms consensus compatibility across implementations. The mainnet activation block is not set until Mordor has run cleanly and major network stakeholders, including exchanges, custodians, and mining pools, have confirmed readiness.',
+  },
+  {
+    question: 'When is the mainnet activation block?',
+    answer:
+      'Olympia is targeted for mainnet activation before 2027. Olympia activates on Mordor testnet first. The mainnet activation block is announced after a successful Mordor run and a coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers. All client implementations publish Olympia-compatible releases well before activation.',
   },
   {
     question: 'How does voting work?',
@@ -197,24 +227,14 @@ export const faqs: OlympiaFAQ[] = [
       'Governance operates on two layers. The Olympia DAO uses non-transferable membership NFTs for critical protocol decisions — security maintenance, EVM parity, and client funding. Members cast on-chain votes during a defined voting period via the OpenZeppelin Governor 5.x contract suite. Public participation is enabled through futarchy prediction markets, where anyone can stake on proposal outcomes to signal community sentiment and inform treasury allocation.',
   },
   {
-    question: 'Who can submit proposals?',
+    question: 'What happens if I don\'t upgrade my node?',
     answer:
-      'Anyone can submit governance proposals on-chain. Proposals define the action to execute and the supporting rationale.',
+      'Nodes that are not upgraded before the activation block will stop following the canonical chain. You will need to upgrade your client and resync from the fork point. Exchanges, wallets, RPC providers, and services running outdated clients will be unable to process transactions on the post-Olympia chain. Client release announcements are published well in advance to give operators time to upgrade.',
   },
   {
-    question: 'What is the Olympia upgrade?',
+    question: 'Can I roll back if something goes wrong?',
     answer:
-      'Olympia is active protocol development for Ethereum Classic — EVM modernization, maintained clients, and funded development through sustainable basefee revenue. Three independent client implementations ensure security maintenance, modern tooling, and continued EVM parity with the broader Ethereum ecosystem.',
-  },
-  {
-    question: 'When does Olympia activate?',
-    answer:
-      'Olympia activates on the Mordor testnet first, followed by Ethereum Classic mainnet pending successful testnet validation. Exact activation dates are coordinated across the independent client teams.',
-  },
-  {
-    question: 'How are funds protected from misuse?',
-    answer:
-      'Multiple safeguards protect treasury funds: a configurable timelock delay on all approved proposals, three-layer on-chain sanctions screening, non-transferable Olympia DAO membership NFTs that prevent vote buying, futarchy markets that surface public sentiment, and full on-chain transparency for every transaction.',
+      'In the unlikely event of a critical issue after activation, the same client teams that have managed every ETC emergency response since 2016 would coordinate a patch release promptly. The established stakeholder communication channels, including the ETC Cooperative, client maintainers, and major exchange contacts, are the same ones used for every previous upgrade. Olympia has broader test coverage across more independent client implementations than any previous ETC hard fork, and the Mordor testnet run provides a real network validation environment before mainnet activation.',
   },
 ]
 

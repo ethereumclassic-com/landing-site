@@ -82,9 +82,9 @@ export default function OlympiaHubPage() {
             className="mx-auto mt-6 max-w-2xl space-y-2 text-left text-sm text-[var(--color-text-muted)]"
           >
             {[
+              'Fusaka EVM alignment: full parity with every Ethereum tool, library, and framework',
               'EIP-1559 fee market: predictable gas pricing, basefee revenue redirected to protocol treasury',
               'Protocol treasury: sustainable funding without new token issuance or miner reward changes',
-              'Fusaka EVM alignment: full parity with every Ethereum tool, library, and framework',
               'Institutional infrastructure: the Proof-of-Work foundation for regulated stablecoin issuance (Classic USD, MiCA and GENIUS Act-compliant), digital commodity classification under the CLARITY Act, and the broadest cross-jurisdictional institutional access profile of any Proof-of-Work smart contract network',
             ].map((point) => (
               <li key={point} className="flex items-start gap-2">
@@ -233,7 +233,6 @@ export default function OlympiaHubPage() {
 
             {/* Divergence callout */}
             <motion.div variants={fadeInUp} className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
-              <span className="font-semibold text-white">ETC context: </span>
               Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
               ECIP-1111 now delivers those deferred London EIPs. ECIP-1121 advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
               Together, Olympia brings ETC to full Fusaka execution-layer parity.
@@ -388,6 +387,36 @@ export default function OlympiaHubPage() {
         </div>
       </section>
 
+      {/* Olympia Upgrade Callout */}
+      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={staggerContainer}
+          >
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+              The Olympia Upgrade
+            </motion.h2>
+            <motion.div
+              variants={fadeInUp}
+              className="mt-4 space-y-4 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
+            >
+              <p>
+                Olympia is Ethereum Classic&rsquo;s most significant protocol upgrade. Three changes arrive in a single activation: Fusaka EVM alignment, EIP-1559 fee market, and a protocol-managed treasury.
+              </p>
+              <p>
+                The headline change is full Fusaka EVM parity &mdash; closing years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim this before Olympia. After Olympia, it can.
+              </p>
+              <p>
+                The EIP-1559 fee market redirects the basefee &mdash; value that would otherwise be destroyed &mdash; to a protocol-managed treasury. Block rewards and tips remain completely untouched and go entirely to miners. Anyone can submit proposals on-chain. Members vote on resource allocation and execute decisions. Every step is transparent and verifiable on-chain.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* How It Works */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -530,20 +559,34 @@ export default function OlympiaHubPage() {
           </motion.p>
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              href="/olympia/clients"
+              href="/olympia/upgrade"
               className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90 hover:shadow-lg hover:shadow-[#00ffae]/25"
             >
-              View Clients
+              Upgrade Guide
             </Link>
             <Link
-              href="/olympia/governance"
+              href="/olympia/clients"
               className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
             >
-              Governance Framework
+              View Clients
             </Link>
           </motion.div>
         </motion.div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: olympiaFAQ.map((f) => ({
+              '@type': 'Question',
+              name: f.question,
+              acceptedAnswer: { '@type': 'Answer', text: f.answer },
+            })),
+          }),
+        }}
+      />
     </main>
   )
 }
