@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import PoolCard from './components/PoolCard'
 import HashRateChart, { HashRateBar, MiningStat } from './components/HashRateChart'
+import FiftheningCountdown from '@/app/components/FiftheningCountdown'
 import {
   miningPools,
   networkStats,
@@ -128,6 +129,13 @@ export default function MiningPage() {
               }
             />
           </div>
+        </div>
+      </section>
+
+      {/* Fifth Fifthening Countdown */}
+      <section className="px-6 pb-8 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <FiftheningCountdown variant="card" />
         </div>
       </section>
 

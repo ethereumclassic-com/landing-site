@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
+import FiftheningCountdown from '@/app/components/FiftheningCountdown'
 import {
   EMISSION_CONSTANTS,
   calculateSupplyStats,
@@ -13,125 +14,6 @@ import {
   getOrdinalSuffix,
   type SupplyStats,
 } from '../data/emission'
-
-// Fifthening Countdown Component
-function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
-  // Calculate initial time left based on stats
-  const initialTimeLeft = useMemo(() => {
-    if (!stats) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-    const totalSeconds = stats.timeUntilNextEra.totalSeconds
-    return {
-      days: Math.floor(totalSeconds / 86400),
-      hours: Math.floor((totalSeconds % 86400) / 3600),
-      minutes: Math.floor((totalSeconds % 3600) / 60),
-      seconds: Math.floor(totalSeconds % 60),
-    }
-  }, [stats])
-
-  const [timeLeft, setTimeLeft] = useState(initialTimeLeft)
-
-  // Reset timeLeft when stats change
-  useEffect(() => {
-    setTimeLeft(initialTimeLeft)
-  }, [initialTimeLeft])
-
-  // Countdown timer
-  useEffect(() => {
-    if (!stats) return
-
-    let totalSeconds = stats.timeUntilNextEra.totalSeconds
-
-    const timer = setInterval(() => {
-      totalSeconds -= 1
-      if (totalSeconds <= 0) {
-        clearInterval(timer)
-        return
-      }
-
-      setTimeLeft({
-        days: Math.floor(totalSeconds / 86400),
-        hours: Math.floor((totalSeconds % 86400) / 3600),
-        minutes: Math.floor((totalSeconds % 3600) / 60),
-        seconds: Math.floor(totalSeconds % 60),
-      })
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [stats])
-
-  const nextEraNumber = stats ? stats.currentEra + 1 : 6
-  const nextEraBlock = nextEraNumber * EMISSION_CONSTANTS.ERA_LENGTH
-
-  return (
-    <div
-      className="rounded-2xl border border-[var(--color-primary)]/30 bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 p-6 md:p-8"
-    >
-      <div className="text-center">
-        <h2 className="text-lg font-semibold text-[var(--color-primary)]">
-          {getOrdinalSuffix(nextEraNumber - 1)} Fifthening Countdown
-        </h2>
-        <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-          Block Reward Reduction at Block {formatBlockNumber(nextEraBlock)}
-        </p>
-
-        {/* Countdown Display */}
-        <div className="mt-6 grid grid-cols-4 gap-3 md:gap-6">
-          {[
-            { label: 'Days', value: timeLeft.days },
-            { label: 'Hours', value: timeLeft.hours },
-            { label: 'Minutes', value: timeLeft.minutes },
-            { label: 'Seconds', value: timeLeft.seconds },
-          ].map((item) => (
-            <div key={item.label} className="rounded-xl bg-[var(--panel)] p-3 md:p-4">
-              <p className="text-2xl font-bold text-[var(--text-primary)] md:text-4xl">
-                {isLoading ? '--' : item.value.toString().padStart(2, '0')}
-              </p>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">{item.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Reward Change */}
-        <div className="mt-6 flex items-center justify-center gap-4">
-          <div className="text-center">
-            <p className="text-xs text-[var(--color-text-muted)]">Current Reward</p>
-            <p className="text-xl font-bold text-[var(--text-primary)]">
-              {stats ? formatBlockReward(stats.currentBlockReward) : '--'} ETC
-            </p>
-          </div>
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20">
-            <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </div>
-          <div className="text-center">
-            <p className="text-xs text-[var(--color-text-muted)]">After Fifthening</p>
-            <p className="text-xl font-bold text-amber-400">
-              {stats ? formatBlockReward(stats.nextEraReward) : '--'} ETC
-            </p>
-          </div>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="mt-6">
-          <div className="flex justify-between text-xs text-[var(--color-text-muted)]">
-            <span>Era {stats?.currentEra || '--'} Progress</span>
-            <span>{stats ? `${stats.percentThroughEra.toFixed(1)}%` : '--'}</span>
-          </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--bg)]">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-hover)] transition-all duration-700 ease-out"
-              style={{ width: stats ? `${stats.percentThroughEra}%` : '0%' }}
-            />
-          </div>
-          <p className="mt-2 text-xs text-[var(--color-text-muted)]">
-            {stats ? formatBlockNumber(stats.blocksUntilNextEra) : '--'} blocks remaining
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 // Supply Stats Cards
 function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
@@ -411,7 +293,7 @@ export default function SupplyTrackerPage() {
       {/* Fifthening Countdown */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <FitheningCountdown stats={stats} isLoading={isLoading} />
+          <FiftheningCountdown variant="card" />
         </div>
       </section>
 

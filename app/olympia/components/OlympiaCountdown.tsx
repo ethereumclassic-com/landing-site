@@ -1,13 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { FadeIn } from '@/app/components/ui/FadeIn'
 import { useOlympiaBlock } from '../hooks/useOlympiaBlock'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 interface OlympiaCountdownProps {
   variant?: 'hero' | 'banner'
@@ -174,11 +169,10 @@ export default function OlympiaCountdown({ variant = 'hero' }: OlympiaCountdownP
   }
 
   return (
-    <motion.div
-      variants={fadeInUp}
-      className="rounded-2xl border border-[#00ffae]/20 bg-gradient-to-br from-[#00ffae]/10 to-[#00ffae]/5 p-6 md:p-8"
-    >
-      {content}
-    </motion.div>
+    <FadeIn>
+      <div className="rounded-2xl border border-[#00ffae]/20 bg-gradient-to-br from-[#00ffae]/10 to-[#00ffae]/5 p-6 md:p-8">
+        {content}
+      </div>
+    </FadeIn>
   )
 }
