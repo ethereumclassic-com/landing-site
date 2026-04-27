@@ -77,3 +77,4 @@ export type { IconProps, IconName, IconSize } from './Icon'
 // Layout utilities
 export { FadeIn } from './FadeIn'
 export { SectionDivider } from './SectionDivider'
+export { OverviewTable } from './OverviewTable'
