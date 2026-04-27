@@ -2,6 +2,13 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
 
+const STORAGE_KEYS = {
+  user: 'etc_user',
+  users: 'etc_users',
+  watchlist: 'etc_watchlist',
+  portfolio: 'etc_portfolio',
+} as const
+
 export interface User {
   id: string
   email: string

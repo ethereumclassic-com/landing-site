@@ -2,6 +2,16 @@
 
 import Link from 'next/link'
 
+const sampleStats = {
+  totalReferrals: 0,
+  activeReferrals: 0,
+  totalEarnings: 0,
+  pendingEarnings: 0,
+  currentTier: 'Bronze',
+  nextTier: 'Silver',
+  referralsToNextTier: 5,
+}
+
 // Sample data for demonstration
 const sampleReferralLinks = [
   {

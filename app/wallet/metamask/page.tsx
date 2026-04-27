@@ -2,6 +2,14 @@
 
 import Link from 'next/link'
 
+const networkConfig = {
+  networkName: 'Ethereum Classic',
+  rpcUrl: 'https://etc.rivet.link',
+  chainId: '61',
+  symbol: 'ETC',
+  blockExplorer: 'https://etc.blockscout.com',
+}
+
 const setupSteps = [
   {
     step: 1,

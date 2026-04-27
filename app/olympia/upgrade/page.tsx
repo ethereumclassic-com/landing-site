@@ -48,6 +48,13 @@ const Code2 = ({ size = 20, className = '', style, ...rest }: IconProps) => (
 import OlympiaCountdown from '../components/OlympiaCountdown'
 import { faqs } from '../data/olympia'
 
+const statusStyles = {
+  complete: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
+  active: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
+  research: 'bg-[#38bdf8]/10 text-[#38bdf8] border border-[#38bdf8]/30',
+  future: 'bg-[var(--border-subtle)] text-[var(--color-text-muted)] border border-[var(--border-subtle)]',
+}
+
 const ecips = [
   {
     ecip: 'ECIP-1111',

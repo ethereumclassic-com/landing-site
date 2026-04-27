@@ -4,7 +4,12 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useAuth } from './context/AuthContext'
 
-// Mock price data - in production this would come from an API
+const mockPriceData = {
+  ETC: { price: 24.56, change24h: 3.2 },
+  BTC: { price: 67234.12, change24h: 1.8 },
+  ETH: { price: 3456.78, change24h: -0.5 },
+}
+
 export default function AccountDashboardPage() {
   const router = useRouter()
   const { user, isAuthenticated, isLoading, logout, watchlist, portfolio } = useAuth()

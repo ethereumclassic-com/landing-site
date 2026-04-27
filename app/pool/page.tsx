@@ -3,6 +3,16 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
+const poolStats = {
+  hashrate: '12.5 TH/s',
+  workers: 1247,
+  blocks24h: 18,
+  luck: '98.2%',
+  fee: 0.9,
+  minPayout: 0.1,
+  networkShare: '7.2%',
+}
+
 // Sample data for pool statistics (would be live data in production)
 const recentBlocks = [
   { height: 23856789, time: '2 min ago', reward: '2.05 ETC', finder: '0x1234...5678' },
