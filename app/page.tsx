@@ -1,9 +1,9 @@
 import {
   Hero,
-  StatsStrip,
+  NetworkOverviewSection,
+  ActiveEventsSection,
   ProductCards,
   TrendingNews,
-  EcosystemStats,
   ProductSuite,
   TrustSignals,
   FinalCTA,
@@ -15,13 +15,12 @@ export default function Page() {
   return (
     <main>
       <Hero />
-      <StatsStrip />
+      <NetworkOverviewSection />
+      <ActiveEventsSection />
       <SectionDivider />
       <ProductCards />
       <SectionDivider />
       <TrendingNews />
-      <SectionDivider />
-      <EcosystemStats />
       <SectionDivider />
       <ProductSuite />
       <SectionDivider />
