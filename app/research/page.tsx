@@ -223,8 +223,8 @@ export default function ResearchPage() {
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             <Link
-              href="/research/fifthening"
-              className="group rounded-xl border border-[var(--brand-green)]/40 bg-[var(--brand-green)]/5 p-4 transition-colors hover:border-[var(--brand-green)]/60 hover:bg-[var(--brand-green)]/10 sm:col-span-2 lg:col-span-1"
+              href="/block-reward-countdown"
+              className="group rounded-xl border border-[var(--brand-green)]/40 bg-[var(--brand-green)]/5 p-4 transition-colors hover:border-[var(--brand-green)]/60 hover:bg-[var(--brand-green)]/10"
             >
               <div className="mb-3 flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
@@ -233,8 +233,20 @@ export default function ResearchPage() {
                 </span>
                 <span className="rounded-full bg-[var(--brand-green)]/15 px-2 py-0.5 text-xs font-medium text-[var(--brand-green)]">Live Countdown</span>
               </div>
-              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">Fifth Fifthening</h3>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Live countdown to block 25,000,000 — ECIP-1017 era transition</p>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">Block Reward Countdown</h3>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Live countdown to the next fifthing — ECIP-1017 era transition</p>
+            </Link>
+            <Link
+              href="/research/emission-schedule"
+              className="group rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 p-4 transition-colors hover:border-[var(--brand-green)]/40 hover:bg-[var(--brand-green)]/10"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--brand-green)]/15 text-[var(--brand-green)]">
+                <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">Emission Schedule</h3>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Charts, era history &amp; ECIP-1017 explainer</p>
             </Link>
             <Link
               href="/research/network"

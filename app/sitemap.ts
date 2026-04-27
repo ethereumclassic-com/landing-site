@@ -125,9 +125,12 @@ const staticRoutes = [
   { path: '/build/grants', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/build/api', priority: 0.6, changeFrequency: 'weekly' as const },
 
+  // Countdown / emission
+  { path: '/block-reward-countdown', priority: 0.9, changeFrequency: 'hourly' as const },
+
   // Research section
   { path: '/research', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/research/fifthening', priority: 0.8, changeFrequency: 'hourly' as const },
+  { path: '/research/emission-schedule', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/research/reports', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/research/network', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/supply', priority: 0.6, changeFrequency: 'daily' as const },

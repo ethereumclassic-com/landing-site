@@ -19,13 +19,25 @@ function DigitBox({ value, label, loading }: { value: number; label: string; loa
   )
 }
 
-function CompleteState({ variant }: { variant: 'card' | 'banner' }) {
+function CompleteState({
+  variant,
+  currentEra,
+  nextReward,
+}: {
+  variant: 'card' | 'banner'
+  currentEra: number | null
+  nextReward: number | null
+}) {
   if (variant === 'banner') {
     return (
-      <Link href="/research/fifthening" className="block">
+      <Link href="/block-reward-countdown" className="block">
         <div className="flex items-center justify-center gap-3 rounded-xl border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-4 py-3">
-          <span className="text-sm font-semibold text-[var(--brand-green)]">Fifth Fifthening Complete — Era 6 Active</span>
-          <span className="text-sm text-[var(--text-muted)]">1.6384 ETC block reward</span>
+          <span className="text-sm font-semibold text-[var(--brand-green)]">
+            Era {currentEra ?? '…'} Active
+          </span>
+          {nextReward != null && (
+            <span className="text-sm text-[var(--text-muted)]">{nextReward} ETC block reward</span>
+          )}
         </div>
       </Link>
     )
@@ -35,33 +47,50 @@ function CompleteState({ variant }: { variant: 'card' | 'banner' }) {
     <div className="rounded-2xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 p-6 text-center md:p-8">
       <div className="inline-flex items-center gap-3 rounded-full border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-6 py-2">
         <span className="text-[var(--brand-green)]">✦</span>
-        <span className="font-semibold text-[var(--brand-green)]">Fifth Fifthening Complete — Era 6 Active</span>
+        <span className="font-semibold text-[var(--brand-green)]">Era {currentEra ?? '…'} Active</span>
       </div>
-      <p className="mt-3 text-sm text-[var(--text-muted)]">Block reward reduced to 1.6384 ETC per block.</p>
+      {nextReward != null && (
+        <p className="mt-3 text-sm text-[var(--text-muted)]">
+          Block reward reduced to {nextReward} ETC per block.
+        </p>
+      )}
     </div>
   )
 }
 
 export default function FiftheningCountdown({ variant = 'card' }: FiftheningCountdownProps) {
-  const { status, loading, countdown, blocksRemaining, targetBlock, progress, currentReward, nextReward } = useFifthening()
+  const {
+    status,
+    loading,
+    countdown,
+    blocksRemaining,
+    targetBlock,
+    progress,
+    currentReward,
+    nextReward,
+    currentEra,
+    nextEra,
+  } = useFifthening()
 
   if (status === 'complete') {
-    return <CompleteState variant={variant} />
+    return <CompleteState variant={variant} currentEra={currentEra} nextReward={nextReward} />
   }
 
   const time = countdown ?? { days: 0, hours: 0, minutes: 0, seconds: 0 }
 
   if (variant === 'banner') {
     return (
-      <Link href="/research/fifthening" className="block">
+      <Link href="/block-reward-countdown" className="block">
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--brand-green)]" />
             </span>
-            <span className="text-sm font-medium text-[var(--brand-green)]">Fifth Fifthening</span>
-            <span className="text-xs text-[var(--text-muted)]">Block {targetBlock?.toLocaleString() ?? '…'}</span>
+            <span className="text-sm font-medium text-[var(--brand-green)]">Fifthing</span>
+            <span className="text-xs text-[var(--text-muted)]">
+              Block {targetBlock?.toLocaleString() ?? '…'}
+            </span>
           </div>
           <div className="flex items-center gap-1.5 font-mono text-sm text-[var(--text-primary)]">
             <span>{loading ? '--' : time.days}d</span>
@@ -90,7 +119,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--brand-green)]" />
               </span>
               <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--brand-green)]">
-                Fifth Fifthening
+                Era {currentEra ?? '…'} → Era {nextEra ?? '…'} Fifthing
               </h2>
             </div>
             <p className="mt-1 text-xs text-[var(--text-muted)]">
@@ -100,8 +129,19 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
           {/* Reward transition */}
           <div className="flex items-center gap-2 rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] px-3 py-1.5 text-sm">
             <span className="font-mono text-[var(--text-primary)]">{currentReward ?? '…'} ETC</span>
-            <svg aria-hidden="true" className="h-3.5 w-3.5 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            <svg
+              aria-hidden="true"
+              className="h-3.5 w-3.5 text-[var(--text-muted)]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span className="font-mono text-[var(--text-muted)]">{nextReward ?? '…'} ETC</span>
           </div>
@@ -117,9 +157,13 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
 
         {/* Progress bar */}
         <div className="mt-6">
-          <div className="flex items-center justify-between text-xs text-[var(--text-muted)] mb-1.5">
-            <span>Era 5 progress</span>
-            <span>{blocksRemaining !== null ? `${blocksRemaining.toLocaleString()} blocks remaining` : '...'}</span>
+          <div className="mb-1.5 flex items-center justify-between text-xs text-[var(--text-muted)]">
+            <span>Era {currentEra ?? '…'} progress</span>
+            <span>
+              {blocksRemaining !== null
+                ? `${blocksRemaining.toLocaleString()} blocks remaining`
+                : '…'}
+            </span>
           </div>
           <div className="h-1.5 overflow-hidden rounded-full bg-[var(--border-subtle)]">
             <div
@@ -130,12 +174,23 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
         </div>
 
         <Link
-          href="/research/fifthening"
+          href="/research/emission-schedule"
           className="mt-4 inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)] transition-colors hover:text-[var(--brand-green)]"
         >
           View full emission schedule
-          <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <svg
+            aria-hidden="true"
+            className="h-3 w-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
           </svg>
         </Link>
       </div>
