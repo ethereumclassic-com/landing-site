@@ -3,6 +3,11 @@
 import Link from 'next/link'
 import { FadeIn } from './ui/FadeIn'
 import { useFifthening } from '@/app/hooks/useFifthening'
+import { getAnnualInflationRate } from '@/app/research/fifthening/data/fiftheningChartData'
+
+function fmt(reward: number | null): string {
+  return reward != null ? reward.toFixed(4) : '…'
+}
 
 interface FiftheningCountdownProps {
   variant?: 'card' | 'banner'
@@ -64,6 +69,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
     loading,
     countdown,
     blocksRemaining,
+    currentBlock,
     targetBlock,
     progress,
     currentReward,
@@ -71,6 +77,8 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
     currentEra,
     nextEra,
   } = useFifthening()
+
+  const inflationRate = currentBlock != null ? getAnnualInflationRate(currentBlock) : null
 
   if (status === 'complete') {
     return <CompleteState variant={variant} currentEra={currentEra} nextReward={nextReward} />
@@ -111,7 +119,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
     <FadeIn>
       <div className="rounded-2xl border border-[var(--brand-green)]/20 bg-gradient-to-br from-[var(--brand-green)]/5 to-transparent p-6 md:p-8">
         {/* Header */}
-        <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
               <span className="relative flex h-2.5 w-2.5">
@@ -126,25 +134,37 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
               Block {targetBlock?.toLocaleString() ?? '…'} · ECIP-1017
             </p>
           </div>
-          {/* Reward transition */}
-          <div className="flex items-center gap-2 rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] px-3 py-1.5 text-sm">
-            <span className="font-mono text-[var(--text-primary)]">{currentReward ?? '…'} ETC</span>
-            <svg
-              aria-hidden="true"
-              className="h-3.5 w-3.5 text-[var(--text-muted)]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-            <span className="font-mono text-[var(--text-muted)]">{nextReward ?? '…'} ETC</span>
+          {/* Badges */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-red-500/10 px-2.5 py-1 text-xs font-medium tabular-nums text-red-400">
+              −20% reward
+            </span>
+            {inflationRate != null && (
+              <span className="rounded-full bg-[var(--border-subtle)] px-2.5 py-1 text-xs font-medium tabular-nums text-[var(--text-muted)]">
+                ~{inflationRate}% inflation
+              </span>
+            )}
           </div>
+        </div>
+
+        {/* Reward transition */}
+        <div className="mt-4 flex items-center gap-2 rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] px-3 py-2 text-sm">
+          <span className="font-mono text-[var(--text-primary)]">{fmt(currentReward)} ETC</span>
+          <svg
+            aria-hidden="true"
+            className="h-3.5 w-3.5 shrink-0 text-[var(--text-muted)]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+          <span className="font-mono text-[var(--text-muted)]">{fmt(nextReward)} ETC</span>
         </div>
 
         {/* Digit boxes */}
