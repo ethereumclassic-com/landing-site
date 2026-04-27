@@ -1,74 +1,48 @@
 /**
- * EthereumClassic.com Design Tokens
- * v0.2 Design System Foundation
- *
- * Based on COMPONENTS.md specifications
+ * EthereumClassic.com Design Tokens — v1.0
+ * Olympia ecosystem brand system — dual light/dark theme
  */
 
+/* ============================================
+   LIGHT MODE (default)
+   ============================================ */
 :root {
-  /* ============================================
-     BRAND COLORS
-     ============================================ */
+  /* Brand green — darker for WCAG AA on white (5.4:1 contrast) */
+  --brand-green: #007a53;
+  --brand-green-hover: #006644;
+  --brand-green-active: #005238;
+  --brand-green-muted: #004d30;
+  --brand-green-subtle: rgba(0, 122, 83, 0.08);
+  --brand-green-glow: rgba(0, 122, 83, 0.2);
 
-  /* Primary - ETC Green */
-  --color-primary: #3AB83A;
-  --color-primary-hover: #2D9E2D;
-  --color-primary-active: #258F25;
-  --color-primary-light: #E8F5E8;
-  --color-primary-alpha: rgba(58, 184, 58, 0.15);
+  /* Backgrounds */
+  --background: #f8faf9;
+  --foreground: #0a0f10;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f1f5f3;
+  --bg-deep: #edf2f0;
+  --bg-overlay: rgba(248, 250, 249, 0.92);
+  --bg-card: rgba(255, 255, 255, 0.6);
 
-  /* Legacy ETC color (for accents/glows) */
-  --etc: #33ff99;
-  --etc-alpha: rgba(51, 255, 153, 0.15);
+  /* Text */
+  --text-primary: #0a0f10;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --text-subtle: #9ca3af;
 
-  /* ============================================
-     BACKGROUND COLORS
-     ============================================ */
+  /* Code — dark bg in both themes */
+  --code-bg: #1e293b;
+  --code-text: #00ffae;
 
-  --color-bg-primary: #0B0F14;
-  --color-bg-secondary: #131A24;
-  --color-bg-tertiary: #1A2332;
-  --color-bg-elevated: #1E2738;
+  /* Borders */
+  --border-default: #e2e8f0;
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --border-strong: rgba(0, 0, 0, 0.16);
+  --border-brand: rgba(0, 122, 83, 0.25);
+  --border-glow: rgba(0, 122, 83, 0.12);
+  --divider: rgba(0, 0, 0, 0.06);
 
-  /* Panel overlays */
-  --panel: rgba(255, 255, 255, 0.04);
-  --panel-hover: rgba(255, 255, 255, 0.06);
-  --panel-strong: rgba(255, 255, 255, 0.08);
-
-  /* Shorthand */
-  --bg: var(--color-bg-primary);
-
-  /* ============================================
-     TEXT COLORS
-     ============================================ */
-
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #7B8CA1;  /* Increased from #64748B for WCAG AA contrast */
-  --color-text-disabled: #475569;
-
-  /* Shorthand */
-  --text: var(--color-text-primary);
-  --muted: var(--color-text-secondary);
-  --muted2: var(--color-text-muted);
-
-  /* ============================================
-     BORDER COLORS
-     ============================================ */
-
-  --color-border: #1E293B;
-  --color-border-hover: #334155;
-  --color-border-focus: var(--color-primary);
-
-  /* Alpha borders */
-  --border: rgba(255, 255, 255, 0.10);
-  --border-soft: rgba(255, 255, 255, 0.07);
-  --border-strong: rgba(255, 255, 255, 0.15);
-
-  /* ============================================
-     ACCENT COLORS
-     ============================================ */
-
+  /* Accent colors */
   --color-accent-blue: #3B82F6;
   --color-accent-blue-hover: #2563EB;
   --color-accent-orange: #F97316;
@@ -76,48 +50,68 @@
   --color-accent-red: #EF4444;
   --color-accent-yellow: #EAB308;
   --color-accent-purple: #8B5CF6;
+  --color-accent-amber: #F59E0B;
 
-  /* ============================================
-     STATUS COLORS
-     ============================================ */
+  /* Semantic */
+  --color-success: #059669;
+  --color-success-bg: rgba(5, 150, 105, 0.1);
+  --color-error: #ef4444;
+  --color-error-bg: rgba(239, 68, 68, 0.1);
+  --color-warning: #f59e0b;
+  --color-warning-bg: rgba(245, 158, 11, 0.1);
+  --color-info: #0ea5e9;
+  --color-info-bg: rgba(14, 165, 233, 0.1);
 
-  --color-success: #22C55E;
-  --color-success-bg: rgba(34, 197, 94, 0.15);
-  --color-warning: #F59E0B;
-  --color-warning-bg: rgba(245, 158, 11, 0.15);
-  --color-error: #EF4444;
-  --color-error-bg: rgba(239, 68, 68, 0.15);
-  --color-info: #3B82F6;
-  --color-info-bg: rgba(59, 130, 246, 0.15);
+  /* Legacy aliases (consumed by existing components) */
+  --color-primary: var(--brand-green);
+  --color-primary-hover: var(--brand-green-hover);
+  --color-primary-active: var(--brand-green-active);
+  --color-primary-alpha: var(--brand-green-subtle);
+  --color-bg-primary: var(--background);
+  --color-bg-secondary: var(--bg-surface);
+  --color-bg-tertiary: var(--bg-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-subtle);
+  --color-border: var(--border-default);
+  --panel: var(--border-subtle);
+  --panel-hover: rgba(0, 0, 0, 0.06);
+  --panel-strong: rgba(0, 0, 0, 0.08);
+  --border: var(--border-default);
+  --border-soft: var(--border-subtle);
+  --bg: var(--background);
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+  --muted2: var(--text-muted);
+
+  /* Glows */
+  --glow-primary: 0 0 20px var(--brand-green-glow);
+  --glow-card: 0 0 0 1px var(--border-subtle) inset, 0 10px 40px var(--brand-green-subtle);
 
   /* ============================================
      TYPOGRAPHY
      ============================================ */
+  --font-sans: var(--font-inter, 'Inter'), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: var(--font-jetbrains-mono, 'JetBrains Mono'), ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
-  /* Font Families */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
 
-  /* Font Sizes */
-  --text-xs: 0.75rem;     /* 12px */
-  --text-sm: 0.875rem;    /* 14px */
-  --text-base: 1rem;      /* 16px */
-  --text-lg: 1.125rem;    /* 18px */
-  --text-xl: 1.25rem;     /* 20px */
-  --text-2xl: 1.5rem;     /* 24px */
-  --text-3xl: 1.875rem;   /* 30px */
-  --text-4xl: 2.25rem;    /* 36px */
-  --text-5xl: 3rem;       /* 48px */
-  --text-6xl: 3.75rem;    /* 60px */
-  --text-7xl: 4.5rem;     /* 72px */
-
-  /* Font Weights */
   --font-normal: 400;
   --font-medium: 500;
   --font-semibold: 600;
   --font-bold: 700;
 
-  /* Line Heights */
   --leading-none: 1;
   --leading-tight: 1.25;
   --leading-snug: 1.375;
@@ -125,7 +119,6 @@
   --leading-relaxed: 1.625;
   --leading-loose: 2;
 
-  /* Letter Spacing */
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.025em;
   --tracking-normal: 0;
@@ -135,77 +128,69 @@
   /* ============================================
      SPACING
      ============================================ */
-
   --space-0: 0;
   --space-px: 1px;
-  --space-0-5: 0.125rem;  /* 2px */
-  --space-1: 0.25rem;     /* 4px */
-  --space-1-5: 0.375rem;  /* 6px */
-  --space-2: 0.5rem;      /* 8px */
-  --space-2-5: 0.625rem;  /* 10px */
-  --space-3: 0.75rem;     /* 12px */
-  --space-3-5: 0.875rem;  /* 14px */
-  --space-4: 1rem;        /* 16px */
-  --space-5: 1.25rem;     /* 20px */
-  --space-6: 1.5rem;      /* 24px */
-  --space-7: 1.75rem;     /* 28px */
-  --space-8: 2rem;        /* 32px */
-  --space-9: 2.25rem;     /* 36px */
-  --space-10: 2.5rem;     /* 40px */
-  --space-11: 2.75rem;    /* 44px */
-  --space-12: 3rem;       /* 48px */
-  --space-14: 3.5rem;     /* 56px */
-  --space-16: 4rem;       /* 64px */
-  --space-20: 5rem;       /* 80px */
-  --space-24: 6rem;       /* 96px */
-  --space-28: 7rem;       /* 112px */
-  --space-32: 8rem;       /* 128px */
-  --space-36: 9rem;       /* 144px */
-  --space-40: 10rem;      /* 160px */
-  --space-44: 11rem;      /* 176px */
-  --space-48: 12rem;      /* 192px */
-  --space-52: 13rem;      /* 208px */
-  --space-56: 14rem;      /* 224px */
-  --space-60: 15rem;      /* 240px */
-  --space-64: 16rem;      /* 256px */
+  --space-0-5: 0.125rem;
+  --space-1: 0.25rem;
+  --space-1-5: 0.375rem;
+  --space-2: 0.5rem;
+  --space-2-5: 0.625rem;
+  --space-3: 0.75rem;
+  --space-3-5: 0.875rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-9: 2.25rem;
+  --space-10: 2.5rem;
+  --space-11: 2.75rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
+  --space-36: 9rem;
+  --space-40: 10rem;
+  --space-44: 11rem;
+  --space-48: 12rem;
+  --space-52: 13rem;
+  --space-56: 14rem;
+  --space-60: 15rem;
+  --space-64: 16rem;
 
   /* ============================================
      BORDER RADIUS
      ============================================ */
-
   --radius-none: 0;
-  --radius-sm: 0.25rem;   /* 4px */
-  --radius-md: 0.5rem;    /* 8px */
-  --radius-lg: 0.75rem;   /* 12px */
-  --radius-xl: 1rem;      /* 16px */
-  --radius-2xl: 1.5rem;   /* 24px */
-  --radius-3xl: 2rem;     /* 32px */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
   --radius-full: 9999px;
 
   /* ============================================
      SHADOWS
      ============================================ */
-
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-
-  /* Glow effects */
-  --glow-primary: 0 0 20px rgba(58, 184, 58, 0.3);
-  --glow-etc: 0 0 20px rgba(51, 255, 153, 0.3);
-  --glow-card: 0 0 0 1px rgba(255, 255, 255, 0.06) inset, 0 40px 120px rgba(51, 255, 153, 0.06);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --card-hover-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 
   /* ============================================
      TRANSITIONS
      ============================================ */
-
   --transition-fast: 150ms;
   --transition-normal: 200ms;
   --transition-slow: 300ms;
   --transition-slower: 500ms;
-
   --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -214,7 +199,6 @@
   /* ============================================
      Z-INDEX SCALE
      ============================================ */
-
   --z-base: 0;
   --z-dropdown: 10;
   --z-sticky: 20;
@@ -226,9 +210,8 @@
   --z-toast: 80;
 
   /* ============================================
-     BREAKPOINTS (for reference in JS)
+     BREAKPOINTS / CONTAINERS
      ============================================ */
-
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -236,52 +219,107 @@
   --breakpoint-2xl: 1536px;
 
   /* ============================================
-     CONTAINER WIDTHS
+     COMPONENT TOKENS
      ============================================ */
-
-  --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1280px;
-  --container-2xl: 1536px;
-
-  /* ============================================
-     COMPONENT-SPECIFIC TOKENS
-     ============================================ */
-
-  /* Navigation */
-  --nav-height: 4rem;        /* 64px */
-  --nav-height-mobile: 3.5rem; /* 56px */
-
-  /* Cards */
+  --nav-height: 4rem;
+  --nav-height-mobile: 3.5rem;
   --card-padding: var(--space-6);
   --card-padding-sm: var(--space-4);
   --card-radius: var(--radius-xl);
-
-  /* Buttons */
-  --btn-height-sm: 2rem;     /* 32px */
-  --btn-height-md: 2.5rem;   /* 40px */
-  --btn-height-lg: 3rem;     /* 48px */
+  --btn-height-sm: 2rem;
+  --btn-height-md: 2.5rem;
+  --btn-height-lg: 3rem;
   --btn-radius: var(--radius-lg);
-
-  /* Inputs */
-  --input-height: 2.5rem;    /* 40px */
+  --input-height: 2.5rem;
   --input-radius: var(--radius-md);
-  --input-border: var(--color-border);
-  --input-focus: var(--color-primary);
-
-  /* Section spacing */
+  --input-border: var(--border-default);
+  --input-focus: var(--brand-green);
   --section-padding-y: var(--space-24);
   --section-padding-y-mobile: var(--space-16);
 }
 
 /* ============================================
-   DARK MODE (default - already dark)
+   DARK MODE
    ============================================ */
+.dark {
+  /* Brand green — neon for dark backgrounds */
+  --brand-green: #00ffae;
+  --brand-green-hover: #14f1b4;
+  --brand-green-active: #00cc8a;
+  --brand-green-muted: #007a53;
+  --brand-green-subtle: rgba(0, 255, 174, 0.08);
+  --brand-green-glow: rgba(0, 255, 174, 0.4);
 
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Light mode overrides if ever needed */
-    /* Currently dark-only design */
-  }
+  /* Backgrounds */
+  --background: #0a0f10;
+  --foreground: #ffffff;
+  --bg-surface: #111111;
+  --bg-elevated: #181818;
+  --bg-deep: #080b0c;
+  --bg-overlay: rgba(10, 15, 16, 0.92);
+  --bg-card: rgba(0, 0, 0, 0.35);
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #c3c5cb;
+  --text-muted: #9ca3af;
+  --text-subtle: #6b7280;
+
+  /* Code */
+  --code-bg: rgba(0, 0, 0, 0.4);
+  --code-text: #00ffae;
+
+  /* Borders */
+  --border-default: #1a1a1a;
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-brand: rgba(0, 255, 174, 0.3);
+  --border-glow: rgba(0, 255, 174, 0.15);
+  --divider: rgba(255, 255, 255, 0.06);
+
+  /* Semantic */
+  --color-success: #00ffae;
+  --color-success-bg: rgba(0, 255, 174, 0.1);
+  --color-error: #ef4444;
+  --color-error-bg: rgba(239, 68, 68, 0.1);
+  --color-warning: #f59e0b;
+  --color-warning-bg: rgba(245, 158, 11, 0.1);
+  --color-info: #38bdf8;
+  --color-info-bg: rgba(56, 189, 248, 0.1);
+
+  /* Legacy aliases (dark overrides) */
+  --color-primary: var(--brand-green);
+  --color-primary-hover: var(--brand-green-hover);
+  --color-primary-active: var(--brand-green-active);
+  --color-primary-alpha: var(--brand-green-subtle);
+  --color-bg-primary: var(--background);
+  --color-bg-secondary: var(--bg-surface);
+  --color-bg-tertiary: var(--bg-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-subtle);
+  --color-border: var(--border-default);
+  --panel: var(--border-subtle);
+  --panel-hover: rgba(255, 255, 255, 0.06);
+  --panel-strong: rgba(255, 255, 255, 0.08);
+  --border: var(--border-default);
+  --border-soft: var(--border-subtle);
+  --bg: var(--background);
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+  --muted2: var(--text-muted);
+
+  /* Glows */
+  --glow-primary: 0 0 20px var(--brand-green-glow);
+  --glow-card: 0 0 0 1px rgba(255, 255, 255, 0.06) inset, 0 40px 120px var(--brand-green-subtle);
+
+  /* Dark shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  --card-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  --card-hover-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
 }

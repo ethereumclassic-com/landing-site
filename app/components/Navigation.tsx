@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearch, getTypeLabel, getTypeIcon, type SearchResult, type SearchResultType } from '@/hooks/useSearch'
 
@@ -174,6 +175,39 @@ const mobileNavGroups: {
   },
 ]
 
+function ThemeToggle() {
+  const { theme, setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted) {
+    return <div className="h-10 w-10 rounded-lg" />
+  }
+
+  const isDark = resolvedTheme === 'dark'
+
+  return (
+    <button
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-secondary)] transition hover:bg-[var(--border-subtle)] hover:text-[var(--text-primary)]"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+    >
+      {isDark ? (
+        /* Sun icon */
+        <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+        </svg>
+      ) : (
+        /* Moon icon */
+        <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+        </svg>
+      )}
+    </button>
+  )
+}
+
 interface SearchModalProps {
   isOpen: boolean
   onClose: () => void
@@ -186,7 +220,6 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const { query, setQuery, results, groupedResults, isSearching, totalResults, clearSearch } = useSearch(150)
   const [selectedIndex, setSelectedIndex] = useState(-1)
 
-  // Focus input when modal opens
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus()
@@ -195,16 +228,13 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
     }
   }, [isOpen, clearSearch])
 
-  // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose()
         return
       }
-
       if (results.length === 0) return
-
       if (e.key === 'ArrowDown') {
         e.preventDefault()
         setSelectedIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0))
@@ -220,7 +250,6 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
         }
       }
     }
-
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown)
       document.body.style.overflow = 'hidden'
@@ -231,7 +260,6 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
     }
   }, [isOpen, onClose, results, selectedIndex, router])
 
-  // Scroll selected item into view
   useEffect(() => {
     if (selectedIndex >= 0 && resultsRef.current) {
       const selectedElement = resultsRef.current.querySelector(`[data-index="${selectedIndex}"]`)
@@ -239,10 +267,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
     }
   }, [selectedIndex])
 
-  // Reset selection when results change
-  useEffect(() => {
-    setSelectedIndex(-1)
-  }, [results])
+  useEffect(() => { setSelectedIndex(-1) }, [results])
 
   const handleResultClick = useCallback(
     (result: SearchResult) => {
@@ -252,13 +277,11 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
     [router, onClose]
   )
 
-  // Group results for display
   const displayGroups = Object.entries(groupedResults).filter(([, items]) => items.length > 0) as [
     SearchResultType,
     SearchResult[],
   ][]
 
-  // Track flat index for keyboard navigation
   let flatIndex = -1
 
   return (
@@ -270,7 +293,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
             onClick={onClose}
           />
           <motion.div
@@ -278,22 +301,15 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed left-4 right-4 top-20 z-[70] mx-auto flex max-h-[70vh] max-w-2xl flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] shadow-2xl"
+            className="fixed left-4 right-4 top-20 z-[70] mx-auto flex max-h-[70vh] max-w-2xl flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-surface)] shadow-2xl"
           >
             {/* Search Input */}
             <div className="relative shrink-0 p-4">
               <svg aria-hidden="true"
-                className="absolute left-8 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--color-text-muted)]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
+                className="absolute left-8 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--text-muted)]"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
               <input
                 ref={inputRef}
@@ -301,13 +317,13 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search pages, articles, apps, wallets..."
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] py-4 pl-12 pr-20 text-lg text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
+                className="w-full rounded-xl border border-[var(--border-default)] bg-[var(--background)] py-4 pl-12 pr-20 text-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] outline-none transition focus:border-[var(--brand-green)]"
               />
               <div className="absolute right-8 top-1/2 flex -translate-y-1/2 items-center gap-2">
                 {isSearching && (
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--color-primary)] border-t-transparent" />
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-[var(--brand-green)] border-t-transparent" />
                 )}
-                <kbd className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-2 py-1 text-xs text-[var(--color-text-muted)]">
+                <kbd className="rounded-lg border border-[var(--border-default)] bg-[var(--background)] px-2 py-1 text-xs text-[var(--text-muted)]">
                   ESC
                 </kbd>
               </div>
@@ -317,10 +333,8 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
             <div ref={resultsRef} className="overflow-y-auto px-4 pb-4">
               {query.length >= 2 && results.length === 0 && !isSearching && (
                 <div className="py-8 text-center">
-                  <p className="text-[var(--color-text-muted)]">No results found for &quot;{query}&quot;</p>
-                  <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                    Try different keywords or browse quick links below
-                  </p>
+                  <p className="text-[var(--text-muted)]">No results found for &quot;{query}&quot;</p>
+                  <p className="mt-2 text-sm text-[var(--text-muted)]">Try different keywords or browse quick links below</p>
                 </div>
               )}
 
@@ -328,12 +342,10 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 <div className="space-y-4">
                   {displayGroups.map(([type, items]) => (
                     <div key={type}>
-                      <h3 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">
+                      <h3 className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
                         <span>{getTypeIcon(type)}</span>
                         <span>{getTypeLabel(type)}</span>
-                        <span className="rounded-full bg-[var(--bg)] px-2 py-0.5 text-xs">
-                          {items.length}
-                        </span>
+                        <span className="rounded-full bg-[var(--bg-elevated)] px-2 py-0.5 text-xs">{items.length}</span>
                       </h3>
                       <div className="space-y-1">
                         {items.map((result) => {
@@ -346,14 +358,12 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
                               onClick={() => handleResultClick(result)}
                               className={`w-full rounded-lg px-3 py-2 text-left transition ${
                                 selectedIndex === currentIndex
-                                  ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]'
-                                  : 'hover:bg-[var(--bg)]'
+                                  ? 'bg-[var(--brand-green-subtle)] text-[var(--brand-green)]'
+                                  : 'hover:bg-[var(--bg-elevated)]'
                               }`}
                             >
-                              <div className="font-medium text-[var(--color-text-primary)]">{result.title}</div>
-                              <div className="mt-0.5 line-clamp-1 text-sm text-[var(--color-text-muted)]">
-                                {result.description}
-                              </div>
+                              <div className="font-medium text-[var(--text-primary)]">{result.title}</div>
+                              <div className="mt-0.5 line-clamp-1 text-sm text-[var(--text-muted)]">{result.description}</div>
                             </button>
                           )
                         })}
@@ -363,10 +373,9 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 </div>
               )}
 
-              {/* Quick Links (shown when no search or empty) */}
               {(query.length < 2 || (results.length === 0 && !isSearching)) && (
                 <div className="mt-2">
-                  <p className="mb-3 text-sm text-[var(--color-text-muted)]">Quick links:</p>
+                  <p className="mb-3 text-sm text-[var(--text-muted)]">Quick links:</p>
                   <div className="flex flex-wrap gap-2">
                     {[
                       { href: '/wallet', label: 'Wallet' },
@@ -381,7 +390,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         key={link.href}
                         href={link.href}
                         onClick={onClose}
-                        className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                        className="rounded-lg border border-[var(--border-default)] bg-[var(--background)] px-3 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:border-[var(--brand-green)] hover:text-[var(--brand-green)]"
                       >
                         {link.label}
                       </Link>
@@ -391,16 +400,15 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
               )}
             </div>
 
-            {/* Footer */}
             {totalResults > 0 && (
-              <div className="shrink-0 border-t border-[var(--border)] px-4 py-2">
-                <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
+              <div className="shrink-0 border-t border-[var(--border-default)] px-4 py-2">
+                <div className="flex items-center justify-between text-xs text-[var(--text-muted)]">
                   <span>{totalResults} results</span>
                   <span>
-                    <kbd className="rounded border border-[var(--border)] px-1.5 py-0.5">↑</kbd>
-                    <kbd className="ml-1 rounded border border-[var(--border)] px-1.5 py-0.5">↓</kbd>
+                    <kbd className="rounded border border-[var(--border-default)] px-1.5 py-0.5">↑</kbd>
+                    <kbd className="ml-1 rounded border border-[var(--border-default)] px-1.5 py-0.5">↓</kbd>
                     <span className="ml-2">to navigate</span>
-                    <kbd className="ml-2 rounded border border-[var(--border)] px-1.5 py-0.5">↵</kbd>
+                    <kbd className="ml-2 rounded border border-[var(--border-default)] px-1.5 py-0.5">↵</kbd>
                     <span className="ml-1">to select</span>
                   </span>
                 </div>
@@ -428,7 +436,7 @@ function Dropdown({ items, isOpen, onClose }: DropdownProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}
           transition={{ duration: 0.15 }}
-          className="absolute left-0 top-full z-50 mt-1 min-w-[200px] rounded-xl border border-[var(--border)] bg-[var(--bg)] p-2 shadow-2xl backdrop-blur-xl"
+          className="absolute left-0 top-full z-50 mt-1 min-w-[200px] rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-2 shadow-2xl backdrop-blur-xl"
           onMouseLeave={onClose}
         >
           {items.map((item) => (
@@ -436,7 +444,7 @@ function Dropdown({ items, isOpen, onClose }: DropdownProps) {
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className="block rounded-lg px-4 py-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:bg-white/10 hover:text-white"
+              className="block rounded-lg px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]"
             >
               {item.label}
             </Link>
@@ -453,11 +461,10 @@ export default function Navigation() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
-  // Close mobile menu on route change - this is intentional UI behavior
   const prevPathname = useRef(pathname)
   useEffect(() => {
     if (prevPathname.current !== pathname) {
-      /* eslint-disable react-hooks/set-state-in-effect -- intentional: sync UI on route change */
+      /* eslint-disable react-hooks/set-state-in-effect */
       setMobileMenuOpen(false)
       setSearchOpen(false)
       /* eslint-enable react-hooks/set-state-in-effect */
@@ -465,7 +472,6 @@ export default function Navigation() {
     }
   }, [pathname])
 
-  // Check if a nav item or its children are active
   const isActive = (item: (typeof navItems)[0]) => {
     if ('href' in item && item.href) {
       if (pathname === item.href) return true
@@ -479,7 +485,6 @@ export default function Navigation() {
     return false
   }
 
-  // Keyboard shortcut for search
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -493,12 +498,12 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--border-soft)] bg-[var(--bg)]/95 backdrop-blur-lg">
+      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-[var(--border-default)] bg-[var(--background)]/95 backdrop-blur-lg">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 text-xl font-bold text-white transition hover:opacity-80"
+            className="flex items-center gap-2.5 text-xl font-bold text-[var(--text-primary)] transition hover:opacity-80"
           >
             <Image
               src="/etc-prism.png"
@@ -507,7 +512,7 @@ export default function Navigation() {
               height={32}
               className="h-8 w-auto"
             />
-            <span className="hidden text-white sm:inline">Ethereum Classic</span>
+            <span className="hidden sm:inline">Ethereum Classic</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -524,25 +529,20 @@ export default function Navigation() {
                     href={item.href}
                     className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm transition ${
                       isActive(item)
-                        ? item.highlight
-                          ? 'bg-[#00ffae]/10 text-[#00ffae]'
-                          : 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
+                        ? 'bg-[var(--brand-green-subtle)] text-[var(--brand-green)]'
                         : item.highlight
-                          ? 'text-[#00ffae]/80 hover:bg-[#00ffae]/5 hover:text-[#00ffae]'
-                          : 'text-white/70 hover:bg-white/5 hover:text-white'
+                          ? 'text-[var(--brand-green)] opacity-80 hover:bg-[var(--brand-green-subtle)] hover:opacity-100'
+                          : 'text-[var(--text-secondary)] hover:bg-[var(--border-subtle)] hover:text-[var(--text-primary)]'
                     }`}
                   >
                     {item.label}
                     {item.highlight && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#00ffae] shadow-[0_0_6px_rgba(0,255,174,0.6)]" />
+                      <span className="h-1.5 w-1.5 rounded-full bg-[var(--brand-green)] shadow-[0_0_6px_var(--brand-green-glow)]" />
                     )}
                     {item.dropdown && (
                       <svg aria-hidden="true"
                         className={`h-4 w-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
@@ -552,18 +552,15 @@ export default function Navigation() {
                   <button
                     className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm transition ${
                       isActive(item)
-                        ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                        : 'text-white/70 hover:bg-white/5 hover:text-white'
+                        ? 'bg-[var(--brand-green-subtle)] text-[var(--brand-green)]'
+                        : 'text-[var(--text-secondary)] hover:bg-[var(--border-subtle)] hover:text-[var(--text-primary)]'
                     }`}
                   >
                     {item.label}
                     {item.dropdown && (
                       <svg aria-hidden="true"
                         className={`h-4 w-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
@@ -582,34 +579,27 @@ export default function Navigation() {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {/* Search Button */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70 transition hover:bg-white/5 hover:text-white"
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-secondary)] transition hover:bg-[var(--border-subtle)] hover:text-[var(--text-primary)]"
               aria-label="Search"
             >
-              <svg aria-hidden="true"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
             </button>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
             {/* Launch App Button (Desktop) */}
             <a
               href="https://app.classicos.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden items-center justify-center rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-[var(--color-primary)]/25 md:inline-flex"
+              className="hidden items-center justify-center rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-2 text-sm font-medium text-[var(--brand-green)] transition hover:bg-[var(--brand-green-subtle)] hover:opacity-80 md:inline-flex"
             >
               Launch App
             </a>
@@ -617,17 +607,11 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-white transition hover:bg-white/5 lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-secondary)] transition hover:bg-[var(--border-subtle)] hover:text-[var(--text-primary)] lg:hidden"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
-              <svg aria-hidden="true"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-              >
+              <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 {mobileMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 ) : (
@@ -646,57 +630,32 @@ export default function Navigation() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="overflow-hidden border-t border-[var(--border-soft)] bg-[var(--bg)] lg:hidden"
+              className="overflow-hidden border-t border-[var(--border-default)] bg-[var(--background)] lg:hidden"
             >
               <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-4">
-                {/* Mobile Launch App Button - at top for Safari iOS URL bar issue */}
+                {/* Mobile Launch App Button */}
                 <a
                   href="https://app.classicos.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mb-4 flex w-full items-center justify-center rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/15 px-4 py-3 text-sm font-medium text-white transition hover:bg-[var(--color-primary)]/25"
+                  className="mb-4 flex w-full items-center justify-center rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-3 text-sm font-medium text-[var(--brand-green)] transition hover:opacity-80"
                 >
                   Launch App
-                  <svg aria-hidden="true"
-                    className="ml-2 h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                    />
+                  <svg aria-hidden="true" className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                   </svg>
                 </a>
 
                 {/* Mobile Search */}
                 <button
-                  onClick={() => {
-                    setMobileMenuOpen(false)
-                    setSearchOpen(true)
-                  }}
-                  className="mb-4 flex w-full items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-left text-[var(--color-text-muted)]"
+                  onClick={() => { setMobileMenuOpen(false); setSearchOpen(true) }}
+                  className="mb-4 flex w-full items-center gap-3 rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] px-4 py-3 text-left text-[var(--text-muted)]"
                 >
-                  <svg aria-hidden="true"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                    />
+                  <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                   </svg>
                   <span>Search...</span>
-                  <kbd className="ml-auto rounded border border-[var(--border)] bg-[var(--bg)] px-2 py-0.5 text-xs">
-                    ⌘K
-                  </kbd>
+                  <kbd className="ml-auto rounded border border-[var(--border-default)] bg-[var(--background)] px-2 py-0.5 text-xs">⌘K</kbd>
                 </button>
 
                 {/* Mobile Navigation Groups */}
@@ -704,17 +663,16 @@ export default function Navigation() {
                   {mobileNavGroups.map((group) => (
                     <div key={group.label}>
                       <h3 className={`mb-2 text-xs font-semibold uppercase tracking-wider ${
-                        group.highlight ? 'text-[#00ffae]' : 'text-[var(--color-text-muted)]'
+                        group.highlight ? 'text-[var(--brand-green)]' : 'text-[var(--text-muted)]'
                       }`}>
                         {group.label}
                         {group.highlight && (
-                          <span className="ml-2 inline-block h-1.5 w-1.5 rounded-full bg-[#00ffae] shadow-[0_0_6px_rgba(0,255,174,0.6)]" />
+                          <span className="ml-2 inline-block h-1.5 w-1.5 rounded-full bg-[var(--brand-green)] shadow-[0_0_6px_var(--brand-green-glow)]" />
                         )}
                       </h3>
                       <div className="space-y-1">
                         {group.items.map((item) => {
                           const active = pathname === item.href || pathname.startsWith(item.href)
-                          const isOlympia = group.highlight
                           return (
                             <Link
                               key={item.href}
@@ -722,12 +680,8 @@ export default function Navigation() {
                               onClick={() => setMobileMenuOpen(false)}
                               className={`block rounded-lg px-4 py-3 transition ${
                                 active
-                                  ? isOlympia
-                                    ? 'bg-[#00ffae]/10 text-[#00ffae]'
-                                    : 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                                  : isOlympia
-                                    ? 'text-[#00ffae]/70 hover:bg-[#00ffae]/5 hover:text-[#00ffae]'
-                                    : 'text-white/70 hover:bg-white/5 hover:text-white'
+                                  ? 'bg-[var(--brand-green-subtle)] text-[var(--brand-green)]'
+                                  : 'text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]'
                               }`}
                             >
                               {item.label}
