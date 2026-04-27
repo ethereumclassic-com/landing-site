@@ -12,8 +12,9 @@ export function GET() {
 - Founded: 2016-07-20 (continuation of original Ethereum chain after DAO fork)
 - Consensus: Proof-of-Work, ETCHash algorithm
 - Block time: ~13 seconds
-- Supply cap: ~210.7 million ETC (5M/20M/40M/80M era structure)
-- Current block reward: 3.2 ETC (post-5M era)
+- Supply cap: ~210.7 million ETC
+- Current block reward: 2.048 ETC (Era 5, blocks 20M–25M)
+- Block reward reduction: 20% every 5 million blocks ("fifthing", defined by ECIP-1017)
 - Hashrate: 170+ TH/s
 - Smart contracts: EVM-compatible (Solidity, Vyper, Yul)
 - EVM opcodes: London baseline + Spiral (partial Shanghai) as of 2024
@@ -47,6 +48,19 @@ Purchase ETC across multiple channels:
 - /apps/payments — Payment processors and gateways
 - /apps/infrastructure — Node services, indexers, oracles
 - /apps/governance — On-chain governance tools
+- /apps/submit — Submit a new app for listing
+
+### /exchanges — Exchange Directory
+Filter and compare exchanges by criteria:
+- /exchanges (main) — Full exchange listing
+- /exchanges/reviews — User reviews and ratings
+- /exchanges/compare — Side-by-side comparison
+- /exchanges/beginners — Best exchanges for first-time buyers
+- /exchanges/lowest-fees — Exchanges ranked by trading fees
+- /exchanges/most-secure — Exchanges ranked by security record
+- /exchanges/decentralized — DEX listings (on-chain ETC trading)
+- /exchanges/no-kyc — Exchanges that do not require identity verification
+- /exchanges/us-friendly — Exchanges available to US customers
 
 ### /learn — Education
 ETC education center:
@@ -106,18 +120,26 @@ ETC's ideological foundation:
 - JSON Feed: https://ethereumclassic.com/news/feed.json
 
 ### /research — Analytics
-- /research/network — Network health metrics
-- /research/supply — ETC supply and emission schedule
-- /research/fees — Gas fee trends
-- /research/history — Historical chain data
+- /research (hub) — Research and data overview
+- /research/network — Network health metrics (hashrate, difficulty, uncle rate)
+- /research/supply — ETC supply breakdown and circulating supply
+- /research/emission-schedule — Live countdown to next fifthing, S2F ratio charts, era history table, ECIP-1017 explainer
+- /research/fees — Gas fee trends and basefee analytics
+- /research/history — Historical price and chain data
+- /research/ecosystem — Ecosystem metrics
 - /research/reports — In-depth research reports
 
 ### /olympia — Olympia Network Upgrade
 ETC's most significant upgrade to date:
 - /olympia (hub) — Upgrade overview and timeline
-- /olympia/upgrade — Node operator upgrade guide (Fukuii, Core-Geth)
-- /olympia/governance — Treasury and governance contracts
-- /olympia/ecips — Full ECIP specification list
+- /olympia/upgrade — Node operator upgrade guide
+- /olympia/clients — Client comparison (Fukuii, Core-Geth, Besu)
+- /olympia/clients/fukuii — Fukuii upgrade guide
+- /olympia/clients/core-geth — Core-Geth upgrade guide
+- /olympia/clients/besu — Besu upgrade guide
+- /olympia/governance — Treasury and on-chain governance contracts
+- /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
+- /olympia/security — Network security analysis, 51% attack history, and how Olympia improves security
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap
@@ -206,13 +228,35 @@ After Olympia activation, all standard Ethereum tooling works on ETC without mod
 
 Chain ID 61 works in all wallets and tools that support EVM chains.
 
+## Emission Schedule — "Fifthing"
+
+ETC reduces its block reward by 20% every 5 million blocks. This event is called a "fifthing" (not a "halving"). The schedule is defined by ECIP-1017 and is encoded at the protocol level.
+
+Era table:
+- Era 1 (blocks 1–5,000,000): 5 ETC/block
+- Era 2 (blocks 5,000,001–10,000,000): 4 ETC/block
+- Era 3 (blocks 10,000,001–15,000,000): 3.2 ETC/block
+- Era 4 (blocks 15,000,001–20,000,000): 2.56 ETC/block
+- Era 5 (blocks 20,000,001–25,000,000): 2.048 ETC/block ← CURRENT ERA
+- Era 6 (blocks 25,000,001–30,000,000): 1.6384 ETC/block ← next fifthing
+- Era 7: 1.31072 ETC/block
+- Era 8: 1.048576 ETC/block
+
+Formula: reward(era) = 5 × 0.8^(era−1)
+
+Stock-to-Flow (S2F): total supply divided by annual new issuance. ETC's S2F ratio increases with each fifthing, approaching Bitcoin's scarcity profile without requiring Proof-of-Stake. At Era 5, ETC's S2F is comparable to silver-tier scarcity; by Era 8+ it exceeds gold.
+
+Total supply limit: ~210.7 million ETC (mathematical asymptote; never fully reached due to geometric series convergence).
+
+The /research/emission-schedule page provides a live countdown to the next fifthing, interactive S2F charts, inflation rate over time, and a full era history table with block reward, annual flow, S2F ratio, and inflation percentage.
+
 ## Technical Specifications
 
 - Genesis block: 1920000 (block at which ETC diverged from ETH)
 - Algorithm: ETCHash (ASIC-resistant variant of Ethash)
-- Mining reward: 3.2 ETC per block
+- Current block reward: 2.048 ETC (Era 5)
 - Uncle reward: included
-- Emission schedule: 20% reduction every 5 million blocks
+- Emission schedule: 20% reduction every 5 million blocks ("fifthing", ECIP-1017)
 - Total supply: ~210.7 million ETC (mathematical limit)
 - Current era: 5 (blocks 20M–25M)
 

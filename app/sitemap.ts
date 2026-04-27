@@ -133,11 +133,12 @@ const staticRoutes = [
 
   // Research section
   { path: '/research', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/research/emission-schedule', priority: 0.7, changeFrequency: 'daily' as const },
+  { path: '/research/emission-schedule', priority: 0.8, changeFrequency: 'daily' as const },
   { path: '/research/reports', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/research/network', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/supply', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/fees', priority: 0.6, changeFrequency: 'daily' as const },
+  { path: '/research/history', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/research/ecosystem', priority: 0.6, changeFrequency: 'weekly' as const },
 
   // Tools section
@@ -171,10 +172,25 @@ const staticRoutes = [
   { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/olympia/security', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const },
 
   // Core Devs Calls
   { path: '/core-devs', priority: 0.7, changeFrequency: 'weekly' as const },
+
+  // Standalone pages
+  { path: '/earn', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/environmental-impact', priority: 0.5, changeFrequency: 'weekly' as const },
+  { path: '/investment-products', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/learn/on-ramp', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/network', priority: 0.5, changeFrequency: 'daily' as const },
+  { path: '/regulation', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/store', priority: 0.4, changeFrequency: 'weekly' as const },
+
+  // Markets (direct routes)
+  { path: '/markets/price', priority: 0.8, changeFrequency: 'hourly' as const },
+  { path: '/markets/calculator', priority: 0.7, changeFrequency: 'daily' as const },
+  { path: '/markets/converter', priority: 0.7, changeFrequency: 'daily' as const },
 
   // Account section (lower priority for crawling)
   { path: '/account', priority: 0.3, changeFrequency: 'weekly' as const },
