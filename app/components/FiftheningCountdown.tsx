@@ -79,6 +79,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
   } = useFifthening()
 
   const inflationRate = currentBlock != null ? getAnnualInflationRate(currentBlock) : null
+  const nextInflationRate = targetBlock != null ? getAnnualInflationRate(targetBlock + 1) : null
 
   if (status === 'complete') {
     return <CompleteState variant={variant} currentEra={currentEra} nextReward={nextReward} />
@@ -134,22 +135,24 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
               Block {targetBlock?.toLocaleString() ?? '…'} · ECIP-1017
             </p>
           </div>
-          {/* Badges */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-red-500/10 px-2.5 py-1 text-xs font-medium tabular-nums text-red-400">
-              −20% reward
-            </span>
+          {/* −20% badge */}
+          <span className="rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-400">
+            −20% block reward
+          </span>
+        </div>
+
+        {/* Reward transition — two columns with inflation badges beneath each */}
+        <div className="mt-4 flex items-center gap-3 rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] px-4 py-3">
+          {/* Current reward */}
+          <div className="flex flex-col gap-1.5">
+            <span className="font-mono text-sm font-medium text-[var(--text-primary)]">{fmt(currentReward)} ETC</span>
             {inflationRate != null && (
-              <span className="rounded-full bg-[var(--border-subtle)] px-2.5 py-1 text-xs font-medium tabular-nums text-[var(--text-muted)]">
+              <span className="w-fit rounded-full bg-[var(--border-subtle)] px-2 py-0.5 text-xs tabular-nums text-[var(--text-muted)]">
                 ~{inflationRate}% inflation
               </span>
             )}
           </div>
-        </div>
 
-        {/* Reward transition */}
-        <div className="mt-4 flex items-center gap-2 rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] px-3 py-2 text-sm">
-          <span className="font-mono text-[var(--text-primary)]">{fmt(currentReward)} ETC</span>
           <svg
             aria-hidden="true"
             className="h-3.5 w-3.5 shrink-0 text-[var(--text-muted)]"
@@ -158,13 +161,18 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
-          <span className="font-mono text-[var(--text-muted)]">{fmt(nextReward)} ETC</span>
+
+          {/* Next reward */}
+          <div className="flex flex-col gap-1.5">
+            <span className="font-mono text-sm font-medium text-[var(--text-muted)]">{fmt(nextReward)} ETC</span>
+            {nextInflationRate != null && (
+              <span className="w-fit rounded-full bg-[var(--brand-green)]/10 px-2 py-0.5 text-xs tabular-nums text-[var(--brand-green)]">
+                ~{nextInflationRate}% inflation
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Digit boxes */}
