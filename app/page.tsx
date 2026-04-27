@@ -1,10 +1,9 @@
 import {
   Hero,
-  NetworkOverviewSection,
   ActiveEventsSection,
-  ProductCards,
+  SiteHubGrid,
+  NetworkOverviewSection,
   TrendingNews,
-  ProductSuite,
   TrustSignals,
   FinalCTA,
 } from './components/homepage'
@@ -15,14 +14,12 @@ export default function Page() {
   return (
     <main>
       <Hero />
-      <NetworkOverviewSection />
       <ActiveEventsSection />
+      <SiteHubGrid />
       <SectionDivider />
-      <ProductCards />
+      <NetworkOverviewSection />
       <SectionDivider />
       <TrendingNews />
-      <SectionDivider />
-      <ProductSuite />
       <SectionDivider />
       <TrustSignals />
       <SectionDivider variant="strong" />
