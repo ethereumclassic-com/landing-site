@@ -21,21 +21,16 @@ const navItems: {
 }[] = [
   { href: '/news', label: 'News' },
   {
-    href: '/wallet',
-    label: 'Wallet',
+    label: 'Products',
     dropdown: [
+      { type: 'separator', label: 'Wallets' },
       { href: '/wallet', label: 'Wallet Hub' },
       { href: '/wallet/reviews', label: 'Wallet Reviews' },
       { href: '/wallet/compare', label: 'Compare Wallets' },
       { href: '/wallet/hardware', label: 'Hardware Wallets' },
       { href: '/wallet/metamask', label: 'MetaMask Setup' },
       { href: '/wallet/classic-os', label: 'Classic OS' },
-    ],
-  },
-  {
-    href: '/apps',
-    label: 'Apps',
-    dropdown: [
+      { type: 'separator', label: 'Apps' },
       { href: '/apps', label: 'Apps Directory' },
       { href: '/apps/featured', label: 'Featured Apps' },
       { href: '/apps/defi', label: 'DeFi' },
