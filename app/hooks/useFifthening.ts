@@ -35,7 +35,7 @@ function toCountdown(totalSeconds: number): FiftheningCountdown {
 }
 
 export function useFifthening(): UseFiftheningReturn {
-  const { stats, loading: networkLoading } = useNetworkStats({ refreshInterval: 30000 })
+  const { stats, loading: networkLoading } = useNetworkStats({ refreshInterval: 300_000 })
 
   const currentBlock = stats?.totalBlocks ?? null
 

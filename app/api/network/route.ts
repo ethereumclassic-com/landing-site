@@ -7,7 +7,7 @@ import { fetchNetworkStats, getFallbackStats, formatNetworkStats } from '@/lib/b
  * Falls back to cached/static data if API is unavailable
  *
  * Cache Strategy:
- * - Data is cached for 24 hours to minimize Blockscout API calls
+ * - Data is cached for 10 minutes to minimize Blockscout API calls
  * - Uses file-based caching that persists across server restarts
  * - Falls back to static data if API is unavailable
  */
@@ -52,12 +52,12 @@ export async function GET() {
           source: 'blockscout',
           lastUpdated: liveStats.lastUpdated,
           cacheAgeMinutes: cacheAge,
-          nextRefresh: new Date(new Date(liveStats.lastUpdated).getTime() + 24 * 60 * 60 * 1000).toISOString(),
+          nextRefresh: new Date(new Date(liveStats.lastUpdated).getTime() + 10 * 60 * 1000).toISOString(),
         },
         {
           headers: {
-            // Cache for 24 hours, allow stale data for 48 hours
-            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=172800',
+            // Cache for 10 minutes, allow stale for 20 minutes
+            'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=1200',
           },
         }
       )
