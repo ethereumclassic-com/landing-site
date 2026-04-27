@@ -113,6 +113,9 @@ const staticRoutes = [
   { path: '/mining/profitability', priority: 0.8, changeFrequency: 'daily' as const },
   { path: '/mining/stats', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/mining/os', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/mining/approaches', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/mining/regulation', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/mining/fee-market', priority: 0.8, changeFrequency: 'weekly' as const },
 
   // Build section
   { path: '/build', priority: 0.8, changeFrequency: 'weekly' as const },

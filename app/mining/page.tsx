@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import PoolCard from './components/PoolCard'
 import HashRateChart, { HashRateBar, MiningStat } from './components/HashRateChart'
 import FiftheningCountdown from '@/app/components/FiftheningCountdown'
@@ -11,8 +12,26 @@ import {
   miningResources,
 } from './data/mining'
 
+function useFeeCalloutStats() {
+  const [avgTx, setAvgTx] = useState<number>(5)
+  const [utilization, setUtilization] = useState<number>(0.42)
+
+  useEffect(() => {
+    fetch('/api/network')
+      .then((r) => r.json())
+      .then((d) => {
+        if (typeof d.avgTxPerBlock === 'number') setAvgTx(d.avgTxPerBlock)
+        if (typeof d.networkUtilization === 'number') setUtilization(d.networkUtilization * 100)
+      })
+      .catch(() => {})
+  }, [])
+
+  return { avgTx, utilization }
+}
+
 export default function MiningPage() {
   const recommendedPools = getRecommendedPools()
+  const { avgTx, utilization } = useFeeCalloutStats()
 
   return (
     <main className="min-h-screen">
@@ -136,6 +155,46 @@ export default function MiningPage() {
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <FiftheningCountdown variant="card" />
+        </div>
+      </section>
+
+      {/* Fee Market Callout */}
+      <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-br from-[var(--color-primary)]/5 to-transparent p-8">
+            <div className="flex flex-wrap items-start justify-between gap-6">
+              <div className="max-w-xl">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-primary)]">Long-term Security</p>
+                <h2 className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
+                  Miners are the long-term security foundation
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                  ETC blocks are currently near ATL utilization — the average block is over 99% empty. Block rewards fifthened every 5M blocks under ECIP-1017. Without fee revenue to replace diminishing block rewards, PoW miners eventually have no financial incentive to secure the network. Olympia is how ETC fixes this: it funds the core development that fills blocks, creates fee revenue, and aligns miners with long-term ecosystem growth.
+                </p>
+                <div className="mt-5">
+                  <Link
+                    href="/mining/fee-market"
+                    className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-all hover:opacity-90"
+                  >
+                    The Fee Market Imperative
+                    <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="rounded-xl border border-red-500/20 bg-red-500/5 px-6 py-4 text-center">
+                  <p className="text-2xl font-bold text-[var(--text-primary)]">~{avgTx.toFixed(1)}</p>
+                  <p className="mt-1 text-xs font-medium text-[var(--color-text-muted)]">Avg TXs / Block</p>
+                </div>
+                <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 px-6 py-4 text-center">
+                  <p className="text-2xl font-bold text-[var(--text-primary)]">{utilization.toFixed(2)}%</p>
+                  <p className="mt-1 text-xs font-medium text-[var(--color-text-muted)]">Block Utilization</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -343,6 +402,78 @@ export default function MiningPage() {
                 </p>
               </Link>
             </div>
+
+            {/* GPU vs ASIC */}
+            <Link
+              href="/mining/approaches"
+              className="group block rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-purple-500/30"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10">
+                <svg aria-hidden="true" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-purple-400">
+                GPU vs ASIC
+              </h3>
+              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                Compare mining approaches: flexibility vs efficiency
+              </p>
+            </Link>
+
+            {/* Mining Policy */}
+            <Link
+              href="/mining/regulation"
+              className="group block rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-blue-500/30"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
+                <svg aria-hidden="true" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-blue-400">
+                Mining Policy
+              </h3>
+              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                Global regulatory landscape for PoW mining
+              </p>
+            </Link>
+
+            {/* Olympia & Fee Market */}
+            <Link
+              href="/mining/fee-market"
+              className="group block rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6 transition-all hover:border-[var(--color-primary)]/40"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/15">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
+                Olympia & Fee Market
+              </h3>
+              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                How Olympia aligns core dev with miner incentives
+              </p>
+            </Link>
+
+            {/* Energy Infrastructure */}
+            <Link
+              href="/environmental-impact"
+              className="group block rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-lime-500/30"
+            >
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-lime-500/10">
+                <svg aria-hidden="true" className="h-6 w-6 text-lime-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-lime-400">
+                Energy Infrastructure
+              </h3>
+              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                Stranded energy, flexible load, and the grid story
+              </p>
+            </Link>
           </div>
         </div>
       </section>
