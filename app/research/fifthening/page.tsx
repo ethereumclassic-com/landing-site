@@ -98,7 +98,7 @@ export default function FiftheningPage() {
                 <h1 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Fifth Fifthening</h1>
               </div>
               <p className="mt-1 text-sm text-[var(--text-muted)]">
-                Block 25,000,000 · ECIP-1017 · {currentReward} ETC → {nextReward} ETC
+                Block 25,000,000 · ECIP-1017 · {currentReward ?? '…'} ETC → {nextReward ?? '…'} ETC
               </p>
             </div>
             <FiftheningCountdown variant="card" />

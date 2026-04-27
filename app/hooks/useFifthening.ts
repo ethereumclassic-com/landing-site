@@ -4,8 +4,6 @@ import { useState, useEffect, useMemo } from 'react'
 import { useNetworkStats } from './useNetworkStats'
 import { calculateSupplyStats, EMISSION_CONSTANTS } from '@/app/research/data/emission'
 
-const TARGET_BLOCK = 5 * EMISSION_CONSTANTS.ERA_LENGTH // 25,000,000
-
 export interface FiftheningCountdown {
   days: number
   hours: number
@@ -16,11 +14,13 @@ export interface FiftheningCountdown {
 export interface UseFiftheningReturn {
   status: 'pending' | 'complete'
   currentBlock: number | null
-  targetBlock: number
+  currentEra: number | null
+  nextEra: number | null
+  targetBlock: number | null
   blocksRemaining: number | null
   progress: number // 0–100 (era progress)
-  currentReward: number
-  nextReward: number
+  currentReward: number | null
+  nextReward: number | null
   countdown: FiftheningCountdown | null
   loading: boolean
 }
@@ -43,29 +43,43 @@ export function useFifthening(): UseFiftheningReturn {
     if (currentBlock === null) {
       return {
         status: 'pending' as const,
+        currentEra: null,
+        nextEra: null,
+        targetBlock: null,
         blocksRemaining: null,
         progress: 0,
-        currentReward: 2.048,
-        nextReward: 1.6384,
-        totalSeconds: 0,
-      }
-    }
-
-    if (currentBlock >= TARGET_BLOCK) {
-      return {
-        status: 'complete' as const,
-        blocksRemaining: 0,
-        progress: 100,
-        currentReward: 1.6384,
-        nextReward: 1.6384 * 0.8,
+        currentReward: null,
+        nextReward: null,
         totalSeconds: 0,
       }
     }
 
     const supplyStats = calculateSupplyStats(currentBlock)
+    const currentEra = supplyStats.currentEra
+    const nextEra = currentEra + 1
+    const targetBlock = nextEra * EMISSION_CONSTANTS.ERA_LENGTH
+
+    // Era is complete when we've passed the boundary (shouldn't happen mid-poll, but safe guard)
+    if (currentBlock >= targetBlock) {
+      const completedSupplyStats = calculateSupplyStats(currentBlock)
+      return {
+        status: 'complete' as const,
+        currentEra,
+        nextEra,
+        targetBlock,
+        blocksRemaining: 0,
+        progress: 100,
+        currentReward: completedSupplyStats.currentBlockReward,
+        nextReward: completedSupplyStats.nextEraReward,
+        totalSeconds: 0,
+      }
+    }
 
     return {
       status: 'pending' as const,
+      currentEra,
+      nextEra,
+      targetBlock,
       blocksRemaining: supplyStats.blocksUntilNextEra,
       progress: supplyStats.percentThroughEra,
       currentReward: supplyStats.currentBlockReward,
@@ -107,7 +121,9 @@ export function useFifthening(): UseFiftheningReturn {
   return {
     status: derived.status,
     currentBlock,
-    targetBlock: TARGET_BLOCK,
+    currentEra: derived.currentEra,
+    nextEra: derived.nextEra,
+    targetBlock: derived.targetBlock,
     blocksRemaining: derived.blocksRemaining,
     progress: derived.progress,
     currentReward: derived.currentReward,
