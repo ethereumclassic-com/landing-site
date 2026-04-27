@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-// Footer link groups
 const footerLinks = {
   products: {
     title: 'Products',
@@ -55,7 +54,6 @@ const footerLinks = {
   },
 }
 
-// Social links
 const socialLinks = [
   {
     label: 'X (Twitter)',
@@ -95,7 +93,6 @@ const socialLinks = [
   },
 ]
 
-// Data source attribution
 const dataAttribution = {
   text: 'Network data from',
   source: 'Blockscout',
@@ -104,7 +101,7 @@ const dataAttribution = {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--bg)]">
+    <footer className="border-t border-[var(--border-default)] bg-[var(--bg-surface)]">
       {/* Main Footer Content */}
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 lg:px-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-6">
@@ -118,9 +115,9 @@ export function SiteFooter() {
                 height={32}
                 className="h-8 w-auto"
               />
-              <span className="text-lg font-bold text-white">Ethereum Classic</span>
+              <span className="text-lg font-bold text-[var(--text-primary)]">Ethereum Classic</span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm text-[var(--color-text-muted)]">
+            <p className="mt-4 max-w-xs text-sm text-[var(--text-muted)]">
               A decentralized, Proof-of-Work smart-contract network. Immutable, censorship-resistant, and open to all.
             </p>
 
@@ -133,7 +130,7 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--panel)] text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] text-[var(--text-muted)] transition-colors hover:border-[var(--brand-green)] hover:text-[var(--brand-green)]"
                 >
                   {social.icon}
                 </a>
@@ -143,7 +140,7 @@ export function SiteFooter() {
 
           {/* Link Columns */}
           <div>
-            <h3 className="text-sm font-semibold text-white">{footerLinks.products.title}</h3>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.products.title}</h3>
             <ul className="mt-4 space-y-2">
               {footerLinks.products.links.map((link) => (
                 <li key={link.href}>
@@ -152,14 +149,14 @@ export function SiteFooter() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                      className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                     >
                       {link.label}
                     </a>
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                      className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                     >
                       {link.label}
                     </Link>
@@ -170,13 +167,13 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-white">{footerLinks.learn.title}</h3>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.learn.title}</h3>
             <ul className="mt-4 space-y-2">
               {footerLinks.learn.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                    className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                   >
                     {link.label}
                   </Link>
@@ -186,13 +183,13 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-white">{footerLinks.ecosystem.title}</h3>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.ecosystem.title}</h3>
             <ul className="mt-4 space-y-2">
               {footerLinks.ecosystem.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                    className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                   >
                     {link.label}
                   </Link>
@@ -202,13 +199,13 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-white">{footerLinks.company.title}</h3>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.company.title}</h3>
             <ul className="mt-4 space-y-2">
               {footerLinks.company.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                    className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                   >
                     {link.label}
                   </Link>
@@ -220,30 +217,27 @@ export function SiteFooter() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-[var(--border)]">
+      <div className="border-t border-[var(--border-default)]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row md:px-10 lg:px-12">
-          {/* Copyright */}
-          <p className="text-xs text-[var(--color-text-muted)]">
+          <p className="text-xs text-[var(--text-muted)]">
             © {new Date().getFullYear()} EthereumClassic.com. Open source and community-driven.
           </p>
 
-          {/* Data Attribution */}
-          <p className="text-xs text-[var(--color-text-muted)]">
+          <p className="text-xs text-[var(--text-muted)]">
             {dataAttribution.text}{' '}
             <a
               href={dataAttribution.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--color-primary)] hover:underline"
+              className="text-[var(--brand-green)] hover:underline"
             >
               {dataAttribution.source}
             </a>
           </p>
 
-          {/* Back to Top */}
           <a
             href="#top"
-            className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] transition-colors hover:text-white"
+            className="flex items-center gap-1 text-xs text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
           >
             Back to top
             <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

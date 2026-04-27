@@ -120,7 +120,7 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
             )}
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-white">{ad.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{ad.title}</h3>
                 {ad.sponsor && (
                   <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
                     Sponsored
@@ -128,7 +128,7 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
                 )}
               </div>
               {ad.description && (
-                <p className="mt-1 text-sm text-[var(--color-text-muted)]">{ad.description}</p>
+                <p className="mt-1 text-sm text-[var(--text-muted)]">{ad.description}</p>
               )}
             </div>
           </div>
@@ -152,7 +152,7 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
             )}
             <button
               onClick={() => setDismissed(true)}
-              className="text-[var(--color-text-muted)] transition hover:text-white"
+              className="text-[var(--text-muted)] transition hover:text-[var(--text-primary)]"
               aria-label="Dismiss"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -170,11 +170,11 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
     return (
       <div className={`rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 ${className}`}>
         {ad.sponsor && (
-          <span className="mb-2 inline-block text-xs text-[var(--color-text-muted)]">Sponsored</span>
+          <span className="mb-2 inline-block text-xs text-[var(--text-muted)]">Sponsored</span>
         )}
-        <h3 className="font-semibold text-white">{ad.title}</h3>
+        <h3 className="font-semibold text-[var(--text-primary)]">{ad.title}</h3>
         {ad.description && (
-          <p className="mt-2 text-sm text-[var(--color-text-muted)]">{ad.description}</p>
+          <p className="mt-2 text-sm text-[var(--text-muted)]">{ad.description}</p>
         )}
         {isExternal ? (
           <a
@@ -203,13 +203,13 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
       <div className={`flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--panel)] p-3 ${className}`}>
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <span className="font-medium text-white">{ad.title}</span>
+            <span className="font-medium text-[var(--text-primary)]">{ad.title}</span>
             {ad.sponsor && (
-              <span className="text-xs text-[var(--color-text-muted)]">Ad</span>
+              <span className="text-xs text-[var(--text-muted)]">Ad</span>
             )}
           </div>
           {ad.description && (
-            <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{ad.description}</p>
+            <p className="mt-0.5 text-xs text-[var(--text-muted)]">{ad.description}</p>
           )}
         </div>
         {isExternal ? (
@@ -238,7 +238,7 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
     return (
       <div className={`text-center ${className}`}>
         {ad.sponsor && (
-          <span className="text-xs text-[var(--color-text-muted)]">Sponsored by </span>
+          <span className="text-xs text-[var(--text-muted)]">Sponsored by </span>
         )}
         {isExternal ? (
           <a

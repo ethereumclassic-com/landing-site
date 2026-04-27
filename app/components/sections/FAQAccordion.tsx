@@ -6,8 +6,8 @@ import {
   useCallback,
   type HTMLAttributes,
 } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Container } from '../layout/Container'
+import { FadeIn } from '../ui'
 
 export interface FAQItem {
   question: string
@@ -21,28 +21,6 @@ export interface FAQAccordionProps extends HTMLAttributes<HTMLElement> {
   allowMultiple?: boolean
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const accordionContent = {
-  hidden: {
-    height: 0,
-    opacity: 0,
-    transition: { duration: 0.3, ease: 'easeInOut' as const },
-  },
-  visible: {
-    height: 'auto',
-    opacity: 1,
-    transition: { duration: 0.3, ease: 'easeInOut' as const },
-  },
-}
-
 function FAQItemComponent({
   item,
   isOpen,
@@ -53,31 +31,31 @@ function FAQItemComponent({
   onToggle: () => void
 }) {
   return (
-    <div className="border-b border-[var(--border)] last:border-b-0">
+    <div className="border-b border-[var(--border-default)] last:border-b-0">
       <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center justify-between py-5 text-left transition-colors hover:text-[var(--color-primary)]"
+        className="flex w-full items-center justify-between py-5 text-left transition-colors hover:text-[var(--brand-green)]"
         aria-expanded={isOpen}
       >
-        <span className="pr-4 text-base font-medium text-[var(--color-text-primary)]">
+        <span className="pr-4 text-base font-medium text-[var(--text-primary)]">
           {item.question}
         </span>
         <span
           className={[
             'flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full',
-            'border border-[var(--border)] transition-all duration-300',
-            isOpen && 'rotate-45 border-[var(--color-primary)] bg-[var(--color-primary)]/10',
+            'border border-[var(--border-default)] transition-all duration-300',
+            isOpen && 'rotate-45 border-[var(--brand-green)] bg-[var(--brand-green)]/10',
           ]
             .filter(Boolean)
             .join(' ')}
         >
           <svg aria-hidden="true"
-                        className={[
+            className={[
               'h-4 w-4 transition-colors',
               isOpen
-                ? 'text-[var(--color-primary)]'
-                : 'text-[var(--color-text-secondary)]',
+                ? 'text-[var(--brand-green)]'
+                : 'text-[var(--text-secondary)]',
             ]
               .filter(Boolean)
               .join(' ')}
@@ -95,21 +73,16 @@ function FAQItemComponent({
         </span>
       </button>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={accordionContent}
-            className="overflow-hidden"
-          >
-            <div className="pb-5 pr-12 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              {item.answer}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* CSS grid-rows animation for smooth height transition */}
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+      >
+        <div className="overflow-hidden">
+          <div className="pb-5 pr-12 text-sm leading-relaxed text-[var(--text-secondary)]">
+            {item.answer}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -154,7 +127,7 @@ export const FAQAccordion = forwardRef<HTMLElement, FAQAccordionProps>(
         aria-labelledby={title ? 'faq-accordion-heading' : undefined}
         className={[
           'py-16 md:py-24',
-          'bg-[var(--color-bg-primary)]',
+          'bg-[var(--background)]',
           className,
         ]
           .filter(Boolean)
@@ -163,42 +136,34 @@ export const FAQAccordion = forwardRef<HTMLElement, FAQAccordionProps>(
       >
         <Container size="lg">
           {(title || subtitle) && (
-            <motion.div
-              className="mb-12 text-center"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              variants={fadeInUp}
-            >
-              {subtitle && (
-                <p className="mb-2 text-sm font-medium uppercase tracking-wider text-[var(--color-primary)]">
-                  {subtitle}
-                </p>
-              )}
-              {title && (
-                <h2 id="faq-accordion-heading" className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
-                  {title}
-                </h2>
-              )}
-            </motion.div>
+            <FadeIn>
+              <div className="mb-12 text-center">
+                {subtitle && (
+                  <p className="mb-2 text-sm font-medium uppercase tracking-wider text-[var(--brand-green)]">
+                    {subtitle}
+                  </p>
+                )}
+                {title && (
+                  <h2 id="faq-accordion-heading" className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
+                    {title}
+                  </h2>
+                )}
+              </div>
+            </FadeIn>
           )}
 
-          <motion.div
-            className="mx-auto max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--panel)] px-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={fadeInUp}
-          >
-            {items.map((item, index) => (
-              <FAQItemComponent
-                key={index}
-                item={item}
-                isOpen={openItems.has(index)}
-                onToggle={() => toggleItem(index)}
-              />
-            ))}
-          </motion.div>
+          <FadeIn delay={100}>
+            <div className="mx-auto max-w-3xl rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] px-6">
+              {items.map((item, index) => (
+                <FAQItemComponent
+                  key={index}
+                  item={item}
+                  isOpen={openItems.has(index)}
+                  onToggle={() => toggleItem(index)}
+                />
+              ))}
+            </div>
+          </FadeIn>
         </Container>
       </section>
     )

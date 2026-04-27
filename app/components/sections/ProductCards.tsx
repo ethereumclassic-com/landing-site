@@ -1,10 +1,10 @@
 'use client'
 
 import { forwardRef, type HTMLAttributes } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Container } from '../layout/Container'
 import { Badge } from '../ui/Badge'
+import { FadeIn } from '../ui'
 
 export type ProductCardsColumns = 2 | 3 | 4
 
@@ -24,43 +24,26 @@ export interface ProductCardsProps extends HTMLAttributes<HTMLElement> {
   columns?: ProductCardsColumns
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
 const columnStyles: Record<ProductCardsColumns, string> = {
   2: 'grid-cols-1 sm:grid-cols-2',
   3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
   4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
 }
 
-function ProductCardItem({ card }: { card: ProductCard }) {
+function ProductCardItem({ card, delay }: { card: ProductCard; delay: number }) {
   const isExternal = /^https?:\/\//.test(card.href)
   const CardWrapper = isExternal ? 'a' : Link
 
   return (
-    <motion.div variants={fadeInUp}>
+    <FadeIn delay={delay}>
       <CardWrapper
         href={card.href}
         {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
-        className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all duration-[var(--transition-normal)] hover:border-[var(--border-strong)] hover:bg-[var(--panel-strong)]"
+        className="group flex h-full flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all duration-200 hover:border-[var(--border-strong)] hover:bg-[var(--bg-surface)]"
       >
         {/* Header with Icon and Badge */}
         <div className="flex items-start justify-between">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-2xl">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand-green)]/10 text-2xl">
             {card.icon}
           </div>
           {card.badge && (
@@ -71,20 +54,20 @@ function ProductCardItem({ card }: { card: ProductCard }) {
         </div>
 
         {/* Title */}
-        <h3 className="mt-4 text-lg font-semibold text-[var(--color-text-primary)]">
+        <h3 className="mt-4 text-lg font-semibold text-[var(--text-primary)]">
           {card.title}
         </h3>
 
         {/* Description */}
-        <p className="mt-2 flex-grow text-sm text-[var(--color-text-secondary)]">
+        <p className="mt-2 flex-grow text-sm text-[var(--text-secondary)]">
           {card.description}
         </p>
 
         {/* CTA */}
-        <div className="mt-6 flex items-center text-sm font-medium text-[var(--color-primary)] transition-transform group-hover:translate-x-1">
+        <div className="mt-6 flex items-center text-sm font-medium text-[var(--brand-green)] transition-transform group-hover:translate-x-1">
           {card.cta}
           <svg aria-hidden="true"
-                        className="ml-2 h-4 w-4"
+            className="ml-2 h-4 w-4"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -98,7 +81,7 @@ function ProductCardItem({ card }: { card: ProductCard }) {
           </svg>
         </div>
       </CardWrapper>
-    </motion.div>
+    </FadeIn>
   )
 }
 
@@ -115,39 +98,31 @@ export const ProductCards = forwardRef<HTMLElement, ProductCardsProps>(
     >
       <Container size="xl">
         {(title || subtitle) && (
-          <motion.div
-            className="mb-12 text-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={fadeInUp}
-          >
-            {subtitle && (
-              <p className="mb-2 text-sm font-medium uppercase tracking-wider text-[var(--color-primary)]">
-                {subtitle}
-              </p>
-            )}
-            {title && (
-              <h2 id="product-cards-heading" className="text-3xl font-bold text-[var(--color-text-primary)] md:text-4xl">
-                {title}
-              </h2>
-            )}
-          </motion.div>
+          <FadeIn>
+            <div className="mb-12 text-center">
+              {subtitle && (
+                <p className="mb-2 text-sm font-medium uppercase tracking-wider text-[var(--brand-green)]">
+                  {subtitle}
+                </p>
+              )}
+              {title && (
+                <h2 id="product-cards-heading" className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
+                  {title}
+                </h2>
+              )}
+            </div>
+          </FadeIn>
         )}
 
-        <motion.div
+        <div
           className={['grid gap-6', columnStyles[columns]]
             .filter(Boolean)
             .join(' ')}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
         >
-          {cards.map((card) => (
-            <ProductCardItem key={card.title} card={card} />
+          {cards.map((card, index) => (
+            <ProductCardItem key={card.title} card={card} delay={index * 80} />
           ))}
-        </motion.div>
+        </div>
       </Container>
     </section>
   )
