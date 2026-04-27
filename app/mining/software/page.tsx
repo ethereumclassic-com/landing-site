@@ -41,7 +41,7 @@ function SoftwareCard({ software }: { software: MiningSoftware }) {
     >
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-xl font-bold text-white">{software.name}</h3>
+          <h3 className="text-xl font-bold text-[var(--text-primary)]">{software.name}</h3>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">{software.description}</p>
         </div>
         <div className="flex items-center gap-2">
@@ -103,7 +103,7 @@ function SoftwareCard({ software }: { software: MiningSoftware }) {
 function ConfigExample({ title, command, description }: { title: string; command: string; description: string }) {
   return (
     <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4">
-      <h4 className="mb-2 font-medium text-white">{title}</h4>
+      <h4 className="mb-2 font-medium text-[var(--text-primary)]">{title}</h4>
       <p className="mb-3 text-sm text-[var(--color-text-muted)]">{description}</p>
       <div className="rounded-lg bg-[var(--panel)] p-3 font-mono text-sm">
         <code className="text-[var(--color-primary)]">{command}</code>
@@ -122,7 +122,7 @@ export default function MiningSoftwarePage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/mining"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -132,7 +132,7 @@ export default function MiningSoftwarePage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Mining Software Guide
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -160,7 +160,7 @@ export default function MiningSoftwarePage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Quick Recommendation</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Quick Recommendation</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   <strong className="text-green-400">NVIDIA GPU:</strong> T-Rex Miner offers the best performance and stability.{' '}
                   <strong className="text-red-400">AMD GPU:</strong> TeamRedMiner provides optimal hashrates for AMD cards.{' '}
@@ -179,7 +179,7 @@ export default function MiningSoftwarePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Available Mining Software
           </motion.h2>
@@ -205,7 +205,7 @@ export default function MiningSoftwarePage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Software Comparison</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Software Comparison</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -221,7 +221,7 @@ export default function MiningSoftwarePage() {
                 <tbody>
                   {miningSoftware.map((software) => (
                     <tr key={software.id} className="border-b border-[var(--border)]/50 last:border-0">
-                      <td className="py-3 font-medium text-white">{software.name}</td>
+                      <td className="py-3 font-medium text-[var(--text-primary)]">{software.name}</td>
                       <td className="py-3 text-center">
                         {software.supports.includes('NVIDIA') ? (
                           <svg aria-hidden="true" className="mx-auto h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -244,7 +244,7 @@ export default function MiningSoftwarePage() {
                           </svg>
                         )}
                       </td>
-                      <td className="py-3 text-center font-mono text-white">{software.fee}%</td>
+                      <td className="py-3 text-center font-mono text-[var(--text-primary)]">{software.fee}%</td>
                       <td className="py-3 text-center">
                         {software.platforms.includes('Windows') ? (
                           <svg aria-hidden="true" className="mx-auto h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -284,7 +284,7 @@ export default function MiningSoftwarePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <h2 className="mb-4 text-xl font-semibold text-white">Configuration Examples</h2>
+            <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">Configuration Examples</h2>
             <p className="mb-6 text-sm text-[var(--color-text-muted)]">
               Example command lines for each miner. Replace POOL_ADDRESS, POOL_PORT, and WALLET_ADDRESS with your actual values.
             </p>
@@ -323,7 +323,7 @@ export default function MiningSoftwarePage() {
             transition={{ delay: 0.5 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Optimization Tips</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Optimization Tips</h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div>
                 <h3 className="mb-2 font-medium text-[var(--color-primary)]">NVIDIA GPUs</h3>
@@ -390,7 +390,7 @@ export default function MiningSoftwarePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
               <div>
-                <h3 className="font-semibold text-white">Security Notice</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Security Notice</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Only download mining software from official sources linked above. Mining software may trigger
                   antivirus warnings due to its nature - these are typically false positives but always verify
@@ -411,7 +411,7 @@ export default function MiningSoftwarePage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Start Mining?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Check out our guides for choosing hardware and finding the right pool for your setup.
             </p>
@@ -427,7 +427,7 @@ export default function MiningSoftwarePage() {
               </Link>
               <Link
                 href="/mining/pools"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Browse Pools
               </Link>

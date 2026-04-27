@@ -35,8 +35,8 @@ function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManuf
     >
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-xl font-bold text-white">{manufacturer.name}</h3>
-          <span className={`inline-flex mt-1 rounded-full px-2 py-0.5 text-xs font-medium ${colors.text} bg-white/5`}>
+          <h3 className="text-xl font-bold text-[var(--text-primary)]">{manufacturer.name}</h3>
+          <span className={`inline-flex mt-1 rounded-full px-2 py-0.5 text-xs font-medium ${colors.text} bg-[var(--border-subtle)]`}>
             {manufacturer.type === 'ASIC' ? 'ASIC Manufacturer' : 'GPU Manufacturer'}
           </span>
         </div>
@@ -44,7 +44,7 @@ function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManuf
           href={manufacturer.website}
           target="_blank"
           rel="noopener noreferrer"
-          className={`rounded-lg px-4 py-2 text-sm font-medium ${colors.bg} ${colors.text} border ${colors.border} transition-colors hover:bg-white/10`}
+          className={`rounded-lg px-4 py-2 text-sm font-medium ${colors.bg} ${colors.text} border ${colors.border} transition-colors hover:bg-[var(--bg-elevated)]`}
         >
           Visit Store
           <svg aria-hidden="true" className="ml-1 inline-block h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -56,13 +56,13 @@ function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManuf
       <p className="mb-4 text-sm text-[var(--color-text-muted)]">{manufacturer.description}</p>
 
       {relatedHardware.length > 0 && (
-        <div className="border-t border-white/10 pt-4">
+        <div className="border-t border-[var(--border-subtle)] pt-4">
           <p className="mb-2 text-xs font-medium text-[var(--color-text-muted)]">ETChash-Compatible Products:</p>
           <div className="flex flex-wrap gap-2">
             {relatedHardware.map(hw => (
               <span
                 key={hw.id}
-                className="rounded-full bg-white/5 px-2 py-1 text-xs text-white"
+                className="rounded-full bg-[var(--border-subtle)] px-2 py-1 text-xs text-[var(--text-primary)]"
               >
                 {hw.name} ({hw.hashrate} MH/s)
               </span>
@@ -86,7 +86,7 @@ export default function HardwareBuyPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <Link
               href="/mining/hardware"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -94,7 +94,7 @@ export default function HardwareBuyPage() {
               Back to Hardware Guide
             </Link>
 
-            <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               Buy Mining Hardware
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -138,7 +138,7 @@ export default function HardwareBuyPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-6 text-2xl font-bold text-white"
+            className="mb-6 text-2xl font-bold text-[var(--text-primary)]"
           >
             ASIC Manufacturers
           </motion.h2>
@@ -160,7 +160,7 @@ export default function HardwareBuyPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-6 text-2xl font-bold text-white"
+            className="mb-6 text-2xl font-bold text-[var(--text-primary)]"
           >
             GPU Manufacturers
           </motion.h2>
@@ -184,7 +184,7 @@ export default function HardwareBuyPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="mb-4 text-xl font-bold text-white">Buying Tips</h3>
+            <h3 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Buying Tips</h3>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               <div>
                 <p className="font-medium text-[var(--color-primary)]">Buy Direct</p>
@@ -236,7 +236,7 @@ export default function HardwareBuyPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Start Mining?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Calculate your expected returns and find the right mining pool for your hardware.
             </p>
@@ -249,7 +249,7 @@ export default function HardwareBuyPage() {
               </Link>
               <Link
                 href="/mining/pools"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Browse Pools
               </Link>

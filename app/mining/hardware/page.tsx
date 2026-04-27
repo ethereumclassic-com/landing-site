@@ -76,22 +76,22 @@ function HardwareRow({
     <tr className="border-b border-[var(--border)]/50 transition-colors hover:bg-[var(--panel)]/50">
       <td className="py-4 pr-4">
         <div className="flex flex-col">
-          <span className="font-medium text-white">{hardware.name}</span>
+          <span className="font-medium text-[var(--text-primary)]">{hardware.name}</span>
           <span className={`inline-flex w-fit rounded-full px-2 py-0.5 text-xs font-medium ${brandColor.bg} ${brandColor.text}`}>
             {hardware.brand}
           </span>
         </div>
       </td>
       <td className="py-4 px-2 text-center">
-        <span className="font-mono text-white">{hardware.hashrate.toLocaleString()}</span>
+        <span className="font-mono text-[var(--text-primary)]">{hardware.hashrate.toLocaleString()}</span>
         <span className="text-xs text-[var(--color-text-muted)]"> MH/s</span>
       </td>
       <td className="py-4 px-2 text-center">
-        <span className="font-mono text-white">{hardware.power.toLocaleString()}</span>
+        <span className="font-mono text-[var(--text-primary)]">{hardware.power.toLocaleString()}</span>
         <span className="text-xs text-[var(--color-text-muted)]"> W</span>
       </td>
       <td className="py-4 px-2 text-center">
-        <span className="font-mono text-white">{hardware.efficiency.toFixed(2)}</span>
+        <span className="font-mono text-[var(--text-primary)]">{hardware.efficiency.toFixed(2)}</span>
         <span className="text-xs text-[var(--color-text-muted)]"> J/MH</span>
       </td>
       <td className="py-4 px-2 text-center">
@@ -142,7 +142,7 @@ function HardwareCard({
     >
       <div className="mb-3 flex items-start justify-between">
         <div>
-          <h3 className="font-semibold text-white">{hardware.name}</h3>
+          <h3 className="font-semibold text-[var(--text-primary)]">{hardware.name}</h3>
           <div className="mt-1 flex gap-2">
             <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${brandColor.bg} ${brandColor.text}`}>
               {hardware.brand}
@@ -160,15 +160,15 @@ function HardwareCard({
       <div className="grid grid-cols-2 gap-3 text-sm">
         <div>
           <p className="text-[var(--color-text-muted)]">Hashrate</p>
-          <p className="font-mono font-medium text-white">{hardware.hashrate.toLocaleString()} MH/s</p>
+          <p className="font-mono font-medium text-[var(--text-primary)]">{hardware.hashrate.toLocaleString()} MH/s</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Power</p>
-          <p className="font-mono font-medium text-white">{hardware.power.toLocaleString()} W</p>
+          <p className="font-mono font-medium text-[var(--text-primary)]">{hardware.power.toLocaleString()} W</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Efficiency</p>
-          <p className="font-mono font-medium text-white">{hardware.efficiency.toFixed(2)} J/MH</p>
+          <p className="font-mono font-medium text-[var(--text-primary)]">{hardware.efficiency.toFixed(2)} J/MH</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Daily ETC</p>
@@ -241,7 +241,7 @@ export default function MiningHardwarePage() {
           >
             <Link
               href="/mining"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -251,7 +251,7 @@ export default function MiningHardwarePage() {
 
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+                <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                   Mining Hardware Guide
                 </h1>
                 <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -293,7 +293,7 @@ export default function MiningHardwarePage() {
                     onChange={(e) => setElectricityRate(parseFloat(e.target.value) || 0)}
                     step="0.01"
                     min="0"
-                    className="w-20 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+                    className="w-20 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                   />
                   <span className="text-sm text-[var(--color-text-muted)]">/kWh</span>
                 </div>
@@ -309,7 +309,7 @@ export default function MiningHardwarePage() {
                     onChange={(e) => setEtcPrice(parseFloat(e.target.value) || 0)}
                     step="0.01"
                     min="0"
-                    className="w-20 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+                    className="w-20 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                   />
                 </div>
               </div>
@@ -331,7 +331,7 @@ export default function MiningHardwarePage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'ASIC'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               ASICs ({asicCount})
@@ -341,7 +341,7 @@ export default function MiningHardwarePage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeTab === 'GPU'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               GPUs ({gpuCount})
@@ -427,14 +427,14 @@ export default function MiningHardwarePage() {
               viewport={{ once: true }}
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h3 className="mb-3 text-lg font-semibold text-white">ASIC vs GPU Mining</h3>
+              <h3 className="mb-3 text-lg font-semibold text-[var(--text-primary)]">ASIC vs GPU Mining</h3>
               <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
                 <div>
-                  <p className="font-medium text-white">ASICs</p>
+                  <p className="font-medium text-[var(--text-primary)]">ASICs</p>
                   <p>Purpose-built for mining with higher efficiency and hashrate. Best for dedicated miners with lower electricity costs.</p>
                 </div>
                 <div>
-                  <p className="font-medium text-white">GPUs</p>
+                  <p className="font-medium text-[var(--text-primary)]">GPUs</p>
                   <p>Versatile and resellable. Lower initial efficiency but can mine multiple algorithms. Good for hobbyists.</p>
                 </div>
               </div>
@@ -447,7 +447,7 @@ export default function MiningHardwarePage() {
               transition={{ delay: 0.1 }}
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h3 className="mb-3 text-lg font-semibold text-white">Understanding Efficiency</h3>
+              <h3 className="mb-3 text-lg font-semibold text-[var(--text-primary)]">Understanding Efficiency</h3>
               <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
                 <p>
                   Efficiency is measured in Joules per Megahash (J/MH). <span className="text-green-400">Lower is better</span>.
@@ -473,7 +473,7 @@ export default function MiningHardwarePage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Calculate Your Profitability</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Calculate Your Profitability</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Use our profitability calculator to estimate your earnings based on your specific hardware configuration.
             </p>
@@ -498,7 +498,7 @@ export default function MiningHardwarePage() {
               </Link>
               <Link
                 href="/mining/pools"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Browse Pools
               </Link>

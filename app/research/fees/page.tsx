@@ -102,7 +102,7 @@ function FeeMarketContext() {
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-white">Why Fee Markets Matter for ETC</h3>
+          <h3 className="font-semibold text-[var(--text-primary)]">Why Fee Markets Matter for ETC</h3>
           <p className="mt-2 text-sm text-[var(--color-text-muted)]">
             As block rewards continue to decrease through ECIP-1017&apos;s Fifthening schedule
             (currently {formatBlockReward(2.048)} ETC per block), transaction fees become increasingly
@@ -112,7 +112,7 @@ function FeeMarketContext() {
           <div className="mt-4 flex flex-wrap gap-4">
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Current Block Reward</p>
-              <p className="text-lg font-bold text-white">~2.05 ETC</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">~2.05 ETC</p>
             </div>
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Next Era Reward</p>
@@ -175,7 +175,7 @@ function GasPriceCards({ gasPrices, isLoading }: { gasPrices: FeeStats['gasPrice
               </span>
             )}
           </div>
-          <p className="mt-2 text-3xl font-bold text-white">
+          <p className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
             {isLoading ? '--' : formatGasPrice(tier.price)}
             <span className="ml-1 text-base font-normal text-[var(--color-text-muted)]">Gwei</span>
           </p>
@@ -201,7 +201,7 @@ function NetworkUtilization({ utilization, isLoading }: { utilization: number; i
   return (
     <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold text-white">Network Utilization</h3>
+        <h3 className="font-semibold text-[var(--text-primary)]">Network Utilization</h3>
         <span className={`rounded-full px-2 py-0.5 text-xs ${health.color} bg-opacity-20`} style={{ backgroundColor: `${health.bgColor}20` }}>
           {isLoading ? 'Loading...' : health.label}
         </span>
@@ -219,7 +219,7 @@ function NetworkUtilization({ utilization, isLoading }: { utilization: number; i
         </div>
         <div className="mt-2 flex justify-between text-xs text-[var(--color-text-muted)]">
           <span>0%</span>
-          <span className="text-lg font-bold text-white">{isLoading ? '--' : formatPercent(utilization)}</span>
+          <span className="text-lg font-bold text-[var(--text-primary)]">{isLoading ? '--' : formatPercent(utilization)}</span>
           <span>100%</span>
         </div>
       </div>
@@ -249,14 +249,14 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
 
   return (
     <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="font-semibold text-white mb-4">Estimated Daily Miner Revenue</h3>
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Estimated Daily Miner Revenue</h3>
 
       <div className="space-y-4">
         {/* Block Rewards */}
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-[var(--color-text-muted)]">Block Rewards</span>
-            <span className="text-white font-medium">
+            <span className="text-[var(--text-primary)] font-medium">
               {isLoading ? '--' : `~${dailyBlockRewards.toLocaleString('en-US', { maximumFractionDigits: 0 })} ETC`}
             </span>
           </div>
@@ -272,7 +272,7 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-[var(--color-text-muted)]">Transaction Fees</span>
-            <span className="text-white font-medium">
+            <span className="text-[var(--text-primary)] font-medium">
               {isLoading ? '--' : `~${dailyFees.toLocaleString('en-US', { maximumFractionDigits: 2 })} ETC`}
             </span>
           </div>
@@ -289,7 +289,7 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-[var(--color-text-muted)]">Total Daily Revenue</p>
-              <p className="text-2xl font-bold text-white">
+              <p className="text-2xl font-bold text-[var(--text-primary)]">
                 {isLoading ? '--' : `~${totalDailyRevenue.toLocaleString('en-US', { maximumFractionDigits: 0 })} ETC`}
               </p>
             </div>
@@ -337,17 +337,17 @@ function FeeMarketHealth({ stats, isLoading }: { stats: FeeStats; isLoading: boo
 
   return (
     <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="font-semibold text-white mb-4">Fee Market Health</h3>
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fee Market Health</h3>
 
       <div className="space-y-4">
         {indicators.map((indicator) => (
           <div key={indicator.label} className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-white">{indicator.label}</p>
+              <p className="text-sm font-medium text-[var(--text-primary)]">{indicator.label}</p>
               <p className="text-xs text-[var(--color-text-muted)]">{indicator.description}</p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-white">{isLoading ? '--' : indicator.value}</span>
+              <span className="text-sm text-[var(--text-primary)]">{isLoading ? '--' : indicator.value}</span>
               <span
                 className={`h-2 w-2 rounded-full ${
                   indicator.status === 'good'
@@ -382,7 +382,7 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
 
   return (
     <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="font-semibold text-white mb-4">Transaction Cost Estimator</h3>
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Transaction Cost Estimator</h3>
 
       {/* Tier Selector */}
       <div className="flex gap-2 mb-4">
@@ -393,7 +393,7 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
             className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
               selectedTier === tier
                 ? 'bg-[var(--color-primary)] text-black'
-                : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-white'
+                : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
             }`}
           >
             {tier.charAt(0).toUpperCase() + tier.slice(1)}
@@ -410,13 +410,13 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
           return (
             <div key={tx.name} className="flex items-center justify-between rounded-lg bg-[var(--bg)] p-3">
               <div>
-                <p className="text-sm font-medium text-white">{tx.name}</p>
+                <p className="text-sm font-medium text-[var(--text-primary)]">{tx.name}</p>
                 <p className="text-xs text-[var(--color-text-muted)]">
                   {tx.description} • {tx.gas.toLocaleString()} gas
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-sm font-medium text-white">
+                <p className="text-sm font-medium text-[var(--text-primary)]">
                   {isLoading ? '--' : `${costEtc.toFixed(6)} ETC`}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)]">
@@ -447,7 +447,7 @@ export default function FeeMarketPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <Link
               href="/research"
-              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
+              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -456,7 +456,7 @@ export default function FeeMarketPage() {
             </Link>
 
             <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Fee Market Dashboard
               </h1>
               {isLoading ? (
@@ -492,7 +492,7 @@ export default function FeeMarketPage() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Current Gas Prices
           </motion.h2>
@@ -525,7 +525,7 @@ export default function FeeMarketPage() {
             animate="visible"
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="font-semibold text-white mb-4">Fee Market Evolution</h3>
+            <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fee Market Evolution</h3>
             <p className="text-sm text-[var(--color-text-muted)] mb-4">
               ETC&apos;s fee market is currently in an early stage, with block rewards comprising
               the vast majority of miner revenue. As block rewards continue to decrease through
@@ -533,19 +533,19 @@ export default function FeeMarketPage() {
               network security.
             </p>
             <div className="rounded-lg bg-[var(--bg)] p-4">
-              <h4 className="text-sm font-medium text-white mb-2">Key Milestones</h4>
+              <h4 className="text-sm font-medium text-[var(--text-primary)] mb-2">Key Milestones</h4>
               <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li className="flex items-start gap-2">
                   <span className="text-[var(--color-primary)]">•</span>
-                  <span><strong className="text-white">Current Era (5):</strong> ~2.05 ETC block reward, fees are ~0.01% of miner revenue</span>
+                  <span><strong className="text-[var(--text-primary)]">Current Era (5):</strong> ~2.05 ETC block reward, fees are ~0.01% of miner revenue</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-amber-400">•</span>
-                  <span><strong className="text-white">Era 6 (~2027):</strong> ~1.64 ETC block reward, 20% reduction in block rewards</span>
+                  <span><strong className="text-[var(--text-primary)]">Era 6 (~2027):</strong> ~1.64 ETC block reward, 20% reduction in block rewards</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-400">•</span>
-                  <span><strong className="text-white">Long-term:</strong> Fee market will need to grow to maintain miner incentives as block rewards approach zero</span>
+                  <span><strong className="text-[var(--text-primary)]">Long-term:</strong> Fee market will need to grow to maintain miner incentives as block rewards approach zero</span>
                 </li>
               </ul>
             </div>
@@ -566,7 +566,7 @@ export default function FeeMarketPage() {
               href="/research/supply"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+              <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Supply Tracker
               </h4>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -577,7 +577,7 @@ export default function FeeMarketPage() {
               href="/mining/stats"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+              <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Mining Stats
               </h4>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -588,7 +588,7 @@ export default function FeeMarketPage() {
               href="/tools/gas"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+              <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Gas Tracker
               </h4>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">

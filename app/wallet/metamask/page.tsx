@@ -157,7 +157,7 @@ export default function MetaMaskPage() {
               Wallets
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">MetaMask Setup</span>
+            <span className="text-[var(--text-primary)]">MetaMask Setup</span>
           </motion.div>
 
           {/* Badge */}
@@ -173,7 +173,7 @@ export default function MetaMaskPage() {
           {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             MetaMask Setup Guide for{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
@@ -244,7 +244,7 @@ export default function MetaMaskPage() {
                       <span className="rounded-full bg-[var(--color-primary)]/10 px-2.5 py-0.5 text-xs font-medium text-[var(--color-primary)]">
                         Step {item.step}
                       </span>
-                      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                      <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
                     </div>
                     <p className="mb-4 text-[var(--color-text-secondary)]">{item.description}</p>
 
@@ -262,7 +262,7 @@ export default function MetaMaskPage() {
                     {/* Network Config Box */}
                     {item.showNetworkConfig && (
                       <div className="mt-6 rounded-lg border border-[var(--border)] bg-[var(--color-bg-primary)] p-4">
-                        <h4 className="mb-3 text-sm font-semibold text-white">ETC Network Configuration</h4>
+                        <h4 className="mb-3 text-sm font-semibold text-[var(--text-primary)]">ETC Network Configuration</h4>
                         <div className="space-y-3">
                           {Object.entries(networkConfig).map(([key, value]) => (
                             <div key={key} className="flex items-center justify-between gap-4">
@@ -270,12 +270,12 @@ export default function MetaMaskPage() {
                                 {key.replace(/([A-Z])/g, ' $1').trim()}
                               </span>
                               <div className="flex items-center gap-2">
-                                <code className="rounded bg-[var(--panel)] px-2 py-1 text-sm text-white">
+                                <code className="rounded bg-[var(--panel)] px-2 py-1 text-sm text-[var(--text-primary)]">
                                   {value}
                                 </code>
                                 <button
                                   onClick={() => copyToClipboard(value)}
-                                  className="rounded p-1 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--panel)] hover:text-white"
+                                  className="rounded p-1 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--text-primary)]"
                                   title="Copy to clipboard"
                                 >
                                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -304,7 +304,7 @@ export default function MetaMaskPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-4 text-xl font-bold text-white">Alternative RPC Endpoints</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Alternative RPC Endpoints</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
               Rivet is the primary public RPC endpoint, funded by ETC Cooperative and Grayscale.
               If you experience issues, try these alternatives:
@@ -324,14 +324,14 @@ export default function MetaMaskPage() {
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-white">{rpc.name}</p>
+                      <p className="text-sm font-medium text-[var(--text-primary)]">{rpc.name}</p>
                       <span className="text-xs text-[var(--color-text-muted)]">• {rpc.note}</span>
                     </div>
                     <code className="block truncate text-xs text-[var(--color-text-muted)]">{rpc.url}</code>
                   </div>
                   <button
                     onClick={() => copyToClipboard(rpc.url)}
-                    className="ml-2 shrink-0 rounded p-2 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-bg-primary)] hover:text-white"
+                    className="ml-2 shrink-0 rounded p-2 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-bg-primary)] hover:text-[var(--text-primary)]"
                     title="Copy RPC URL"
                   >
                     <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -364,7 +364,7 @@ export default function MetaMaskPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-4 text-xl font-bold text-white">Troubleshooting</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Troubleshooting</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
               Having issues? Here are solutions to common problems:
             </p>
@@ -381,7 +381,7 @@ export default function MetaMaskPage() {
                       </svg>
                     </div>
                     <div>
-                      <h4 className="font-medium text-white">{tip.issue}</h4>
+                      <h4 className="font-medium text-[var(--text-primary)]">{tip.issue}</h4>
                       <p className="mt-1 text-sm text-[var(--color-text-muted)]">{tip.solution}</p>
                     </div>
                   </div>
@@ -401,7 +401,7 @@ export default function MetaMaskPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Ready to Use Classic OS?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-[var(--color-text-secondary)]">
@@ -413,7 +413,7 @@ export default function MetaMaskPage() {
                 href="https://app.classicos.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 Launch Classic OS
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -422,7 +422,7 @@ export default function MetaMaskPage() {
               </a>
               <Link
                 href="/buy"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Buy ETC
               </Link>
@@ -434,7 +434,7 @@ export default function MetaMaskPage() {
       {/* Related Guides */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-xl font-bold text-white">Related Guides</h2>
+          <h2 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Related Guides</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             <Link
               href="/wallet/hardware"
@@ -445,7 +445,7 @@ export default function MetaMaskPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859M12 3v8.25m0 0l-3-3m3 3l3-3" />
                 </svg>
               </div>
-              <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">Hardware Wallets</h3>
+              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Hardware Wallets</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Maximum security with Ledger & Trezor</p>
             </Link>
             <Link
@@ -457,7 +457,7 @@ export default function MetaMaskPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
               </div>
-              <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">Compare Wallets</h3>
+              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Compare Wallets</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Find the best wallet for your needs</p>
             </Link>
             <Link
@@ -469,7 +469,7 @@ export default function MetaMaskPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
               </div>
-              <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">Security Guide</h3>
+              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Security Guide</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Best practices to protect your crypto</p>
             </Link>
           </div>

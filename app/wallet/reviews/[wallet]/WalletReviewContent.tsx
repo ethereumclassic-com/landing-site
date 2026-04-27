@@ -93,7 +93,7 @@ function RatingBar({ label, rating, color }: { label: string; rating: number; co
     <div className="space-y-1">
       <div className="flex items-center justify-between text-sm">
         <span className="text-[var(--color-text-secondary)]">{label}</span>
-        <span className="font-medium text-white">{formatRating(rating)}</span>
+        <span className="font-medium text-[var(--text-primary)]">{formatRating(rating)}</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-[var(--color-bg-primary)]">
         <motion.div
@@ -117,7 +117,7 @@ function RelatedReviewCard({ review }: { review: WalletReview }) {
     >
       <div className="flex items-start justify-between">
         <div>
-          <h4 className="font-semibold text-white group-hover:text-[var(--color-primary)] transition-colors">
+          <h4 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
             {review.name}
           </h4>
           <p className="mt-1 text-xs text-[var(--color-text-muted)]">{review.tagline}</p>
@@ -168,7 +168,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
               Reviews
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">{review.name}</span>
+            <span className="text-[var(--text-primary)]">{review.name}</span>
           </motion.div>
 
           {/* Verdict Badge */}
@@ -189,7 +189,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
           {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             {review.name}{' '}
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
@@ -209,7 +209,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
           >
             <div className="flex items-center gap-3">
               <StarRating rating={review.rating.overall} size="lg" />
-              <span className="text-3xl font-bold text-white">{formatRating(review.rating.overall)}</span>
+              <span className="text-3xl font-bold text-[var(--text-primary)]">{formatRating(review.rating.overall)}</span>
               <span className="text-lg text-[var(--color-text-secondary)]">
                 {getRatingLabel(review.rating.overall)}
               </span>
@@ -244,7 +244,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
               href={review.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Visit {review.name}
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -268,7 +268,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 viewport={{ once: true }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <h2 className="mb-4 text-xl font-bold text-white">Quick Summary</h2>
+                <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Quick Summary</h2>
                 <p className="text-[var(--color-text-secondary)] leading-relaxed">{review.summary}</p>
               </motion.div>
 
@@ -327,12 +327,12 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 viewport={{ once: true }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <h2 className="mb-4 text-xl font-bold text-white">Full Review</h2>
+                <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Full Review</h2>
                 <div className="prose prose-invert max-w-none">
                   {review.fullReview.split('\n\n').map((paragraph, i) => {
                     if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
                       return (
-                        <h3 key={i} className="mt-6 mb-3 text-lg font-semibold text-white">
+                        <h3 key={i} className="mt-6 mb-3 text-lg font-semibold text-[var(--text-primary)]">
                           {paragraph.replace(/\*\*/g, '')}
                         </h3>
                       )
@@ -366,7 +366,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 viewport={{ once: true }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <h2 className="mb-4 text-xl font-bold text-white">ETC Support</h2>
+                <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">ETC Support</h2>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] p-4">
                     <span className="text-[var(--color-text-secondary)]">Native ETC Support</span>
@@ -383,7 +383,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                   </div>
                   <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] p-4">
                     <span className="text-[var(--color-text-secondary)]">Network Configuration</span>
-                    <span className="capitalize text-white">{review.etcSupport.networkSetup.replace('-', ' ')}</span>
+                    <span className="capitalize text-[var(--text-primary)]">{review.etcSupport.networkSetup.replace('-', ' ')}</span>
                   </div>
                   {review.etcSupport.etcSpecificFeatures.length > 0 && (
                     <div className="rounded-lg bg-[var(--color-bg-primary)] p-4">
@@ -413,7 +413,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 viewport={{ once: true }}
                 className="sticky top-6 rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <h3 className="mb-4 text-lg font-semibold text-white">Rating Breakdown</h3>
+                <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Rating Breakdown</h3>
                 <div className="space-y-4">
                   <RatingBar label="Security" rating={review.rating.security} color="bg-green-500" />
                   <RatingBar label="Usability" rating={review.rating.usability} color="bg-blue-500" />
@@ -426,7 +426,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                     <span className="text-[var(--color-text-secondary)]">Overall</span>
                     <div className="flex items-center gap-2">
                       <StarRating rating={review.rating.overall} size="sm" />
-                      <span className="text-lg font-bold text-white">{formatRating(review.rating.overall)}</span>
+                      <span className="text-lg font-bold text-[var(--text-primary)]">{formatRating(review.rating.overall)}</span>
                     </div>
                   </div>
                 </div>
@@ -439,7 +439,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 viewport={{ once: true }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <h3 className="mb-4 text-lg font-semibold text-white">Best For</h3>
+                <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Best For</h3>
                 <div className="flex flex-wrap gap-2">
                   {review.bestFor.map((use) => (
                     <span
@@ -459,8 +459,8 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 viewport={{ once: true }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <h3 className="mb-4 text-lg font-semibold text-white">Pricing</h3>
-                <div className="text-2xl font-bold text-white">
+                <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Pricing</h3>
+                <div className="text-2xl font-bold text-[var(--text-primary)]">
                   {review.pricing.type === 'free' ? 'Free' : review.pricing.price}
                 </div>
                 {review.pricing.notes && (
@@ -476,7 +476,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                   viewport={{ once: true }}
                   className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
                 >
-                  <h3 className="mb-4 text-lg font-semibold text-white">Related Reviews</h3>
+                  <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Related Reviews</h3>
                   <div className="space-y-3">
                     {relatedReviews.map((related) => (
                       <RelatedReviewCard key={related.id} review={related} />
@@ -498,7 +498,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Ready to Get Started with {review.name}?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-[var(--color-text-secondary)]">
@@ -511,7 +511,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 href={review.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 Visit {review.name}
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -520,7 +520,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
               </a>
               <Link
                 href="/wallet/reviews"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Browse All Reviews
               </Link>

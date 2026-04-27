@@ -40,15 +40,15 @@ export default function DecentralizedExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Decentralized</span>
+            <span className="text-[var(--text-primary)]">Decentralized</span>
           </nav>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function DecentralizedExchangesPage() {
                 Self-Custody
               </span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Decentralized Exchanges
             </motion.h1>
             <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -92,7 +92,7 @@ export default function DecentralizedExchangesPage() {
               { title: 'Transparent', desc: 'On-chain transactions' },
             ].map((benefit) => (
               <div key={benefit.title} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
-                <h3 className="font-semibold text-white">{benefit.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{benefit.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{benefit.desc}</p>
               </div>
             ))}
@@ -100,7 +100,7 @@ export default function DecentralizedExchangesPage() {
 
           {/* DEX List */}
           <section className="mb-12">
-            <h2 className="mb-6 text-2xl font-bold text-white">
+            <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
               Available DEXs
               <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                 {dexExchanges.length} options
@@ -120,7 +120,7 @@ export default function DecentralizedExchangesPage() {
                 >
                   <div className="flex items-start justify-between">
                     <div>
-                      <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                      <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                         {exchange.name}
                       </h3>
                       {exchange.featured && (
@@ -145,7 +145,7 @@ export default function DecentralizedExchangesPage() {
                   </div>
                   {exchange.tradingFee && (
                     <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                      Trading fee: <span className="text-white">{exchange.tradingFee}</span>
+                      Trading fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                     </p>
                   )}
                 </motion.a>
@@ -160,13 +160,13 @@ export default function DecentralizedExchangesPage() {
             viewport={{ once: true }}
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">How DEXs Work</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">How DEXs Work</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center">
                 <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   1
                 </div>
-                <h3 className="font-medium text-white">Connect Wallet</h3>
+                <h3 className="font-medium text-[var(--text-primary)]">Connect Wallet</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Connect MetaMask or another ETC-compatible wallet
                 </p>
@@ -175,7 +175,7 @@ export default function DecentralizedExchangesPage() {
                 <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   2
                 </div>
-                <h3 className="font-medium text-white">Select Tokens</h3>
+                <h3 className="font-medium text-[var(--text-primary)]">Select Tokens</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Choose the tokens you want to swap
                 </p>
@@ -184,7 +184,7 @@ export default function DecentralizedExchangesPage() {
                 <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   3
                 </div>
-                <h3 className="font-medium text-white">Confirm Swap</h3>
+                <h3 className="font-medium text-[var(--text-primary)]">Confirm Swap</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Sign the transaction and tokens are exchanged directly
                 </p>
@@ -201,7 +201,7 @@ export default function DecentralizedExchangesPage() {
           >
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

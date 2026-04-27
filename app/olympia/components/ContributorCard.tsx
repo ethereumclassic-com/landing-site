@@ -37,7 +37,7 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
           {contributor.language.slice(0, 2)}
         </span>
         <div>
-          <h3 className="text-lg font-semibold text-white">{contributor.name}</h3>
+          <h3 className="text-lg font-semibold text-[var(--text-primary)]">{contributor.name}</h3>
           <span
             className="rounded-full px-2 py-0.5 text-xs font-medium"
             style={{ backgroundColor: `${contributor.roleColor}15`, color: contributor.roleColor }}
@@ -54,9 +54,9 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
       {/* Stats grid */}
       <div className="mt-4 grid grid-cols-2 gap-2">
         {contributor.stats.map((stat) => (
-          <div key={stat.label} className="rounded-lg bg-white/5 px-3 py-2">
+          <div key={stat.label} className="rounded-lg bg-[var(--border-subtle)] px-3 py-2">
             <p className="text-xs text-[var(--color-text-muted)]">{stat.label}</p>
-            <p className="mt-0.5 text-sm font-semibold text-white">{stat.value}</p>
+            <p className="mt-0.5 text-sm font-semibold text-[var(--text-primary)]">{stat.value}</p>
           </div>
         ))}
       </div>

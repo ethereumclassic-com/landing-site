@@ -40,7 +40,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-bold text-white">{exchange.name}</h3>
+        <h3 className="text-xl font-bold text-[var(--text-primary)]">{exchange.name}</h3>
         {exchange.badge && (
           <span className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-xs font-medium text-[var(--color-primary)]">
             {exchange.badge}
@@ -52,19 +52,19 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
       <div className="mt-4 grid grid-cols-2 gap-4">
         <div className="rounded-lg bg-[var(--bg)]/50 p-3">
           <p className="text-xs text-[var(--color-text-muted)]">Trading Fee</p>
-          <p className="text-sm font-medium text-white">{exchange.tradingFee}</p>
+          <p className="text-sm font-medium text-[var(--text-primary)]">{exchange.tradingFee}</p>
         </div>
         <div className="rounded-lg bg-[var(--bg)]/50 p-3">
           <p className="text-xs text-[var(--color-text-muted)]">Withdrawal Fee</p>
-          <p className="text-sm font-medium text-white">{exchange.withdrawalFee}</p>
+          <p className="text-sm font-medium text-[var(--text-primary)]">{exchange.withdrawalFee}</p>
         </div>
         <div className="rounded-lg bg-[var(--bg)]/50 p-3">
           <p className="text-xs text-[var(--color-text-muted)]">Min Withdrawal</p>
-          <p className="text-sm font-medium text-white">{exchange.minWithdrawal}</p>
+          <p className="text-sm font-medium text-[var(--text-primary)]">{exchange.minWithdrawal}</p>
         </div>
         <div className="rounded-lg bg-[var(--bg)]/50 p-3">
           <p className="text-xs text-[var(--color-text-muted)]">Payout Time</p>
-          <p className="text-sm font-medium text-white">{exchange.payoutTime}</p>
+          <p className="text-sm font-medium text-[var(--text-primary)]">{exchange.payoutTime}</p>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         href={exchange.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[var(--color-primary)]/20"
+        className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary)]/20"
       >
         Sell on {exchange.name}
         <svg aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -114,10 +114,10 @@ function StepCard({ number, title, description }: { number: number; title: strin
       variants={fadeInUp}
       className="relative rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
-      <div className="absolute -top-3 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-white">
+      <div className="absolute -top-3 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--background)]">
         {number}
       </div>
-      <h3 className="mt-2 text-lg font-bold text-white">{title}</h3>
+      <h3 className="mt-2 text-lg font-bold text-[var(--text-primary)]">{title}</h3>
       <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{description}</p>
     </motion.div>
   )
@@ -261,7 +261,7 @@ export default function SellExchangesPage() {
           >
             <Link
               href="/sell"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -271,7 +271,7 @@ export default function SellExchangesPage() {
             <span className="inline-block rounded-full bg-red-500/10 px-4 py-1.5 text-sm font-medium text-red-400">
               Exchanges
             </span>
-            <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">
+            <h1 className="mt-4 text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Sell ETC on Exchanges
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -291,7 +291,7 @@ export default function SellExchangesPage() {
             transition={{ duration: 0.5 }}
             className="mb-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">How to Sell ETC</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">How to Sell ETC</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Three simple steps to convert your ETC to fiat
             </p>
@@ -321,7 +321,7 @@ export default function SellExchangesPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Top Exchanges for Selling</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Top Exchanges for Selling</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Compare fees, payout methods, and withdrawal times
             </p>
@@ -351,7 +351,7 @@ export default function SellExchangesPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Fee Comparison</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Fee Comparison</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Quick comparison of trading fees across exchanges
             </p>
@@ -377,7 +377,7 @@ export default function SellExchangesPage() {
               <tbody>
                 {exchanges.map((exchange) => (
                   <tr key={exchange.name} className="border-b border-[var(--border)]/50">
-                    <td className="px-4 py-4 text-sm font-medium text-white">{exchange.name}</td>
+                    <td className="px-4 py-4 text-sm font-medium text-[var(--text-primary)]">{exchange.name}</td>
                     <td className="px-4 py-4 text-sm text-[var(--color-text-secondary)]">{exchange.tradingFee}</td>
                     <td className="px-4 py-4 text-sm text-[var(--color-text-secondary)]">{exchange.withdrawalFee}</td>
                     <td className="px-4 py-4 text-sm text-[var(--color-text-secondary)]">{exchange.payoutTime}</td>
@@ -404,7 +404,7 @@ export default function SellExchangesPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Selling Tips</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Selling Tips</h2>
           </motion.div>
 
           <motion.div
@@ -437,7 +437,7 @@ export default function SellExchangesPage() {
                 variants={fadeInUp}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6"
               >
-                <h3 className="text-lg font-bold text-white">{tip.title}</h3>
+                <h3 className="text-lg font-bold text-[var(--text-primary)]">{tip.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{tip.description}</p>
               </motion.div>
             ))}
@@ -458,7 +458,7 @@ export default function SellExchangesPage() {
             <span className="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
               Alternative
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Try the Native Off-Ramp Path
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -469,7 +469,7 @@ export default function SellExchangesPage() {
                 href="https://etcswap.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary)]/90"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary)]/90"
               >
                 Swap on ETCswap
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -478,7 +478,7 @@ export default function SellExchangesPage() {
               </a>
               <Link
                 href="/sell"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Learn About Off-Ramp
               </Link>

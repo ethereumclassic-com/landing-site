@@ -41,7 +41,7 @@ export function WhatCanIDo() {
                 <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
                     What can I do with ETC?
                 </h2>
-                <p className="mt-3 text-white/75 leading-relaxed">
+                <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
                     Ethereum Classic supports real economic activity across the full range of EVM capabilities.
                     ETC can be transferred, traded, and held as sound digital money, while also being used directly
                     in smart contracts that power exchanges, stablecoins, lending markets, payments, and programmable
@@ -63,7 +63,7 @@ export function WhatCanIDo() {
                     return (
                         <FadeIn key={c.title} delay={0.06 * i}>
                             <HoverLift className="h-full">
-                                <div className="flex h-full flex-col justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-white/15 hover:bg-[var(--panel-strong)]">
+                                <div className="flex h-full flex-col justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-default)] hover:bg-[var(--panel-strong)]">
                                     {/* Visual */}
                                     <div className="mb-4 flex justify-center">
                                         <div className="relative h-40 w-full max-w-[220px]">
@@ -83,7 +83,7 @@ export function WhatCanIDo() {
                                         <div className="text-lg font-medium">
                                             {c.title}
                                         </div>
-                                        <div className="mt-2 text-sm text-white/70 leading-relaxed">
+                                        <div className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
                                             {c.body}
                                         </div>
                                     </div>

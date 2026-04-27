@@ -103,7 +103,7 @@ function ReviewCard({ review }: { review: WalletReview }) {
         {/* Header */}
         <div className="mb-4 flex items-start justify-between">
           <div>
-            <h3 className="text-xl font-bold text-white group-hover:text-[var(--color-primary)] transition-colors">
+            <h3 className="text-xl font-bold text-[var(--text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
               {review.name}
             </h3>
             <p className="mt-1 text-sm text-[var(--color-text-muted)]">{review.tagline}</p>
@@ -118,7 +118,7 @@ function ReviewCard({ review }: { review: WalletReview }) {
         {/* Rating */}
         <div className="mb-4 flex items-center gap-3">
           <StarRating rating={review.rating.overall} />
-          <span className="text-lg font-bold text-white">{formatRating(review.rating.overall)}</span>
+          <span className="text-lg font-bold text-[var(--text-primary)]">{formatRating(review.rating.overall)}</span>
           <span className="text-sm text-[var(--color-text-muted)]">
             {getRatingLabel(review.rating.overall)}
           </span>
@@ -128,19 +128,19 @@ function ReviewCard({ review }: { review: WalletReview }) {
         <div className="mb-4 grid grid-cols-2 gap-2 text-sm">
           <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] px-3 py-2">
             <span className="text-[var(--color-text-muted)]">Security</span>
-            <span className="font-medium text-white">{formatRating(review.rating.security)}</span>
+            <span className="font-medium text-[var(--text-primary)]">{formatRating(review.rating.security)}</span>
           </div>
           <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] px-3 py-2">
             <span className="text-[var(--color-text-muted)]">Usability</span>
-            <span className="font-medium text-white">{formatRating(review.rating.usability)}</span>
+            <span className="font-medium text-[var(--text-primary)]">{formatRating(review.rating.usability)}</span>
           </div>
           <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] px-3 py-2">
             <span className="text-[var(--color-text-muted)]">Features</span>
-            <span className="font-medium text-white">{formatRating(review.rating.features)}</span>
+            <span className="font-medium text-[var(--text-primary)]">{formatRating(review.rating.features)}</span>
           </div>
           <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] px-3 py-2">
             <span className="text-[var(--color-text-muted)]">Support</span>
-            <span className="font-medium text-white">{formatRating(review.rating.support)}</span>
+            <span className="font-medium text-[var(--text-primary)]">{formatRating(review.rating.support)}</span>
           </div>
         </div>
 
@@ -266,7 +266,7 @@ export default function WalletReviewsPage() {
               Wallets
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Reviews</span>
+            <span className="text-[var(--text-primary)]">Reviews</span>
           </motion.div>
 
           {/* Badge */}
@@ -282,7 +282,7 @@ export default function WalletReviewsPage() {
           {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Wallet{' '}
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
@@ -340,7 +340,7 @@ export default function WalletReviewsPage() {
               placeholder="Search wallets..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-lg border border-[var(--border)] bg-[var(--panel)] py-2 pl-10 pr-4 text-sm text-white placeholder-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+              className="w-full rounded-lg border border-[var(--border)] bg-[var(--panel)] py-2 pl-10 pr-4 text-sm text-[var(--text-primary)] placeholder-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
             />
           </div>
 
@@ -351,7 +351,7 @@ export default function WalletReviewsPage() {
               <select
                 value={verdictFilter}
                 onChange={(e) => setVerdictFilter(e.target.value as VerdictFilter)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
               >
                 <option value="all">All ({verdictCounts.all})</option>
                 <option value="highly-recommended">Highly Recommended ({verdictCounts['highly-recommended']})</option>
@@ -366,7 +366,7 @@ export default function WalletReviewsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
               >
                 <option value="rating">Highest Rated</option>
                 <option value="name">Name (A-Z)</option>
@@ -410,7 +410,7 @@ export default function WalletReviewsPage() {
                   d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                 />
               </svg>
-              <h3 className="mt-4 text-lg font-medium text-white">No reviews found</h3>
+              <h3 className="mt-4 text-lg font-medium text-[var(--text-primary)]">No reviews found</h3>
               <p className="mt-2 text-[var(--color-text-muted)]">
                 Try adjusting your filters or search query
               </p>
@@ -428,14 +428,14 @@ export default function WalletReviewsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8"
           >
-            <h2 className="mb-6 text-xl font-bold text-white">Our Rating Methodology</h2>
+            <h2 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Our Rating Methodology</h2>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               <div>
                 <div className="mb-2 flex items-center gap-2">
                   <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
-                  <h3 className="font-semibold text-white">Security</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">Security</h3>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">
                   Key storage, encryption, open-source code, security audits, and track record.
@@ -446,7 +446,7 @@ export default function WalletReviewsPage() {
                   <svg aria-hidden="true" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                   </svg>
-                  <h3 className="font-semibold text-white">Usability</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">Usability</h3>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">
                   Interface design, setup process, learning curve, and mobile experience.
@@ -458,7 +458,7 @@ export default function WalletReviewsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <h3 className="font-semibold text-white">Features</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">Features</h3>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">
                   ETC support, dApp connectivity, multi-chain, staking, and exchange features.
@@ -469,7 +469,7 @@ export default function WalletReviewsPage() {
                   <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                   </svg>
-                  <h3 className="font-semibold text-white">Support</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">Support</h3>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">
                   Documentation quality, response time, community resources, and update frequency.
@@ -489,7 +489,7 @@ export default function WalletReviewsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Need Help Deciding?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-[var(--color-text-secondary)]">
@@ -498,13 +498,13 @@ export default function WalletReviewsPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/wallet/compare"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 Compare Wallets
               </Link>
               <Link
                 href="/wallet/hardware"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Hardware Guide
               </Link>

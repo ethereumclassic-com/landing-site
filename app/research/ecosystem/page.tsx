@@ -64,7 +64,7 @@ export default function ResearchEcosystemPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/research"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -73,7 +73,7 @@ export default function ResearchEcosystemPage() {
               </Link>
             </motion.div>
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">Ecosystem Overview</h1>
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Ecosystem Overview</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 A snapshot of the Ethereum Classic ecosystem — DeFi, infrastructure,
                 governance, and mining across the network.
@@ -99,7 +99,7 @@ export default function ResearchEcosystemPage() {
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center transition-colors hover:border-[var(--color-primary)]/30"
               >
                 <div className="text-3xl font-bold text-[var(--color-primary)]">{stat.value}</div>
-                <div className="mt-1 font-medium text-white">{stat.label}</div>
+                <div className="mt-1 font-medium text-[var(--text-primary)]">{stat.label}</div>
                 <div className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.description}</div>
               </Link>
             ))}
@@ -111,7 +111,7 @@ export default function ResearchEcosystemPage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="mb-6 text-xl font-semibold text-white">Ecosystem Verticals</h2>
+            <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Ecosystem Verticals</h2>
             <div className="grid gap-6 md:grid-cols-2">
               {ecosystemSections.map((section) => (
                 <Link
@@ -119,7 +119,7 @@ export default function ResearchEcosystemPage() {
                   href={section.href}
                   className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-colors hover:border-[var(--color-primary)]/30"
                 >
-                  <h3 className="text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {section.title}
                   </h3>
                   <p className="mt-2 text-sm text-[var(--color-text-muted)]">{section.description}</p>
@@ -150,7 +150,7 @@ export default function ResearchEcosystemPage() {
             </Link>
             <Link
               href="/apps"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Apps Directory
             </Link>

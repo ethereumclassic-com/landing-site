@@ -28,7 +28,7 @@ export default function OlympiaRoadmap() {
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
     >
-      <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+      <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
         Olympia Roadmap
       </motion.h2>
       <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -53,7 +53,7 @@ export default function OlympiaRoadmap() {
 
               <div className="-mt-1 flex-1">
                 <div className="flex items-center gap-3">
-                  <p className="text-base font-semibold text-white">{stage.title}</p>
+                  <p className="text-base font-semibold text-[var(--text-primary)]">{stage.title}</p>
                   <span
                     className="rounded-full px-2.5 py-0.5 text-xs font-medium"
                     style={{

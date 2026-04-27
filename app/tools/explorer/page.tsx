@@ -137,7 +137,7 @@ export default function ExplorerPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/tools"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -147,7 +147,7 @@ export default function ExplorerPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Block Explorers
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -166,7 +166,7 @@ export default function ExplorerPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Official Explorers
           </motion.h2>
@@ -188,7 +188,7 @@ export default function ExplorerPage() {
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="text-lg font-bold text-white">{explorer.name}</h3>
+                    <h3 className="text-lg font-bold text-[var(--text-primary)]">{explorer.name}</h3>
                     {explorer.recommended && (
                       <span className="mt-1 inline-block rounded-full bg-[var(--color-primary)]/20 px-2.5 py-0.5 text-xs font-medium text-[var(--color-primary)]">
                         Recommended
@@ -234,7 +234,7 @@ export default function ExplorerPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             What You Can Do
           </motion.h2>
@@ -253,7 +253,7 @@ export default function ExplorerPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-white">{feature.name}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{feature.name}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
               </motion.div>
             ))}
@@ -270,7 +270,7 @@ export default function ExplorerPage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Quick Links</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Links</h2>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {quickLinks.map((link) => (
                 <a
@@ -281,7 +281,7 @@ export default function ExplorerPage() {
                   className="group flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 transition-colors hover:border-[var(--color-primary)]/30"
                 >
                   <div>
-                    <div className="font-medium text-white group-hover:text-[var(--color-primary)]">
+                    <div className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {link.label}
                     </div>
                     <div className="text-xs text-[var(--color-text-muted)]">{link.description}</div>
@@ -305,7 +305,7 @@ export default function ExplorerPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Building on ETC?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Building on ETC?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Use the Blockscout API to integrate blockchain data into your applications.
               Verify your smart contracts to build user trust.
@@ -324,7 +324,7 @@ export default function ExplorerPage() {
               </a>
               <Link
                 href="/tools/verify"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Contract Verification
               </Link>

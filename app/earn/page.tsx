@@ -17,7 +17,7 @@ export default function EarnPage() {
                     <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
                         Earn ETC
                     </h1>
-                    <p className="mt-3 text-white/75 leading-relaxed max-w-2xl">
+                    <p className="mt-3 text-[var(--text-secondary)] leading-relaxed max-w-2xl">
                         Ethereum Classic is secured by Proof-of-Work. Contribute hash power through
                         established mining pools and infrastructure providers to earn ETC.
                     </p>
@@ -45,7 +45,7 @@ export default function EarnPage() {
                             rel="noopener noreferrer"
                         >
                             <div className="font-medium">Profitability reference</div>
-                            <div className="mt-1 text-sm text-white/70">
+                            <div className="mt-1 text-sm text-[var(--text-secondary)]">
                                 Estimate ETC mining revenue for common hardware.
                             </div>
                         </a>
@@ -57,7 +57,7 @@ export default function EarnPage() {
                             rel="noopener noreferrer"
                         >
                             <div className="font-medium">Mining calculator</div>
-                            <div className="mt-1 text-sm text-white/70">
+                            <div className="mt-1 text-sm text-[var(--text-secondary)]">
                                 Quick hashrate → rewards and cost estimation.
                             </div>
                         </a>
@@ -69,7 +69,7 @@ export default function EarnPage() {
                             rel="noopener noreferrer"
                         >
                             <div className="font-medium">Run infrastructure</div>
-                            <div className="mt-1 text-sm text-white/70">
+                            <div className="mt-1 text-sm text-[var(--text-secondary)]">
                                 Operate nodes and services that support miners.
                             </div>
                         </a>

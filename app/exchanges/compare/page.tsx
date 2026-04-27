@@ -95,15 +95,15 @@ export default function CompareExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-7xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Compare</span>
+            <span className="text-[var(--text-primary)]">Compare</span>
           </nav>
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function CompareExchangesPage() {
               </svg>
               Comparison Tool
             </span>
-            <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">
+            <h1 className="mt-4 text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Compare Exchanges
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -148,7 +148,7 @@ export default function CompareExchangesPage() {
                     className={`rounded-md px-3 py-1 text-sm transition-colors ${
                       filterType === type
                         ? 'bg-[var(--color-primary)] text-black'
-                        : 'text-[var(--color-text-muted)] hover:text-white'
+                        : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                     }`}
                   >
                     {type === 'all' ? 'All' : type}
@@ -172,34 +172,34 @@ export default function CompareExchangesPage() {
               <thead>
                 <tr className="border-b border-[var(--border)] text-left">
                   <th
-                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
+                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('name')}
                   >
                     Exchange <SortIcon field="name" sortField={sortField} sortDirection={sortDirection} />
                   </th>
-                  <th className="px-4 py-3 text-sm font-semibold text-white">Type</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-[var(--text-primary)]">Type</th>
                   <th
-                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
+                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('tradingFee')}
                   >
                     Trading Fee <SortIcon field="tradingFee" sortField={sortField} sortDirection={sortDirection} />
                   </th>
                   <th
-                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
+                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('volume')}
                   >
                     24h Volume <SortIcon field="volume" sortField={sortField} sortDirection={sortDirection} />
                   </th>
                   <th
-                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[var(--color-primary)]"
+                    className="cursor-pointer px-4 py-3 text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--color-primary)]"
                     onClick={() => handleSort('pairs')}
                   >
                     Pairs <SortIcon field="pairs" sortField={sortField} sortDirection={sortDirection} />
                   </th>
-                  <th className="px-4 py-3 text-sm font-semibold text-white">KYC</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-white">Regions</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-white">Payment Methods</th>
-                  <th className="px-4 py-3 text-sm font-semibold text-white"></th>
+                  <th className="px-4 py-3 text-sm font-semibold text-[var(--text-primary)]">KYC</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-[var(--text-primary)]">Regions</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-[var(--text-primary)]">Payment Methods</th>
+                  <th className="px-4 py-3 text-sm font-semibold text-[var(--text-primary)]"></th>
                 </tr>
               </thead>
               <tbody>
@@ -212,7 +212,7 @@ export default function CompareExchangesPage() {
                   >
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-white">{exchange.name}</span>
+                        <span className="font-medium text-[var(--text-primary)]">{exchange.name}</span>
                         {exchange.featured && (
                           <span className="rounded bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">
                             Featured
@@ -354,28 +354,28 @@ export default function CompareExchangesPage() {
               href="/exchanges/lowest-fees"
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
             >
-              <h3 className="font-semibold text-white">Lowest Fees</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">Lowest Fees</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Exchanges sorted by trading fees</p>
             </Link>
             <Link
               href="/exchanges/decentralized"
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
             >
-              <h3 className="font-semibold text-white">DEX Only</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">DEX Only</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Trade without intermediaries</p>
             </Link>
             <Link
               href="/exchanges/no-kyc"
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
             >
-              <h3 className="font-semibold text-white">No KYC</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">No KYC</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Privacy-focused exchanges</p>
             </Link>
             <Link
               href="/exchanges/us-friendly"
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
             >
-              <h3 className="font-semibold text-white">US Friendly</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">US Friendly</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Regulated for US users</p>
             </Link>
           </motion.div>

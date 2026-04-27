@@ -80,7 +80,7 @@ export default function AccountDashboardPage() {
         >
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-white">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)]">
                 Welcome back, {user?.name}
               </h1>
               <p className="mt-1 text-[var(--color-text-muted)]">
@@ -118,7 +118,7 @@ export default function AccountDashboardPage() {
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Portfolio Value</p>
-                <p className="text-xl font-bold text-white">
+                <p className="text-xl font-bold text-[var(--text-primary)]">
                   ${portfolioValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
               </div>
@@ -142,7 +142,7 @@ export default function AccountDashboardPage() {
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Holdings</p>
-                <p className="text-xl font-bold text-white">{portfolio.length}</p>
+                <p className="text-xl font-bold text-[var(--text-primary)]">{portfolio.length}</p>
               </div>
             </div>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -162,7 +162,7 @@ export default function AccountDashboardPage() {
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Watchlist</p>
-                <p className="text-xl font-bold text-white">{watchlist.length}</p>
+                <p className="text-xl font-bold text-[var(--text-primary)]">{watchlist.length}</p>
               </div>
             </div>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -183,7 +183,7 @@ export default function AccountDashboardPage() {
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Currency</p>
-                <p className="text-xl font-bold text-white">{user?.preferences.currency}</p>
+                <p className="text-xl font-bold text-[var(--text-primary)]">{user?.preferences.currency}</p>
               </div>
             </div>
             <Link href="/account/settings" className="mt-2 block text-sm text-[var(--color-primary)] hover:underline">
@@ -205,7 +205,7 @@ export default function AccountDashboardPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-white">Watchlist</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Watchlist</h2>
               <Link
                 href="/account/watchlist"
                 className="text-sm text-[var(--color-primary)] hover:underline"
@@ -240,13 +240,13 @@ export default function AccountDashboardPage() {
                           {item.symbol.slice(0, 2)}
                         </div>
                         <div>
-                          <p className="font-medium text-white">{item.symbol}</p>
+                          <p className="font-medium text-[var(--text-primary)]">{item.symbol}</p>
                           <p className="text-xs text-[var(--color-text-muted)]">{item.name}</p>
                         </div>
                       </div>
                       {priceData && (
                         <div className="text-right">
-                          <p className="font-medium text-white">
+                          <p className="font-medium text-[var(--text-primary)]">
                             ${priceData.price.toLocaleString()}
                           </p>
                           <p className={`text-xs ${priceData.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
@@ -267,7 +267,7 @@ export default function AccountDashboardPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-white">Portfolio</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Portfolio</h2>
               <Link
                 href="/account/portfolio"
                 className="text-sm text-[var(--color-primary)] hover:underline"
@@ -304,12 +304,12 @@ export default function AccountDashboardPage() {
                           {item.symbol.slice(0, 2)}
                         </div>
                         <div>
-                          <p className="font-medium text-white">{item.amount} {item.symbol}</p>
+                          <p className="font-medium text-[var(--text-primary)]">{item.amount} {item.symbol}</p>
                           <p className="text-xs text-[var(--color-text-muted)]">@ ${item.purchasePrice}</p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium text-white">
+                        <p className="font-medium text-[var(--text-primary)]">
                           ${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </p>
                         <p className={`text-xs ${gain >= 0 ? 'text-green-400' : 'text-red-400'}`}>
@@ -331,7 +331,7 @@ export default function AccountDashboardPage() {
           variants={fadeInUp}
           className="mt-8"
         >
-          <h2 className="mb-4 text-lg font-semibold text-white">Quick Actions</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Actions</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
               href="/buy"
@@ -343,7 +343,7 @@ export default function AccountDashboardPage() {
                 </svg>
               </div>
               <div>
-                <p className="font-medium text-white">Buy ETC</p>
+                <p className="font-medium text-[var(--text-primary)]">Buy ETC</p>
                 <p className="text-xs text-[var(--color-text-muted)]">Purchase Ethereum Classic</p>
               </div>
             </Link>
@@ -358,7 +358,7 @@ export default function AccountDashboardPage() {
                 </svg>
               </div>
               <div>
-                <p className="font-medium text-white">Get Wallet</p>
+                <p className="font-medium text-[var(--text-primary)]">Get Wallet</p>
                 <p className="text-xs text-[var(--color-text-muted)]">Secure your ETC</p>
               </div>
             </Link>
@@ -373,7 +373,7 @@ export default function AccountDashboardPage() {
                 </svg>
               </div>
               <div>
-                <p className="font-medium text-white">Markets</p>
+                <p className="font-medium text-[var(--text-primary)]">Markets</p>
                 <p className="text-xs text-[var(--color-text-muted)]">View price data</p>
               </div>
             </Link>
@@ -389,7 +389,7 @@ export default function AccountDashboardPage() {
                 </svg>
               </div>
               <div>
-                <p className="font-medium text-white">Settings</p>
+                <p className="font-medium text-[var(--text-primary)]">Settings</p>
                 <p className="text-xs text-[var(--color-text-muted)]">Account preferences</p>
               </div>
             </Link>

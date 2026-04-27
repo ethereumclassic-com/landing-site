@@ -184,7 +184,7 @@ const statusStyles = {
   complete: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
   active: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
   research: 'bg-[#38bdf8]/10 text-[#38bdf8] border border-[#38bdf8]/30',
-  future: 'bg-white/5 text-[var(--color-text-muted)] border border-white/10',
+  future: 'bg-[var(--border-subtle)] text-[var(--color-text-muted)] border border-[var(--border-subtle)]',
 }
 
 const clientData = [
@@ -253,7 +253,7 @@ export default function UpgradeGuidePage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             The <span className="text-[#00ffae]">Olympia</span> Upgrade
           </motion.h1>
@@ -274,25 +274,25 @@ export default function UpgradeGuidePage() {
             <li className="flex gap-3">
               <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
               <span>
-                <span className="font-semibold text-white">Fusaka EVM alignment:</span> the headline change — closes years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
+                <span className="font-semibold text-[var(--text-primary)]">Fusaka EVM alignment:</span> the headline change — closes years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
               </span>
             </li>
             <li className="flex gap-3">
               <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
               <span>
-                <span className="font-semibold text-white">EIP-1559 fee market:</span> predictable base fees, type 2 transaction support, and the fee market parity the entire EVM ecosystem assumes. Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury — funding open-source core development without any foundation or donor dependency.
+                <span className="font-semibold text-[var(--text-primary)]">EIP-1559 fee market:</span> predictable base fees, type 2 transaction support, and the fee market parity the entire EVM ecosystem assumes. Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury — funding open-source core development without any foundation or donor dependency.
               </span>
             </li>
             <li className="flex gap-3">
               <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
               <span>
-                <span className="font-semibold text-white">Protocol treasury:</span> seeded by basefee revenue and voluntary contributions, governed on-chain by the Olympia DAO, funding core development, infrastructure, and long-term network security. Block rewards and tips remain completely untouched and go entirely to miners.
+                <span className="font-semibold text-[var(--text-primary)]">Protocol treasury:</span> seeded by basefee revenue and voluntary contributions, governed on-chain by the Olympia DAO, funding core development, infrastructure, and long-term network security. Block rewards and tips remain completely untouched and go entirely to miners.
               </span>
             </li>
             <li className="flex gap-3">
               <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
               <span>
-                <span className="font-semibold text-white">Institutional infrastructure:</span> the Proof-of-Work foundation for regulated stablecoin issuance (
+                <span className="font-semibold text-[var(--text-primary)]">Institutional infrastructure:</span> the Proof-of-Work foundation for regulated stablecoin issuance (
                 <a href="https://classicusd.com" target="_blank" rel="noopener noreferrer" className="text-[#00ffae] transition hover:opacity-80">
                   Classic USD
                 </a>
@@ -319,7 +319,7 @@ export default function UpgradeGuidePage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               What Olympia Brings to Ethereum Classic
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -344,7 +344,7 @@ export default function UpgradeGuidePage() {
                       </div>
                       <span className="font-mono text-xs text-[var(--color-text-muted)]">{item.ecip}</span>
                     </div>
-                    <h3 className="text-base font-semibold text-white">{item.title}</h3>
+                    <h3 className="text-base font-semibold text-[var(--text-primary)]">{item.title}</h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
                       {item.description}
                     </p>
@@ -368,7 +368,7 @@ export default function UpgradeGuidePage() {
             <motion.div variants={fadeInUp}>
               <span className="font-mono text-xs uppercase tracking-widest text-[#38bdf8]">ECIP-1121</span>
             </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -388,7 +388,7 @@ export default function UpgradeGuidePage() {
                       {String(i + 1).padStart(2, '0')}
                     </div>
                     <div className="md:mt-4 md:text-center">
-                      <p className="font-semibold text-sm text-white">{fork.name}</p>
+                      <p className="font-semibold text-sm text-[var(--text-primary)]">{fork.name}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{fork.fullName} · {fork.year}</p>
                       <div className="mt-2 flex flex-wrap gap-1 md:justify-center">
                         {fork.eips.map((eip) => (
@@ -430,7 +430,7 @@ export default function UpgradeGuidePage() {
                       <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#00ffae]/8">
                         <Icon size={16} aria-hidden="true" className="text-[#00ffae]" />
                       </div>
-                      <h3 className="text-sm font-semibold text-white">{cat.title}</h3>
+                      <h3 className="text-sm font-semibold text-[var(--text-primary)]">{cat.title}</h3>
                     </div>
                     <div className="mb-3 flex flex-wrap gap-1">
                       {cat.eips.map((eip) => (
@@ -471,7 +471,7 @@ export default function UpgradeGuidePage() {
             </motion.p>
 
             {/* Developer tooling */}
-            <motion.h3 variants={fadeInUp} className="mb-4 text-base font-semibold text-white">
+            <motion.h3 variants={fadeInUp} className="mb-4 text-base font-semibold text-[var(--text-primary)]">
               Developer Tooling — Works Without Modification
             </motion.h3>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -485,7 +485,7 @@ export default function UpgradeGuidePage() {
                   variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[#00ffae]/20"
                 >
-                  <p className="mb-1 text-sm font-semibold text-white">{tool.name}</p>
+                  <p className="mb-1 text-sm font-semibold text-[var(--text-primary)]">{tool.name}</p>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
                 </motion.div>
               ))}
@@ -503,7 +503,7 @@ export default function UpgradeGuidePage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               The Olympia Upgrade
             </motion.h2>
             <motion.div
@@ -533,7 +533,7 @@ export default function UpgradeGuidePage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Olympia Roadmap
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -559,7 +559,7 @@ export default function UpgradeGuidePage() {
                   </div>
                   <div className="-mt-1 flex-1">
                     <div className="flex items-center gap-3">
-                      <p className="text-base font-semibold text-white">{stage.title}</p>
+                      <p className="text-base font-semibold text-[var(--text-primary)]">{stage.title}</p>
                       <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${statusStyles[stage.status]}`}>
                         {stage.status.charAt(0).toUpperCase() + stage.status.slice(1)}
                       </span>
@@ -589,7 +589,7 @@ export default function UpgradeGuidePage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Steps to Upgrade Your Client
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -611,7 +611,7 @@ export default function UpgradeGuidePage() {
                       {client.language.slice(0, 2)}
                     </span>
                     <div>
-                      <h3 className="font-semibold text-white">{client.name}</h3>
+                      <h3 className="font-semibold text-[var(--text-primary)]">{client.name}</h3>
                       <span className="text-xs text-[var(--color-text-muted)]">
                         {client.role} · {client.language}
                       </span>
@@ -627,7 +627,7 @@ export default function UpgradeGuidePage() {
                     ].map((req) => (
                       <div key={req.label} className="rounded-lg bg-[var(--panel)] px-3 py-2 text-center">
                         <p className="text-[10px] text-[var(--color-text-muted)]">{req.label}</p>
-                        <p className="text-sm font-semibold text-white">{req.value}</p>
+                        <p className="text-sm font-semibold text-[var(--text-primary)]">{req.value}</p>
                       </div>
                     ))}
                   </div>
@@ -677,7 +677,7 @@ export default function UpgradeGuidePage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Frequently Asked Questions
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -688,7 +688,7 @@ export default function UpgradeGuidePage() {
               {faqs.map((item) => (
                 <details key={item.question} className="group py-5" open>
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
-                    <span className="text-sm font-semibold text-white">{item.question}</span>
+                    <span className="text-sm font-semibold text-[var(--text-primary)]">{item.question}</span>
                   </summary>
                   <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">{item.answer}</p>
                 </details>
@@ -701,7 +701,7 @@ export default function UpgradeGuidePage() {
       {/* Bottom CTA */}
       <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl font-bold text-white">Ready to Upgrade?</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Upgrade?</h2>
           <p className="mt-3 text-[var(--color-text-muted)]">
             Fukuii is the recommended client. Core-Geth is maintained through the transition.
           </p>
@@ -714,7 +714,7 @@ export default function UpgradeGuidePage() {
             </Link>
             <Link
               href="/olympia/governance"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
             >
               Governance Framework
             </Link>

@@ -44,15 +44,15 @@ export default function NoKYCExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">No KYC</span>
+            <span className="text-[var(--text-primary)]">No KYC</span>
           </nav>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function NoKYCExchangesPage() {
                 Privacy-Focused
               </span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               No KYC Exchanges
             </motion.h1>
             <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -96,7 +96,7 @@ export default function NoKYCExchangesPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">About No-KYC Trading</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">About No-KYC Trading</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
                   No-KYC exchanges don&apos;t require identity verification for basic trading. DEXs (decentralized exchanges) never require KYC as they operate without intermediaries. Some CEXs allow limited trading without KYC but may have withdrawal limits.
                 </p>
@@ -107,7 +107,7 @@ export default function NoKYCExchangesPage() {
           {/* DEX Section */}
           {dexExchanges.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Decentralized Exchanges (DEX)
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   No KYC ever required
@@ -127,7 +127,7 @@ export default function NoKYCExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         <span className="mt-1 inline-block rounded bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
@@ -150,7 +150,7 @@ export default function NoKYCExchangesPage() {
                     </div>
                     {exchange.tradingFee && (
                       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                        Trading fee: <span className="text-white">{exchange.tradingFee}</span>
+                        Trading fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                       </p>
                     )}
                   </motion.a>
@@ -162,7 +162,7 @@ export default function NoKYCExchangesPage() {
           {/* CEX Section */}
           {cexExchanges.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Centralized Exchanges (No KYC Option)
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   May have limits without KYC
@@ -182,7 +182,7 @@ export default function NoKYCExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         <span className="mt-1 inline-block rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-400">
@@ -206,12 +206,12 @@ export default function NoKYCExchangesPage() {
                     <div className="mt-3 flex items-center justify-between text-sm">
                       {exchange.tradingFee && (
                         <span className="text-[var(--color-text-muted)]">
-                          Fee: <span className="text-white">{exchange.tradingFee}</span>
+                          Fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                         </span>
                       )}
                       {exchange.volume24h && exchange.volume24h !== 'DEX' && (
                         <span className="text-[var(--color-text-muted)]">
-                          Vol: <span className="text-white">{exchange.volume24h}</span>
+                          Vol: <span className="text-[var(--text-primary)]">{exchange.volume24h}</span>
                         </span>
                       )}
                     </div>
@@ -253,7 +253,7 @@ export default function NoKYCExchangesPage() {
           >
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

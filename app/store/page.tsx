@@ -633,7 +633,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
 
       {/* Product Info */}
       <div className="p-4">
-        <h3 className="font-semibold text-white">{product.name}</h3>
+        <h3 className="font-semibold text-[var(--text-primary)]">{product.name}</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)] line-clamp-2">{product.description}</p>
 
         {/* Mining hardware specs */}
@@ -724,7 +724,7 @@ export default function StorePage() {
               PoW Mining Hardware & Equipment
             </span>
 
-            <h1 className="mt-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               ETC Hardware Store
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -735,17 +735,17 @@ export default function StorePage() {
             {/* Quick Stats */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-white">{totalProducts}</span>
+                <span className="text-2xl font-bold text-[var(--text-primary)]">{totalProducts}</span>
                 <span className="text-[var(--color-text-muted)]">Products</span>
               </div>
               <div className="h-8 w-px bg-[var(--border)]" />
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-white">{categories.length - 1}</span>
+                <span className="text-2xl font-bold text-[var(--text-primary)]">{categories.length - 1}</span>
                 <span className="text-[var(--color-text-muted)]">Categories</span>
               </div>
               <div className="h-8 w-px bg-[var(--border)]" />
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-white">{partnerCount}+</span>
+                <span className="text-2xl font-bold text-[var(--text-primary)]">{partnerCount}+</span>
                 <span className="text-[var(--color-text-muted)]">Partners</span>
               </div>
             </div>
@@ -796,7 +796,7 @@ export default function StorePage() {
                 className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                   activeCategory === category.id
                     ? 'bg-[var(--color-primary)] text-black'
-                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                 }`}
               >
                 {category.label}
@@ -829,7 +829,7 @@ export default function StorePage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="text-xl font-bold text-white">About Our Store</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">About Our Store</h2>
             <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               <div>
                 <h3 className="font-medium text-[var(--color-primary)]">Mining Hardware</h3>
@@ -873,7 +873,7 @@ export default function StorePage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Submit Your Design</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Submit Your Design</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Have a great ETC design idea? We&apos;re looking for community submissions for official
               merchandise. Selected designs earn royalties on each sale.

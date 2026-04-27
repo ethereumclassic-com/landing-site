@@ -173,7 +173,7 @@ export default function ApiDocsPage() {
               </svg>
               Developer APIs
             </div>
-            <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+            <h1 className="mb-4 text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               API Documentation
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -191,7 +191,7 @@ export default function ApiDocsPage() {
           transition={{ delay: 0.1 }}
           className="mb-16"
         >
-          <h2 className="mb-6 text-2xl font-bold text-white">Quick Start</h2>
+          <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Quick Start</h2>
           <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
             <div className="mb-4 flex gap-2">
               {(['javascript', 'python', 'curl'] as const).map((lang) => (
@@ -200,8 +200,8 @@ export default function ApiDocsPage() {
                   onClick={() => setSelectedLang(lang)}
                   className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                     selectedLang === lang
-                      ? 'bg-[var(--color-primary)] text-white'
-                      : 'bg-[var(--bg)] text-[var(--color-text-secondary)] hover:text-white'
+                      ? 'bg-[var(--color-primary)] text-[var(--background)]'
+                      : 'bg-[var(--bg)] text-[var(--color-text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   {lang.charAt(0).toUpperCase() + lang.slice(1)}
@@ -221,7 +221,7 @@ export default function ApiDocsPage() {
           transition={{ delay: 0.2 }}
           className="mb-16"
         >
-          <h2 className="mb-6 text-2xl font-bold text-white">REST API Endpoints</h2>
+          <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">REST API Endpoints</h2>
           <div className="space-y-6">
             {apiEndpoints.map((endpoint, index) => (
               <motion.div
@@ -236,10 +236,10 @@ export default function ApiDocsPage() {
                     <span className="rounded bg-emerald-500/20 px-2 py-1 text-xs font-bold text-emerald-400">
                       {endpoint.method}
                     </span>
-                    <code className="text-lg font-mono text-white">{endpoint.path}</code>
+                    <code className="text-lg font-mono text-[var(--text-primary)]">{endpoint.path}</code>
                     <button
                       onClick={() => copyToClipboard(endpoint.example, endpoint.path)}
-                      className="ml-auto rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--panel)] hover:text-white"
+                      className="ml-auto rounded-lg border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--text-primary)]"
                     >
                       {copiedEndpoint === endpoint.path ? 'Copied!' : 'Copy cURL'}
                     </button>
@@ -249,7 +249,7 @@ export default function ApiDocsPage() {
                 <div className="p-6">
                   {endpoint.parameters && endpoint.parameters.length > 0 && (
                     <div className="mb-6">
-                      <h4 className="mb-3 text-sm font-semibold text-white">Parameters</h4>
+                      <h4 className="mb-3 text-sm font-semibold text-[var(--text-primary)]">Parameters</h4>
                       <div className="overflow-x-auto">
                         <table className="w-full text-sm">
                           <thead>
@@ -279,7 +279,7 @@ export default function ApiDocsPage() {
                     </div>
                   )}
                   <div>
-                    <h4 className="mb-3 text-sm font-semibold text-white">Response</h4>
+                    <h4 className="mb-3 text-sm font-semibold text-[var(--text-primary)]">Response</h4>
                     <pre className="overflow-x-auto rounded-lg bg-[var(--bg)] p-4 text-xs">
                       <code className="text-[var(--color-text-secondary)]">{endpoint.response}</code>
                     </pre>
@@ -297,7 +297,7 @@ export default function ApiDocsPage() {
           transition={{ delay: 0.3 }}
           className="mb-16"
         >
-          <h2 className="mb-6 text-2xl font-bold text-white">Public RPC Endpoints</h2>
+          <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Public RPC Endpoints</h2>
           <p className="mb-6 text-[var(--color-text-secondary)]">
             Use these public RPC endpoints to interact with the Ethereum Classic blockchain directly.
           </p>
@@ -307,7 +307,7 @@ export default function ApiDocsPage() {
                 key={rpc.name}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
               >
-                <h3 className="mb-2 font-semibold text-white">{rpc.name}</h3>
+                <h3 className="mb-2 font-semibold text-[var(--text-primary)]">{rpc.name}</h3>
                 <code className="mb-3 block rounded bg-[var(--bg)] px-3 py-2 text-xs text-[var(--color-primary)]">
                   {rpc.url}
                 </code>
@@ -325,14 +325,14 @@ export default function ApiDocsPage() {
           transition={{ delay: 0.4 }}
           className="mb-16"
         >
-          <h2 className="mb-6 text-2xl font-bold text-white">Rate Limits & Best Practices</h2>
+          <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Rate Limits & Best Practices</h2>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h3 className="mb-4 font-semibold text-white">Rate Limits</h3>
+              <h3 className="mb-4 font-semibold text-[var(--text-primary)]">Rate Limits</h3>
               <ul className="space-y-3 text-sm text-[var(--color-text-secondary)]">
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-primary)]" />
-                  <span><strong className="text-white">100 requests/minute</strong> per IP for REST API</span>
+                  <span><strong className="text-[var(--text-primary)]">100 requests/minute</strong> per IP for REST API</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-primary)]" />
@@ -345,7 +345,7 @@ export default function ApiDocsPage() {
               </ul>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h3 className="mb-4 font-semibold text-white">Best Practices</h3>
+              <h3 className="mb-4 font-semibold text-[var(--text-primary)]">Best Practices</h3>
               <ul className="space-y-3 text-sm text-[var(--color-text-secondary)]">
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400" />
@@ -370,7 +370,7 @@ export default function ApiDocsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <h2 className="mb-6 text-2xl font-bold text-white">Additional Resources</h2>
+          <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Additional Resources</h2>
           <div className="grid gap-4 md:grid-cols-3">
             <Link
               href="https://blockscout.com/etc/mainnet/api-docs"
@@ -378,7 +378,7 @@ export default function ApiDocsPage() {
               rel="noopener noreferrer"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h3 className="mb-2 font-semibold text-white group-hover:text-[var(--color-primary)]">
+              <h3 className="mb-2 font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Blockscout API
               </h3>
               <p className="text-sm text-[var(--color-text-secondary)]">
@@ -389,7 +389,7 @@ export default function ApiDocsPage() {
               href="/build/docs"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h3 className="mb-2 font-semibold text-white group-hover:text-[var(--color-primary)]">
+              <h3 className="mb-2 font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Developer Docs
               </h3>
               <p className="text-sm text-[var(--color-text-secondary)]">
@@ -400,7 +400,7 @@ export default function ApiDocsPage() {
               href="/build/tools"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h3 className="mb-2 font-semibold text-white group-hover:text-[var(--color-primary)]">
+              <h3 className="mb-2 font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Developer Tools
               </h3>
               <p className="text-sm text-[var(--color-text-secondary)]">

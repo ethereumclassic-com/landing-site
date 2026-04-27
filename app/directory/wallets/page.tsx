@@ -133,7 +133,7 @@ function WalletCard({ wallet }: { wallet: Wallet }) {
           <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
             isHardware
               ? 'bg-green-500/10 text-green-400'
-              : 'bg-white/5 text-[var(--color-text-secondary)]'
+              : 'bg-[var(--border-subtle)] text-[var(--color-text-secondary)]'
           }`}>
             {getTypeIcon(wallet.type)}
             <span>{wallet.type}</span>
@@ -141,7 +141,7 @@ function WalletCard({ wallet }: { wallet: Wallet }) {
         </div>
       </div>
 
-      <h3 className="mb-1 text-lg font-semibold text-white transition group-hover:text-[var(--color-primary)]">
+      <h3 className="mb-1 text-lg font-semibold text-[var(--text-primary)] transition group-hover:text-[var(--color-primary)]">
         {wallet.name}
       </h3>
       <p className="mb-3 text-sm text-[var(--color-text-muted)] line-clamp-2">
@@ -151,7 +151,7 @@ function WalletCard({ wallet }: { wallet: Wallet }) {
       <div className="mb-3 flex flex-wrap items-center gap-2">
         {getSecurityBadge(wallet.securityLevel)}
         {wallet.ease && (
-          <span className="rounded-full bg-white/5 px-2 py-0.5 text-xs text-[var(--color-text-muted)]">
+          <span className="rounded-full bg-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--color-text-muted)]">
             {wallet.ease.charAt(0).toUpperCase() + wallet.ease.slice(1)}
           </span>
         )}
@@ -206,7 +206,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
             {wallet.name[0]}
           </div>
           <div>
-            <div className="font-medium text-white">{wallet.name}</div>
+            <div className="font-medium text-[var(--text-primary)]">{wallet.name}</div>
             <p className="hidden text-xs text-[var(--color-text-muted)] xl:block">
               {wallet.description.length > 50
                 ? wallet.description.slice(0, 50) + '...'
@@ -219,7 +219,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
         <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium ${
           isHardware
             ? 'bg-green-500/10 text-green-400'
-            : 'bg-white/5 text-[var(--color-text-secondary)]'
+            : 'bg-[var(--border-subtle)] text-[var(--color-text-secondary)]'
         }`}>
           {getTypeIcon(wallet.type)}
           {wallet.type}
@@ -238,7 +238,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
           {wallet.platforms?.slice(0, 3).map((platform) => (
             <span
               key={platform}
-              className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]"
+              className="rounded bg-[var(--border-subtle)] px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]"
             >
               {platform}
             </span>
@@ -257,8 +257,8 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
           rel="noopener noreferrer"
           className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
             isHardware
-              ? 'bg-green-500 text-white hover:bg-green-600'
-              : 'border border-[var(--border)] bg-[var(--panel)] text-white hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
+              ? 'bg-green-500 text-[var(--text-primary)] hover:bg-green-600'
+              : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--background)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
           }`}
         >
           <span className="hidden sm:inline">Visit</span>
@@ -363,7 +363,7 @@ export default function DirectoryWalletsPage() {
                   <WalletIcon />
                   <span>Wallet Directory</span>
                 </div>
-                <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+                <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
                   ETC Wallets
                 </h1>
                 <p className="mt-4 max-w-xl text-lg text-[var(--color-text-muted)]">
@@ -407,12 +407,12 @@ export default function DirectoryWalletsPage() {
                 placeholder="Search wallets..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm text-white placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none sm:w-48"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none sm:w-48"
               />
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value as WalletType | 'all')}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               >
                 <option value="all">All Types</option>
                 <option value="Hardware">Hardware</option>
@@ -423,7 +423,7 @@ export default function DirectoryWalletsPage() {
               <select
                 value={securityFilter}
                 onChange={(e) => setSecurityFilter(e.target.value as SecurityFilter)}
-                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none sm:block"
+                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none sm:block"
               >
                 <option value="all">All Security</option>
                 <option value="high">High Security</option>
@@ -433,7 +433,7 @@ export default function DirectoryWalletsPage() {
               <select
                 value={easeFilter}
                 onChange={(e) => setEaseFilter(e.target.value as EaseFilter)}
-                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none md:block"
+                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none md:block"
               >
                 <option value="all">All Levels</option>
                 <option value="beginner">Beginner</option>
@@ -447,7 +447,7 @@ export default function DirectoryWalletsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               >
                 <option value="type">Sort by Type</option>
                 <option value="name">Sort by Name</option>
@@ -456,13 +456,13 @@ export default function DirectoryWalletsPage() {
               <div className="flex rounded-lg border border-[var(--border)] bg-[var(--panel)]">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-white'}`}
+                  className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'}`}
                 >
                   <GridIcon />
                 </button>
                 <button
                   onClick={() => setViewMode('table')}
-                  className={`p-2 transition-colors ${viewMode === 'table' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-white'}`}
+                  className={`p-2 transition-colors ${viewMode === 'table' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'}`}
                 >
                   <TableIcon />
                 </button>
@@ -593,20 +593,20 @@ export default function DirectoryWalletsPage() {
       {/* Help Section */}
       <section className="bg-[var(--panel)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-bold text-white">Need Help Choosing?</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need Help Choosing?</h2>
           <p className="mt-3 text-[var(--color-text-muted)]">
             Compare wallets side by side or read our guides to find the best wallet for your needs.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/wallet/compare"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-colors hover:bg-[var(--color-primary-hover)]"
             >
               Compare Wallets
             </Link>
             <Link
               href="/wallet"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
             >
               Wallet Guides
             </Link>

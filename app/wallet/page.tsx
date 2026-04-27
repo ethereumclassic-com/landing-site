@@ -54,7 +54,7 @@ export default function WalletPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Wallets & Interface for
             <br />
@@ -73,7 +73,7 @@ export default function WalletPage() {
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#wallets"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
@@ -84,7 +84,7 @@ export default function WalletPage() {
               href="https://app.classicos.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -154,7 +154,7 @@ export default function WalletPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Wallet Directory
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Choose Your Wallet
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -178,7 +178,7 @@ export default function WalletPage() {
               >
                 <div className="mb-6 flex items-center gap-3">
                   <CategoryIcon category={category} />
-                  <h3 className="text-xl font-bold text-white">{category} Wallets</h3>
+                  <h3 className="text-xl font-bold text-[var(--text-primary)]">{category} Wallets</h3>
                   <span className="rounded-full bg-[var(--color-primary)]/10 px-2.5 py-0.5 text-xs font-medium text-[var(--color-primary)]">
                     {categoryWallets.length}
                   </span>

@@ -42,7 +42,7 @@ export default function UpgradeHubPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Client Implementations
           </motion.h1>
@@ -92,7 +92,7 @@ export default function UpgradeHubPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               ETC Compatibility Plugins
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -154,7 +154,7 @@ export default function UpgradeHubPage() {
                   className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="text-base font-semibold text-white">{plugin.name}</h3>
+                    <h3 className="text-base font-semibold text-[var(--text-primary)]">{plugin.name}</h3>
                     <div className="flex shrink-0 items-center gap-1.5">
                       <span
                         className="rounded px-1.5 py-0.5 font-mono text-xs font-medium"

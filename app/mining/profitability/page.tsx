@@ -56,7 +56,7 @@ function ResultCard({
       }`}
     >
       <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
-      <p className={`mt-1 text-xl font-bold ${highlight ? (positive ? 'text-green-400' : 'text-red-400') : 'text-white'}`}>
+      <p className={`mt-1 text-xl font-bold ${highlight ? (positive ? 'text-green-400' : 'text-red-400') : 'text-[var(--text-primary)]'}`}>
         {value}
       </p>
       {subValue && <p className="text-xs text-[var(--color-text-muted)]">{subValue}</p>}
@@ -82,7 +82,7 @@ function HardwarePresetButton({
           : 'border-[var(--border)] bg-[var(--panel)] hover:border-[var(--color-primary)]/50'
       }`}
     >
-      <span className="text-sm font-medium text-white">{hardware.name}</span>
+      <span className="text-sm font-medium text-[var(--text-primary)]">{hardware.name}</span>
       <span className="text-xs text-[var(--color-text-muted)]">
         {hardware.hashrate} MH/s • {hardware.power}W
       </span>
@@ -138,7 +138,7 @@ export default function MiningProfitabilityPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <Link
               href="/mining"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -146,7 +146,7 @@ export default function MiningProfitabilityPage() {
               Back to Mining
             </Link>
 
-            <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               Profitability Calculator
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -168,7 +168,7 @@ export default function MiningProfitabilityPage() {
           >
             {/* Hardware Presets */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Hardware Presets</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Hardware Presets</h2>
               <p className="mb-4 text-sm text-[var(--color-text-muted)]">
                 Select a preset or enter custom values below
               </p>
@@ -195,7 +195,7 @@ export default function MiningProfitabilityPage() {
 
             {/* Mining Parameters */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Mining Parameters</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Mining Parameters</h2>
 
               <div className="space-y-4">
                 {/* Hashrate */}
@@ -211,7 +211,7 @@ export default function MiningProfitabilityPage() {
                       setSelectedHardware(null)
                     }}
                     min="0"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-white focus:border-[var(--color-primary)] focus:outline-none"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                   />
                 </div>
 
@@ -228,7 +228,7 @@ export default function MiningProfitabilityPage() {
                       setSelectedHardware(null)
                     }}
                     min="0"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-white focus:border-[var(--color-primary)] focus:outline-none"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                   />
                 </div>
 
@@ -243,7 +243,7 @@ export default function MiningProfitabilityPage() {
                     onChange={(e) => setElectricityRate(parseFloat(e.target.value) || 0)}
                     step="0.01"
                     min="0"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-white focus:border-[var(--color-primary)] focus:outline-none"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                   />
                   <div className="mt-2 flex flex-wrap gap-2">
                     {electricityPresets.map((preset) => (
@@ -253,7 +253,7 @@ export default function MiningProfitabilityPage() {
                         className={`rounded-lg px-3 py-1 text-xs transition-colors ${
                           electricityRate === preset.value
                             ? 'bg-[var(--color-primary)] text-black'
-                            : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-white'
+                            : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                         }`}
                       >
                         {preset.description}
@@ -274,7 +274,7 @@ export default function MiningProfitabilityPage() {
                     step="0.1"
                     min="0"
                     max="100"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-white focus:border-[var(--color-primary)] focus:outline-none"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                   />
                 </div>
 
@@ -289,7 +289,7 @@ export default function MiningProfitabilityPage() {
                     onChange={(e) => setEtcPrice(parseFloat(e.target.value) || 0)}
                     step="0.01"
                     min="0"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-white focus:border-[var(--color-primary)] focus:outline-none"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2.5 text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                   />
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">
                     Reference price. Check{' '}
@@ -310,7 +310,7 @@ export default function MiningProfitabilityPage() {
             {/* Network Info */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-white">Network Stats</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">Network Stats</h2>
                 {statsLoading ? (
                   <span className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
@@ -331,19 +331,19 @@ export default function MiningProfitabilityPage() {
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-[var(--color-text-muted)]">Network Hashrate</p>
-                  <p className="font-medium text-white">{networkStats.hashrate}</p>
+                  <p className="font-medium text-[var(--text-primary)]">{networkStats.hashrate}</p>
                 </div>
                 <div>
                   <p className="text-[var(--color-text-muted)]">Block Reward</p>
-                  <p className="font-medium text-white">~{liveStats.blockReward.toFixed(3)} ETC</p>
+                  <p className="font-medium text-[var(--text-primary)]">~{liveStats.blockReward.toFixed(3)} ETC</p>
                 </div>
                 <div>
                   <p className="text-[var(--color-text-muted)]">Block Time</p>
-                  <p className="font-medium text-white">~{liveStats.blockTimeSeconds.toFixed(1)}s</p>
+                  <p className="font-medium text-[var(--text-primary)]">~{liveStats.blockTimeSeconds.toFixed(1)}s</p>
                 </div>
                 <div>
                   <p className="text-[var(--color-text-muted)]">Daily Blocks</p>
-                  <p className="font-medium text-white">~{liveStats.blocksPerDay.toLocaleString()}</p>
+                  <p className="font-medium text-[var(--text-primary)]">~{liveStats.blocksPerDay.toLocaleString()}</p>
                 </div>
               </div>
               <p className="mt-4 text-xs text-[var(--color-text-muted)]">
@@ -369,23 +369,23 @@ export default function MiningProfitabilityPage() {
           >
             {/* Summary */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Your Setup</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Your Setup</h2>
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center gap-2">
                   <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                   </svg>
-                  <span className="text-white">{formatHashrate(hashrateMH)}</span>
+                  <span className="text-[var(--text-primary)]">{formatHashrate(hashrateMH)}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <svg aria-hidden="true" className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
                   </svg>
-                  <span className="text-white">{formatPower(powerWatts)}</span>
+                  <span className="text-[var(--text-primary)]">{formatPower(powerWatts)}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-[var(--color-text-muted)]">@</span>
-                  <span className="text-white">${electricityRate}/kWh</span>
+                  <span className="text-[var(--text-primary)]">${electricityRate}/kWh</span>
                 </div>
               </div>
             </div>
@@ -423,7 +423,7 @@ export default function MiningProfitabilityPage() {
 
             {/* ETC Earnings */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">ETC Earnings</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">ETC Earnings</h2>
               <div className="grid grid-cols-2 gap-4">
                 <ResultCard label="Daily" value={formatETC(results.dailyETC, 6)} />
                 <ResultCard label="Weekly" value={formatETC(results.weeklyETC, 4)} />
@@ -434,7 +434,7 @@ export default function MiningProfitabilityPage() {
 
             {/* Revenue */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Revenue (USD)</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Revenue (USD)</h2>
               <div className="grid grid-cols-2 gap-4">
                 <ResultCard label="Daily" value={formatUSD(results.dailyRevenueUSD)} />
                 <ResultCard label="Weekly" value={formatUSD(results.weeklyRevenueUSD)} />
@@ -445,7 +445,7 @@ export default function MiningProfitabilityPage() {
 
             {/* Power Costs */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Power Costs</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Power Costs</h2>
               <div className="grid grid-cols-2 gap-4">
                 <ResultCard label="Daily" value={formatUSD(results.dailyPowerCostUSD)} />
                 <ResultCard label="Weekly" value={formatUSD(results.weeklyPowerCostUSD)} />
@@ -456,7 +456,7 @@ export default function MiningProfitabilityPage() {
 
             {/* Net Profit */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Net Profit</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Net Profit</h2>
               <div className="grid grid-cols-2 gap-4">
                 <ResultCard
                   label="Daily"
@@ -487,11 +487,11 @@ export default function MiningProfitabilityPage() {
 
             {/* Break-even Analysis */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-4 text-lg font-semibold text-white">Break-even Analysis</h2>
+              <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Break-even Analysis</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-[var(--color-text-muted)]">Break-even ETC Price</p>
-                  <p className="mt-1 text-xl font-bold text-white">
+                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">
                     {results.breakEvenPriceUSD === Infinity ? 'N/A' : formatUSD(results.breakEvenPriceUSD)}
                   </p>
                   <p className="text-xs text-[var(--color-text-muted)]">
@@ -500,7 +500,7 @@ export default function MiningProfitabilityPage() {
                 </div>
                 <div>
                   <p className="text-sm text-[var(--color-text-muted)]">Cost per ETC</p>
-                  <p className="mt-1 text-xl font-bold text-white">
+                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">
                     {results.costPerETC === Infinity ? 'N/A' : formatUSD(results.costPerETC)}
                   </p>
                   <p className="text-xs text-[var(--color-text-muted)]">

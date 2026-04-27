@@ -67,7 +67,7 @@ export default function GovernancePage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Olympia Governance Framework
           </motion.h1>
@@ -98,7 +98,7 @@ export default function GovernancePage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Treasury Funding
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -110,7 +110,7 @@ export default function GovernancePage() {
               variants={fadeInUp}
               className="mt-8 rounded-xl border border-[#F59E0B]/20 bg-[#F59E0B]/5 p-8"
             >
-              <p className="text-lg font-semibold text-white">
+              <p className="text-lg font-semibold text-[var(--text-primary)]">
                 Basefee revenue funds the Olympia Treasury
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -139,7 +139,7 @@ export default function GovernancePage() {
                             {fundingFlow.indexOf(step) + 1}
                           </span>
                         </div>
-                        <p className="mt-3 text-sm font-semibold text-white">{step.label}</p>
+                        <p className="mt-3 text-sm font-semibold text-[var(--text-primary)]">{step.label}</p>
                         <p className="mt-1 text-xs text-[var(--color-text-muted)]">{step.sublabel}</p>
                       </div>
                     ))}
@@ -157,7 +157,7 @@ export default function GovernancePage() {
                       </span>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-white">{step.label}</p>
+                      <p className="text-sm font-semibold text-[var(--text-primary)]">{step.label}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{step.sublabel}</p>
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export default function GovernancePage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Safeguards
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -226,7 +226,7 @@ export default function GovernancePage() {
             href={olympiaLinks.treasuryDashboard}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
           >
             View Treasury
           </a>
@@ -234,7 +234,7 @@ export default function GovernancePage() {
             href={olympiaLinks.ethereumClassicDAO}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
           >
             Ethereum Classic DAO
           </a>

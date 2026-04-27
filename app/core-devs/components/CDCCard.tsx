@@ -52,7 +52,7 @@ export function CDCCard({ entry }: { entry: CDCEntry }) {
       </div>
 
       {/* Title */}
-      <h3 className="mt-1.5 text-sm font-semibold text-white line-clamp-2 group-hover:text-[var(--color-primary)] transition">
+      <h3 className="mt-1.5 text-sm font-semibold text-[var(--text-primary)] line-clamp-2 group-hover:text-[var(--color-primary)] transition">
         {entry.title}
       </h3>
 

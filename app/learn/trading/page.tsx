@@ -102,7 +102,7 @@ export default function TradingPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Trading{' '}
             <span className="bg-gradient-to-r from-blue-400 to-[var(--color-primary)] bg-clip-text text-transparent">
@@ -135,7 +135,7 @@ export default function TradingPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-white">{feature.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
               </motion.div>
             ))}
@@ -152,7 +152,7 @@ export default function TradingPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
           >
-            <h2 className="text-xl font-bold text-white">Ways to Trade ETC</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Ways to Trade ETC</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Choose the trading method that works best for you
             </p>
@@ -167,7 +167,7 @@ export default function TradingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-white group-hover:text-blue-400">Exchanges</h3>
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-blue-400">Exchanges</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   30+ platforms to buy and sell ETC
                 </p>
@@ -184,7 +184,7 @@ export default function TradingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">ETCswap DEX</h3>
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">ETCswap DEX</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Decentralized token swaps
                 </p>
@@ -199,7 +199,7 @@ export default function TradingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-white group-hover:text-emerald-400">P2P Trading</h3>
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-emerald-400">P2P Trading</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Trade directly with others
                 </p>
@@ -218,7 +218,7 @@ export default function TradingPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">All Trading Guides</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">All Trading Guides</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Everything you need to know about buying, selling, and trading ETC
             </p>
@@ -257,7 +257,7 @@ export default function TradingPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Ready to Start Trading?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -266,13 +266,13 @@ export default function TradingPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/buy"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 px-6 py-3 font-medium text-white transition-all hover:bg-blue-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-blue-600"
             >
               Buy ETC
             </Link>
             <Link
               href="/exchanges"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-blue-500/30 hover:bg-blue-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-blue-500/30 hover:bg-blue-500/10"
             >
               Browse Exchanges
             </Link>

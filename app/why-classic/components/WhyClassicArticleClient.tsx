@@ -59,7 +59,7 @@ export default function WhyClassicArticleClient({ article, content }: Props) {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             {article.title}
           </motion.h1>
@@ -88,7 +88,7 @@ export default function WhyClassicArticleClient({ article, content }: Props) {
       {relatedArticles.length > 0 && (
         <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-4xl">
-            <h2 className="text-xl font-bold text-white md:text-2xl">Continue Reading</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">Continue Reading</h2>
             <p className="mt-1 text-[var(--color-text-muted)]">More on the philosophy of Ethereum Classic</p>
 
             <div className="mt-8 grid gap-4">
@@ -100,7 +100,7 @@ export default function WhyClassicArticleClient({ article, content }: Props) {
                 >
                   <span className="text-xl">{related.icon}</span>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                    <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {related.title}
                     </h3>
                     <p className="mt-1 text-sm text-[var(--color-text-secondary)]">{related.description}</p>

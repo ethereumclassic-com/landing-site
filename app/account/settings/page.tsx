@@ -92,14 +92,14 @@ export default function SettingsPage() {
         >
           <Link
             href="/account"
-            className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
+            className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
           >
             <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
             Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-white">Account Settings</h1>
+          <h1 className="text-3xl font-bold text-[var(--text-primary)]">Account Settings</h1>
           <p className="mt-1 text-[var(--color-text-muted)]">
             Manage your profile and preferences
           </p>
@@ -123,10 +123,10 @@ export default function SettingsPage() {
           variants={fadeInUp}
           className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
         >
-          <h2 className="mb-4 text-lg font-semibold text-white">Profile</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Profile</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="mb-2 block text-sm font-medium text-white">
+              <label htmlFor="name" className="mb-2 block text-sm font-medium text-[var(--text-primary)]">
                 Display Name
               </label>
               <input
@@ -134,11 +134,11 @@ export default function SettingsPage() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-white placeholder-[var(--color-text-muted)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-[var(--text-primary)] placeholder-[var(--color-text-muted)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
               />
             </div>
             <div>
-              <label htmlFor="email" className="mb-2 block text-sm font-medium text-white">
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-[var(--text-primary)]">
                 Email Address
               </label>
               <input
@@ -171,17 +171,17 @@ export default function SettingsPage() {
           variants={fadeInUp}
           className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
         >
-          <h2 className="mb-4 text-lg font-semibold text-white">Preferences</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Preferences</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="currency" className="mb-2 block text-sm font-medium text-white">
+              <label htmlFor="currency" className="mb-2 block text-sm font-medium text-[var(--text-primary)]">
                 Display Currency
               </label>
               <select
                 id="currency"
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-white transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-[var(--text-primary)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
               >
                 {currencies.map((c) => (
                   <option key={c} value={c} className="bg-[var(--bg)]">
@@ -192,7 +192,7 @@ export default function SettingsPage() {
             </div>
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-white">Email Notifications</p>
+                <p className="font-medium text-[var(--text-primary)]">Email Notifications</p>
                 <p className="text-sm text-[var(--color-text-muted)]">
                   Receive price alerts and updates
                 </p>
@@ -229,15 +229,15 @@ export default function SettingsPage() {
           variants={fadeInUp}
           className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
         >
-          <h2 className="mb-4 text-lg font-semibold text-white">Account Information</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Account Information</h2>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
               <span className="text-[var(--color-text-muted)]">Account ID</span>
-              <span className="font-mono text-white">{user?.id.slice(0, 20)}...</span>
+              <span className="font-mono text-[var(--text-primary)]">{user?.id.slice(0, 20)}...</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[var(--color-text-muted)]">Member Since</span>
-              <span className="text-white">
+              <span className="text-[var(--text-primary)]">
                 {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
               </span>
             </div>

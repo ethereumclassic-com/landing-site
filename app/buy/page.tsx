@@ -51,7 +51,7 @@ function Step({ number, title, description, icon, index }: StepProps) {
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium text-[var(--color-primary)]">Step {number}</span>
         </div>
-        <h3 className="mt-1 font-semibold text-white">{title}</h3>
+        <h3 className="mt-1 font-semibold text-[var(--text-primary)]">{title}</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
       </div>
     </motion.div>
@@ -209,7 +209,7 @@ export default function BuyPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -227,7 +227,7 @@ export default function BuyPage() {
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#exchanges"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008z" />
@@ -238,7 +238,7 @@ export default function BuyPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -262,7 +262,7 @@ export default function BuyPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Payment Methods
             </span>
-            <h2 className="mt-4 text-xl font-bold text-white md:text-2xl">
+            <h2 className="mt-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Multiple Ways to Buy
             </h2>
           </motion.div>
@@ -280,7 +280,7 @@ export default function BuyPage() {
                 <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {method.icon}
                 </div>
-                <span className="text-sm font-medium text-white">{method.name}</span>
+                <span className="text-sm font-medium text-[var(--text-primary)]">{method.name}</span>
                 <span className="mt-1 text-xs text-[var(--color-text-muted)]">{method.description}</span>
               </motion.div>
             ))}
@@ -306,7 +306,7 @@ export default function BuyPage() {
                 </span>
                 Recommended
               </span>
-              <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+              <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
                 Trade on Decentralized Exchange
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -361,7 +361,7 @@ export default function BuyPage() {
               </svg>
               ETC Native
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Buy ETC via ClassicUSD
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -395,10 +395,10 @@ export default function BuyPage() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
               >
-                <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-white">
+                <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-[var(--text-primary)]">
                   {item.step}
                 </div>
-                <h3 className="mt-2 font-semibold text-white">{item.title}</h3>
+                <h3 className="mt-2 font-semibold text-[var(--text-primary)]">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
               </motion.div>
             ))}
@@ -415,7 +415,7 @@ export default function BuyPage() {
               href="https://brale.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-medium text-white transition-all hover:bg-emerald-600"
+              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
             >
               Get USC on Brale
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -426,7 +426,7 @@ export default function BuyPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-5 py-2.5 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
             >
               Swap on ETCswap
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -459,7 +459,7 @@ export default function BuyPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Top Exchanges
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Major Exchanges
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -482,7 +482,7 @@ export default function BuyPage() {
           >
             <Link
               href="/buy/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All {exchanges.length} Exchanges
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -506,7 +506,7 @@ export default function BuyPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               All Exchanges
             </span>
-            <h2 className="mt-4 text-xl font-bold text-white md:text-2xl">
+            <h2 className="mt-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               More Exchanges
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -535,7 +535,7 @@ export default function BuyPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Getting Started
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               How to Buy ETC
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -558,7 +558,7 @@ export default function BuyPage() {
           >
             <Link
               href="/wallet"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
@@ -569,7 +569,7 @@ export default function BuyPage() {
               href="https://app.classicos.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -597,7 +597,7 @@ export default function BuyPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Security Reminder</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Security Reminder</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Always verify you&apos;re on the official exchange website. Enable 2FA and use strong, unique passwords. Never share your private keys or seed phrase with anyone.
                 </p>
@@ -618,7 +618,7 @@ export default function BuyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-white">Verified Exchanges</span>
+              <span className="text-sm font-medium text-[var(--text-primary)]">Verified Exchanges</span>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">All listed exchanges verified</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center">
@@ -627,7 +627,7 @@ export default function BuyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-white">No Hidden Fees</span>
+              <span className="text-sm font-medium text-[var(--text-primary)]">No Hidden Fees</span>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">Transparent pricing always</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center">
@@ -636,7 +636,7 @@ export default function BuyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-white">Global Access</span>
+              <span className="text-sm font-medium text-[var(--text-primary)]">Global Access</span>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">Available worldwide</p>
             </div>
           </motion.div>

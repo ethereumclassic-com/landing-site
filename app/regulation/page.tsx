@@ -137,7 +137,7 @@ export default function RegulationPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Regulatory Framework
           </motion.h1>
@@ -163,7 +163,7 @@ export default function RegulationPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               ETC&apos;s Regulatory Profile
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -180,7 +180,7 @@ export default function RegulationPage() {
                   <div className="mb-4 flex items-start justify-between gap-2">
                     <div>
                       <p className="font-mono text-xs text-[var(--color-text-muted)]">{profile.act}</p>
-                      <p className="mt-0.5 text-base font-semibold text-white">{profile.classification}</p>
+                      <p className="mt-0.5 text-base font-semibold text-[var(--text-primary)]">{profile.classification}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{profile.jurisdiction}</p>
                     </div>
                     <span
@@ -230,7 +230,7 @@ export default function RegulationPage() {
                 Regulated Stablecoin
               </span>
             </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Classic USD: Live GENIUS Act-Aligned Stablecoin on ETC
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -245,26 +245,26 @@ export default function RegulationPage() {
                 className="rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-6"
               >
                 <p className="text-xs font-mono text-[#00ffae]">$USC / Classic USD</p>
-                <p className="mt-1 text-2xl font-bold text-white">1:1 USD</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">1:1 USD</p>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Ethereum Classic · Chain 61
                 </p>
                 <div className="mt-4 space-y-2 text-xs text-[var(--color-text-muted)]">
                   <div className="flex justify-between">
                     <span>Issuer</span>
-                    <span className="text-white">Brale Inc. · NMLS #2376957</span>
+                    <span className="text-[var(--text-primary)]">Brale Inc. · NMLS #2376957</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Reserves</span>
-                    <span className="text-white">1:1 USD · Segregated</span>
+                    <span className="text-[var(--text-primary)]">1:1 USD · Segregated</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Standard</span>
-                    <span className="text-white">ERC-20 · EIP-1967 Proxy</span>
+                    <span className="text-[var(--text-primary)]">ERC-20 · EIP-1967 Proxy</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Network</span>
-                    <span className="text-white">Ethereum Classic (Chain 61)</span>
+                    <span className="text-[var(--text-primary)]">Ethereum Classic (Chain 61)</span>
                   </div>
                 </div>
                 <a
@@ -300,7 +300,7 @@ export default function RegulationPage() {
                     key={item.title}
                     className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-4"
                   >
-                    <p className="text-sm font-semibold text-white">{item.title}</p>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{item.title}</p>
                     <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-muted)]">
                       {item.description}
                     </p>
@@ -321,7 +321,7 @@ export default function RegulationPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               The 2025–2026 Regulatory Wave
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -342,7 +342,7 @@ export default function RegulationPage() {
                       <img src={FLAG_SVGS[j.flag].src} alt={FLAG_SVGS[j.flag].alt} className="h-6 w-6 shrink-0" />
                     )}
                     <div>
-                      <p className="text-sm font-semibold text-white">{j.region}</p>
+                      <p className="text-sm font-semibold text-[var(--text-primary)]">{j.region}</p>
                       <p className="font-mono text-xs text-[#00ffae]">{j.framework}</p>
                     </div>
                   </div>
@@ -366,7 +366,7 @@ export default function RegulationPage() {
             variants={staggerContainer}
             className="text-center"
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Market Depth: A Prerequisite for Stablecoin Viability
             </motion.h2>
             <motion.p variants={fadeInUp} className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
@@ -382,7 +382,7 @@ export default function RegulationPage() {
                   variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
                 >
-                  <p className="text-3xl font-bold text-white">{stat.value}</p>
+                  <p className="text-3xl font-bold text-[var(--text-primary)]">{stat.value}</p>
                   <p className="mt-1 text-sm font-medium text-[var(--color-text-secondary)]">{stat.label}</p>
                   <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{stat.detail}</p>
                 </motion.div>
@@ -403,7 +403,7 @@ export default function RegulationPage() {
               </Link>
               <Link
                 href="/olympia"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30"
               >
                 Olympia Upgrade
               </Link>

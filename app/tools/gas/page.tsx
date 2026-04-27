@@ -88,7 +88,7 @@ export default function GasTrackerPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/tools"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -98,7 +98,7 @@ export default function GasTrackerPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Gas Tracker
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -117,7 +117,7 @@ export default function GasTrackerPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Current Gas Prices
           </motion.h2>
@@ -142,7 +142,7 @@ export default function GasTrackerPage() {
                   <span className={`text-sm font-medium ${tier.color}`}>{tier.name}</span>
                   <span className="text-xs text-[var(--color-text-muted)]">{tier.time}</span>
                 </div>
-                <div className="mt-2 text-3xl font-bold text-white">
+                <div className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
                   {tier.gwei} <span className="text-lg text-[var(--color-text-muted)]">Gwei</span>
                 </div>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{tier.description}</p>
@@ -189,7 +189,7 @@ export default function GasTrackerPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Transaction Cost Estimator
           </motion.h2>
@@ -223,13 +223,13 @@ export default function GasTrackerPage() {
                     return (
                       <tr key={tx.name} className="hover:bg-[var(--bg)]/50">
                         <td className="px-4 py-3">
-                          <div className="font-medium text-white">{tx.name}</div>
+                          <div className="font-medium text-[var(--text-primary)]">{tx.name}</div>
                           <div className="text-xs text-[var(--color-text-muted)]">{tx.description}</div>
                         </td>
                         <td className="px-4 py-3 text-right font-mono text-sm text-[var(--color-text-muted)]">
                           {tx.gasLimit.toLocaleString()}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono text-sm text-white">
+                        <td className="px-4 py-3 text-right font-mono text-sm text-[var(--text-primary)]">
                           {costEtc}
                         </td>
                         <td className="px-4 py-3 text-right font-mono text-sm text-green-400">
@@ -262,7 +262,7 @@ export default function GasTrackerPage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Gas Optimization Tips</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Gas Optimization Tips</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
@@ -271,7 +271,7 @@ export default function GasTrackerPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Use Standard Gas</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Use Standard Gas</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     ETC has low network congestion. Standard gas usually confirms within a block.
                   </p>
@@ -284,7 +284,7 @@ export default function GasTrackerPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Batch Transactions</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Batch Transactions</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Combine multiple operations when possible to save on base transaction costs.
                   </p>
@@ -297,7 +297,7 @@ export default function GasTrackerPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Set Gas Limits Correctly</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Set Gas Limits Correctly</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Do not overset gas limits. Unused gas is refunded but wallet estimates can be high.
                   </p>
@@ -310,7 +310,7 @@ export default function GasTrackerPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Verify Contract Interactions</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Verify Contract Interactions</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Review transaction details before confirming. Failed transactions still cost gas.
                   </p>
@@ -330,7 +330,7 @@ export default function GasTrackerPage() {
             transition={{ delay: 0.35 }}
             className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Why ETC Gas is Cheap</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Why ETC Gas is Cheap</h2>
             <div className="grid gap-6 md:grid-cols-3">
               <div>
                 <div className="text-2xl font-bold text-[var(--color-primary)]">~$0.001</div>
@@ -373,7 +373,7 @@ export default function GasTrackerPage() {
             </Link>
             <Link
               href="/mining/stats"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Network Stats
             </Link>
@@ -381,7 +381,7 @@ export default function GasTrackerPage() {
               href="https://etc.blockscout.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Live Gas Data
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

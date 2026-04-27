@@ -128,7 +128,7 @@ export default function EventsPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/community"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -138,7 +138,7 @@ export default function EventsPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Events
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -170,7 +170,7 @@ export default function EventsPage() {
                     {type.icon}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">{type.name}</h3>
+                    <h3 className="font-semibold text-[var(--text-primary)]">{type.name}</h3>
                     <p className="text-xs text-[var(--color-text-muted)]">{type.description}</p>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ export default function EventsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Recurring Events
           </motion.h2>
@@ -208,7 +208,7 @@ export default function EventsPage() {
                     {event.type === 'online' ? 'Online' : 'In Person'}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-white">{event.title}</h3>
+                <h3 className="text-lg font-bold text-[var(--text-primary)]">{event.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{event.description}</p>
                 <div className="mt-4 space-y-2 text-sm">
                   <div className="flex items-center gap-2 text-[var(--color-text-muted)]">
@@ -255,7 +255,7 @@ export default function EventsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Past Events
           </motion.h2>
@@ -277,7 +277,7 @@ export default function EventsPage() {
                   </span>
                   <span className="text-xs text-[var(--color-text-muted)]">{event.date}</span>
                 </div>
-                <h3 className="font-bold text-white">{event.title}</h3>
+                <h3 className="font-bold text-[var(--text-primary)]">{event.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{event.description}</p>
                 <div className="mt-3 flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -301,7 +301,7 @@ export default function EventsPage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Want to Host an Event?</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Want to Host an Event?</h2>
             <p className="text-sm text-[var(--color-text-muted)]">
               The ETC community supports local organizers who want to host meetups, workshops, or
               educational events. Whether you&apos;re planning an in-person gathering or an online webinar,
@@ -318,7 +318,7 @@ export default function EventsPage() {
               </a>
               <Link
                 href="/community/social"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-colors hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary)]/30"
               >
                 Other Channels
               </Link>
@@ -336,7 +336,7 @@ export default function EventsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Never Miss an Event</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Never Miss an Event</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Follow ETC on social media and join our Discord to stay updated on all upcoming
               events and community activities.
@@ -355,7 +355,7 @@ export default function EventsPage() {
               </a>
               <Link
                 href="/news"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Latest News
               </Link>

@@ -102,7 +102,7 @@ export default function StakingPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Yield &{' '}
             <span className="bg-gradient-to-r from-emerald-400 to-[var(--color-primary)] bg-clip-text text-transparent">
@@ -159,7 +159,7 @@ export default function StakingPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-white">{feature.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
               </motion.div>
             ))}
@@ -176,7 +176,7 @@ export default function StakingPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
           >
-            <h2 className="text-xl font-bold text-white">How Liquidity Provision Works</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">How Liquidity Provision Works</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Earn yield by becoming a liquidity provider on ETCswap
             </p>
@@ -207,10 +207,10 @@ export default function StakingPage() {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="relative rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-center"
                 >
-                  <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-white">
+                  <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-[var(--text-primary)]">
                     {item.step}
                   </div>
-                  <h3 className="font-semibold text-white">{item.title}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
                 </motion.div>
               ))}
@@ -221,7 +221,7 @@ export default function StakingPage() {
                 href="https://etcswap.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-medium text-white transition-all hover:bg-emerald-600"
+                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
               >
                 Provide Liquidity on ETCswap
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -242,7 +242,7 @@ export default function StakingPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Yield & Liquidity Guides</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Yield & Liquidity Guides</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Learn how to earn yield on Ethereum Classic through DeFi
             </p>
@@ -307,7 +307,7 @@ export default function StakingPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Start Earning Yield
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -318,7 +318,7 @@ export default function StakingPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 font-medium text-white transition-all hover:bg-emerald-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
             >
               Launch ETCswap
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -327,7 +327,7 @@ export default function StakingPage() {
             </a>
             <Link
               href="/learn/defi"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10"
             >
               Learn DeFi Basics
             </Link>

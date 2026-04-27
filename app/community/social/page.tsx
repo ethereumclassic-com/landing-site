@@ -128,7 +128,7 @@ export default function SocialPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/community"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -138,7 +138,7 @@ export default function SocialPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Social Media
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -157,7 +157,7 @@ export default function SocialPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Official Channels
           </motion.h2>
@@ -177,12 +177,12 @@ export default function SocialPage() {
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30"
               >
                 <div className="flex items-start gap-4">
-                  <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl ${channel.color} text-white`}>
+                  <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl ${channel.color} text-[var(--text-primary)]`}>
                     {channel.icon}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-white group-hover:text-[var(--color-primary)]">
+                      <h3 className="font-bold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                         {channel.name}
                       </h3>
                       <svg aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -207,7 +207,7 @@ export default function SocialPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Regional Communities
           </motion.h2>
@@ -230,7 +230,7 @@ export default function SocialPage() {
                 <tbody className="divide-y divide-[var(--border)]">
                   {regionalChannels.map((channel) => (
                     <tr key={channel.name} className="hover:bg-[var(--bg)]/50">
-                      <td className="px-4 py-3 font-medium text-white">{channel.name}</td>
+                      <td className="px-4 py-3 font-medium text-[var(--text-primary)]">{channel.name}</td>
                       <td className="px-4 py-3 text-[var(--color-text-muted)]">{channel.language}</td>
                       <td className="px-4 py-3 text-[var(--color-text-muted)]">{channel.platform}</td>
                       <td className="px-4 py-3 text-right">
@@ -264,7 +264,7 @@ export default function SocialPage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Community Guidelines</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Community Guidelines</h2>
             <ul className="space-y-3">
               {guidelines.map((guideline, index) => (
                 <li key={index} className="flex items-start gap-3 text-sm text-[var(--color-text-muted)]">
@@ -288,7 +288,7 @@ export default function SocialPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Stay Connected</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Stay Connected</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Follow official channels to never miss important updates, participate in governance,
               and be part of ETC&apos;s future.
@@ -307,7 +307,7 @@ export default function SocialPage() {
               </a>
               <Link
                 href="/community/events"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 View Events
               </Link>

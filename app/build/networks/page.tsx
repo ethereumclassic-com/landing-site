@@ -36,7 +36,7 @@ function NetworkCard({ network }: { network: typeof networks[0] }) {
       <div className="mb-4 flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-xl font-bold text-white">{network.name}</h3>
+            <h3 className="text-xl font-bold text-[var(--text-primary)]">{network.name}</h3>
             <span
               className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                 isMainnet ? 'bg-green-500/10 text-green-400' : 'bg-amber-500/10 text-amber-400'
@@ -54,11 +54,11 @@ function NetworkCard({ network }: { network: typeof networks[0] }) {
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-lg bg-[var(--bg)] p-3">
           <p className="text-xs text-[var(--color-text-muted)]">Chain ID</p>
-          <p className="font-mono text-lg font-bold text-white">{network.chainId}</p>
+          <p className="font-mono text-lg font-bold text-[var(--text-primary)]">{network.chainId}</p>
         </div>
         <div className="rounded-lg bg-[var(--bg)] p-3">
           <p className="text-xs text-[var(--color-text-muted)]">Currency</p>
-          <p className="font-mono text-lg font-bold text-white">{network.symbol}</p>
+          <p className="font-mono text-lg font-bold text-[var(--text-primary)]">{network.symbol}</p>
         </div>
       </div>
 
@@ -82,7 +82,7 @@ function NetworkCard({ network }: { network: typeof networks[0] }) {
 function EndpointTable({ endpoints, title }: { endpoints: typeof rpcEndpoints; title: string }) {
   return (
     <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="mb-4 text-lg font-semibold text-white">{title}</h3>
+      <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
@@ -95,7 +95,7 @@ function EndpointTable({ endpoints, title }: { endpoints: typeof rpcEndpoints; t
           <tbody>
             {endpoints.map((endpoint, idx) => (
               <tr key={idx} className="border-b border-[var(--border)]/50 last:border-0">
-                <td className="py-3 font-medium text-white">{endpoint.provider}</td>
+                <td className="py-3 font-medium text-[var(--text-primary)]">{endpoint.provider}</td>
                 <td className="py-3">
                   <code className="rounded bg-[var(--bg)] px-2 py-1 text-xs text-[var(--color-primary)]">
                     {endpoint.url}
@@ -124,7 +124,7 @@ export default function BuildNetworksPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/build"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -134,7 +134,7 @@ export default function BuildNetworksPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Network Information
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -157,19 +157,19 @@ export default function BuildNetworksPage() {
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
               <p className="text-xs text-[var(--color-text-muted)]">Block Time</p>
-              <p className="text-xl font-bold text-white">{buildStats.blockTime}</p>
+              <p className="text-xl font-bold text-[var(--text-primary)]">{buildStats.blockTime}</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
               <p className="text-xs text-[var(--color-text-muted)]">EVM Version</p>
-              <p className="text-xl font-bold text-white">{buildStats.evmVersion}</p>
+              <p className="text-xl font-bold text-[var(--text-primary)]">{buildStats.evmVersion}</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
               <p className="text-xs text-[var(--color-text-muted)]">Consensus</p>
-              <p className="text-xl font-bold text-white">Proof of Work</p>
+              <p className="text-xl font-bold text-[var(--text-primary)]">Proof of Work</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
               <p className="text-xs text-[var(--color-text-muted)]">Algorithm</p>
-              <p className="text-xl font-bold text-white">ETChash</p>
+              <p className="text-xl font-bold text-[var(--text-primary)]">ETChash</p>
             </div>
           </motion.div>
         </div>
@@ -182,7 +182,7 @@ export default function BuildNetworksPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Networks
           </motion.h2>
@@ -234,7 +234,7 @@ export default function BuildNetworksPage() {
             transition={{ delay: 0.5 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="mb-4 text-lg font-semibold text-white">Block Explorers & APIs</h3>
+            <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Block Explorers & APIs</h3>
             <div className="grid gap-4 md:grid-cols-2">
               {explorerAPIs.map((explorer) => (
                 <div
@@ -242,7 +242,7 @@ export default function BuildNetworksPage() {
                   className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4"
                 >
                   <div className="flex items-center justify-between">
-                    <h4 className="font-medium text-white">{explorer.name}</h4>
+                    <h4 className="font-medium text-[var(--text-primary)]">{explorer.name}</h4>
                     <span
                       className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                         explorer.network === 'mainnet'
@@ -288,7 +288,7 @@ export default function BuildNetworksPage() {
             transition={{ delay: 0.6 }}
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
-            <h3 className="mb-4 text-lg font-semibold text-white">Quick Wallet Configuration</h3>
+            <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Wallet Configuration</h3>
             <p className="mb-4 text-sm text-[var(--color-text-muted)]">
               Add Ethereum Classic to MetaMask or other wallets using these settings:
             </p>
@@ -298,23 +298,23 @@ export default function BuildNetworksPage() {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Network Name:</span>
-                    <span className="font-mono text-white">Ethereum Classic</span>
+                    <span className="font-mono text-[var(--text-primary)]">Ethereum Classic</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL:</span>
-                    <span className="font-mono text-white">https://etc.rivet.link</span>
+                    <span className="font-mono text-[var(--text-primary)]">https://etc.rivet.link</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Chain ID:</span>
-                    <span className="font-mono text-white">61</span>
+                    <span className="font-mono text-[var(--text-primary)]">61</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Symbol:</span>
-                    <span className="font-mono text-white">ETC</span>
+                    <span className="font-mono text-[var(--text-primary)]">ETC</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Explorer:</span>
-                    <span className="font-mono text-white">https://etc.blockscout.com</span>
+                    <span className="font-mono text-[var(--text-primary)]">https://etc.blockscout.com</span>
                   </div>
                 </div>
               </div>
@@ -323,23 +323,23 @@ export default function BuildNetworksPage() {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Network Name:</span>
-                    <span className="font-mono text-white">Mordor Testnet</span>
+                    <span className="font-mono text-[var(--text-primary)]">Mordor Testnet</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL:</span>
-                    <span className="font-mono text-white">https://rpc.mordor.etccooperative.org</span>
+                    <span className="font-mono text-[var(--text-primary)]">https://rpc.mordor.etccooperative.org</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Chain ID:</span>
-                    <span className="font-mono text-white">63</span>
+                    <span className="font-mono text-[var(--text-primary)]">63</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Symbol:</span>
-                    <span className="font-mono text-white">METC</span>
+                    <span className="font-mono text-[var(--text-primary)]">METC</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Explorer:</span>
-                    <span className="font-mono text-white">https://etc-mordor.blockscout.com</span>
+                    <span className="font-mono text-[var(--text-primary)]">https://etc-mordor.blockscout.com</span>
                   </div>
                 </div>
               </div>
@@ -357,7 +357,7 @@ export default function BuildNetworksPage() {
                 href="https://chainlist.org/chain/63"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Add Mordor via Chainlist
               </a>
@@ -375,7 +375,7 @@ export default function BuildNetworksPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Start Developing?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Developing?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Get testnet ETC from a faucet and start deploying contracts on Mordor.
             </p>
@@ -391,7 +391,7 @@ export default function BuildNetworksPage() {
               </Link>
               <Link
                 href="/build/clients"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Run Your Own Node
               </Link>

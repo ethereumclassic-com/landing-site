@@ -107,7 +107,7 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
       {/* Header */}
       <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-white">Price Chart</h3>
+          <h3 className="text-lg font-semibold text-[var(--text-primary)]">Price Chart</h3>
           <p className="text-sm text-[var(--color-text-muted)]">
             ETC/USD historical price data
           </p>
@@ -119,8 +119,8 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
               onClick={() => setTimeRange(range.value)}
               className={`rounded px-3 py-1.5 text-sm font-medium transition ${
                 timeRange === range.value
-                  ? 'bg-[var(--color-primary)] text-white'
-                  : 'text-[var(--color-text-muted)] hover:text-white'
+                  ? 'bg-[var(--color-primary)] text-[var(--text-primary)]'
+                  : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               {range.label}
@@ -188,7 +188,7 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-[var(--border)] pt-4">
         <div className="flex items-center gap-4 text-sm">
           <span className="text-[var(--color-text-muted)]">
-            Range: <span className="text-white">${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}</span>
+            Range: <span className="text-[var(--text-primary)]">${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}</span>
           </span>
           <span className={`flex items-center gap-1 ${isUp ? 'text-emerald-400' : 'text-red-400'}`}>
             {isUp ? (

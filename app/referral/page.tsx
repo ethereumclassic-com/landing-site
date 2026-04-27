@@ -146,7 +146,7 @@ export default function ReferralPage() {
               Earn ETC
             </span>
 
-            <h1 className="mt-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               Referral Program
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -191,7 +191,7 @@ export default function ReferralPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white">How It Works</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">How It Works</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {howItWorks.map((item, index) => (
                 <motion.div
@@ -205,7 +205,7 @@ export default function ReferralPage() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-lg font-bold text-[var(--color-primary)]">
                     {item.step}
                   </div>
-                  <h3 className="mt-4 font-semibold text-white">{item.title}</h3>
+                  <h3 className="mt-4 font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-2 text-sm text-[var(--color-text-muted)]">{item.description}</p>
                 </motion.div>
               ))}
@@ -222,7 +222,7 @@ export default function ReferralPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white">Commission Tiers</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Commission Tiers</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Earn higher commission rates as you bring more users to the ETC ecosystem.
             </p>
@@ -237,7 +237,7 @@ export default function ReferralPage() {
                   className={`rounded-xl border ${tier.borderColor} ${tier.bgColor} p-6 text-center`}
                 >
                   <div className={`text-2xl font-bold ${tier.color}`}>{tier.name}</div>
-                  <div className="mt-4 text-4xl font-bold text-white">{tier.commissionRate}%</div>
+                  <div className="mt-4 text-4xl font-bold text-[var(--text-primary)]">{tier.commissionRate}%</div>
                   <div className="mt-1 text-sm text-[var(--color-text-muted)]">Commission Rate</div>
                   <div className="mt-4 text-sm text-[var(--color-text-muted)]">
                     {tier.maxReferrals
@@ -259,7 +259,7 @@ export default function ReferralPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white">Products & Services</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Products & Services</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Earn commission by referring users to these ETC products and services.
             </p>
@@ -285,7 +285,7 @@ export default function ReferralPage() {
                       {product.status === 'active' ? 'Active' : 'Coming Soon'}
                     </span>
                   </div>
-                  <h3 className="mt-4 font-semibold text-white">{product.name}</h3>
+                  <h3 className="mt-4 font-semibold text-[var(--text-primary)]">{product.name}</h3>
                   <p className="mt-2 text-sm text-[var(--color-text-muted)]">{product.description}</p>
                   <div className="mt-4 rounded-lg bg-[var(--bg)] p-3">
                     <span className="text-xs text-[var(--color-text-muted)]">Commission:</span>
@@ -308,7 +308,7 @@ export default function ReferralPage() {
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8"
           >
             <div className="mx-auto max-w-xl text-center">
-              <h2 className="text-2xl font-bold text-white">Join the Waitlist</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)]">Join the Waitlist</h2>
               <p className="mt-2 text-[var(--color-text-muted)]">
                 Be the first to know when the referral program launches.
               </p>
@@ -338,7 +338,7 @@ export default function ReferralPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-white placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                      className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
                     />
                   </div>
                   <div>
@@ -348,7 +348,7 @@ export default function ReferralPage() {
                       value={wallet}
                       onChange={(e) => setWallet(e.target.value)}
                       pattern="^0x[a-fA-F0-9]{40}$"
-                      className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-white placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                      className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
                     />
                     <p className="mt-1 text-xs text-[var(--color-text-muted)]">
                       Provide your wallet to receive priority access
@@ -375,31 +375,31 @@ export default function ReferralPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Frequently Asked Questions</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                <h3 className="font-semibold text-white">How are commissions paid?</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">How are commissions paid?</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                   All commissions are paid in ETC directly to your wallet address. Payments are processed
                   weekly with no minimum threshold.
                 </p>
               </div>
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                <h3 className="font-semibold text-white">How long do referral links last?</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">How long do referral links last?</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                   Referral cookies last for 30 days. If a user signs up within 30 days of clicking
                   your link, you&apos;ll receive credit for the referral.
                 </p>
               </div>
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                <h3 className="font-semibold text-white">Can I refer myself?</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Can I refer myself?</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                   No. Self-referrals are prohibited and will result in account termination.
                   Referrals must be genuine new users.
                 </p>
               </div>
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                <h3 className="font-semibold text-white">Are there any restrictions?</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Are there any restrictions?</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                   Spam, misleading promotions, and fake traffic are prohibited. We reserve the right
                   to review and void fraudulent referrals.
@@ -419,7 +419,7 @@ export default function ReferralPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="text-xl font-bold text-white">Promotional Resources</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Promotional Resources</h2>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
               When the program launches, you&apos;ll have access to:
             </p>
@@ -428,19 +428,19 @@ export default function ReferralPage() {
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                 </svg>
-                <span className="text-sm text-white">Banner Graphics</span>
+                <span className="text-sm text-[var(--text-primary)]">Banner Graphics</span>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-[var(--bg)] p-3">
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
                 </svg>
-                <span className="text-sm text-white">Social Media Copy</span>
+                <span className="text-sm text-[var(--text-primary)]">Social Media Copy</span>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-[var(--bg)] p-3">
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
-                <span className="text-sm text-white">Performance Dashboard</span>
+                <span className="text-sm text-[var(--text-primary)]">Performance Dashboard</span>
               </div>
             </div>
           </motion.div>

@@ -130,7 +130,7 @@ export default function NetworkHealthPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-white md:text-4xl">
+                <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
                   Network Health
                 </h1>
                 <p className="mt-2 text-[var(--color-text-muted)]">
@@ -214,7 +214,7 @@ export default function NetworkHealthPage() {
                   </span>
                 )}
               </div>
-              <div className="mt-2 text-2xl font-bold text-white">
+              <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : formatted?.price ?? '$--'}
               </div>
             </motion.div>
@@ -228,7 +228,7 @@ export default function NetworkHealthPage() {
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[var(--color-text-muted)]">Market Cap</span>
               </div>
-              <div className="mt-2 text-2xl font-bold text-white">
+              <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : formatted?.marketCap ?? '$--'}
               </div>
             </motion.div>
@@ -243,7 +243,7 @@ export default function NetworkHealthPage() {
                 <span className="text-sm text-[var(--color-text-muted)]">Block Time</span>
                 <span className="text-xs text-[var(--color-text-muted)]">target: 13.5s</span>
               </div>
-              <div className="mt-2 text-2xl font-bold text-white">
+              <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : formatted?.blockTime ?? '13.5s'}
               </div>
             </motion.div>
@@ -274,7 +274,7 @@ export default function NetworkHealthPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-xl font-bold text-white">Health Status</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Health Status</h2>
             <p className="mt-1 text-sm text-[var(--color-text-muted)]">
               Automated checks monitoring network security and performance
             </p>
@@ -290,7 +290,7 @@ export default function NetworkHealthPage() {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <h3 className="font-medium text-white">{check.name}</h3>
+                      <h3 className="font-medium text-[var(--text-primary)]">{check.name}</h3>
                       <p className="mt-1 text-xs text-[var(--color-text-muted)]">{check.description}</p>
                     </div>
                     <StatusIcon status={check.status} />
@@ -315,7 +315,7 @@ export default function NetworkHealthPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
             >
               <div className="p-4 border-b border-[var(--border)]">
-                <h2 className="font-bold text-white">Recent Blocks</h2>
+                <h2 className="font-bold text-[var(--text-primary)]">Recent Blocks</h2>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">View live blocks on Blockscout</p>
               </div>
               <div className="p-6 text-center">
@@ -356,7 +356,7 @@ export default function NetworkHealthPage() {
             >
               <div className="p-4 border-b border-[var(--border)]">
                 <div className="flex items-center justify-between">
-                  <h2 className="font-bold text-white">Mining Pool Distribution</h2>
+                  <h2 className="font-bold text-[var(--text-primary)]">Mining Pool Distribution</h2>
                   <span className="text-xs text-amber-400">Estimate</span>
                 </div>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Based on MiningPoolStats data</p>
@@ -365,7 +365,7 @@ export default function NetworkHealthPage() {
                 {poolDistribution.map((pool) => (
                   <div key={pool.name}>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-white">{pool.name}</span>
+                      <span className="text-[var(--text-primary)]">{pool.name}</span>
                       <span className="text-[var(--color-text-muted)]">{pool.hashrate} ({pool.share}%)</span>
                     </div>
                     <div className="mt-1 h-2 rounded-full bg-[var(--bg)]">
@@ -402,7 +402,7 @@ export default function NetworkHealthPage() {
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <h2 className="font-bold text-white">Node Distribution</h2>
+                  <h2 className="font-bold text-[var(--text-primary)]">Node Distribution</h2>
                   <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs text-amber-400">Estimate</span>
                 </div>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -410,14 +410,14 @@ export default function NetworkHealthPage() {
                 </p>
               </div>
               <div className="text-right">
-                <div className="text-2xl font-bold text-white">~840</div>
+                <div className="text-2xl font-bold text-[var(--text-primary)]">~840</div>
                 <div className="text-sm text-[var(--color-text-muted)]">estimated nodes</div>
               </div>
             </div>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {nodeDistribution.map((region) => (
                 <div key={region.region} className="rounded-lg bg-[var(--bg)] p-4 text-center">
-                  <div className="text-2xl font-bold text-white">{region.count}</div>
+                  <div className="text-2xl font-bold text-[var(--text-primary)]">{region.count}</div>
                   <div className="mt-1 text-sm text-[var(--color-text-muted)]">{region.region}</div>
                   <div className="mt-1 text-xs text-[var(--color-primary)]">~{region.percentage}%</div>
                 </div>
@@ -438,7 +438,7 @@ export default function NetworkHealthPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-xl font-bold text-white">Network Resources</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Network Resources</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Link
                 href="/tools/explorer"
@@ -447,7 +447,7 @@ export default function NetworkHealthPage() {
                 <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
-                <h3 className="mt-3 font-medium text-white">Block Explorer</h3>
+                <h3 className="mt-3 font-medium text-[var(--text-primary)]">Block Explorer</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Search transactions, blocks, and addresses</p>
               </Link>
 
@@ -458,7 +458,7 @@ export default function NetworkHealthPage() {
                 <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
-                <h3 className="mt-3 font-medium text-white">Network Research</h3>
+                <h3 className="mt-3 font-medium text-[var(--text-primary)]">Network Research</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Detailed network statistics and analysis</p>
               </Link>
 
@@ -469,7 +469,7 @@ export default function NetworkHealthPage() {
                 <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                 </svg>
-                <h3 className="mt-3 font-medium text-white">Mining Stats</h3>
+                <h3 className="mt-3 font-medium text-[var(--text-primary)]">Mining Stats</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Hashrate, difficulty, and mining data</p>
               </Link>
 
@@ -480,7 +480,7 @@ export default function NetworkHealthPage() {
                 <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
                 </svg>
-                <h3 className="mt-3 font-medium text-white">Gas Tracker</h3>
+                <h3 className="mt-3 font-medium text-[var(--text-primary)]">Gas Tracker</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Current gas prices and recommendations</p>
               </Link>
             </div>

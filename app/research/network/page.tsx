@@ -99,12 +99,12 @@ function BarChart({ data, label }: { data: { label: string; value: number; color
 
   return (
     <div className="space-y-3">
-      <p className="text-sm font-medium text-white">{label}</p>
+      <p className="text-sm font-medium text-[var(--text-primary)]">{label}</p>
       {data.map((item) => (
         <div key={item.label}>
           <div className="mb-1 flex justify-between text-sm">
             <span className="text-[var(--color-text-muted)]">{item.label}</span>
-            <span className="font-medium text-white">{item.value}%</span>
+            <span className="font-medium text-[var(--text-primary)]">{item.value}%</span>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-[var(--bg)]">
             <motion.div
@@ -124,11 +124,11 @@ function BarChart({ data, label }: { data: { label: string; value: number; color
 function GasPriceCard({ gasPrice }: { gasPrice: { slow: number; average: number; fast: number } }) {
   return (
     <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="mb-4 font-semibold text-white">Gas Prices</h3>
+      <h3 className="mb-4 font-semibold text-[var(--text-primary)]">Gas Prices</h3>
       <div className="grid grid-cols-3 gap-4">
         <div className="rounded-lg bg-[var(--bg)] p-3 text-center">
           <p className="text-xs text-[var(--color-text-muted)]">Slow</p>
-          <p className="mt-1 text-lg font-bold text-white">{gasPrice.slow.toFixed(2)}</p>
+          <p className="mt-1 text-lg font-bold text-[var(--text-primary)]">{gasPrice.slow.toFixed(2)}</p>
           <p className="text-xs text-[var(--color-text-muted)]">Gwei</p>
         </div>
         <div className="rounded-lg bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30 p-3 text-center">
@@ -138,7 +138,7 @@ function GasPriceCard({ gasPrice }: { gasPrice: { slow: number; average: number;
         </div>
         <div className="rounded-lg bg-[var(--bg)] p-3 text-center">
           <p className="text-xs text-[var(--color-text-muted)]">Fast</p>
-          <p className="mt-1 text-lg font-bold text-white">{gasPrice.fast.toFixed(2)}</p>
+          <p className="mt-1 text-lg font-bold text-[var(--text-primary)]">{gasPrice.fast.toFixed(2)}</p>
           <p className="text-xs text-[var(--color-text-muted)]">Gwei</p>
         </div>
       </div>
@@ -186,7 +186,7 @@ export default function NetworkAnalysisPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/research"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -196,7 +196,7 @@ export default function NetworkAnalysisPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="flex items-center gap-3">
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Network Dashboard
               </h1>
               {stats?.source === 'blockscout' && (
@@ -224,7 +224,7 @@ export default function NetworkAnalysisPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Network Status
           </motion.h2>
@@ -253,7 +253,7 @@ export default function NetworkAnalysisPage() {
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">ETC Price</p>
                 <div className="mt-1 flex items-baseline gap-2">
-                  <p className="text-2xl font-bold text-white">{stats.priceFormatted}</p>
+                  <p className="text-2xl font-bold text-[var(--text-primary)]">{stats.priceFormatted}</p>
                   <span className={`text-sm font-medium ${
                     stats.priceChange24h >= 0 ? 'text-green-400' : 'text-red-400'
                   }`}>
@@ -266,49 +266,49 @@ export default function NetworkAnalysisPage() {
               {/* Market Cap */}
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Market Cap</p>
-                <p className="mt-1 text-2xl font-bold text-white">{stats.marketCapFormatted}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.marketCapFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Total market value</p>
               </motion.div>
 
               {/* Block Height */}
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Height</p>
-                <p className="mt-1 text-2xl font-bold text-white">{stats.blockHeightFormatted}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.blockHeightFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Current block number</p>
               </motion.div>
 
               {/* Total Transactions */}
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Total Transactions</p>
-                <p className="mt-1 text-2xl font-bold text-white">{stats.totalTransactionsFormatted}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.totalTransactionsFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">All-time on-chain</p>
               </motion.div>
 
               {/* Block Time */}
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Time</p>
-                <p className="mt-1 text-2xl font-bold text-white">{stats.avgBlockTimeFormatted}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.avgBlockTimeFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Average confirmation</p>
               </motion.div>
 
               {/* Block Reward */}
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Reward</p>
-                <p className="mt-1 text-2xl font-bold text-white">{stats.blockRewardFormatted}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.blockRewardFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Per block mined</p>
               </motion.div>
 
               {/* Gas Price */}
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Gas Price</p>
-                <p className="mt-1 text-2xl font-bold text-white">{stats.gasPriceFormatted}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.gasPriceFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Average gas price</p>
               </motion.div>
 
               {/* Data Freshness */}
               <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Data Updated</p>
-                <p className="mt-1 text-2xl font-bold text-white">
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
                   {stats.cacheAgeMinutes !== undefined ? (
                     stats.cacheAgeMinutes < 60 ? `${stats.cacheAgeMinutes}m ago` : `${Math.round(stats.cacheAgeMinutes / 60)}h ago`
                   ) : 'Just now'}
@@ -360,7 +360,7 @@ export default function NetworkAnalysisPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Chain Parameters
           </motion.h2>
@@ -375,12 +375,12 @@ export default function NetworkAnalysisPage() {
                 key={section.category}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <h3 className="mb-4 font-semibold text-white">{section.category}</h3>
+                <h3 className="mb-4 font-semibold text-[var(--text-primary)]">{section.category}</h3>
                 <div className="space-y-3">
                   {section.metrics.map((metric) => (
                     <div key={metric.label} className="flex justify-between text-sm">
                       <span className="text-[var(--color-text-muted)]">{metric.label}</span>
-                      <span className="font-medium text-white">{metric.value}</span>
+                      <span className="font-medium text-[var(--text-primary)]">{metric.value}</span>
                     </div>
                   ))}
                 </div>
@@ -397,7 +397,7 @@ export default function NetworkAnalysisPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Mining Distribution
           </motion.h2>
@@ -419,16 +419,16 @@ export default function NetworkAnalysisPage() {
             </div>
 
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h3 className="mb-4 font-semibold text-white">Network Security</h3>
+              <h3 className="mb-4 font-semibold text-[var(--text-primary)]">Network Security</h3>
               <div className="space-y-4">
                 <div className="rounded-lg bg-[var(--bg)] p-4">
                   <p className="text-xs text-[var(--color-text-muted)]">Network Hashrate</p>
-                  <p className="mt-1 text-xl font-bold text-white">~174 TH/s</p>
+                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">~174 TH/s</p>
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">Total computational power</p>
                 </div>
                 <div className="rounded-lg bg-[var(--bg)] p-4">
                   <p className="text-xs text-[var(--color-text-muted)]">Estimated 51% Attack Cost</p>
-                  <p className="mt-1 text-xl font-bold text-white">$50,000+ / hour</p>
+                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">$50,000+ / hour</p>
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">Based on hashrate and hardware costs</p>
                 </div>
                 <div className="rounded-lg bg-green-500/10 p-4">
@@ -455,7 +455,7 @@ export default function NetworkAnalysisPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Network History
           </motion.h2>
@@ -496,7 +496,7 @@ export default function NetworkAnalysisPage() {
             transition={{ delay: 0.5 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Data Sources</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Data Sources</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {dataSources.filter(s => s.type === 'explorer' || s.type === 'analytics').map((source) => (
                 <a
@@ -507,7 +507,7 @@ export default function NetworkAnalysisPage() {
                   className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 transition-colors hover:border-[var(--color-primary)]/30"
                 >
                   <div className="flex items-center justify-between">
-                    <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">{source.name}</h4>
+                    <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{source.name}</h4>
                     <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                     </svg>
@@ -529,7 +529,7 @@ export default function NetworkAnalysisPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Explore Mining</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Explore Mining</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Learn about mining Ethereum Classic and view detailed pool statistics.
             </p>
@@ -545,7 +545,7 @@ export default function NetworkAnalysisPage() {
               </Link>
               <Link
                 href="/mining/pools"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Pool Directory
               </Link>

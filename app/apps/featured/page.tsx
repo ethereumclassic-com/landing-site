@@ -108,7 +108,7 @@ export default function FeaturedAppsPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Featured{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
@@ -141,7 +141,7 @@ export default function FeaturedAppsPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {highlight.icon}
                 </div>
-                <h3 className="font-semibold text-white">{highlight.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{highlight.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{highlight.description}</p>
               </motion.div>
             ))}
@@ -160,7 +160,7 @@ export default function FeaturedAppsPage() {
               className="mb-8 flex items-center justify-between"
             >
               <div>
-                <h2 className="text-2xl font-bold text-white md:text-3xl">DeFi</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">DeFi</h2>
                 <p className="mt-2 text-[var(--color-text-secondary)]">
                   Decentralized finance protocols on Ethereum Classic
                 </p>
@@ -196,7 +196,7 @@ export default function FeaturedAppsPage() {
               className="mb-8 flex items-center justify-between"
             >
               <div>
-                <h2 className="text-2xl font-bold text-white md:text-3xl">Infrastructure</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Infrastructure</h2>
                 <p className="mt-2 text-[var(--color-text-secondary)]">
                   Core network infrastructure and services
                 </p>
@@ -232,7 +232,7 @@ export default function FeaturedAppsPage() {
               className="mb-8 flex items-center justify-between"
             >
               <div>
-                <h2 className="text-2xl font-bold text-white md:text-3xl">Governance</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Governance</h2>
                 <p className="mt-2 text-[var(--color-text-secondary)]">
                   DAOs and governance tools for the community
                 </p>
@@ -268,7 +268,7 @@ export default function FeaturedAppsPage() {
               className="mb-8 flex items-center justify-between"
             >
               <div>
-                <h2 className="text-2xl font-bold text-white md:text-3xl">Tools</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Tools</h2>
                 <p className="mt-2 text-[var(--color-text-secondary)]">
                   Utilities and dashboards for users and developers
                 </p>
@@ -306,7 +306,7 @@ export default function FeaturedAppsPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Want to Be Featured?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -315,7 +315,7 @@ export default function FeaturedAppsPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/apps/submit"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Submit Your App
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -324,7 +324,7 @@ export default function FeaturedAppsPage() {
             </Link>
             <Link
               href="/apps"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Browse All Apps
             </Link>

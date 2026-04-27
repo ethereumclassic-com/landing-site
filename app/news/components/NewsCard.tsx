@@ -97,7 +97,7 @@ export default function NewsCard({ article, index, variant = 'default' }: NewsCa
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-semibold text-white transition group-hover:text-[var(--color-primary)]">
+        <h3 className="text-lg font-semibold text-[var(--text-primary)] transition group-hover:text-[var(--color-primary)]">
           {article.title}
         </h3>
 

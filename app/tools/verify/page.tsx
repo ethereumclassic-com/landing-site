@@ -136,7 +136,7 @@ export default function VerifyPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/tools"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -146,7 +146,7 @@ export default function VerifyPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Contract Verification
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -179,7 +179,7 @@ export default function VerifyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Verification Methods
           </motion.h2>
@@ -202,7 +202,7 @@ export default function VerifyPage() {
                   {method.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {method.name}
                   </h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{method.description}</p>
@@ -223,7 +223,7 @@ export default function VerifyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             How to Verify
           </motion.h2>
@@ -245,7 +245,7 @@ export default function VerifyPage() {
                 <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
                   {step.number}
                 </div>
-                <h3 className="font-semibold text-white">{step.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{step.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{step.description}</p>
               </motion.div>
             ))}
@@ -262,7 +262,7 @@ export default function VerifyPage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Why Verify Your Contract?</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Why Verify Your Contract?</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {benefits.map((benefit) => (
                 <div key={benefit.title} className="flex items-start gap-3">
@@ -270,7 +270,7 @@ export default function VerifyPage() {
                     {benefit.icon}
                   </div>
                   <div>
-                    <h3 className="font-medium text-white">{benefit.title}</h3>
+                    <h3 className="font-medium text-[var(--text-primary)]">{benefit.title}</h3>
                     <p className="text-sm text-[var(--color-text-muted)]">{benefit.description}</p>
                   </div>
                 </div>
@@ -289,37 +289,37 @@ export default function VerifyPage() {
             transition={{ delay: 0.35 }}
             className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">What You Need</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">What You Need</h2>
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-white">Contract Address</strong> - The deployed contract address on mainnet or testnet</span>
+                <span><strong className="text-[var(--text-primary)]">Contract Address</strong> - The deployed contract address on mainnet or testnet</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-white">Compiler Version</strong> - Exact Solidity/Vyper version used (e.g., v0.8.20)</span>
+                <span><strong className="text-[var(--text-primary)]">Compiler Version</strong> - Exact Solidity/Vyper version used (e.g., v0.8.20)</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-white">Source Code</strong> - Original source files including all imports</span>
+                <span><strong className="text-[var(--text-primary)]">Source Code</strong> - Original source files including all imports</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-white">Constructor Arguments</strong> - ABI-encoded arguments if your contract has a constructor</span>
+                <span><strong className="text-[var(--text-primary)]">Constructor Arguments</strong> - ABI-encoded arguments if your contract has a constructor</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-white">Optimization Settings</strong> - Whether optimizer was enabled and run count</span>
+                <span><strong className="text-[var(--text-primary)]">Optimization Settings</strong> - Whether optimizer was enabled and run count</span>
               </li>
             </ul>
           </motion.div>
@@ -335,7 +335,7 @@ export default function VerifyPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Need Help Building?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need Help Building?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Check out our developer documentation for guides on smart contract development,
               testing, and deployment on Ethereum Classic.
@@ -352,7 +352,7 @@ export default function VerifyPage() {
               </Link>
               <Link
                 href="/build/tools"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Developer Tools
               </Link>

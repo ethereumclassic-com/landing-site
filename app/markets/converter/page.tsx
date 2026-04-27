@@ -167,7 +167,7 @@ export default function ConverterPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             ETC Price{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -200,7 +200,7 @@ export default function ConverterPage() {
                   type="number"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-xl font-semibold text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                  className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3 text-xl font-semibold text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                   placeholder="0"
                   min="0"
                   step="any"
@@ -208,7 +208,7 @@ export default function ConverterPage() {
                 <select
                   value={fromCurrency}
                   onChange={(e) => setFromCurrency(e.target.value)}
-                  className="w-32 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-3 text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                  className="w-32 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-3 text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                 >
                   <optgroup label="Crypto">
                     {cryptoCurrencies.map((c) => (
@@ -255,14 +255,14 @@ export default function ConverterPage() {
               <label className="text-sm font-medium text-[var(--color-text-muted)]">To</label>
               <div className="flex gap-3">
                 <div className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-3">
-                  <p className="text-xl font-semibold text-white">
+                  <p className="text-xl font-semibold text-[var(--text-primary)]">
                     {toInfo ? formatCurrency(convertedAmount, toInfo) : convertedAmount.toFixed(8)}
                   </p>
                 </div>
                 <select
                   value={toCurrency}
                   onChange={(e) => setToCurrency(e.target.value)}
-                  className="w-32 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-3 text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                  className="w-32 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-3 text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                 >
                   <optgroup label="Crypto">
                     {cryptoCurrencies.map((c) => (
@@ -297,7 +297,7 @@ export default function ConverterPage() {
               <div className="mt-6 rounded-xl border border-[var(--border)] bg-[var(--background)] p-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-[var(--color-text-muted)]">Exchange Rate</span>
-                  <span className="text-sm font-medium text-white">
+                  <span className="text-sm font-medium text-[var(--text-primary)]">
                     1 {fromCurrency} = {rate < 0.01 ? rate.toFixed(8) : rate.toLocaleString('en-US', { maximumFractionDigits: 4 })} {toCurrency}
                   </span>
                 </div>
@@ -315,7 +315,7 @@ export default function ConverterPage() {
                     className={`rounded-lg border px-4 py-2 text-sm font-medium transition-all ${
                       amount === quickAmount.toString()
                         ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                        : 'border-[var(--border)] text-[var(--color-text-muted)] hover:border-[var(--color-primary)]/30 hover:text-white'
+                        : 'border-[var(--border)] text-[var(--color-text-muted)] hover:border-[var(--color-primary)]/30 hover:text-[var(--text-primary)]'
                     }`}
                   >
                     {quickAmount} {fromCurrency}
@@ -364,7 +364,7 @@ export default function ConverterPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">ETC Conversion Table</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">ETC Conversion Table</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Quick reference for common ETC conversions
             </p>
@@ -374,11 +374,11 @@ export default function ConverterPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-[var(--border)]">
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-white">ETC Amount</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">USD</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">EUR</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">BTC</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">ETH</th>
+                  <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--text-primary)]">ETC Amount</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">USD</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">EUR</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">BTC</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">ETH</th>
                 </tr>
               </thead>
               <tbody>
@@ -390,7 +390,7 @@ export default function ConverterPage() {
                     viewport={{ once: true }}
                     className="border-b border-[var(--border)]/50"
                   >
-                    <td className="px-4 py-3 font-medium text-white">{etcAmount} ETC</td>
+                    <td className="px-4 py-3 font-medium text-[var(--text-primary)]">{etcAmount} ETC</td>
                     <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">
                       ${(etcAmount * (liveRates['ETC-USD'] || 0)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </td>
@@ -420,7 +420,7 @@ export default function ConverterPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Popular Conversions</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Popular Conversions</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Frequently used ETC conversion pairs
             </p>
@@ -447,7 +447,7 @@ export default function ConverterPage() {
                   </svg>
                   <span>{to}</span>
                 </div>
-                <p className="mt-2 text-lg font-semibold text-white">
+                <p className="mt-2 text-lg font-semibold text-[var(--text-primary)]">
                   1 {from} = {pairRate && (pairRate < 0.01 ? pairRate.toFixed(8) : pairRate.toLocaleString('en-US', { maximumFractionDigits: 4 }))} {to}
                 </p>
               </motion.div>
@@ -465,14 +465,14 @@ export default function ConverterPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Buy ETC?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Buy ETC?</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Get ETC at the best rates on trusted exchanges
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -481,7 +481,7 @@ export default function ConverterPage() {
               </Link>
               <Link
                 href="/markets/calculator"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Investment Calculator
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

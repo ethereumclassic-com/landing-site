@@ -27,15 +27,15 @@ export default function StakingExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Staking</span>
+            <span className="text-[var(--text-primary)]">Staking</span>
           </nav>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default function StakingExchangesPage() {
                 Important Info
               </span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Staking on Exchanges
             </motion.h1>
             <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -79,9 +79,9 @@ export default function StakingExchangesPage() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">ETC is Proof-of-Work</h2>
+                <h2 className="text-xl font-bold text-[var(--text-primary)]">ETC is Proof-of-Work</h2>
                 <p className="mt-2 text-[var(--color-text-secondary)]">
-                  Unlike Ethereum (which moved to Proof-of-Stake), <strong className="text-white">Ethereum Classic remains a Proof-of-Work blockchain</strong>. This means there is no native staking mechanism for ETC. The network is secured by miners, not validators.
+                  Unlike Ethereum (which moved to Proof-of-Stake), <strong className="text-[var(--text-primary)]">Ethereum Classic remains a Proof-of-Work blockchain</strong>. This means there is no native staking mechanism for ETC. The network is secured by miners, not validators.
                 </p>
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function StakingExchangesPage() {
             transition={{ delay: 0.3 }}
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">Why Ethereum Classic Uses Proof-of-Work</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Why Ethereum Classic Uses Proof-of-Work</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -103,7 +103,7 @@ export default function StakingExchangesPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Decentralization</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Decentralization</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Anyone can mine with hardware, avoiding wealth concentration in validators</p>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export default function StakingExchangesPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Immutability</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Immutability</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">PoW provides stronger guarantees against transaction reversal</p>
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function StakingExchangesPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Battle-Tested</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Battle-Tested</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Proven security model since 2015 with the original Ethereum</p>
                 </div>
               </div>
@@ -139,7 +139,7 @@ export default function StakingExchangesPage() {
             transition={{ delay: 0.4 }}
             className="mb-12"
           >
-            <h2 className="mb-6 text-2xl font-bold text-white">Ways to Earn with ETC</h2>
+            <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Ways to Earn with ETC</h2>
             <div className="grid gap-6 md:grid-cols-2">
               {/* Mining */}
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
@@ -150,7 +150,7 @@ export default function StakingExchangesPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">Mining</h3>
+                    <h3 className="font-semibold text-[var(--text-primary)]">Mining</h3>
                     <span className="text-sm text-[var(--color-primary)]">Active earning</span>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ export default function StakingExchangesPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">DeFi Liquidity</h3>
+                    <h3 className="font-semibold text-[var(--text-primary)]">DeFi Liquidity</h3>
                     <span className="text-sm text-purple-400">Passive earning</span>
                   </div>
                 </div>
@@ -228,7 +228,7 @@ export default function StakingExchangesPage() {
                   href="https://etcswap.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-colors hover:border-purple-500/30"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-purple-500/30"
                 >
                   Visit ETCswap
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -251,7 +251,7 @@ export default function StakingExchangesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
               </svg>
               <div>
-                <h3 className="font-semibold text-white">Beware of &quot;ETC Staking&quot; Offers</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Beware of &quot;ETC Staking&quot; Offers</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
                   Any service offering &quot;ETC staking&quot; with guaranteed returns is either:
                 </p>
@@ -261,7 +261,7 @@ export default function StakingExchangesPage() {
                   <li>• A potential scam (if returns seem too good to be true)</li>
                 </ul>
                 <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-                  Always understand <strong className="text-white">where your yield comes from</strong> before depositing your ETC.
+                  Always understand <strong className="text-[var(--text-primary)]">where your yield comes from</strong> before depositing your ETC.
                 </p>
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function StakingExchangesPage() {
             </p>
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

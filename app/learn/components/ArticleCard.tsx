@@ -92,7 +92,7 @@ export default function ArticleCard({ article, index = 0, variant = 'default' }:
             <CategoryIcon category={article.category} />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="truncate text-sm font-medium text-white group-hover:text-[var(--color-primary)]">
+            <h3 className="truncate text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
               {article.title}
             </h3>
             <p className="text-xs text-[var(--color-text-muted)]">{article.readTime} min read</p>
@@ -135,7 +135,7 @@ export default function ArticleCard({ article, index = 0, variant = 'default' }:
 
           {/* Content */}
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
               {article.title}
             </h3>
             <p className="mt-2 line-clamp-2 text-sm text-[var(--color-text-secondary)]">
@@ -182,7 +182,7 @@ export default function ArticleCard({ article, index = 0, variant = 'default' }:
 
         {/* Content */}
         <div className="flex-1">
-          <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+          <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
             {article.title}
           </h3>
           <p className="mt-2 line-clamp-2 text-sm text-[var(--color-text-secondary)]">

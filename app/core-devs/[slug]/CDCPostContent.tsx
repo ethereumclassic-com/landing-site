@@ -36,13 +36,13 @@ function PlaceholderTemplate({ entry }: { entry: CDCEntry }) {
       {/* Network Details */}
       <div className="rounded-lg border border-[var(--border)] bg-[var(--panel)] overflow-hidden">
         <div className="border-b border-[var(--border)] px-5 py-3">
-          <h2 className="font-mono text-sm font-semibold text-white">Network Upgrade Details</h2>
+          <h2 className="font-mono text-sm font-semibold text-[var(--text-primary)]">Network Upgrade Details</h2>
         </div>
         <div className="divide-y divide-[var(--border)]">
           {rows.map(([label, value]) => (
             <div key={label} className="flex items-center gap-4 px-5 py-3">
               <span className="w-20 shrink-0 font-mono text-xs text-[var(--color-text-muted)]">{label}</span>
-              <span className="text-sm text-white">{value}</span>
+              <span className="text-sm text-[var(--text-primary)]">{value}</span>
             </div>
           ))}
         </div>
@@ -56,7 +56,7 @@ function PlaceholderTemplate({ entry }: { entry: CDCEntry }) {
         { title: 'Participants', desc: 'Client teams and community members.' },
       ].map((section) => (
         <div key={section.title} className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-5 py-4">
-          <h2 className="font-mono text-sm font-semibold text-white">{section.title}</h2>
+          <h2 className="font-mono text-sm font-semibold text-[var(--text-primary)]">{section.title}</h2>
           <p className="mt-1 text-xs text-[var(--color-text-muted)]">{section.desc}</p>
           <div className="mt-3 flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-text-muted)]/40" />
@@ -123,7 +123,7 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-3 text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl"
+            className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl"
           >
             {entry.title}
           </motion.h1>
@@ -165,7 +165,7 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
           {entry.isPlaceholder ? (
             <PlaceholderTemplate entry={entry} />
           ) : (
-            <div className="cdc-content prose prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2 prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-a:text-[var(--color-primary)] prose-a:no-underline hover:prose-a:text-[var(--color-primary)]/80 prose-li:text-[var(--color-text-secondary)] prose-strong:text-white prose-code:text-[var(--color-primary)] prose-code:bg-[var(--color-primary)]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-ul:my-3 prose-ol:my-3">
+            <div className="cdc-content prose prose-invert max-w-none prose-headings:text-[var(--background)] prose-headings:font-semibold prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2 prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-a:text-[var(--color-primary)] prose-a:no-underline hover:prose-a:text-[var(--color-primary)]/80 prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--background)] prose-code:text-[var(--color-primary)] prose-code:bg-[var(--color-primary)]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-ul:my-3 prose-ol:my-3">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{entry.content}</ReactMarkdown>
             </div>
           )}
@@ -178,7 +178,7 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
           {prevEntry ? (
             <Link
               href={`/core-devs/${prevEntry.slug}`}
-              className="group text-sm text-[var(--color-text-muted)] transition hover:text-white"
+              className="group text-sm text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
             >
               <span className="text-xs text-[var(--color-text-muted)]">← Previous</span>
               <br />
@@ -190,7 +190,7 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
           {nextEntry ? (
             <Link
               href={`/core-devs/${nextEntry.slug}`}
-              className="group text-right text-sm text-[var(--color-text-muted)] transition hover:text-white"
+              className="group text-right text-sm text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
             >
               <span className="text-xs text-[var(--color-text-muted)]">Next →</span>
               <br />

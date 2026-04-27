@@ -100,7 +100,7 @@ function CountingState({
       <Link href="/olympia" className="block">
         <div className="flex items-center justify-between rounded-xl border border-[#00ffae]/20 bg-[#00ffae]/5 px-4 py-3">
           <span className="text-sm font-medium text-[#00ffae]">Olympia Countdown</span>
-          <div className="flex items-center gap-2 font-mono text-sm text-white">
+          <div className="flex items-center gap-2 font-mono text-sm text-[var(--text-primary)]">
             <span>{loading ? '--' : time.days}d</span>
             <span>{loading ? '--' : time.hours}h</span>
             <span>{loading ? '--' : time.minutes}m</span>

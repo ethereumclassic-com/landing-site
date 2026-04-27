@@ -90,7 +90,7 @@ export default function AppCard({ app, index, variant = 'default' }: AppCardProp
         </div>
 
         {/* App Name */}
-        <h3 className="text-lg font-semibold text-white transition group-hover:text-[var(--color-primary)]">
+        <h3 className="text-lg font-semibold text-[var(--text-primary)] transition group-hover:text-[var(--color-primary)]">
           {app.name}
         </h3>
 

@@ -101,7 +101,7 @@ export default function DeFiPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             DeFi on{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
@@ -134,7 +134,7 @@ export default function DeFiPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-white">{feature.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
               </motion.div>
             ))}
@@ -151,7 +151,7 @@ export default function DeFiPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">All DeFi Apps</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">All DeFi Apps</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Explore the full suite of decentralized finance applications on Ethereum Classic
             </p>
@@ -173,7 +173,7 @@ export default function DeFiPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             New to DeFi on ETC?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -182,13 +182,13 @@ export default function DeFiPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/wallet"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Get a Wallet
             </Link>
             <Link
               href="/buy"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Buy ETC
             </Link>

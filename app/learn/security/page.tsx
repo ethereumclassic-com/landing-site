@@ -111,7 +111,7 @@ export default function SecurityPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Security{' '}
             <span className="bg-gradient-to-r from-red-400 to-[var(--color-primary)] bg-clip-text text-transparent">
@@ -144,7 +144,7 @@ export default function SecurityPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/10 text-red-400">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-white">{feature.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
               </motion.div>
             ))}
@@ -161,7 +161,7 @@ export default function SecurityPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
           >
-            <h2 className="text-xl font-bold text-white">Essential Security Rules</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Essential Security Rules</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Follow these rules to protect your crypto assets
             </p>
@@ -198,7 +198,7 @@ export default function SecurityPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">All Security Guides</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">All Security Guides</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               In-depth guides to keep your crypto safe
             </p>
@@ -245,7 +245,7 @@ export default function SecurityPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Maximum Security with Hardware Wallets</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Maximum Security with Hardware Wallets</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Compare Ledger and Trezor for securing your ETC
                 </p>
@@ -253,7 +253,7 @@ export default function SecurityPage() {
             </div>
             <Link
               href="/wallet/compare"
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-red-500 px-5 py-2.5 font-medium text-white transition-all hover:bg-red-600 md:mt-0"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-red-500 px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-red-600 md:mt-0"
             >
               Compare Wallets
             </Link>
@@ -269,7 +269,7 @@ export default function SecurityPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Stay Safe in Crypto
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -278,13 +278,13 @@ export default function SecurityPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/learn/wallets"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-500 px-6 py-3 font-medium text-white transition-all hover:bg-red-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-red-600"
             >
               Wallet Guides
             </Link>
             <Link
               href="/wallet"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-red-500/30 hover:bg-red-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-red-500/30 hover:bg-red-500/10"
             >
               Get a Secure Wallet
             </Link>

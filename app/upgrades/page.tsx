@@ -37,7 +37,7 @@ export default function UpgradesPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Network Upgrades
           </motion.h1>

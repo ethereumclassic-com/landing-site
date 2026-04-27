@@ -66,14 +66,14 @@ export default function FeedsPage() {
           </Link>
         </div>
 
-        <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">News Feeds</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl">News Feeds</h1>
         <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
           Subscribe to Ethereum Classic news using a feed reader. Get network upgrades, security updates, and ecosystem news delivered automatically — no account needed.
         </p>
 
         {/* Available Feeds */}
         <section className="mt-12">
-          <h2 className="text-xl font-semibold text-white">Available Feeds</h2>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)]">Available Feeds</h2>
           <p className="mt-2 text-sm text-[var(--color-text-muted)]">
             All three formats deliver the same content. Choose whichever your feed reader supports.
           </p>
@@ -89,7 +89,7 @@ export default function FeedsPage() {
                     {feed.icon}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-white">{feed.name}</h3>
+                    <h3 className="font-semibold text-[var(--text-primary)]">{feed.name}</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feed.description}</p>
                     <div className="mt-3 flex items-center gap-3">
                       <code className="block truncate rounded bg-black/30 px-3 py-1.5 text-xs text-[var(--color-text-secondary)]">
@@ -111,7 +111,7 @@ export default function FeedsPage() {
 
         {/* Feed Readers */}
         <section className="mt-12">
-          <h2 className="text-xl font-semibold text-white">Feed Readers</h2>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)]">Feed Readers</h2>
           <p className="mt-2 text-sm text-[var(--color-text-muted)]">
             A feed reader checks for new articles automatically and displays them in a clean reading interface. Here are some popular options:
           </p>
@@ -126,7 +126,7 @@ export default function FeedsPage() {
                 className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-3 transition-colors hover:border-[var(--color-primary)]/30"
               >
                 <div>
-                  <span className="font-medium text-white">{reader.name}</span>
+                  <span className="font-medium text-[var(--text-primary)]">{reader.name}</span>
                   <span className="ml-2 text-xs text-[var(--color-text-muted)]">{reader.platforms}</span>
                 </div>
                 <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -139,7 +139,7 @@ export default function FeedsPage() {
 
         {/* For Developers */}
         <section className="mt-12">
-          <h2 className="text-xl font-semibold text-white">For Developers</h2>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)]">For Developers</h2>
           <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--panel)] p-5 text-sm text-[var(--color-text-secondary)] space-y-3">
             <p>
               All pages on this site include <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">&lt;link rel=&quot;alternate&quot;&gt;</code> tags for autodiscovery. Feed readers and aggregators can detect our feeds automatically from any page URL.

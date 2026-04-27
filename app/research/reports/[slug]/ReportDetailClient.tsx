@@ -38,7 +38,7 @@ export default function ReportDetailClient({ report }: { report: Report }) {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/research/reports"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -55,7 +55,7 @@ export default function ReportDetailClient({ report }: { report: Report }) {
               <span className="text-sm text-[var(--color-text-muted)]">{report.readTime} read</span>
             </motion.div>
 
-            <motion.h1 variants={fadeInUp} className="mt-4 text-3xl font-bold text-white md:text-4xl">
+            <motion.h1 variants={fadeInUp} className="mt-4 text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
               {report.title}
             </motion.h1>
 
@@ -79,7 +79,7 @@ export default function ReportDetailClient({ report }: { report: Report }) {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Key Highlights</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Key Highlights</h2>
             <ul className="space-y-3">
               {report.highlights.map((highlight, i) => (
                 <li key={i} className="flex items-start gap-3">
@@ -104,7 +104,7 @@ export default function ReportDetailClient({ report }: { report: Report }) {
             className="prose prose-invert max-w-none"
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-8">
-              <h2 className="text-xl font-semibold text-white">Report Summary</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Report Summary</h2>
               <p className="mt-4 text-[var(--color-text-secondary)] leading-relaxed">
                 {report.description}
               </p>
@@ -142,7 +142,7 @@ export default function ReportDetailClient({ report }: { report: Report }) {
             </Link>
             <Link
               href="/research/ecosystem"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Ecosystem Overview
             </Link>

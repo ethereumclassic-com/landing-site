@@ -136,7 +136,7 @@ export default function CommunityPage() {
         <div className="mx-auto max-w-6xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Community
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -176,7 +176,7 @@ export default function CommunityPage() {
                   href={link.href}
                   className="group block rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
                 >
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {link.label}
                   </h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{link.description}</p>
@@ -194,7 +194,7 @@ export default function CommunityPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Join the Conversation
           </motion.h2>
@@ -218,7 +218,7 @@ export default function CommunityPage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                    <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {channel.name}
                     </h3>
                     <span className="text-sm text-[var(--color-text-muted)]">{channel.members}</span>
@@ -257,7 +257,7 @@ export default function CommunityPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Ways to Contribute
           </motion.h2>
@@ -279,7 +279,7 @@ export default function CommunityPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {way.icon}
                 </div>
-                <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                   {way.title}
                 </h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{way.description}</p>
@@ -298,7 +298,7 @@ export default function CommunityPage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Our Principles</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Our Principles</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
@@ -307,7 +307,7 @@ export default function CommunityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Code is Law</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Code is Law</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Smart contracts execute as written. No exceptions, no bailouts.
                   </p>
@@ -320,7 +320,7 @@ export default function CommunityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Immutability</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Immutability</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Transaction history cannot be altered. Your assets are permanent.
                   </p>
@@ -333,7 +333,7 @@ export default function CommunityPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Proof of Work</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Proof of Work</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Real computational work secures the network. No stake required.
                   </p>
@@ -353,7 +353,7 @@ export default function CommunityPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Join?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Join?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               The ETC community welcomes everyone. Start by joining our Discord server and
               introducing yourself.
@@ -372,7 +372,7 @@ export default function CommunityPage() {
               </a>
               <Link
                 href="/community/events"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Upcoming Events
               </Link>

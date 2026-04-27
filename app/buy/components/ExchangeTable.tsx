@@ -95,7 +95,7 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-white">{exchange.name}</span>
+                        <span className="font-medium text-[var(--text-primary)]">{exchange.name}</span>
                         {exchange.featured && (
                           <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
                             Featured
@@ -116,7 +116,7 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                   <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium ${
                     isDEX
                       ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                      : 'bg-white/5 text-[var(--color-text-secondary)]'
+                      : 'bg-[var(--border-subtle)] text-[var(--color-text-secondary)]'
                   }`}>
                     {exchange.type}
                   </span>
@@ -124,7 +124,7 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                 {showVolume && (
                   <td className="hidden py-4 sm:table-cell">
                     <span className={`text-sm ${
-                      isDEX ? 'text-[var(--color-text-muted)]' : 'font-medium text-white'
+                      isDEX ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'
                     }`}>
                       {exchange.volume24h}
                     </span>
@@ -140,13 +140,13 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                     {exchange.pairs.slice(0, 2).map((pair) => (
                       <span
                         key={pair}
-                        className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]"
+                        className="rounded bg-[var(--border-subtle)] px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]"
                       >
                         {pair}
                       </span>
                     ))}
                     {exchange.pairs.length > 2 && (
-                      <span className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]">
+                      <span className="rounded bg-[var(--border-subtle)] px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]">
                         +{exchange.pairs.length - 2}
                       </span>
                     )}
@@ -192,8 +192,8 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                     rel="noopener noreferrer"
                     className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                       isDEX
-                        ? 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)]'
-                        : 'border border-[var(--border)] bg-[var(--panel)] text-white hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
+                        ? 'bg-[var(--color-primary)] text-[var(--text-primary)] hover:bg-[var(--color-primary-hover)]'
+                        : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
                     }`}
                   >
                     <span className="hidden sm:inline">Trade</span>

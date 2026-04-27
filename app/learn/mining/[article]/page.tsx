@@ -56,7 +56,7 @@ function PlaceholderContent({ description }: { description: string }) {
             </svg>
           </div>
           <div>
-            <h3 className="font-semibold text-white">Content Coming Soon</h3>
+            <h3 className="font-semibold text-[var(--text-primary)]">Content Coming Soon</h3>
             <p className="text-sm text-[var(--color-text-muted)]">
               This article is being developed. Check back soon for the full content.
             </p>

@@ -56,15 +56,15 @@ export default function LowestFeesExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Lowest Fees</span>
+            <span className="text-[var(--text-primary)]">Lowest Fees</span>
           </nav>
         </div>
       </div>
@@ -86,7 +86,7 @@ export default function LowestFeesExchangesPage() {
                 Save on Trading
               </span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Lowest Fee Exchanges
             </motion.h1>
             <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -127,7 +127,7 @@ export default function LowestFeesExchangesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
               </svg>
               <div>
-                <h3 className="font-semibold text-white">Pro Tip: Consider Total Cost</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Pro Tip: Consider Total Cost</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
                   Trading fees are just one factor. Also consider withdrawal fees, spread, and deposit methods. Some exchanges with higher trading fees offer lower withdrawal fees or better liquidity.
                 </p>
@@ -138,7 +138,7 @@ export default function LowestFeesExchangesPage() {
           {/* Low Fee Exchanges */}
           {lowFees.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-white">
+              <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[var(--text-primary)]">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/20 text-sm text-green-400">1</span>
                 Lowest Fees (&le;0.1%)
                 <span className="text-sm font-normal text-[var(--color-text-muted)]">
@@ -159,7 +159,7 @@ export default function LowestFeesExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-green-400">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-green-400">
                           {exchange.name}
                         </h3>
                         {exchange.featured && (
@@ -189,7 +189,7 @@ export default function LowestFeesExchangesPage() {
                     </div>
                     {exchange.withdrawalFee && (
                       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                        Withdrawal: <span className="text-white">{exchange.withdrawalFee}</span>
+                        Withdrawal: <span className="text-[var(--text-primary)]">{exchange.withdrawalFee}</span>
                       </p>
                     )}
                   </motion.a>
@@ -201,7 +201,7 @@ export default function LowestFeesExchangesPage() {
           {/* Medium Fee Exchanges */}
           {mediumFees.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-white">
+              <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[var(--text-primary)]">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500/20 text-sm text-yellow-400">2</span>
                 Competitive Fees (0.1-0.2%)
                 <span className="text-sm font-normal text-[var(--color-text-muted)]">
@@ -222,7 +222,7 @@ export default function LowestFeesExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-yellow-400">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-yellow-400">
                           {exchange.name}
                         </h3>
                         {exchange.featured && (
@@ -247,7 +247,7 @@ export default function LowestFeesExchangesPage() {
                     </div>
                     {exchange.withdrawalFee && (
                       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                        Withdrawal: <span className="text-white">{exchange.withdrawalFee}</span>
+                        Withdrawal: <span className="text-[var(--text-primary)]">{exchange.withdrawalFee}</span>
                       </p>
                     )}
                   </motion.a>
@@ -259,7 +259,7 @@ export default function LowestFeesExchangesPage() {
           {/* Standard Fee Exchanges */}
           {standardFees.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-white">
+              <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[var(--text-primary)]">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--panel)] text-sm text-[var(--color-text-muted)]">3</span>
                 Standard Fees (&gt;0.2%)
                 <span className="text-sm font-normal text-[var(--color-text-muted)]">
@@ -280,7 +280,7 @@ export default function LowestFeesExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         {exchange.featured && (
@@ -305,7 +305,7 @@ export default function LowestFeesExchangesPage() {
                     </div>
                     {exchange.withdrawalFee && (
                       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                        Withdrawal: <span className="text-white">{exchange.withdrawalFee}</span>
+                        Withdrawal: <span className="text-[var(--text-primary)]">{exchange.withdrawalFee}</span>
                       </p>
                     )}
                   </motion.a>
@@ -321,7 +321,7 @@ export default function LowestFeesExchangesPage() {
             viewport={{ once: true }}
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-3 text-xl font-bold text-white">What About DEXs?</h2>
+            <h2 className="mb-3 text-xl font-bold text-[var(--text-primary)]">What About DEXs?</h2>
             <p className="text-[var(--color-text-secondary)]">
               Decentralized exchanges like ETCswap typically charge 0.3% per swap, but you avoid deposit/withdrawal fees entirely since you trade directly from your wallet. For frequent traders, DEXs can be more cost-effective.
             </p>
@@ -345,7 +345,7 @@ export default function LowestFeesExchangesPage() {
           >
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

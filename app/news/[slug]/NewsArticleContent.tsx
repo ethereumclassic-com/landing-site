@@ -116,7 +116,7 @@ function renderContent(content: string): React.ReactNode {
             <thead>
               <tr className="border-b border-[var(--border)]">
                 {header.map((cell, i) => (
-                  <th key={i} className="px-4 py-2 text-left font-semibold text-white">
+                  <th key={i} className="px-4 py-2 text-left font-semibold text-[var(--text-primary)]">
                     {cell.trim()}
                   </th>
                 ))}
@@ -184,7 +184,7 @@ function renderContent(content: string): React.ReactNode {
     if (line.startsWith('## ')) {
       flushList()
       elements.push(
-        <h2 key={elements.length} className="mb-4 mt-8 text-xl font-bold text-white">
+        <h2 key={elements.length} className="mb-4 mt-8 text-xl font-bold text-[var(--text-primary)]">
           {line.slice(3)}
         </h2>
       )
@@ -194,7 +194,7 @@ function renderContent(content: string): React.ReactNode {
     if (line.startsWith('### ')) {
       flushList()
       elements.push(
-        <h3 key={elements.length} className="mb-3 mt-6 text-lg font-semibold text-white">
+        <h3 key={elements.length} className="mb-3 mt-6 text-lg font-semibold text-[var(--text-primary)]">
           {line.slice(4)}
         </h3>
       )
@@ -282,7 +282,7 @@ function renderInlineContent(text: string): React.ReactNode {
 
     if (firstMatch.type === 'bold') {
       parts.push(
-        <strong key={keyCounter++} className="font-semibold text-white">
+        <strong key={keyCounter++} className="font-semibold text-[var(--text-primary)]">
           {firstMatch.match![1]}
         </strong>
       )
@@ -375,7 +375,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
             )}
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">{article.title}</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl">{article.title}</h1>
 
           <p className="mt-6 text-lg text-[var(--color-text-secondary)]">{article.excerpt}</p>
 
@@ -393,7 +393,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-white">{article.author}</span>
+                    <span className="font-medium text-[var(--text-primary)]">{article.author}</span>
                     {authorInfo?.twitter && (
                       <a
                         href={`https://twitter.com/${authorInfo.twitter}`}
@@ -456,7 +456,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white">Full Article Coming Soon</h3>
+              <h3 className="text-xl font-semibold text-[var(--text-primary)]">Full Article Coming Soon</h3>
               <p className="mx-auto mt-3 max-w-md text-[var(--color-text-secondary)]">
                 This article content is being prepared. Check back soon for the full story.
               </p>
@@ -475,7 +475,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               viewport={{ once: true }}
               className="mb-8"
             >
-              <h2 className="text-2xl font-bold text-white">Related Articles</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)]">Related Articles</h2>
               <p className="mt-2 text-[var(--color-text-secondary)]">
                 More news and updates from the Ethereum Classic ecosystem
               </p>
@@ -507,7 +507,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white">Share This Article</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Share This Article</h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
             Help spread the word about Ethereum Classic and support the ecosystem
           </p>
@@ -516,7 +516,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               href={`https://x.com/intent/post?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`https://ethereumclassic.com/news/${article.slug}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Share on X
               <svg aria-hidden="true" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -525,7 +525,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
             </a>
             <Link
               href="/news"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />

@@ -103,11 +103,11 @@ export default function DocsPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)] px-6 py-4">
         <div className="mx-auto max-w-7xl">
           <nav className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-            <Link href="/build" className="hover:text-white">
+            <Link href="/build" className="hover:text-[var(--text-primary)]">
               Build
             </Link>
             <ChevronRightIcon />
-            <span className="text-white">Documentation</span>
+            <span className="text-[var(--text-primary)]">Documentation</span>
           </nav>
         </div>
       </div>
@@ -120,7 +120,7 @@ export default function DocsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
               Developer Documentation
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -146,7 +146,7 @@ export default function DocsPage() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {categoryIcons[key]}
                 </div>
-                <h2 className="text-2xl font-bold text-white">{categoryLabels[key]}</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)]">{categoryLabels[key]}</h2>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -159,7 +159,7 @@ export default function DocsPage() {
                     className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel-hover)]"
                   >
                     <div className="flex items-start justify-between">
-                      <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                      <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                         {doc.name}
                       </h3>
                       {doc.url.startsWith('http') && <ExternalLinkIcon />}
@@ -182,7 +182,7 @@ export default function DocsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white">RPC Endpoints</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">RPC Endpoints</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Public RPC endpoints for connecting to Ethereum Classic
             </p>
@@ -196,7 +196,7 @@ export default function DocsPage() {
               viewport={{ once: true }}
               className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--bg)] p-6"
             >
-              <h3 className="mb-4 text-lg font-semibold text-white">Mainnet (Chain ID: 61)</h3>
+              <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Mainnet (Chain ID: 61)</h3>
               <div className="space-y-3">
                 {mainnetRpcs.map((rpc, i) => (
                   <div
@@ -204,14 +204,14 @@ export default function DocsPage() {
                     className="flex items-center justify-between rounded-lg bg-[var(--panel)] p-3"
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-white">{rpc.provider}</p>
+                      <p className="text-sm font-medium text-[var(--text-primary)]">{rpc.provider}</p>
                       <p className="truncate font-mono text-xs text-[var(--color-text-muted)]">
                         {rpc.url}
                       </p>
                     </div>
                     <button
                       onClick={() => navigator.clipboard.writeText(rpc.url)}
-                      className="ml-3 flex-shrink-0 rounded-lg bg-[var(--bg)] p-2 text-[var(--color-text-muted)] transition hover:text-white"
+                      className="ml-3 flex-shrink-0 rounded-lg bg-[var(--bg)] p-2 text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
                     >
                       <ClipboardIcon />
                     </button>
@@ -235,7 +235,7 @@ export default function DocsPage() {
               viewport={{ once: true }}
               className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6"
             >
-              <h3 className="mb-4 text-lg font-semibold text-white">Mordor Testnet (Chain ID: 63)</h3>
+              <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Mordor Testnet (Chain ID: 63)</h3>
               <div className="space-y-3">
                 {testnetRpcs.map((rpc, i) => (
                   <div
@@ -243,14 +243,14 @@ export default function DocsPage() {
                     className="flex items-center justify-between rounded-lg bg-[var(--panel)] p-3"
                   >
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-white">{rpc.provider}</p>
+                      <p className="text-sm font-medium text-[var(--text-primary)]">{rpc.provider}</p>
                       <p className="truncate font-mono text-xs text-[var(--color-text-muted)]">
                         {rpc.url}
                       </p>
                     </div>
                     <button
                       onClick={() => navigator.clipboard.writeText(rpc.url)}
-                      className="ml-3 flex-shrink-0 rounded-lg bg-[var(--bg)] p-2 text-[var(--color-text-muted)] transition hover:text-white"
+                      className="ml-3 flex-shrink-0 rounded-lg bg-[var(--bg)] p-2 text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
                     >
                       <ClipboardIcon />
                     </button>
@@ -261,7 +261,7 @@ export default function DocsPage() {
                 href="https://chainlist.org/chain/63"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] py-2 text-sm text-white transition hover:bg-[var(--panel)]"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
               >
                 View all on Chainlist <ExternalLinkIcon />
               </a>
@@ -279,7 +279,7 @@ export default function DocsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white">Block Explorers & APIs</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Block Explorers & APIs</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Explore transactions, verify contracts, and access blockchain data
             </p>
@@ -299,7 +299,7 @@ export default function DocsPage() {
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="mb-4 flex items-center justify-between">
-                  <h3 className="font-semibold text-white">{explorer.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{explorer.name}</h3>
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs ${
                       explorer.network === 'mainnet'
@@ -326,7 +326,7 @@ export default function DocsPage() {
                   {explorer.apiUrl && (
                     <div className="flex items-center justify-between">
                       <span className="text-[var(--color-text-muted)]">API</span>
-                      <code className="text-xs text-white">
+                      <code className="text-xs text-[var(--text-primary)]">
                         {explorer.apiUrl.replace('https://', '')}
                       </code>
                     </div>
@@ -346,7 +346,7 @@ export default function DocsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-8 text-center text-2xl font-bold text-white">Quick Links</h2>
+            <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Quick Links</h2>
 
             <div className="grid gap-4 md:grid-cols-3">
               {[
@@ -371,7 +371,7 @@ export default function DocsPage() {
                   href={link.href}
                   className="group rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5 transition hover:border-[var(--color-primary)]/30"
                 >
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {link.title}
                   </h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{link.description}</p>
@@ -390,7 +390,7 @@ export default function DocsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Need Help?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Need Help?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
               Join the Ethereum Classic developer community for support and discussions.
             </p>
@@ -408,7 +408,7 @@ export default function DocsPage() {
                 href="https://github.com/ethereumclassic"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 GitHub
                 <ExternalLinkIcon />

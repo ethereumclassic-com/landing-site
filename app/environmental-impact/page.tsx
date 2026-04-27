@@ -98,7 +98,7 @@ export default function EnvironmentalImpactPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Proof-of-Work as{' '}
             <span className="bg-gradient-to-r from-[#00ffae] to-emerald-300 bg-clip-text text-transparent">
@@ -128,7 +128,7 @@ export default function EnvironmentalImpactPage() {
                 key={stat.value}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
-                <p className="text-xl font-bold text-white">{stat.value}</p>
+                <p className="text-xl font-bold text-[var(--text-primary)]">{stat.value}</p>
                 <p className="mt-0.5 text-xs font-medium text-[#00ffae]">{stat.label}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">{stat.detail}</p>
               </div>
@@ -146,7 +146,7 @@ export default function EnvironmentalImpactPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Stranded Energy: The Global Opportunity
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
@@ -164,7 +164,7 @@ export default function EnvironmentalImpactPage() {
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
                 >
                   <div className="mb-3 h-0.5 w-8 rounded-full" style={{ backgroundColor: useCase.color }} />
-                  <h3 className="text-sm font-semibold text-white">{useCase.title}</h3>
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">{useCase.title}</h3>
                   <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">
                     {useCase.description}
                   </p>
@@ -189,7 +189,7 @@ export default function EnvironmentalImpactPage() {
                 Price Discovery
               </span>
             </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               ETC/USD: A Global 24/7 Energy Proxy
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -205,7 +205,7 @@ export default function EnvironmentalImpactPage() {
                   variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-5"
                 >
-                  <p className="text-sm font-semibold text-white">{item.label}</p>
+                  <p className="text-sm font-semibold text-[var(--text-primary)]">{item.label}</p>
                   <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">{item.detail}</p>
                 </motion.div>
               ))}
@@ -215,7 +215,7 @@ export default function EnvironmentalImpactPage() {
               variants={fadeInUp}
               className="mt-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-6 text-sm text-[var(--color-text-secondary)]"
             >
-              <span className="font-semibold text-white">Historical context: </span>
+              <span className="font-semibold text-[var(--text-primary)]">Historical context: </span>
               ETC/USD spot markets have operated continuously since 2016, making them one of the
               longest-running fiat price discovery mechanisms in the asset class. As global energy
               markets mature toward 24/7 marginal-cost pricing, Proof-of-Work networks represent
@@ -241,7 +241,7 @@ export default function EnvironmentalImpactPage() {
               <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
                 Featured Documentary
               </p>
-              <p className="mt-2 text-lg font-semibold text-white">
+              <p className="mt-2 text-lg font-semibold text-[var(--text-primary)]">
                 Dirty Coin: The Bitcoin Mining Documentary
               </p>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -270,7 +270,7 @@ export default function EnvironmentalImpactPage() {
               </Link>
               <Link
                 href="/investment-products"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30"
               >
                 Investment Products
               </Link>

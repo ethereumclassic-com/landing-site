@@ -56,7 +56,7 @@ export default function MiningPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Mine{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -75,7 +75,7 @@ export default function MiningPage() {
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/mining/getting-started"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
@@ -84,13 +84,13 @@ export default function MiningPage() {
             </Link>
             <Link
               href="/mining/pools"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Browse Pools
             </Link>
             <Link
               href="/mining/hardware"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Hardware Guide
             </Link>
@@ -164,7 +164,7 @@ export default function MiningPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-2xl font-bold text-white md:text-3xl">Pool Distribution</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Pool Distribution</h2>
                 <p className="mt-2 text-[var(--color-text-secondary)]">
                   Choose a pool to join based on hashrate share and features
                 </p>
@@ -181,7 +181,7 @@ export default function MiningPage() {
                 viewport={{ once: true }}
                 className="mb-6"
               >
-                <h3 className="text-xl font-bold text-white">Recommended Pools</h3>
+                <h3 className="text-xl font-bold text-[var(--text-primary)]">Recommended Pools</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Trusted pools with good hashrate and features
                 </p>
@@ -214,7 +214,7 @@ export default function MiningPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Mining Resources</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Mining Resources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Everything you need to start and optimize your mining operation
             </p>
@@ -236,7 +236,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                   Getting Started
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -261,7 +261,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-purple-400">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-purple-400">
                   Hardware Guide
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -286,7 +286,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-blue-400">
                   Mining Pools
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -311,7 +311,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-cyan-400">
                   Mining Software
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -336,7 +336,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-pink-400">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-pink-400">
                   Mining OS
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -361,7 +361,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-amber-400">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-amber-400">
                   Profitability Calculator
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -386,7 +386,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-emerald-400">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-emerald-400">
                   Network Stats
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -407,7 +407,7 @@ export default function MiningPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">External Resources</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">External Resources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Useful tools and statistics from trusted sources
             </p>
@@ -427,7 +427,7 @@ export default function MiningPage() {
                 className="group flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div>
-                  <span className="font-medium text-white group-hover:text-[var(--color-primary)]">
+                  <span className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {resource.name}
                   </span>
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">{resource.description}</p>
@@ -460,14 +460,14 @@ export default function MiningPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Start Mining?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Follow our getting started guide to set up your mining operation and start earning ETC today.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/mining/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
@@ -476,7 +476,7 @@ export default function MiningPage() {
               </Link>
               <Link
                 href="/wallet"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Set Up Wallet
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

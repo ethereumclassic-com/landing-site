@@ -75,7 +75,7 @@ export default function MiningPoolsPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Mining{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -94,15 +94,15 @@ export default function MiningPoolsPage() {
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">Network Hashrate</p>
-              <p className="font-semibold text-white">{networkStats.hashrate}</p>
+              <p className="font-semibold text-[var(--text-primary)]">{networkStats.hashrate}</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">Listed Pools</p>
-              <p className="font-semibold text-white">{miningPools.length}</p>
+              <p className="font-semibold text-[var(--text-primary)]">{miningPools.length}</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">Block Reward</p>
-              <p className="font-semibold text-white">{networkStats.blockReward}</p>
+              <p className="font-semibold text-[var(--text-primary)]">{networkStats.blockReward}</p>
             </div>
           </motion.div>
         </motion.div>
@@ -121,7 +121,7 @@ export default function MiningPoolsPage() {
           {/* Header with Controls */}
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="text-2xl font-bold text-white md:text-3xl">All Pools</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">All Pools</h2>
               <p className="mt-1 text-[var(--color-text-secondary)]">
                 {miningPools.length} mining pools listed
               </p>
@@ -134,7 +134,7 @@ export default function MiningPoolsPage() {
                 <select
                   value={sortBy}
                   onChange={(e) => handleSort(e.target.value as SortKey)}
-                  className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+                  className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
                 >
                   <option value="hashShare">Hashrate</option>
                   <option value="fee">Fee</option>
@@ -148,8 +148,8 @@ export default function MiningPoolsPage() {
                   onClick={() => setViewMode('cards')}
                   className={`rounded-l-lg px-3 py-1.5 text-sm transition ${
                     viewMode === 'cards'
-                      ? 'bg-[var(--color-primary)] text-white'
-                      : 'text-[var(--color-text-muted)] hover:text-white'
+                      ? 'bg-[var(--color-primary)] text-[var(--background)]'
+                      : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -160,8 +160,8 @@ export default function MiningPoolsPage() {
                   onClick={() => setViewMode('table')}
                   className={`rounded-r-lg px-3 py-1.5 text-sm transition ${
                     viewMode === 'table'
-                      ? 'bg-[var(--color-primary)] text-white'
-                      : 'text-[var(--color-text-muted)] hover:text-white'
+                      ? 'bg-[var(--color-primary)] text-[var(--background)]'
+                      : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -191,7 +191,7 @@ export default function MiningPoolsPage() {
                       Pool
                     </th>
                     <th
-                      className="cursor-pointer py-4 px-4 text-center text-sm font-medium text-[var(--color-text-muted)] hover:text-white"
+                      className="cursor-pointer py-4 px-4 text-center text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
                       onClick={() => handleSort('fee')}
                     >
                       <span className="inline-flex items-center gap-1">
@@ -204,7 +204,7 @@ export default function MiningPoolsPage() {
                       </span>
                     </th>
                     <th
-                      className="cursor-pointer py-4 px-4 text-center text-sm font-medium text-[var(--color-text-muted)] hover:text-white"
+                      className="cursor-pointer py-4 px-4 text-center text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
                       onClick={() => handleSort('minPayout')}
                     >
                       <span className="inline-flex items-center gap-1">
@@ -217,7 +217,7 @@ export default function MiningPoolsPage() {
                       </span>
                     </th>
                     <th
-                      className="cursor-pointer py-4 px-4 text-center text-sm font-medium text-[var(--color-text-muted)] hover:text-white"
+                      className="cursor-pointer py-4 px-4 text-center text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
                       onClick={() => handleSort('hashShare')}
                     >
                       <span className="inline-flex items-center gap-1">
@@ -257,7 +257,7 @@ export default function MiningPoolsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">How to Choose a Pool</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">How to Choose a Pool</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Consider these factors when selecting a mining pool
             </p>
@@ -270,7 +270,7 @@ export default function MiningPoolsPage() {
               viewport={{ once: true }}
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h3 className="font-semibold text-white">Pool Fee</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">Pool Fee</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Lower fees mean more of your earnings go to you. Most pools charge 0.5-3%. Consider the fee vs. features trade-off.
               </p>
@@ -283,7 +283,7 @@ export default function MiningPoolsPage() {
               transition={{ delay: 0.1 }}
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h3 className="font-semibold text-white">Hashrate Share</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">Hashrate Share</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Larger pools find blocks more often but split rewards among more miners. Smaller pools have less frequent but larger payouts.
               </p>
@@ -296,7 +296,7 @@ export default function MiningPoolsPage() {
               transition={{ delay: 0.2 }}
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h3 className="font-semibold text-white">Minimum Payout</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">Minimum Payout</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Lower minimum payouts let smaller miners receive rewards faster. Higher minimums may save on transaction fees.
               </p>
@@ -309,7 +309,7 @@ export default function MiningPoolsPage() {
               transition={{ delay: 0.3 }}
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h3 className="font-semibold text-white">Server Location</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">Server Location</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Choose a pool with servers close to you for lower latency. This reduces stale shares and maximizes your effective hashrate.
               </p>
@@ -327,7 +327,7 @@ export default function MiningPoolsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Payout Schemes Explained</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Payout Schemes Explained</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Understanding how mining pools distribute rewards
             </p>
@@ -343,7 +343,7 @@ export default function MiningPoolsPage() {
               <div className="flex items-start gap-4">
                 <span className="rounded-lg bg-emerald-500/10 px-2 py-1 text-xs font-bold text-emerald-400">PPS</span>
                 <div>
-                  <h4 className="font-semibold text-white">Pay Per Share</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Pay Per Share</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Fixed payout per valid share regardless of block finds. Predictable income but usually higher fees.
                   </p>
@@ -361,7 +361,7 @@ export default function MiningPoolsPage() {
               <div className="flex items-start gap-4">
                 <span className="rounded-lg bg-blue-500/10 px-2 py-1 text-xs font-bold text-blue-400">PPLNS</span>
                 <div>
-                  <h4 className="font-semibold text-white">Pay Per Last N Shares</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Pay Per Last N Shares</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Payment based on your share contribution in the last N shares before a block is found. Rewards loyal miners.
                   </p>
@@ -379,7 +379,7 @@ export default function MiningPoolsPage() {
               <div className="flex items-start gap-4">
                 <span className="rounded-lg bg-purple-500/10 px-2 py-1 text-xs font-bold text-purple-400">SOLO</span>
                 <div>
-                  <h4 className="font-semibold text-white">Solo Mining</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Solo Mining</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Keep the entire block reward when you find a block. High variance - best for large mining operations.
                   </p>
@@ -397,7 +397,7 @@ export default function MiningPoolsPage() {
               <div className="flex items-start gap-4">
                 <span className="rounded-lg bg-amber-500/10 px-2 py-1 text-xs font-bold text-amber-400">PPS+</span>
                 <div>
-                  <h4 className="font-semibold text-white">Pay Per Share Plus</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Pay Per Share Plus</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Combines PPS for block rewards with PPLNS for transaction fees. Offers stable income plus bonus from fees.
                   </p>
@@ -417,20 +417,20 @@ export default function MiningPoolsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Start Mining?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Choose a pool from the list above and follow our getting started guide to begin mining ETC.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/mining/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 Getting Started Guide
               </Link>
               <Link
                 href="/mining/hardware"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Hardware Guide
               </Link>

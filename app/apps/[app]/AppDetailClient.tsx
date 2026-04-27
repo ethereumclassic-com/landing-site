@@ -96,7 +96,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
 
             <div className="flex-1">
               <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-3">
-                <h1 className="text-3xl font-bold text-white md:text-4xl">{app.name}</h1>
+                <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">{app.name}</h1>
                 {app.featured && (
                   <span className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                     Featured
@@ -135,7 +135,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
               href={app.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Launch {app.name}
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -145,14 +145,14 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
             {app.internalUrl ? (
               <Link
                 href={app.internalUrl}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Learn More
               </Link>
             ) : (
               <Link
                 href={`/apps/${app.category.toLowerCase()}`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 More {app.category} Apps
               </Link>
@@ -192,7 +192,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white">About {app.name}</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">About {app.name}</h2>
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               {app.longDescription || app.description}
             </p>
@@ -206,7 +206,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
               viewport={{ once: true }}
               className="mt-12"
             >
-              <h3 className="text-xl font-bold text-white">Key Features</h3>
+              <h3 className="text-xl font-bold text-[var(--text-primary)]">Key Features</h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {app.features.map((feature, index) => (
                   <motion.div
@@ -239,7 +239,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Ready to Get Started?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -252,7 +252,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
               href={app.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Launch {app.name}
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -262,14 +262,14 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
             {app.internalUrl ? (
               <Link
                 href={app.internalUrl}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Full Overview
               </Link>
             ) : (
               <Link
                 href="/apps"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Explore More Apps
               </Link>

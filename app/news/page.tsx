@@ -96,7 +96,7 @@ function CategoryCard({ category, index }: { category: ArticleCategory; index: n
           {categoryIcons[category]}
         </div>
         <div className="flex-1">
-          <div className="font-semibold text-white group-hover:text-[var(--color-primary)]">{category}</div>
+          <div className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{category}</div>
           <div className="text-sm text-[var(--color-text-muted)]">{categoryArticles.length} articles</div>
         </div>
         <svg aria-hidden="true"
@@ -145,7 +145,7 @@ export default function NewsPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Ethereum Classic{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
@@ -161,7 +161,7 @@ export default function NewsPage() {
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#featured"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
@@ -174,7 +174,7 @@ export default function NewsPage() {
             </a>
             <Link
               href="/learn"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
@@ -224,7 +224,7 @@ export default function NewsPage() {
               </span>
               Featured
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">Top Stories</h2>
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Top Stories</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               The most important updates and announcements from the Ethereum Classic ecosystem
             </p>
@@ -262,7 +262,7 @@ export default function NewsPage() {
                     {categoryIcons[category]}
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-white md:text-2xl">{category}</h2>
+                    <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">{category}</h2>
                     <p className="text-sm text-[var(--color-text-muted)]">{categoryDescriptions[category]}</p>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ export default function NewsPage() {
               />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-white md:text-3xl">Stay Connected</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Stay Connected</h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
             Join the Ethereum Classic community to get the latest updates and participate in discussions
           </p>
@@ -343,7 +343,7 @@ export default function NewsPage() {
               href="https://x.com/ETC_Network"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Follow on X
               <svg aria-hidden="true" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -352,7 +352,7 @@ export default function NewsPage() {
             </a>
             <Link
               href="/news/feeds"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 19.5v-.75a7.5 7.5 0 00-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
@@ -363,7 +363,7 @@ export default function NewsPage() {
               href="https://discord.com/invite/Tq57jxSwsa"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Join Discord
               <svg aria-hidden="true" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

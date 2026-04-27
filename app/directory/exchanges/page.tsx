@@ -138,19 +138,19 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
           <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
             isDEX
               ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]'
-              : 'bg-white/5 text-[var(--color-text-secondary)]'
+              : 'bg-[var(--border-subtle)] text-[var(--color-text-secondary)]'
           }`}>
             {exchange.type}
           </span>
         </div>
       </div>
 
-      <h3 className="mb-1 text-lg font-semibold text-white transition group-hover:text-[var(--color-primary)]">
+      <h3 className="mb-1 text-lg font-semibold text-[var(--text-primary)] transition group-hover:text-[var(--color-primary)]">
         {exchange.name}
       </h3>
 
       {exchange.volume24h && (
-        <div className="mb-3 flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+        <div className="mb-3 flex items-center justify-between rounded-lg bg-[var(--border-subtle)] px-3 py-2">
           <span className="text-xs text-[var(--color-text-muted)]">24h Volume</span>
           <span className="font-semibold text-[var(--color-primary)]">{exchange.volume24h}</span>
         </div>
@@ -158,7 +158,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
         {exchange.tradingFee && (
-          <span className="rounded-full bg-white/5 px-2 py-0.5 text-xs text-[var(--color-text-muted)]">
+          <span className="rounded-full bg-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--color-text-muted)]">
             Fee: {exchange.tradingFee}
           </span>
         )}
@@ -246,7 +246,7 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-medium text-white">{exchange.name}</span>
+              <span className="font-medium text-[var(--text-primary)]">{exchange.name}</span>
               {exchange.featured && (
                 <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
                   Featured
@@ -260,13 +260,13 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
         <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium ${
           isDEX
             ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-            : 'bg-white/5 text-[var(--color-text-secondary)]'
+            : 'bg-[var(--border-subtle)] text-[var(--color-text-secondary)]'
         }`}>
           {exchange.type}
         </span>
       </td>
       <td className="hidden py-4 sm:table-cell">
-        <span className={`text-sm ${isDEX ? 'text-[var(--color-text-muted)]' : 'font-medium text-white'}`}>
+        <span className={`text-sm ${isDEX ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'}`}>
           {exchange.volume24h}
         </span>
       </td>
@@ -280,13 +280,13 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
           {exchange.pairs.slice(0, 2).map((pair) => (
             <span
               key={pair}
-              className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]"
+              className="rounded bg-[var(--border-subtle)] px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]"
             >
               {pair}
             </span>
           ))}
           {exchange.pairs.length > 2 && (
-            <span className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]">
+            <span className="rounded bg-[var(--border-subtle)] px-1.5 py-0.5 text-xs text-[var(--color-text-muted)]">
               +{exchange.pairs.length - 2}
             </span>
           )}
@@ -314,8 +314,8 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
           rel="noopener noreferrer"
           className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
             isDEX
-              ? 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)]'
-              : 'border border-[var(--border)] bg-[var(--panel)] text-white hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
+              ? 'bg-[var(--color-primary)] text-[var(--background)] hover:bg-[var(--color-primary-hover)]'
+              : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--background)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
           }`}
         >
           <span className="hidden sm:inline">Trade</span>
@@ -427,7 +427,7 @@ export default function DirectoryExchangesPage() {
                   <ExchangeIcon />
                   <span>Exchange Directory</span>
                 </div>
-                <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+                <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
                   ETC Exchanges
                 </h1>
                 <p className="mt-4 max-w-xl text-lg text-[var(--color-text-muted)]">
@@ -467,12 +467,12 @@ export default function DirectoryExchangesPage() {
                 placeholder="Search exchanges..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm text-white placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none sm:w-48"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none sm:w-48"
               />
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value as TypeFilter)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               >
                 <option value="all">All Types</option>
                 <option value="CEX">Centralized (CEX)</option>
@@ -481,7 +481,7 @@ export default function DirectoryExchangesPage() {
               <select
                 value={regionFilter}
                 onChange={(e) => setRegionFilter(e.target.value as RegionFilter)}
-                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none sm:block"
+                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none sm:block"
               >
                 <option value="all">All Regions</option>
                 <option value="Global">Global</option>
@@ -492,7 +492,7 @@ export default function DirectoryExchangesPage() {
               <select
                 value={kycFilter}
                 onChange={(e) => setKycFilter(e.target.value as KYCFilter)}
-                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none md:block"
+                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none md:block"
               >
                 <option value="all">All KYC</option>
                 <option value="optional">No KYC</option>
@@ -501,7 +501,7 @@ export default function DirectoryExchangesPage() {
               <select
                 value={paymentFilter}
                 onChange={(e) => setPaymentFilter(e.target.value as PaymentMethod | 'all')}
-                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none lg:block"
+                className="hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none lg:block"
               >
                 <option value="all">All Payments</option>
                 <option value="Card">Card</option>
@@ -516,7 +516,7 @@ export default function DirectoryExchangesPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
               >
                 <option value="volume">Sort by Volume</option>
                 <option value="name">Sort by Name</option>
@@ -525,13 +525,13 @@ export default function DirectoryExchangesPage() {
               <div className="flex rounded-lg border border-[var(--border)] bg-[var(--panel)]">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-white'}`}
+                  className={`p-2 transition-colors ${viewMode === 'grid' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'}`}
                 >
                   <GridIcon />
                 </button>
                 <button
                   onClick={() => setViewMode('table')}
-                  className={`p-2 transition-colors ${viewMode === 'table' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-white'}`}
+                  className={`p-2 transition-colors ${viewMode === 'table' ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'}`}
                 >
                   <TableIcon />
                 </button>
@@ -675,20 +675,20 @@ export default function DirectoryExchangesPage() {
       {/* Help Section */}
       <section className="bg-[var(--panel)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-bold text-white">Ready to Buy ETC?</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Buy ETC?</h2>
           <p className="mt-3 text-[var(--color-text-muted)]">
             Check out our guide on how to buy Ethereum Classic or compare exchanges side by side.
           </p>
           <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/buy"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-colors hover:bg-[var(--color-primary-hover)]"
             >
               How to Buy ETC
             </Link>
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
             >
               Full Exchange Comparison
             </Link>

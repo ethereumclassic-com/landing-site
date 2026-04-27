@@ -118,7 +118,7 @@ export default function ExchangesPage() {
           <motion.div variants={fadeInUp}>
             <Link
               href="/buy"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -129,7 +129,7 @@ export default function ExchangesPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-3xl font-bold tracking-tight text-white md:text-4xl"
+            className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl"
           >
             All{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -188,7 +188,7 @@ export default function ExchangesPage() {
                 placeholder="Search exchanges or pairs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 pl-10 pr-4 text-sm text-white placeholder-[var(--color-text-muted)] focus:border-[var(--color-primary)]/50 focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]/50 lg:w-64"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 pl-10 pr-4 text-sm text-[var(--text-primary)] placeholder-[var(--color-text-muted)] focus:border-[var(--color-primary)]/50 focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]/50 lg:w-64"
               />
             </div>
 
@@ -198,7 +198,7 @@ export default function ExchangesPage() {
               <select
                 value={typeFilter}
                 onChange={(e) => setTypeFilter(e.target.value as TypeFilter)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)]/50 focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)]/50 focus:outline-none"
               >
                 <option value="all">All Types</option>
                 <option value="CEX">CEX Only</option>
@@ -209,7 +209,7 @@ export default function ExchangesPage() {
               <select
                 value={regionFilter}
                 onChange={(e) => setRegionFilter(e.target.value as RegionFilter)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)]/50 focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)]/50 focus:outline-none"
               >
                 {allRegions.map((region) => (
                   <option key={region} value={region}>
@@ -222,7 +222,7 @@ export default function ExchangesPage() {
               <select
                 value={paymentFilter}
                 onChange={(e) => setPaymentFilter(e.target.value as PaymentMethod | 'all')}
-                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)]/50 focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)]/50 focus:outline-none"
               >
                 <option value="all">All Payments</option>
                 {allPaymentMethods.map((method) => (
@@ -236,7 +236,7 @@ export default function ExchangesPage() {
               <select
                 value={kycFilter}
                 onChange={(e) => setKycFilter(e.target.value as 'all' | 'required' | 'optional')}
-                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)]/50 focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)]/50 focus:outline-none"
               >
                 <option value="all">All KYC</option>
                 <option value="optional">No KYC</option>
@@ -247,7 +247,7 @@ export default function ExchangesPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)]/50 focus:outline-none"
+                className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)]/50 focus:outline-none"
               >
                 <option value="volume">Sort by Volume</option>
                 <option value="name">Sort by Name</option>
@@ -260,8 +260,8 @@ export default function ExchangesPage() {
                   onClick={() => setViewMode('table')}
                   className={`rounded px-3 py-1.5 text-sm transition ${
                     viewMode === 'table'
-                      ? 'bg-[var(--color-primary)] text-white'
-                      : 'text-[var(--color-text-muted)] hover:text-white'
+                      ? 'bg-[var(--color-primary)] text-[var(--background)]'
+                      : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -272,8 +272,8 @@ export default function ExchangesPage() {
                   onClick={() => setViewMode('cards')}
                   className={`rounded px-3 py-1.5 text-sm transition ${
                     viewMode === 'cards'
-                      ? 'bg-[var(--color-primary)] text-white'
-                      : 'text-[var(--color-text-muted)] hover:text-white'
+                      ? 'bg-[var(--color-primary)] text-[var(--background)]'
+                      : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -351,7 +351,7 @@ export default function ExchangesPage() {
                   setPaymentFilter('all')
                   setKycFilter('all')
                 }}
-                className="text-xs text-[var(--color-text-muted)] underline hover:text-white"
+                className="text-xs text-[var(--color-text-muted)] underline hover:text-[var(--text-primary)]"
               >
                 Clear all
               </button>
@@ -366,7 +366,7 @@ export default function ExchangesPage() {
           {/* Results count */}
           <div className="mb-6 flex items-center justify-between">
             <p className="text-sm text-[var(--color-text-muted)]">
-              Showing <span className="font-medium text-white">{filteredExchanges.length}</span> of {exchanges.length} exchanges
+              Showing <span className="font-medium text-[var(--text-primary)]">{filteredExchanges.length}</span> of {exchanges.length} exchanges
             </p>
           </div>
 
@@ -385,7 +385,7 @@ export default function ExchangesPage() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
-              <h3 className="mt-4 text-lg font-semibold text-white">No exchanges found</h3>
+              <h3 className="mt-4 text-lg font-semibold text-[var(--text-primary)]">No exchanges found</h3>
               <p className="mt-2 text-[var(--color-text-muted)]">
                 Try adjusting your filters or search terms.
               </p>
@@ -397,7 +397,7 @@ export default function ExchangesPage() {
                   setPaymentFilter('all')
                   setKycFilter('all')
                 }}
-                className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-white transition hover:bg-[var(--color-primary)]/10"
+                className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-[var(--background)] transition hover:bg-[var(--color-primary)]/10"
               >
                 Clear all filters
               </button>
@@ -431,7 +431,7 @@ export default function ExchangesPage() {
               </span>
               Recommended
             </span>
-            <h2 className="mt-4 text-xl font-bold text-white md:text-2xl">
+            <h2 className="mt-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Trade Without KYC on ETCswap
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-[var(--color-text-secondary)]">
@@ -442,7 +442,7 @@ export default function ExchangesPage() {
                 href="https://etcswap.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -451,7 +451,7 @@ export default function ExchangesPage() {
               </a>
               <Link
                 href="/apps/etcswap-v3"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Learn More
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -479,7 +479,7 @@ export default function ExchangesPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Trading Safety Tips</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Trading Safety Tips</h3>
                 <ul className="mt-2 space-y-1 text-sm text-[var(--color-text-muted)]">
                   <li>Always verify you&apos;re on the official exchange website before logging in</li>
                   <li>Enable two-factor authentication (2FA) on all exchange accounts</li>

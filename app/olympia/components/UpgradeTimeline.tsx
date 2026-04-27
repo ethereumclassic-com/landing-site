@@ -51,7 +51,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
               }`}
             >
               <div className="flex flex-wrap items-center gap-3">
-                <h3 className={`text-lg font-semibold ${fork.isOlympia ? 'text-[#00ffae]' : 'text-white'}`}>
+                <h3 className={`text-lg font-semibold ${fork.isOlympia ? 'text-[#00ffae]' : 'text-[var(--text-primary)]'}`}>
                   {fork.name}
                 </h3>
                 {fork.block !== null ? (
@@ -99,13 +99,13 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                 {fork.keyChanges.slice(0, 4).map((change) => (
                   <span
                     key={change}
-                    className="rounded-md bg-white/5 px-2 py-0.5 text-xs text-[var(--color-text-muted)]"
+                    className="rounded-md bg-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--color-text-muted)]"
                   >
                     {change}
                   </span>
                 ))}
                 {fork.keyChanges.length > 4 && (
-                  <span className="rounded-md bg-white/5 px-2 py-0.5 text-xs text-[var(--color-text-muted)]">
+                  <span className="rounded-md bg-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--color-text-muted)]">
                     +{fork.keyChanges.length - 4} more
                   </span>
                 )}

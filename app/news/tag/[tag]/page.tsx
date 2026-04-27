@@ -82,7 +82,7 @@ export default function NewsTagPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Tagged:{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
@@ -106,7 +106,7 @@ export default function NewsTagPage() {
                 href={`/news/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`}
                 className={`rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
                   tag === matchedTag
-                    ? 'bg-[var(--color-primary)] text-white'
+                    ? 'bg-[var(--color-primary)] text-[var(--background)]'
                     : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)]'
                 }`}
               >
@@ -144,7 +144,7 @@ export default function NewsTagPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white">No articles found</h3>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">No articles found</h3>
               <p className="mt-2 text-[var(--color-text-muted)]">
                 No articles are tagged with &ldquo;{tagName}&rdquo; yet.
               </p>
@@ -172,14 +172,14 @@ export default function NewsTagPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white">Explore More News</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Explore More News</h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
             Browse all categories and tags to stay updated with the latest from the Ethereum Classic ecosystem
           </p>
           <div className="mt-8">
             <Link
               href="/news"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />

@@ -89,14 +89,14 @@ export default function BuildPage() {
               <CodeIcon />
               <span>EVM Compatible</span>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
               Build on Ethereum Classic
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg text-[var(--color-text-muted)] md:text-xl">
               Full EVM compatibility means you can use familiar Ethereum tools like Hardhat, Foundry,
               and Remix. Deploy your Solidity contracts to a network that values
-              <span className="text-white"> immutability</span> and
-              <span className="text-white"> code is law</span>.
+              <span className="text-[var(--text-primary)]"> immutability</span> and
+              <span className="text-[var(--text-primary)]"> code is law</span>.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
@@ -108,7 +108,7 @@ export default function BuildPage() {
               </Link>
               <Link
                 href="/build/docs"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 <BookIcon />
                 Documentation
@@ -131,7 +131,7 @@ export default function BuildPage() {
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <p className="text-sm text-[var(--color-text-muted)]">{stat.label}</p>
-                <p className="text-lg font-semibold text-white">{stat.value}</p>
+                <p className="text-lg font-semibold text-[var(--text-primary)]">{stat.value}</p>
               </div>
             ))}
           </div>
@@ -145,7 +145,7 @@ export default function BuildPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 text-center text-3xl font-bold text-white"
+            className="mb-8 text-center text-3xl font-bold text-[var(--text-primary)]"
           >
             Developer Resources
           </motion.h2>
@@ -190,7 +190,7 @@ export default function BuildPage() {
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                     {card.icon}
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="mb-2 text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {card.title}
                   </h3>
                   <p className="text-sm text-[var(--color-text-muted)]">{card.description}</p>
@@ -210,7 +210,7 @@ export default function BuildPage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Network Configuration</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Network Configuration</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Add ETC to your wallet or configure your development environment
             </p>
@@ -229,7 +229,7 @@ export default function BuildPage() {
                   <CubeIcon />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">{mainnet.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{mainnet.name}</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">Production Network</p>
                 </div>
               </div>
@@ -240,11 +240,11 @@ export default function BuildPage() {
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Symbol</span>
-                  <code className="font-mono text-white">{mainnet.symbol}</code>
+                  <code className="font-mono text-[var(--text-primary)]">{mainnet.symbol}</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="font-mono text-white">https://etc.rivet.link</code>
+                  <code className="font-mono text-[var(--text-primary)]">https://etc.rivet.link</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Explorer</span>
@@ -281,22 +281,22 @@ export default function BuildPage() {
                   <CubeIcon />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">{testnet.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{testnet.name}</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">Development & Testing</p>
                 </div>
               </div>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Chain ID</span>
-                  <code className="font-mono text-white">{testnet.chainId}</code>
+                  <code className="font-mono text-[var(--text-primary)]">{testnet.chainId}</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Symbol</span>
-                  <code className="font-mono text-white">{testnet.symbol}</code>
+                  <code className="font-mono text-[var(--text-primary)]">{testnet.symbol}</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="font-mono text-xs text-white">rpc.mordor.etccooperative.org</code>
+                  <code className="font-mono text-xs text-[var(--text-primary)]">rpc.mordor.etccooperative.org</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Explorer</span>
@@ -314,7 +314,7 @@ export default function BuildPage() {
                 href={faucets[0].url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] py-3 text-sm font-medium text-white transition hover:bg-[var(--panel-hover)]"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] py-3 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 Get Testnet ETC from Faucet
                 <ExternalLinkIcon />
@@ -333,7 +333,7 @@ export default function BuildPage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Recommended Tools</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Recommended Tools</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Industry-standard development tools that work seamlessly with ETC
             </p>
@@ -356,7 +356,7 @@ export default function BuildPage() {
                 className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel-hover)]"
               >
                 <div className="flex items-start justify-between">
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {tool.name}
                   </h3>
                   <ExternalLinkIcon />
@@ -402,7 +402,7 @@ export default function BuildPage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Node Clients</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Node Clients</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Run your own Ethereum Classic node for maximum decentralization
             </p>
@@ -426,7 +426,7 @@ export default function BuildPage() {
                 }`}
               >
                 <div className="mb-4 flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-white">{client.name}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{client.name}</h3>
                   {client.recommended && (
                     <span className="rounded-full bg-[var(--color-primary)]/20 px-2 py-0.5 text-xs text-[var(--color-primary)]">
                       Recommended
@@ -435,7 +435,7 @@ export default function BuildPage() {
                 </div>
                 <p className="mb-4 text-sm text-[var(--color-text-muted)]">{client.description}</p>
                 <div className="mb-4 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-[var(--panel)] px-2 py-0.5 text-xs text-white">
+                  <span className="rounded-full bg-[var(--panel)] px-2 py-0.5 text-xs text-[var(--text-primary)]">
                     {client.language}
                   </span>
                   {client.platforms.slice(0, 3).map((platform) => (
@@ -452,7 +452,7 @@ export default function BuildPage() {
                     href={client.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-white transition hover:bg-[var(--panel-hover)]"
+                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
                   >
                     Docs <ExternalLinkIcon />
                   </a>
@@ -460,7 +460,7 @@ export default function BuildPage() {
                     href={client.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-white transition hover:bg-[var(--panel-hover)]"
+                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
                   >
                     GitHub <ExternalLinkIcon />
                   </a>
@@ -492,7 +492,7 @@ export default function BuildPage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Learning Resources</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Learning Resources</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Tutorials, documentation, and guides to help you get started
             </p>
@@ -515,7 +515,7 @@ export default function BuildPage() {
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel-hover)]"
               >
                 <div className="flex items-start justify-between">
-                  <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {resource.name}
                   </h3>
                   <ExternalLinkIcon />
@@ -538,7 +538,7 @@ export default function BuildPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-white md:text-4xl">
+            <h2 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
               Ready to Build on ETC?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
@@ -557,7 +557,7 @@ export default function BuildPage() {
                 href="https://discord.com/invite/Tq57jxSwsa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 font-semibold text-white transition hover:bg-[var(--panel-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 Join Developer Discord
                 <ExternalLinkIcon />

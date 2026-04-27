@@ -48,7 +48,7 @@ export default function WalletCard({ wallet, index }: WalletCardProps) {
         )}
       </div>
 
-      <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-[var(--color-primary)]">
+      <h3 className="text-lg font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]">
         {wallet.name}
       </h3>
 

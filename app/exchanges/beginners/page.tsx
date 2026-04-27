@@ -50,15 +50,15 @@ export default function BeginnersExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Beginners</span>
+            <span className="text-[var(--text-primary)]">Beginners</span>
           </nav>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function BeginnersExchangesPage() {
                 Getting Started
               </span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Best Exchanges for Beginners
             </motion.h1>
             <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -107,7 +107,7 @@ export default function BeginnersExchangesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-white">{item.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.desc}</p>
               </div>
             ))}
@@ -120,14 +120,14 @@ export default function BeginnersExchangesPage() {
             transition={{ delay: 0.3 }}
             className="mb-12 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">How to Buy Your First ETC</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">How to Buy Your First ETC</h2>
             <div className="grid gap-4 md:grid-cols-4">
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
                   1
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Create Account</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Create Account</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Sign up with email and verify your identity</p>
                 </div>
               </div>
@@ -136,7 +136,7 @@ export default function BeginnersExchangesPage() {
                   2
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Add Payment</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Add Payment</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Link your credit card or bank account</p>
                 </div>
               </div>
@@ -145,7 +145,7 @@ export default function BeginnersExchangesPage() {
                   3
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Buy ETC</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Buy ETC</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Search for Ethereum Classic and purchase</p>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function BeginnersExchangesPage() {
                   4
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Secure It</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Secure It</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Consider a personal wallet for storage</p>
                 </div>
               </div>
@@ -164,7 +164,7 @@ export default function BeginnersExchangesPage() {
           {/* US Available */}
           {usAvailable.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Available in the US
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   {usAvailable.length} exchanges
@@ -184,7 +184,7 @@ export default function BeginnersExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         <div className="mt-1 flex flex-wrap gap-1">
@@ -218,7 +218,7 @@ export default function BeginnersExchangesPage() {
                     <div className="mt-3 flex items-center justify-between text-sm">
                       {exchange.tradingFee && (
                         <span className="text-[var(--color-text-muted)]">
-                          Fee: <span className="text-white">{exchange.tradingFee}</span>
+                          Fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                         </span>
                       )}
                     </div>
@@ -231,7 +231,7 @@ export default function BeginnersExchangesPage() {
           {/* Global Exchanges */}
           {globalOnly.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Global Exchanges
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   {globalOnly.length} exchanges
@@ -251,7 +251,7 @@ export default function BeginnersExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         <div className="mt-1 flex flex-wrap gap-1">
@@ -285,7 +285,7 @@ export default function BeginnersExchangesPage() {
                     <div className="mt-3 flex items-center justify-between text-sm">
                       {exchange.tradingFee && (
                         <span className="text-[var(--color-text-muted)]">
-                          Fee: <span className="text-white">{exchange.tradingFee}</span>
+                          Fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                         </span>
                       )}
                     </div>
@@ -302,14 +302,14 @@ export default function BeginnersExchangesPage() {
             viewport={{ once: true }}
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">Tips for New Crypto Investors</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Tips for New Crypto Investors</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="flex items-start gap-3">
                 <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Start Small</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Start Small</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Only invest what you can afford to lose. Start with a small amount to learn how everything works.</p>
                 </div>
               </div>
@@ -318,7 +318,7 @@ export default function BeginnersExchangesPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Enable 2FA</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Enable 2FA</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Always enable two-factor authentication on your exchange account for extra security.</p>
                 </div>
               </div>
@@ -327,7 +327,7 @@ export default function BeginnersExchangesPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Learn About Wallets</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Learn About Wallets</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">For long-term holding, consider moving ETC to a personal wallet where you control the keys.</p>
                 </div>
               </div>
@@ -336,7 +336,7 @@ export default function BeginnersExchangesPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Beware of Scams</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Beware of Scams</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Never share your password or seed phrase. No legitimate service will ever ask for these.</p>
                 </div>
               </div>
@@ -350,26 +350,26 @@ export default function BeginnersExchangesPage() {
             viewport={{ once: true }}
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
           >
-            <h2 className="mb-2 text-xl font-bold text-white">Ready for Advanced Options?</h2>
+            <h2 className="mb-2 text-xl font-bold text-[var(--text-primary)]">Ready for Advanced Options?</h2>
             <p className="mb-4 text-[var(--color-text-secondary)]">
               Once you&apos;re comfortable, explore DEXs for self-custody trading or find the lowest fee exchanges.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link
                 href="/exchanges/decentralized"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Explore DEXs
               </Link>
               <Link
                 href="/exchanges/lowest-fees"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Compare Fees
               </Link>
               <Link
                 href="/wallets"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Get a Wallet
               </Link>
@@ -385,7 +385,7 @@ export default function BeginnersExchangesPage() {
           >
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

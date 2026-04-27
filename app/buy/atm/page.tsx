@@ -145,7 +145,7 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
     >
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-xl font-bold text-white">{provider.name}</h3>
+          <h3 className="text-xl font-bold text-[var(--text-primary)]">{provider.name}</h3>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">{provider.description}</p>
         </div>
         <div className="flex flex-col items-end gap-2">
@@ -164,19 +164,19 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
       <div className="mb-4 grid grid-cols-2 gap-4 text-sm">
         <div>
           <p className="text-[var(--color-text-muted)]">Locations</p>
-          <p className="font-medium text-white">{provider.locations}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.locations}</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Regions</p>
-          <p className="font-medium text-white">{provider.regions.join(', ')}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.regions.join(', ')}</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Buy Limit</p>
-          <p className="font-medium text-white">{provider.buyLimit}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.buyLimit}</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Fees</p>
-          <p className="font-medium text-white">{provider.fees}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.fees}</p>
         </div>
       </div>
 
@@ -210,7 +210,7 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
           href={provider.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
         >
           Website
         </a>
@@ -240,7 +240,7 @@ export default function ATMPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/buy"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -250,7 +250,7 @@ export default function ATMPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Crypto ATM Locator
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -303,7 +303,7 @@ export default function ATMPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">How to Use ATMs for ETC</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">How to Use ATMs for ETC</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   <strong className="text-green-400">Direct ETC:</strong> Some ATM networks support Ethereum Classic directly.
                   Simply select ETC at the machine and provide your wallet address.{' '}
@@ -332,7 +332,7 @@ export default function ATMPage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 filter === 'all'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               All Providers ({atmProviders.length})
@@ -342,7 +342,7 @@ export default function ATMPage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 filter === 'etc'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               Direct ETC ({etcSupportedCount})
@@ -375,7 +375,7 @@ export default function ATMPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-6 text-xl font-semibold text-white">ATM Finder Services</h2>
+            <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">ATM Finder Services</h2>
             <p className="mb-6 text-sm text-[var(--color-text-muted)]">
               Use these services to find the nearest crypto ATM regardless of provider:
             </p>
@@ -389,7 +389,7 @@ export default function ATMPage() {
                   className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30"
                 >
                   <div className="mb-3 text-3xl">{aggregator.icon}</div>
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {aggregator.name}
                   </h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{aggregator.description}</p>
@@ -415,7 +415,7 @@ export default function ATMPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-6 text-lg font-semibold text-white">How to Use a Crypto ATM</h2>
+            <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">How to Use a Crypto ATM</h2>
             <div className="grid gap-6 md:grid-cols-4">
               {[
                 {
@@ -444,7 +444,7 @@ export default function ATMPage() {
                     {item.step}
                   </div>
                   <div className="pt-4">
-                    <h3 className="font-semibold text-white">{item.title}</h3>
+                    <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
                   </div>
                 </div>
@@ -535,7 +535,7 @@ export default function ATMPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Prefer to Buy Online?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Prefer to Buy Online?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Online exchanges typically offer lower fees than ATMs. Check out our exchange directory
               for more options.
@@ -552,7 +552,7 @@ export default function ATMPage() {
               </Link>
               <Link
                 href="/buy/card"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Buy with Card
               </Link>

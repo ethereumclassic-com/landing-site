@@ -78,7 +78,7 @@ function WalletComparisonRow({ wallet }: { wallet: Wallet }) {
         <div className="flex items-center gap-3">
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="font-medium text-white">{wallet.name}</span>
+              <span className="font-medium text-[var(--text-primary)]">{wallet.name}</span>
               {wallet.supportsClassicOS && (
                 <span className="rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
                   COS
@@ -142,7 +142,7 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
       <div className="mb-3 flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-white">{wallet.name}</h3>
+            <h3 className="font-semibold text-[var(--text-primary)]">{wallet.name}</h3>
             {wallet.supportsClassicOS && (
               <span className="rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
                 Classic OS
@@ -194,7 +194,7 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
         href={wallet.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--color-bg-primary)] py-2 text-sm font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--color-bg-primary)] py-2 text-sm font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
       >
         Visit Website
         <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -263,7 +263,7 @@ export default function ComparePage() {
               Wallets
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Compare</span>
+            <span className="text-[var(--text-primary)]">Compare</span>
           </motion.div>
 
           {/* Badge */}
@@ -279,7 +279,7 @@ export default function ComparePage() {
           {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Compare{' '}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
@@ -310,8 +310,8 @@ export default function ComparePage() {
                 onClick={() => setFilterType(type)}
                 className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                   filterType === type
-                    ? 'bg-[var(--color-primary)] text-white'
-                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-white'
+                    ? 'bg-[var(--color-primary)] text-[var(--background)]'
+                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--background)]'
                 }`}
               >
                 {type === 'all' ? 'All' : type}
@@ -337,7 +337,7 @@ export default function ComparePage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
               >
                 <option value="type">Type</option>
                 <option value="name">Name</option>
@@ -349,7 +349,7 @@ export default function ComparePage() {
             <div className="flex rounded-lg border border-[var(--border)] bg-[var(--panel)]">
               <button
                 onClick={() => setViewMode('table')}
-                className={`px-3 py-1.5 ${viewMode === 'table' ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-muted)]'} rounded-l-lg transition-colors`}
+                className={`px-3 py-1.5 ${viewMode === 'table' ? 'bg-[var(--color-primary)] text-[var(--background)]' : 'text-[var(--color-text-muted)]'} rounded-l-lg transition-colors`}
                 title="Table view"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -358,7 +358,7 @@ export default function ComparePage() {
               </button>
               <button
                 onClick={() => setViewMode('cards')}
-                className={`px-3 py-1.5 ${viewMode === 'cards' ? 'bg-[var(--color-primary)] text-white' : 'text-[var(--color-text-muted)]'} rounded-r-lg transition-colors`}
+                className={`px-3 py-1.5 ${viewMode === 'cards' ? 'bg-[var(--color-primary)] text-[var(--background)]' : 'text-[var(--color-text-muted)]'} rounded-r-lg transition-colors`}
                 title="Card view"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -414,7 +414,7 @@ export default function ComparePage() {
       {/* Legend */}
       <section className="border-t border-[var(--border)] px-6 py-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-4 text-lg font-semibold text-white">Feature Legend</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Feature Legend</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {Object.entries(featureLabels).map(([key, label]) => (
               <div key={key} className="flex items-center gap-2">
@@ -483,7 +483,7 @@ export default function ComparePage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Need Help Choosing?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-[var(--color-text-secondary)]">
@@ -492,13 +492,13 @@ export default function ComparePage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/wallet/hardware"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 Hardware Wallet Guide
               </Link>
               <Link
                 href="/wallet/metamask"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 MetaMask Setup
               </Link>

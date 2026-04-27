@@ -62,7 +62,7 @@ export default function OlympiaHubPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             <span className="bg-gradient-to-r from-[#00ffae] to-emerald-300 bg-clip-text text-transparent">
               Olympia
@@ -105,7 +105,7 @@ export default function OlympiaHubPage() {
               href={olympiaLinks.olympiaDAO}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
             >
               OlympiaDAO.org
             </a>
@@ -129,7 +129,7 @@ export default function OlympiaHubPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               What Olympia Changes
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -169,7 +169,7 @@ export default function OlympiaHubPage() {
                     <div className="h-1 w-12 rounded-full" style={{ backgroundColor: item.color }} />
                     <span className="font-mono text-xs text-[var(--color-text-muted)]">{item.ecip}</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {item.description}
                   </p>
@@ -192,7 +192,7 @@ export default function OlympiaHubPage() {
             <motion.div variants={fadeInUp}>
               <span className="font-mono text-xs uppercase tracking-widest text-[#38bdf8]">ECIP-1121</span>
             </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -216,7 +216,7 @@ export default function OlympiaHubPage() {
                       {String(i + 1).padStart(2, '0')}
                     </div>
                     <div className="md:mt-4 md:text-center">
-                      <p className="font-semibold text-sm text-white">{fork.name}</p>
+                      <p className="font-semibold text-sm text-[var(--text-primary)]">{fork.name}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{fork.fullName} · {fork.year}</p>
                       <div className="mt-2 flex flex-wrap gap-1 md:justify-center">
                         {fork.eips.map((eip) => (
@@ -273,7 +273,7 @@ export default function OlympiaHubPage() {
                 >
                   <div className="mb-3 flex items-center gap-3">
                     <div className="h-1 w-12 rounded-full" style={{ backgroundColor: cat.color }} />
-                    <h3 className="text-sm font-semibold text-white">{cat.title}</h3>
+                    <h3 className="text-sm font-semibold text-[var(--text-primary)]">{cat.title}</h3>
                   </div>
                   <div className="mb-3 flex flex-wrap gap-1">
                     {cat.eips.map((eip) => (
@@ -293,7 +293,7 @@ export default function OlympiaHubPage() {
             </motion.p>
 
             {/* Developer tooling */}
-            <motion.h3 variants={fadeInUp} className="mb-4 text-base font-semibold text-white">
+            <motion.h3 variants={fadeInUp} className="mb-4 text-base font-semibold text-[var(--text-primary)]">
               Developer Tooling — Works Without Modification
             </motion.h3>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -307,7 +307,7 @@ export default function OlympiaHubPage() {
                   variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[#00ffae]/20"
                 >
-                  <p className="mb-1 text-sm font-semibold text-white">{tool.name}</p>
+                  <p className="mb-1 text-sm font-semibold text-[var(--text-primary)]">{tool.name}</p>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
                 </motion.div>
               ))}
@@ -330,7 +330,7 @@ export default function OlympiaHubPage() {
                 Regulatory Positioning
               </span>
             </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Global Regulatory Recognition
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -375,7 +375,7 @@ export default function OlympiaHubPage() {
                 >
                   <div className="mb-3 h-0.5 w-8 rounded-full bg-[#00ffae]" />
                   <p className="text-xs font-mono text-[var(--color-text-muted)]">{item.framework}</p>
-                  <p className="mt-1 text-base font-semibold text-white">{item.classification}</p>
+                  <p className="mt-1 text-base font-semibold text-[var(--text-primary)]">{item.classification}</p>
                   <p className="mt-0.5 text-xs text-[#00ffae]">{item.detail}</p>
                   <p className="mt-3 flex-1 text-xs leading-relaxed text-[var(--color-text-muted)]">
                     {item.description}
@@ -396,7 +396,7 @@ export default function OlympiaHubPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               The Olympia Upgrade
             </motion.h2>
             <motion.div
@@ -426,7 +426,7 @@ export default function OlympiaHubPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               How It Works
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -444,7 +444,7 @@ export default function OlympiaHubPage() {
                     className="mb-3 h-1 w-12 rounded-full"
                     style={{ backgroundColor: item.color }}
                   />
-                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {item.description}
                   </p>
@@ -478,7 +478,7 @@ export default function OlympiaHubPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Coordinating Organizations
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -520,7 +520,7 @@ export default function OlympiaHubPage() {
                   rel="noopener noreferrer"
                   className="group flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition-all hover:-translate-y-0.5 hover:border-[#00ffae]/20"
                 >
-                  <h3 className="text-base font-semibold text-white">{entity.name}</h3>
+                  <h3 className="text-base font-semibold text-[var(--text-primary)]">{entity.name}</h3>
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">{entity.role}</p>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {entity.description}
@@ -551,7 +551,7 @@ export default function OlympiaHubPage() {
           variants={staggerContainer}
           className="mx-auto max-w-3xl text-center"
         >
-          <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+          <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
             Ready to Upgrade?
           </motion.h2>
           <motion.p variants={fadeInUp} className="mt-3 text-[var(--color-text-muted)]">
@@ -566,7 +566,7 @@ export default function OlympiaHubPage() {
             </Link>
             <Link
               href="/olympia/clients"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
             >
               View Clients
             </Link>

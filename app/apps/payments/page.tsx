@@ -101,7 +101,7 @@ export default function PaymentsPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             ETC{' '}
             <span className="bg-gradient-to-r from-emerald-400 to-[var(--color-primary)] bg-clip-text text-transparent">
@@ -134,7 +134,7 @@ export default function PaymentsPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-white">{feature.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
               </motion.div>
             ))}
@@ -151,7 +151,7 @@ export default function PaymentsPage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">The ClassicUSD Flow</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">The ClassicUSD Flow</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               How the ETC payment ecosystem works together
             </p>
@@ -172,10 +172,10 @@ export default function PaymentsPage() {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-center"
               >
-                <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-white">
+                <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-[var(--text-primary)]">
                   {item.step}
                 </div>
-                <h3 className="font-semibold text-white">{item.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
                 {index < 3 && (
                   <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 translate-x-1/2 text-[var(--color-text-muted)] md:block">
@@ -199,7 +199,7 @@ export default function PaymentsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Payment Products</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Payment Products</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Products for moving value in and out of the ETC ecosystem
             </p>
@@ -238,7 +238,7 @@ export default function PaymentsPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Ready to Get Started?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -247,7 +247,7 @@ export default function PaymentsPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/buy"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 font-medium text-white transition-all hover:bg-emerald-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
             >
               Buy ETC
             </Link>
@@ -255,7 +255,7 @@ export default function PaymentsPage() {
               href="https://brale.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10"
             >
               Get ClassicUSD
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

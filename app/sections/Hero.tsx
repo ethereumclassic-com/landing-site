@@ -15,24 +15,24 @@ export function Hero() {
 
                 {/* Ambient ETC glows */}
                 <div className="pointer-events-none absolute -top-24 right-[-10%] h-72 w-72 rounded-full blur-3xl bg-[var(--etc)]/15" />
-                <div className="pointer-events-none absolute -bottom-24 left-[-10%] h-72 w-72 rounded-full blur-3xl bg-white/10" />
+                <div className="pointer-events-none absolute -bottom-24 left-[-10%] h-72 w-72 rounded-full blur-3xl bg-[var(--bg-elevated)]" />
 
                 <FadeIn>
                     <div className="relative grid items-center gap-10 md:grid-cols-2">
                         {/* Left: copy */}
                         <div>
-                            <p className="mb-3 text-xs tracking-wide text-white/70">
+                            <p className="mb-3 text-xs tracking-wide text-[var(--text-secondary)]">
                                 Programmable Proof-of-Work • Smart Contracts • EVM Compatible
                             </p>
 
                             <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
                                 Ethereum Classic{" "}
-                                <span className="block text-white/80 md:inline">
+                                <span className="block text-[var(--text-secondary)] md:inline">
                                     brings programmability to Proof-of-Work.
                                 </span>
                             </h1>
 
-                            <p className="mt-4 text-base text-white/75 md:text-lg leading-relaxed">
+                            <p className="mt-4 text-base text-[var(--text-secondary)] md:text-lg leading-relaxed">
                                 Ethereum Classic is a Proof-of-Work smart-contract network secured by global mining and real-world energy.
                                 It brings a fully programmable execution environment to PoW, enabling applications to run directly on the base layer.
                                 The ETC asset combines long-term digital scarcity with native utility inside smart contracts, powering markets, payments, and automated systems.

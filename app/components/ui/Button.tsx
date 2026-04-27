@@ -20,7 +20,7 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] active:bg-[var(--color-primary-active)]',
+  primary: 'bg-[var(--color-primary)] text-[var(--text-primary)] hover:bg-[var(--color-primary-hover)] active:bg-[var(--color-primary-active)]',
   secondary: 'bg-[var(--panel-strong)] text-[var(--color-text-primary)] border border-[var(--border)] hover:bg-[var(--color-bg-tertiary)] hover:border-[var(--border-strong)]',
   outline: 'bg-transparent text-[var(--color-text-primary)] border border-[var(--border)] hover:bg-[var(--panel)] hover:border-[var(--border-strong)]',
   ghost: 'bg-transparent text-[var(--color-text-secondary)] hover:bg-[var(--panel)] hover:text-[var(--color-text-primary)]',

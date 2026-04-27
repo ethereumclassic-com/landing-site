@@ -53,7 +53,7 @@ export default function MiningGettingStartedPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Getting Started with{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -76,19 +76,19 @@ export default function MiningGettingStartedPage() {
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
               <p className="text-sm text-[var(--color-text-muted)]">Algorithm</p>
-              <p className="text-lg font-bold text-white">ETChash</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">ETChash</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
               <p className="text-sm text-[var(--color-text-muted)]">Block Reward</p>
-              <p className="text-lg font-bold text-white">{networkStats.blockReward}</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">{networkStats.blockReward}</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
               <p className="text-sm text-[var(--color-text-muted)]">Block Time</p>
-              <p className="text-lg font-bold text-white">{networkStats.blockTime}</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">{networkStats.blockTime}</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
               <p className="text-sm text-[var(--color-text-muted)]">Network Hashrate</p>
-              <p className="text-lg font-bold text-white">{networkStats.hashrate}</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">{networkStats.hashrate}</p>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function MiningGettingStartedPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">5 Steps to Start Mining</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">5 Steps to Start Mining</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               From hardware selection to your first mined block
             </p>
@@ -126,7 +126,7 @@ export default function MiningGettingStartedPage() {
 
                 {/* Content */}
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{step.title}</h3>
                   <p className="mt-2 text-[var(--color-text-secondary)]">{step.description}</p>
                   {step.link && step.linkText && (
                     <Link
@@ -160,7 +160,7 @@ export default function MiningGettingStartedPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">What You Need</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">What You Need</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Essential requirements for mining Ethereum Classic
             </p>
@@ -179,7 +179,7 @@ export default function MiningGettingStartedPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white">Mining Hardware</h3>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">Mining Hardware</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 GPU with 4GB+ VRAM (AMD RX 6600 XT or NVIDIA RTX 3060 Ti recommended) or an ASIC miner designed for ETChash algorithm.
               </p>
@@ -201,7 +201,7 @@ export default function MiningGettingStartedPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white">ETC Wallet</h3>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">ETC Wallet</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 An Ethereum Classic wallet address to receive your mining rewards. Hardware wallets like Trezor provide the best security.
               </p>
@@ -223,7 +223,7 @@ export default function MiningGettingStartedPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white">Mining Software</h3>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">Mining Software</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Mining software compatible with your hardware. Popular choices include lolMiner for AMD, T-Rex for NVIDIA, or GMiner for both.
               </p>
@@ -245,7 +245,7 @@ export default function MiningGettingStartedPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white">Stable Internet</h3>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">Stable Internet</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 A stable internet connection is required to communicate with the mining pool. Low latency helps reduce stale shares.
               </p>
@@ -263,7 +263,7 @@ export default function MiningGettingStartedPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Recommended Pools</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Recommended Pools</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Trusted mining pools with good uptime and fair fees
             </p>
@@ -288,7 +288,7 @@ export default function MiningGettingStartedPage() {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                      <span className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                         {pool.name}
                       </span>
                       <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
@@ -331,7 +331,7 @@ export default function MiningGettingStartedPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Mining Tips</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Mining Tips</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Best practices for successful ETC mining
             </p>
@@ -429,20 +429,20 @@ export default function MiningGettingStartedPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Mine?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Mine?</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Choose your hardware, set up a wallet, and join a mining pool to start earning ETC.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/mining/hardware"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 View Hardware Guide
               </Link>
               <Link
                 href="/mining/pools"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Browse Pools
               </Link>

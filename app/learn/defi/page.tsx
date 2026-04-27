@@ -123,7 +123,7 @@ export default function DeFiPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             DeFi on{' '}
             <span className="bg-gradient-to-r from-purple-400 to-[var(--color-primary)] bg-clip-text text-transparent">
@@ -156,7 +156,7 @@ export default function DeFiPage() {
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
                   {feature.icon}
                 </div>
-                <h3 className="font-semibold text-white">{feature.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
               </motion.div>
             ))}
@@ -173,7 +173,7 @@ export default function DeFiPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
           >
-            <h2 className="text-xl font-bold text-white">ETC DeFi Protocols</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">ETC DeFi Protocols</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Start using DeFi on Ethereum Classic
             </p>
@@ -195,7 +195,7 @@ export default function DeFiPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-white group-hover:text-purple-400">{protocol.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-purple-400">{protocol.name}</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{protocol.description}</p>
                 </a>
               ))}
@@ -213,7 +213,7 @@ export default function DeFiPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">All DeFi Guides</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">All DeFi Guides</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Learn how to use decentralized finance on Ethereum Classic
             </p>
@@ -278,7 +278,7 @@ export default function DeFiPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Ready to Explore DeFi?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -289,7 +289,7 @@ export default function DeFiPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-500 px-6 py-3 font-medium text-white transition-all hover:bg-purple-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-purple-600"
             >
               Launch ETCswap
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -298,7 +298,7 @@ export default function DeFiPage() {
             </a>
             <Link
               href="/apps/defi"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-purple-500/30 hover:bg-purple-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-purple-500/30 hover:bg-purple-500/10"
             >
               Browse DeFi Apps
             </Link>

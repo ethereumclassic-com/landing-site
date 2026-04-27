@@ -168,7 +168,7 @@ export default function MarketsPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             ETC{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -220,7 +220,7 @@ export default function MarketsPage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Market Statistics</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Market Statistics</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Key metrics for Ethereum Classic
             </p>
@@ -239,7 +239,7 @@ export default function MarketsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Trading Pairs</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Trading Pairs</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Popular ETC trading pairs across exchanges
             </p>
@@ -256,7 +256,7 @@ export default function MarketsPage() {
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-white">{pair.displayName}</span>
+                  <span className="font-semibold text-[var(--text-primary)]">{pair.displayName}</span>
                   {pair.popular && (
                     <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
                       Popular
@@ -281,7 +281,7 @@ export default function MarketsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Price Sources</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price Sources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Trusted data providers and exchanges for ETC price data
             </p>
@@ -305,7 +305,7 @@ export default function MarketsPage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                    <span className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {source.name}
                     </span>
                     <span className="rounded-full bg-[var(--panel)] px-2 py-0.5 text-xs capitalize text-[var(--color-text-muted)]">
@@ -340,7 +340,7 @@ export default function MarketsPage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Price History</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price History</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Key milestones in ETC&apos;s price history
             </p>
@@ -371,7 +371,7 @@ export default function MarketsPage() {
                     <span className="text-sm text-[var(--color-text-muted)]">{milestone.date}</span>
                     <span className="font-bold text-[var(--color-primary)]">{milestone.price}</span>
                   </div>
-                  <p className="mt-2 text-sm text-white">{milestone.event}</p>
+                  <p className="mt-2 text-sm text-[var(--text-primary)]">{milestone.event}</p>
                 </div>
               </motion.div>
             ))}
@@ -388,7 +388,7 @@ export default function MarketsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Market Resources</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Market Resources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Tools and resources for ETC market analysis
             </p>
@@ -409,7 +409,7 @@ export default function MarketsPage() {
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <span className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                    <span className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {resource.title}
                     </span>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -441,7 +441,7 @@ export default function MarketsPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Market Tools</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Market Tools</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Tools to help you analyze and plan your ETC investments
             </p>
@@ -462,7 +462,7 @@ export default function MarketsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">Price Converter</h3>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Price Converter</h3>
                 <p className="mt-2 flex-1 text-sm text-[var(--color-text-muted)]">
                   Convert between ETC and 17+ currencies including fiat, crypto, and stablecoins.
                 </p>
@@ -490,7 +490,7 @@ export default function MarketsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">Investment Calculator</h3>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Investment Calculator</h3>
                 <p className="mt-2 flex-1 text-sm text-[var(--color-text-muted)]">
                   Calculate potential returns with different price scenarios and DCA strategies.
                 </p>
@@ -518,7 +518,7 @@ export default function MarketsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">Price Details</h3>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Price Details</h3>
                 <p className="mt-2 flex-1 text-sm text-[var(--color-text-muted)]">
                   In-depth ETC price data, milestones, and trusted data sources.
                 </p>
@@ -543,14 +543,14 @@ export default function MarketsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Trade?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Trade?</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Buy ETC on trusted exchanges or explore decentralized options for permissionless trading.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -559,7 +559,7 @@ export default function MarketsPage() {
               </Link>
               <Link
                 href="/buy/exchanges"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 View All Exchanges
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

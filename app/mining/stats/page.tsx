@@ -99,7 +99,7 @@ function StatCard({
         {icon}
       </div>
       <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
-      <p className={`mt-1 text-2xl font-bold ${highlight ? 'text-[var(--color-primary)]' : 'text-white'}`}>
+      <p className={`mt-1 text-2xl font-bold ${highlight ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}>
         {value}
       </p>
       {description && (
@@ -139,7 +139,7 @@ function ResourceCard({
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">{name}</h3>
+            <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{name}</h3>
             {isExternal && (
               <svg aria-hidden="true" className="h-3 w-3 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -173,7 +173,7 @@ export default function MiningStatsPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <Link
               href="/mining"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -182,7 +182,7 @@ export default function MiningStatsPage() {
             </Link>
 
             <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Network Statistics
               </h1>
               {isLoading ? (
@@ -275,7 +275,7 @@ export default function MiningStatsPage() {
               className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
             >
               <div className="flex items-center gap-2 mb-4">
-                <h2 className="text-lg font-semibold text-white">Latest Block</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">Latest Block</h2>
                 <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
                   #{miningStats.latestBlock.number.toLocaleString()}
                 </span>
@@ -283,25 +283,25 @@ export default function MiningStatsPage() {
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Block Height</p>
-                  <p className="mt-1 font-mono text-lg font-bold text-white">
+                  <p className="mt-1 font-mono text-lg font-bold text-[var(--text-primary)]">
                     {miningStats.blockHeight.toLocaleString()}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Miner</p>
-                  <p className="mt-1 font-mono text-sm text-white truncate">
+                  <p className="mt-1 font-mono text-sm text-[var(--text-primary)] truncate">
                     {miningStats.latestBlock.miner.slice(0, 10)}...{miningStats.latestBlock.miner.slice(-8)}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Gas Used</p>
-                  <p className="mt-1 text-lg font-bold text-white">
+                  <p className="mt-1 text-lg font-bold text-[var(--text-primary)]">
                     {((miningStats.latestBlock.gasUsed / miningStats.latestBlock.gasLimit) * 100).toFixed(1)}%
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Transactions</p>
-                  <p className="mt-1 text-lg font-bold text-white">
+                  <p className="mt-1 text-lg font-bold text-[var(--text-primary)]">
                     {miningStats.latestBlock.txCount}
                   </p>
                 </div>
@@ -326,26 +326,26 @@ export default function MiningStatsPage() {
             transition={{ delay: 0.2 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-6 text-lg font-semibold text-white">Daily Metrics</h2>
+            <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Daily Metrics</h2>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Daily Blocks</p>
-                <p className="mt-1 text-2xl font-bold text-white">~{liveStats.blocksPerDay.toLocaleString()}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">~{liveStats.blocksPerDay.toLocaleString()}</p>
                 <p className="text-xs text-[var(--color-text-muted)]">Blocks mined per day</p>
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Daily ETC Emission</p>
-                <p className="mt-1 text-2xl font-bold text-white">~{Math.round(liveStats.blocksPerDay * liveStats.blockReward).toLocaleString()} ETC</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">~{Math.round(liveStats.blocksPerDay * liveStats.blockReward).toLocaleString()} ETC</p>
                 <p className="text-xs text-[var(--color-text-muted)]">New ETC created daily</p>
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Algorithm</p>
-                <p className="mt-1 text-2xl font-bold text-white">ETChash</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">ETChash</p>
                 <p className="text-xs text-[var(--color-text-muted)]">ASIC and GPU mineable</p>
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">ETC Price</p>
-                <p className="mt-1 text-2xl font-bold text-white">${liveStats.etcPriceUSD.toFixed(2)}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">${liveStats.etcPriceUSD.toFixed(2)}</p>
                 <p className="text-xs text-[var(--color-text-muted)]">From Blockscout</p>
               </div>
             </div>
@@ -376,7 +376,7 @@ export default function MiningStatsPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-white">Pool Hashrate Distribution</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Pool Hashrate Distribution</h2>
               <Link
                 href="/mining/pools"
                 className="text-sm text-[var(--color-primary)] hover:underline"
@@ -400,7 +400,7 @@ export default function MiningStatsPage() {
                     <tr key={pool.id} className="border-b border-[var(--border)]/50 last:border-0">
                       <td className="py-3">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-white">{pool.name}</span>
+                          <span className="font-medium text-[var(--text-primary)]">{pool.name}</span>
                           {pool.recommended && (
                             <span className="rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
                               Popular
@@ -409,13 +409,13 @@ export default function MiningStatsPage() {
                         </div>
                       </td>
                       <td className="py-3 text-center">
-                        <span className="font-mono text-white">{pool.hashShare}%</span>
+                        <span className="font-mono text-[var(--text-primary)]">{pool.hashShare}%</span>
                       </td>
                       <td className="py-3 text-center">
-                        <span className="font-mono text-white">{pool.fee}%</span>
+                        <span className="font-mono text-[var(--text-primary)]">{pool.fee}%</span>
                       </td>
                       <td className="py-3 text-center">
-                        <span className="font-mono text-white">{pool.minPayout} ETC</span>
+                        <span className="font-mono text-[var(--text-primary)]">{pool.minPayout} ETC</span>
                       </td>
                       <td className="py-3 text-right">
                         <span className="text-sm text-[var(--color-text-muted)]">
@@ -439,7 +439,7 @@ export default function MiningStatsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">External Resources</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">External Resources</h2>
             <p className="mb-6 text-sm text-[var(--color-text-muted)]">
               For live, real-time statistics, check these external sources:
             </p>
@@ -467,7 +467,7 @@ export default function MiningStatsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Calculate Your Mining Profits</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Calculate Your Mining Profits</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Use these network stats with our profitability calculator to estimate your potential earnings.
             </p>
@@ -483,7 +483,7 @@ export default function MiningStatsPage() {
               </Link>
               <Link
                 href="/mining/hardware"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 View Hardware
               </Link>

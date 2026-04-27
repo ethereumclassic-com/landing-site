@@ -47,15 +47,15 @@ export default function MostSecureExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Most Secure</span>
+            <span className="text-[var(--text-primary)]">Most Secure</span>
           </nav>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function MostSecureExchangesPage() {
                 Security First
               </span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Most Secure Exchanges
             </motion.h1>
             <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -120,7 +120,7 @@ export default function MostSecureExchangesPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-white">{item.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.desc}</p>
               </div>
             ))}
@@ -138,7 +138,7 @@ export default function MostSecureExchangesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
               <div>
-                <h3 className="font-semibold text-white">Selection Criteria</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Selection Criteria</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
                   These exchanges are selected based on: regulatory licenses, security audits, cold storage practices, insurance coverage, years of operation without major security incidents, and institutional-grade custody solutions.
                 </p>
@@ -149,7 +149,7 @@ export default function MostSecureExchangesPage() {
           {/* US Regulated */}
           {regulated.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 US-Regulated Exchanges
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   Highest compliance standards
@@ -169,7 +169,7 @@ export default function MostSecureExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-blue-400">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-blue-400">
                           {exchange.name}
                         </h3>
                         <div className="mt-1 flex flex-wrap gap-1">
@@ -220,7 +220,7 @@ export default function MostSecureExchangesPage() {
           {/* Global Secure Exchanges */}
           {globalSecure.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Global Security Leaders
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   Strong track records
@@ -240,7 +240,7 @@ export default function MostSecureExchangesPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         {exchange.featured && (
@@ -265,7 +265,7 @@ export default function MostSecureExchangesPage() {
                     </div>
                     {exchange.volume24h && (
                       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                        24h Volume: <span className="text-white">{exchange.volume24h}</span>
+                        24h Volume: <span className="text-[var(--text-primary)]">{exchange.volume24h}</span>
                       </p>
                     )}
                   </motion.a>
@@ -281,14 +281,14 @@ export default function MostSecureExchangesPage() {
             viewport={{ once: true }}
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">Your Security Checklist</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Your Security Checklist</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="flex items-start gap-3">
                 <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border border-[var(--color-primary)] text-xs text-[var(--color-primary)]">
                   1
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Enable 2FA</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Enable 2FA</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Use an authenticator app, not SMS. Hardware keys (YubiKey) are even better.</p>
                 </div>
               </div>
@@ -297,7 +297,7 @@ export default function MostSecureExchangesPage() {
                   2
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Use Unique Email</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Use Unique Email</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Create a dedicated email for crypto that you don&apos;t use elsewhere.</p>
                 </div>
               </div>
@@ -306,7 +306,7 @@ export default function MostSecureExchangesPage() {
                   3
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Whitelist Addresses</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Whitelist Addresses</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Enable withdrawal address whitelisting to prevent unauthorized transfers.</p>
                 </div>
               </div>
@@ -315,7 +315,7 @@ export default function MostSecureExchangesPage() {
                   4
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Self-Custody Large Amounts</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Self-Custody Large Amounts</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Move significant holdings to a hardware wallet you control.</p>
                 </div>
               </div>
@@ -329,7 +329,7 @@ export default function MostSecureExchangesPage() {
             viewport={{ once: true }}
             className="mb-12 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6 text-center"
           >
-            <h2 className="mb-2 text-xl font-bold text-white">Ultimate Security: Self-Custody</h2>
+            <h2 className="mb-2 text-xl font-bold text-[var(--text-primary)]">Ultimate Security: Self-Custody</h2>
             <p className="mb-4 text-[var(--color-text-secondary)]">
               &quot;Not your keys, not your coins.&quot; For maximum security, consider using a hardware wallet where only you control the private keys.
             </p>
@@ -345,7 +345,7 @@ export default function MostSecureExchangesPage() {
               </Link>
               <Link
                 href="/exchanges/decentralized"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-5 py-2.5 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Try DEXs
               </Link>
@@ -361,7 +361,7 @@ export default function MostSecureExchangesPage() {
           >
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

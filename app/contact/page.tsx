@@ -130,7 +130,7 @@ export default function ContactPage() {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl font-bold tracking-tight text-white md:text-5xl"
+              className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
               Get in Touch
             </motion.h1>
@@ -155,7 +155,7 @@ export default function ContactPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
               >
-                <h2 className="text-xl font-bold text-white">Send us a Message</h2>
+                <h2 className="text-xl font-bold text-[var(--text-primary)]">Send us a Message</h2>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                   Fill out the form below and we will get back to you as soon as possible.
                 </p>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-white">Message Sent!</h3>
+                    <h3 className="text-lg font-semibold text-[var(--text-primary)]">Message Sent!</h3>
                     <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                       Thank you for reaching out. We will respond within 2-3 business days.
                     </p>
@@ -307,7 +307,7 @@ export default function ContactPage() {
               >
                 {/* Community Channels */}
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                  <h3 className="font-semibold text-white">Community Channels</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">Community Channels</h3>
                   <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                     For faster responses, reach out through our community channels.
                   </p>
@@ -322,7 +322,7 @@ export default function ContactPage() {
                       >
                         <span className={channel.color}>{channel.icon}</span>
                         <div>
-                          <span className="font-medium text-white">{channel.name}</span>
+                          <span className="font-medium text-[var(--text-primary)]">{channel.name}</span>
                           <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">
                             {channel.description}
                           </p>
@@ -334,7 +334,7 @@ export default function ContactPage() {
 
                 {/* FAQ */}
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                  <h3 className="font-semibold text-white">Common Questions</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">Common Questions</h3>
                   <div className="mt-4 space-y-4">
                     <div>
                       <h4 className="text-sm font-medium text-[var(--color-text-secondary)]">
@@ -365,7 +365,7 @@ export default function ContactPage() {
 
                 {/* Links */}
                 <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                  <h3 className="font-semibold text-white">Helpful Links</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">Helpful Links</h3>
                   <div className="mt-4 space-y-2">
                     <Link href="/learn" className="block text-sm text-[var(--color-primary)] hover:underline">
                       Learning Center

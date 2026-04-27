@@ -43,7 +43,7 @@ export default function CoreDevsPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Core Developer Calls
           </motion.h1>
@@ -63,11 +63,11 @@ export default function CoreDevsPage() {
             className="mt-6 flex justify-center gap-6 font-mono text-sm"
           >
             <span className="text-[var(--color-text-muted)]">
-              <span className="font-semibold text-white">{cdcEntries.length}</span> CALLS
+              <span className="font-semibold text-[var(--text-primary)]">{cdcEntries.length}</span> CALLS
             </span>
             <span className="text-[var(--color-text-muted)]">·</span>
             <span className="text-[var(--color-text-muted)]">
-              <span className="font-semibold text-white">{recordingCount}</span> RECORDINGS
+              <span className="font-semibold text-[var(--text-primary)]">{recordingCount}</span> RECORDINGS
             </span>
           </motion.div>
 
@@ -85,7 +85,7 @@ export default function CoreDevsPage() {
               href="https://github.com/ethereumclassic/ECIPs"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-[var(--color-text-muted)] transition hover:text-white"
+              className="text-sm font-medium text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
             >
               GitHub →
             </a>
@@ -111,7 +111,7 @@ export default function CoreDevsPage() {
                   <span className="inline-block h-2 w-2 rounded-full bg-[var(--color-primary)] animate-pulse" />
                   UPCOMING
                 </div>
-                <h2 className="mt-2 text-xl font-bold text-white">{upcomingEntry.title}</h2>
+                <h2 className="mt-2 text-xl font-bold text-[var(--text-primary)]">{upcomingEntry.title}</h2>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   {upcomingEntry.summary}
                 </p>
@@ -139,7 +139,7 @@ export default function CoreDevsPage() {
           >
             <p className="text-[var(--color-text-muted)]">
               <span className="text-[var(--color-primary)]">{'// '}</span>
-              <span className="text-white font-semibold">What are Core Developer Calls?</span>
+              <span className="text-[var(--text-primary)] font-semibold">What are Core Developer Calls?</span>
             </p>
             <p className="mt-2 text-[var(--color-text-muted)] leading-relaxed">
               CDCs are public meetings where ETC client developers coordinate protocol changes.
@@ -149,7 +149,7 @@ export default function CoreDevsPage() {
             </p>
             <p className="mt-4 text-[var(--color-text-muted)]">
               <span className="text-[var(--color-primary)]">{'// '}</span>
-              <span className="text-white font-semibold">How to Participate</span>
+              <span className="text-[var(--text-primary)] font-semibold">How to Participate</span>
             </p>
             <p className="mt-2 text-[var(--color-text-muted)] leading-relaxed">
               Join the{' '}
@@ -195,7 +195,7 @@ export default function CoreDevsPage() {
             variants={staggerContainer}
           >
             <motion.div variants={fadeInUp}>
-              <h2 className="font-mono text-lg font-bold text-white">
+              <h2 className="font-mono text-lg font-bold text-[var(--text-primary)]">
                 <span className="text-[var(--color-primary)]">/ </span>Archive
               </h2>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">

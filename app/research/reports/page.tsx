@@ -44,7 +44,7 @@ function ReportCard({ report }: { report: Report }) {
         <span className="text-xs text-[var(--color-text-muted)]">{report.readTime} read</span>
       </div>
 
-      <h3 className="mb-2 text-lg font-bold text-white">{report.title}</h3>
+      <h3 className="mb-2 text-lg font-bold text-[var(--text-primary)]">{report.title}</h3>
       <p className="mb-4 text-sm text-[var(--color-text-muted)]">{report.description}</p>
 
       <div className="mb-4 space-y-2">
@@ -96,7 +96,7 @@ export default function ReportsPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/research"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -106,7 +106,7 @@ export default function ReportsPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Research Reports
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -132,7 +132,7 @@ export default function ReportsPage() {
               className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === 'all'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'border border-[var(--border)] bg-[var(--panel)] text-white hover:bg-[var(--bg)]'
+                  : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:bg-[var(--bg)]'
               }`}
             >
               All Reports ({reports.length})
@@ -147,7 +147,7 @@ export default function ReportsPage() {
                   className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     selectedCategory === cat
                       ? `${bg} ${text}`
-                      : 'border border-[var(--border)] bg-[var(--panel)] text-white hover:bg-[var(--bg)]'
+                      : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:bg-[var(--bg)]'
                   }`}
                 >
                   {label} ({count})
@@ -189,7 +189,7 @@ export default function ReportsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Stay Updated</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Stay Updated</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               New research reports are published regularly. Follow the latest developments in the ETC ecosystem.
             </p>
@@ -205,7 +205,7 @@ export default function ReportsPage() {
               </Link>
               <Link
                 href="/research/network"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Network Analysis
               </Link>

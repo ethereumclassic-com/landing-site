@@ -59,7 +59,7 @@ export default function ReferralDashboardPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <Link
               href="/referral"
-              className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)] transition-colors"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -67,7 +67,7 @@ export default function ReferralDashboardPage() {
               Back to Referral Program
             </Link>
 
-            <h1 className="mt-4 text-3xl font-bold text-white">Referral Dashboard</h1>
+            <h1 className="mt-4 text-3xl font-bold text-[var(--text-primary)]">Referral Dashboard</h1>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Track your referrals, earnings, and manage your promotional links.
             </p>
@@ -118,7 +118,7 @@ export default function ReferralDashboardPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="text-sm text-[var(--color-text-muted)]">Total Referrals</div>
-              <div className="mt-2 text-3xl font-bold text-white">{sampleStats.totalReferrals}</div>
+              <div className="mt-2 text-3xl font-bold text-[var(--text-primary)]">{sampleStats.totalReferrals}</div>
               <div className="mt-1 text-sm text-[var(--color-text-muted)]">
                 {sampleStats.activeReferrals} active
               </div>
@@ -146,7 +146,7 @@ export default function ReferralDashboardPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="text-sm text-[var(--color-text-muted)]">Pending Payout</div>
-              <div className="mt-2 text-3xl font-bold text-white">
+              <div className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
                 {sampleStats.pendingEarnings.toFixed(4)} ETC
               </div>
               <div className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -180,7 +180,7 @@ export default function ReferralDashboardPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
           >
             <div className="p-6 border-b border-[var(--border)]">
-              <h2 className="text-xl font-bold text-white">Your Referral Links</h2>
+              <h2 className="text-xl font-bold text-[var(--text-primary)]">Your Referral Links</h2>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                 Share these links to earn commission on conversions.
               </p>
@@ -199,7 +199,7 @@ export default function ReferralDashboardPage() {
                 <tbody>
                   {sampleReferralLinks.map((link) => (
                     <tr key={link.product} className="border-b border-[var(--border)] last:border-b-0">
-                      <td className="px-6 py-4 font-medium text-white">{link.product}</td>
+                      <td className="px-6 py-4 font-medium text-[var(--text-primary)]">{link.product}</td>
                       <td className="px-6 py-4">
                         <code className="text-xs text-[var(--color-text-muted)] bg-[var(--bg)] px-2 py-1 rounded">
                           {link.link}
@@ -233,7 +233,7 @@ export default function ReferralDashboardPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="text-xl font-bold text-white">Recent Activity</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Recent Activity</h2>
             <div className="mt-6 flex flex-col items-center justify-center py-12 text-center">
               <svg aria-hidden="true" className="h-12 w-12 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -257,7 +257,7 @@ export default function ReferralDashboardPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-white">Payout History</h2>
+              <h2 className="text-xl font-bold text-[var(--text-primary)]">Payout History</h2>
               <button
                 disabled
                 className="rounded-lg bg-[var(--color-primary)]/20 px-4 py-2 text-sm font-medium text-[var(--color-primary)]/50 cursor-not-allowed"

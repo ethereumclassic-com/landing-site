@@ -47,13 +47,13 @@ function BankMethod({
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
-      <h3 className="text-lg font-bold text-white">{name}</h3>
+      <h3 className="text-lg font-bold text-[var(--text-primary)]">{name}</h3>
       <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
 
       <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
         <div>
           <span className="text-[var(--color-text-muted)]">Processing</span>
-          <p className="font-medium text-white">{processingTime}</p>
+          <p className="font-medium text-[var(--text-primary)]">{processingTime}</p>
         </div>
         <div>
           <span className="text-[var(--color-text-muted)]">Fees</span>
@@ -61,7 +61,7 @@ function BankMethod({
         </div>
         <div className="col-span-2">
           <span className="text-[var(--color-text-muted)]">Limits</span>
-          <p className="font-medium text-white">{limits}</p>
+          <p className="font-medium text-[var(--text-primary)]">{limits}</p>
         </div>
       </div>
 
@@ -110,14 +110,14 @@ function ExchangeProvider({
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4">
-        <h3 className="text-lg font-bold text-white">{name}</h3>
+        <h3 className="text-lg font-bold text-[var(--text-primary)]">{name}</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
       </div>
 
       <div className="mb-4 grid grid-cols-2 gap-4 text-sm">
         <div>
           <span className="text-[var(--color-text-muted)]">Processing</span>
-          <p className="font-medium text-white">{processingTime}</p>
+          <p className="font-medium text-[var(--text-primary)]">{processingTime}</p>
         </div>
         <div>
           <span className="text-[var(--color-text-muted)]">Deposit Fees</span>
@@ -143,7 +143,7 @@ function ExchangeProvider({
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[var(--color-primary-hover)]"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)]"
       >
         Start Deposit
         <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -321,7 +321,7 @@ export default function BankPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy ETC with{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -339,7 +339,7 @@ export default function BankPage() {
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#providers"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
@@ -348,7 +348,7 @@ export default function BankPage() {
             </a>
             <Link
               href="/buy/card"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
@@ -372,7 +372,7 @@ export default function BankPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Why Bank Transfer?
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Benefits of Bank Deposits
             </h2>
           </motion.div>
@@ -418,7 +418,7 @@ export default function BankPage() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {benefit.icon}
                 </div>
-                <h3 className="mb-2 font-semibold text-white">{benefit.title}</h3>
+                <h3 className="mb-2 font-semibold text-[var(--text-primary)]">{benefit.title}</h3>
                 <p className="text-sm text-[var(--color-text-muted)]">{benefit.description}</p>
               </motion.div>
             ))}
@@ -439,7 +439,7 @@ export default function BankPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Transfer Types
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Bank Transfer Methods
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -468,7 +468,7 @@ export default function BankPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Getting Started
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               How to Buy with Bank Transfer
             </h2>
           </motion.div>
@@ -487,7 +487,7 @@ export default function BankPage() {
                   {step.number}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">{step.title}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{step.title}</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{step.description}</p>
                 </div>
               </motion.div>
@@ -509,7 +509,7 @@ export default function BankPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Exchanges
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Where to Deposit
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -535,7 +535,7 @@ export default function BankPage() {
             transition={{ duration: 0.5 }}
             className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-8"
           >
-            <h3 className="mb-6 text-xl font-bold text-white">Important Tips</h3>
+            <h3 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Important Tips</h3>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="flex gap-4">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -544,7 +544,7 @@ export default function BankPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Match Account Names</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Match Account Names</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Your bank account name must match your exchange account name exactly
                   </p>
@@ -557,7 +557,7 @@ export default function BankPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Include Reference</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Include Reference</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Always include the deposit reference code provided by the exchange
                   </p>
@@ -570,7 +570,7 @@ export default function BankPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Allow Processing Time</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Allow Processing Time</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Bank transfers can take 1-5 business days depending on method and region
                   </p>
@@ -583,7 +583,7 @@ export default function BankPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Complete KYC First</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Complete KYC First</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Verify your identity before initiating deposits to avoid delays
                   </p>
@@ -603,7 +603,7 @@ export default function BankPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Need ETC Faster?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -612,7 +612,7 @@ export default function BankPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy/card"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)]"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
@@ -621,7 +621,7 @@ export default function BankPage() {
               </Link>
               <Link
                 href="/buy/instant"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
@@ -630,7 +630,7 @@ export default function BankPage() {
               </Link>
               <Link
                 href="/buy/exchanges"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008z" />

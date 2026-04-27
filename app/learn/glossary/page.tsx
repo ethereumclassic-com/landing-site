@@ -455,7 +455,7 @@ export default function GlossaryPage() {
             {glossaryTerms.length} Terms
           </span>
 
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
             Crypto{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               Glossary
@@ -488,7 +488,7 @@ export default function GlossaryPage() {
                 placeholder="Search terms..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] py-2.5 pl-10 pr-4 text-white placeholder-[var(--color-text-muted)] outline-none transition-colors focus:border-[var(--color-primary)]"
+                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] py-2.5 pl-10 pr-4 text-[var(--text-primary)] placeholder-[var(--color-text-muted)] outline-none transition-colors focus:border-[var(--color-primary)]"
               />
             </div>
 
@@ -500,7 +500,7 @@ export default function GlossaryPage() {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedCategory === cat.id
-                      ? 'bg-[var(--color-primary)] text-white'
+                      ? 'bg-[var(--color-primary)] text-[var(--background)]'
                       : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)]'
                   }`}
                 >
@@ -542,7 +542,7 @@ export default function GlossaryPage() {
                           className="flex w-full items-center justify-between p-4 text-left"
                         >
                           <div className="flex items-center gap-3">
-                            <span className="font-semibold text-white">{item.term}</span>
+                            <span className="font-semibold text-[var(--text-primary)]">{item.term}</span>
                             <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium capitalize text-[var(--color-primary)]">
                               {item.category}
                             </span>
@@ -628,7 +628,7 @@ export default function GlossaryPage() {
           viewport={{ once: true }}
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Ready to Learn More?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -637,13 +637,13 @@ export default function GlossaryPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/learn/basics/what-is-ethereum-classic"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)]"
             >
               What is Ethereum Classic?
             </Link>
             <Link
               href="/learn"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Browse All Guides
             </Link>

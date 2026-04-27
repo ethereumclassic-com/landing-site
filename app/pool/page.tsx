@@ -108,7 +108,7 @@ export default function PoolPage() {
               Coming Soon
             </span>
 
-            <h1 className="mt-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               EthereumClassic.com Mining Pool
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -128,7 +128,7 @@ export default function PoolPage() {
               </button>
               <Link
                 href="/mining"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Explore Mining Guides
               </Link>
@@ -147,7 +147,7 @@ export default function PoolPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-white">Pool Statistics</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Pool Statistics</h2>
               <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2 py-0.5 text-xs text-amber-400">
                 Sample Data
               </span>
@@ -156,19 +156,19 @@ export default function PoolPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <p className="text-sm text-[var(--color-text-muted)]">Pool Hashrate</p>
-                <p className="mt-1 text-2xl font-bold text-white">{poolStats.hashrate}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{poolStats.hashrate}</p>
               </div>
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <p className="text-sm text-[var(--color-text-muted)]">Active Workers</p>
-                <p className="mt-1 text-2xl font-bold text-white">{poolStats.workers.toLocaleString()}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{poolStats.workers.toLocaleString()}</p>
               </div>
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <p className="text-sm text-[var(--color-text-muted)]">Blocks (24h)</p>
-                <p className="mt-1 text-2xl font-bold text-white">{poolStats.blocks24h}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{poolStats.blocks24h}</p>
               </div>
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <p className="text-sm text-[var(--color-text-muted)]">Network Share</p>
-                <p className="mt-1 text-2xl font-bold text-white">{poolStats.networkShare}</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{poolStats.networkShare}</p>
               </div>
             </div>
           </motion.div>
@@ -182,7 +182,7 @@ export default function PoolPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-8 text-center text-2xl font-bold text-white"
+            className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]"
           >
             Pool Features
           </motion.h2>
@@ -202,7 +202,7 @@ export default function PoolPage() {
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">{feature.title}</h3>
+                    <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
                   </div>
                 </div>
@@ -221,7 +221,7 @@ export default function PoolPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-6 text-xl font-bold text-white">Connection Details</h2>
+            <h2 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Connection Details</h2>
 
             <div className="mb-6">
               <label className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Select Server</label>
@@ -233,7 +233,7 @@ export default function PoolPage() {
                     className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                       selectedServer.region === server.region
                         ? 'bg-[var(--color-primary)] text-black'
-                        : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-white'
+                        : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                     }`}
                   >
                     {server.region}
@@ -245,13 +245,13 @@ export default function PoolPage() {
             <div className="grid gap-4 md:grid-cols-2">
               <div>
                 <label className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Stratum URL</label>
-                <div className="rounded-lg bg-[var(--bg)] px-4 py-3 font-mono text-sm text-white">
+                <div className="rounded-lg bg-[var(--bg)] px-4 py-3 font-mono text-sm text-[var(--text-primary)]">
                   stratum+tcp://{selectedServer.url}:{selectedServer.port}
                 </div>
               </div>
               <div>
                 <label className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">Worker Format</label>
-                <div className="rounded-lg bg-[var(--bg)] px-4 py-3 font-mono text-sm text-white">
+                <div className="rounded-lg bg-[var(--bg)] px-4 py-3 font-mono text-sm text-[var(--text-primary)]">
                   YOUR_WALLET.WORKER_NAME
                 </div>
               </div>
@@ -274,7 +274,7 @@ export default function PoolPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-white">Recent Blocks</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)]">Recent Blocks</h2>
               <span className="text-xs text-[var(--color-text-muted)]">Sample data - pool not yet active</span>
             </div>
 
@@ -295,7 +295,7 @@ export default function PoolPage() {
                         {block.height.toLocaleString()}
                       </td>
                       <td className="py-3 px-4 text-[var(--color-text-muted)]">{block.time}</td>
-                      <td className="py-3 px-4 font-medium text-white">{block.reward}</td>
+                      <td className="py-3 px-4 font-medium text-[var(--text-primary)]">{block.reward}</td>
                       <td className="py-3 pl-4 font-mono text-[var(--color-text-muted)]">{block.finder}</td>
                     </tr>
                   ))}
@@ -315,7 +315,7 @@ export default function PoolPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
           >
-            <h2 className="text-xl font-bold text-white">Looking for Active Pools?</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)]">Looking for Active Pools?</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               While our pool is being built, check out other great ETC mining pools.
             </p>
@@ -344,7 +344,7 @@ export default function PoolPage() {
             <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
               Coming Soon
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white">Pool Launch Notification</h2>
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)]">Pool Launch Notification</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Be the first to know when the EthereumClassic.com Mining Pool goes live.
               Enter your email to join the waitlist.
@@ -354,7 +354,7 @@ export default function PoolPage() {
                 type="email"
                 placeholder="Enter your email"
                 disabled
-                className="w-full max-w-sm rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-white placeholder-[var(--color-text-muted)] opacity-50 sm:w-auto sm:flex-1"
+                className="w-full max-w-sm rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--text-primary)] placeholder-[var(--color-text-muted)] opacity-50 sm:w-auto sm:flex-1"
               />
               <button
                 disabled

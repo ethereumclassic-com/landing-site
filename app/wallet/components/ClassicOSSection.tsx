@@ -39,7 +39,7 @@ function ModuleCard({ module, title, description, icon, index }: ModuleCardProps
       <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-[var(--color-primary)]">
         {module}
       </div>
-      <h3 className="font-semibold text-white">{title}</h3>
+      <h3 className="font-semibold text-[var(--text-primary)]">{title}</h3>
       <p className="mt-2 text-sm text-[var(--color-text-muted)]">{description}</p>
     </motion.div>
   )
@@ -114,7 +114,7 @@ export default function ClassicOSSection() {
             </span>
             Flagship Product
           </span>
-          <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+          <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Classic OS: The Economic Control Center for ETC
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -132,7 +132,7 @@ export default function ClassicOSSection() {
               href="https://app.classicos.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Launch Classic OS
               <svg aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -141,7 +141,7 @@ export default function ClassicOSSection() {
             </a>
             <a
               href="/wallet/classic-os"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Learn More
             </a>
@@ -168,7 +168,7 @@ export default function ClassicOSSection() {
               </svg>
             </div>
             <div className="text-center md:text-left">
-              <p className="font-medium text-white">Works with any wallet</p>
+              <p className="font-medium text-[var(--text-primary)]">Works with any wallet</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                 MetaMask, Ledger, Trezor, and more. Classic OS connects to your existing wallet for secure transaction signing.
               </p>

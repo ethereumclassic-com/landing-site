@@ -66,7 +66,7 @@ export default function MinersPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Miners &amp; Olympia
           </motion.h1>
@@ -90,7 +90,7 @@ export default function MinersPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               Revenue Impact
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -125,7 +125,7 @@ export default function MinersPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               The Economic Case
             </motion.h2>
             <motion.p
@@ -171,7 +171,7 @@ export default function MinersPage() {
           </Link>
           <Link
             href="/mining"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
           >
             Mining Hub
           </Link>

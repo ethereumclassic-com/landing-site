@@ -78,7 +78,7 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
   return (
     <div className={`rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 ${className}`}>
       <div className="mb-4">
-        <h3 className="text-lg font-semibold text-white">Network Hashrate Distribution</h3>
+        <h3 className="text-lg font-semibold text-[var(--text-primary)]">Network Hashrate Distribution</h3>
         <p className="text-sm text-[var(--color-text-muted)]">
           Approximate pool share of ETC network hashrate
         </p>
@@ -133,7 +133,7 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
                   style={{ backgroundColor: segment.color }}
                 />
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-white">{segment.name}</p>
+                  <p className="truncate text-sm font-medium text-[var(--text-primary)]">{segment.name}</p>
                   <p className="text-xs text-[var(--color-text-muted)]">{segment.value}%</p>
                 </div>
               </div>
@@ -177,18 +177,18 @@ export function HashRateBar({ hashrate, difficulty, blockTime, className = '' }:
           </div>
           <div>
             <p className="text-sm text-[var(--color-text-muted)]">Network Hashrate</p>
-            <p className="text-lg font-bold text-white">{hashrate}</p>
+            <p className="text-lg font-bold text-[var(--text-primary)]">{hashrate}</p>
           </div>
         </div>
         <div className="hidden h-8 w-px bg-[var(--border)] sm:block" />
         <div className="hidden sm:block">
           <p className="text-sm text-[var(--color-text-muted)]">Difficulty</p>
-          <p className="font-semibold text-white">{difficulty}</p>
+          <p className="font-semibold text-[var(--text-primary)]">{difficulty}</p>
         </div>
         <div className="hidden h-8 w-px bg-[var(--border)] md:block" />
         <div className="hidden md:block">
           <p className="text-sm text-[var(--color-text-muted)]">Block Time</p>
-          <p className="font-semibold text-white">{blockTime}</p>
+          <p className="font-semibold text-[var(--text-primary)]">{blockTime}</p>
         </div>
       </div>
     </div>
@@ -223,7 +223,7 @@ export function MiningStat({ label, value, icon, highlight = false }: MiningStat
         </div>
         <div>
           <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
-          <p className="text-lg font-bold text-white">{value}</p>
+          <p className="text-lg font-bold text-[var(--text-primary)]">{value}</p>
         </div>
       </div>
     </motion.div>

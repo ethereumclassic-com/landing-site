@@ -105,7 +105,7 @@ export default function CalculatorPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Investment{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -132,7 +132,7 @@ export default function CalculatorPage() {
               animate={{ opacity: 1, y: 0 }}
               className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h2 className="mb-6 text-lg font-semibold text-white">Investment Details</h2>
+              <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Investment Details</h2>
 
               {/* Investment Amount */}
               <div className="mb-6">
@@ -145,7 +145,7 @@ export default function CalculatorPage() {
                     type="number"
                     value={investmentAmount}
                     onChange={(e) => setInvestmentAmount(e.target.value)}
-                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--background)] py-3 pl-8 pr-4 text-lg font-semibold text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--background)] py-3 pl-8 pr-4 text-lg font-semibold text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                     placeholder="1000"
                     min="0"
                   />
@@ -178,7 +178,7 @@ export default function CalculatorPage() {
                     type="number"
                     value={etcPrice}
                     onChange={(e) => setEtcPrice(e.target.value)}
-                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--background)] py-3 pl-8 pr-4 text-lg font-semibold text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--background)] py-3 pl-8 pr-4 text-lg font-semibold text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                     placeholder={CURRENT_PRICE.toString()}
                     min="0"
                     step="0.01"
@@ -203,7 +203,7 @@ export default function CalculatorPage() {
                     type="number"
                     value={futurePrice}
                     onChange={(e) => setFuturePrice(e.target.value)}
-                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--background)] py-3 pl-8 pr-4 text-lg font-semibold text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                    className="w-full rounded-xl border border-[var(--border)] bg-[var(--background)] py-3 pl-8 pr-4 text-lg font-semibold text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                     placeholder="50"
                     min="0"
                     step="0.01"
@@ -234,12 +234,12 @@ export default function CalculatorPage() {
               transition={{ delay: 0.1 }}
               className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <h2 className="mb-6 text-lg font-semibold text-white">Projected Returns</h2>
+              <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Projected Returns</h2>
 
               {/* ETC Amount */}
               <div className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--background)] p-4">
                 <p className="text-sm text-[var(--color-text-muted)]">ETC You Would Own</p>
-                <p className="mt-1 text-2xl font-bold text-white">
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
                   {calculations.etcAmount.toLocaleString('en-US', { maximumFractionDigits: 4 })} ETC
                 </p>
               </div>
@@ -272,7 +272,7 @@ export default function CalculatorPage() {
               <div className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-4">
                 <div className="mb-3 flex justify-between text-sm">
                   <span className="text-[var(--color-text-muted)]">Investment</span>
-                  <span className="text-white">{formatUSD(parseFloat(investmentAmount) || 0)}</span>
+                  <span className="text-[var(--text-primary)]">{formatUSD(parseFloat(investmentAmount) || 0)}</span>
                 </div>
                 <div className="h-2 overflow-hidden rounded-full bg-[var(--border)]">
                   <div
@@ -301,7 +301,7 @@ export default function CalculatorPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Price Scenarios</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price Scenarios</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               See how your {formatUSD(parseFloat(investmentAmount) || 1000)} investment could grow at different price levels
             </p>
@@ -333,7 +333,7 @@ export default function CalculatorPage() {
                     <span className="text-sm font-medium text-[var(--color-text-muted)]">{scenario.label}</span>
                     <span className="text-sm text-emerald-400">{scenario.change}</span>
                   </div>
-                  <p className="text-lg font-bold text-white">${scenario.price}</p>
+                  <p className="text-lg font-bold text-[var(--text-primary)]">${scenario.price}</p>
                   <div className="mt-3 border-t border-[var(--border)] pt-3">
                     <p className="text-sm text-[var(--color-text-muted)]">Value</p>
                     <p className="font-semibold text-[var(--color-primary)]">{formatUSD(futureValue)}</p>
@@ -355,7 +355,7 @@ export default function CalculatorPage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Dollar-Cost Averaging</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Dollar-Cost Averaging</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               See how regular investments can accumulate over time
             </p>
@@ -365,11 +365,11 @@ export default function CalculatorPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-[var(--border)]">
-                  <th className="px-4 py-3 text-left text-sm font-semibold text-white">Monthly Investment</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">6 Months</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">1 Year</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">2 Years</th>
-                  <th className="px-4 py-3 text-right text-sm font-semibold text-white">5 Years</th>
+                  <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--text-primary)]">Monthly Investment</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">6 Months</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">1 Year</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">2 Years</th>
+                  <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">5 Years</th>
                 </tr>
               </thead>
               <tbody>
@@ -384,7 +384,7 @@ export default function CalculatorPage() {
                       viewport={{ once: true }}
                       className="border-b border-[var(--border)]/50"
                     >
-                      <td className="px-4 py-3 font-medium text-white">${monthly}/mo</td>
+                      <td className="px-4 py-3 font-medium text-[var(--text-primary)]">${monthly}/mo</td>
                       <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">
                         {(monthlyEtc * 6).toFixed(2)} ETC
                       </td>
@@ -437,14 +437,14 @@ export default function CalculatorPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Invest?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Invest?</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Start your ETC investment journey on trusted exchanges
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -453,7 +453,7 @@ export default function CalculatorPage() {
               </Link>
               <Link
                 href="/markets/converter"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Price Converter
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -115,7 +115,7 @@ export default function ToolsPage() {
         <div className="mx-auto max-w-6xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Tools
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -134,7 +134,7 @@ export default function ToolsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Featured Tools
           </motion.h2>
@@ -155,7 +155,7 @@ export default function ToolsPage() {
                       {tool.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold text-white group-hover:text-[var(--color-primary)]">
+                      <h3 className="text-lg font-bold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                         {tool.name}
                       </h3>
                       <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -183,7 +183,7 @@ export default function ToolsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             All Tools
           </motion.h2>
@@ -202,7 +202,7 @@ export default function ToolsPage() {
                   <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-lg ${tool.color}`}>
                     {tool.icon}
                   </div>
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {tool.name}
                   </h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -224,7 +224,7 @@ export default function ToolsPage() {
             transition={{ delay: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">External Resources</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">External Resources</h2>
             <p className="mb-4 text-sm text-[var(--color-text-muted)]">
               Trusted third-party tools and resources for the ETC ecosystem:
             </p>
@@ -240,7 +240,7 @@ export default function ToolsPage() {
                   <span className="text-2xl">{tool.icon}</span>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">{tool.name}</h4>
+                      <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{tool.name}</h4>
                       <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                       </svg>
@@ -263,7 +263,7 @@ export default function ToolsPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Building on ETC?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Building on ETC?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Check out our developer tools including IDEs, frameworks, and testing libraries.
             </p>
@@ -279,7 +279,7 @@ export default function ToolsPage() {
               </Link>
               <Link
                 href="/build/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Getting Started Guide
               </Link>

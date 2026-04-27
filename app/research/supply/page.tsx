@@ -102,7 +102,7 @@ function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; i
             { label: 'Seconds', value: timeLeft.seconds },
           ].map((item) => (
             <div key={item.label} className="rounded-xl bg-[var(--panel)] p-3 md:p-4">
-              <p className="text-2xl font-bold text-white md:text-4xl">
+              <p className="text-2xl font-bold text-[var(--text-primary)] md:text-4xl">
                 {isLoading ? '--' : item.value.toString().padStart(2, '0')}
               </p>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">{item.label}</p>
@@ -114,7 +114,7 @@ function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; i
         <div className="mt-6 flex items-center justify-center gap-4">
           <div className="text-center">
             <p className="text-xs text-[var(--color-text-muted)]">Current Reward</p>
-            <p className="text-xl font-bold text-white">
+            <p className="text-xl font-bold text-[var(--text-primary)]">
               {stats ? formatBlockReward(stats.currentBlockReward) : '--'} ETC
             </p>
           </div>
@@ -216,7 +216,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs text-[var(--color-text-muted)]">{item.label}</p>
-              <p className="mt-1 text-xl font-bold text-white">
+              <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">
                 {isLoading ? '--' : item.value}
               </p>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">{item.description}</p>
@@ -240,7 +240,7 @@ function EraScheduleTable() {
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
     >
       <div className="p-4 border-b border-[var(--border)]">
-        <h3 className="font-semibold text-white">Emission Schedule by Era</h3>
+        <h3 className="font-semibold text-[var(--text-primary)]">Emission Schedule by Era</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">
           ECIP-1017: 20% reduction every 5M blocks
         </p>
@@ -272,7 +272,7 @@ function EraScheduleTable() {
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <span className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-white'}`}>
+                      <span className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}>
                         Era {era.number}
                       </span>
                       {isCurrent && (
@@ -290,13 +290,13 @@ function EraScheduleTable() {
                   <td className="px-4 py-3 text-[var(--color-text-muted)]">
                     {formatBlockNumber(era.startBlock)} - {formatBlockNumber(era.endBlock)}
                   </td>
-                  <td className="px-4 py-3 text-right font-mono text-white">
+                  <td className="px-4 py-3 text-right font-mono text-[var(--text-primary)]">
                     {formatBlockReward(era.blockReward)} ETC
                   </td>
                   <td className="px-4 py-3 text-right text-[var(--color-text-muted)]">
                     {formatSupply(era.eraSupply)} ETC
                   </td>
-                  <td className="px-4 py-3 text-right font-medium text-white">
+                  <td className="px-4 py-3 text-right font-medium text-[var(--text-primary)]">
                     {formatSupply(era.totalSupply)} ETC
                   </td>
                 </tr>
@@ -327,7 +327,7 @@ function EmissionMilestones() {
       variants={fadeInUp}
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
-      <h3 className="font-semibold text-white mb-4">Fifthening History</h3>
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fifthening History</h3>
 
       <div className="space-y-4">
         {emissionMilestones.map((milestone, idx) => {
@@ -354,7 +354,7 @@ function EmissionMilestones() {
 
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
-                  <p className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-white'}`}>
+                  <p className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}>
                     {milestone.event}
                     {isCurrent && (
                       <span className="ml-2 text-xs text-[var(--color-primary)]">(Upcoming)</span>
@@ -369,7 +369,7 @@ function EmissionMilestones() {
                   <svg aria-hidden="true" className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
-                  <span className="font-medium text-white">{milestone.rewardAfter} ETC</span>
+                  <span className="font-medium text-[var(--text-primary)]">{milestone.rewardAfter} ETC</span>
                 </div>
               </div>
             </div>
@@ -416,7 +416,7 @@ export default function SupplyTrackerPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
             <Link
               href="/research"
-              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
+              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -424,7 +424,7 @@ export default function SupplyTrackerPage() {
               Back to Research
             </Link>
 
-            <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               ETC Supply Tracker
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -455,7 +455,7 @@ export default function SupplyTrackerPage() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Emission Schedule
           </motion.h2>
@@ -475,28 +475,28 @@ export default function SupplyTrackerPage() {
             animate="visible"
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="font-semibold text-white mb-4">About ECIP-1017</h3>
+            <h3 className="font-semibold text-[var(--text-primary)] mb-4">About ECIP-1017</h3>
             <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
               <p>
-                <strong className="text-white">ECIP-1017</strong> established Ethereum Classic&apos;s monetary
+                <strong className="text-[var(--text-primary)]">ECIP-1017</strong> established Ethereum Classic&apos;s monetary
                 policy, implementing a disinflationary emission schedule inspired by Bitcoin&apos;s halving model.
               </p>
               <div className="rounded-lg bg-[var(--bg)] p-4 space-y-2">
                 <div className="flex justify-between">
                   <span>Era Length:</span>
-                  <span className="text-white">5,000,000 blocks</span>
+                  <span className="text-[var(--text-primary)]">5,000,000 blocks</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Reduction Rate:</span>
-                  <span className="text-white">20% per era</span>
+                  <span className="text-[var(--text-primary)]">20% per era</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Starting Reward:</span>
-                  <span className="text-white">5 ETC (Era 1)</span>
+                  <span className="text-[var(--text-primary)]">5 ETC (Era 1)</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Max Supply:</span>
-                  <span className="text-white">~199-210M ETC</span>
+                  <span className="text-[var(--text-primary)]">~199-210M ETC</span>
                 </div>
               </div>
               <p>
@@ -528,27 +528,27 @@ export default function SupplyTrackerPage() {
             animate="visible"
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="font-semibold text-white mb-4">ETC vs BTC Emission</h3>
+            <h3 className="font-semibold text-[var(--text-primary)] mb-4">ETC vs BTC Emission</h3>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="h-8 w-8 rounded-full bg-[var(--color-primary)]/20 flex items-center justify-center">
                     <span className="text-xs font-bold text-[var(--color-primary)]">ETC</span>
                   </div>
-                  <span className="font-medium text-white">Ethereum Classic</span>
+                  <span className="font-medium text-[var(--text-primary)]">Ethereum Classic</span>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Reduction Event</span>
-                    <span className="text-white">Fifthening (20%)</span>
+                    <span className="text-[var(--text-primary)]">Fifthening (20%)</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Frequency</span>
-                    <span className="text-white">~2.5 years</span>
+                    <span className="text-[var(--text-primary)]">~2.5 years</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Max Supply</span>
-                    <span className="text-white">~199-210M</span>
+                    <span className="text-[var(--text-primary)]">~199-210M</span>
                   </div>
                 </div>
               </div>
@@ -557,20 +557,20 @@ export default function SupplyTrackerPage() {
                   <div className="h-8 w-8 rounded-full bg-amber-500/20 flex items-center justify-center">
                     <span className="text-xs font-bold text-amber-400">BTC</span>
                   </div>
-                  <span className="font-medium text-white">Bitcoin</span>
+                  <span className="font-medium text-[var(--text-primary)]">Bitcoin</span>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Reduction Event</span>
-                    <span className="text-white">Halving (50%)</span>
+                    <span className="text-[var(--text-primary)]">Halving (50%)</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Frequency</span>
-                    <span className="text-white">~4 years</span>
+                    <span className="text-[var(--text-primary)]">~4 years</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Max Supply</span>
-                    <span className="text-white">21M</span>
+                    <span className="text-[var(--text-primary)]">21M</span>
                   </div>
                 </div>
               </div>

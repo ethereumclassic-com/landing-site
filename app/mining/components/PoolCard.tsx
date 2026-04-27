@@ -42,14 +42,14 @@ export default function PoolCard({ pool, index, variant = 'default' }: PoolCardP
             {pool.name[0]}
           </div>
           <div>
-            <span className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+            <span className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
               {pool.name}
             </span>
             <p className="text-sm text-[var(--color-text-muted)]">{pool.fee}% fee</p>
           </div>
         </div>
         <div className="text-right">
-          <span className="text-sm font-medium text-white">{pool.hashShare}%</span>
+          <span className="text-sm font-medium text-[var(--text-primary)]">{pool.hashShare}%</span>
           <p className="text-xs text-[var(--color-text-muted)]">hashrate</p>
         </div>
       </motion.a>
@@ -78,27 +78,27 @@ export default function PoolCard({ pool, index, variant = 'default' }: PoolCardP
               Recommended
             </span>
           )}
-          <span className="rounded-full bg-[var(--bg)] px-2.5 py-0.5 text-xs font-medium text-white">
+          <span className="rounded-full bg-[var(--bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--text-primary)]">
             {pool.hashShare}% hashrate
           </span>
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold text-white">{pool.name}</h3>
+      <h3 className="text-lg font-semibold text-[var(--text-primary)]">{pool.name}</h3>
 
       {/* Stats Grid */}
       <div className="mt-4 grid grid-cols-3 gap-4">
         <div>
           <p className="text-xs text-[var(--color-text-muted)]">Fee</p>
-          <p className="font-semibold text-white">{pool.fee}%</p>
+          <p className="font-semibold text-[var(--text-primary)]">{pool.fee}%</p>
         </div>
         <div>
           <p className="text-xs text-[var(--color-text-muted)]">Min Payout</p>
-          <p className="font-semibold text-white">{pool.minPayout} ETC</p>
+          <p className="font-semibold text-[var(--text-primary)]">{pool.minPayout} ETC</p>
         </div>
         <div>
           <p className="text-xs text-[var(--color-text-muted)]">Payout</p>
-          <p className="font-semibold text-white">{pool.payoutScheme.join(', ')}</p>
+          <p className="font-semibold text-[var(--text-primary)]">{pool.payoutScheme.join(', ')}</p>
         </div>
       </div>
 
@@ -133,7 +133,7 @@ export default function PoolCard({ pool, index, variant = 'default' }: PoolCardP
           href={pool.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition-all hover:bg-[var(--color-primary-hover)]"
+          className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-primary-hover)]"
         >
           Visit Pool
           <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -142,7 +142,7 @@ export default function PoolCard({ pool, index, variant = 'default' }: PoolCardP
         </a>
         <Link
           href={`/mining/pools/${pool.id}`}
-          className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--color-text-secondary)] transition-all hover:border-[var(--color-primary)]/30 hover:text-white"
+          className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--color-text-secondary)] transition-all hover:border-[var(--color-primary)]/30 hover:text-[var(--text-primary)]"
         >
           Details
           <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -171,7 +171,7 @@ export function PoolTableRow({ pool, index }: { pool: MiningPool; index: number 
             {pool.name[0]}
           </div>
           <div>
-            <span className="font-medium text-white">{pool.name}</span>
+            <span className="font-medium text-[var(--text-primary)]">{pool.name}</span>
             {pool.recommended && (
               <span className="ml-2 rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
                 Recommended
@@ -181,14 +181,14 @@ export function PoolTableRow({ pool, index }: { pool: MiningPool; index: number 
         </div>
       </td>
       <td className="py-4 px-4 text-center">
-        <span className="font-medium text-white">{pool.fee}%</span>
+        <span className="font-medium text-[var(--text-primary)]">{pool.fee}%</span>
       </td>
       <td className="py-4 px-4 text-center">
-        <span className="text-white">{pool.minPayout}</span>
+        <span className="text-[var(--text-primary)]">{pool.minPayout}</span>
         <span className="text-[var(--color-text-muted)]"> ETC</span>
       </td>
       <td className="py-4 px-4 text-center">
-        <span className="text-white">{pool.hashShare}%</span>
+        <span className="text-[var(--text-primary)]">{pool.hashShare}%</span>
       </td>
       <td className="py-4 px-4 text-center">
         <span className="text-[var(--color-text-muted)]">{pool.payoutScheme.join(', ')}</span>

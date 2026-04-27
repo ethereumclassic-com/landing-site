@@ -13,12 +13,12 @@ export default function PrivacyPage() {
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-3xl">
-          <h1 className="text-4xl font-bold tracking-tight text-white">Privacy Policy</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)]">Privacy Policy</h1>
           <p className="mt-4 text-[var(--color-text-secondary)]">Last updated: March 2026</p>
 
           <div className="mt-12 space-y-10 text-[var(--color-text-secondary)]">
             <section>
-              <h2 className="text-xl font-semibold text-white">Overview</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Overview</h2>
               <p className="mt-3">
                 EthereumClassic.com is an informational website about the Ethereum Classic blockchain. We are committed to
                 respecting your privacy and minimizing data collection.
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Information We Collect</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Information We Collect</h2>
               <p className="mt-3">
                 This website is a static site that does not require user accounts or login. We do not collect personal
                 information unless you voluntarily provide it (for example, via a contact form or newsletter signup).
@@ -42,7 +42,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Cookies</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Cookies</h2>
               <p className="mt-3">
                 This website may use essential cookies for basic functionality (such as theme preferences). We do not use
                 tracking cookies or third-party advertising cookies.
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Third-Party Services</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Third-Party Services</h2>
               <p className="mt-3">
                 This site may embed content from or link to third-party services (block explorers, exchanges, dApps). These
                 services have their own privacy policies. We encourage you to review their policies before interacting with
@@ -59,7 +59,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Blockchain Interactions</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Blockchain Interactions</h2>
               <p className="mt-3">
                 This website does not process blockchain transactions directly. If you interact with dApps or services linked
                 from this site, those transactions occur on-chain and are publicly visible by design. We have no control over
@@ -68,7 +68,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Data Retention</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Data Retention</h2>
               <p className="mt-3">
                 Analytics data is retained in aggregated form. If you contact us via email, we retain correspondence for as
                 long as necessary to respond to your inquiry.
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Your Rights</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Your Rights</h2>
               <p className="mt-3">
                 You may request deletion of any personal data you have provided to us. Since we collect minimal data, there
                 is typically nothing to delete for anonymous visitors.
@@ -84,7 +84,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Changes to This Policy</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Changes to This Policy</h2>
               <p className="mt-3">
                 We may update this privacy policy from time to time. Changes will be reflected on this page with an updated
                 date.

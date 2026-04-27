@@ -91,7 +91,7 @@ export default function InvestmentProductsPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Institutional Investment Products
           </motion.h1>
@@ -120,7 +120,7 @@ export default function InvestmentProductsPage() {
                 Regulated Securities Exposure
               </span>
             </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Grayscale Ethereum Classic Trust
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -133,12 +133,12 @@ export default function InvestmentProductsPage() {
                 variants={fadeInUp}
                 className="rounded-xl border border-[#F59E0B]/30 bg-[#F59E0B]/5 p-6"
               >
-                <p className="mb-4 text-sm font-semibold text-white">Fund Facts</p>
+                <p className="mb-4 text-sm font-semibold text-[var(--text-primary)]">Fund Facts</p>
                 <div className="space-y-2.5">
                   {fundFacts.map((fact) => (
                     <div key={fact.label} className="flex justify-between text-xs">
                       <span className="text-[var(--color-text-muted)]">{fact.label}</span>
-                      <span className="text-white">{fact.value}</span>
+                      <span className="text-[var(--text-primary)]">{fact.value}</span>
                     </div>
                   ))}
                 </div>
@@ -175,7 +175,7 @@ export default function InvestmentProductsPage() {
                     key={item.title}
                     className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
                   >
-                    <p className="text-sm font-semibold text-white">{item.title}</p>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{item.title}</p>
                     <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-muted)]">
                       {item.description}
                     </p>
@@ -199,7 +199,7 @@ export default function InvestmentProductsPage() {
             <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
               Brokerage Access
             </motion.p>
-            <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
               ETC in Traditional Finance
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
@@ -220,7 +220,7 @@ export default function InvestmentProductsPage() {
                   className="group flex flex-col justify-between rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[#F59E0B]/30"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-sm font-semibold text-white">{b.name}</p>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{b.name}</p>
                     <span className="shrink-0 font-mono text-[10px] text-[var(--color-text-muted)] transition-colors group-hover:text-[#F59E0B]">↗</span>
                   </div>
                   <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[#F59E0B]/70">{b.tag}</p>
@@ -263,7 +263,7 @@ export default function InvestmentProductsPage() {
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
               The ETC Investment Case
             </motion.h2>
             <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
@@ -282,7 +282,7 @@ export default function InvestmentProductsPage() {
                     {point.number}
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">{point.title}</p>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{point.title}</p>
                     <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">
                       {point.body}
                     </p>
@@ -300,7 +300,7 @@ export default function InvestmentProductsPage() {
               </Link>
               <Link
                 href="/olympia"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30"
               >
                 Olympia Upgrade
               </Link>

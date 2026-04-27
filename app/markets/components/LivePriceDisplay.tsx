@@ -109,7 +109,7 @@ export default function LivePriceDisplay({
           </span>
         ) : (
           <>
-            <span className={`${sizeClasses[size].price} text-white`}>{priceFormatted}</span>
+            <span className={`${sizeClasses[size].price} text-[var(--text-primary)]`}>{priceFormatted}</span>
             {changeFormatted && (
               <span
                 className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 ${sizeClasses[size].change} ${changeColors[changeDirection]} ${changeBgColors[changeDirection]}`}
@@ -195,24 +195,24 @@ export function LiveMarketStats({
     <div className={`flex flex-wrap justify-center gap-6 text-sm ${className}`}>
       <div className="text-center">
         <p className="text-[var(--color-text-muted)]">Market Cap</p>
-        <p className="font-semibold text-white">{marketCapFormatted}</p>
+        <p className="font-semibold text-[var(--text-primary)]">{marketCapFormatted}</p>
       </div>
       {showVolume && (
         <div className="text-center">
           <p className="text-[var(--color-text-muted)]">24h Volume</p>
-          <p className="font-semibold text-white">{volumeFormatted}</p>
+          <p className="font-semibold text-[var(--text-primary)]">{volumeFormatted}</p>
         </div>
       )}
       {showRank && (
         <div className="text-center">
           <p className="text-[var(--color-text-muted)]">Rank</p>
-          <p className="font-semibold text-white">#28</p>
+          <p className="font-semibold text-[var(--text-primary)]">#28</p>
         </div>
       )}
       {showSupply && (
         <div className="text-center">
           <p className="text-[var(--color-text-muted)]">Circulating</p>
-          <p className="font-semibold text-white">148.3M ETC</p>
+          <p className="font-semibold text-[var(--text-primary)]">148.3M ETC</p>
         </div>
       )}
     </div>

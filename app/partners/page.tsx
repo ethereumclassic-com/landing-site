@@ -231,7 +231,7 @@ export default function PartnersPage() {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl font-bold tracking-tight text-white md:text-5xl"
+              className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
               Partner Directory
             </motion.h1>
@@ -250,7 +250,7 @@ export default function PartnersPage() {
               </Link>
               <Link
                 href="/advertise"
-                className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel)]"
+                className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
               >
                 Advertise With Us
               </Link>
@@ -272,7 +272,7 @@ export default function PartnersPage() {
                 href={partner.url}
                 target={partner.url.startsWith('http') ? '_blank' : undefined}
                 rel={partner.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="text-lg font-semibold text-[var(--color-text-muted)] transition hover:text-white"
+                className="text-lg font-semibold text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
                 whileHover={{ scale: 1.05 }}
               >
                 {partner.name}
@@ -293,7 +293,7 @@ export default function PartnersPage() {
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   activeCategory === category.id
                     ? 'bg-[var(--color-primary)] text-black'
-                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                 }`}
               >
                 {category.label}
@@ -325,7 +325,7 @@ export default function PartnersPage() {
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-white">{partner.name}</h3>
+                      <h3 className="font-semibold text-[var(--text-primary)]">{partner.name}</h3>
                       {partner.featured && (
                         <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
                           Featured
@@ -387,7 +387,7 @@ export default function PartnersPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl font-bold text-white md:text-3xl">
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
                 Interested in Partnering?
               </h2>
               <p className="mt-4 text-[var(--color-text-muted)]">
@@ -395,7 +395,7 @@ export default function PartnersPage() {
               </p>
 
               <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6">
-                <h3 className="font-semibold text-white">Partnership Benefits</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Partnership Benefits</h3>
                 <ul className="mt-4 space-y-2 text-left text-sm text-[var(--color-text-secondary)]">
                   <li className="flex items-start gap-2">
                     <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -433,7 +433,7 @@ export default function PartnersPage() {
                 </Link>
                 <Link
                   href="/apps/submit"
-                  className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--bg)]"
+                  className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
                 >
                   Submit Your App
                 </Link>

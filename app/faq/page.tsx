@@ -44,7 +44,7 @@ export default function FAQPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Frequently Asked{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
@@ -74,7 +74,7 @@ export default function FAQPage() {
                 className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/50 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
               >
                 <span className="text-3xl">{section.icon}</span>
-                <h2 className="mt-4 text-xl font-semibold text-white group-hover:text-[var(--color-primary)]">
+                <h2 className="mt-4 text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                   {section.audience}
                 </h2>
                 <p className="mt-2 flex-1 text-sm text-[var(--color-text-secondary)]">{section.description}</p>

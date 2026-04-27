@@ -113,7 +113,7 @@ export default function PortfolioPage() {
         >
           <Link
             href="/account"
-            className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
+            className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
           >
             <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -122,7 +122,7 @@ export default function PortfolioPage() {
           </Link>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-white">Portfolio Tracker</h1>
+              <h1 className="text-3xl font-bold text-[var(--text-primary)]">Portfolio Tracker</h1>
               <p className="mt-1 text-[var(--color-text-muted)]">
                 Track your cryptocurrency holdings
               </p>
@@ -149,13 +149,13 @@ export default function PortfolioPage() {
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6">
               <p className="text-sm text-[var(--color-text-muted)]">Total Value</p>
-              <p className="mt-1 text-2xl font-bold text-white">
+              <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
                 ${portfolioValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6">
               <p className="text-sm text-[var(--color-text-muted)]">Total Cost</p>
-              <p className="mt-1 text-2xl font-bold text-white">
+              <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
                 ${portfolioCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
             </div>
@@ -182,7 +182,7 @@ export default function PortfolioPage() {
             <svg aria-hidden="true" className="mx-auto h-16 w-16 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
             </svg>
-            <h2 className="mt-4 text-xl font-semibold text-white">No holdings tracked</h2>
+            <h2 className="mt-4 text-xl font-semibold text-[var(--text-primary)]">No holdings tracked</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Add your cryptocurrency holdings to track their value
             </p>
@@ -222,7 +222,7 @@ export default function PortfolioPage() {
                         {item.symbol.slice(0, 3)}
                       </div>
                       <div>
-                        <p className="font-semibold text-white">{item.symbol}</p>
+                        <p className="font-semibold text-[var(--text-primary)]">{item.symbol}</p>
                         <p className="text-sm text-[var(--color-text-muted)]">{item.name}</p>
                       </div>
                     </div>
@@ -239,15 +239,15 @@ export default function PortfolioPage() {
                   <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
                     <div>
                       <p className="text-xs text-[var(--color-text-muted)]">Amount</p>
-                      <p className="font-medium text-white">{item.amount}</p>
+                      <p className="font-medium text-[var(--text-primary)]">{item.amount}</p>
                     </div>
                     <div>
                       <p className="text-xs text-[var(--color-text-muted)]">Avg. Buy Price</p>
-                      <p className="font-medium text-white">${item.purchasePrice}</p>
+                      <p className="font-medium text-[var(--text-primary)]">${item.purchasePrice}</p>
                     </div>
                     <div>
                       <p className="text-xs text-[var(--color-text-muted)]">Current Value</p>
-                      <p className="font-medium text-white">
+                      <p className="font-medium text-[var(--text-primary)]">
                         ${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </p>
                     </div>
@@ -274,7 +274,7 @@ export default function PortfolioPage() {
               className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">Add Holding</h2>
+                <h2 className="text-xl font-semibold text-[var(--text-primary)]">Add Holding</h2>
                 <button
                   onClick={() => {
                     setShowAddModal(false)
@@ -283,7 +283,7 @@ export default function PortfolioPage() {
                     setPurchasePrice('')
                     setPurchaseDate('')
                   }}
-                  className="rounded-lg p-2 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--border)] hover:text-white"
+                  className="rounded-lg p-2 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--border)] hover:text-[var(--text-primary)]"
                 >
                   <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -293,7 +293,7 @@ export default function PortfolioPage() {
 
               <div className="space-y-4">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-white">Asset</label>
+                  <label className="mb-2 block text-sm font-medium text-[var(--text-primary)]">Asset</label>
                   <select
                     value={selectedAsset}
                     onChange={(e) => {
@@ -302,7 +302,7 @@ export default function PortfolioPage() {
                         setPurchasePrice(assetPrices[e.target.value].price.toString())
                       }
                     }}
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-white transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-[var(--text-primary)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
                   >
                     <option value="" className="bg-[var(--bg)]">Select an asset</option>
                     {availableAssets.map((asset) => (
@@ -314,7 +314,7 @@ export default function PortfolioPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-white">Amount</label>
+                  <label className="mb-2 block text-sm font-medium text-[var(--text-primary)]">Amount</label>
                   <input
                     type="number"
                     step="any"
@@ -322,12 +322,12 @@ export default function PortfolioPage() {
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="0.00"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-white placeholder-[var(--color-text-muted)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-[var(--text-primary)] placeholder-[var(--color-text-muted)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-white">Purchase Price (USD)</label>
+                  <label className="mb-2 block text-sm font-medium text-[var(--text-primary)]">Purchase Price (USD)</label>
                   <input
                     type="number"
                     step="any"
@@ -335,17 +335,17 @@ export default function PortfolioPage() {
                     value={purchasePrice}
                     onChange={(e) => setPurchasePrice(e.target.value)}
                     placeholder="0.00"
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-white placeholder-[var(--color-text-muted)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-[var(--text-primary)] placeholder-[var(--color-text-muted)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-white">Purchase Date (optional)</label>
+                  <label className="mb-2 block text-sm font-medium text-[var(--text-primary)]">Purchase Date (optional)</label>
                   <input
                     type="date"
                     value={purchaseDate}
                     onChange={(e) => setPurchaseDate(e.target.value)}
-                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-white transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)]/50 px-4 py-3 text-[var(--text-primary)] transition-colors focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
                   />
                 </div>
 
@@ -353,13 +353,13 @@ export default function PortfolioPage() {
                   <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)]/30 p-4">
                     <div className="flex justify-between text-sm">
                       <span className="text-[var(--color-text-muted)]">Total Cost</span>
-                      <span className="font-medium text-white">
+                      <span className="font-medium text-[var(--text-primary)]">
                         ${(parseFloat(amount) * parseFloat(purchasePrice)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>
                     <div className="mt-2 flex justify-between text-sm">
                       <span className="text-[var(--color-text-muted)]">Current Value</span>
-                      <span className="font-medium text-white">
+                      <span className="font-medium text-[var(--text-primary)]">
                         ${(parseFloat(amount) * (assetPrices[selectedAsset]?.price || parseFloat(purchasePrice))).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                       </span>
                     </div>

@@ -62,7 +62,7 @@ function LivePricePairs() {
           className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 transition-all hover:border-[var(--color-primary)]/30"
         >
           <p className="text-xs text-[var(--color-text-muted)]">{pair.displayName}</p>
-          <p className="font-semibold text-white">
+          <p className="font-semibold text-[var(--text-primary)]">
             {formatPairPrice(pair.quote)}
           </p>
         </Link>
@@ -144,7 +144,7 @@ function LiveKeyMetrics() {
           >
             <p className="text-xs text-[var(--color-text-muted)]">{stat.label}</p>
             <div className="mt-1 flex items-baseline gap-2">
-              <p className="text-2xl font-bold text-white">{stat.value}</p>
+              <p className="text-2xl font-bold text-[var(--text-primary)]">{stat.value}</p>
               {stat.change && (
                 <span className={`text-sm font-medium ${
                   stat.changeDirection === 'up' ? 'text-emerald-400' :
@@ -214,7 +214,7 @@ export default function ETCPricePage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Ethereum Classic{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -275,7 +275,7 @@ export default function ETCPricePage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Key Metrics</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Key Metrics</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Live market data for ETC
             </p>
@@ -293,7 +293,7 @@ export default function ETCPricePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">About ETC Price</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">About ETC Price</h2>
             <div className="mt-6 space-y-4 text-[var(--color-text-secondary)]">
               <p>
                 Ethereum Classic (ETC) is a decentralized, open-source blockchain platform that runs smart contracts.
@@ -324,7 +324,7 @@ export default function ETCPricePage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Price Milestones</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price Milestones</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Key moments in ETC&apos;s price history
             </p>
@@ -346,7 +346,7 @@ export default function ETCPricePage() {
                 <div className="h-8 w-px bg-[var(--border)]" />
                 <div className="flex-1">
                   <p className="text-sm text-[var(--color-text-muted)]">{milestone.date}</p>
-                  <p className="text-white">{milestone.event}</p>
+                  <p className="text-[var(--text-primary)]">{milestone.event}</p>
                 </div>
               </motion.div>
             ))}
@@ -363,7 +363,7 @@ export default function ETCPricePage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Where to Check ETC Price</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Where to Check ETC Price</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Trusted sources for real-time ETC price data
             </p>
@@ -383,7 +383,7 @@ export default function ETCPricePage() {
                 className="group flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div>
-                  <span className="text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <span className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {source.name}
                   </span>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -414,14 +414,14 @@ export default function ETCPricePage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Buy ETC?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Buy ETC?</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Get started with Ethereum Classic on trusted exchanges
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -430,7 +430,7 @@ export default function ETCPricePage() {
               </Link>
               <Link
                 href="/markets"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 View Full Market Data
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

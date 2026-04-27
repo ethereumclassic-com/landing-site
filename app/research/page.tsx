@@ -68,7 +68,7 @@ function ReportCard({ report }: { report: typeof reports[0] }) {
         <span className="text-xs text-[var(--color-text-muted)]">{report.readTime} read</span>
       </div>
 
-      <h3 className="mb-2 text-lg font-bold text-white">{report.title}</h3>
+      <h3 className="mb-2 text-lg font-bold text-[var(--text-primary)]">{report.title}</h3>
       <p className="mb-4 text-sm text-[var(--color-text-muted)]">{report.description}</p>
 
       <div className="mb-4 space-y-2">
@@ -116,7 +116,7 @@ function MetricCard({ metric }: { metric: LiveMetric }) {
     >
       <p className="text-xs text-[var(--color-text-muted)]">{metric.label}</p>
       <div className="mt-1 flex items-baseline gap-2">
-        <p className="text-2xl font-bold text-white">{metric.value}</p>
+        <p className="text-2xl font-bold text-[var(--text-primary)]">{metric.value}</p>
         {metric.change && (
           <span className={`text-sm font-medium ${
             metric.changeType === 'positive' ? 'text-green-400' :
@@ -230,7 +230,7 @@ export default function ResearchPage() {
         <div className="mx-auto max-w-6xl">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Research Hub
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -258,7 +258,7 @@ export default function ResearchPage() {
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
                 {categoryIcons.network}
               </div>
-              <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">Network Analysis</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Network Analysis</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Hashrate, transactions, and on-chain metrics</p>
             </Link>
             <Link
@@ -270,7 +270,7 @@ export default function ResearchPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">Supply Tracker</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Supply Tracker</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Emission schedule &amp; Fifthening countdown</p>
             </Link>
             <Link
@@ -282,7 +282,7 @@ export default function ResearchPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-white group-hover:text-amber-400">Fee Market</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-amber-400">Fee Market</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Gas prices &amp; miner revenue analysis</p>
             </Link>
             <Link
@@ -292,7 +292,7 @@ export default function ResearchPage() {
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
                 {categoryIcons.ecosystem}
               </div>
-              <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">Ecosystem</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Ecosystem</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">DeFi, infrastructure, and community growth</p>
             </Link>
             <Link
@@ -302,7 +302,7 @@ export default function ResearchPage() {
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
                 {categoryIcons.market}
               </div>
-              <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">Reports</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Reports</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Market analysis and research papers</p>
             </Link>
             <Link
@@ -312,7 +312,7 @@ export default function ResearchPage() {
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/10 text-red-400">
                 {categoryIcons.technical}
               </div>
-              <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">Mining Stats</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Mining Stats</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Network hashrate and mining data</p>
             </Link>
           </motion.div>
@@ -326,7 +326,7 @@ export default function ResearchPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Network Metrics
           </motion.h2>
@@ -343,7 +343,7 @@ export default function ResearchPage() {
             transition={{ delay: 0.3 }}
             className="mb-6 flex items-center justify-between"
           >
-            <h2 className="text-xl font-semibold text-white">Latest Reports</h2>
+            <h2 className="text-xl font-semibold text-[var(--text-primary)]">Latest Reports</h2>
             <Link
               href="/research/reports"
               className="text-sm text-[var(--color-primary)] hover:underline"
@@ -371,7 +371,7 @@ export default function ResearchPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-6 text-xl font-semibold text-white"
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Ecosystem Overview
           </motion.h2>
@@ -386,12 +386,12 @@ export default function ResearchPage() {
                 key={section.category}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
-                <h3 className="mb-3 font-semibold text-white">{section.category}</h3>
+                <h3 className="mb-3 font-semibold text-[var(--text-primary)]">{section.category}</h3>
                 <div className="space-y-2">
                   {section.stats.map((stat) => (
                     <div key={stat.label} className="flex justify-between text-sm">
                       <span className="text-[var(--color-text-muted)]">{stat.label}</span>
-                      <span className="font-medium text-white">{stat.value}</span>
+                      <span className="font-medium text-[var(--text-primary)]">{stat.value}</span>
                     </div>
                   ))}
                 </div>
@@ -410,7 +410,7 @@ export default function ResearchPage() {
             transition={{ delay: 0.5 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Data Sources</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Data Sources</h2>
             <p className="mb-4 text-sm text-[var(--color-text-muted)]">
               Access raw data and analytics from these trusted sources:
             </p>
@@ -424,7 +424,7 @@ export default function ResearchPage() {
                   className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 transition-colors hover:border-[var(--color-primary)]/30"
                 >
                   <div className="flex items-center justify-between">
-                    <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">{source.name}</h4>
+                    <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{source.name}</h4>
                     <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                     </svg>
@@ -446,7 +446,7 @@ export default function ResearchPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Stay Informed</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Stay Informed</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Follow the latest developments in the Ethereum Classic ecosystem through our news and research updates.
             </p>
@@ -462,7 +462,7 @@ export default function ResearchPage() {
               </Link>
               <Link
                 href="/learn"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Learn More
               </Link>

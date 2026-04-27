@@ -77,11 +77,11 @@ export default function GettingStartedPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)] px-6 py-4">
         <div className="mx-auto max-w-7xl">
           <nav className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-            <Link href="/build" className="hover:text-white">
+            <Link href="/build" className="hover:text-[var(--text-primary)]">
               Build
             </Link>
             <ChevronRightIcon />
-            <span className="text-white">Getting Started</span>
+            <span className="text-[var(--text-primary)]">Getting Started</span>
           </nav>
         </div>
       </div>
@@ -94,7 +94,7 @@ export default function GettingStartedPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
               Getting Started with ETC Development
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -121,7 +121,7 @@ export default function GettingStartedPage() {
                 </div>
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">{stat.label}</p>
-                  <p className="font-semibold text-white">{stat.value}</p>
+                  <p className="font-semibold text-[var(--text-primary)]">{stat.value}</p>
                 </div>
               </div>
             ))}
@@ -137,7 +137,7 @@ export default function GettingStartedPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-6 text-2xl font-bold text-white">Prerequisites</h2>
+            <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Prerequisites</h2>
             <div className="grid gap-4 md:grid-cols-2">
               {[
                 {
@@ -170,7 +170,7 @@ export default function GettingStartedPage() {
                 >
                   <CheckCircleIcon />
                   <div>
-                    <p className="font-medium text-white group-hover:text-[var(--color-primary)]">
+                    <p className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {item.title}
                     </p>
                     <p className="text-sm text-[var(--color-text-muted)]">{item.description}</p>
@@ -189,7 +189,7 @@ export default function GettingStartedPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 text-center text-3xl font-bold text-white"
+            className="mb-12 text-center text-3xl font-bold text-[var(--text-primary)]"
           >
             Step-by-Step Guide
           </motion.h2>
@@ -220,7 +220,7 @@ export default function GettingStartedPage() {
 
                   {/* Content */}
                   <div className="flex-1 pb-8">
-                    <h3 className="mb-2 text-xl font-semibold text-white">{step.title}</h3>
+                    <h3 className="mb-2 text-xl font-semibold text-[var(--text-primary)]">{step.title}</h3>
                     <p className="mb-4 text-[var(--color-text-muted)]">{step.description}</p>
 
                     {/* Code Block */}
@@ -232,7 +232,7 @@ export default function GettingStartedPage() {
                           </span>
                           <button
                             onClick={() => navigator.clipboard.writeText(step.code!)}
-                            className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-white"
+                            className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
                           >
                             <ClipboardIcon />
                             Copy
@@ -272,18 +272,18 @@ export default function GettingStartedPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-8 text-center text-2xl font-bold text-white">
+            <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">
               Network Configuration
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
               {/* Mainnet Config */}
               <div className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--panel)] p-6">
-                <h3 className="mb-4 font-semibold text-white">Mainnet (Production)</h3>
+                <h3 className="mb-4 font-semibold text-[var(--text-primary)]">Mainnet (Production)</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Network Name</span>
-                    <code className="text-white">{mainnet.name}</code>
+                    <code className="text-[var(--text-primary)]">{mainnet.name}</code>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Chain ID</span>
@@ -291,41 +291,41 @@ export default function GettingStartedPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Currency</span>
-                    <code className="text-white">{mainnet.symbol}</code>
+                    <code className="text-[var(--text-primary)]">{mainnet.symbol}</code>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                    <code className="text-xs text-white">etc.rivet.link</code>
+                    <code className="text-xs text-[var(--text-primary)]">etc.rivet.link</code>
                   </div>
                 </div>
               </div>
 
               {/* Testnet Config */}
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                <h3 className="mb-4 font-semibold text-white">Mordor Testnet (Development)</h3>
+                <h3 className="mb-4 font-semibold text-[var(--text-primary)]">Mordor Testnet (Development)</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Network Name</span>
-                    <code className="text-white">{testnet.name}</code>
+                    <code className="text-[var(--text-primary)]">{testnet.name}</code>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Chain ID</span>
-                    <code className="text-white">{testnet.chainId}</code>
+                    <code className="text-[var(--text-primary)]">{testnet.chainId}</code>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Currency</span>
-                    <code className="text-white">{testnet.symbol}</code>
+                    <code className="text-[var(--text-primary)]">{testnet.symbol}</code>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                    <code className="text-xs text-white">rpc.mordor.etccooperative.org</code>
+                    <code className="text-xs text-[var(--text-primary)]">rpc.mordor.etccooperative.org</code>
                   </div>
                 </div>
                 <a
                   href={faucets[0].url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 text-sm text-white transition hover:bg-[var(--panel)]"
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
                 >
                   Get Testnet ETC <ExternalLinkIcon />
                 </a>
@@ -335,7 +335,7 @@ export default function GettingStartedPage() {
             {/* Hardhat Config Example */}
             <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--bg)]">
               <div className="flex items-center justify-between border-b border-[var(--border)] bg-[var(--panel)] px-4 py-2">
-                <span className="text-sm font-medium text-white">hardhat.config.js</span>
+                <span className="text-sm font-medium text-[var(--text-primary)]">hardhat.config.js</span>
                 <button
                   onClick={() => {
                     const config = `module.exports = {
@@ -354,7 +354,7 @@ export default function GettingStartedPage() {
 }`
                     navigator.clipboard.writeText(config)
                   }}
-                  className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-white"
+                  className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
                 >
                   <ClipboardIcon />
                   Copy
@@ -391,7 +391,7 @@ export default function GettingStartedPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-8 text-center text-2xl font-bold text-white">Recommended Tools</h2>
+            <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Recommended Tools</h2>
 
             <div className="grid gap-4 md:grid-cols-3">
               {recommendedTools.map((tool) => (
@@ -403,7 +403,7 @@ export default function GettingStartedPage() {
                   className="group rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5 transition hover:border-[var(--color-primary)]/30"
                 >
                   <div className="flex items-start justify-between">
-                    <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                    <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {tool.name}
                     </h3>
                     <ExternalLinkIcon />
@@ -436,7 +436,7 @@ export default function GettingStartedPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-8 text-center text-2xl font-bold text-white">Development Tips</h2>
+            <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Development Tips</h2>
 
             <div className="grid gap-4 md:grid-cols-2">
               {[
@@ -465,7 +465,7 @@ export default function GettingStartedPage() {
                   key={i}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
                 >
-                  <h3 className="mb-2 font-semibold text-white">{tip.title}</h3>
+                  <h3 className="mb-2 font-semibold text-[var(--text-primary)]">{tip.title}</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">{tip.description}</p>
                 </div>
               ))}
@@ -482,7 +482,7 @@ export default function GettingStartedPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Need More Help?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Need More Help?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
               Explore our documentation, join the community, or check out example projects.
             </p>
@@ -497,7 +497,7 @@ export default function GettingStartedPage() {
                 href="https://discord.com/invite/Tq57jxSwsa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 Join Discord
                 <ExternalLinkIcon />

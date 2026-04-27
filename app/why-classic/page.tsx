@@ -42,7 +42,7 @@ export default function WhyClassicPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Why{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
@@ -78,7 +78,7 @@ export default function WhyClassicPage() {
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-medium text-[var(--color-text-muted)]">Part {i + 1}</span>
                   </div>
-                  <h2 className="mt-1 text-xl font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h2 className="mt-1 text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {article.title}
                   </h2>
                   <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{article.description}</p>

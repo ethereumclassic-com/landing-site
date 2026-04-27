@@ -145,7 +145,7 @@ export default function SecurityPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-3 text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl"
+            className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl"
           >
             Core-Geth Security Gap Analysis
           </motion.h1>
@@ -204,7 +204,7 @@ export default function SecurityPage() {
                     className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4"
                   >
                     <div className="flex flex-wrap items-center gap-2">
-                      <code className="text-sm text-white">{cve.id}</code>
+                      <code className="text-sm text-[var(--text-primary)]">{cve.id}</code>
                       <span
                         className={`rounded-sm px-2 py-0.5 text-[10px] font-mono font-medium ${severityColors[cve.severity]}`}
                       >
@@ -263,7 +263,7 @@ export default function SecurityPage() {
                       {item.date}
                     </div>
                     <div className="flex-1 border-l border-[var(--border)] pl-4">
-                      <p className="text-sm text-white">{item.event}</p>
+                      <p className="text-sm text-[var(--text-primary)]">{item.event}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{item.note}</p>
                     </div>
                   </div>
@@ -281,7 +281,7 @@ export default function SecurityPage() {
                     className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-white">{item.area}</span>
+                      <span className="font-semibold text-[var(--text-primary)]">{item.area}</span>
                       <span
                         className={`rounded-sm px-2 py-0.5 text-[10px] font-mono font-medium ${riskColors[item.risk]}`}
                       >

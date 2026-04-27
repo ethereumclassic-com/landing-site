@@ -105,7 +105,7 @@ export default function AdvertisePage() {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl font-bold tracking-tight text-white md:text-5xl"
+              className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
               Advertise on EthereumClassic.com
             </motion.h1>
@@ -124,7 +124,7 @@ export default function AdvertisePage() {
               </Link>
               <a
                 href="#placements"
-                className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel)]"
+                className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
               >
                 View Placements
               </a>
@@ -162,7 +162,7 @@ export default function AdvertisePage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Our Audience</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Our Audience</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
               Highly targeted audience segments actively engaged with the ETC ecosystem
             </p>
@@ -179,7 +179,7 @@ export default function AdvertisePage() {
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-white">{audience.type}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{audience.type}</h3>
                   <span className="text-2xl font-bold text-[var(--color-primary)]">
                     {audience.percentage}%
                   </span>
@@ -209,7 +209,7 @@ export default function AdvertisePage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Ad Placements</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ad Placements</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
               Multiple placement options to fit your marketing goals and budget
             </p>
@@ -225,7 +225,7 @@ export default function AdvertisePage() {
                 transition={{ delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6"
               >
-                <h3 className="text-lg font-semibold text-white">{placement.name}</h3>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)]">{placement.name}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{placement.description}</p>
 
                 <div className="mt-4 space-y-2">
@@ -257,7 +257,7 @@ export default function AdvertisePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl font-bold text-white md:text-3xl">Advertising Guidelines</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Advertising Guidelines</h2>
               <p className="mt-4 text-[var(--color-text-muted)]">
                 We maintain high standards to protect our community. All ads must comply with these guidelines.
               </p>
@@ -287,7 +287,7 @@ export default function AdvertisePage() {
               transition={{ delay: 0.1 }}
               className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
             >
-              <h3 className="text-xl font-semibold text-white">Ready to Advertise?</h3>
+              <h3 className="text-xl font-semibold text-[var(--text-primary)]">Ready to Advertise?</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Contact us with your campaign details and we will get back to you with a custom quote.
               </p>
@@ -329,7 +329,7 @@ export default function AdvertisePage() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Why Advertise With Us?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Why Advertise With Us?</h2>
           </motion.div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -374,7 +374,7 @@ export default function AdvertisePage() {
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {benefit.icon}
                 </div>
-                <h3 className="mt-4 font-semibold text-white">{benefit.title}</h3>
+                <h3 className="mt-4 font-semibold text-[var(--text-primary)]">{benefit.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{benefit.description}</p>
               </motion.div>
             ))}

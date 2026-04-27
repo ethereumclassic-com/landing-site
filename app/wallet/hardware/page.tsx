@@ -191,7 +191,7 @@ export default function HardwarePage() {
               Wallets
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Hardware Wallets</span>
+            <span className="text-[var(--text-primary)]">Hardware Wallets</span>
           </motion.div>
 
           {/* Badge */}
@@ -207,7 +207,7 @@ export default function HardwarePage() {
           {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Hardware Wallet Guide for{' '}
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
@@ -257,7 +257,7 @@ export default function HardwarePage() {
             viewport={{ once: true }}
             className="mb-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Why Use a Hardware Wallet?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Why Use a Hardware Wallet?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-[var(--color-text-secondary)]">
               Hardware wallets provide security that software wallets cannot match
             </p>
@@ -276,7 +276,7 @@ export default function HardwarePage() {
                 <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
                   {benefit.icon}
                 </div>
-                <h3 className="font-semibold text-white">{benefit.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{benefit.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{benefit.description}</p>
               </motion.div>
             ))}
@@ -293,7 +293,7 @@ export default function HardwarePage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Trezor vs Ledger</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Trezor vs Ledger</h2>
             <p className="mt-3 text-[var(--color-text-secondary)]">
               Both support Ethereum Classic and work with Classic OS. We recommend Trezor for its open-source firmware and strong privacy track record.
             </p>
@@ -312,7 +312,7 @@ export default function HardwarePage() {
                 <div className="mb-4 flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="text-xl font-bold text-white">{wallet.name}</h3>
+                      <h3 className="text-xl font-bold text-[var(--text-primary)]">{wallet.name}</h3>
                       {wallet.recommended && (
                         <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
                           Recommended
@@ -330,7 +330,7 @@ export default function HardwarePage() {
                     className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-all ${
                       wallet.recommended
                         ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/20'
-                        : 'border-[var(--border)] bg-[var(--color-bg-primary)] text-white hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
+                        : 'border-[var(--border)] bg-[var(--color-bg-primary)] text-[var(--background)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
                     }`}
                   >
                     {wallet.recommended ? 'Get Trezor' : 'Visit Site'}
@@ -369,7 +369,7 @@ export default function HardwarePage() {
                 </div>
 
                 <div className="rounded-lg border border-[var(--border)] bg-[var(--color-bg-primary)] p-4">
-                  <h4 className="mb-3 text-sm font-medium text-white">Quick Setup for ETC</h4>
+                  <h4 className="mb-3 text-sm font-medium text-[var(--text-primary)]">Quick Setup for ETC</h4>
                   <ol className="space-y-2">
                     {wallet.setupSteps.map((step, i) => (
                       <li key={i} className="flex items-start gap-3 text-sm text-[var(--color-text-muted)]">
@@ -396,7 +396,7 @@ export default function HardwarePage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">Feature Comparison</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">Feature Comparison</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Side-by-side comparison of key features
             </p>
@@ -413,13 +413,13 @@ export default function HardwarePage() {
                 <tr className="border-b border-[var(--border)]">
                   <th className="py-3 text-left text-sm font-medium text-[var(--color-text-muted)]">Feature</th>
                   <th className="py-3 text-center text-sm font-medium text-[var(--color-primary)]">Trezor</th>
-                  <th className="py-3 text-center text-sm font-medium text-white">Ledger</th>
+                  <th className="py-3 text-center text-sm font-medium text-[var(--text-primary)]">Ledger</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonFeatures.map((row, index) => (
                   <tr key={index} className="border-b border-[var(--border)]/50">
-                    <td className="py-3 text-sm text-white">{row.feature}</td>
+                    <td className="py-3 text-sm text-[var(--text-primary)]">{row.feature}</td>
                     <td className="py-3 text-center">
                       {typeof row.trezor === 'boolean' ? (
                         row.trezor ? (
@@ -475,7 +475,7 @@ export default function HardwarePage() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">Security Best Practices</h2>
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">Security Best Practices</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Follow these guidelines to maximize the security of your hardware wallet
             </p>
@@ -497,7 +497,7 @@ export default function HardwarePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                   </div>
-                  <h3 className="font-medium text-white">{practice.title}</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">{practice.title}</h3>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">{practice.description}</p>
               </motion.div>
@@ -514,40 +514,40 @@ export default function HardwarePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-4 text-xl font-bold text-white md:text-2xl">Using Hardware Wallets with Classic OS</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">Using Hardware Wallets with Classic OS</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
               Both Trezor and Ledger can be used with Classic OS through MetaMask, giving you the best of both worlds:
               hardware security with full DeFi access.
             </p>
 
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h3 className="mb-4 text-lg font-semibold text-white">Setup Steps</h3>
+              <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Setup Steps</h3>
               <ol className="space-y-4">
                 <li className="flex gap-4">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">1</span>
                   <div>
-                    <p className="font-medium text-white">Install MetaMask</p>
+                    <p className="font-medium text-[var(--text-primary)]">Install MetaMask</p>
                     <p className="text-sm text-[var(--color-text-muted)]">Follow our MetaMask setup guide to add the ETC network</p>
                   </div>
                 </li>
                 <li className="flex gap-4">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">2</span>
                   <div>
-                    <p className="font-medium text-white">Connect Hardware Wallet</p>
+                    <p className="font-medium text-[var(--text-primary)]">Connect Hardware Wallet</p>
                     <p className="text-sm text-[var(--color-text-muted)]">In MetaMask, click your account icon → Connect Hardware Wallet → Select Trezor or Ledger</p>
                   </div>
                 </li>
                 <li className="flex gap-4">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">3</span>
                   <div>
-                    <p className="font-medium text-white">Select Account</p>
+                    <p className="font-medium text-[var(--text-primary)]">Select Account</p>
                     <p className="text-sm text-[var(--color-text-muted)]">Choose which address(es) to import into MetaMask</p>
                   </div>
                 </li>
                 <li className="flex gap-4">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">4</span>
                   <div>
-                    <p className="font-medium text-white">Launch Classic OS</p>
+                    <p className="font-medium text-[var(--text-primary)]">Launch Classic OS</p>
                     <p className="text-sm text-[var(--color-text-muted)]">Connect to Classic OS and sign transactions securely on your hardware wallet</p>
                   </div>
                 </li>
@@ -566,7 +566,7 @@ export default function HardwarePage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-amber-500/20 bg-gradient-to-b from-amber-500/10 to-[var(--panel)] p-8 text-center"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Ready to Secure Your ETC?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-[var(--color-text-secondary)]">
@@ -577,7 +577,7 @@ export default function HardwarePage() {
                 href="https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 Get Trezor
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -588,7 +588,7 @@ export default function HardwarePage() {
                 href="https://shop.ledger.com/?r=bbf4d7f32e72"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Buy Ledger
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -603,7 +603,7 @@ export default function HardwarePage() {
       {/* Related Guides */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-xl font-bold text-white">Related Guides</h2>
+          <h2 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Related Guides</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             <Link
               href="/wallet/metamask"
@@ -614,7 +614,7 @@ export default function HardwarePage() {
                   <path d="M21.83 6.33L12.6 1.5c-.33-.2-.87-.2-1.2 0L2.17 6.33c-.2.13-.2.47 0 .6l9.23 5.17c.33.2.87.2 1.2 0l9.23-5.17c.2-.13.2-.47 0-.6zM12 13.17L3.6 8.33v7.84c0 .27.13.53.4.67l7.6 4.33c.13.07.27.1.4.1s.27-.03.4-.1l7.6-4.33c.27-.13.4-.4.4-.67V8.33L12 13.17z"/>
                 </svg>
               </div>
-              <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">MetaMask Setup</h3>
+              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">MetaMask Setup</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Configure MetaMask for ETC</p>
             </Link>
             <Link
@@ -626,7 +626,7 @@ export default function HardwarePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
               </div>
-              <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">Compare All Wallets</h3>
+              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Compare All Wallets</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Find the best wallet for your needs</p>
             </Link>
             <Link
@@ -638,7 +638,7 @@ export default function HardwarePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                 </svg>
               </div>
-              <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">Classic OS</h3>
+              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Classic OS</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">DeFi interface for ETC</p>
             </Link>
           </div>

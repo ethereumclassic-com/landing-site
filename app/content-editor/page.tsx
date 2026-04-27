@@ -330,13 +330,13 @@ Wrap up your article with a conclusion.`,
                 <div className="flex gap-2">
                   <button
                     onClick={handleCopy}
-                    className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[var(--color-primary-dark)]"
+                    className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--background)] transition-colors hover:bg-[var(--color-primary-dark)]"
                   >
                     {copied ? 'Copied!' : 'Copy'}
                   </button>
                   <button
                     onClick={handleDownload}
-                    className="rounded-lg border border-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--color-primary)] transition-colors hover:bg-[var(--color-primary)] hover:text-white"
+                    className="rounded-lg border border-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--color-primary)] transition-colors hover:bg-[var(--color-primary)] hover:text-[var(--background)]"
                   >
                     Download
                   </button>

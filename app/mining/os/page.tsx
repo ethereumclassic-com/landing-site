@@ -178,7 +178,7 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
         <div className="flex items-center gap-3">
           <span className="text-4xl">{os.logo}</span>
           <div>
-            <h3 className="text-xl font-bold text-white">{os.name}</h3>
+            <h3 className="text-xl font-bold text-[var(--text-primary)]">{os.name}</h3>
             <span className="text-xs text-[var(--color-primary)]">{os.popularity}</span>
           </div>
         </div>
@@ -196,7 +196,7 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
         <div className="flex flex-wrap gap-2">
           {os.pricing.map((price, index) => (
             <div key={index} className="rounded-lg bg-[var(--bg)] px-3 py-1.5 text-xs">
-              <span className="font-medium text-white">{price.tier}:</span>{' '}
+              <span className="font-medium text-[var(--text-primary)]">{price.tier}:</span>{' '}
               <span className="text-[var(--color-text-muted)]">{price.workers} - {price.features}</span>
             </div>
           ))}
@@ -266,7 +266,7 @@ export default function MiningOSPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/mining"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -276,7 +276,7 @@ export default function MiningOSPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Mining Operating Systems
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -304,7 +304,7 @@ export default function MiningOSPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Why Use a Mining OS?</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Why Use a Mining OS?</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Mining operating systems are stripped-down Linux distributions optimized for mining. They offer:
                   web-based remote management, pre-installed mining software, automatic overclocking profiles,
@@ -342,7 +342,7 @@ export default function MiningOSPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-6 text-lg font-semibold text-white">Feature Comparison</h2>
+            <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Feature Comparison</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -356,7 +356,7 @@ export default function MiningOSPage() {
                 <tbody>
                   {comparisonFeatures.map((feature) => (
                     <tr key={feature.key} className="border-b border-[var(--border)]/50 last:border-0">
-                      <td className="py-3 text-sm text-white">{feature.name}</td>
+                      <td className="py-3 text-sm text-[var(--text-primary)]">{feature.name}</td>
                       {miningOSPlatforms.map((os) => (
                         <td key={os.id} className="py-3 text-center">
                           {featureMatrix[os.id]?.[feature.key] ? (
@@ -388,7 +388,7 @@ export default function MiningOSPage() {
             viewport={{ once: true }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-6 text-lg font-semibold text-white">General Setup Steps</h2>
+            <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">General Setup Steps</h2>
             <div className="grid gap-6 md:grid-cols-4">
               {[
                 {
@@ -421,7 +421,7 @@ export default function MiningOSPage() {
                   <div className="absolute -left-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-primary)] text-xs font-bold text-black">
                     {item.step}
                   </div>
-                  <h3 className="font-semibold text-white">{item.title}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
                 </div>
               ))}
@@ -443,7 +443,7 @@ export default function MiningOSPage() {
               <div className="mb-3 text-2xl">🏆</div>
               <h3 className="font-semibold text-green-400">Best Overall</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                <strong className="text-white">HiveOS</strong> - Most features, best community support,
+                <strong className="text-[var(--text-primary)]">HiveOS</strong> - Most features, best community support,
                 and the widest range of supported hardware including ASICs.
               </p>
             </div>
@@ -452,7 +452,7 @@ export default function MiningOSPage() {
               <div className="mb-3 text-2xl">💼</div>
               <h3 className="font-semibold text-blue-400">Professional Use</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                <strong className="text-white">minerstat</strong> - Advanced analytics, enterprise features,
+                <strong className="text-[var(--text-primary)]">minerstat</strong> - Advanced analytics, enterprise features,
                 and sophisticated profit switching for larger operations.
               </p>
             </div>
@@ -461,7 +461,7 @@ export default function MiningOSPage() {
               <div className="mb-3 text-2xl">💰</div>
               <h3 className="font-semibold text-amber-400">Budget Option</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                <strong className="text-white">RaveOS</strong> - Unlimited free rigs when using partner pools.
+                <strong className="text-[var(--text-primary)]">RaveOS</strong> - Unlimited free rigs when using partner pools.
                 Great for beginners and cost-conscious miners.
               </p>
             </div>
@@ -478,7 +478,7 @@ export default function MiningOSPage() {
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Need Mining Software Instead?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need Mining Software Instead?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               If you prefer to run Windows or your own Linux installation, check out our mining software guide
               for standalone miners like T-Rex, lolMiner, and TeamRedMiner.
@@ -495,7 +495,7 @@ export default function MiningOSPage() {
               </Link>
               <Link
                 href="/mining/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Getting Started Guide
               </Link>

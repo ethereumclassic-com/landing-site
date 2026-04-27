@@ -75,7 +75,7 @@ export default function ToolsConverterPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/tools"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -84,7 +84,7 @@ export default function ToolsConverterPage() {
               </Link>
             </motion.div>
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Price Converter
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -118,7 +118,7 @@ export default function ToolsConverterPage() {
                   type="number"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-4 pl-16 text-2xl font-bold text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-4 pl-16 text-2xl font-bold text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                   min="0"
                   step="any"
                 />
@@ -129,7 +129,7 @@ export default function ToolsConverterPage() {
             <div className="my-4 flex justify-center">
               <button
                 onClick={() => setDirection(direction === 'etc-to-fiat' ? 'fiat-to-etc' : 'etc-to-fiat')}
-                className="rounded-full border border-[var(--border)] bg-[var(--bg)] p-3 text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-primary)] hover:text-white"
+                className="rounded-full border border-[var(--border)] bg-[var(--bg)] p-3 text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
@@ -146,7 +146,7 @@ export default function ToolsConverterPage() {
                 <span className="text-lg font-bold text-[var(--color-text-muted)]">
                   {direction === 'etc-to-fiat' ? selectedInfo.symbol : 'ETC'}{' '}
                 </span>
-                <span className="text-2xl font-bold text-white">
+                <span className="text-2xl font-bold text-[var(--text-primary)]">
                   {formatConverted(converted, direction === 'etc-to-fiat' ? selectedCurrency : 'etc')}
                 </span>
               </div>
@@ -163,7 +163,7 @@ export default function ToolsConverterPage() {
                     className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                       selectedCurrency === c.code
                         ? 'bg-[var(--color-primary)] text-black'
-                        : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-white'
+                        : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                     }`}
                   >
                     {c.code.toUpperCase()}
@@ -211,7 +211,7 @@ export default function ToolsConverterPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Quick Reference</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Reference</h2>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -224,7 +224,7 @@ export default function ToolsConverterPage() {
                   <tbody className="divide-y divide-[var(--border)]">
                     {[0.1, 0.5, 1, 5, 10, 25, 50, 100].map((qty) => (
                       <tr key={qty} className="hover:bg-[var(--bg)]/50">
-                        <td className="px-4 py-2.5 font-mono text-sm text-white">{qty} ETC</td>
+                        <td className="px-4 py-2.5 font-mono text-sm text-[var(--text-primary)]">{qty} ETC</td>
                         <td className="px-4 py-2.5 text-right font-mono text-sm text-green-400">
                           {selectedInfo.symbol}{formatConverted(qty * rate, selectedCurrency)}
                         </td>
@@ -258,13 +258,13 @@ export default function ToolsConverterPage() {
             </Link>
             <Link
               href="/buy"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Buy ETC
             </Link>
             <Link
               href="/markets"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Markets
             </Link>

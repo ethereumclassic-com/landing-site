@@ -51,7 +51,7 @@ export default function ToolsCalculatorPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/tools"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -60,7 +60,7 @@ export default function ToolsCalculatorPage() {
               </Link>
             </motion.div>
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Investment Calculator
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -83,7 +83,7 @@ export default function ToolsCalculatorPage() {
           >
             {/* Input Panel */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h2 className="mb-6 text-lg font-semibold text-white">Your Investment</h2>
+              <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Your Investment</h2>
 
               <div className="space-y-6">
                 <div>
@@ -96,7 +96,7 @@ export default function ToolsCalculatorPage() {
                       type="number"
                       value={investment}
                       onChange={(e) => setInvestment(Math.max(0, Number(e.target.value)))}
-                      className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 pl-8 text-lg font-medium text-white outline-none transition-colors focus:border-[var(--color-primary)]"
+                      className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 pl-8 text-lg font-medium text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--color-primary)]"
                       min="0"
                       step="100"
                     />
@@ -109,7 +109,7 @@ export default function ToolsCalculatorPage() {
                         className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
                           investment === preset.value
                             ? 'bg-[var(--color-primary)] text-black'
-                            : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-white'
+                            : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                         }`}
                       >
                         {preset.label}
@@ -129,7 +129,7 @@ export default function ToolsCalculatorPage() {
                       value={buyPrice}
                       onChange={(e) => setBuyPrice(e.target.value)}
                       placeholder={livePrice.toFixed(2)}
-                      className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 pl-8 text-lg font-medium text-white placeholder:text-[var(--color-text-muted)]/50 outline-none transition-colors focus:border-[var(--color-primary)]"
+                      className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 pl-8 text-lg font-medium text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)]/50 outline-none transition-colors focus:border-[var(--color-primary)]"
                       min="0.01"
                       step="0.01"
                     />
@@ -141,19 +141,19 @@ export default function ToolsCalculatorPage() {
             {/* Results Panel */}
             <div className="space-y-4">
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                <h2 className="mb-4 text-lg font-semibold text-white">Position Summary</h2>
+                <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Position Summary</h2>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">ETC Amount</span>
-                    <span className="text-lg font-bold text-white">{etcAmount.toFixed(4)} ETC</span>
+                    <span className="text-lg font-bold text-[var(--text-primary)]">{etcAmount.toFixed(4)} ETC</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">Entry Price</span>
-                    <span className="font-medium text-white">${entryPrice.toFixed(2)}</span>
+                    <span className="font-medium text-[var(--text-primary)]">${entryPrice.toFixed(2)}</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">Current Price</span>
-                    <span className="font-medium text-white">
+                    <span className="font-medium text-[var(--text-primary)]">
                       ${livePrice.toFixed(2)}
                       {change24h !== null && (
                         <span className={`ml-2 text-sm ${change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
@@ -164,7 +164,7 @@ export default function ToolsCalculatorPage() {
                   </div>
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">Current Value</span>
-                    <span className="text-xl font-bold text-white">${currentValue.toFixed(2)}</span>
+                    <span className="text-xl font-bold text-[var(--text-primary)]">${currentValue.toFixed(2)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[var(--color-text-muted)]">P&L</span>
@@ -209,7 +209,7 @@ export default function ToolsCalculatorPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="mb-6 text-xl font-semibold text-white">Price Scenarios</h2>
+            <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Price Scenarios</h2>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
@@ -231,7 +231,7 @@ export default function ToolsCalculatorPage() {
                       return (
                         <tr key={multiplier} className={isCurrent ? 'bg-[var(--color-primary)]/5' : 'hover:bg-[var(--bg)]/50'}>
                           <td className="px-4 py-3">
-                            <span className="font-medium text-white">${scenarioPrice.toFixed(2)}</span>
+                            <span className="font-medium text-[var(--text-primary)]">${scenarioPrice.toFixed(2)}</span>
                             {isCurrent && (
                               <span className="ml-2 rounded bg-[var(--color-primary)]/20 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">
                                 current
@@ -243,7 +243,7 @@ export default function ToolsCalculatorPage() {
                               </span>
                             )}
                           </td>
-                          <td className="px-4 py-3 text-right font-mono text-sm text-white">
+                          <td className="px-4 py-3 text-right font-mono text-sm text-[var(--text-primary)]">
                             ${scenarioValue.toFixed(2)}
                           </td>
                           <td className={`px-4 py-3 text-right font-mono text-sm ${scenarioPnl >= 0 ? 'text-green-400' : 'text-red-400'}`}>
@@ -283,13 +283,13 @@ export default function ToolsCalculatorPage() {
             </Link>
             <Link
               href="/buy"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Buy ETC
             </Link>
             <Link
               href="/markets"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Markets
             </Link>

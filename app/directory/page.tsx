@@ -134,7 +134,7 @@ export default function DirectoryPage() {
               <DirectoryIcon />
               <span>Ecosystem Directory</span>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
               ETC Resource Directory
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -192,7 +192,7 @@ export default function DirectoryPage() {
                     )}
                   </div>
 
-                  <h2 className="mb-2 text-xl font-semibold text-white transition group-hover:text-[var(--color-primary)]">
+                  <h2 className="mb-2 text-xl font-semibold text-[var(--text-primary)] transition group-hover:text-[var(--color-primary)]">
                     {dir.title}
                   </h2>
                   <p className="mb-4 text-sm text-[var(--color-text-muted)]">
@@ -231,7 +231,7 @@ export default function DirectoryPage() {
             transition={{ duration: 0.5 }}
             className="mb-10 text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Quick Access</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Quick Access</h2>
             <p className="mt-3 text-[var(--color-text-muted)]">
               Jump directly to the most popular resources
             </p>
@@ -246,7 +246,7 @@ export default function DirectoryPage() {
           >
             {/* Wallets Quick Links */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5">
-              <h3 className="mb-3 font-semibold text-white">Popular Wallets</h3>
+              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Popular Wallets</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/wallet" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
@@ -268,7 +268,7 @@ export default function DirectoryPage() {
 
             {/* Exchanges Quick Links */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5">
-              <h3 className="mb-3 font-semibold text-white">Top Exchanges</h3>
+              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Top Exchanges</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/exchanges" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
@@ -290,7 +290,7 @@ export default function DirectoryPage() {
 
             {/* Mining Quick Links */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5">
-              <h3 className="mb-3 font-semibold text-white">Mining Resources</h3>
+              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Mining Resources</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/mining" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
@@ -312,7 +312,7 @@ export default function DirectoryPage() {
 
             {/* Developer Quick Links */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5">
-              <h3 className="mb-3 font-semibold text-white">Developer Tools</h3>
+              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Developer Tools</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/build" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
@@ -345,7 +345,7 @@ export default function DirectoryPage() {
             transition={{ duration: 0.5 }}
             className="rounded-2xl bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-primary)]/5 p-8 text-center md:p-12"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Can&apos;t Find What You&apos;re Looking For?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-muted)]">
@@ -355,14 +355,14 @@ export default function DirectoryPage() {
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/apps/submit"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Submit a Resource
                 <ArrowIcon />
               </Link>
               <Link
                 href="/community"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Join the Community
               </Link>

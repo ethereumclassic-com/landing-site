@@ -72,7 +72,7 @@ function ToolCard({ tool }: { tool: DevTool }) {
       <div className="mb-4 flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="text-lg font-bold text-white">{tool.name}</h3>
+            <h3 className="text-lg font-bold text-[var(--text-primary)]">{tool.name}</h3>
             {tool.recommended && (
               <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
                 Recommended
@@ -154,7 +154,7 @@ export default function BuildToolsPage() {
             <motion.div variants={fadeInUp}>
               <Link
                 href="/build"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -164,7 +164,7 @@ export default function BuildToolsPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Developer Tools
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
@@ -192,7 +192,7 @@ export default function BuildToolsPage() {
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Quick Start Recommendation</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Quick Start Recommendation</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   <strong className="text-purple-400">New to Solidity?</strong> Start with Remix IDE for browser-based development.{' '}
                   <strong className="text-blue-400">Production projects:</strong> Use Hardhat or Foundry for full development workflow.{' '}
@@ -222,7 +222,7 @@ export default function BuildToolsPage() {
             transition={{ delay: 0.5 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">ETC Compatibility</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">ETC Compatibility</h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div>
                 <h3 className="mb-2 font-medium text-[var(--color-primary)]">Full EVM Compatibility</h3>
@@ -253,10 +253,10 @@ export default function BuildToolsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
           >
-            <h2 className="mb-4 text-xl font-semibold text-white">Configuration Examples</h2>
+            <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">Configuration Examples</h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4">
-                <h4 className="mb-2 font-medium text-white">Hardhat Configuration</h4>
+                <h4 className="mb-2 font-medium text-[var(--text-primary)]">Hardhat Configuration</h4>
                 <div className="rounded-lg bg-[var(--panel)] p-3 font-mono text-xs overflow-x-auto">
                   <pre className="text-[var(--color-text-muted)]">
 {`// hardhat.config.js
@@ -278,7 +278,7 @@ module.exports = {
                 </div>
               </div>
               <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4">
-                <h4 className="mb-2 font-medium text-white">Foundry Configuration</h4>
+                <h4 className="mb-2 font-medium text-[var(--text-primary)]">Foundry Configuration</h4>
                 <div className="rounded-lg bg-[var(--panel)] p-3 font-mono text-xs overflow-x-auto">
                   <pre className="text-[var(--color-text-muted)]">
 {`# foundry.toml
@@ -309,7 +309,7 @@ mordor = "https://rpc.mordor.etccooperative.org"
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Start Building?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Building?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Get testnet ETC from a faucet and start deploying contracts on Mordor testnet.
             </p>
@@ -325,7 +325,7 @@ mordor = "https://rpc.mordor.etccooperative.org"
               </Link>
               <Link
                 href="/build/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Getting Started Guide
               </Link>

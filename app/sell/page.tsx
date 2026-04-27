@@ -41,7 +41,7 @@ function SellMethodCard({ name, description, features, pros, cons, link, badge, 
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-bold text-white">{name}</h3>
+        <h3 className="text-xl font-bold text-[var(--text-primary)]">{name}</h3>
         {badge && (
           <span className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-xs font-medium text-[var(--color-primary)]">
             {badge}
@@ -89,7 +89,7 @@ function SellMethodCard({ name, description, features, pros, cons, link, badge, 
       <LinkComponent
         href={link}
         {...linkProps}
-        className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-[var(--color-primary)]/20"
+        className="mt-6 inline-flex items-center gap-2 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary)]/20"
       >
         {isExternal ? 'Visit Platform' : 'Learn More'}
         <svg aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -119,7 +119,7 @@ function EcosystemProductCard({ name, description, useCase, website, badge }: Ec
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-3 flex items-center justify-between">
-        <h3 className="text-lg font-bold text-white">{name}</h3>
+        <h3 className="text-lg font-bold text-[var(--text-primary)]">{name}</h3>
         <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
           {badge}
         </span>
@@ -151,10 +151,10 @@ function StepCard({ number, title, description }: { number: number; title: strin
       variants={fadeInUp}
       className="relative rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
-      <div className="absolute -top-3 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-white">
+      <div className="absolute -top-3 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--background)]">
         {number}
       </div>
-      <h3 className="mt-2 text-lg font-bold text-white">{title}</h3>
+      <h3 className="mt-2 text-lg font-bold text-[var(--text-primary)]">{title}</h3>
       <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{description}</p>
     </motion.div>
   )
@@ -277,7 +277,7 @@ export default function SellPage() {
           >
             <Link
               href="/buy"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--text-primary)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -287,7 +287,7 @@ export default function SellPage() {
             <span className="inline-block rounded-full bg-red-500/10 px-4 py-1.5 text-sm font-medium text-red-400">
               Off-Ramp
             </span>
-            <h1 className="mt-4 text-4xl font-bold text-white md:text-5xl">
+            <h1 className="mt-4 text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Sell ETC
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
@@ -307,7 +307,7 @@ export default function SellPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Selling Methods</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Selling Methods</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Choose the best method based on your needs for speed, fees, and privacy
             </p>
@@ -340,7 +340,7 @@ export default function SellPage() {
             <span className="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
               ETC Native
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               ClassicUSD Off-Ramp Path
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -371,7 +371,7 @@ export default function SellPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary)]/90"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary)]/90"
             >
               Swap on ETCswap
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -382,7 +382,7 @@ export default function SellPage() {
               href="https://brale.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
             >
               Redeem on Brale
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -406,7 +406,7 @@ export default function SellPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Ecosystem
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               ETC Payment Products
             </h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
@@ -438,7 +438,7 @@ export default function SellPage() {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Tips for Selling ETC</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Tips for Selling ETC</h2>
           </motion.div>
 
           <motion.div
@@ -512,7 +512,7 @@ export default function SellPage() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                   {tip.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white">{tip.title}</h3>
+                <h3 className="text-lg font-bold text-[var(--text-primary)]">{tip.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{tip.description}</p>
               </motion.div>
             ))}
@@ -530,7 +530,7 @@ export default function SellPage() {
             transition={{ duration: 0.5 }}
             className="rounded-3xl border border-[var(--border)] bg-gradient-to-br from-[var(--panel)] to-[var(--bg)] p-8 text-center md:p-12"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Looking to Buy ETC Instead?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -539,7 +539,7 @@ export default function SellPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary)]/90"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary)]/90"
               >
                 Buy ETC
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -548,7 +548,7 @@ export default function SellPage() {
               </Link>
               <Link
                 href="/exchanges"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Exchange Directory
               </Link>

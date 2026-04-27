@@ -50,22 +50,22 @@ function CardProvider({
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4">
-        <h3 className="text-lg font-bold text-white">{name}</h3>
+        <h3 className="text-lg font-bold text-[var(--text-primary)]">{name}</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
       </div>
 
       <div className="mb-4 grid grid-cols-2 gap-4 text-sm">
         <div>
           <span className="text-[var(--color-text-muted)]">Processing</span>
-          <p className="font-medium text-white">{processingTime}</p>
+          <p className="font-medium text-[var(--text-primary)]">{processingTime}</p>
         </div>
         <div>
           <span className="text-[var(--color-text-muted)]">Fees</span>
-          <p className="font-medium text-white">{fees}</p>
+          <p className="font-medium text-[var(--text-primary)]">{fees}</p>
         </div>
         <div className="col-span-2">
           <span className="text-[var(--color-text-muted)]">Limits</span>
-          <p className="font-medium text-white">{limits}</p>
+          <p className="font-medium text-[var(--text-primary)]">{limits}</p>
         </div>
       </div>
 
@@ -87,7 +87,7 @@ function CardProvider({
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[var(--color-primary-hover)]"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-4 py-2.5 text-sm font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)]"
       >
         Buy with Card
         <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -232,7 +232,7 @@ export default function CardPage() {
 
           <motion.h1
             variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl"
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy ETC with{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
@@ -250,7 +250,7 @@ export default function CardPage() {
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#providers"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
@@ -259,7 +259,7 @@ export default function CardPage() {
             </a>
             <Link
               href="/buy/bank"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
@@ -283,7 +283,7 @@ export default function CardPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Accepted Cards
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Which Cards Can I Use?
             </h2>
           </motion.div>
@@ -304,7 +304,7 @@ export default function CardPage() {
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center"
               >
                 <span className="text-3xl">{card.icon}</span>
-                <h3 className="mt-2 font-semibold text-white">{card.name}</h3>
+                <h3 className="mt-2 font-semibold text-[var(--text-primary)]">{card.name}</h3>
                 <p className="text-sm text-[var(--color-text-muted)]">{card.description}</p>
               </motion.div>
             ))}
@@ -335,7 +335,7 @@ export default function CardPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Getting Started
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               How to Buy with Card
             </h2>
           </motion.div>
@@ -354,7 +354,7 @@ export default function CardPage() {
                   {step.number}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">{step.title}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{step.title}</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{step.description}</p>
                 </div>
               </motion.div>
@@ -376,7 +376,7 @@ export default function CardPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Trusted Providers
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Where to Buy with Card
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
@@ -405,7 +405,7 @@ export default function CardPage() {
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               Fees
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Understanding Card Fees
             </h2>
           </motion.div>
@@ -421,22 +421,22 @@ export default function CardPage() {
               </thead>
               <tbody className="text-sm">
                 <tr className="border-b border-[var(--border)]/50">
-                  <td className="py-4 font-medium text-white">Processing Fee</td>
+                  <td className="py-4 font-medium text-[var(--text-primary)]">Processing Fee</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">1.5% - 4%</td>
                   <td className="py-4 text-[var(--color-text-muted)]">Charged by the exchange for card processing</td>
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
-                  <td className="py-4 font-medium text-white">Network Fee</td>
+                  <td className="py-4 font-medium text-[var(--text-primary)]">Network Fee</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">$0.50 - $2</td>
                   <td className="py-4 text-[var(--color-text-muted)]">Card network fees (Visa/Mastercard)</td>
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
-                  <td className="py-4 font-medium text-white">Foreign Transaction</td>
+                  <td className="py-4 font-medium text-[var(--text-primary)]">Foreign Transaction</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">0% - 3%</td>
                   <td className="py-4 text-[var(--color-text-muted)]">May apply if exchange is in different country</td>
                 </tr>
                 <tr>
-                  <td className="py-4 font-medium text-white">Cash Advance Fee</td>
+                  <td className="py-4 font-medium text-[var(--text-primary)]">Cash Advance Fee</td>
                   <td className="py-4 text-center text-amber-400">3% - 5%</td>
                   <td className="py-4 text-[var(--color-text-muted)]">Some banks treat crypto as cash advance (credit cards)</td>
                 </tr>
@@ -456,7 +456,7 @@ export default function CardPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
               <div>
-                <h4 className="font-medium text-white">Credit Card Warning</h4>
+                <h4 className="font-medium text-[var(--text-primary)]">Credit Card Warning</h4>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Many credit card issuers treat crypto purchases as cash advances, which may incur high fees and interest from day one. Debit cards are often a better choice.
                 </p>
@@ -476,7 +476,7 @@ export default function CardPage() {
             transition={{ duration: 0.5 }}
             className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-8"
           >
-            <h3 className="mb-6 text-xl font-bold text-white">Tips for Card Purchases</h3>
+            <h3 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Tips for Card Purchases</h3>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="flex gap-4">
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -485,7 +485,7 @@ export default function CardPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Use Debit Over Credit</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Use Debit Over Credit</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Debit cards avoid cash advance fees and high credit card interest rates
                   </p>
@@ -498,7 +498,7 @@ export default function CardPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Contact Your Bank</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Contact Your Bank</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Let your bank know you&apos;re making crypto purchases to avoid declined transactions
                   </p>
@@ -511,7 +511,7 @@ export default function CardPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Compare Fees</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Compare Fees</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Fees vary significantly between providers - shop around for the best rates
                   </p>
@@ -524,7 +524,7 @@ export default function CardPage() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-white">Enable 3D Secure</h4>
+                  <h4 className="font-semibold text-[var(--text-primary)]">Enable 3D Secure</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Ensure your card has 3D Secure enabled for smoother transactions
                   </p>
@@ -544,7 +544,7 @@ export default function CardPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Prefer Lower Fees?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -553,7 +553,7 @@ export default function CardPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy/bank"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)]"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
@@ -562,7 +562,7 @@ export default function CardPage() {
               </Link>
               <Link
                 href="/buy/p2p"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -571,7 +571,7 @@ export default function CardPage() {
               </Link>
               <Link
                 href="/buy/exchanges"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008z" />
