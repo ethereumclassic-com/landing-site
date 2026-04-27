@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { FadeIn } from '@/app/components/ui'
 
 interface StatProps {
   label: string
@@ -11,12 +11,12 @@ interface StatProps {
 function Stat({ label, value, icon }: StatProps) {
   return (
     <div className="flex items-center gap-4">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand-green)]/10 text-[var(--brand-green)]">
         {icon}
       </div>
       <div>
-        <div className="text-xl font-bold text-white md:text-2xl">{value}</div>
-        <div className="text-sm text-[var(--color-text-muted)]">{label}</div>
+        <div className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">{value}</div>
+        <div className="text-sm text-[var(--text-muted)]">{label}</div>
       </div>
     </div>
   )
@@ -47,7 +47,6 @@ const ChartIcon = () => (
 )
 
 export default function StatsStrip() {
-  // Social proof stats - highlighting longevity and verifiable metrics (not network stats which are shown in EcosystemStats)
   const stats = [
     { label: 'Years Running', value: '9+ Years', icon: <ClockIcon /> },
     { label: 'Blocks Produced', value: '21M+', icon: <BlockIcon /> },
@@ -56,20 +55,16 @@ export default function StatsStrip() {
   ]
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.5 }}
-      className="border-y border-[var(--border)] bg-[var(--panel)] py-12"
-    >
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <Stat key={stat.label} {...stat} />
-          ))}
+    <FadeIn delay={100}>
+      <section className="border-y border-[var(--border-default)] bg-[var(--panel)] py-12">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+            {stats.map((stat) => (
+              <Stat key={stat.label} {...stat} />
+            ))}
+          </div>
         </div>
-      </div>
-    </motion.section>
+      </section>
+    </FadeIn>
   )
 }

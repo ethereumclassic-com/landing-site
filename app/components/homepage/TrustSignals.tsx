@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { FadeIn } from '@/app/components/ui'
 
 interface TrustCardProps {
   title: string
@@ -9,35 +9,17 @@ interface TrustCardProps {
   index: number
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: 'easeOut' as const,
-    },
-  }),
-}
-
 function TrustCard({ title, description, icon, index }: TrustCardProps) {
   return (
-    <motion.div
-      custom={index}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      variants={fadeInUp}
-      className="group text-center"
-    >
-      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] transition-all group-hover:scale-110 group-hover:bg-[var(--color-primary)]/20">
-        {icon}
+    <FadeIn delay={index * 100}>
+      <div className="group text-center">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--brand-green)]/10 text-[var(--brand-green)] transition-all group-hover:scale-110 group-hover:bg-[var(--brand-green)]/20">
+          {icon}
+        </div>
+        <h3 className="text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
+        <p className="mt-2 text-sm text-[var(--text-muted)]">{description}</p>
       </div>
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
-      <p className="mt-2 text-sm text-[var(--color-text-muted)]">{description}</p>
-    </motion.div>
+    </FadeIn>
   )
 }
 
@@ -92,23 +74,17 @@ export default function TrustSignals() {
   return (
     <section aria-labelledby="trust-signals-heading" className="px-6 py-20 md:px-10 lg:px-12">
       <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
-        >
-          <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
+        <FadeIn className="mb-12 text-center">
+          <span className="inline-block rounded-full bg-[var(--brand-green)]/10 px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
             Core Values
           </span>
-          <h2 id="trust-signals-heading" className="mt-4 text-3xl font-bold text-white md:text-4xl">
+          <h2 id="trust-signals-heading" className="mt-4 text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
             Why Ethereum Classic?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-4 max-w-2xl text-[var(--text-secondary)]">
             Built on principles of decentralization, immutability, and censorship resistance
           </p>
-        </motion.div>
+        </FadeIn>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {signals.map((signal, index) => (
             <TrustCard key={signal.title} {...signal} index={index} />
