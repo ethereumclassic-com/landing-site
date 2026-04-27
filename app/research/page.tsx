@@ -268,7 +268,7 @@ export default function ResearchPage() {
                 </svg>
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Supply Tracker</h3>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Emission schedule &amp; Fifthening countdown</p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Emission schedule &amp; Fifthing countdown</p>
             </Link>
             <Link
               href="/research/fees"

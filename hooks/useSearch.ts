@@ -141,7 +141,7 @@ const staticPages: SearchResult[] = [
   {
     id: 'page-research-supply',
     title: 'Supply & Emission',
-    description: 'ETC supply schedule, emission curve, and Fifthening countdown.',
+    description: 'ETC supply schedule, emission curve, and Fifthing countdown.',
     url: '/research/supply',
     type: 'page',
     category: 'Research',

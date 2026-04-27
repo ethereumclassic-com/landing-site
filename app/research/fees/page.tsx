@@ -85,7 +85,7 @@ function FeeMarketContext() {
         <div>
           <h3 className="font-semibold text-[var(--text-primary)]">Why Fee Markets Matter for ETC</h3>
           <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-            As block rewards continue to decrease through <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>&apos;s Fifthening schedule
+            As block rewards continue to decrease through <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>&apos;s Fifthing schedule
             (currently {formatBlockReward(2.048)} ETC per block), transaction fees become increasingly
             important for miner revenue and long-term network security. A healthy fee market
             indicates sustainable demand for block space.
@@ -502,7 +502,7 @@ export default function FeeMarketPage() {
             <p className="text-sm text-[var(--color-text-muted)] mb-4">
               ETC&apos;s fee market is currently in an early stage, with block rewards comprising
               the vast majority of miner revenue. As block rewards continue to decrease through
-              the Fifthening schedule, transaction fees will become increasingly important for
+              the Fifthing schedule, transaction fees will become increasingly important for
               network security.
             </p>
             <div className="rounded-lg bg-[var(--bg)] p-4">
@@ -540,7 +540,7 @@ export default function FeeMarketPage() {
                 Supply Tracker
               </h4>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                Emission schedule and Fifthening countdown
+                Emission schedule and Fifthing countdown
               </p>
             </Link>
             <Link

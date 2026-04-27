@@ -159,7 +159,7 @@ export default function FeeMarketPage() {
               In a healthy fee market, declining block rewards are offset — or more than offset — by rising fee income as the network becomes more used. This is how Bitcoin is designed to work. Fees take over as the block subsidy falls.
             </p>
             <p>
-              ETC today has neither. Block rewards are declining on schedule and fee income is near zero. At current utilization, miners have no fee revenue to fall back on when the next fifthening arrives.
+              ETC today has neither. Block rewards are declining on schedule and fee income is near zero. At current utilization, miners have no fee revenue to fall back on when the next fifthing arrives.
             </p>
             <p className="font-medium text-[var(--text-primary)]">
               Without a fee market, the long-term security equation for ETC is unsolvable. Miners will eventually exit a network that cannot pay them. A network without miners has no PoW security. A network without PoW security is not ETC.
@@ -273,7 +273,7 @@ export default function FeeMarketPage() {
           <div className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center">
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Understand the full picture</h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-              The fee market is one piece. Olympia is the governance and funding mechanism that enables it. The fifthening schedule is the deadline.
+              The fee market is one piece. Olympia is the governance and funding mechanism that enables it. The fifthing schedule is the deadline.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
@@ -292,7 +292,7 @@ export default function FeeMarketPage() {
                 href="/block-reward-countdown"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
-                Fifthening Countdown
+                Fifthing Countdown
               </Link>
               <Link
                 href="/research/fees"

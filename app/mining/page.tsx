@@ -151,7 +151,7 @@ export default function MiningPage() {
         </div>
       </section>
 
-      {/* Fifth Fifthening Countdown */}
+      {/* Fifth Fifthing Countdown */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <FiftheningCountdown variant="card" />

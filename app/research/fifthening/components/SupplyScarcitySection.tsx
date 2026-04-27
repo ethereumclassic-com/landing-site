@@ -42,7 +42,7 @@ export default function SupplyScarcitySection() {
         <h2 className="mb-1 text-xl font-semibold text-[var(--text-primary)]">Supply Scarcity by Era</h2>
         <p className="mb-6 text-sm text-[var(--text-muted)]">
           Stock-to-Flow ratio — total supply divided by annual new issuance. Higher values indicate lower inflation
-          relative to existing supply. ETC&apos;s S2F ratio grows with each fifthening.
+          relative to existing supply. ETC&apos;s S2F ratio grows with each fifthing.
         </p>
         <ResponsiveContainer width="100%" height={280}>
           <LineChart data={s2fData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
@@ -74,7 +74,7 @@ export default function SupplyScarcitySection() {
               stroke={BRAND_GREEN}
               strokeDasharray="4 2"
               label={{
-                value: '5th Fifthening',
+                value: '5th Fifthing',
                 position: 'insideTopRight',
                 fontSize: 9,
                 fill: BRAND_GREEN,

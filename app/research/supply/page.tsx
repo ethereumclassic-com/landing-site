@@ -182,7 +182,7 @@ function EmissionMilestones() {
     <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
-      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fifthening History</h3>
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fifthing History</h3>
 
       <div className="space-y-4">
         {emissionMilestones.map((milestone, idx) => {
@@ -283,14 +283,14 @@ export default function SupplyTrackerPage() {
               ETC Supply Tracker
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Track Ethereum Classic&apos;s emission schedule under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Monitor the &quot;Fifthening&quot;
+              Track Ethereum Classic&apos;s emission schedule under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Monitor the &quot;Fifthing&quot;
               countdown and total supply growth.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Fifthening Countdown */}
+      {/* Fifthing Countdown */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <FiftheningCountdown variant="card" />
@@ -350,7 +350,7 @@ export default function SupplyTrackerPage() {
                 </div>
               </div>
               <p>
-                The &quot;Fifthening&quot; (20% reduction, or keeping 4/5ths) occurs approximately every 2.5 years,
+                The &quot;Fifthing&quot; (20% reduction, or keeping 4/5ths) occurs approximately every 2.5 years,
                 gradually reducing new supply entering circulation.
               </p>
               <a
@@ -387,7 +387,7 @@ export default function SupplyTrackerPage() {
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Reduction Event</span>
-                    <span className="text-[var(--text-primary)]">Fifthening (20%)</span>
+                    <span className="text-[var(--text-primary)]">Fifthing (20%)</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Frequency</span>

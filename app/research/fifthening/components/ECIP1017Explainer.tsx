@@ -30,7 +30,7 @@ export default function ECIP1017Explainer() {
             {
               n: '2',
               title: 'Geometric Reduction',
-              body: 'At each era boundary (the "fifthening"), the block reward is multiplied by 0.8 — a 20% reduction. Starting from 5 ETC, rewards halve approximately every 3 eras.',
+              body: 'At each era boundary (the "fifthing"), the block reward is multiplied by 0.8 — a 20% reduction. Starting from 5 ETC, rewards halve approximately every 3 eras.',
             },
             {
               n: '3',
@@ -65,7 +65,7 @@ export default function ECIP1017Explainer() {
 
       {/* ETC vs BTC comparison */}
       <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
-        <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">ETC Fifthening vs. BTC Halving</h2>
+        <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">ETC Fifthing vs. BTC Halving</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -83,7 +83,7 @@ export default function ECIP1017Explainer() {
                 { metric: 'Genesis / pre-mine', etc: '72,009,990 ETC (ETH fork)', btc: 'None' },
                 { metric: 'Max supply (est.)', etc: '~199–210M ETC', btc: '21,000,000 BTC' },
                 { metric: 'Mechanism', etc: 'Geometric decay at era boundary', btc: 'Integer halving at cycle boundary' },
-                { metric: 'Event name', etc: 'Fifthening (20% = 1/5th reduction)', btc: 'Halving (50% = 1/2 reduction)' },
+                { metric: 'Event name', etc: 'Fifthing (20% = 1/5th reduction)', btc: 'Halving (50% = 1/2 reduction)' },
               ].map((row) => (
                 <tr key={row.metric}>
                   <td className="py-3 text-xs font-medium text-[var(--text-muted)]">{row.metric}</td>
