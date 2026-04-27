@@ -59,7 +59,7 @@ const apiEndpoints: ApiEndpoint[] = [
   "difficulty": "2.5 PH",
   "blockHeight": 19250000,
   "blockTime": 13.5,
-  "blockReward": 2.56,
+  "blockReward": 2.048,
   "totalSupply": 147500000,
   "timestamp": "2024-02-04T12:00:00Z"
 }`,
@@ -80,7 +80,7 @@ const apiEndpoints: ApiEndpoint[] = [
       "timestamp": "2024-02-04T11:59:45Z",
       "transactions": 45,
       "miner": "0x...",
-      "reward": 2.56,
+      "reward": 2.048,
       "gasUsed": 12500000
     },
     ...
@@ -93,7 +93,7 @@ const apiEndpoints: ApiEndpoint[] = [
 const rpcEndpoints = [
   {
     name: 'Rivet (ETC)',
-    url: 'https://etc.rivet.cloud',
+    url: 'https://etc.rivet.link',
     description: 'High-performance ETC RPC endpoint',
     rateLimit: '100 req/s',
   },
@@ -119,7 +119,7 @@ console.log(\`ETC Price: $\${data.price}\`);
 
 // Using ethers.js for RPC
 import { ethers } from 'ethers';
-const provider = new ethers.JsonRpcProvider('https://etc.rivet.cloud');
+const provider = new ethers.JsonRpcProvider('https://etc.rivet.link');
 const blockNumber = await provider.getBlockNumber();`,
 
   python: `import requests
@@ -131,7 +131,7 @@ print(f"ETC Price: {data['price']}")
 
 # Using web3.py for RPC
 from web3 import Web3
-w3 = Web3(Web3.HTTPProvider('https://etc.rivet.cloud'))
+w3 = Web3(Web3.HTTPProvider('https://etc.rivet.link'))
 block = w3.eth.block_number`,
 
   curl: `# Get current price
