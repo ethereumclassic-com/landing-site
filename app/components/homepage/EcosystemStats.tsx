@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FadeIn } from '@/app/components/ui'
+import { OverviewTable } from '@/app/components/ui/OverviewTable'
 
 interface StatCardProps {
   label: string
@@ -156,7 +157,40 @@ export default function EcosystemStats() {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <FadeIn delay={200}>
+            <OverviewTable
+              heading="Network Overview"
+              rows={[
+                { label: 'Genesis Date', value: 'July 30, 2015' },
+                { label: 'Consensus', value: 'Proof-of-Work / ETChash' },
+                { label: 'Chain ID', value: '61' },
+                { label: 'Total Blocks', value: networkStats.blockHeightFormatted },
+                { label: 'Total Transactions', value: networkStats.totalTransactionsFormatted },
+                { label: 'Avg Block Time', value: networkStats.avgBlockTimeFormatted },
+                { label: 'Network Hashrate', value: '200+ TH/s' },
+                { label: 'Mining Algorithm', value: 'ETChash (GPU + ASIC)' },
+              ]}
+            />
+          </FadeIn>
+          <FadeIn delay={300}>
+            <OverviewTable
+              heading="Market Data"
+              rows={[
+                { label: 'ETC Price', value: networkStats.priceFormatted },
+                { label: 'Max Supply', value: '210.7M ETC' },
+                { label: 'Exchange Listings', value: '300+' },
+                { label: 'Fiat Pairs', value: '17 currencies' },
+                { label: 'Crypto Pairs', value: '13 pairs' },
+                { label: 'Spot Trading Since', value: '2016' },
+                { label: 'Investment Products', value: 'ETCG (Grayscale)' },
+                { label: 'Regulatory Profile', value: 'CLARITY · MiCA · GENIUS' },
+              ]}
+            />
+          </FadeIn>
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
           <Link
             href="/markets"
             className="inline-flex items-center gap-2 text-sm font-medium text-[var(--brand-green)] transition-colors hover:text-[var(--brand-green-hover)]"
@@ -166,19 +200,18 @@ export default function EcosystemStats() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </Link>
+          <span className="text-xs text-[var(--text-muted)]">
+            Live data from{' '}
+            <a
+              href="https://etc.blockscout.com/stats"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--brand-green)] hover:underline"
+            >
+              Blockscout
+            </a>
+          </span>
         </div>
-
-        <p className="mt-6 text-center text-xs text-[var(--text-muted)]">
-          Data from{' '}
-          <a
-            href="https://etc.blockscout.com/stats"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--brand-green)] hover:underline"
-          >
-            Blockscout
-          </a>
-        </p>
       </div>
     </section>
   )
