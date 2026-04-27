@@ -93,12 +93,6 @@ const socialLinks = [
   },
 ]
 
-const dataAttribution = {
-  text: 'Network data from',
-  source: 'Blockscout',
-  href: 'https://etc.blockscout.com',
-}
-
 export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--border-default)] bg-[var(--bg-surface)]">
@@ -118,7 +112,7 @@ export function SiteFooter() {
               <span className="text-lg font-bold text-[var(--text-primary)]">Ethereum Classic</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-[var(--text-muted)]">
-              A decentralized, Proof-of-Work smart-contract network. Immutable, censorship-resistant, and open to all.
+              The original Ethereum Virtual Machine — immutable, censorship-resistant, globally accessible.
             </p>
 
             {/* Social Links */}
@@ -220,19 +214,11 @@ export function SiteFooter() {
       <div className="border-t border-[var(--border-default)]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row md:px-10 lg:px-12">
           <p className="text-xs text-[var(--text-muted)]">
-            © {new Date().getFullYear()} EthereumClassic.com. Open source and community-driven.
-          </p>
-
-          <p className="text-xs text-[var(--text-muted)]">
-            {dataAttribution.text}{' '}
-            <a
-              href={dataAttribution.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--brand-green)] hover:underline"
-            >
-              {dataAttribution.source}
-            </a>
+            © {new Date().getFullYear()}{' '}
+            <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">
+              EthereumClassic.com
+            </Link>
+            . The original Ethereum Virtual Machine. Immutable infrastructure for global finance.
           </p>
 
           <a
