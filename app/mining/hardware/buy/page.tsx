@@ -8,8 +8,8 @@ const brandColors: Record<string, { bg: string; border: string; text: string }> 
   Jasminer: { bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400' },
   iPollo: { bg: 'bg-purple-500/10', border: 'border-purple-500/30', text: 'text-purple-400' },
   Innosilicon: { bg: 'bg-cyan-500/10', border: 'border-cyan-500/30', text: 'text-cyan-400' },
-  NVIDIA: { bg: 'bg-green-500/10', border: 'border-green-500/30', text: 'text-green-400' },
-  AMD: { bg: 'bg-red-500/10', border: 'border-red-500/30', text: 'text-red-400' },
+  NVIDIA: { bg: 'bg-[var(--color-success-bg)]', border: 'border-[var(--color-success-border)]', text: 'text-[var(--color-success)]' },
+  AMD: { bg: 'bg-[var(--color-error-bg)]', border: 'border-[var(--color-error-border)]', text: 'text-[var(--color-error)]' },
 }
 
 function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManufacturers[0] }) {
@@ -96,15 +96,15 @@ export default function HardwareBuyPage() {
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] p-4"
           >
             <div className="flex items-start gap-3">
-              <svg aria-hidden="true" className="h-5 w-5 mt-0.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 mt-0.5 shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
               <div>
-                <p className="font-medium text-amber-400">Before You Buy</p>
-                <p className="mt-1 text-sm text-amber-400/80">
+                <p className="font-medium text-[var(--color-warning)]">Before You Buy</p>
+                <p className="mt-1 text-sm text-[var(--color-warning)]/80">
                   Always verify hardware specifications and calculate profitability before purchasing.
                   Use our <Link href="/mining/profitability" className="underline hover:no-underline">profitability calculator</Link> to
                   estimate returns based on your electricity costs.

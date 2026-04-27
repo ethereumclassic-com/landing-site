@@ -103,7 +103,7 @@ export default function NoKYCExchangesPage() {
                         <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
-                        <span className="mt-1 inline-block rounded bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                        <span className="mt-1 inline-block rounded bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                           DEX
                         </span>
                       </div>

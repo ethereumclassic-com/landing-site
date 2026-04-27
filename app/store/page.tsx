@@ -629,7 +629,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             <span className="rounded bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
               {product.hashrate}
             </span>
-            <span className="rounded bg-amber-500/10 px-2 py-0.5 text-xs text-amber-400">
+            <span className="rounded bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs text-[var(--color-warning)]">
               {product.power}
             </span>
             {'efficiency' in product && (

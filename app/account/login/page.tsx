@@ -56,7 +56,7 @@ export default function LoginPage() {
           {/* Error Message */}
           {error && (
             <div
-              className="mb-6 rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-400"
+              className="mb-6 rounded-lg border border-[var(--color-error)]/20 bg-[var(--color-error-bg)] p-4 text-sm text-[var(--color-error)]"
             >
               {error}
             </div>
@@ -134,7 +134,7 @@ export default function LoginPage() {
 
         {/* Demo Notice */}
         <div
-          className="mt-6 rounded-lg border border-amber-500/20 bg-amber-500/5 p-4 text-center text-sm text-amber-400/80"
+          className="mt-6 rounded-lg border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-4 text-center text-sm text-[var(--color-warning)]/80"
         >
           <strong>Demo Mode:</strong> Account data is stored locally in your browser.
           No actual authentication server is used.

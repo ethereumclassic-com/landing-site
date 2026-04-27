@@ -19,27 +19,27 @@ const featureLabels: Record<string, string> = {
 }
 
 const typeColors: Record<WalletType, { bg: string; text: string; border: string }> = {
-  Hardware: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/30' },
+  Hardware: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]', border: 'border-[var(--color-warning-border)]' },
   Browser: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/30' },
   Mobile: { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/30' },
-  Web: { bg: 'bg-green-500/10', text: 'text-green-400', border: 'border-green-500/30' },
+  Web: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]', border: 'border-[var(--color-success-border)]' },
 }
 
 const securityColors: Record<string, { bg: string; text: string }> = {
-  high: { bg: 'bg-green-500/10', text: 'text-green-400' },
+  high: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
   medium: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
   standard: { bg: 'bg-gray-500/10', text: 'text-gray-400' },
 }
 
 const easeColors: Record<string, { bg: string; text: string }> = {
-  beginner: { bg: 'bg-green-500/10', text: 'text-green-400' },
-  intermediate: { bg: 'bg-amber-500/10', text: 'text-amber-400' },
-  advanced: { bg: 'bg-red-500/10', text: 'text-red-400' },
+  beginner: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
+  intermediate: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
+  advanced: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]' },
 }
 
 function FeatureCheckmark({ enabled }: { enabled: boolean }) {
   return enabled ? (
-    <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
     </svg>
   ) : (
@@ -156,7 +156,7 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
             title={label}
           >
             {wallet.features?.[key as keyof typeof wallet.features] ? (
-              <svg aria-hidden="true" className="h-3 w-3 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-3 w-3 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
             ) : (
@@ -392,7 +392,7 @@ export default function ComparePage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {Object.entries(featureLabels).map(([key, label]) => (
               <div key={key} className="flex items-center gap-2">
-                <svg aria-hidden="true" className="h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
                 <span className="text-sm text-[var(--color-text-secondary)]">{label}</span>
@@ -405,7 +405,7 @@ export default function ComparePage() {
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Security Levels</h3>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">High</span>
+                  <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-success)]">High</span>
                   <span className="text-xs text-[var(--color-text-muted)]">Hardware wallets, air-gapped</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -422,15 +422,15 @@ export default function ComparePage() {
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Ease of Use</h3>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">Beginner</span>
+                  <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-success)]">Beginner</span>
                   <span className="text-xs text-[var(--color-text-muted)]">Simple setup, intuitive UI</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Intermediate</span>
+                  <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-warning)]">Intermediate</span>
                   <span className="text-xs text-[var(--color-text-muted)]">Some technical knowledge</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-red-500/10 px-2 py-0.5 text-xs font-medium text-red-400">Advanced</span>
+                  <span className="rounded-full bg-[var(--color-error-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-error)]">Advanced</span>
                   <span className="text-xs text-[var(--color-text-muted)]">Technical expertise required</span>
                 </div>
               </div>

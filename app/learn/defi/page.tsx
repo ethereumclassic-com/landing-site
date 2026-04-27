@@ -213,18 +213,18 @@ export default function DeFiPage() {
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <div
-            className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6"
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-6"
           >
             <div className="flex items-start gap-4">
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-warning-bg)] text-[var(--color-warning)]">
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-amber-400">DeFi Safety Reminder</h3>
+                <h3 className="font-semibold text-[var(--color-warning)]">DeFi Safety Reminder</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-                  DeFi involves financial risk. Always verify contract addresses, start with small amounts, understand impermanent loss, and never invest more than you can afford to lose. Read our <Link href="/learn/security" className="text-amber-400 hover:underline">security guides</Link> before participating.
+                  DeFi involves financial risk. Always verify contract addresses, start with small amounts, understand impermanent loss, and never invest more than you can afford to lose. Read our <Link href="/learn/security" className="text-[var(--color-warning)] hover:underline">security guides</Link> before participating.
                 </p>
               </div>
             </div>

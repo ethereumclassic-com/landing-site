@@ -147,7 +147,7 @@ export default function ClientsPage() {
                         </span>
                       )}
                       {client.role === 'maintained' && (
-                        <span className="rounded-full bg-amber-500/20 px-3 py-1 text-sm font-medium text-amber-400">
+                        <span className="rounded-full bg-[var(--color-warning)]/20 px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
                           Maintained
                         </span>
                       )}

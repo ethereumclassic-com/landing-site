@@ -139,12 +139,12 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
           </span>
         )}
         {exchange.kycRequired === false && (
-          <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+          <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
             No KYC
           </span>
         )}
         {exchange.kycRequired === true && (
-          <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs text-amber-400">
+          <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs text-[var(--color-warning)]">
             KYC Required
           </span>
         )}
@@ -271,9 +271,9 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
         {exchange.kycRequired === undefined ? (
           <span className="text-sm text-[var(--color-text-muted)]">-</span>
         ) : exchange.kycRequired ? (
-          <span className="text-sm text-amber-400">Required</span>
+          <span className="text-sm text-[var(--color-warning)]">Required</span>
         ) : (
-          <span className="text-sm text-green-400">Optional</span>
+          <span className="text-sm text-[var(--color-success)]">Optional</span>
         )}
       </td>
       <td className="py-4">
@@ -419,7 +419,7 @@ export default function DirectoryExchangesPage() {
                   <div className="text-xs text-[var(--color-text-muted)]">DEX</div>
                 </div>
                 <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-3 text-center">
-                  <div className="text-xl font-bold text-green-400">{noKycCount}</div>
+                  <div className="text-xl font-bold text-[var(--color-success)]">{noKycCount}</div>
                   <div className="text-xs text-[var(--color-text-muted)]">No KYC</div>
                 </div>
               </div>

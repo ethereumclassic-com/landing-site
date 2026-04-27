@@ -126,7 +126,7 @@ function LiveKeyMetrics() {
               {stat.change && (
                 <span className={`text-sm font-medium ${
                   stat.changeDirection === 'up' ? 'text-emerald-400' :
-                  stat.changeDirection === 'down' ? 'text-red-400' : 'text-gray-400'
+                  stat.changeDirection === 'down' ? 'text-[var(--color-error)]' : 'text-gray-400'
                 }`}>
                   {stat.change}
                 </span>

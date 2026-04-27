@@ -174,9 +174,9 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                   {exchange.kycRequired === undefined ? (
                     <span className="text-sm text-[var(--color-text-muted)]">-</span>
                   ) : exchange.kycRequired ? (
-                    <span className="text-sm text-amber-400">Required</span>
+                    <span className="text-sm text-[var(--color-warning)]">Required</span>
                   ) : (
-                    <span className="text-sm text-green-400">Optional</span>
+                    <span className="text-sm text-[var(--color-success)]">Optional</span>
                   )}
                 </td>
                 <td className="py-4">

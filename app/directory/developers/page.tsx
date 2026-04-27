@@ -42,7 +42,7 @@ export default function DirectoryDevelopersPage() {
                 <div key={net.chainId} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold text-[var(--text-primary)]">{net.name}</h3>
-                    <span className={`rounded px-2 py-0.5 text-xs ${net.type === 'mainnet' ? 'bg-green-500/10 text-green-400' : 'bg-amber-500/10 text-amber-400'}`}>
+                    <span className={`rounded px-2 py-0.5 text-xs ${net.type === 'mainnet' ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]' : 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'}`}>
                       {net.type}
                     </span>
                   </div>
@@ -86,7 +86,7 @@ export default function DirectoryDevelopersPage() {
                         <td className="px-4 py-3 font-medium text-[var(--text-primary)]">{rpc.provider}</td>
                         <td className="px-4 py-3 font-mono text-sm text-[var(--color-primary)]">{rpc.url}</td>
                         <td className="px-4 py-3">
-                          <span className={`rounded px-2 py-0.5 text-xs ${rpc.network === 'mainnet' ? 'bg-green-500/10 text-green-400' : 'bg-amber-500/10 text-amber-400'}`}>
+                          <span className={`rounded px-2 py-0.5 text-xs ${rpc.network === 'mainnet' ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]' : 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'}`}>
                             {rpc.network}
                           </span>
                         </td>

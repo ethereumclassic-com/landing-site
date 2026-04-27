@@ -43,7 +43,7 @@ const thesisPoints = [
   {
     number: '03',
     title: 'Regulated Stablecoin Infrastructure',
-    body: <>Classic USD ($USC) is live on ETC mainnet, the first GENIUS Act-aligned stablecoin on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[#00ffae] transition-opacity hover:opacity-80">ETCswap</a> V2/V3.</>,
+    body: <>Classic USD ($USC) is live on ETC mainnet, the first GENIUS Act-aligned stablecoin on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] transition-opacity hover:opacity-80">ETCswap</a> V2/V3.</>,
   },
   {
     number: '04',
@@ -63,14 +63,14 @@ export default function InvestmentProductsPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F59E0B]/8 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-warning)]/8 blur-[100px]" />
         </div>
 
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
           <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 px-4 py-1.5 text-sm font-medium text-[#F59E0B]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
               Institutional Products
             </span>
           </div>
@@ -96,7 +96,7 @@ export default function InvestmentProductsPage() {
           <div
           >
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#F59E0B]">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-warning)]">
                 Regulated Securities Exposure
               </span>
             </div>
@@ -110,7 +110,7 @@ export default function InvestmentProductsPage() {
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {/* Fund facts */}
               <div
-                className="rounded-xl border border-[#F59E0B]/30 bg-[#F59E0B]/5 p-6"
+                className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-6"
               >
                 <p className="mb-4 text-sm font-semibold text-[var(--text-primary)]">Fund Facts</p>
                 <div className="space-y-2.5">
@@ -125,7 +125,7 @@ export default function InvestmentProductsPage() {
                   href="https://grayscale.com/funds/grayscale-ethereum-classic-trust"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-block text-xs font-medium text-[#F59E0B] transition hover:text-[#F59E0B]/80"
+                  className="mt-5 inline-block text-xs font-medium text-[var(--color-warning)] transition hover:text-[var(--color-warning)]/80"
                 >
                   grayscale.com →
                 </a>
@@ -171,7 +171,7 @@ export default function InvestmentProductsPage() {
         <div className="mx-auto max-w-6xl">
           <div
           >
-            <p className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
+            <p className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-warning)]">
               Brokerage Access
             </p>
             <h2 className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
@@ -191,13 +191,13 @@ export default function InvestmentProductsPage() {
                   href={b.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col justify-between rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[#F59E0B]/30"
+                  className="group flex flex-col justify-between rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[var(--color-warning-border)]"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <p className="text-sm font-semibold text-[var(--text-primary)]">{b.name}</p>
-                    <span className="shrink-0 font-mono text-[10px] text-[var(--color-text-muted)] transition-colors group-hover:text-[#F59E0B]">↗</span>
+                    <span className="shrink-0 font-mono text-[10px] text-[var(--color-text-muted)] transition-colors group-hover:text-[var(--color-warning)]">↗</span>
                   </div>
-                  <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[#F59E0B]/70">{b.tag}</p>
+                  <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[var(--color-warning)]/70">{b.tag}</p>
                 </a>
               ))}
             </div>
@@ -214,7 +214,7 @@ export default function InvestmentProductsPage() {
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono font-semibold text-[#F59E0B] transition-opacity hover:opacity-70"
+                    className="font-mono font-semibold text-[var(--color-warning)] transition-opacity hover:opacity-70"
                   >
                     {p.ticker}
                   </a>
@@ -247,7 +247,7 @@ export default function InvestmentProductsPage() {
                   key={point.number}
                   className="flex gap-5 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
                 >
-                  <span className="shrink-0 font-mono text-lg font-bold text-[#F59E0B]/40">
+                  <span className="shrink-0 font-mono text-lg font-bold text-[var(--color-warning)]/40">
                     {point.number}
                   </span>
                   <div>
@@ -263,13 +263,13 @@ export default function InvestmentProductsPage() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/regulation"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90"
               >
                 Regulatory Framework
               </Link>
               <Link
                 href="/olympia"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)]"
               >
                 Olympia Upgrade
               </Link>

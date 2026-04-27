@@ -231,7 +231,7 @@ export default function VerifyPage() {
             <div className="grid gap-4 sm:grid-cols-2">
               {benefits.map((benefit) => (
                 <div key={benefit.title} className="flex items-start gap-3">
-                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
+                  <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-success-bg)] text-[var(--color-success)]">
                     {benefit.icon}
                   </div>
                   <div>
@@ -249,36 +249,36 @@ export default function VerifyPage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6"
+            className="rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">What You Need</h2>
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
                 <span><strong className="text-[var(--text-primary)]">Contract Address</strong> - The deployed contract address on mainnet or testnet</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
                 <span><strong className="text-[var(--text-primary)]">Compiler Version</strong> - Exact Solidity/Vyper version used (e.g., v0.8.20)</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
                 <span><strong className="text-[var(--text-primary)]">Source Code</strong> - Original source files including all imports</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
                 <span><strong className="text-[var(--text-primary)]">Constructor Arguments</strong> - ABI-encoded arguments if your contract has a constructor</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
                 <span><strong className="text-[var(--text-primary)]">Optimization Settings</strong> - Whether optimizer was enabled and run count</span>

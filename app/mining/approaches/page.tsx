@@ -41,7 +41,7 @@ export default function MiningApproachesPage() {
             </Link>
           </div>
           <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
               </svg>
@@ -116,8 +116,8 @@ export default function MiningApproachesPage() {
             {/* ASIC */}
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8">
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10">
-                  <svg aria-hidden="true" className="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-warning-bg)]">
+                  <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                   </svg>
                 </div>
@@ -129,7 +129,7 @@ export default function MiningApproachesPage() {
               <ul className="space-y-4">
                 {asicFeatures.map((f) => (
                   <li key={f.title} className="flex gap-3">
-                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-amber-400" />
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--color-warning)]" />
                     <div>
                       <p className="text-sm font-medium text-[var(--text-primary)]">{f.title}</p>
                       <p className="mt-0.5 text-sm text-[var(--color-text-muted)]">{f.desc}</p>
@@ -137,8 +137,8 @@ export default function MiningApproachesPage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 rounded-lg border border-amber-500/20 bg-amber-500/5 p-4">
-                <p className="text-xs font-medium text-amber-400">Best for</p>
+              <div className="mt-6 rounded-lg border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-4">
+                <p className="text-xs font-medium text-[var(--color-warning)]">Best for</p>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Industrial operators, stranded energy deployments, and anyone maximizing hash per watt at scale.</p>
               </div>
             </div>
@@ -194,8 +194,8 @@ export default function MiningApproachesPage() {
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Maximum hash output per installation</li>
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Simpler operations, minimal management overhead</li>
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Predictable revenue modeling</li>
-                <li className="flex gap-2"><span className="text-red-400">−</span> Full exposure to power price spikes</li>
-                <li className="flex gap-2"><span className="text-red-400">−</span> No ability to monetize grid flexibility services</li>
+                <li className="flex gap-2"><span className="text-[var(--color-error)]">−</span> Full exposure to power price spikes</li>
+                <li className="flex gap-2"><span className="text-[var(--color-error)]">−</span> No ability to monetize grid flexibility services</li>
               </ul>
             </div>
 
@@ -208,8 +208,8 @@ export default function MiningApproachesPage() {
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Captures cheapest available energy</li>
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Grid services revenue potential (demand response)</li>
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Ideal for stranded/curtailed renewable sources</li>
-                <li className="flex gap-2"><span className="text-red-400">−</span> Lower average uptime reduces gross hash output</li>
-                <li className="flex gap-2"><span className="text-red-400">−</span> Requires automated monitoring and control systems</li>
+                <li className="flex gap-2"><span className="text-[var(--color-error)]">−</span> Lower average uptime reduces gross hash output</li>
+                <li className="flex gap-2"><span className="text-[var(--color-error)]">−</span> Requires automated monitoring and control systems</li>
               </ul>
             </div>
           </div>

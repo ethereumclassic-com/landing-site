@@ -250,7 +250,7 @@ export default function ApiDocsPage() {
                                 <td className="py-2 font-mono text-[var(--color-primary)]">{param.name}</td>
                                 <td className="py-2 text-[var(--color-text-secondary)]">{param.type}</td>
                                 <td className="py-2">
-                                  <span className={`text-xs ${param.required ? 'text-amber-400' : 'text-[var(--color-text-muted)]'}`}>
+                                  <span className={`text-xs ${param.required ? 'text-[var(--color-warning)]' : 'text-[var(--color-text-muted)]'}`}>
                                     {param.required ? 'Required' : 'Optional'}
                                   </span>
                                 </td>

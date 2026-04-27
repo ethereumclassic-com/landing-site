@@ -5,13 +5,13 @@ import { miningSoftware, type MiningSoftware } from '../data/mining'
 
 const platformColors: Record<string, { bg: string; text: string }> = {
   Windows: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
-  Linux: { bg: 'bg-amber-500/10', text: 'text-amber-400' },
+  Linux: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
   macOS: { bg: 'bg-gray-500/10', text: 'text-gray-400' },
 }
 
 const gpuColors: Record<string, { bg: string; text: string }> = {
-  NVIDIA: { bg: 'bg-green-500/10', text: 'text-green-400' },
-  AMD: { bg: 'bg-red-500/10', text: 'text-red-400' },
+  NVIDIA: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
+  AMD: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]' },
   ASIC: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
 }
 
@@ -26,7 +26,7 @@ function SoftwareCard({ software }: { software: MiningSoftware }) {
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">{software.description}</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${software.fee === 0 ? 'bg-green-500/10 text-green-400' : 'bg-amber-500/10 text-amber-400'}`}>
+          <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${software.fee === 0 ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]' : 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'}`}>
             {software.fee}% fee
           </span>
           {software.opensource && (
@@ -140,8 +140,8 @@ export default function MiningSoftwarePage() {
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">Quick Recommendation</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  <strong className="text-green-400">NVIDIA GPU:</strong> T-Rex Miner offers the best performance and stability.{' '}
-                  <strong className="text-red-400">AMD GPU:</strong> TeamRedMiner provides optimal hashrates for AMD cards.{' '}
+                  <strong className="text-[var(--color-success)]">NVIDIA GPU:</strong> T-Rex Miner offers the best performance and stability.{' '}
+                  <strong className="text-[var(--color-error)]">AMD GPU:</strong> TeamRedMiner provides optimal hashrates for AMD cards.{' '}
                   <strong className="text-blue-400">Mixed rig:</strong> lolMiner supports both with good performance.
                 </p>
               </div>
@@ -193,7 +193,7 @@ export default function MiningSoftwarePage() {
                       <td className="py-3 font-medium text-[var(--text-primary)]">{software.name}</td>
                       <td className="py-3 text-center">
                         {software.supports.includes('NVIDIA') ? (
-                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                           </svg>
                         ) : (
@@ -204,7 +204,7 @@ export default function MiningSoftwarePage() {
                       </td>
                       <td className="py-3 text-center">
                         {software.supports.includes('AMD') ? (
-                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                           </svg>
                         ) : (
@@ -216,7 +216,7 @@ export default function MiningSoftwarePage() {
                       <td className="py-3 text-center font-mono text-[var(--text-primary)]">{software.fee}%</td>
                       <td className="py-3 text-center">
                         {software.platforms.includes('Windows') ? (
-                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                           </svg>
                         ) : (
@@ -227,7 +227,7 @@ export default function MiningSoftwarePage() {
                       </td>
                       <td className="py-3 text-center">
                         {software.platforms.includes('Linux') ? (
-                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg aria-hidden="true" className="mx-auto h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                           </svg>
                         ) : (
@@ -292,19 +292,19 @@ export default function MiningSoftwarePage() {
                 <h3 className="mb-2 font-medium text-[var(--color-primary)]">NVIDIA GPUs</h3>
                 <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Lock memory clock to maximum for best hashrate</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Reduce core clock and power limit to improve efficiency</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Use MSI Afterburner or nvidia-smi for overclocking</span>
@@ -312,22 +312,22 @@ export default function MiningSoftwarePage() {
                 </ul>
               </div>
               <div>
-                <h3 className="mb-2 font-medium text-red-400">AMD GPUs</h3>
+                <h3 className="mb-2 font-medium text-[var(--color-error)]">AMD GPUs</h3>
                 <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Enable Compute Mode in AMD drivers</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Adjust memory timings for additional hashrate gains</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Use MorePowerTool for voltage control on RDNA cards</span>
@@ -343,10 +343,10 @@ export default function MiningSoftwarePage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6"
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-6"
           >
             <div className="flex items-start gap-4">
-              <svg aria-hidden="true" className="h-6 w-6 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-6 w-6 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
               <div>

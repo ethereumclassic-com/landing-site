@@ -49,9 +49,9 @@ import OlympiaCountdown from '../components/OlympiaCountdown'
 import { faqs } from '../data/olympia'
 
 const statusStyles = {
-  complete: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
-  active: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
-  research: 'bg-[#38bdf8]/10 text-[#38bdf8] border border-[#38bdf8]/30',
+  complete: 'bg-[var(--brand-green-subtle)] text-[var(--brand-green)] border border-[var(--border-brand)]',
+  active: 'bg-[var(--brand-green-subtle)] text-[var(--brand-green)] border border-[var(--border-brand)]',
+  research: 'bg-[var(--color-info-bg)] text-[var(--color-info)] border border-[var(--color-info-border)]',
   future: 'bg-[var(--border-subtle)] text-[var(--color-text-muted)] border border-[var(--border-subtle)]',
 }
 
@@ -60,7 +60,7 @@ const ecips = [
     ecip: 'ECIP-1111',
     title: 'EIP-1559 Fee Market',
     icon: Flame,
-    color: '#F59E0B',
+    color: 'var(--color-warning)',
     description:
       'Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury — the mechanism that funds open-source core development without any foundation or donor dependency. Dynamic gas pricing delivers predictable fees for users and applications. Fully additive: legacy transactions remain valid indefinitely. Miner block rewards and tips remain completely untouched.',
   },
@@ -68,7 +68,7 @@ const ecips = [
     ecip: 'ECIP-1112',
     title: 'Protocol Treasury',
     icon: Landmark,
-    color: '#00ffae',
+    color: 'var(--brand-green)',
     description:
       'A protocol-controlled vault funded by basefee revenue and voluntary contributions. For the first time, institutions, developers, and network stakeholders can directly fund Ethereum Classic\'s core development and critical infrastructure without fielding their own team. Miners receive everything they do today: block rewards and tips remain completely untouched.',
   },
@@ -76,7 +76,7 @@ const ecips = [
     ecip: 'ECIP-1121',
     title: 'Fusaka EVM Alignment',
     icon: Cpu,
-    color: '#38bdf8',
+    color: 'var(--color-info)',
     description:
       'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka, covering every improvement that is independent of Proof-of-Stake and blob data availability. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework. One codebase, every EVM chain.',
   },
@@ -219,20 +219,20 @@ export default function UpgradeGuidePage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/10 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green-subtle)] blur-[100px]" />
         </div>
 
         <div
           className="relative mx-auto max-w-4xl"
         >
           <div className="mb-4">
-            <Link href="/olympia" className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80">
+            <Link href="/olympia" className="text-sm text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80">
               ← Olympia Hub
             </Link>
           </div>
 
           <div className="mb-4">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10 px-4 py-1.5 text-sm font-medium text-[#00ffae]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
               Network Upgrade
             </span>
           </div>
@@ -240,7 +240,7 @@ export default function UpgradeGuidePage() {
           <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
-            The <span className="text-[#00ffae]">Olympia</span> Upgrade
+            The <span className="text-[var(--brand-green)]">Olympia</span> Upgrade
           </h1>
 
           <p
@@ -255,28 +255,28 @@ export default function UpgradeGuidePage() {
             className="mt-6 max-w-2xl space-y-3 text-sm text-[var(--color-text-muted)]"
           >
             <li className="flex gap-3">
-              <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
+              <span className="mt-0.5 shrink-0 text-[var(--brand-green)]">—</span>
               <span>
                 <span className="font-semibold text-[var(--text-primary)]">Fusaka EVM alignment:</span> the headline change — closes years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
               </span>
             </li>
             <li className="flex gap-3">
-              <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
+              <span className="mt-0.5 shrink-0 text-[var(--brand-green)]">—</span>
               <span>
                 <span className="font-semibold text-[var(--text-primary)]">EIP-1559 fee market:</span> predictable base fees, type 2 transaction support, and the fee market parity the entire EVM ecosystem assumes. Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury — funding open-source core development without any foundation or donor dependency.
               </span>
             </li>
             <li className="flex gap-3">
-              <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
+              <span className="mt-0.5 shrink-0 text-[var(--brand-green)]">—</span>
               <span>
                 <span className="font-semibold text-[var(--text-primary)]">Protocol treasury:</span> seeded by basefee revenue and voluntary contributions, governed on-chain by the Olympia DAO, funding core development, infrastructure, and long-term network security. Block rewards and tips remain completely untouched and go entirely to miners.
               </span>
             </li>
             <li className="flex gap-3">
-              <span className="mt-0.5 shrink-0 text-[#00ffae]">—</span>
+              <span className="mt-0.5 shrink-0 text-[var(--brand-green)]">—</span>
               <span>
                 <span className="font-semibold text-[var(--text-primary)]">Institutional infrastructure:</span> the Proof-of-Work foundation for regulated stablecoin issuance (
-                <a href="https://classicusd.com" target="_blank" rel="noopener noreferrer" className="text-[#00ffae] transition hover:opacity-80">
+                <a href="https://classicusd.com" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] transition hover:opacity-80">
                   Classic USD
                 </a>
                 , MiCA and GENIUS Act-compliant), digital commodity classification under the CLARITY Act, and the broadest cross-jurisdictional institutional access profile of any Proof-of-Work smart contract network.
@@ -311,7 +311,7 @@ export default function UpgradeGuidePage() {
                 return (
                   <div
                     key={item.ecip}
-                    className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition hover:border-[#00ffae]/20"
+                    className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition hover:border-[var(--brand-green)]/20"
                   >
                     <div className="mb-3 flex items-center gap-3">
                       <div
@@ -340,7 +340,7 @@ export default function UpgradeGuidePage() {
           <div
           >
             <div>
-              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-widest text-[#38bdf8] transition-opacity hover:opacity-80">ECIP-1121</a>
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-widest text-[var(--color-info)] transition-opacity hover:opacity-80">ECIP-1121</a>
             </div>
             <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
@@ -351,14 +351,14 @@ export default function UpgradeGuidePage() {
 
             {/* Fork Timeline */}
             <div className="mt-8 mb-6 relative">
-              <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[#00ffae]/30" />
+              <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[var(--brand-green)]/30" />
               <div className="flex flex-col md:flex-row gap-6 md:gap-0 md:justify-between">
                 {forkTimeline.map((fork, i, arr) => (
                   <div key={fork.name} className="relative flex md:flex-col md:items-center md:w-1/3 gap-4 md:gap-0">
                     {i < arr.length - 1 && (
-                      <div className="md:hidden absolute left-[17px] top-[38px] bottom-[-22px] w-px bg-[#00ffae]/30" />
+                      <div className="md:hidden absolute left-[17px] top-[38px] bottom-[-22px] w-px bg-[var(--brand-green)]/30" />
                     )}
-                    <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[#00ffae]/40 bg-[#00ffae]/10 font-mono text-xs font-bold text-[#00ffae] relative z-10">
+                    <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--brand-green)]/40 bg-[var(--brand-green-subtle)] font-mono text-xs font-bold text-[var(--brand-green)] relative z-10">
                       {String(i + 1).padStart(2, '0')}
                     </div>
                     <div className="md:mt-4 md:text-center">
@@ -371,7 +371,7 @@ export default function UpgradeGuidePage() {
                             href={`https://eips.ethereum.org/EIPS/${eip.toLowerCase()}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded bg-[#8b5cf615] px-1.5 py-0.5 font-mono text-[10px] text-violet-400 transition-colors hover:bg-[#8b5cf625] hover:text-violet-300"
+                            className="rounded bg-[var(--color-violet-bg)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-violet)] transition-colors hover:bg-[var(--color-violet)]/15 hover:text-[var(--color-violet)]/80"
                           >
                             {eip}
                           </a>
@@ -384,7 +384,7 @@ export default function UpgradeGuidePage() {
             </div>
 
             {/* Divergence callout */}
-            <div className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
+            <div className="mb-8 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-5 text-sm text-[var(--color-text-secondary)]">
               Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
               <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1111" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1111</a>{' '}
               now delivers those deferred London EIPs.{' '}
@@ -400,11 +400,11 @@ export default function UpgradeGuidePage() {
                 return (
                   <div
                     key={cat.title}
-                    className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
+                    className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/20"
                   >
                     <div className="mb-3 flex items-center gap-2">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#00ffae]/8">
-                        <Icon size={16} aria-hidden="true" className="text-[#00ffae]" />
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--brand-green)]/8">
+                        <Icon size={16} aria-hidden="true" className="text-[var(--brand-green)]" />
                       </div>
                       <h3 className="text-sm font-semibold text-[var(--text-primary)]">{cat.title}</h3>
                     </div>
@@ -415,7 +415,7 @@ export default function UpgradeGuidePage() {
                           href={`https://eips.ethereum.org/EIPS/${eip.toLowerCase()}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded bg-[#8b5cf615] px-1.5 py-0.5 font-mono text-[10px] text-violet-400 transition-colors hover:bg-[#8b5cf625] hover:text-violet-300"
+                          className="rounded bg-[var(--color-violet-bg)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-violet)] transition-colors hover:bg-[var(--color-violet)]/15 hover:text-[var(--color-violet)]/80"
                         >
                           {eip}
                         </a>
@@ -436,7 +436,7 @@ export default function UpgradeGuidePage() {
                     href={`https://eips.ethereum.org/EIPS/${eip.toLowerCase()}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="not-italic rounded bg-[#8b5cf615] px-1 py-0.5 font-mono text-violet-400 transition-colors hover:bg-[#8b5cf625] hover:text-violet-300"
+                    className="not-italic rounded bg-[var(--color-violet-bg)] px-1 py-0.5 font-mono text-[var(--color-violet)] transition-colors hover:bg-[var(--color-violet)]/15 hover:text-[var(--color-violet)]/80"
                   >
                     {eip}
                   </a>
@@ -458,7 +458,7 @@ export default function UpgradeGuidePage() {
               ].map((tool) => (
                 <div
                   key={tool.name}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[var(--brand-green)]/20"
                 >
                   <p className="mb-1 text-sm font-semibold text-[var(--text-primary)]">{tool.name}</p>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
@@ -478,7 +478,7 @@ export default function UpgradeGuidePage() {
               The Olympia Upgrade
             </h2>
             <div
-              className="mt-4 space-y-4 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
+              className="mt-4 space-y-4 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
             >
               <p>
                 Olympia is Ethereum Classic&rsquo;s most significant protocol upgrade. Three changes arrive in a single activation: Fusaka EVM alignment, EIP-1559 fee market, and a protocol-managed treasury.
@@ -513,9 +513,9 @@ export default function UpgradeGuidePage() {
                     <div
                       className={`h-3 w-3 shrink-0 rounded-full ${
                         stage.status === 'complete'
-                          ? 'bg-[#00ffae]'
+                          ? 'bg-[var(--brand-green)]'
                           : stage.status === 'active'
-                            ? 'animate-pulse bg-[#00ffae]'
+                            ? 'animate-pulse bg-[var(--brand-green)]'
                             : 'bg-[var(--border)]'
                       }`}
                     />
@@ -562,7 +562,7 @@ export default function UpgradeGuidePage() {
               {clientData.map((client) => (
                 <div
                   key={client.name}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition hover:border-[var(--brand-green)]/20"
                 >
                   <div className="mb-4 flex flex-wrap items-center gap-3">
                     <span
@@ -597,7 +597,7 @@ export default function UpgradeGuidePage() {
                   <div className="space-y-2">
                     {client.steps.map((step, j) => (
                       <div key={j} className="flex items-start gap-2">
-                        <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-[#00ffae]" aria-hidden="true" />
+                        <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-[var(--brand-green)]" aria-hidden="true" />
                         <p className="text-sm text-[var(--color-text-muted)]">{step}</p>
                       </div>
                     ))}
@@ -609,7 +609,7 @@ export default function UpgradeGuidePage() {
                       href={client.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-[#00ffae] transition hover:opacity-80"
+                      className="inline-flex items-center gap-1 text-sm text-[var(--brand-green)] transition hover:opacity-80"
                     >
                       Releases <ExternalLink size={12} />
                     </a>
@@ -617,7 +617,7 @@ export default function UpgradeGuidePage() {
                       href={client.docsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-[#00ffae] transition hover:opacity-80"
+                      className="inline-flex items-center gap-1 text-sm text-[var(--brand-green)] transition hover:opacity-80"
                     >
                       Docs <ExternalLink size={12} />
                     </a>
@@ -665,13 +665,13 @@ export default function UpgradeGuidePage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/olympia/clients"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90 hover:shadow-lg hover:shadow-[#00ffae]/25"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90 hover:shadow-lg hover:shadow-[var(--brand-green)]/25"
             >
               View All Clients
             </Link>
             <Link
               href="/olympia/governance"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
             >
               Governance Framework
             </Link>

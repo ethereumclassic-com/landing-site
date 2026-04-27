@@ -34,12 +34,12 @@ function IconSvg({ name, className }: { name: string; className?: string }) {
 function FlowStep({ step, index }: { step: GovernanceStep; index: number }) {
   return (
     <motion.div variants={fadeInUp} className="relative flex flex-col items-center text-center">
-      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10">
-        <IconSvg name={step.icon} className="h-5 w-5 text-[#00ffae]" />
+      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)]">
+        <IconSvg name={step.icon} className="h-5 w-5 text-[var(--brand-green)]" />
       </div>
 
       {index < governanceFlow.length - 1 && (
-        <div className="absolute left-[calc(50%+24px)] top-6 hidden h-px w-[calc(100%-48px)] bg-gradient-to-r from-[#00ffae]/30 to-[var(--border)] lg:block" />
+        <div className="absolute left-[calc(50%+24px)] top-6 hidden h-px w-[calc(100%-48px)] bg-gradient-to-r from-[var(--brand-green)]/30 to-[var(--border)] lg:block" />
       )}
 
       <h3 className="mt-3 text-sm font-semibold text-[var(--text-primary)]">{step.title}</h3>

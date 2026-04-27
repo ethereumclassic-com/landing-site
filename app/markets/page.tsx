@@ -499,13 +499,13 @@ export default function MarketsPage() {
       {/* Disclaimer */}
       <section className="border-t border-[var(--border)] px-6 py-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+          <div className="rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-4">
             <div className="flex items-start gap-3">
-              <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
               <div className="text-sm text-[var(--color-text-muted)]">
-                <p className="font-medium text-amber-400">Disclaimer</p>
+                <p className="font-medium text-[var(--color-warning)]">Disclaimer</p>
                 <p className="mt-1">
                   Market data is provided for informational purposes only and should not be considered financial advice. Cryptocurrency investments carry significant risk. Always do your own research before making investment decisions.
                 </p>

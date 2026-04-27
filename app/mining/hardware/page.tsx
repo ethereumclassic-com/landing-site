@@ -10,14 +10,14 @@ type SortOption = 'hashrate' | 'efficiency' | 'profit' | 'power'
 type SortDirection = 'asc' | 'desc'
 
 const availabilityColors: Record<string, { bg: string; text: string }> = {
-  available: { bg: 'bg-green-500/10', text: 'text-green-400' },
-  limited: { bg: 'bg-amber-500/10', text: 'text-amber-400' },
-  discontinued: { bg: 'bg-red-500/10', text: 'text-red-400' },
+  available: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
+  limited: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
+  discontinued: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]' },
 }
 
 const brandColors: Record<string, { bg: string; text: string }> = {
-  NVIDIA: { bg: 'bg-green-500/10', text: 'text-green-400' },
-  AMD: { bg: 'bg-red-500/10', text: 'text-red-400' },
+  NVIDIA: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
+  AMD: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]' },
   Bitmain: { bg: 'bg-orange-500/10', text: 'text-orange-400' },
   Jasminer: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
   iPollo: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
@@ -89,7 +89,7 @@ function HardwareRow({
         <span className="text-xs text-[var(--color-text-muted)]"> ETC</span>
       </td>
       <td className="py-4 px-2 text-center">
-        <span className={`font-mono ${profitability.isProfitable ? 'text-green-400' : 'text-red-400'}`}>
+        <span className={`font-mono ${profitability.isProfitable ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
           {formatUSD(profitability.dailyProfitUSD)}
         </span>
         <span className="text-xs text-[var(--color-text-muted)]">/day</span>
@@ -139,7 +139,7 @@ function HardwareCard({
             </span>
           </div>
         </div>
-        <span className={`text-lg font-bold ${profitability.isProfitable ? 'text-green-400' : 'text-red-400'}`}>
+        <span className={`text-lg font-bold ${profitability.isProfitable ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
           {formatUSD(profitability.dailyProfitUSD)}/d
         </span>
       </div>
@@ -424,7 +424,7 @@ export default function MiningHardwarePage() {
               <h3 className="mb-3 text-lg font-semibold text-[var(--text-primary)]">Understanding Efficiency</h3>
               <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
                 <p>
-                  Efficiency is measured in Joules per Megahash (J/MH). <span className="text-green-400">Lower is better</span>.
+                  Efficiency is measured in Joules per Megahash (J/MH). <span className="text-[var(--color-success)]">Lower is better</span>.
                 </p>
                 <p>
                   The most efficient hardware minimizes electricity costs per ETC mined. This becomes critical as difficulty increases.

@@ -68,7 +68,7 @@ export default function FeeMarketPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/8 blur-[120px]" />
+          <div className="absolute left-1/2 top-0 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-error)]/8 blur-[120px]" />
           <div className="absolute right-0 top-1/2 h-[300px] w-[400px] -translate-y-1/2 rounded-full bg-[var(--color-primary)]/8 blur-[100px]" />
         </div>
         <div className="relative mx-auto max-w-4xl">
@@ -78,7 +78,7 @@ export default function FeeMarketPage() {
             </Link>
           </div>
           <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-sm font-medium text-red-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-error-border)] bg-[var(--color-error-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-error)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
@@ -116,12 +116,12 @@ export default function FeeMarketPage() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">Avg TXs / Block</p>
-              <p className="mt-2 text-3xl font-bold text-red-400">~{stats.avgTxPerBlock}</p>
+              <p className="mt-2 text-3xl font-bold text-[var(--color-error)]">~{stats.avgTxPerBlock}</p>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">Approaching all-time low</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">Block Utilization</p>
-              <p className="mt-2 text-3xl font-bold text-amber-400">{utilizationPct}%</p>
+              <p className="mt-2 text-3xl font-bold text-[var(--color-warning)]">{utilizationPct}%</p>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">{emptyPct}% of block capacity is empty</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
@@ -131,13 +131,13 @@ export default function FeeMarketPage() {
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">Fee Share of Revenue</p>
-              <p className="mt-2 text-3xl font-bold text-red-400">{'<'}1%</p>
+              <p className="mt-2 text-3xl font-bold text-[var(--color-error)]">{'<'}1%</p>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">Effectively zero fee income today</p>
             </div>
           </div>
 
-          <div className="mt-6 rounded-xl border border-red-500/20 bg-red-500/5 p-5">
-            <p className="font-medium text-red-400">
+          <div className="mt-6 rounded-xl border border-[var(--color-error)]/20 bg-[var(--color-error)]/5 p-5">
+            <p className="font-medium text-[var(--color-error)]">
               &ldquo;The average ETC block is {emptyPct}% empty. This is not a security-neutral fact.&rdquo;
             </p>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
@@ -211,7 +211,7 @@ export default function FeeMarketPage() {
                 <span>Priority fee (tip) → Miner — unchanged</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="h-2 w-2 rounded-full bg-amber-400" />
+                <span className="h-2 w-2 rounded-full bg-[var(--color-warning)]" />
                 <span>Basefee → Protocol Treasury (was burned on ETH, discarded on ETC)</span>
               </div>
             </div>

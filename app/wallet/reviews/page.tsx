@@ -30,7 +30,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
       {[...Array(fullStars)].map((_, i) => (
         <svg aria-hidden="true"
           key={`full-${i}`}
-          className={`${sizeClasses[size]} text-amber-400`}
+          className={`${sizeClasses[size]} text-[var(--color-warning)]`}
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -39,7 +39,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
       ))}
       {hasHalfStar && (
         <svg aria-hidden="true"
-          className={`${sizeClasses[size]} text-amber-400`}
+          className={`${sizeClasses[size]} text-[var(--color-warning)]`}
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -133,14 +133,14 @@ function ReviewCard({ review }: { review: WalletReview }) {
         {/* ETC Support Badge */}
         <div className="mb-4 flex flex-wrap gap-2">
           {review.etcSupport.native ? (
-            <span className="inline-flex items-center gap-1 rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-success)]">
               <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
               Native ETC
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-warning)]">
               Manual Setup
             </span>
           )}
@@ -230,7 +230,7 @@ export default function WalletReviewsPage() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-warning)]/10 via-transparent to-transparent" />
 
         <div
           className="relative mx-auto max-w-6xl"
@@ -249,7 +249,7 @@ export default function WalletReviewsPage() {
 
           {/* Badge */}
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
@@ -262,7 +262,7 @@ export default function WalletReviewsPage() {
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Wallet{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-warning)] to-[var(--color-orange)] bg-clip-text text-transparent">
               Reviews
             </span>
           </h1>
@@ -278,7 +278,7 @@ export default function WalletReviewsPage() {
           {/* Quick Stats */}
           <div className="mt-8 flex flex-wrap gap-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3">
-              <div className="text-2xl font-bold text-green-400">{verdictCounts['highly-recommended']}</div>
+              <div className="text-2xl font-bold text-[var(--color-success)]">{verdictCounts['highly-recommended']}</div>
               <div className="text-sm text-[var(--color-text-muted)]">Highly Recommended</div>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3">
@@ -286,7 +286,7 @@ export default function WalletReviewsPage() {
               <div className="text-sm text-[var(--color-text-muted)]">Recommended</div>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3">
-              <div className="text-2xl font-bold text-amber-400">{verdictCounts.acceptable}</div>
+              <div className="text-2xl font-bold text-[var(--color-warning)]">{verdictCounts.acceptable}</div>
               <div className="text-sm text-[var(--color-text-muted)]">Acceptable</div>
             </div>
           </div>
@@ -402,7 +402,7 @@ export default function WalletReviewsPage() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               <div>
                 <div className="mb-2 flex items-center gap-2">
-                  <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
                   <h3 className="font-semibold text-[var(--text-primary)]">Security</h3>
@@ -436,7 +436,7 @@ export default function WalletReviewsPage() {
               </div>
               <div>
                 <div className="mb-2 flex items-center gap-2">
-                  <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                   </svg>
                   <h3 className="font-semibold text-[var(--text-primary)]">Support</h3>

@@ -28,7 +28,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
       className="relative"
     >
       {/* Vertical line */}
-      <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-[var(--border)] via-[#00ffae]/30 to-[#00ffae]" />
+      <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-[var(--border)] via-[var(--brand-green)]/30 to-[var(--brand-green)]" />
 
       <div className="space-y-8">
         {forks.map((fork) => (
@@ -37,8 +37,8 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
             <div
               className="absolute left-4 top-2 h-5 w-5 rounded-full border-2"
               style={{
-                borderColor: fork.isOlympia ? '#00ffae' : 'var(--border)',
-                backgroundColor: fork.isOlympia ? '#00ffae' : 'var(--panel)',
+                borderColor: fork.isOlympia ? 'var(--brand-green)' : 'var(--border)',
+                backgroundColor: fork.isOlympia ? 'var(--brand-green)' : 'var(--panel)',
                 boxShadow: fork.isOlympia ? '0 0 12px rgba(0, 255, 174, 0.4)' : 'none',
               }}
             />
@@ -46,12 +46,12 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
             <div
               className={`rounded-xl border p-5 ${
                 fork.isOlympia
-                  ? 'border-[#00ffae]/30 bg-gradient-to-br from-[#00ffae]/10 to-[#00ffae]/5'
+                  ? 'border-[var(--border-brand)] bg-gradient-to-br from-[var(--brand-green)]/10 to-[var(--brand-green)]/5'
                   : 'border-[var(--border)] bg-[var(--panel)]'
               }`}
             >
               <div className="flex flex-wrap items-center gap-3">
-                <h3 className={`text-lg font-semibold ${fork.isOlympia ? 'text-[#00ffae]' : 'text-[var(--text-primary)]'}`}>
+                <h3 className={`text-lg font-semibold ${fork.isOlympia ? 'text-[var(--brand-green)]' : 'text-[var(--text-primary)]'}`}>
                   {fork.name}
                 </h3>
                 {fork.block !== null ? (
@@ -59,7 +59,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                     Block {fork.block.toLocaleString()}
                   </span>
                 ) : (
-                  <span className="rounded-full bg-[#00ffae]/10 px-2 py-0.5 text-xs font-medium text-[#00ffae]">
+                  <span className="rounded-full bg-[var(--brand-green-subtle)] px-2 py-0.5 text-xs font-medium text-[var(--brand-green)]">
                     TBD
                   </span>
                 )}
@@ -75,7 +75,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                       href={e.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                      className="text-xs font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
                     >
                       {e.name}
                     </a>
@@ -85,7 +85,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                     href={fork.ecipUrl ?? '#'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                    className="text-xs font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
                   >
                     {fork.ecip}
                   </a>

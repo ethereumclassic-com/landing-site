@@ -159,18 +159,18 @@ export default function ToolsConverterPage() {
               <span className="text-sm">
                 {loading ? (
                   <span className="inline-flex items-center gap-2 text-[var(--color-text-muted)]">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                     Loading...
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-2 text-[var(--color-text-muted)]">
                     <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                     </span>
                     Live
                     {change24h !== null && (
-                      <span className={change24h >= 0 ? 'text-green-400' : 'text-red-400'}>
+                      <span className={change24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}>
                         {change24h >= 0 ? '+' : ''}{change24h.toFixed(2)}%
                       </span>
                     )}
@@ -201,7 +201,7 @@ export default function ToolsConverterPage() {
                     {[0.1, 0.5, 1, 5, 10, 25, 50, 100].map((qty) => (
                       <tr key={qty} className="hover:bg-[var(--bg)]/50">
                         <td className="px-4 py-2.5 font-mono text-sm text-[var(--text-primary)]">{qty} ETC</td>
-                        <td className="px-4 py-2.5 text-right font-mono text-sm text-green-400">
+                        <td className="px-4 py-2.5 text-right font-mono text-sm text-[var(--color-success)]">
                           {selectedInfo.symbol}{formatConverted(qty * rate, selectedCurrency)}
                         </td>
                       </tr>

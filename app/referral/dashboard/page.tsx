@@ -69,23 +69,23 @@ export default function ReferralDashboardPage() {
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
                 <div>
-                  <p className="font-medium text-amber-400">Program Not Yet Active</p>
-                  <p className="text-sm text-amber-400/80">
+                  <p className="font-medium text-[var(--color-warning)]">Program Not Yet Active</p>
+                  <p className="text-sm text-[var(--color-warning)]/80">
                     This is a preview of the referral dashboard. Connect your wallet when the program launches.
                   </p>
                 </div>
               </div>
               <button
                 disabled
-                className="rounded-lg bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-400/50 cursor-not-allowed"
+                className="rounded-lg bg-[var(--color-warning)]/20 px-4 py-2 text-sm font-medium text-[var(--color-warning)]/50 cursor-not-allowed"
               >
                 Connect Wallet
               </button>
@@ -136,7 +136,7 @@ export default function ReferralDashboardPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="text-sm text-[var(--color-text-muted)]">Current Tier</div>
-              <div className="mt-2 text-3xl font-bold text-amber-600">{sampleStats.currentTier}</div>
+              <div className="mt-2 text-3xl font-bold text-[var(--color-warning)]">{sampleStats.currentTier}</div>
               <div className="mt-1 text-sm text-[var(--color-text-muted)]">
                 {sampleStats.referralsToNextTier} more to {sampleStats.nextTier}
               </div>

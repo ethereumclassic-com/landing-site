@@ -164,7 +164,7 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
           </div>
         </div>
         {os.supportsETC && (
-          <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">
+          <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-success)]">
             ETC Ready
           </span>
         )}
@@ -191,8 +191,8 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
             <span
               key={hw}
               className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                hw === 'NVIDIA' ? 'bg-green-500/10 text-green-400' :
-                hw === 'AMD' ? 'bg-red-500/10 text-red-400' :
+                hw === 'NVIDIA' ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]' :
+                hw === 'AMD' ? 'bg-[var(--color-error-bg)] text-[var(--color-error)]' :
                 'bg-purple-500/10 text-purple-400'
               }`}
             >
@@ -207,7 +207,7 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
         <div className="grid grid-cols-2 gap-1">
           {os.features.slice(0, 6).map((feature) => (
             <div key={feature} className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
-              <svg aria-hidden="true" className="h-3 w-3 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-3 w-3 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
               {feature}
@@ -332,7 +332,7 @@ export default function MiningOSPage() {
                       {miningOSPlatforms.map((os) => (
                         <td key={os.id} className="py-3 text-center">
                           {featureMatrix[os.id]?.[feature.key] ? (
-                            <svg aria-hidden="true" className="mx-auto h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg aria-hidden="true" className="mx-auto h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
                           ) : (
@@ -405,9 +405,9 @@ export default function MiningOSPage() {
           <div
             className="grid gap-6 md:grid-cols-3"
           >
-            <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6">
+            <div className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-6">
               <div className="mb-3 text-2xl">🏆</div>
-              <h3 className="font-semibold text-green-400">Best Overall</h3>
+              <h3 className="font-semibold text-[var(--color-success)]">Best Overall</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 <strong className="text-[var(--text-primary)]">HiveOS</strong> - Most features, best community support,
                 and the widest range of supported hardware including ASICs.
@@ -423,9 +423,9 @@ export default function MiningOSPage() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6">
+            <div className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-6">
               <div className="mb-3 text-2xl">💰</div>
-              <h3 className="font-semibold text-amber-400">Budget Option</h3>
+              <h3 className="font-semibold text-[var(--color-warning)]">Budget Option</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 <strong className="text-[var(--text-primary)]">RaveOS</strong> - Unlimited free rigs when using partner pools.
                 Great for beginners and cost-conscious miners.

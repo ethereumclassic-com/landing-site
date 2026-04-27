@@ -36,16 +36,16 @@ export default function GasTrackerPage() {
       gwei: average?.toFixed(2) ?? '2',
       time: '~1 min',
       description: 'Average speed',
-      color: 'text-green-400',
-      bgColor: 'bg-green-500/10',
+      color: 'text-[var(--color-success)]',
+      bgColor: 'bg-[var(--color-success-bg)]',
     },
     {
       name: 'Fast',
       gwei: fast?.toFixed(2) ?? '5',
       time: '~15 sec',
       description: 'High priority, faster',
-      color: 'text-amber-400',
-      bgColor: 'bg-amber-500/10',
+      color: 'text-[var(--color-warning)]',
+      bgColor: 'bg-[var(--color-warning-bg)]',
     },
   ]
 
@@ -130,14 +130,14 @@ export default function GasTrackerPage() {
           >
             {isLoading ? (
               <span className="inline-flex items-center gap-2">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                 Loading live gas prices...
               </span>
             ) : (
               <span className="inline-flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                 </span>
                 Live data from{' '}
                 <a
@@ -198,7 +198,7 @@ export default function GasTrackerPage() {
                         <td className="px-4 py-3 text-right font-mono text-sm text-[var(--text-primary)]">
                           {costEtc}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono text-sm text-green-400">
+                        <td className="px-4 py-3 text-right font-mono text-sm text-[var(--color-success)]">
                           ${costUsd}
                         </td>
                       </tr>
@@ -210,9 +210,9 @@ export default function GasTrackerPage() {
             <div className="border-t border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-xs text-[var(--color-text-muted)]">
               Costs calculated at {selectedGas} Gwei gas price and ${liveEtcPrice.toFixed(2)} ETC{' '}
               {etcPrice ? (
-                <span className="text-green-400">(live)</span>
+                <span className="text-[var(--color-success)]">(live)</span>
               ) : (
-                <span className="text-amber-400">(reference)</span>
+                <span className="text-[var(--color-warning)]">(reference)</span>
               )}
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function GasTrackerPage() {
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Gas Optimization Tips</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-success-bg)] text-[var(--color-success)]">
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
@@ -267,7 +267,7 @@ export default function GasTrackerPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-warning-bg)] text-[var(--color-warning)]">
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>

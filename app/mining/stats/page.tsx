@@ -103,10 +103,10 @@ function ResourceCard({
 }) {
   const isExternal = url.startsWith('http')
   const typeColors: Record<string, { bg: string; text: string }> = {
-    calculator: { bg: 'bg-green-500/10', text: 'text-green-400' },
+    calculator: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
     stats: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
     guide: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
-    tool: { bg: 'bg-amber-500/10', text: 'text-amber-400' },
+    tool: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
   }
   const colors = typeColors[type] || typeColors.tool
 
@@ -167,18 +167,18 @@ export default function MiningStatsPage() {
                 Network Statistics
               </h1>
               {isLoading ? (
-                <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1 text-xs text-amber-400">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-xs text-[var(--color-warning)]">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                   Loading...
                 </span>
               ) : isLive ? (
-                <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-xs text-green-400">
-                  <span className="h-2 w-2 rounded-full bg-green-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-3 py-1 text-xs text-[var(--color-success)]">
+                  <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
                   Live
                 </span>
               ) : (
-                <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1 text-xs text-amber-400">
-                  <span className="h-2 w-2 rounded-full bg-amber-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-xs text-[var(--color-warning)]">
+                  <span className="h-2 w-2 rounded-full bg-[var(--color-warning)]" />
                   Cached
                 </span>
               )}
@@ -213,7 +213,7 @@ export default function MiningStatsPage() {
               value={miningStats?.difficultyFormatted || '~2.45 PH'}
               description="Current mining difficulty"
               icon={
-                <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.589-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.589-1.202L5.25 4.97z" />
                 </svg>
               }
@@ -251,7 +251,7 @@ export default function MiningStatsPage() {
             >
               <div className="flex items-center gap-2 mb-4">
                 <h2 className="text-lg font-semibold text-[var(--text-primary)]">Latest Block</h2>
-                <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                   #{miningStats.latestBlock.number.toLocaleString()}
                 </span>
               </div>

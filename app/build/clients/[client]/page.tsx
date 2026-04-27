@@ -7,7 +7,7 @@ import { getClientById, type NodeClient } from '../../data/build'
 
 const platformColors: Record<string, { bg: string; text: string }> = {
   Windows: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
-  Linux: { bg: 'bg-amber-500/10', text: 'text-amber-400' },
+  Linux: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
   macOS: { bg: 'bg-gray-500/10', text: 'text-gray-400' },
   Docker: { bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
 }
@@ -15,7 +15,7 @@ const platformColors: Record<string, { bg: string; text: string }> = {
 const languageColors: Record<string, { bg: string; text: string; label: string }> = {
   Go: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', label: 'Go' },
   Java: { bg: 'bg-orange-500/10', text: 'text-orange-400', label: 'Java' },
-  Scala: { bg: 'bg-red-500/10', text: 'text-red-400', label: 'Scala 3' },
+  Scala: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]', label: 'Scala 3' },
 }
 
 interface Props {
@@ -210,7 +210,7 @@ export default function ClientPage({ params }: Props) {
                     </span>
                   )}
                   {client.role === 'maintained' && (
-                    <span className="rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
+                    <span className="rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
                       Maintained
                     </span>
                   )}
@@ -327,11 +327,11 @@ export default function ClientPage({ params }: Props) {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-green-500/30 bg-green-500/5 p-4"
+            className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-4"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/10">
-                <svg aria-hidden="true" className="h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success-bg)]">
+                <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
               </div>

@@ -218,8 +218,8 @@ export default function OnRampGuidePage() {
   const getColorClass = (color: string) => {
     switch (color) {
       case 'blue': return 'bg-blue-500/10 text-blue-400'
-      case 'amber': return 'bg-amber-500/10 text-amber-400'
-      case 'green': return 'bg-green-500/10 text-green-400'
+      case 'amber': return 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'
+      case 'green': return 'bg-[var(--color-success-bg)] text-[var(--color-success)]'
       case 'primary': return 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
       default: return 'bg-[var(--bg-elevated)] text-[var(--text-primary)]'
     }
@@ -399,7 +399,7 @@ export default function OnRampGuidePage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
-            className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6"
+            className="rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-6"
           >
             <h3 className="text-xl font-bold text-[var(--text-primary)]">About Classic USD (USC)</h3>
             <p className="mt-3 text-[var(--color-text-muted)]">
@@ -409,22 +409,22 @@ export default function OnRampGuidePage() {
             </p>
             <div className="mt-4 grid gap-4 md:grid-cols-3">
               <div className="rounded-lg bg-[var(--border-subtle)] p-3 text-center">
-                <p className="text-2xl font-bold text-amber-400">1:1</p>
+                <p className="text-2xl font-bold text-[var(--color-warning)]">1:1</p>
                 <p className="text-xs text-[var(--color-text-muted)]">USD Peg</p>
               </div>
               <div className="rounded-lg bg-[var(--border-subtle)] p-3 text-center">
-                <p className="text-2xl font-bold text-amber-400">22+</p>
+                <p className="text-2xl font-bold text-[var(--color-warning)]">22+</p>
                 <p className="text-xs text-[var(--color-text-muted)]">Supported Chains</p>
               </div>
               <div className="rounded-lg bg-[var(--border-subtle)] p-3 text-center">
-                <p className="text-2xl font-bold text-amber-400">USC</p>
+                <p className="text-2xl font-bold text-[var(--color-warning)]">USC</p>
                 <p className="text-xs text-[var(--color-text-muted)]">Symbol</p>
               </div>
             </div>
 
             {/* Supported Source Chains */}
-            <div className="mt-6 rounded-lg border border-amber-500/10 bg-amber-500/5 p-4">
-              <h4 className="text-sm font-medium text-amber-400">Supported USDC Source Chains</h4>
+            <div className="mt-6 rounded-lg border border-[var(--color-warning)]/10 bg-[var(--color-warning)]/5 p-4">
+              <h4 className="text-sm font-medium text-[var(--color-warning)]">Supported USDC Source Chains</h4>
               <div className="mt-2 flex flex-wrap gap-2">
                 {['Ethereum', 'Polygon', 'Arbitrum', 'Base', 'Optimism', 'Avalanche'].map((chain) => (
                   <span
@@ -435,7 +435,7 @@ export default function OnRampGuidePage() {
                   </span>
                 ))}
               </div>
-              <h4 className="mt-4 text-sm font-medium text-green-400">Supported USDP Source Chain</h4>
+              <h4 className="mt-4 text-sm font-medium text-[var(--color-success)]">Supported USDP Source Chain</h4>
               <div className="mt-2 flex flex-wrap gap-2">
                 <span className="rounded-full bg-[var(--border-subtle)] px-3 py-1 text-xs text-[var(--color-text-muted)]">
                   Ethereum
@@ -448,7 +448,7 @@ export default function OnRampGuidePage() {
                 href="https://classicusd.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-400 transition-colors hover:bg-amber-500/30"
+                className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-warning)]/20 px-4 py-2 text-sm font-medium text-[var(--color-warning)] transition-colors hover:bg-[var(--color-warning)]/30"
               >
                 Learn More About USC
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -457,7 +457,7 @@ export default function OnRampGuidePage() {
               </a>
               <Link
                 href="/apps/classic-usd"
-                className="inline-flex items-center gap-2 rounded-lg border border-amber-500/30 px-4 py-2 text-sm font-medium text-amber-400 transition-colors hover:bg-amber-500/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-[var(--color-warning-border)] px-4 py-2 text-sm font-medium text-[var(--color-warning)] transition-colors hover:bg-[var(--color-warning-bg)]"
               >
                 View App Details
               </Link>

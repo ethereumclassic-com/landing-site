@@ -344,7 +344,7 @@ export default function PoolPage({ params }: Props) {
                   <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <span className="text-[var(--color-text-muted)]">Fee: </span>
-                      <span className={`font-medium ${otherPool.fee < pool.fee ? 'text-green-400' : 'text-[var(--text-primary)]'}`}>
+                      <span className={`font-medium ${otherPool.fee < pool.fee ? 'text-[var(--color-success)]' : 'text-[var(--text-primary)]'}`}>
                         {otherPool.fee}%
                       </span>
                     </div>

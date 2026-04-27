@@ -12,16 +12,16 @@ export default function SecurityMessage() {
       className="px-6 md:px-10 lg:px-12"
     >
       <div className="mx-auto max-w-4xl">
-        <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6 md:p-8">
+        <div className="rounded-2xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-6 md:p-8">
           <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-500/10">
-              <svg aria-hidden="true" className="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-warning-bg)]">
+              <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-amber-200">Security First</h3>
-              <p className="mt-1 text-sm text-amber-200/70">
+              <h3 className="text-lg font-semibold text-[var(--color-warning)]/50">Security First</h3>
+              <p className="mt-1 text-sm text-[var(--color-warning)]/35">
                 Never share your seed phrase or private keys. Hardware wallets provide the best security for large holdings.
                 Always download wallet software from official sources and verify URLs before connecting.
               </p>
@@ -65,12 +65,12 @@ export default function SecurityMessage() {
 function SecurityTip({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
+      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-warning-bg)] text-[var(--color-warning)]">
         {icon}
       </div>
       <div>
-        <div className="text-sm font-medium text-amber-200">{title}</div>
-        <div className="text-xs text-amber-200/60">{description}</div>
+        <div className="text-sm font-medium text-[var(--color-warning)]/50">{title}</div>
+        <div className="text-xs text-[var(--color-warning)]/30">{description}</div>
       </div>
     </div>
   )

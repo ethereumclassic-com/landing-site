@@ -14,8 +14,8 @@ import {
 } from 'recharts'
 import { emissionRateData } from '../data/fifthingChartData'
 
-const BRAND_GREEN = '#00ffae'
-const AMBER = '#F59E0B'
+const BRAND_GREEN = 'var(--brand-green)'
+const AMBER = 'var(--color-warning)'
 
 interface TooltipEntry {
   dataKey?: string
@@ -57,7 +57,7 @@ export default function EmissionRateChart() {
       </p>
       <ResponsiveContainer width="100%" height={300}>
         <ComposedChart data={emissionRateData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
           <XAxis
             dataKey="era"
             tick={{ fontSize: 10, fill: 'var(--text-muted)' }}
@@ -94,7 +94,8 @@ export default function EmissionRateChart() {
             {emissionRateData.map((entry) => (
               <Cell
                 key={entry.era}
-                fill={entry.isCurrent ? BRAND_GREEN : `${BRAND_GREEN}55`}
+                fill={BRAND_GREEN}
+                fillOpacity={entry.isCurrent ? 1 : 0.33}
               />
             ))}
           </Bar>

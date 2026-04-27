@@ -12,7 +12,7 @@ import {
 } from 'recharts'
 import { emissionCurveData } from '../data/fifthingChartData'
 
-const BRAND_GREEN = '#00ffae'
+const BRAND_GREEN = 'var(--brand-green)'
 
 interface TooltipEntry {
   payload?: Record<string, unknown>
@@ -64,7 +64,7 @@ export default function EmissionCurveChart() {
               <stop offset="95%" stopColor={BRAND_GREEN} stopOpacity={0.03} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
           <XAxis
             dataKey="label"
             tick={{ fontSize: 10, fill: 'var(--text-muted)' }}
@@ -84,7 +84,7 @@ export default function EmissionCurveChart() {
             <ReferenceLine
               key={era}
               x={`Era ${era}\n${['2017', '2020', '2022', '2024'][era - 1]}`}
-              stroke="rgba(255,255,255,0.15)"
+              stroke="var(--border-default)"
               strokeDasharray="3 3"
             />
           ))}

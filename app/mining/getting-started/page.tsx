@@ -281,14 +281,14 @@ export default function MiningGettingStartedPage() {
 
           <div className="grid gap-4 md:grid-cols-2">
             <div
-              className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4"
+              className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-4"
             >
               <div className="flex items-start gap-3">
-                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                 </svg>
                 <div>
-                  <h4 className="font-semibold text-amber-400">Monitor Temperature</h4>
+                  <h4 className="font-semibold text-[var(--color-warning)]">Monitor Temperature</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Keep GPU temperatures below 70°C for longevity. Good airflow and cooling are essential.
                   </p>

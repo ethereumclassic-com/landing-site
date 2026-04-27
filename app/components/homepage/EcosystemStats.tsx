@@ -140,8 +140,8 @@ export default function EcosystemStats() {
           <div className="mb-2 flex items-center justify-center gap-2">
             <h2 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">Network Activity</h2>
             {isLive && (
-              <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-600 dark:text-green-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-500 dark:bg-green-400" />
+              <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-green-600 dark:text-[var(--color-success)]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success)] dark:bg-[var(--color-success)]" />
                 Live
               </span>
             )}

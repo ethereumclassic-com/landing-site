@@ -73,9 +73,9 @@ function getTypeIcon(type: WalletType) {
 function getSecurityBadge(level: 'high' | 'medium' | 'standard' | undefined) {
   switch (level) {
     case 'high':
-      return <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">High Security</span>
+      return <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-success)]">High Security</span>
     case 'medium':
-      return <span className="rounded-full bg-yellow-500/10 px-2 py-0.5 text-xs font-medium text-yellow-400">Medium</span>
+      return <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-warning)]">Medium</span>
     case 'standard':
       return <span className="rounded-full bg-gray-500/10 px-2 py-0.5 text-xs font-medium text-gray-400">Standard</span>
     default:
@@ -93,14 +93,14 @@ function WalletCard({ wallet }: { wallet: Wallet }) {
       rel="noopener noreferrer"
       className={`group block rounded-2xl border p-5 transition-all ${
         isHardware
-          ? 'border-green-500/30 bg-green-500/5 hover:border-green-500/50 hover:bg-green-500/10'
+          ? 'border-[var(--color-success-border)] bg-[var(--color-success)]/5 hover:border-[var(--color-success)]/50 hover:bg-[var(--color-success-bg)]'
           : 'border-[var(--border)] bg-[var(--panel)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel)]'
       }`}
     >
       <div className="mb-3 flex items-start justify-between">
         <div className={`flex h-10 w-10 items-center justify-center rounded-lg text-lg font-bold ${
           isHardware
-            ? 'bg-green-500/20 text-green-400'
+            ? 'bg-[var(--color-success)]/20 text-[var(--color-success)]'
             : 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
         }`}>
           {wallet.name[0]}
@@ -108,7 +108,7 @@ function WalletCard({ wallet }: { wallet: Wallet }) {
         <div className="flex items-center gap-2">
           <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${
             isHardware
-              ? 'bg-green-500/10 text-green-400'
+              ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]'
               : 'bg-[var(--border-subtle)] text-[var(--color-text-secondary)]'
           }`}>
             {getTypeIcon(wallet.type)}
@@ -175,7 +175,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
         <div className="flex items-center gap-3">
           <div className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold ${
             isHardware
-              ? 'bg-green-500/20 text-green-400'
+              ? 'bg-[var(--color-success)]/20 text-[var(--color-success)]'
               : 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
           }`}>
             {wallet.name[0]}
@@ -193,7 +193,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
       <td className="hidden py-4 md:table-cell">
         <span className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-medium ${
           isHardware
-            ? 'bg-green-500/10 text-green-400'
+            ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]'
             : 'bg-[var(--border-subtle)] text-[var(--color-text-secondary)]'
         }`}>
           {getTypeIcon(wallet.type)}
@@ -232,7 +232,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
           rel="noopener noreferrer"
           className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
             isHardware
-              ? 'bg-green-500 text-[var(--text-primary)] hover:bg-green-600'
+              ? 'bg-[var(--color-success)] text-[var(--text-primary)] hover:bg-green-600'
               : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--background)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
           }`}
         >
@@ -347,7 +347,7 @@ export default function DirectoryWalletsPage() {
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4">
                 <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-3 text-center">
-                  <div className="text-xl font-bold text-green-400">{typeStats.hardware}</div>
+                  <div className="text-xl font-bold text-[var(--color-success)]">{typeStats.hardware}</div>
                   <div className="text-xs text-[var(--color-text-muted)]">Hardware</div>
                 </div>
                 <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-3 text-center">

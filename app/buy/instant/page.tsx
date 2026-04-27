@@ -362,7 +362,7 @@ export default function InstantBuyPage() {
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 text-[var(--color-text-muted)]">Fees</td>
-                  <td className="py-4 text-center text-amber-400">2-5%</td>
+                  <td className="py-4 text-center text-[var(--color-warning)]">2-5%</td>
                   <td className="py-4 text-center text-emerald-400">0-1%</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">1-3%</td>
                 </tr>

@@ -74,11 +74,11 @@ function formatPercent(value: number, decimals: number = 2): string {
 function FeeMarketContext() {
   return (
     <div
-      className="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 to-amber-500/5 p-6"
+      className="rounded-2xl border border-[var(--color-warning-border)] bg-gradient-to-br from-[var(--color-warning)]/10 to-[var(--color-warning)]/5 p-6"
     >
       <div className="flex items-start gap-4">
-        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-500/20">
-          <svg aria-hidden="true" className="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-warning)]/20">
+          <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
           </svg>
         </div>
@@ -97,11 +97,11 @@ function FeeMarketContext() {
             </div>
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Next Era Reward</p>
-              <p className="text-lg font-bold text-amber-400">~1.64 ETC</p>
+              <p className="text-lg font-bold text-[var(--color-warning)]">~1.64 ETC</p>
             </div>
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Reduction</p>
-              <p className="text-lg font-bold text-red-400">-20%</p>
+              <p className="text-lg font-bold text-[var(--color-error)]">-20%</p>
             </div>
           </div>
         </div>
@@ -134,9 +134,9 @@ function GasPriceCards({ gasPrices, isLoading }: { gasPrices: FeeStats['gasPrice
       name: 'Fast',
       price: gasPrices.fast,
       time: '~15 sec',
-      color: 'text-amber-400',
-      bgColor: 'bg-amber-500/10',
-      borderColor: 'border-amber-500/30',
+      color: 'text-[var(--color-warning)]',
+      bgColor: 'bg-[var(--color-warning-bg)]',
+      borderColor: 'border-[var(--color-warning-border)]',
     },
   ]
 
@@ -171,9 +171,9 @@ function NetworkUtilization({ utilization, isLoading }: { utilization: number; i
   // Determine health status based on utilization
   const getHealthStatus = (util: number) => {
     if (util < 25) return { label: 'Low', color: 'text-blue-400', bgColor: 'bg-blue-500' }
-    if (util < 50) return { label: 'Moderate', color: 'text-green-400', bgColor: 'bg-green-500' }
-    if (util < 75) return { label: 'High', color: 'text-amber-400', bgColor: 'bg-amber-500' }
-    return { label: 'Very High', color: 'text-red-400', bgColor: 'bg-red-500' }
+    if (util < 50) return { label: 'Moderate', color: 'text-[var(--color-success)]', bgColor: 'bg-[var(--color-success)]' }
+    if (util < 75) return { label: 'High', color: 'text-[var(--color-warning)]', bgColor: 'bg-[var(--color-warning)]' }
+    return { label: 'Very High', color: 'text-[var(--color-error)]', bgColor: 'bg-[var(--color-error)]' }
   }
 
   const health = getHealthStatus(utilization)
@@ -256,7 +256,7 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
           </div>
           <div className="h-3 rounded-full bg-[var(--bg)] overflow-hidden">
             <div
-              className="h-full bg-amber-500"
+              className="h-full bg-[var(--color-warning)]"
               style={{ width: `${feePercentage}%` }}
             />
           </div>
@@ -273,7 +273,7 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
             </div>
             <div className="text-right">
               <p className="text-sm text-[var(--color-text-muted)]">Fee Ratio</p>
-              <p className={`text-xl font-bold ${feePercentage < 1 ? 'text-amber-400' : 'text-green-400'}`}>
+              <p className={`text-xl font-bold ${feePercentage < 1 ? 'text-[var(--color-warning)]' : 'text-[var(--color-success)]'}`}>
                 {isLoading ? '--' : formatPercent(feePercentage, 3)}
               </p>
             </div>
@@ -329,9 +329,9 @@ function FeeMarketHealth({ stats, isLoading }: { stats: FeeStats; isLoading: boo
               <span
                 className={`h-2 w-2 rounded-full ${
                   indicator.status === 'good'
-                    ? 'bg-green-400'
+                    ? 'bg-[var(--color-success)]'
                     : indicator.status === 'moderate'
-                    ? 'bg-amber-400'
+                    ? 'bg-[var(--color-warning)]'
                     : 'bg-blue-400'
                 }`}
               />
@@ -438,13 +438,13 @@ export default function FeeMarketPage() {
                 Fee Market Dashboard
               </h1>
               {isLoading ? (
-                <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1 text-xs text-amber-400">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-xs text-[var(--color-warning)]">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                   Loading...
                 </span>
               ) : (
-                <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-xs text-green-400">
-                  <span className="h-2 w-2 rounded-full bg-green-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-3 py-1 text-xs text-[var(--color-success)]">
+                  <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
                   Live
                 </span>
               )}
@@ -513,7 +513,7 @@ export default function FeeMarketPage() {
                   <span><strong className="text-[var(--text-primary)]">Current Era (5):</strong> ~2.05 ETC block reward, fees are ~0.01% of miner revenue</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-400">•</span>
+                  <span className="text-[var(--color-warning)]">•</span>
                   <span><strong className="text-[var(--text-primary)]">Era 6 (~2027):</strong> ~1.64 ETC block reward, 20% reduction in block rewards</span>
                 </li>
                 <li className="flex items-start gap-2">

@@ -336,7 +336,7 @@ export default function MiningPoolsPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
-                <span className="rounded-lg bg-amber-500/10 px-2 py-1 text-xs font-bold text-amber-400">PPS+</span>
+                <span className="rounded-lg bg-[var(--color-warning-bg)] px-2 py-1 text-xs font-bold text-[var(--color-warning)]">PPS+</span>
                 <div>
                   <h4 className="font-semibold text-[var(--text-primary)]">Pay Per Share Plus</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">

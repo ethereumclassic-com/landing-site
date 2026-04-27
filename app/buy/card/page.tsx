@@ -382,7 +382,7 @@ export default function CardPage() {
                 </tr>
                 <tr>
                   <td className="py-4 font-medium text-[var(--text-primary)]">Cash Advance Fee</td>
-                  <td className="py-4 text-center text-amber-400">3% - 5%</td>
+                  <td className="py-4 text-center text-[var(--color-warning)]">3% - 5%</td>
                   <td className="py-4 text-[var(--color-text-muted)]">Some banks treat crypto as cash advance (credit cards)</td>
                 </tr>
               </tbody>
@@ -390,10 +390,10 @@ export default function CardPage() {
           </div>
 
           <div
-            className="mt-8 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4"
+            className="mt-8 rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-4"
           >
             <div className="flex gap-3">
-              <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
               </svg>
               <div>

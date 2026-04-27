@@ -14,10 +14,10 @@ const staggerContainer = {
 }
 
 const statusConfig = {
-  complete: { label: 'Complete', color: '#00ffae' },
-  active: { label: 'Active', color: '#00ffae' },
-  research: { label: 'Research', color: '#38bdf8' },
-  future: { label: 'Future', color: '#6b7280' },
+  complete: { label: 'Complete', color: 'var(--brand-green)' },
+  active: { label: 'Active', color: 'var(--brand-green)' },
+  research: { label: 'Research', color: 'var(--color-info)' },
+  future: { label: 'Future', color: 'var(--text-muted)' },
 }
 
 export default function OlympiaRoadmap() {

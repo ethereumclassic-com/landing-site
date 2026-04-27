@@ -33,7 +33,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? formatSupply(stats.totalEmitted) + ' ETC' : '--',
       description: 'Block rewards emitted',
       icon: (
-        <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
         </svg>
       ),
@@ -53,7 +53,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? stats.percentOfMaxSupply.toFixed(1) + '%' : '--',
       description: `of ~${formatSupply(EMISSION_CONSTANTS.REALISTIC_MAX_SUPPLY)} max`,
       icon: (
-        <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
         </svg>
@@ -137,7 +137,7 @@ function EraScheduleTable() {
                         </span>
                       )}
                       {isPast && (
-                        <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                        <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                           Complete
                         </span>
                       )}
@@ -200,7 +200,7 @@ function EmissionMilestones() {
               <div
                 className={`absolute -left-2 top-0 h-4 w-4 rounded-full border-2 ${
                   isPast
-                    ? 'border-green-400 bg-green-400/20'
+                    ? 'border-[var(--color-success)] bg-[var(--color-success)]/20'
                     : isCurrent
                     ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/20'
                     : 'border-[var(--border)] bg-[var(--panel)]'
@@ -221,7 +221,7 @@ function EmissionMilestones() {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-[var(--color-text-muted)]">{milestone.rewardBefore} ETC</span>
-                  <svg aria-hidden="true" className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
                   <span className="font-medium text-[var(--text-primary)]">{milestone.rewardAfter} ETC</span>
@@ -401,8 +401,8 @@ export default function SupplyTrackerPage() {
               </div>
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="h-8 w-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                    <span className="text-xs font-bold text-amber-400">BTC</span>
+                  <div className="h-8 w-8 rounded-full bg-[var(--color-warning)]/20 flex items-center justify-center">
+                    <span className="text-xs font-bold text-[var(--color-warning)]">BTC</span>
                   </div>
                   <span className="font-medium text-[var(--text-primary)]">Bitcoin</span>
                 </div>

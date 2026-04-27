@@ -57,9 +57,9 @@ function OverviewTable({ heading, rows }: { heading: string; rows: TableRow[] })
             <span
               className={`font-mono text-sm font-medium ${
                 row.color === 'green'
-                  ? 'text-green-400'
+                  ? 'text-[var(--color-success)]'
                   : row.color === 'red'
-                    ? 'text-red-400'
+                    ? 'text-[var(--color-error)]'
                     : 'text-[var(--text-primary)]'
               }`}
             >
@@ -97,9 +97,9 @@ function HeroStat({
         <p
           className={`mt-1 font-mono text-xs ${
             contextColor === 'green'
-              ? 'text-green-400'
+              ? 'text-[var(--color-success)]'
               : contextColor === 'red'
-                ? 'text-red-400'
+                ? 'text-[var(--color-error)]'
                 : 'text-[var(--text-muted)]'
           }`}
         >
@@ -265,8 +265,8 @@ export default function NetworkOverviewSection() {
                 </p>
               </div>
               {isLive && (
-                <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-3 py-1 text-xs font-medium text-[var(--color-success)]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success)]" />
                   Live
                 </span>
               )}

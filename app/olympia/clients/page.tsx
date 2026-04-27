@@ -11,7 +11,7 @@ export default function UpgradeHubPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/8 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/8 blur-[100px]" />
         </div>
 
         <div
@@ -20,7 +20,7 @@ export default function UpgradeHubPage() {
           <div className="mb-4">
             <Link
               href="/olympia"
-              className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80"
+              className="text-sm text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
             >
               ← Olympia Hub
             </Link>
@@ -126,7 +126,7 @@ export default function UpgradeHubPage() {
               ].map((plugin) => (
                 <div
                   key={plugin.name}
-                  className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
+                  className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/20"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="text-base font-semibold text-[var(--text-primary)]">{plugin.name}</h3>
@@ -137,7 +137,7 @@ export default function UpgradeHubPage() {
                       >
                         {plugin.language}
                       </span>
-                      <span className="rounded bg-[#f59e0b15] px-1.5 py-0.5 text-xs font-medium text-[#f59e0b]">
+                      <span className="rounded bg-[var(--color-warning-bg)] px-1.5 py-0.5 text-xs font-medium text-[var(--color-warning)]">
                         Future
                       </span>
                     </div>
@@ -152,7 +152,7 @@ export default function UpgradeHubPage() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                        className="text-xs font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
                       >
                         {link.label} →
                       </a>

@@ -29,9 +29,9 @@ const categoryIcons: Record<string, React.ReactNode> = {
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
   network: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
-  ecosystem: { bg: 'bg-green-500/10', text: 'text-green-400' },
+  ecosystem: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
   market: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
-  technical: { bg: 'bg-amber-500/10', text: 'text-amber-400' },
+  technical: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
 }
 
 function ReportCard({ report }: { report: typeof reports[0] }) {
@@ -99,8 +99,8 @@ function MetricCard({ metric }: { metric: LiveMetric }) {
         <p className="text-2xl font-bold text-[var(--text-primary)]">{metric.value}</p>
         {metric.change && (
           <span className={`text-sm font-medium ${
-            metric.changeType === 'positive' ? 'text-green-400' :
-            metric.changeType === 'negative' ? 'text-red-400' : 'text-gray-400'
+            metric.changeType === 'positive' ? 'text-[var(--color-success)]' :
+            metric.changeType === 'negative' ? 'text-[var(--color-error)]' : 'text-gray-400'
           }`}>
             {metric.change}
           </span>
@@ -182,8 +182,8 @@ function LiveNetworkMetrics() {
         className="mt-4 flex items-center gap-2 text-xs text-[var(--color-text-muted)]"
       >
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
         </span>
         Live data from{' '}
         <a href="https://etc.blockscout.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">Blockscout</a>
@@ -272,21 +272,21 @@ export default function ResearchPage() {
             </Link>
             <Link
               href="/research/fees"
-              className="group rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 transition-colors hover:border-amber-500/50"
+              className="group rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-4 transition-colors hover:border-[var(--color-warning)]/50"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-warning)]/20 text-[var(--color-warning)]">
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-amber-400">Fee Market</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-warning)]">Fee Market</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Gas prices &amp; miner revenue analysis</p>
             </Link>
             <Link
               href="/research/ecosystem"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-success-bg)] text-[var(--color-success)]">
                 {categoryIcons.ecosystem}
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Ecosystem</h3>
@@ -306,7 +306,7 @@ export default function ResearchPage() {
               href="/mining/stats"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/10 text-red-400">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-error-bg)] text-[var(--color-error)]">
                 {categoryIcons.technical}
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Mining Stats</h3>

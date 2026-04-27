@@ -72,10 +72,10 @@ export default function WalletCard({ wallet, index }: WalletCardProps) {
 
 function WalletTypeBadge({ type }: { type: Wallet['type'] }) {
   const colors = {
-    Hardware: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+    Hardware: 'bg-[var(--color-warning-bg)] text-[var(--color-warning)] border-[var(--color-warning)]/20',
     Browser: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
     Mobile: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-    Web: 'bg-green-500/10 text-green-400 border-green-500/20',
+    Web: 'bg-[var(--color-success-bg)] text-[var(--color-success)] border-[var(--color-success)]/20',
   }
 
   return (

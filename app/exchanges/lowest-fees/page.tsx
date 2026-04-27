@@ -77,12 +77,12 @@ export default function LowestFeesExchangesPage() {
           <div
             className="mb-12 grid gap-4 sm:grid-cols-3"
           >
-            <div className="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-center">
-              <p className="text-2xl font-bold text-green-400">&le;0.1%</p>
+            <div className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success-bg)] p-4 text-center">
+              <p className="text-2xl font-bold text-[var(--color-success)]">&le;0.1%</p>
               <p className="text-sm text-[var(--color-text-muted)]">{lowFees.length} Low Fee Exchanges</p>
             </div>
-            <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/10 p-4 text-center">
-              <p className="text-2xl font-bold text-yellow-400">0.1-0.2%</p>
+            <div className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] p-4 text-center">
+              <p className="text-2xl font-bold text-[var(--color-warning)]">0.1-0.2%</p>
               <p className="text-sm text-[var(--color-text-muted)]">{mediumFees.length} Medium Fee Exchanges</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
@@ -112,7 +112,7 @@ export default function LowestFeesExchangesPage() {
           {lowFees.length > 0 && (
             <section className="mb-12">
               <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[var(--text-primary)]">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/20 text-sm text-green-400">1</span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)]/20 text-sm text-[var(--color-success)]">1</span>
                 Lowest Fees (&le;0.1%)
                 <span className="text-sm font-normal text-[var(--color-text-muted)]">
                   {lowFees.length} exchanges
@@ -125,11 +125,11 @@ export default function LowestFeesExchangesPage() {
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group rounded-xl border border-green-500/20 bg-[var(--panel)] p-5 transition-all hover:border-green-500/40"
+                    className="group rounded-xl border border-[var(--color-success)]/20 bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-success)]/40"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-green-400">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-success)]">
                           {exchange.name}
                         </h3>
                         {exchange.featured && (
@@ -139,7 +139,7 @@ export default function LowestFeesExchangesPage() {
                         )}
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="rounded-full bg-green-500/20 px-2 py-0.5 text-sm font-semibold text-green-400">
+                        <span className="rounded-full bg-[var(--color-success)]/20 px-2 py-0.5 text-sm font-semibold text-[var(--color-success)]">
                           {exchange.tradingFee}
                         </span>
                         <ExternalLinkIcon />
@@ -172,7 +172,7 @@ export default function LowestFeesExchangesPage() {
           {mediumFees.length > 0 && (
             <section className="mb-12">
               <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-[var(--text-primary)]">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500/20 text-sm text-yellow-400">2</span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-warning)]/20 text-sm text-[var(--color-warning)]">2</span>
                 Competitive Fees (0.1-0.2%)
                 <span className="text-sm font-normal text-[var(--color-text-muted)]">
                   {mediumFees.length} exchanges
@@ -185,11 +185,11 @@ export default function LowestFeesExchangesPage() {
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-yellow-500/30"
+                    className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-warning-border)]"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-yellow-400">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-warning)]">
                           {exchange.name}
                         </h3>
                         {exchange.featured && (
@@ -199,7 +199,7 @@ export default function LowestFeesExchangesPage() {
                         )}
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="rounded-full bg-yellow-500/20 px-2 py-0.5 text-sm font-semibold text-yellow-400">
+                        <span className="rounded-full bg-[var(--color-warning)]/20 px-2 py-0.5 text-sm font-semibold text-[var(--color-warning)]">
                           {exchange.tradingFee}
                         </span>
                         <ExternalLinkIcon />

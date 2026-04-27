@@ -42,8 +42,8 @@ const nodeDistribution = [
 const StatusIcon = ({ status }: { status: 'healthy' | 'warning' | 'critical' }) => {
   if (status === 'healthy') {
     return (
-      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/20">
-        <svg aria-hidden="true" className="h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)]/20">
+        <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
       </div>
@@ -51,16 +51,16 @@ const StatusIcon = ({ status }: { status: 'healthy' | 'warning' | 'critical' }) 
   }
   if (status === 'warning') {
     return (
-      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/20">
-        <svg aria-hidden="true" className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-warning)]/20">
+        <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
         </svg>
       </div>
     )
   }
   return (
-    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-500/20">
-      <svg aria-hidden="true" className="h-4 w-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-error)]/20">
+      <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </div>
@@ -130,21 +130,21 @@ export default function NetworkHealthPage() {
               <div className="flex items-center gap-2">
                 {loading ? (
                   <>
-                    <span className="h-3 w-3 animate-pulse rounded-full bg-amber-400" />
-                    <span className="text-sm font-medium text-amber-400">Loading...</span>
+                    <span className="h-3 w-3 animate-pulse rounded-full bg-[var(--color-warning)]" />
+                    <span className="text-sm font-medium text-[var(--color-warning)]">Loading...</span>
                   </>
                 ) : error ? (
                   <>
-                    <span className="h-3 w-3 rounded-full bg-red-500" />
-                    <span className="text-sm font-medium text-red-400">Connection Issue</span>
+                    <span className="h-3 w-3 rounded-full bg-[var(--color-error)]" />
+                    <span className="text-sm font-medium text-[var(--color-error)]">Connection Issue</span>
                   </>
                 ) : (
                   <>
                     <span className="flex h-3 w-3 relative">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-success)] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--color-success)]"></span>
                     </span>
-                    <span className="text-sm font-medium text-green-400">Network Online</span>
+                    <span className="text-sm font-medium text-[var(--color-success)]">Network Online</span>
                   </>
                 )}
               </div>
@@ -158,16 +158,16 @@ export default function NetworkHealthPage() {
         <div className="mx-auto max-w-6xl">
           <div
             className={`rounded-xl border p-4 ${
-              stats ? 'border-green-500/30 bg-green-500/10' : 'border-blue-500/30 bg-blue-500/10'
+              stats ? 'border-[var(--color-success-border)] bg-[var(--color-success-bg)]' : 'border-blue-500/30 bg-blue-500/10'
             }`}
           >
             <div className="flex items-center gap-3">
-              <svg aria-hidden="true" className={`h-5 w-5 ${stats ? 'text-green-400' : 'text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className={`h-5 w-5 ${stats ? 'text-[var(--color-success)]' : 'text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
               <div>
                 {stats ? (
-                  <p className="text-sm text-green-400">
+                  <p className="text-sm text-[var(--color-success)]">
                     <strong>Live Data:</strong> Statistics from{' '}
                     <a href="https://etc.blockscout.com" target="_blank" rel="noopener noreferrer" className="underline hover:no-underline">Blockscout</a>
                     {lastUpdated && ` • Updated ${formatTimeAgo(lastUpdated)}`}
@@ -193,7 +193,7 @@ export default function NetworkHealthPage() {
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[var(--color-text-muted)]">ETC Price</span>
                 {stats?.priceChange24h !== undefined && (
-                  <span className={`text-xs font-medium ${stats.priceChange24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  <span className={`text-xs font-medium ${stats.priceChange24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                     {stats.priceChange24h >= 0 ? '+' : ''}{stats.priceChange24h.toFixed(2)}%
                   </span>
                 )}
@@ -319,7 +319,7 @@ export default function NetworkHealthPage() {
               <div className="p-4 border-b border-[var(--border)]">
                 <div className="flex items-center justify-between">
                   <h2 className="font-bold text-[var(--text-primary)]">Mining Pool Distribution</h2>
-                  <span className="text-xs text-amber-400">Estimate</span>
+                  <span className="text-xs text-[var(--color-warning)]">Estimate</span>
                 </div>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Based on MiningPoolStats data</p>
               </div>
@@ -362,7 +362,7 @@ export default function NetworkHealthPage() {
               <div>
                 <div className="flex items-center gap-2">
                   <h2 className="font-bold text-[var(--text-primary)]">Node Distribution</h2>
-                  <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs text-amber-400">Estimate</span>
+                  <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs text-[var(--color-warning)]">Estimate</span>
                 </div>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Geographic distribution of ETC full nodes (Phase 7.11 for live data)

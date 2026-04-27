@@ -217,9 +217,9 @@ export default function CompareExchangesPage() {
                         <span
                           className={`font-mono text-sm ${
                             parseFeePercent(exchange.tradingFee) <= 0.1
-                              ? 'text-green-400'
+                              ? 'text-[var(--color-success)]'
                               : parseFeePercent(exchange.tradingFee) <= 0.2
-                              ? 'text-yellow-400'
+                              ? 'text-[var(--color-warning)]'
                               : 'text-[var(--color-text-secondary)]'
                           }`}
                         >
@@ -245,7 +245,7 @@ export default function CompareExchangesPage() {
                     </td>
                     <td className="px-4 py-3">
                       {exchange.kycRequired === false ? (
-                        <span className="text-green-400">No</span>
+                        <span className="text-[var(--color-success)]">No</span>
                       ) : exchange.kycRequired === true ? (
                         <span className="text-[var(--color-text-muted)]">Yes</span>
                       ) : (
@@ -304,11 +304,11 @@ export default function CompareExchangesPage() {
             className="mt-6 flex flex-wrap gap-6 text-sm text-[var(--color-text-muted)]"
           >
             <div className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-green-400"></span>
+              <span className="h-3 w-3 rounded-full bg-[var(--color-success)]"></span>
               <span>Low fees (&le;0.1%)</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="h-3 w-3 rounded-full bg-yellow-400"></span>
+              <span className="h-3 w-3 rounded-full bg-[var(--color-warning)]"></span>
               <span>Medium fees (0.1-0.2%)</span>
             </div>
             <div className="flex items-center gap-2">

@@ -18,14 +18,14 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
   const otherHashrate = Math.max(0, 100 - listedHashrate)
 
   const colors = [
-    '#3AB83A', // ETC Green (primary)
-    '#34d399', // Emerald
-    '#22d3ee', // Cyan
-    '#a78bfa', // Purple
-    '#f472b6', // Pink
-    '#fb923c', // Orange
-    '#fbbf24', // Amber
-    '#64748b', // Slate (for "Other")
+    'var(--brand-green)',       // ETC brand green (primary)
+    'var(--color-success)',     // Secondary green
+    'var(--color-info)',        // Cyan/info
+    'var(--color-purple)',      // Purple
+    'var(--color-pink)',        // Pink
+    'var(--color-orange)',      // Orange
+    'var(--color-yellow)',      // Amber/yellow
+    'var(--text-muted)',        // Slate (for "Other")
   ]
 
   // Build segments for pie chart

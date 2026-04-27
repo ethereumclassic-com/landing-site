@@ -156,7 +156,7 @@ export default function HardwarePage() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-warning)]/10 via-transparent to-transparent" />
 
         <div
           className="relative mx-auto max-w-4xl"
@@ -175,7 +175,7 @@ export default function HardwarePage() {
 
           {/* Badge */}
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
@@ -188,7 +188,7 @@ export default function HardwarePage() {
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Hardware Wallet Guide for{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-warning)] to-[var(--color-orange)] bg-clip-text text-transparent">
               Ethereum Classic
             </span>
           </h1>
@@ -204,19 +204,19 @@ export default function HardwarePage() {
           {/* Quick Stats */}
           <div className="mt-8 flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
-              <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
               <span className="text-sm text-[var(--color-text-secondary)]">Cold storage security</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-sm text-[var(--color-text-secondary)]">Classic OS compatible</span>
             </div>
             <div className="flex items-center gap-2">
-              <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-sm text-[var(--color-text-secondary)]">From $59</span>
@@ -243,7 +243,7 @@ export default function HardwarePage() {
                 key={benefit.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
               >
-                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
+                <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-warning-bg)] text-[var(--color-warning)]">
                   {benefit.icon}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{benefit.title}</h3>
@@ -308,7 +308,7 @@ export default function HardwarePage() {
                     <ul className="space-y-1.5">
                       {wallet.pros.map((pro, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                          <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                           </svg>
                           {pro}
@@ -317,11 +317,11 @@ export default function HardwarePage() {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="mb-2 text-sm font-medium text-amber-400">Cons</h4>
+                    <h4 className="mb-2 text-sm font-medium text-[var(--color-warning)]">Cons</h4>
                     <ul className="space-y-1.5">
                       {wallet.cons.map((con, i) => (
                         <li key={i} className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-                          <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                           </svg>
                           {con}
@@ -381,13 +381,13 @@ export default function HardwarePage() {
                       {typeof row.trezor === 'boolean' ? (
                         row.trezor ? (
                           <span className="inline-flex items-center justify-center">
-                            <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
                           </span>
                         ) : (
                           <span className="inline-flex items-center justify-center">
-                            <svg aria-hidden="true" className="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                           </span>
@@ -400,13 +400,13 @@ export default function HardwarePage() {
                       {typeof row.ledger === 'boolean' ? (
                         row.ledger ? (
                           <span className="inline-flex items-center justify-center">
-                            <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
                           </span>
                         ) : (
                           <span className="inline-flex items-center justify-center">
-                            <svg aria-hidden="true" className="h-5 w-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                           </span>
@@ -508,7 +508,7 @@ export default function HardwarePage() {
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
-            className="rounded-2xl border border-amber-500/20 bg-gradient-to-b from-amber-500/10 to-[var(--panel)] p-8 text-center"
+            className="rounded-2xl border border-[var(--color-warning)]/20 bg-gradient-to-b from-[var(--color-warning)]/10 to-[var(--panel)] p-8 text-center"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Ready to Secure Your ETC?

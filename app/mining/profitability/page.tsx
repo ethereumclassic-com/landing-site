@@ -40,13 +40,13 @@ function ResultCard({
       className={`rounded-xl border p-4 ${
         highlight
           ? positive
-            ? 'border-green-500/30 bg-green-500/10'
-            : 'border-red-500/30 bg-red-500/10'
+            ? 'border-[var(--color-success-border)] bg-[var(--color-success-bg)]'
+            : 'border-[var(--color-error-border)] bg-[var(--color-error-bg)]'
           : 'border-[var(--border)] bg-[var(--panel)]'
       }`}
     >
       <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
-      <p className={`mt-1 text-xl font-bold ${highlight ? (positive ? 'text-green-400' : 'text-red-400') : 'text-[var(--text-primary)]'}`}>
+      <p className={`mt-1 text-xl font-bold ${highlight ? (positive ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]') : 'text-[var(--text-primary)]'}`}>
         {value}
       </p>
       {subValue && <p className="text-xs text-[var(--color-text-muted)]">{subValue}</p>}
@@ -300,17 +300,17 @@ export default function MiningProfitabilityPage() {
                 <h2 className="text-lg font-semibold text-[var(--text-primary)]">Network Stats</h2>
                 {statsLoading ? (
                   <span className="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                     Loading...
                   </span>
                 ) : liveStats.source === 'live' ? (
-                  <span className="flex items-center gap-1.5 text-xs text-green-400">
-                    <span className="h-2 w-2 rounded-full bg-green-400" />
+                  <span className="flex items-center gap-1.5 text-xs text-[var(--color-success)]">
+                    <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
                     Live from Blockscout
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1.5 text-xs text-amber-400">
-                    <span className="h-2 w-2 rounded-full bg-amber-400" />
+                  <span className="flex items-center gap-1.5 text-xs text-[var(--color-warning)]">
+                    <span className="h-2 w-2 rounded-full bg-[var(--color-warning)]" />
                     Cached data
                   </span>
                 )}
@@ -362,7 +362,7 @@ export default function MiningProfitabilityPage() {
                   <span className="text-[var(--text-primary)]">{formatHashrate(hashrateMH)}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <svg aria-hidden="true" className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
                   </svg>
                   <span className="text-[var(--text-primary)]">{formatPower(powerWatts)}</span>
@@ -378,22 +378,22 @@ export default function MiningProfitabilityPage() {
             <div
               className={`rounded-xl border p-6 ${
                 results.isProfitable
-                  ? 'border-green-500/30 bg-green-500/5'
-                  : 'border-red-500/30 bg-red-500/5'
+                  ? 'border-[var(--color-success-border)] bg-[var(--color-success)]/5'
+                  : 'border-[var(--color-error-border)] bg-[var(--color-error)]/5'
               }`}
             >
               <div className="flex items-center gap-3">
                 {results.isProfitable ? (
-                  <svg aria-hidden="true" className="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 ) : (
-                  <svg aria-hidden="true" className="h-8 w-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                   </svg>
                 )}
                 <div>
-                  <h3 className={`text-xl font-bold ${results.isProfitable ? 'text-green-400' : 'text-red-400'}`}>
+                  <h3 className={`text-xl font-bold ${results.isProfitable ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                     {results.isProfitable ? 'Profitable' : 'Not Profitable'}
                   </h3>
                   <p className="text-sm text-[var(--color-text-muted)]">

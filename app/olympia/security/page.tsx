@@ -55,9 +55,9 @@ const cves: CVE[] = [
 ]
 
 const severityColors: Record<CVE['severity'], string> = {
-  Critical: 'text-red-400 bg-red-500/10',
+  Critical: 'text-[var(--color-error)] bg-[var(--color-error-bg)]',
   High: 'text-orange-400 bg-orange-500/10',
-  Medium: 'text-amber-400 bg-amber-500/10',
+  Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
   Low: 'text-blue-400 bg-blue-500/10',
 }
 
@@ -96,9 +96,9 @@ const riskAssessment: RiskItem[] = [
 ]
 
 const riskColors: Record<RiskItem['risk'], string> = {
-  Critical: 'text-red-400 bg-red-500/10',
+  Critical: 'text-[var(--color-error)] bg-[var(--color-error-bg)]',
   High: 'text-orange-400 bg-orange-500/10',
-  Medium: 'text-amber-400 bg-amber-500/10',
+  Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
 }
 
 export default function SecurityPage() {
@@ -107,7 +107,7 @@ export default function SecurityPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[200px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/6 blur-[80px]" />
+          <div className="absolute left-1/2 top-0 h-[200px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-error)]/6 blur-[80px]" />
         </div>
 
         <div
@@ -123,7 +123,7 @@ export default function SecurityPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="rounded-sm bg-red-500/15 px-2 py-0.5 font-mono text-[10px] font-medium text-red-400">
+            <span className="rounded-sm bg-[var(--color-error)]/15 px-2 py-0.5 font-mono text-[10px] font-medium text-[var(--color-error)]">
               SECURITY
             </span>
             <span className="font-mono text-sm text-[var(--color-text-muted)]">March 2026</span>

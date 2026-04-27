@@ -25,7 +25,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
       {[...Array(fullStars)].map((_, i) => (
         <svg aria-hidden="true"
           key={`full-${i}`}
-          className={`${sizeClasses[size]} text-amber-400`}
+          className={`${sizeClasses[size]} text-[var(--color-warning)]`}
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -34,7 +34,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
       ))}
       {hasHalfStar && (
         <svg aria-hidden="true"
-          className={`${sizeClasses[size]} text-amber-400`}
+          className={`${sizeClasses[size]} text-[var(--color-warning)]`}
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -124,7 +124,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-warning)]/10 via-transparent to-transparent" />
 
         <div
           className="relative mx-auto max-w-4xl"
@@ -168,7 +168,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             {review.name}{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-warning)] to-[var(--color-orange)] bg-clip-text text-transparent">
               Review
             </span>
           </h1>
@@ -194,14 +194,14 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
           {/* Quick Info */}
           <div className="mt-6 flex flex-wrap gap-3">
             {review.etcSupport.native ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1.5 text-sm font-medium text-green-400">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-3 py-1.5 text-sm font-medium text-[var(--color-success)]">
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
                 Native ETC Support
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1.5 text-sm font-medium text-amber-400">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-warning-bg)] px-3 py-1.5 text-sm font-medium text-[var(--color-warning)]">
                 Manual ETC Setup Required
               </span>
             )}
@@ -249,8 +249,8 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 className="grid gap-6 sm:grid-cols-2"
               >
                 {/* Pros */}
-                <div className="rounded-2xl border border-green-500/20 bg-green-500/5 p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-green-400">
+                <div className="rounded-2xl border border-[var(--color-success)]/20 bg-[var(--color-success)]/5 p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-[var(--color-success)]">
                     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
@@ -259,7 +259,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                   <ul className="space-y-3">
                     {review.pros.map((pro, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
-                        <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-success)]" fill="currentColor" viewBox="0 0 24 24">
                           <circle cx="12" cy="12" r="4" />
                         </svg>
                         {pro}
@@ -269,8 +269,8 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 </div>
 
                 {/* Cons */}
-                <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-red-400">
+                <div className="rounded-2xl border border-[var(--color-error)]/20 bg-[var(--color-error)]/5 p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-[var(--color-error)]">
                     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -279,7 +279,7 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                   <ul className="space-y-3">
                     {review.cons.map((con, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
-                        <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-error)]" fill="currentColor" viewBox="0 0 24 24">
                           <circle cx="12" cy="12" r="4" />
                         </svg>
                         {con}
@@ -334,14 +334,14 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                   <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] p-4">
                     <span className="text-[var(--color-text-secondary)]">Native ETC Support</span>
                     {review.etcSupport.native ? (
-                      <span className="flex items-center gap-1 text-green-400">
+                      <span className="flex items-center gap-1 text-[var(--color-success)]">
                         <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                         </svg>
                         Yes
                       </span>
                     ) : (
-                      <span className="text-amber-400">Manual Setup</span>
+                      <span className="text-[var(--color-warning)]">Manual Setup</span>
                     )}
                   </div>
                   <div className="flex items-center justify-between rounded-lg bg-[var(--color-bg-primary)] p-4">
@@ -375,10 +375,10 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
               >
                 <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Rating Breakdown</h3>
                 <div className="space-y-4">
-                  <RatingBar label="Security" rating={review.rating.security} color="bg-green-500" />
+                  <RatingBar label="Security" rating={review.rating.security} color="bg-[var(--color-success)]" />
                   <RatingBar label="Usability" rating={review.rating.usability} color="bg-blue-500" />
                   <RatingBar label="Features" rating={review.rating.features} color="bg-purple-500" />
-                  <RatingBar label="Support" rating={review.rating.support} color="bg-amber-500" />
+                  <RatingBar label="Support" rating={review.rating.support} color="bg-[var(--color-warning)]" />
                 </div>
 
                 <div className="mt-6 border-t border-[var(--border)] pt-6">

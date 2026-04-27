@@ -94,7 +94,7 @@ export default function PoolPage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
               Coming Soon
             </span>
 
@@ -135,7 +135,7 @@ export default function PoolPage() {
           >
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-semibold text-[var(--text-primary)]">Pool Statistics</h2>
-              <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2 py-0.5 text-xs text-amber-400">
+              <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs text-[var(--color-warning)]">
                 Sample Data
               </span>
             </div>
@@ -307,9 +307,9 @@ export default function PoolPage() {
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8 text-center"
+            className="rounded-2xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-8 text-center"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
               Coming Soon
             </span>
             <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)]">Pool Launch Notification</h2>
@@ -326,7 +326,7 @@ export default function PoolPage() {
               />
               <button
                 disabled
-                className="w-full rounded-lg bg-amber-500/50 px-6 py-3 font-medium text-black/50 cursor-not-allowed sm:w-auto"
+                className="w-full rounded-lg bg-[var(--color-warning)]/50 px-6 py-3 font-medium text-black/50 cursor-not-allowed sm:w-auto"
               >
                 Join Waitlist
               </button>

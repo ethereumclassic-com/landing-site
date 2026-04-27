@@ -141,15 +141,15 @@ export default function HistoricalDataPage() {
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] p-4"
           >
             <div className="flex items-start gap-3">
-              <svg aria-hidden="true" className="h-5 w-5 mt-0.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 mt-0.5 shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
               <div>
-                <p className="font-medium text-amber-400">Sample Data</p>
-                <p className="mt-1 text-sm text-amber-400/80">
+                <p className="font-medium text-[var(--color-warning)]">Sample Data</p>
+                <p className="mt-1 text-sm text-[var(--color-warning)]/80">
                   Charts display sample data for demonstration. Live historical data integration requires
                   node infrastructure deployment in Phase 7/8.
                 </p>
@@ -212,26 +212,26 @@ export default function HistoricalDataPage() {
                     <AreaChart data={priceHistory}>
                       <defs>
                         <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#3AB83A" stopOpacity={0.3} />
-                          <stop offset="95%" stopColor="#3AB83A" stopOpacity={0} />
+                          <stop offset="5%" stopColor="var(--brand-green)" stopOpacity={0.3} />
+                          <stop offset="95%" stopColor="var(--brand-green)" stopOpacity={0} />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
                       <XAxis
                         dataKey="date"
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                       />
                       <YAxis
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                         tickFormatter={(value) => `$${value}`}
                       />
                       <Tooltip content={<CustomTooltip />} />
                       <Area
                         type="monotone"
                         dataKey="price"
-                        stroke="#3AB83A"
+                        stroke="var(--brand-green)"
                         fill="url(#priceGradient)"
                         strokeWidth={2}
                         name="Price (USD)"
@@ -251,23 +251,23 @@ export default function HistoricalDataPage() {
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={hashrateHistory}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
                       <XAxis
                         dataKey="date"
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                       />
                       <YAxis
                         yAxisId="left"
-                        stroke="#3AB83A"
-                        tick={{ fill: '#3AB83A', fontSize: 12 }}
+                        stroke="var(--brand-green)"
+                        tick={{ fill: 'var(--brand-green)', fontSize: 12 }}
                         tickFormatter={(value) => `${value} TH/s`}
                       />
                       <YAxis
                         yAxisId="right"
                         orientation="right"
-                        stroke="#3B82F6"
-                        tick={{ fill: '#3B82F6', fontSize: 12 }}
+                        stroke="var(--color-blue)"
+                        tick={{ fill: 'var(--color-blue)', fontSize: 12 }}
                         tickFormatter={(value) => `${value} PH`}
                       />
                       <Tooltip content={<CustomTooltip />} />
@@ -276,7 +276,7 @@ export default function HistoricalDataPage() {
                         yAxisId="left"
                         type="monotone"
                         dataKey="hashrate"
-                        stroke="#3AB83A"
+                        stroke="var(--brand-green)"
                         strokeWidth={2}
                         dot={false}
                         name="Hashrate (TH/s)"
@@ -285,7 +285,7 @@ export default function HistoricalDataPage() {
                         yAxisId="right"
                         type="monotone"
                         dataKey="difficulty"
-                        stroke="#3B82F6"
+                        stroke="var(--color-blue)"
                         strokeWidth={2}
                         dot={false}
                         name="Difficulty (PH)"
@@ -305,23 +305,23 @@ export default function HistoricalDataPage() {
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={txHistory}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
                       <XAxis
                         dataKey="date"
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                       />
                       <YAxis
                         yAxisId="left"
-                        stroke="#F59E0B"
-                        tick={{ fill: '#F59E0B', fontSize: 12 }}
+                        stroke="var(--color-warning)"
+                        tick={{ fill: 'var(--color-warning)', fontSize: 12 }}
                         tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
                       />
                       <YAxis
                         yAxisId="right"
                         orientation="right"
-                        stroke="#8B5CF6"
-                        tick={{ fill: '#8B5CF6', fontSize: 12 }}
+                        stroke="var(--color-purple)"
+                        tick={{ fill: 'var(--color-purple)', fontSize: 12 }}
                         tickFormatter={(value) => `${value} ETC`}
                       />
                       <Tooltip content={<CustomTooltip />} />
@@ -330,7 +330,7 @@ export default function HistoricalDataPage() {
                         yAxisId="left"
                         type="monotone"
                         dataKey="transactions"
-                        stroke="#F59E0B"
+                        stroke="var(--color-warning)"
                         strokeWidth={2}
                         dot={false}
                         name="Daily Transactions"
@@ -339,7 +339,7 @@ export default function HistoricalDataPage() {
                         yAxisId="right"
                         type="monotone"
                         dataKey="avgFee"
-                        stroke="#8B5CF6"
+                        stroke="var(--color-purple)"
                         strokeWidth={2}
                         dot={false}
                         name="Avg Fee (ETC)"

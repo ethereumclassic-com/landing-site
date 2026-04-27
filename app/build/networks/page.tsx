@@ -20,7 +20,7 @@ function NetworkCard({ network }: { network: typeof networks[0] }) {
             <h3 className="text-xl font-bold text-[var(--text-primary)]">{network.name}</h3>
             <span
               className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                isMainnet ? 'bg-green-500/10 text-green-400' : 'bg-amber-500/10 text-amber-400'
+                isMainnet ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]' : 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'
               }`}
             >
               {isMainnet ? 'Mainnet' : 'Testnet'}
@@ -209,8 +209,8 @@ export default function BuildNetworksPage() {
                     <span
                       className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                         explorer.network === 'mainnet'
-                          ? 'bg-green-500/10 text-green-400'
-                          : 'bg-amber-500/10 text-amber-400'
+                          ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]'
+                          : 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'
                       }`}
                     >
                       {explorer.network}
@@ -279,7 +279,7 @@ export default function BuildNetworksPage() {
                 </div>
               </div>
               <div>
-                <h4 className="mb-2 font-medium text-amber-400">Mordor Testnet</h4>
+                <h4 className="mb-2 font-medium text-[var(--color-warning)]">Mordor Testnet</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Network Name:</span>

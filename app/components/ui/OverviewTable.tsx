@@ -21,7 +21,7 @@ export function OverviewTable({ heading, rows }: OverviewTableProps) {
             row.color === 'green'
               ? 'text-[var(--brand-green)]'
               : row.color === 'red'
-                ? 'text-red-400'
+                ? 'text-[var(--color-error)]'
                 : 'text-[var(--text-primary)]'
           return (
             <div

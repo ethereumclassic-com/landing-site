@@ -23,7 +23,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
         <svg aria-hidden="true"
           key={star}
           className={`${sizeClasses[size]} ${
-            star <= Math.round(rating) ? 'text-yellow-400' : 'text-[var(--color-text-muted)]/30'
+            star <= Math.round(rating) ? 'text-[var(--color-warning)]' : 'text-[var(--color-text-muted)]/30'
           }`}
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -184,8 +184,8 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
               <div
                 className="grid gap-6 sm:grid-cols-2"
               >
-                <div className="rounded-2xl border border-green-500/30 bg-green-500/5 p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-green-400">
+                <div className="rounded-2xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-[var(--color-success)]">
                     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -194,14 +194,14 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                   <ul className="space-y-2">
                     {review.pros.map((pro, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-400" />
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-success)]" />
                         {pro}
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="rounded-2xl border border-red-500/30 bg-red-500/5 p-6">
-                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-red-400">
+                <div className="rounded-2xl border border-[var(--color-error-border)] bg-[var(--color-error)]/5 p-6">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-[var(--color-error)]">
                     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -210,7 +210,7 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                   <ul className="space-y-2">
                     {review.cons.map((con, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]">
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-400" />
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-error)]" />
                         {con}
                       </li>
                     ))}

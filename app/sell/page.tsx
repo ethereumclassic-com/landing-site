@@ -44,22 +44,22 @@ function SellMethodCard({ name, description, features, pros, cons, link, badge, 
 
       <div className="mt-4 grid grid-cols-2 gap-4">
         <div>
-          <p className="mb-2 text-xs font-medium text-green-400">Pros</p>
+          <p className="mb-2 text-xs font-medium text-[var(--color-success)]">Pros</p>
           <ul className="space-y-1">
             {pros.map((pro) => (
               <li key={pro} className="flex items-start text-xs text-[var(--color-text-muted)]">
-                <span className="mr-1 text-green-400">+</span>
+                <span className="mr-1 text-[var(--color-success)]">+</span>
                 {pro}
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <p className="mb-2 text-xs font-medium text-red-400">Cons</p>
+          <p className="mb-2 text-xs font-medium text-[var(--color-error)]">Cons</p>
           <ul className="space-y-1">
             {cons.map((con) => (
               <li key={con} className="flex items-start text-xs text-[var(--color-text-muted)]">
-                <span className="mr-1 text-red-400">-</span>
+                <span className="mr-1 text-[var(--color-error)]">-</span>
                 {con}
               </li>
             ))}
@@ -260,7 +260,7 @@ export default function SellPage() {
               </svg>
               Back to Buy Hub
             </Link>
-            <span className="inline-block rounded-full bg-red-500/10 px-4 py-1.5 text-sm font-medium text-red-400">
+            <span className="inline-block rounded-full bg-[var(--color-error-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-error)]">
               Off-Ramp
             </span>
             <h1 className="mt-4 text-4xl font-bold text-[var(--text-primary)] md:text-5xl">

@@ -17,17 +17,17 @@ const categoryLabels: Record<DevTool['category'], { label: string; description: 
   ide: {
     label: 'IDEs & Editors',
     description: 'Integrated development environments for writing smart contracts',
-    color: 'text-green-400',
+    color: 'text-[var(--color-success)]',
   },
   testing: {
     label: 'Security & Testing',
     description: 'Tools for analyzing and auditing smart contract security',
-    color: 'text-red-400',
+    color: 'text-[var(--color-error)]',
   },
   deployment: {
     label: 'Deployment',
     description: 'Tools for deploying contracts to the network',
-    color: 'text-amber-400',
+    color: 'text-[var(--color-warning)]',
   },
   debugging: {
     label: 'Debugging',
@@ -37,10 +37,10 @@ const categoryLabels: Record<DevTool['category'], { label: string; description: 
 }
 
 const languageColors: Record<string, { bg: string; text: string }> = {
-  JavaScript: { bg: 'bg-yellow-500/10', text: 'text-yellow-400' },
+  JavaScript: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
   TypeScript: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
   Solidity: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
-  Vyper: { bg: 'bg-green-500/10', text: 'text-green-400' },
+  Vyper: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
   Python: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
   React: { bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
 }

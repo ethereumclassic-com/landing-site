@@ -163,7 +163,7 @@ export default function BeginnersExchangesPage() {
                               Featured
                             </span>
                           )}
-                          <span className="inline-block rounded bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                          <span className="inline-block rounded bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                             Beginner Friendly
                           </span>
                         </div>
@@ -227,7 +227,7 @@ export default function BeginnersExchangesPage() {
                               Featured
                             </span>
                           )}
-                          <span className="inline-block rounded bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                          <span className="inline-block rounded bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                             Beginner Friendly
                           </span>
                         </div>

@@ -136,14 +136,14 @@ export default function WatchlistPage() {
                         <p className="font-semibold text-[var(--text-primary)]">
                           ${assetData.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </p>
-                        <p className={`text-sm ${assetData.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                        <p className={`text-sm ${assetData.change24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                           {assetData.change24h >= 0 ? '+' : ''}{assetData.change24h}%
                         </p>
                       </div>
                     )}
                     <button
                       onClick={() => removeFromWatchlist(item.symbol)}
-                      className="rounded-lg p-2 text-[var(--color-text-muted)] transition-colors hover:bg-red-500/10 hover:text-red-400"
+                      className="rounded-lg p-2 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-error-bg)] hover:text-[var(--color-error)]"
                       title="Remove from watchlist"
                     >
                       <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -219,7 +219,7 @@ export default function WatchlistPage() {
                         <p className="font-medium text-[var(--text-primary)]">
                           ${asset.price.toLocaleString()}
                         </p>
-                        <p className={`text-xs ${asset.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                        <p className={`text-xs ${asset.change24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                           {asset.change24h >= 0 ? '+' : ''}{asset.change24h}%
                         </p>
                       </div>

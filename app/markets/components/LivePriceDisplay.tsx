@@ -32,13 +32,13 @@ const sizeClasses = {
 
 const changeColors = {
   up: 'text-emerald-400',
-  down: 'text-red-400',
+  down: 'text-[var(--color-error)]',
   neutral: 'text-[var(--color-text-muted)]',
 }
 
 const changeBgColors = {
   up: 'bg-emerald-500/10',
-  down: 'bg-red-500/10',
+  down: 'bg-[var(--color-error-bg)]',
   neutral: 'bg-[var(--panel)]',
 }
 

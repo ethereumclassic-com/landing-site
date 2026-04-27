@@ -15,7 +15,7 @@ function FaucetCard({ faucet }: { faucet: Faucet }) {
             <p className="mt-1 text-sm text-[var(--color-text-muted)]">{faucet.notes}</p>
           )}
         </div>
-        <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">
+        <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-warning)]">
           Testnet
         </span>
       </div>
@@ -214,35 +214,35 @@ export default function BuildFaucetsPage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6"
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-6"
           >
             <div className="flex items-start gap-4">
-              <svg aria-hidden="true" className="h-6 w-6 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-6 w-6 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">Tips & Troubleshooting</h3>
                 <ul className="mt-2 space-y-2 text-sm text-[var(--color-text-muted)]">
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Faucets have rate limits. If one is empty, try another or wait a few hours.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Make sure your wallet is connected to Mordor testnet (Chain ID 63) before requesting.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Testnet tokens have no value. Never send real ETC to a testnet address.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                     <span>Check the block explorer to verify your transaction if tokens don&apos;t appear immediately.</span>

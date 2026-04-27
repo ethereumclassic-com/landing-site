@@ -12,7 +12,7 @@ import {
 } from 'recharts'
 import { s2fData } from '../data/fifthingChartData'
 
-const BRAND_GREEN = '#00ffae'
+const BRAND_GREEN = 'var(--brand-green)'
 
 interface TooltipEntry {
   payload?: Record<string, unknown>
@@ -46,7 +46,7 @@ export default function SupplyScarcitySection() {
         </p>
         <ResponsiveContainer width="100%" height={280}>
           <LineChart data={s2fData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
             <XAxis
               dataKey="era"
               tick={{ fontSize: 10, fill: 'var(--text-muted)' }}
@@ -93,7 +93,8 @@ export default function SupplyScarcitySection() {
                     cx={cx}
                     cy={cy}
                     r={payload.isCurrent ? 5 : 3}
-                    fill={payload.isCurrent ? BRAND_GREEN : `${BRAND_GREEN}99`}
+                    fill={BRAND_GREEN}
+                    fillOpacity={payload.isCurrent ? 1 : 0.6}
                     stroke={payload.isCurrent ? BRAND_GREEN : 'none'}
                     strokeWidth={2}
                   />
@@ -106,13 +107,13 @@ export default function SupplyScarcitySection() {
       </div>
 
       {/* Disclaimer */}
-      <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
+      <div className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-4">
         <div className="flex gap-3">
-          <svg className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
           </svg>
           <div>
-            <p className="text-xs font-semibold text-amber-400">Data Notice</p>
+            <p className="text-xs font-semibold text-[var(--color-warning)]">Data Notice</p>
             <p className="mt-0.5 text-xs text-[var(--text-muted)]">
               Stock-to-Flow measures total supply relative to annual new issuance. Higher values indicate lower
               inflation relative to existing supply. This chart shows supply-side scarcity metrics only and is{' '}

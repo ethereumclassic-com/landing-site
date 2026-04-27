@@ -71,7 +71,7 @@ export default function AccountDashboardPage() {
             </div>
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:border-red-500/50 hover:text-red-400"
+              className="flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-error)]/50 hover:text-[var(--color-error)]"
             >
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -102,7 +102,7 @@ export default function AccountDashboardPage() {
               </div>
             </div>
             {portfolioCost > 0 && (
-              <p className={`mt-2 text-sm ${portfolioChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              <p className={`mt-2 text-sm ${portfolioChange >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                 {portfolioChange >= 0 ? '+' : ''}{portfolioChange.toFixed(2)}% all time
               </p>
             )}
@@ -131,8 +131,8 @@ export default function AccountDashboardPage() {
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10">
-                <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-warning-bg)]">
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                 </svg>
               </div>
@@ -220,7 +220,7 @@ export default function AccountDashboardPage() {
                           <p className="font-medium text-[var(--text-primary)]">
                             ${priceData.price.toLocaleString()}
                           </p>
-                          <p className={`text-xs ${priceData.change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                          <p className={`text-xs ${priceData.change24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                             {priceData.change24h >= 0 ? '+' : ''}{priceData.change24h}%
                           </p>
                         </div>
@@ -282,7 +282,7 @@ export default function AccountDashboardPage() {
                         <p className="font-medium text-[var(--text-primary)]">
                           ${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </p>
-                        <p className={`text-xs ${gain >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                        <p className={`text-xs ${gain >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                           {gain >= 0 ? '+' : ''}{gain.toFixed(2)}%
                         </p>
                       </div>
@@ -304,8 +304,8 @@ export default function AccountDashboardPage() {
               href="/buy"
               className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-4 transition-colors hover:border-[var(--color-primary)]/50"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
-                <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-success-bg)]">
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
                 </svg>
               </div>
@@ -334,8 +334,8 @@ export default function AccountDashboardPage() {
               href="/markets"
               className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-4 transition-colors hover:border-[var(--color-primary)]/50"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-500/10">
-                <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-warning-bg)]">
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
               </div>

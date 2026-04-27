@@ -703,12 +703,12 @@ export function getVerdictLabel(verdict: WalletReview['verdict']): string {
 export function getVerdictColor(verdict: WalletReview['verdict']): { bg: string; text: string } {
   switch (verdict) {
     case 'highly-recommended':
-      return { bg: 'bg-green-500/10', text: 'text-green-400' }
+      return { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' }
     case 'recommended':
       return { bg: 'bg-blue-500/10', text: 'text-blue-400' }
     case 'acceptable':
-      return { bg: 'bg-amber-500/10', text: 'text-amber-400' }
+      return { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' }
     case 'not-recommended':
-      return { bg: 'bg-red-500/10', text: 'text-red-400' }
+      return { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]' }
   }
 }

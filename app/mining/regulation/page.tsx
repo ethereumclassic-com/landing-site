@@ -99,13 +99,13 @@ export default function MiningRegulationPage() {
               <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">US, EU, UAE</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Clear or permissive frameworks. Mining legally defined.</p>
             </div>
-            <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-amber-400">Developing</p>
+            <div className="rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-warning)]">Developing</p>
               <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">CA, AU, KZ, RU</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Legal but frameworks evolving. Monitor for changes.</p>
             </div>
-            <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wider text-red-400">Restrictive</p>
+            <div className="rounded-xl border border-[var(--color-error)]/20 bg-[var(--color-error)]/5 p-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-error)]">Restrictive</p>
               <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">China, NY</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Active bans or moratoriums. Operational risk is high.</p>
             </div>

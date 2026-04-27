@@ -7,37 +7,37 @@ const strandedUseCases = [
     title: 'Remote Hydroelectric',
     description:
       'Mountain rivers and remote streams produce power with no transmission link to population centers. Mining hardware shipped to site earns revenue from day one, with no grid connection required.',
-    color: '#38bdf8',
+    color: 'var(--color-info)',
   },
   {
     title: 'Flared Gas / Wellhead Gas',
     description:
       'Associated gas at oil wells is routinely flared due to lack of pipelines. Containerized mining at the wellhead converts otherwise wasted BTUs into economic output while reducing methane emissions.',
-    color: '#F59E0B',
+    color: 'var(--color-warning)',
   },
   {
     title: 'Curtailed Wind and Solar',
     description:
       'Renewables regularly produce more power than grids can absorb. Mining provides elastic demand that absorbs curtailment, improving project economics and accelerating renewable deployment.',
-    color: '#00ffae',
+    color: 'var(--brand-green)',
   },
   {
     title: 'Off-Peak Industrial Power',
     description:
       'Industrial facilities carry transmission fees for peak capacity 24/7. Mining during off-peak hours uses contracted-but-unused capacity, reducing effective energy costs.',
-    color: '#a78bfa',
+    color: 'var(--color-purple)',
   },
   {
     title: 'Landfill Gas',
     description:
       'Decomposing waste produces methane continuously. Mining at landfill sites monetizes gas that would otherwise be vented or burned, turning waste infrastructure into revenue-generating assets.',
-    color: '#F59E0B',
+    color: 'var(--color-warning)',
   },
   {
     title: 'Geothermal',
     description:
       'Geothermal resources in seismically active regions (Iceland, Kenya, Indonesia) often lack transmission to major markets. Proof-of-Work mining is the natural first customer.',
-    color: '#38bdf8',
+    color: 'var(--color-info)',
   },
 ]
 
@@ -70,14 +70,14 @@ export default function EnvironmentalImpactPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/8 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/8 blur-[100px]" />
         </div>
 
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
           <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10 px-4 py-1.5 text-sm font-medium text-[#00ffae]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
               Energy &amp; Sustainability
             </span>
           </div>
@@ -86,7 +86,7 @@ export default function EnvironmentalImpactPage() {
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Proof-of-Work as{' '}
-            <span className="bg-gradient-to-r from-[#00ffae] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--brand-green)] to-[var(--color-success)] bg-clip-text text-transparent">
               Energy Infrastructure
             </span>
           </h1>
@@ -112,7 +112,7 @@ export default function EnvironmentalImpactPage() {
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <p className="text-xl font-bold text-[var(--text-primary)]">{stat.value}</p>
-                <p className="mt-0.5 text-xs font-medium text-[#00ffae]">{stat.label}</p>
+                <p className="mt-0.5 text-xs font-medium text-[var(--brand-green)]">{stat.label}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">{stat.detail}</p>
               </div>
             ))}
@@ -139,7 +139,7 @@ export default function EnvironmentalImpactPage() {
               {strandedUseCases.map((useCase) => (
                 <div
                   key={useCase.title}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/20"
                 >
                   <div className="mb-3 h-0.5 w-8 rounded-full" style={{ backgroundColor: useCase.color }} />
                   <h3 className="text-sm font-semibold text-[var(--text-primary)]">{useCase.title}</h3>
@@ -159,7 +159,7 @@ export default function EnvironmentalImpactPage() {
           <div
           >
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#00ffae]">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--brand-green)]">
                 Price Discovery
               </span>
             </div>
@@ -185,7 +185,7 @@ export default function EnvironmentalImpactPage() {
             </div>
 
             <div
-              className="mt-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-6 text-sm text-[var(--color-text-secondary)]"
+              className="mt-8 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-6 text-sm text-[var(--color-text-secondary)]"
             >
               <span className="font-semibold text-[var(--text-primary)]">Historical context: </span>
               ETC/USD spot markets have operated continuously since 2016, making them one of the
@@ -222,7 +222,7 @@ export default function EnvironmentalImpactPage() {
                 href="https://www.dirtycointhemovie.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-block text-sm font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                className="mt-4 inline-block text-sm font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
               >
                 dirtycointhemovie.com →
               </a>
@@ -231,13 +231,13 @@ export default function EnvironmentalImpactPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/regulation"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90"
               >
                 Regulatory Framework
               </Link>
               <Link
                 href="/investment-products"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)]"
               >
                 Investment Products
               </Link>

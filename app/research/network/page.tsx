@@ -151,9 +151,9 @@ export default function NetworkAnalysisPage() {
   // Mining pool distribution (approximate)
   const miningPools = [
     { label: 'F2Pool', value: 35, color: 'bg-blue-500' },
-    { label: '2Miners', value: 25, color: 'bg-green-500' },
+    { label: '2Miners', value: 25, color: 'bg-[var(--color-success)]' },
     { label: 'Poolin', value: 15, color: 'bg-purple-500' },
-    { label: 'ViaBTC', value: 10, color: 'bg-amber-500' },
+    { label: 'ViaBTC', value: 10, color: 'bg-[var(--color-warning)]' },
     { label: 'Others', value: 15, color: 'bg-gray-500' },
   ]
 
@@ -180,8 +180,8 @@ export default function NetworkAnalysisPage() {
                 Network Dashboard
               </h1>
               {stats?.source === 'blockscout' && (
-                <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-xs text-green-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-3 py-1 text-xs text-[var(--color-success)]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success)] animate-pulse" />
                   Live Data
                 </span>
               )}
@@ -213,8 +213,8 @@ export default function NetworkAnalysisPage() {
               ))}
             </div>
           ) : error ? (
-            <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-6">
-              <p className="text-red-400">Error loading network data: {error}</p>
+            <div className="rounded-xl border border-[var(--color-error-border)] bg-[var(--color-error-bg)] p-6">
+              <p className="text-[var(--color-error)]">Error loading network data: {error}</p>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Showing cached or fallback data below.
               </p>
@@ -229,7 +229,7 @@ export default function NetworkAnalysisPage() {
                 <div className="mt-1 flex items-baseline gap-2">
                   <p className="text-2xl font-bold text-[var(--text-primary)]">{stats.priceFormatted}</p>
                   <span className={`text-sm font-medium ${
-                    stats.priceChange24h >= 0 ? 'text-green-400' : 'text-red-400'
+                    stats.priceChange24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'
                   }`}>
                     {stats.priceChangeFormatted}
                   </span>
@@ -387,12 +387,12 @@ export default function NetworkAnalysisPage() {
                   <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">$50,000+ / hour</p>
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">Based on hashrate and hardware costs</p>
                 </div>
-                <div className="rounded-lg bg-green-500/10 p-4">
+                <div className="rounded-lg bg-[var(--color-success-bg)] p-4">
                   <div className="flex items-center gap-2">
-                    <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                     </svg>
-                    <span className="font-medium text-green-400">Network Healthy</span>
+                    <span className="font-medium text-[var(--color-success)]">Network Healthy</span>
                   </div>
                   <p className="mt-2 text-xs text-[var(--color-text-muted)]">
                     No recent reorganizations or security incidents detected.

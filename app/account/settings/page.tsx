@@ -99,7 +99,7 @@ export default function SettingsPage() {
         {/* Success Message */}
         {successMessage && (
           <div
-            className="mb-6 rounded-lg border border-green-500/20 bg-green-500/10 p-4 text-sm text-green-400"
+            className="mb-6 rounded-lg border border-[var(--color-success)]/20 bg-[var(--color-success-bg)] p-4 text-sm text-[var(--color-success)]"
           >
             {successMessage}
           </div>
@@ -226,15 +226,15 @@ export default function SettingsPage() {
 
         {/* Danger Zone */}
         <div
-          className="rounded-xl border border-red-500/20 bg-red-500/5 p-6"
+          className="rounded-xl border border-[var(--color-error)]/20 bg-[var(--color-error)]/5 p-6"
         >
-          <h2 className="mb-2 text-lg font-semibold text-red-400">Danger Zone</h2>
+          <h2 className="mb-2 text-lg font-semibold text-[var(--color-error)]">Danger Zone</h2>
           <p className="mb-4 text-sm text-[var(--color-text-muted)]">
             Permanently delete your account and all associated data. This action cannot be undone.
           </p>
           <button
             onClick={handleDeleteAccount}
-            className="rounded-lg border border-red-500/50 px-4 py-2 text-sm font-medium text-red-400 transition-colors hover:bg-red-500/10"
+            className="rounded-lg border border-[var(--color-error)]/50 px-4 py-2 text-sm font-medium text-[var(--color-error)] transition-colors hover:bg-[var(--color-error-bg)]"
           >
             Delete Account
           </button>

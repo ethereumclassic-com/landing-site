@@ -245,7 +245,7 @@ export default function SellExchangesPage() {
               </svg>
               Back to Sell Hub
             </Link>
-            <span className="inline-block rounded-full bg-red-500/10 px-4 py-1.5 text-sm font-medium text-red-400">
+            <span className="inline-block rounded-full bg-[var(--color-error-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-error)]">
               Exchanges
             </span>
             <h1 className="mt-4 text-4xl font-bold text-[var(--text-primary)] md:text-5xl">

@@ -45,7 +45,7 @@ export function CDCCard({ entry }: { entry: CDCEntry }) {
         )}
 
         {entry.isRejected && (
-          <span className="rounded-sm bg-red-500/15 px-1.5 py-0.5 font-mono text-[10px] font-medium text-red-400">
+          <span className="rounded-sm bg-[var(--color-error)]/15 px-1.5 py-0.5 font-mono text-[10px] font-medium text-[var(--color-error)]">
             WITHDRAWN
           </span>
         )}

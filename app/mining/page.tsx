@@ -45,7 +45,7 @@ export default function MiningPage() {
           className="relative mx-auto max-w-4xl text-center"
         >
           <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
               </svg>
@@ -184,11 +184,11 @@ export default function MiningPage() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="rounded-xl border border-red-500/20 bg-red-500/5 px-6 py-4 text-center">
+                <div className="rounded-xl border border-[var(--color-error)]/20 bg-[var(--color-error)]/5 px-6 py-4 text-center">
                   <p className="text-2xl font-bold text-[var(--text-primary)]">~{avgTx.toFixed(1)}</p>
                   <p className="mt-1 text-xs font-medium text-[var(--color-text-muted)]">Avg TXs / Block</p>
                 </div>
-                <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 px-6 py-4 text-center">
+                <div className="rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 px-6 py-4 text-center">
                   <p className="text-2xl font-bold text-[var(--text-primary)]">{utilization.toFixed(2)}%</p>
                   <p className="mt-1 text-xs font-medium text-[var(--color-text-muted)]">Block Utilization</p>
                 </div>
@@ -368,12 +368,12 @@ export default function MiningPage() {
                 href="/mining/profitability"
                 className="group block rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10">
-                  <svg aria-hidden="true" className="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-warning-bg)]">
+                  <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-amber-400">
+                <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-warning)]">
                   Profitability Calculator
                 </h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">

@@ -304,18 +304,18 @@ export default function ConverterPage() {
           <div className="mt-4 text-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-[var(--panel)] px-3 py-1.5">
               {ratesLoading ? (
-                <span className="flex items-center gap-1.5 text-xs text-amber-400">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                <span className="flex items-center gap-1.5 text-xs text-[var(--color-warning)]">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                   Loading rates...
                 </span>
               ) : ratesSource === 'live' ? (
-                <span className="flex items-center gap-1.5 text-xs text-green-400">
-                  <span className="h-2 w-2 rounded-full bg-green-400" />
+                <span className="flex items-center gap-1.5 text-xs text-[var(--color-success)]">
+                  <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
                   Live rates from CoinGecko
                 </span>
               ) : (
-                <span className="flex items-center gap-1.5 text-xs text-amber-400">
-                  <span className="h-2 w-2 rounded-full bg-amber-400" />
+                <span className="flex items-center gap-1.5 text-xs text-[var(--color-warning)]">
+                  <span className="h-2 w-2 rounded-full bg-[var(--color-warning)]" />
                   Fallback rates
                 </span>
               )}

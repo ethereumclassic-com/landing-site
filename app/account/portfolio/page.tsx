@@ -141,10 +141,10 @@ export default function PortfolioPage() {
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6">
               <p className="text-sm text-[var(--color-text-muted)]">Total Gain/Loss</p>
-              <p className={`mt-1 text-2xl font-bold ${portfolioGain >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              <p className={`mt-1 text-2xl font-bold ${portfolioGain >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                 {portfolioGain >= 0 ? '+' : ''}${portfolioGain.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
-              <p className={`text-sm ${portfolioGainPercent >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              <p className={`text-sm ${portfolioGainPercent >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                 {portfolioGainPercent >= 0 ? '+' : ''}{portfolioGainPercent.toFixed(2)}%
               </p>
             </div>
@@ -201,7 +201,7 @@ export default function PortfolioPage() {
                     </div>
                     <button
                       onClick={() => handleRemoveHolding(item)}
-                      className="rounded-lg p-2 text-[var(--color-text-muted)] transition-colors hover:bg-red-500/10 hover:text-red-400"
+                      className="rounded-lg p-2 text-[var(--color-text-muted)] transition-colors hover:bg-[var(--color-error-bg)] hover:text-[var(--color-error)]"
                       title="Remove holding"
                     >
                       <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -226,7 +226,7 @@ export default function PortfolioPage() {
                     </div>
                     <div>
                       <p className="text-xs text-[var(--color-text-muted)]">Gain/Loss</p>
-                      <p className={`font-medium ${gain >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      <p className={`font-medium ${gain >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                         {gain >= 0 ? '+' : ''}${gain.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         <span className="ml-1 text-sm">({gainPercent >= 0 ? '+' : ''}{gainPercent.toFixed(2)}%)</span>
                       </p>

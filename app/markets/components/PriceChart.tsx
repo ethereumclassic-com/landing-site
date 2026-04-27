@@ -90,8 +90,8 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
   // Calculate if price is up or down
   const priceChange = data[data.length - 1].price - data[0].price
   const isUp = priceChange >= 0
-  const strokeColor = isUp ? '#34d399' : '#f87171'
-  const fillColor = isUp ? 'rgba(52, 211, 153, 0.1)' : 'rgba(248, 113, 113, 0.1)'
+  const strokeColor = isUp ? 'var(--color-success)' : 'var(--color-error)'
+  const fillColor = isUp ? 'var(--color-success-bg)' : 'var(--color-error-bg)'
 
   const timeRanges: { label: string; value: TimeRange }[] = [
     { label: '24H', value: '24h' },
@@ -190,7 +190,7 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
           <span className="text-[var(--color-text-muted)]">
             Range: <span className="text-[var(--text-primary)]">${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}</span>
           </span>
-          <span className={`flex items-center gap-1 ${isUp ? 'text-emerald-400' : 'text-red-400'}`}>
+          <span className={`flex items-center gap-1 ${isUp ? 'text-emerald-400' : 'text-[var(--color-error)]'}`}>
             {isUp ? (
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
@@ -239,7 +239,7 @@ export function Sparkline({ data, width = 100, height = 30, className = '' }: Sp
   }).join(' ')
 
   const isUp = data[data.length - 1] >= data[0]
-  const strokeColor = isUp ? '#34d399' : '#f87171'
+  const strokeColor = isUp ? 'var(--color-success)' : 'var(--color-error)'
 
   return (
     <svg width={width} height={height} className={className}>

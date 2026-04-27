@@ -234,7 +234,7 @@ export default function SocialPage() {
             <ul className="space-y-3">
               {guidelines.map((guideline, index) => (
                 <li key={index} className="flex items-start gap-3 text-sm text-[var(--color-text-muted)]">
-                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                   <span>{guideline}</span>

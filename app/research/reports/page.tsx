@@ -6,9 +6,9 @@ import { reports, type Report } from '../data/research'
 
 const categoryLabels: Record<Report['category'], { label: string; bg: string; text: string }> = {
   network: { label: 'Network', bg: 'bg-blue-500/10', text: 'text-blue-400' },
-  ecosystem: { label: 'Ecosystem', bg: 'bg-green-500/10', text: 'text-green-400' },
+  ecosystem: { label: 'Ecosystem', bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
   market: { label: 'Market', bg: 'bg-purple-500/10', text: 'text-purple-400' },
-  technical: { label: 'Technical', bg: 'bg-amber-500/10', text: 'text-amber-400' },
+  technical: { label: 'Technical', bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
 }
 
 function ReportCard({ report }: { report: Report }) {

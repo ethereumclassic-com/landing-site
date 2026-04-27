@@ -27,7 +27,7 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/30"
+      className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-brand)]"
     >
       <div className="flex items-center gap-3">
         <span
@@ -65,7 +65,7 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
         href={contributor.githubUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+        className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
       >
         View on GitHub →
       </a>

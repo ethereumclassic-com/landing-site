@@ -7,25 +7,25 @@ const revenueCards = [
     label: 'Block Reward',
     value: '2.048 ETC',
     note: 'Era 4 — unchanged by Olympia',
-    color: '#00ffae',
+    color: 'var(--brand-green)',
   },
   {
     label: 'Uncle Reward',
     value: 'Standard',
     note: 'No changes to uncle reward structure',
-    color: '#00ffae',
+    color: 'var(--brand-green)',
   },
   {
     label: 'Basefee Impact',
     value: '< 0.01%',
     note: 'At current ~1 gwei network usage',
-    color: '#F59E0B',
+    color: 'var(--color-warning)',
   },
   {
     label: 'Priority Fee',
     value: 'Kept by miners',
     note: 'Tips go directly to the miner',
-    color: '#00ffae',
+    color: 'var(--brand-green)',
   },
 ]
 
@@ -35,7 +35,7 @@ export default function MinersPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/8 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/8 blur-[100px]" />
         </div>
 
         <div
@@ -44,7 +44,7 @@ export default function MinersPage() {
           <div className="mb-4">
             <Link
               href="/olympia"
-              className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80"
+              className="text-sm text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
             >
               ← Olympia Hub
             </Link>
@@ -113,19 +113,19 @@ export default function MinersPage() {
               priority fees from increased activity.
             </p>
 
-            <div className="mt-8 rounded-xl border border-[#00ffae]/20 bg-[#00ffae]/5 p-6">
-              <h3 className="text-sm font-semibold text-[#00ffae]">Fee Flow After Olympia</h3>
+            <div className="mt-8 rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 p-6">
+              <h3 className="text-sm font-semibold text-[var(--brand-green)]">Fee Flow After Olympia</h3>
               <div className="mt-4 space-y-3 text-sm text-[var(--color-text-muted)]">
                 <div className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-[#00ffae]" />
+                  <span className="h-2 w-2 rounded-full bg-[var(--brand-green)]" />
                   <span>Block reward (2.048 ETC) → Miner</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-[#00ffae]" />
+                  <span className="h-2 w-2 rounded-full bg-[var(--brand-green)]" />
                   <span>Priority fee (tip) → Miner</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-[#F59E0B]" />
+                  <span className="h-2 w-2 rounded-full bg-[var(--color-warning)]" />
                   <span>Basefee → Protocol Treasury (previously burned on Ethereum)</span>
                 </div>
               </div>
@@ -139,13 +139,13 @@ export default function MinersPage() {
         <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-4">
           <Link
             href="/olympia/clients"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90"
           >
             View Clients
           </Link>
           <Link
             href="/mining"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
           >
             Mining Hub
           </Link>

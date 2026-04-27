@@ -5,8 +5,8 @@ import type { Report } from '../../data/research'
 
 const categoryColors: Record<string, string> = {
   network: 'bg-blue-500/10 text-blue-400',
-  ecosystem: 'bg-green-500/10 text-green-400',
-  market: 'bg-amber-500/10 text-amber-400',
+  ecosystem: 'bg-[var(--color-success-bg)] text-[var(--color-success)]',
+  market: 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]',
   technical: 'bg-purple-500/10 text-purple-400',
 }
 

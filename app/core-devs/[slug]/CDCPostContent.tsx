@@ -16,7 +16,7 @@ function PlaceholderTemplate({ entry }: { entry: CDCEntry }) {
       ? <div className="flex flex-wrap gap-2">{entry.ecipRefs.map((id) => <ECIPChip key={id} id={id} />)}</div>
       : <span className="text-[var(--color-text-muted)]">Pre-ECIP process</span>],
     ['Status', entry.isRejected
-      ? <span className="font-mono text-red-400">Withdrawn</span>
+      ? <span className="font-mono text-[var(--color-error)]">Withdrawn</span>
       : <span className="font-mono text-[var(--color-primary)]">Activated</span>],
   ]
 
@@ -101,7 +101,7 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
               </span>
             )}
             {entry.isRejected && (
-              <span className="rounded-sm bg-red-500/15 px-1.5 py-0.5 font-mono text-[10px] font-medium text-red-400">
+              <span className="rounded-sm bg-[var(--color-error)]/15 px-1.5 py-0.5 font-mono text-[10px] font-medium text-[var(--color-error)]">
                 WITHDRAWN
               </span>
             )}

@@ -24,7 +24,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
         <svg aria-hidden="true"
           key={star}
           className={`${sizeClasses[size]} ${
-            star <= Math.round(rating) ? 'text-yellow-400' : 'text-[var(--color-text-muted)]/30'
+            star <= Math.round(rating) ? 'text-[var(--color-warning)]' : 'text-[var(--color-text-muted)]/30'
           }`}
           fill="currentColor"
           viewBox="0 0 24 24"

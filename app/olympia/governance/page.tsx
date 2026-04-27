@@ -36,7 +36,7 @@ export default function GovernancePage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/8 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/8 blur-[100px]" />
         </div>
 
         <div
@@ -45,7 +45,7 @@ export default function GovernancePage() {
           <div className="mb-4">
             <Link
               href="/olympia"
-              className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80"
+              className="text-sm text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
             >
               ← Olympia Hub
             </Link>
@@ -87,7 +87,7 @@ export default function GovernancePage() {
 
             {/* Callout */}
             <div
-              className="mt-8 rounded-xl border border-[#F59E0B]/20 bg-[#F59E0B]/5 p-8"
+              className="mt-8 rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-8"
             >
               <p className="text-lg font-semibold text-[var(--text-primary)]">
                 Basefee revenue funds the Olympia Treasury
@@ -114,7 +114,7 @@ export default function GovernancePage() {
                     {fundingFlow.map((step) => (
                       <div key={step.label} className="text-center">
                         <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]">
-                          <span className="text-xs font-bold text-[#00ffae]">
+                          <span className="text-xs font-bold text-[var(--brand-green)]">
                             {fundingFlow.indexOf(step) + 1}
                           </span>
                         </div>
@@ -131,7 +131,7 @@ export default function GovernancePage() {
                 {fundingFlow.map((step) => (
                   <div key={step.label} className="flex items-center gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]">
-                      <span className="text-xs font-bold text-[#00ffae]">
+                      <span className="text-xs font-bold text-[var(--brand-green)]">
                         {fundingFlow.indexOf(step) + 1}
                       </span>
                     </div>
@@ -149,7 +149,7 @@ export default function GovernancePage() {
                 href={olympiaLinks.treasuryDashboard}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                className="inline-flex items-center gap-2 text-sm font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
               >
                 View the Olympia Treasury Dashboard →
               </a>
@@ -174,9 +174,9 @@ export default function GovernancePage() {
               {safeguards.map((sg) => (
                 <div
                   key={sg.label}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--brand-green)]/20"
                 >
-                  <h3 className="text-sm font-semibold text-[#00ffae]">{sg.label}</h3>
+                  <h3 className="text-sm font-semibold text-[var(--brand-green)]">{sg.label}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{sg.description}</p>
                 </div>
               ))}
@@ -192,7 +192,7 @@ export default function GovernancePage() {
             href={olympiaLinks.governanceApp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90"
           >
             Launch Governance App
           </a>
@@ -200,7 +200,7 @@ export default function GovernancePage() {
             href={olympiaLinks.treasuryDashboard}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
           >
             View Treasury
           </a>
@@ -208,7 +208,7 @@ export default function GovernancePage() {
             href={olympiaLinks.ethereumClassicDAO}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
           >
             Ethereum Classic DAO
           </a>

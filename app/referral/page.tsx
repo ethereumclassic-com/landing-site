@@ -8,9 +8,9 @@ const referralTiers = [
     minReferrals: 0,
     maxReferrals: 4,
     commissionRate: 10,
-    color: 'text-amber-600',
-    bgColor: 'bg-amber-600/10',
-    borderColor: 'border-amber-600/30',
+    color: 'text-[var(--color-warning)]',
+    bgColor: 'bg-[var(--color-warning)]/10',
+    borderColor: 'border-[var(--color-warning-border)]',
   },
   {
     name: 'Silver',
@@ -26,9 +26,9 @@ const referralTiers = [
     minReferrals: 20,
     maxReferrals: 49,
     commissionRate: 20,
-    color: 'text-yellow-500',
-    bgColor: 'bg-yellow-500/10',
-    borderColor: 'border-yellow-500/30',
+    color: 'text-[var(--color-warning)]',
+    bgColor: 'bg-[var(--color-warning-bg)]',
+    borderColor: 'border-[var(--color-warning-border)]',
   },
   {
     name: 'Diamond',
@@ -151,16 +151,16 @@ export default function ReferralPage() {
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
                 <div>
-                  <p className="font-medium text-amber-400">Program Launching Soon</p>
-                  <p className="text-sm text-amber-400/80">
+                  <p className="font-medium text-[var(--color-warning)]">Program Launching Soon</p>
+                  <p className="text-sm text-[var(--color-warning)]/80">
                     Join the waitlist to be notified when the referral program goes live.
                   </p>
                 </div>
@@ -245,8 +245,8 @@ export default function ReferralPage() {
                     </div>
                     <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                       product.status === 'active'
-                        ? 'bg-green-500/20 text-green-400'
-                        : 'bg-amber-500/20 text-amber-400'
+                        ? 'bg-[var(--color-success)]/20 text-[var(--color-success)]'
+                        : 'bg-[var(--color-warning)]/20 text-[var(--color-warning)]'
                     }`}>
                       {product.status === 'active' ? 'Active' : 'Coming Soon'}
                     </span>
@@ -278,15 +278,15 @@ export default function ReferralPage() {
 
               {submitted ? (
                 <div
-                  className="mt-6 rounded-xl border border-green-500/30 bg-green-500/10 p-4"
+                  className="mt-6 rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success-bg)] p-4"
                 >
-                  <div className="flex items-center justify-center gap-2 text-green-400">
+                  <div className="flex items-center justify-center gap-2 text-[var(--color-success)]">
                     <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span className="font-medium">You&apos;re on the list!</span>
                   </div>
-                  <p className="mt-2 text-sm text-green-400/80">
+                  <p className="mt-2 text-sm text-[var(--color-success)]/80">
                     We&apos;ll notify you when the referral program launches.
                   </p>
                 </div>

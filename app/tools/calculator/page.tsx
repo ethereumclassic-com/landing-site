@@ -135,7 +135,7 @@ export default function ToolsCalculatorPage() {
                     <span className="font-medium text-[var(--text-primary)]">
                       ${livePrice.toFixed(2)}
                       {change24h !== null && (
-                        <span className={`ml-2 text-sm ${change24h >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                        <span className={`ml-2 text-sm ${change24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                           {change24h >= 0 ? '+' : ''}{change24h.toFixed(2)}%
                         </span>
                       )}
@@ -148,10 +148,10 @@ export default function ToolsCalculatorPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-[var(--color-text-muted)]">P&L</span>
                     <div className="text-right">
-                      <span className={`text-xl font-bold ${pnl >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      <span className={`text-xl font-bold ${pnl >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                         {pnl >= 0 ? '+' : ''}${pnl.toFixed(2)}
                       </span>
-                      <span className={`ml-2 text-sm ${roi >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      <span className={`ml-2 text-sm ${roi >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                         ({roi >= 0 ? '+' : ''}{roi.toFixed(1)}%)
                       </span>
                     </div>
@@ -162,14 +162,14 @@ export default function ToolsCalculatorPage() {
               <div className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-4 text-center">
                 {loading ? (
                   <span className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                    <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                    <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                     Loading live prices...
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
                     <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                     </span>
                     Live price from CoinGecko — refreshes every 60s
                   </span>
@@ -222,10 +222,10 @@ export default function ToolsCalculatorPage() {
                           <td className="px-4 py-3 text-right font-mono text-sm text-[var(--text-primary)]">
                             ${scenarioValue.toFixed(2)}
                           </td>
-                          <td className={`px-4 py-3 text-right font-mono text-sm ${scenarioPnl >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                          <td className={`px-4 py-3 text-right font-mono text-sm ${scenarioPnl >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                             {scenarioPnl >= 0 ? '+' : ''}${scenarioPnl.toFixed(2)}
                           </td>
-                          <td className={`px-4 py-3 text-right font-mono text-sm ${scenarioRoi >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                          <td className={`px-4 py-3 text-right font-mono text-sm ${scenarioRoi >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                             {scenarioRoi >= 0 ? '+' : ''}{scenarioRoi.toFixed(1)}%
                           </td>
                         </tr>
