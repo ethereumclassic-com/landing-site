@@ -10,7 +10,7 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from 'recharts'
-import { s2fData } from '../data/fiftheningChartData'
+import { s2fData } from '../data/fifthingChartData'
 
 const BRAND_GREEN = '#00ffae'
 

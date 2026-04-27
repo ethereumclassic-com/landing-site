@@ -3,23 +3,23 @@
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { FadeIn } from '@/app/components/ui/FadeIn'
-import { useFifthening } from '@/app/hooks/useFifthening'
-import FiftheningCountdown from '@/app/components/FiftheningCountdown'
-import EraHistoryTable from '../fifthening/components/EraHistoryTable'
-import ECIP1017Explainer from '../fifthening/components/ECIP1017Explainer'
-import RelatedLinks from '../fifthening/components/RelatedLinks'
-import { getExpectedFiftheningDate } from '../fifthening/data/fiftheningChartData'
+import { useFifthing } from '@/app/hooks/useFifthing'
+import FifthingCountdown from '@/app/components/FifthingCountdown'
+import EraHistoryTable from '../fifthing/components/EraHistoryTable'
+import ECIP1017Explainer from '../fifthing/components/ECIP1017Explainer'
+import RelatedLinks from '../fifthing/components/RelatedLinks'
+import { getExpectedFifthingDate } from '../fifthing/data/fifthingChartData'
 
-const EmissionCurveChart = dynamic(() => import('../fifthening/components/EmissionCurveChart'), {
+const EmissionCurveChart = dynamic(() => import('../fifthing/components/EmissionCurveChart'), {
   ssr: false,
   loading: () => <ChartSkeleton />,
 })
-const EmissionRateChart = dynamic(() => import('../fifthening/components/EmissionRateChart'), {
+const EmissionRateChart = dynamic(() => import('../fifthing/components/EmissionRateChart'), {
   ssr: false,
   loading: () => <ChartSkeleton />,
 })
 const SupplyScarcitySection = dynamic(
-  () => import('../fifthening/components/SupplyScarcitySection'),
+  () => import('../fifthing/components/SupplyScarcitySection'),
   {
     ssr: false,
     loading: () => <ChartSkeleton height={420} />,
@@ -36,9 +36,9 @@ function ChartSkeleton({ height = 360 }: { height?: number }) {
 }
 
 export default function EmissionSchedulePage() {
-  const { currentBlock, currentEra, blocksRemaining, progress, loading } = useFifthening()
+  const { currentBlock, currentEra, blocksRemaining, progress, loading } = useFifthing()
 
-  const expectedDate = getExpectedFiftheningDate(blocksRemaining)
+  const expectedDate = getExpectedFifthingDate(blocksRemaining)
 
   return (
     <main className="min-h-screen bg-[var(--background)] pb-16 pt-24">
@@ -81,7 +81,7 @@ export default function EmissionSchedulePage() {
               )}
             </p>
             <div className="mt-6">
-              <FiftheningCountdown variant="card" />
+              <FifthingCountdown variant="card" />
             </div>
             <div className="mt-4">
               <Link

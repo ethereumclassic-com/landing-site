@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui'
-import FiftheningCountdown from '@/app/components/FiftheningCountdown'
+import FifthingCountdown from '@/app/components/FifthingCountdown'
 
 export default function Hero() {
   return (
@@ -68,7 +68,7 @@ export default function Hero() {
 
         {/* Fifthing countdown card */}
         <div className="mt-10 text-left">
-          <FiftheningCountdown variant="card" />
+          <FifthingCountdown variant="card" />
         </div>
 
       </FadeIn>

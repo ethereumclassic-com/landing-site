@@ -4,14 +4,14 @@ import { useState, useEffect, useMemo } from 'react'
 import { useNetworkStats } from './useNetworkStats'
 import { calculateSupplyStats, EMISSION_CONSTANTS } from '@/app/research/data/emission'
 
-export interface FiftheningCountdown {
+export interface FifthingCountdown {
   days: number
   hours: number
   minutes: number
   seconds: number
 }
 
-export interface UseFiftheningReturn {
+export interface UseFifthingReturn {
   status: 'pending' | 'complete'
   currentBlock: number | null
   currentEra: number | null
@@ -21,11 +21,11 @@ export interface UseFiftheningReturn {
   progress: number // 0–100 (era progress)
   currentReward: number | null
   nextReward: number | null
-  countdown: FiftheningCountdown | null
+  countdown: FifthingCountdown | null
   loading: boolean
 }
 
-function toCountdown(totalSeconds: number): FiftheningCountdown {
+function toCountdown(totalSeconds: number): FifthingCountdown {
   return {
     days: Math.floor(totalSeconds / 86400),
     hours: Math.floor((totalSeconds % 86400) / 3600),
@@ -34,7 +34,7 @@ function toCountdown(totalSeconds: number): FiftheningCountdown {
   }
 }
 
-export function useFifthening(): UseFiftheningReturn {
+export function useFifthing(): UseFifthingReturn {
   const { stats, loading: networkLoading } = useNetworkStats({ refreshInterval: 300_000 })
 
   const currentBlock = stats?.totalBlocks ?? null
@@ -94,7 +94,7 @@ export function useFifthening(): UseFiftheningReturn {
       ? toCountdown(derived.totalSeconds)
       : null
 
-  const [countdown, setCountdown] = useState<FiftheningCountdown | null>(initialCountdown)
+  const [countdown, setCountdown] = useState<FifthingCountdown | null>(initialCountdown)
 
   useEffect(() => {
     if (derived.status !== 'pending' || derived.totalSeconds <= 0) {

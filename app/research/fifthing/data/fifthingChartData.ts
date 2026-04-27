@@ -136,7 +136,7 @@ export const eraTableData: EraRow[] = schedule.slice(0, 12).map((era) => {
 
 const ERA_4_END_BLOCK = 4 * EMISSION_CONSTANTS.ERA_LENGTH
 
-export function getDaysSinceLastFifthening(currentBlock: number): number {
+export function getDaysSinceLastFifthing(currentBlock: number): number {
   const blocksSince = currentBlock - ERA_4_END_BLOCK
   if (blocksSince <= 0) return 0
   return Math.floor((blocksSince * EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS) / 86400)
@@ -148,7 +148,7 @@ export function getAnnualInflationRate(currentBlock: number): number {
   return parseFloat(((annualNew / stats.totalSupply) * 100).toFixed(2))
 }
 
-export function getExpectedFiftheningDate(blocksRemaining: number | null): string {
+export function getExpectedFifthingDate(blocksRemaining: number | null): string {
   if (blocksRemaining === null || blocksRemaining <= 0) return 'Complete'
   const secondsRemaining = blocksRemaining * EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS
   const targetDate = new Date(Date.now() + secondsRemaining * 1000)

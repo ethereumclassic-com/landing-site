@@ -10,7 +10,7 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from 'recharts'
-import { emissionCurveData } from '../data/fiftheningChartData'
+import { emissionCurveData } from '../data/fifthingChartData'
 
 const BRAND_GREEN = '#00ffae'
 

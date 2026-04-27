@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import PoolCard from './components/PoolCard'
 import HashRateChart, { HashRateBar, MiningStat } from './components/HashRateChart'
-import FiftheningCountdown from '@/app/components/FiftheningCountdown'
+import FifthingCountdown from '@/app/components/FifthingCountdown'
 import {
   miningPools,
   networkStats,
@@ -154,7 +154,7 @@ export default function MiningPage() {
       {/* Fifth Fifthing Countdown */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <FiftheningCountdown variant="card" />
+          <FifthingCountdown variant="card" />
         </div>
       </section>
 

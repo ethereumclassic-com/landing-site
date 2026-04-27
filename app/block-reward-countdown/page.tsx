@@ -2,13 +2,13 @@
 
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui/FadeIn'
-import FiftheningCountdown from '@/app/components/FiftheningCountdown'
-import { useFifthening } from '@/app/hooks/useFifthening'
+import FifthingCountdown from '@/app/components/FifthingCountdown'
+import { useFifthing } from '@/app/hooks/useFifthing'
 import {
-  getExpectedFiftheningDate,
+  getExpectedFifthingDate,
   getAnnualInflationRate,
-  getDaysSinceLastFifthening,
-} from '@/app/research/fifthening/data/fiftheningChartData'
+  getDaysSinceLastFifthing,
+} from '@/app/research/fifthing/data/fifthingChartData'
 
 function StatCell({
   label,
@@ -45,10 +45,10 @@ export default function BlockRewardCountdownPage() {
     currentReward,
     nextReward,
     loading,
-  } = useFifthening()
+  } = useFifthing()
 
-  const expectedDate = getExpectedFiftheningDate(blocksRemaining)
-  const daysSinceLastFifthing = currentBlock ? getDaysSinceLastFifthening(currentBlock) : null
+  const expectedDate = getExpectedFifthingDate(blocksRemaining)
+  const daysSinceLastFifthing = currentBlock ? getDaysSinceLastFifthing(currentBlock) : null
   const inflationRate = currentBlock ? getAnnualInflationRate(currentBlock) : null
 
   return (
@@ -83,7 +83,7 @@ export default function BlockRewardCountdownPage() {
       <FadeIn delay={50}>
         <section className="px-6 pb-10 md:px-10 lg:px-12">
           <div className="mx-auto max-w-2xl">
-            <FiftheningCountdown variant="card" />
+            <FifthingCountdown variant="card" />
           </div>
         </section>
       </FadeIn>

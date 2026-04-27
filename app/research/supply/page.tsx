@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import FiftheningCountdown from '@/app/components/FiftheningCountdown'
+import FifthingCountdown from '@/app/components/FifthingCountdown'
 import {
   EMISSION_CONSTANTS,
   calculateSupplyStats,
@@ -293,7 +293,7 @@ export default function SupplyTrackerPage() {
       {/* Fifthing Countdown */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <FiftheningCountdown variant="card" />
+          <FifthingCountdown variant="card" />
         </div>
       </section>
 

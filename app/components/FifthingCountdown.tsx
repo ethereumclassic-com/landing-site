@@ -2,14 +2,14 @@
 
 import Link from 'next/link'
 import { FadeIn } from './ui/FadeIn'
-import { useFifthening } from '@/app/hooks/useFifthening'
-import { getAnnualInflationRate } from '@/app/research/fifthening/data/fiftheningChartData'
+import { useFifthing } from '@/app/hooks/useFifthing'
+import { getAnnualInflationRate } from '@/app/research/fifthing/data/fifthingChartData'
 
 function fmt(reward: number | null): string {
   return reward != null ? reward.toFixed(4) : '…'
 }
 
-interface FiftheningCountdownProps {
+interface FifthingCountdownProps {
   variant?: 'card' | 'banner'
 }
 
@@ -63,7 +63,7 @@ function CompleteState({
   )
 }
 
-export default function FiftheningCountdown({ variant = 'card' }: FiftheningCountdownProps) {
+export default function FifthingCountdown({ variant = 'card' }: FifthingCountdownProps) {
   const {
     status,
     loading,
@@ -76,7 +76,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
     nextReward,
     currentEra,
     nextEra,
-  } = useFifthening()
+  } = useFifthing()
 
   const inflationRate = currentBlock != null ? getAnnualInflationRate(currentBlock) : null
   const nextInflationRate = targetBlock != null ? getAnnualInflationRate(targetBlock + 1) : null

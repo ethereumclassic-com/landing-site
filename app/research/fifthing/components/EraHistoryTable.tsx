@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { eraTableData } from '../data/fiftheningChartData'
+import { eraTableData } from '../data/fifthingChartData'
 
 interface EraHistoryTableProps {
   blocksRemaining: number | null
