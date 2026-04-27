@@ -108,6 +108,7 @@ const navItems: {
       { href: '/buy/reviews', label: 'Exchange Reviews' },
       { href: '/investment-products', label: 'Investment Products' },
       { href: '/research', label: 'Research' },
+      { href: '/research/fifthening', label: 'Fifth Fifthening' },
       { href: '/tools', label: 'Tools' },
       { href: '/directory', label: 'Directory' },
       { href: '/community', label: 'Community' },
@@ -140,6 +141,7 @@ const mobileNavGroups: {
       { href: '/environmental-impact', label: 'Energy Infrastructure' },
       { href: '/news', label: 'News' },
       { href: '/research', label: 'Research' },
+      { href: '/research/fifthening', label: 'Fifth Fifthening' },
     ],
   },
   {

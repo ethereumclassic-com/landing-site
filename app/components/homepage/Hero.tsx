@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui'
+import FiftheningCountdown from '@/app/components/FiftheningCountdown'
 
 export default function Hero() {
   return (
@@ -62,6 +63,11 @@ export default function Hero() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </Link>
+        </div>
+
+        {/* Fifthening countdown banner */}
+        <div className="mt-8 w-full max-w-2xl mx-auto">
+          <FiftheningCountdown variant="banner" />
         </div>
 
         {/* Quick stats row */}

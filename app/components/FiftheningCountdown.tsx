@@ -22,7 +22,7 @@ function DigitBox({ value, label, loading }: { value: number; label: string; loa
 function CompleteState({ variant }: { variant: 'card' | 'banner' }) {
   if (variant === 'banner') {
     return (
-      <Link href="/research/supply" className="block">
+      <Link href="/research/fifthening" className="block">
         <div className="flex items-center justify-center gap-3 rounded-xl border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-4 py-3">
           <span className="text-sm font-semibold text-[var(--brand-green)]">Fifth Fifthening Complete — Era 6 Active</span>
           <span className="text-sm text-[var(--text-muted)]">1.6384 ETC block reward</span>
@@ -53,7 +53,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
 
   if (variant === 'banner') {
     return (
-      <Link href="/research/supply" className="block">
+      <Link href="/research/fifthening" className="block">
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
@@ -130,7 +130,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
         </div>
 
         <Link
-          href="/research/supply"
+          href="/research/fifthening"
           className="mt-4 inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)] transition-colors hover:text-[var(--brand-green)]"
         >
           View full emission schedule

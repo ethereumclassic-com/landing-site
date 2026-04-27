@@ -223,6 +223,20 @@ export default function ResearchPage() {
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             <Link
+              href="/research/fifthening"
+              className="group rounded-xl border border-[var(--brand-green)]/40 bg-[var(--brand-green)]/5 p-4 transition-colors hover:border-[var(--brand-green)]/60 hover:bg-[var(--brand-green)]/10 sm:col-span-2 lg:col-span-1"
+            >
+              <div className="mb-3 flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand-green)]" />
+                </span>
+                <span className="rounded-full bg-[var(--brand-green)]/15 px-2 py-0.5 text-xs font-medium text-[var(--brand-green)]">Live Countdown</span>
+              </div>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">Fifth Fifthening</h3>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Live countdown to block 25,000,000 — ECIP-1017 era transition</p>
+            </Link>
+            <Link
               href="/research/network"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
