@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const verificationMethods = [
   {
@@ -132,8 +114,8 @@ export default function VerifyPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/tools"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -143,9 +125,9 @@ export default function VerifyPage() {
                 </svg>
                 Back to Tools
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Contract Verification
               </h1>
@@ -153,9 +135,9 @@ export default function VerifyPage() {
                 Verify your smart contracts on Blockscout to make them transparent and trustworthy.
                 Users can read your code and interact with verified contracts directly.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="mt-6">
+            <div className="mt-6">
               <a
                 href="https://etc.blockscout.com/contract-verification"
                 target="_blank"
@@ -167,32 +149,25 @@ export default function VerifyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Verification Methods */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Verification Methods
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 sm:grid-cols-2"
           >
             {verificationMethods.map((method) => (
-              <motion.a
+              <a
                 key={method.name}
-                variants={fadeInUp}
                 href={method.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -210,33 +185,26 @@ export default function VerifyPage() {
                 <svg aria-hidden="true" className="h-4 w-4 flex-shrink-0 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* How to Verify */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             How to Verify
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 md:grid-cols-4"
           >
             {steps.map((step, index) => (
-              <motion.div
+              <div
                 key={step.number}
-                variants={fadeInUp}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 {index < steps.length - 1 && (
@@ -247,19 +215,16 @@ export default function VerifyPage() {
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{step.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{step.description}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Benefits */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Why Verify Your Contract?</h2>
@@ -276,17 +241,14 @@ export default function VerifyPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Requirements */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
+          <div
             className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">What You Need</h2>
@@ -322,17 +284,14 @@ export default function VerifyPage() {
                 <span><strong className="text-[var(--text-primary)]">Optimization Settings</strong> - Whether optimizer was enabled and run count</span>
               </li>
             </ul>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Developer CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need Help Building?</h2>
@@ -357,7 +316,7 @@ export default function VerifyPage() {
                 Developer Tools
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -3,13 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
 
 export default function LoginPage() {
   const router = useRouter()
@@ -43,10 +37,7 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen py-20">
       <div className="mx-auto max-w-md px-4">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="rounded-2xl border border-[var(--border)] bg-[var(--panel)]/50 p-8 backdrop-blur-sm"
         >
           {/* Header */}
@@ -64,13 +55,11 @@ export default function LoginPage() {
 
           {/* Error Message */}
           {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
               className="mb-6 rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-400"
             >
               {error}
-            </motion.div>
+            </div>
           )}
 
           {/* Login Form */}
@@ -141,18 +130,15 @@ export default function LoginPage() {
               Create an account
             </Link>
           </p>
-        </motion.div>
+        </div>
 
         {/* Demo Notice */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+        <div
           className="mt-6 rounded-lg border border-amber-500/20 bg-amber-500/5 p-4 text-center text-sm text-amber-400/80"
         >
           <strong>Demo Mode:</strong> Account data is stored locally in your browser.
           No actual authentication server is used.
-        </motion.div>
+        </div>
       </div>
     </main>
   )

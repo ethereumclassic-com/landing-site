@@ -1,26 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { reports, type Report } from '../data/research'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const categoryLabels: Record<Report['category'], { label: string; bg: string; text: string }> = {
   network: { label: 'Network', bg: 'bg-blue-500/10', text: 'text-blue-400' },
@@ -33,8 +15,7 @@ function ReportCard({ report }: { report: Report }) {
   const category = categoryLabels[report.category]
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-colors hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-start justify-between">
@@ -72,7 +53,7 @@ function ReportCard({ report }: { report: Report }) {
           </svg>
         </Link>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -92,8 +73,8 @@ export default function ReportsPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/research"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -103,9 +84,9 @@ export default function ReportsPage() {
                 </svg>
                 Back to Research
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Research Reports
               </h1>
@@ -113,18 +94,15 @@ export default function ReportsPage() {
                 Comprehensive research and analysis reports covering the Ethereum Classic ecosystem,
                 network performance, market trends, and technical developments.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Filters */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="flex flex-wrap gap-2"
           >
             <button
@@ -154,23 +132,20 @@ export default function ReportsPage() {
                 </button>
               )
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Reports Grid */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {sortedReports.map((report) => (
               <ReportCard key={report.id} report={report} />
             ))}
-          </motion.div>
+          </div>
 
           {sortedReports.length === 0 && (
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-8 text-center">
@@ -183,10 +158,7 @@ export default function ReportsPage() {
       {/* Subscribe CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Stay Updated</h2>
@@ -210,7 +182,7 @@ export default function ReportsPage() {
                 Network Analysis
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

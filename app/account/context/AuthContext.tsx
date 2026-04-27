@@ -51,13 +51,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-const STORAGE_KEYS = {
-  user: 'etc_user',
-  watchlist: 'etc_watchlist',
-  portfolio: 'etc_portfolio',
-  users: 'etc_users', // For demo purposes - stores registered users
-}
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [watchlist, setWatchlist] = useState<WatchlistItem[]>([])

@@ -1,33 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { wallets } from '../wallet/data/wallets'
 import { exchanges } from '../buy/data/exchanges'
 import { miningPools } from '../mining/data/mining'
 import { nodeClients, devTools } from '../build/data/build'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut' as const,
-    },
-  },
-}
 
 // Directory category data
 const directories = [
@@ -125,10 +102,7 @@ export default function DirectoryPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary)]/5 via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-7xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-2 text-sm text-[var(--color-primary)]">
               <DirectoryIcon />
@@ -141,13 +115,10 @@ export default function DirectoryPage() {
               Your comprehensive guide to the Ethereum Classic ecosystem. Find wallets, exchanges,
               mining resources, development tools, and community channels all in one place.
             </p>
-          </motion.div>
+          </div>
 
           {/* Quick Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
             className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
           >
             {stats.map((stat) => (
@@ -161,22 +132,18 @@ export default function DirectoryPage() {
                 <div className="text-sm text-[var(--color-text-muted)]">{stat.label}</div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Directory Categories */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {directories.map((dir) => (
-              <motion.div key={dir.title} variants={fadeInUp}>
+              <div key={dir.title}>
                 <Link
                   href={dir.href}
                   className="group block h-full rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
@@ -215,33 +182,25 @@ export default function DirectoryPage() {
                     <ArrowIcon />
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Quick Access Links */}
       <section className="bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-10 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Quick Access</h2>
             <p className="mt-3 text-[var(--color-text-muted)]">
               Jump directly to the most popular resources
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {/* Wallets Quick Links */}
@@ -331,18 +290,14 @@ export default function DirectoryPage() {
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="rounded-2xl bg-gradient-to-r from-[var(--color-primary)]/20 to-[var(--color-primary)]/5 p-8 text-center md:p-12"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
@@ -367,7 +322,7 @@ export default function DirectoryPage() {
                 Join the Community
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -1,28 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
 // Sample data for demonstration
-const sampleStats = {
-  totalReferrals: 0,
-  activeReferrals: 0,
-  totalEarnings: 0,
-  pendingEarnings: 0,
-  currentTier: 'Bronze',
-  nextTier: 'Silver',
-  referralsToNextTier: 5,
-}
-
 const sampleReferralLinks = [
   {
     product: 'Mining Pool',
@@ -56,7 +36,7 @@ export default function ReferralDashboardPage() {
       {/* Header */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/referral"
               className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)] transition-colors"
@@ -71,17 +51,14 @@ export default function ReferralDashboardPage() {
             <p className="mt-2 text-[var(--color-text-muted)]">
               Track your referrals, earnings, and manage your promotional links.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Not Connected Banner */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -103,7 +80,7 @@ export default function ReferralDashboardPage() {
                 Connect Wallet
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -111,10 +88,7 @@ export default function ReferralDashboardPage() {
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="text-sm text-[var(--color-text-muted)]">Total Referrals</div>
@@ -122,12 +96,9 @@ export default function ReferralDashboardPage() {
               <div className="mt-1 text-sm text-[var(--color-text-muted)]">
                 {sampleStats.activeReferrals} active
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="text-sm text-[var(--color-text-muted)]">Total Earnings</div>
@@ -137,12 +108,9 @@ export default function ReferralDashboardPage() {
               <div className="mt-1 text-sm text-[var(--color-text-muted)]">
                 ${(sampleStats.totalEarnings * 20).toFixed(2)} USD
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="text-sm text-[var(--color-text-muted)]">Pending Payout</div>
@@ -152,12 +120,9 @@ export default function ReferralDashboardPage() {
               <div className="mt-1 text-sm text-[var(--color-text-muted)]">
                 Next payout: Sunday
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="text-sm text-[var(--color-text-muted)]">Current Tier</div>
@@ -165,7 +130,7 @@ export default function ReferralDashboardPage() {
               <div className="mt-1 text-sm text-[var(--color-text-muted)]">
                 {sampleStats.referralsToNextTier} more to {sampleStats.nextTier}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -173,10 +138,7 @@ export default function ReferralDashboardPage() {
       {/* Referral Links */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
           >
             <div className="p-6 border-b border-[var(--border)]">
@@ -220,17 +182,14 @@ export default function ReferralDashboardPage() {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Recent Activity */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">Recent Activity</h2>
@@ -243,17 +202,14 @@ export default function ReferralDashboardPage() {
                 Your referral activity will appear here once the program launches.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Payout History */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="flex items-center justify-between">
@@ -274,7 +230,7 @@ export default function ReferralDashboardPage() {
                 Payouts are processed every Sunday and sent directly to your wallet.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -1,17 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 // Fiat USD (Bank Transfer) journey
 const fiatSteps = [
@@ -240,7 +230,7 @@ export default function OnRampGuidePage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/learn"
               className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -262,17 +252,14 @@ export default function OnRampGuidePage() {
               Convert USD, USDC, or USDP to ETC through the Classic USD (USC) stablecoin
               without using centralized exchanges. Choose your starting point below.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Journey Selector */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="flex flex-wrap justify-center gap-3"
           >
             {(Object.keys(journeys) as JourneyType[]).map((key) => (
@@ -291,18 +278,15 @@ export default function OnRampGuidePage() {
                 </div>
               </button>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Flow Diagram */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
+          <div
             key={activeJourney}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="flex flex-wrap items-center justify-center gap-4 text-center">
@@ -322,30 +306,23 @@ export default function OnRampGuidePage() {
             <p className="mt-4 text-center text-sm text-[var(--color-text-muted)]">
               ETCswap automatically unwraps to native ETC in a single atomic transaction
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Steps */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]"
           >
             Step-by-Step Guide
-          </motion.h2>
+          </h2>
 
           <div className="space-y-6">
             {currentJourney.steps.map((step, index) => (
-              <motion.div
+              <div
                 key={step.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="flex items-start gap-4">
@@ -382,7 +359,7 @@ export default function OnRampGuidePage() {
                     </ul>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -391,23 +368,16 @@ export default function OnRampGuidePage() {
       {/* Benefits */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]"
           >
             Why Use This Method?
-          </motion.h2>
+          </h2>
 
           <div className="grid gap-4 md:grid-cols-2">
             {benefits.map((benefit, index) => (
-              <motion.div
+              <div
                 key={benefit.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
               >
                 <div className="flex items-start gap-4">
@@ -419,7 +389,7 @@ export default function OnRampGuidePage() {
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{benefit.description}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -428,10 +398,7 @@ export default function OnRampGuidePage() {
       {/* About USC */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-6"
           >
             <h3 className="text-xl font-bold text-[var(--text-primary)]">About Classic USD (USC)</h3>
@@ -495,17 +462,14 @@ export default function OnRampGuidePage() {
                 View App Details
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Alternative Methods */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h3 className="text-xl font-bold text-[var(--text-primary)]">Alternative Methods</h3>
@@ -528,17 +492,14 @@ export default function OnRampGuidePage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Credit card purchases via MoonPay, Simplex, Transak</p>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Get Started?</h2>
@@ -566,7 +527,7 @@ export default function OnRampGuidePage() {
                 Launch Classic OS
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

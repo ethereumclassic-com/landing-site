@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const hardwareWallets = [
   {
@@ -176,14 +158,11 @@ export default function HardwarePage() {
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 text-sm">
+          <div className="mb-6 flex items-center gap-2 text-sm">
             <Link
               href="/wallet"
               className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -192,40 +171,38 @@ export default function HardwarePage() {
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
             <span className="text-[var(--text-primary)]">Hardware Wallets</span>
-          </motion.div>
+          </div>
 
           {/* Badge */}
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
               Maximum Security
             </span>
-          </motion.div>
+          </div>
 
           {/* Title */}
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Hardware Wallet Guide for{' '}
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
               Ethereum Classic
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mt-4 text-lg text-[var(--color-text-secondary)]"
           >
             Hardware wallets provide the highest level of security for your ETC.
             Your private keys are stored offline and never exposed to the internet, protecting against malware and hackers.
-          </motion.p>
+          </p>
 
           {/* Quick Stats */}
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap gap-6">
+          <div className="mt-8 flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -244,33 +221,26 @@ export default function HardwarePage() {
               </svg>
               <span className="text-sm text-[var(--color-text-secondary)]">From $59</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Why Hardware Wallets */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Why Use a Hardware Wallet?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-[var(--color-text-secondary)]">
               Hardware wallets provide security that software wallets cannot match
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {securityBenefits.map((benefit, index) => (
-              <motion.div
+              <div
                 key={benefit.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
               >
                 <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
@@ -278,7 +248,7 @@ export default function HardwarePage() {
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{benefit.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{benefit.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -287,26 +257,19 @@ export default function HardwarePage() {
       {/* Wallet Comparison */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Trezor vs Ledger</h2>
             <p className="mt-3 text-[var(--color-text-secondary)]">
               Both support Ethereum Classic and work with Classic OS. We recommend Trezor for its open-source firmware and strong privacy track record.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {hardwareWallets.map((wallet, index) => (
-              <motion.div
+              <div
                 key={wallet.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="mb-4 flex items-center justify-between">
@@ -381,7 +344,7 @@ export default function HardwarePage() {
                     ))}
                   </ol>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -390,22 +353,16 @@ export default function HardwarePage() {
       {/* Feature Comparison Table */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">Feature Comparison</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Side-by-side comparison of key features
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="overflow-x-auto"
           >
             <table className="w-full">
@@ -462,33 +419,26 @@ export default function HardwarePage() {
                 ))}
               </tbody>
             </table>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Best Practices */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">Security Best Practices</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Follow these guidelines to maximize the security of your hardware wallet
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {bestPractices.map((practice, index) => (
-              <motion.div
+              <div
                 key={practice.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="mb-2 flex items-center gap-2">
@@ -500,7 +450,7 @@ export default function HardwarePage() {
                   <h3 className="font-medium text-[var(--text-primary)]">{practice.title}</h3>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">{practice.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -509,10 +459,7 @@ export default function HardwarePage() {
       {/* Using with Classic OS */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">Using Hardware Wallets with Classic OS</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
@@ -553,17 +500,14 @@ export default function HardwarePage() {
                 </li>
               </ol>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-amber-500/20 bg-gradient-to-b from-amber-500/10 to-[var(--panel)] p-8 text-center"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
@@ -596,7 +540,7 @@ export default function HardwarePage() {
                 </svg>
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -1,26 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { getArticlesByCategory, getCategoryById } from '../data/articles'
 import ArticleCard from '../components/ArticleCard'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const securityFeatures = [
   {
@@ -81,14 +63,11 @@ export default function SecurityPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-red-500/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/learn"
               className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -98,34 +77,32 @@ export default function SecurityPage() {
               </svg>
               Back to Learn
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-sm font-medium text-red-400">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
               {securityArticles.length} Article{securityArticles.length !== 1 ? 's' : ''}
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Security{' '}
             <span className="bg-gradient-to-r from-red-400 to-[var(--color-primary)] bg-clip-text text-transparent">
               Best Practices
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             {category?.description || 'Protect your crypto assets. Learn essential security practices for wallet safety, scam prevention, and safe DeFi interactions.'}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Security Concepts */}
@@ -133,12 +110,8 @@ export default function SecurityPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {securityFeatures.map((feature, index) => (
-              <motion.div
+              <div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/10 text-red-400">
@@ -146,7 +119,7 @@ export default function SecurityPage() {
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -155,10 +128,7 @@ export default function SecurityPage() {
       {/* Quick Tips */}
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">Essential Security Rules</h2>
@@ -168,12 +138,8 @@ export default function SecurityPage() {
 
             <ul className="mt-6 space-y-3">
               {securityTips.map((tip, index) => (
-                <motion.li
+                <li
                   key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
                   className="flex items-start gap-3"
                 >
                   <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-red-500/10 text-red-400">
@@ -182,27 +148,24 @@ export default function SecurityPage() {
                     </svg>
                   </div>
                   <span className="text-[var(--color-text-secondary)]">{tip}</span>
-                </motion.li>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Articles Grid */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">All Security Guides</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               In-depth guides to keep your crypto safe
             </p>
-          </motion.div>
+          </div>
 
           {securityArticles.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -211,9 +174,7 @@ export default function SecurityPage() {
               ))}
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10">
@@ -224,7 +185,7 @@ export default function SecurityPage() {
               <p className="text-[var(--color-text-secondary)]">
                 Security guides coming soon!
               </p>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
@@ -232,10 +193,7 @@ export default function SecurityPage() {
       {/* Hardware Wallet CTA */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:flex md:items-center md:justify-between md:p-8"
           >
             <div className="flex items-center gap-4">
@@ -257,16 +215,13 @@ export default function SecurityPage() {
             >
               Compare Wallets
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-red-500/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
@@ -289,7 +244,7 @@ export default function SecurityPage() {
               Get a Secure Wallet
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

@@ -1,37 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const fadeInUpDelayed = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: 'easeOut' as const,
-    },
-  }),
-}
 
 export default function ClassicOSPage() {
   const modules = [
@@ -99,13 +68,10 @@ export default function ClassicOSPage() {
           <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[120px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp}>
+          <div>
             <Link
               href="/wallet"
               className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -115,9 +81,9 @@ export default function ClassicOSPage() {
               </svg>
               Back to Wallets
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-75" />
@@ -125,33 +91,30 @@ export default function ClassicOSPage() {
               </span>
               Flagship Product
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Classic OS
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mt-2 text-xl text-[var(--color-text-secondary)] md:text-2xl"
           >
             The Economic Control Center for Ethereum Classic
-          </motion.p>
+          </p>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-[var(--color-text-muted)]"
           >
             Classic OS is not a wallet - it&apos;s an economic control center that works with your wallet.
             Connect your wallet to manage capital flows, track positions, and orchestrate automated strategies to earn.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="https://app.classicos.org"
               target="_blank"
@@ -174,18 +137,14 @@ export default function ClassicOSPage() {
               </svg>
               Documentation
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Modules Section */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -197,17 +156,12 @@ export default function ClassicOSPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               Classic OS provides a complete suite of tools for managing your ETC economic activity
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2">
             {modules.map((module, index) => (
-              <motion.div
+              <div
                 key={module.name}
-                custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-30px' }}
-                variants={fadeInUpDelayed}
                 className="group rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="mb-4 flex items-start justify-between">
@@ -230,7 +184,7 @@ export default function ClassicOSPage() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -239,11 +193,7 @@ export default function ClassicOSPage() {
       {/* Compatible Wallets */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -255,13 +205,9 @@ export default function ClassicOSPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               Classic OS connects to your existing wallet for secure transaction signing. No need to migrate - just connect and go.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
             className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-6"
           >
             {compatibleWallets.map((wallet) => (
@@ -276,27 +222,19 @@ export default function ClassicOSPage() {
                 <span className="text-xs text-[var(--color-text-muted)]">{wallet.type}</span>
               </div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <p
             className="mt-6 text-center text-sm text-[var(--color-text-muted)]"
           >
             + Any WalletConnect compatible wallet
-          </motion.p>
+          </p>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
@@ -324,7 +262,7 @@ export default function ClassicOSPage() {
               Browse Wallets
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

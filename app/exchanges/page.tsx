@@ -1,26 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { exchanges, sortExchangesByVolume, type PaymentMethod } from '../buy/data/exchanges'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 type ViewMode = 'table' | 'cards'
 type SortOption = 'volume' | 'name' | 'fee'
@@ -177,31 +159,26 @@ export default function ExchangeDirectoryPage() {
           <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             ETC{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Exchange Directory
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]"
           >
             {cexCount} centralized exchanges and {dexCount} decentralized exchanges support Ethereum Classic.
             Compare fees, features, and find the best exchange for you.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="mt-6 flex flex-wrap justify-center gap-3">
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-xs text-[var(--color-text-muted)]">
               <svg aria-hidden="true" className="h-3.5 w-3.5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -220,8 +197,8 @@ export default function ExchangeDirectoryPage() {
               </svg>
               Verified Listings
             </span>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Quick Filters */}
@@ -446,9 +423,7 @@ export default function ExchangeDirectoryPage() {
           </div>
 
           {filteredExchanges.length === 0 ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
               className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
               <div className="mx-auto h-12 w-12 text-[var(--color-text-muted)]">
@@ -470,7 +445,7 @@ export default function ExchangeDirectoryPage() {
               >
                 Clear all filters
               </button>
-            </motion.div>
+            </div>
           ) : viewMode === 'table' ? (
             <div className="overflow-x-auto rounded-2xl border border-[var(--border)] bg-[var(--panel)]">
               <table className="w-full">
@@ -490,11 +465,8 @@ export default function ExchangeDirectoryPage() {
                   {filteredExchanges.map((exchange, index) => {
                     const isDEX = exchange.type === 'DEX'
                     return (
-                      <motion.tr
+                      <tr
                         key={exchange.name}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.02 }}
                         className="border-b border-[var(--border)]/50 transition-colors hover:bg-[var(--bg)]"
                       >
                         <td className="px-4 py-4">
@@ -581,7 +553,7 @@ export default function ExchangeDirectoryPage() {
                             <ExternalLinkIcon />
                           </a>
                         </td>
-                      </motion.tr>
+                      </tr>
                     )
                   })}
                 </tbody>
@@ -592,11 +564,8 @@ export default function ExchangeDirectoryPage() {
               {filteredExchanges.map((exchange, index) => {
                 const isDEX = exchange.type === 'DEX'
                 return (
-                  <motion.a
+                  <a
                     key={exchange.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -672,7 +641,7 @@ export default function ExchangeDirectoryPage() {
                     <div className="absolute bottom-6 right-6 opacity-0 transition-opacity group-hover:opacity-100">
                       <ExternalLinkIcon />
                     </div>
-                  </motion.a>
+                  </a>
                 )
               })}
             </div>
@@ -683,10 +652,7 @@ export default function ExchangeDirectoryPage() {
       {/* DEX Callout */}
       <section className="border-t border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <span className="relative flex h-2 w-2">
@@ -719,17 +685,14 @@ export default function ExchangeDirectoryPage() {
                 <ChevronRightIcon />
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Safety Tips */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6"
           >
             <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
@@ -748,7 +711,7 @@ export default function ExchangeDirectoryPage() {
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

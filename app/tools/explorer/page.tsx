@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const mainExplorers = [
   {
@@ -133,8 +115,8 @@ export default function ExplorerPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/tools"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -144,9 +126,9 @@ export default function ExplorerPage() {
                 </svg>
                 Back to Tools
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Block Explorers
               </h1>
@@ -154,32 +136,25 @@ export default function ExplorerPage() {
                 Explore the Ethereum Classic blockchain. View transactions, check addresses,
                 verify smart contracts, and analyze on-chain data.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Main Explorers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Official Explorers
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {mainExplorers.map((explorer) => (
-              <motion.div
+              <div
                 key={explorer.name}
-                variants={fadeInUp}
                 className={`rounded-xl border p-6 ${
                   explorer.recommended
                     ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
@@ -221,33 +196,26 @@ export default function ExplorerPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                   </svg>
                 </a>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Explorer Features */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             What You Can Do
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {explorerFeatures.map((feature) => (
-              <motion.div
+              <div
                 key={feature.name}
-                variants={fadeInUp}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -255,19 +223,16 @@ export default function ExplorerPage() {
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{feature.name}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Quick Links */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Links</h2>
@@ -292,17 +257,14 @@ export default function ExplorerPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Developer CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Building on ETC?</h2>
@@ -329,7 +291,7 @@ export default function ExplorerPage() {
                 Contract Verification
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

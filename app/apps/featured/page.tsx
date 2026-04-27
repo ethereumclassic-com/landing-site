@@ -1,26 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { getFeaturedApps } from '../data/apps'
 import AppCard from '../components/AppCard'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const highlights = [
   {
@@ -77,14 +59,11 @@ export default function FeaturedAppsPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/apps"
               className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -94,9 +73,9 @@ export default function FeaturedAppsPage() {
               </svg>
               Back to Apps
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-75" />
@@ -104,25 +83,23 @@ export default function FeaturedAppsPage() {
               </span>
               {featuredApps.length} Featured Apps
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Featured{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               Apps
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Hand-picked applications representing the best of the Ethereum Classic ecosystem. Quality-vetted DeFi, infrastructure, and governance tools.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Highlights Section */}
@@ -130,12 +107,8 @@ export default function FeaturedAppsPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {highlights.map((highlight, index) => (
-              <motion.div
+              <div
                 key={highlight.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -143,7 +116,7 @@ export default function FeaturedAppsPage() {
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{highlight.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{highlight.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -153,10 +126,7 @@ export default function FeaturedAppsPage() {
       {defiApps.length > 0 && (
         <section className="px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="mb-8 flex items-center justify-between"
             >
               <div>
@@ -174,7 +144,7 @@ export default function FeaturedAppsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </Link>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {defiApps.map((app, index) => (
@@ -189,10 +159,7 @@ export default function FeaturedAppsPage() {
       {infraApps.length > 0 && (
         <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="mb-8 flex items-center justify-between"
             >
               <div>
@@ -210,7 +177,7 @@ export default function FeaturedAppsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </Link>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {infraApps.map((app, index) => (
@@ -225,10 +192,7 @@ export default function FeaturedAppsPage() {
       {governanceApps.length > 0 && (
         <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="mb-8 flex items-center justify-between"
             >
               <div>
@@ -246,7 +210,7 @@ export default function FeaturedAppsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </Link>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {governanceApps.map((app, index) => (
@@ -261,10 +225,7 @@ export default function FeaturedAppsPage() {
       {toolsApps.length > 0 && (
         <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="mb-8 flex items-center justify-between"
             >
               <div>
@@ -282,7 +243,7 @@ export default function FeaturedAppsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </Link>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {toolsApps.map((app, index) => (
@@ -295,10 +256,7 @@ export default function FeaturedAppsPage() {
 
       {/* Submit App CTA */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10">
@@ -329,7 +287,7 @@ export default function FeaturedAppsPage() {
               Browse All Apps
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

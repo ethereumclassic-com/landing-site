@@ -1,18 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { type Article, type ArticleCategory, getRelatedArticles, getAuthorInfo } from '../data/articles'
 import NewsCard from '../components/NewsCard'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
@@ -338,10 +328,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="relative mx-auto max-w-4xl"
         >
           <div className="mb-6">
@@ -434,15 +421,12 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               ))}
             </div>
           )}
-        </motion.div>
+        </div>
       </section>
 
       {/* Article Content */}
       <section className="border-y border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+        <div
           className="mx-auto max-w-3xl"
         >
           {article.content ? (
@@ -462,24 +446,21 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               </p>
             </div>
           )}
-        </motion.div>
+        </div>
       </section>
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <section className="px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="mb-8"
             >
               <h2 className="text-2xl font-bold text-[var(--text-primary)]">Related Articles</h2>
               <p className="mt-2 text-[var(--color-text-secondary)]">
                 More news and updates from the Ethereum Classic ecosystem
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedArticles.map((relatedArticle, index) => (
@@ -501,10 +482,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
 
       {/* Share CTA */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Share This Article</h2>
@@ -533,7 +511,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               Back to News
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

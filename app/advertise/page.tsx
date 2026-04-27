@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const adPlacements = [
   {
@@ -97,25 +79,20 @@ export default function AdvertisePage() {
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
         <div className="container relative mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mx-auto max-w-3xl text-center"
           >
-            <motion.h1
-              variants={fadeInUp}
+            <h1
               className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
               Advertise on EthereumClassic.com
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
+            </h1>
+            <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
               Reach the ETC community directly. Promote your wallet, exchange, mining pool, or blockchain product to a highly engaged audience.
-            </motion.p>
-            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=partnership"
                 className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
@@ -128,8 +105,8 @@ export default function AdvertisePage() {
               >
                 View Placements
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -138,16 +115,13 @@ export default function AdvertisePage() {
         <div className="container mx-auto max-w-6xl px-4">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {audienceStats.map((stat) => (
-              <motion.div
+              <div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
               >
                 <div className="text-3xl font-bold text-[var(--color-primary)]">{stat.value}</div>
                 <div className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -156,26 +130,19 @@ export default function AdvertisePage() {
       {/* Audience Breakdown */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Our Audience</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
               Highly targeted audience segments actively engaged with the ETC ecosystem
             </p>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {audienceTypes.map((audience, index) => (
-              <motion.div
+              <div
                 key={audience.type}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="flex items-center justify-between">
@@ -186,15 +153,12 @@ export default function AdvertisePage() {
                 </div>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{audience.description}</p>
                 <div className="mt-4 h-2 overflow-hidden rounded-full bg-[var(--bg)]">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${audience.percentage}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: 'easeOut' }}
-                    className="h-full rounded-full bg-[var(--color-primary)]"
+                  <div
+                    className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-700 ease-out"
+                    style={{ width: `${audience.percentage}%` }}
                   />
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -203,26 +167,19 @@ export default function AdvertisePage() {
       {/* Ad Placements */}
       <section id="placements" className="border-t border-[var(--border)] bg-[var(--panel)] py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ad Placements</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
               Multiple placement options to fit your marketing goals and budget
             </p>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {adPlacements.map((placement, index) => (
-              <motion.div
+              <div
                 key={placement.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6"
               >
                 <h3 className="text-lg font-semibold text-[var(--text-primary)]">{placement.name}</h3>
@@ -242,7 +199,7 @@ export default function AdvertisePage() {
                     <span className="text-xs text-[var(--color-text-muted)]">{placement.format}</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -252,10 +209,7 @@ export default function AdvertisePage() {
       <section className="py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="grid gap-12 lg:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
             >
               <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Advertising Guidelines</h2>
               <p className="mt-4 text-[var(--color-text-muted)]">
@@ -278,13 +232,9 @@ export default function AdvertisePage() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
             >
               <h3 className="text-xl font-semibold text-[var(--text-primary)]">Ready to Advertise?</h3>
@@ -315,7 +265,7 @@ export default function AdvertisePage() {
                   Typical response time: 1-2 business days
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -323,14 +273,11 @@ export default function AdvertisePage() {
       {/* Benefits */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Why Advertise With Us?</h2>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
@@ -363,12 +310,8 @@ export default function AdvertisePage() {
                 ),
               },
             ].map((benefit, index) => (
-              <motion.div
+              <div
                 key={benefit.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6 text-center"
               >
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -376,7 +319,7 @@ export default function AdvertisePage() {
                 </div>
                 <h3 className="mt-4 font-semibold text-[var(--text-primary)]">{benefit.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{benefit.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect, useMemo } from 'react'
 import {
@@ -14,23 +13,6 @@ import {
   getOrdinalSuffix,
   type SupplyStats,
 } from '../data/emission'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // Fifthening Countdown Component
 function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
@@ -81,8 +63,7 @@ function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; i
   const nextEraBlock = nextEraNumber * EMISSION_CONSTANTS.ERA_LENGTH
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-2xl border border-[var(--color-primary)]/30 bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 p-6 md:p-8"
     >
       <div className="text-center">
@@ -138,11 +119,9 @@ function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; i
             <span>{stats ? `${stats.percentThroughEra.toFixed(1)}%` : '--'}</span>
           </div>
           <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--bg)]">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-hover)]"
-              initial={{ width: 0 }}
-              animate={{ width: stats ? `${stats.percentThroughEra}%` : '0%' }}
-              transition={{ duration: 1, ease: 'easeOut' }}
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-hover)] transition-all duration-700 ease-out"
+              style={{ width: stats ? `${stats.percentThroughEra}%` : '0%' }}
             />
           </div>
           <p className="mt-2 text-xs text-[var(--color-text-muted)]">
@@ -150,7 +129,7 @@ function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; i
           </p>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -201,16 +180,12 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
   ]
 
   return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      animate="visible"
+    <div
       className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
     >
       {statItems.map((item) => (
-        <motion.div
+        <div
           key={item.label}
-          variants={fadeInUp}
           className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
         >
           <div className="flex items-start justify-between">
@@ -223,9 +198,9 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
             </div>
             <div className="rounded-lg bg-[var(--bg)] p-2">{item.icon}</div>
           </div>
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   )
 }
 
@@ -235,8 +210,7 @@ function EraScheduleTable() {
   const displayedEras = showAll ? eraSchedule : eraSchedule.slice(0, 8)
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
     >
       <div className="p-4 border-b border-[var(--border)]">
@@ -316,15 +290,14 @@ function EraScheduleTable() {
           </button>
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
 
 // Emission Milestones Timeline
 function EmissionMilestones() {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
       <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fifthening History</h3>
@@ -376,7 +349,7 @@ function EmissionMilestones() {
           )
         })}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -413,7 +386,7 @@ export default function SupplyTrackerPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/research"
               className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
@@ -431,7 +404,7 @@ export default function SupplyTrackerPage() {
               Track Ethereum Classic&apos;s emission schedule under ECIP-1017. Monitor the &quot;Fifthening&quot;
               countdown and total supply growth.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -452,13 +425,11 @@ export default function SupplyTrackerPage() {
       {/* Era Schedule */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Emission Schedule
-          </motion.h2>
+          </h2>
           <EraScheduleTable />
         </div>
       </section>
@@ -469,10 +440,7 @@ export default function SupplyTrackerPage() {
           <EmissionMilestones />
 
           {/* About ECIP-1017 */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h3 className="font-semibold text-[var(--text-primary)] mb-4">About ECIP-1017</h3>
@@ -515,17 +483,14 @@ export default function SupplyTrackerPage() {
                 </svg>
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Comparison with Bitcoin */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h3 className="font-semibold text-[var(--text-primary)] mb-4">ETC vs BTC Emission</h3>
@@ -579,7 +544,7 @@ export default function SupplyTrackerPage() {
               ETC&apos;s more gradual reduction (20% vs 50%) provides smoother transitions for miners
               while still achieving disinflationary monetary policy.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

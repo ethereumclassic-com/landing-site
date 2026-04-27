@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const socialChannels = [
   {
@@ -134,8 +116,8 @@ export default function CommunityPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Community
               </h1>
@@ -143,10 +125,10 @@ export default function CommunityPage() {
                 Join the global Ethereum Classic community. Connect with enthusiasts, developers,
                 miners, and builders who believe in immutability and decentralization.
               </p>
-            </motion.div>
+            </div>
 
             {/* Community Stats */}
-            <motion.div variants={fadeInUp} className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
               {communityStats.map((stat) => (
                 <div
                   key={stat.label}
@@ -156,22 +138,19 @@ export default function CommunityPage() {
                   <div className="text-sm text-[var(--color-text-muted)]">{stat.label}</div>
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Links */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {quickLinks.map((link) => (
-              <motion.div key={link.label} variants={fadeInUp}>
+              <div key={link.label}>
                 <Link
                   href={link.href}
                   className="group block rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
@@ -181,33 +160,26 @@ export default function CommunityPage() {
                   </h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{link.description}</p>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Social Channels */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Join the Conversation
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 sm:grid-cols-2"
           >
             {socialChannels.map((channel) => (
-              <motion.a
+              <a
                 key={channel.name}
-                variants={fadeInUp}
                 href={channel.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -228,13 +200,10 @@ export default function CommunityPage() {
                 <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+          </div>
+          <div
             className="mt-4 text-center"
           >
             <Link
@@ -246,31 +215,24 @@ export default function CommunityPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Ways to Contribute */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Ways to Contribute
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {waysToContribute.map((way) => (
-              <motion.a
+              <a
                 key={way.title}
-                variants={fadeInUp}
                 href={way.link}
                 target={way.link.startsWith('http') ? '_blank' : undefined}
                 rel={way.link.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -283,19 +245,16 @@ export default function CommunityPage() {
                   {way.title}
                 </h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{way.description}</p>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Code is Law */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Our Principles</h2>
@@ -340,17 +299,14 @@ export default function CommunityPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Join?</h2>
@@ -377,7 +333,7 @@ export default function CommunityPage() {
                 Upcoming Events
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

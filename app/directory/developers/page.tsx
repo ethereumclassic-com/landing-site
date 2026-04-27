@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { networks, rpcEndpoints, nodeClients, devTools } from '@/app/build/data/build'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 export default function DirectoryDevelopersPage() {
   return (
@@ -27,8 +9,8 @@ export default function DirectoryDevelopersPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/directory"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -38,22 +20,22 @@ export default function DirectoryDevelopersPage() {
                 </svg>
                 Back to Directory
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
+            </div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Developer Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Everything you need to build on Ethereum Classic — networks, RPC endpoints,
                 node clients, and developer tools.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Networks */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Networks</h2>
             <div className="grid gap-4 md:grid-cols-2">
               {networks.map((net) => (
@@ -74,14 +56,14 @@ export default function DirectoryDevelopersPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* RPC Endpoints */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">RPC Endpoints ({rpcEndpoints.length})</h2>
               <Link href="/build" className="text-sm text-[var(--color-primary)] hover:underline">
@@ -114,14 +96,14 @@ export default function DirectoryDevelopersPage() {
                 </table>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Node Clients */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Node Clients ({nodeClients.length})</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {nodeClients.map((client) => (
@@ -139,14 +121,14 @@ export default function DirectoryDevelopersPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Dev Tools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Developer Tools ({devTools.length})</h2>
             <div className="grid gap-4 md:grid-cols-2">
               {devTools.map((tool) => (
@@ -159,14 +141,14 @@ export default function DirectoryDevelopersPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/build"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
@@ -179,7 +161,7 @@ export default function DirectoryDevelopersPage() {
             >
               Documentation
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

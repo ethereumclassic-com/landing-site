@@ -1,17 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 const fundFacts = [
   { label: 'Ticker', value: 'ETCG' },
@@ -77,60 +66,50 @@ export default function InvestmentProductsPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F59E0B]/8 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 px-4 py-1.5 text-sm font-medium text-[#F59E0B]">
               Institutional Products
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Institutional Investment Products
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Regulated securities exposure to Ethereum Classic through established TradFi channels,
             no self-custody required. Available at the same brokerages used for stocks and bonds.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* ETCG Trust */}
       <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.div variants={fadeInUp}>
+            <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#F59E0B]">
                 Regulated Securities Exposure
               </span>
-            </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
+            </div>
+            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Grayscale Ethereum Classic Trust
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               ETCG · OTCQX Best Market · Established May 10, 2018
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {/* Fund facts */}
-              <motion.div
-                variants={fadeInUp}
+              <div
                 className="rounded-xl border border-[#F59E0B]/30 bg-[#F59E0B]/5 p-6"
               >
                 <p className="mb-4 text-sm font-semibold text-[var(--text-primary)]">Fund Facts</p>
@@ -150,10 +129,10 @@ export default function InvestmentProductsPage() {
                 >
                   grayscale.com →
                 </a>
-              </motion.div>
+              </div>
 
               {/* How it trades */}
-              <motion.div variants={fadeInUp} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 {[
                   {
                     title: 'Structure',
@@ -181,34 +160,29 @@ export default function InvestmentProductsPage() {
                     </p>
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* TradFi Access */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
+            <p className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
               Brokerage Access
-            </motion.p>
-            <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
               ETC in Traditional Finance
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
               ETCG is an OTCQX-listed grantor trust. Search the ticker at your existing brokerage — it trades alongside equities and ETFs. IRA-eligible at major full-service platforms.
-            </motion.p>
+            </p>
 
             {/* Brokerage grid */}
-            <motion.div
-              variants={fadeInUp}
+            <div
               className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3"
             >
               {brokerages.map((b) => (
@@ -226,10 +200,10 @@ export default function InvestmentProductsPage() {
                   <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[#F59E0B]/70">{b.tag}</p>
                 </a>
               ))}
-            </motion.div>
+            </div>
 
             {/* Data providers strip */}
-            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[var(--border)] pt-6">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[var(--border)] pt-6">
               <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-[var(--color-text-muted)]">
                 Track on
               </span>
@@ -249,33 +223,28 @@ export default function InvestmentProductsPage() {
               <span className="ml-auto text-xs italic text-[var(--color-text-muted)] opacity-60">
                 OTC security. Not investment advice.
               </span>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Investment Thesis */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               The ETC Investment Case
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Five structural properties that distinguish Ethereum Classic in the 2025–2026
               institutional digital asset landscape.
-            </motion.p>
+            </p>
 
             <div className="mt-8 space-y-4">
               {thesisPoints.map((point) => (
-                <motion.div
+                <div
                   key={point.number}
-                  variants={fadeInUp}
                   className="flex gap-5 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
                 >
                   <span className="shrink-0 font-mono text-lg font-bold text-[#F59E0B]/40">
@@ -287,11 +256,11 @@ export default function InvestmentProductsPage() {
                       {point.body}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/regulation"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
@@ -304,8 +273,8 @@ export default function InvestmentProductsPage() {
               >
                 Olympia Upgrade
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

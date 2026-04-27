@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const requirements = [
   {
@@ -85,14 +67,11 @@ export default function SubmitAppPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/apps"
               className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -102,55 +81,46 @@ export default function SubmitAppPage() {
               </svg>
               Back to Apps
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
               Get Listed
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Submit Your{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               App
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Get your Ethereum Classic application featured in our ecosystem directory. Reach thousands of ETC users looking for quality dApps.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Requirements Section */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-8 text-center text-xl font-semibold text-[var(--text-primary)]"
           >
             Requirements for Listing
-          </motion.h2>
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {requirements.map((req, index) => (
-              <motion.div
+              <div
                 key={req.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -158,7 +128,7 @@ export default function SubmitAppPage() {
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{req.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{req.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -167,31 +137,24 @@ export default function SubmitAppPage() {
       {/* Categories Section */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Choose a Category</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Select the category that best describes your application
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             {categories.map((category, index) => (
-              <motion.div
+              <div
                 key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
               >
                 <h3 className="font-semibold text-[var(--text-primary)]">{category.name}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{category.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -200,22 +163,16 @@ export default function SubmitAppPage() {
       {/* Submission Form (Static Display) */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/30 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Required Information</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Prepare the following information before submitting
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="space-y-4"
           >
             {submissionFields.map((field) => (
@@ -234,16 +191,13 @@ export default function SubmitAppPage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{field.placeholder}</p>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Submit CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10">
@@ -280,11 +234,7 @@ export default function SubmitAppPage() {
             </a>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mt-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-left"
           >
             <h3 className="font-semibold text-[var(--text-primary)]">Review Process</h3>
@@ -306,8 +256,8 @@ export default function SubmitAppPage() {
                 <span>Featured apps are selected based on quality and community impact</span>
               </li>
             </ul>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
     </main>
   )

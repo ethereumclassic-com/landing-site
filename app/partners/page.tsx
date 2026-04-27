@@ -1,25 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 type PartnerCategory = 'all' | 'wallets' | 'exchanges' | 'infrastructure' | 'development' | 'mining' | 'defi'
 
@@ -223,25 +205,20 @@ export default function PartnersPage() {
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
         <div className="container relative mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mx-auto max-w-3xl text-center"
           >
-            <motion.h1
-              variants={fadeInUp}
+            <h1
               className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
               Partner Directory
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
+            </h1>
+            <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
               Explore the ecosystem of wallets, exchanges, mining pools, and service providers supporting Ethereum Classic.
-            </motion.p>
-            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=partnership"
                 className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
@@ -254,8 +231,8 @@ export default function PartnersPage() {
               >
                 Advertise With Us
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -267,16 +244,15 @@ export default function PartnersPage() {
           </h2>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-8 md:gap-12">
             {featuredPartners.slice(0, 8).map((partner) => (
-              <motion.a
+              <a
                 key={partner.name}
                 href={partner.url}
                 target={partner.url.startsWith('http') ? '_blank' : undefined}
                 rel={partner.url.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="text-lg font-semibold text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
-                whileHover={{ scale: 1.05 }}
               >
                 {partner.name}
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
@@ -306,18 +282,12 @@ export default function PartnersPage() {
       {/* Partner Grid */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {filteredPartners.map((partner, index) => (
-              <motion.div
+              <div
                 key={partner.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
                 className={`group rounded-xl border bg-[var(--panel)] p-6 transition hover:border-[var(--color-primary)]/50 ${
                   partner.featured ? 'border-[var(--color-primary)]/30' : 'border-[var(--border)]'
                 }`}
@@ -366,9 +336,9 @@ export default function PartnersPage() {
                     </Link>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           {filteredPartners.length === 0 && (
             <div className="py-12 text-center">
@@ -382,10 +352,7 @@ export default function PartnersPage() {
       <section className="border-t border-[var(--border)] bg-[var(--panel)] py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
             >
               <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
                 Interested in Partnering?
@@ -438,7 +405,7 @@ export default function PartnersPage() {
                   Submit Your App
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

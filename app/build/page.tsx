@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   nodeClients,
@@ -10,21 +9,6 @@ import {
   docResources,
   faucets,
 } from './data/build'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
 
 // Icons
 const CodeIcon = () => (
@@ -79,10 +63,7 @@ export default function BuildPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-20">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="text-center"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
@@ -114,7 +95,7 @@ export default function BuildPage() {
                 Documentation
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -141,19 +122,12 @@ export default function BuildPage() {
       {/* Quick Links Grid */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-8 text-center text-3xl font-bold text-[var(--text-primary)]"
           >
             Developer Resources
-          </motion.h2>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
           >
             {[
@@ -182,7 +156,7 @@ export default function BuildPage() {
                 icon: <WrenchIcon />,
               },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeInUp}>
+              <div key={i}>
                 <Link
                   href={card.href}
                   className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel-hover)]"
@@ -195,33 +169,27 @@ export default function BuildPage() {
                   </h3>
                   <p className="text-sm text-[var(--color-text-muted)]">{card.description}</p>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Network Configuration */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Network Configuration</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Add ETC to your wallet or configure your development environment
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Mainnet */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--bg)] p-6"
             >
               <div className="mb-4 flex items-center gap-3">
@@ -267,13 +235,10 @@ export default function BuildPage() {
                 Add to Wallet via Chainlist
                 <ExternalLinkIcon />
               </a>
-            </motion.div>
+            </div>
 
             {/* Testnet */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6"
             >
               <div className="mb-4 flex items-center gap-3">
@@ -319,7 +284,7 @@ export default function BuildPage() {
                 Get Testnet ETC from Faucet
                 <ExternalLinkIcon />
               </a>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -327,29 +292,21 @@ export default function BuildPage() {
       {/* Recommended Tools */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Recommended Tools</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Industry-standard development tools that work seamlessly with ETC
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {recommendedTools.map((tool) => (
-              <motion.a
+              <a
                 key={tool.id}
-                variants={fadeInUp}
                 href={tool.website}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -375,9 +332,9 @@ export default function BuildPage() {
                     </span>
                   ))}
                 </div>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
 
           <div className="mt-8 text-center">
             <Link
@@ -396,29 +353,21 @@ export default function BuildPage() {
       {/* Node Clients */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Node Clients</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Run your own Ethereum Classic node for maximum decentralization
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 lg:grid-cols-3"
           >
             {nodeClients.map((client) => (
-              <motion.div
+              <div
                 key={client.id}
-                variants={fadeInUp}
                 className={`rounded-2xl border p-6 ${
                   client.recommended
                     ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
@@ -465,9 +414,9 @@ export default function BuildPage() {
                     GitHub <ExternalLinkIcon />
                   </a>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           <div className="mt-8 text-center">
             <Link
@@ -486,29 +435,21 @@ export default function BuildPage() {
       {/* External Resources */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Learning Resources</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Tutorials, documentation, and guides to help you get started
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {docResources.slice(0, 6).map((resource) => (
-              <motion.a
+              <a
                 key={resource.id}
-                variants={fadeInUp}
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -524,19 +465,16 @@ export default function BuildPage() {
                 <span className="mt-2 inline-block rounded-full bg-[var(--bg)] px-2 py-0.5 text-xs capitalize text-[var(--color-text-muted)]">
                   {resource.category}
                 </span>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] px-6 py-20">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
               Ready to Build on ETC?
@@ -563,7 +501,7 @@ export default function BuildPage() {
                 <ExternalLinkIcon />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

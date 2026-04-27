@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const tools = [
   {
@@ -113,8 +95,8 @@ export default function ToolsPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Tools
               </h1>
@@ -122,30 +104,24 @@ export default function ToolsPage() {
                 Essential tools for Ethereum Classic users. Price converters, investment calculators,
                 gas trackers, and block explorers to enhance your ETC experience.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Featured Tools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Featured Tools
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {tools.filter(t => t.featured).map((tool) => (
-              <motion.div key={tool.name} variants={fadeInUp}>
+              <div key={tool.name}>
                 <Link
                   href={tool.href}
                   className="group block rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6 transition-colors hover:bg-[var(--color-primary)]/10"
@@ -170,31 +146,25 @@ export default function ToolsPage() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* All Tools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             All Tools
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {tools.map((tool) => (
-              <motion.div key={tool.name} variants={fadeInUp}>
+              <div key={tool.name}>
                 <Link
                   href={tool.href}
                   className="group block rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
@@ -209,19 +179,16 @@ export default function ToolsPage() {
                     {tool.description}
                   </p>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* External Tools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">External Resources</h2>
@@ -250,17 +217,14 @@ export default function ToolsPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Developer Tools CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Building on ETC?</h2>
@@ -284,7 +248,7 @@ export default function ToolsPage() {
                 Getting Started Guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

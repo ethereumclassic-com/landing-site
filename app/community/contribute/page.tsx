@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const contributionAreas = [
   {
@@ -89,8 +71,8 @@ export default function CommunityContributePage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/community"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -100,15 +82,15 @@ export default function CommunityContributePage() {
                 </svg>
                 Back to Community
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
+            </div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">How to Contribute</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Ethereum Classic is a community-driven project. Everyone can contribute —
                 whether through code, mining, governance, or community building.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -117,11 +99,8 @@ export default function CommunityContributePage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 md:grid-cols-2">
             {contributionAreas.map((area, idx) => (
-              <motion.div
+              <div
                 key={area.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * idx }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="flex items-center gap-3">
@@ -145,7 +124,7 @@ export default function CommunityContributePage() {
                     </Link>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -154,10 +133,7 @@ export default function CommunityContributePage() {
       {/* Getting Started */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Start</h2>
@@ -178,14 +154,14 @@ export default function CommunityContributePage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Open a PR, submit an ECIP, or run a node</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
               href="https://discord.com/invite/Tq57jxSwsa"
               target="_blank"
@@ -202,7 +178,7 @@ export default function CommunityContributePage() {
             >
               GitHub
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

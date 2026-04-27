@@ -1,26 +1,8 @@
 'use client'
 
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { exchanges } from '../../buy/data/exchanges'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const ExternalLinkIcon = () => (
   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -60,33 +42,27 @@ export default function NoKYCExchangesPage() {
       <div className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {/* Header */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mb-12"
           >
-            <motion.div variants={fadeInUp} className="mb-4">
+            <div className="mb-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
                 </svg>
                 Privacy-Focused
               </span>
-            </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+            </div>
+            <h1 className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               No KYC Exchanges
-            </motion.h1>
-            <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
               Trade Ethereum Classic without identity verification. These exchanges and DEXs allow you to buy, sell, and trade ETC while maintaining your privacy.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* Privacy Notice */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="mb-12 rounded-xl border border-blue-500/20 bg-blue-500/5 p-6"
           >
             <div className="flex gap-4">
@@ -102,7 +78,7 @@ export default function NoKYCExchangesPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* DEX Section */}
           {dexExchanges.length > 0 && (
@@ -115,14 +91,11 @@ export default function NoKYCExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {dexExchanges.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-primary)]/30"
                   >
                     <div className="flex items-start justify-between">
@@ -153,7 +126,7 @@ export default function NoKYCExchangesPage() {
                         Trading fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                       </p>
                     )}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
@@ -170,14 +143,11 @@ export default function NoKYCExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {cexExchanges.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-primary)]/30"
                   >
                     <div className="flex items-start justify-between">
@@ -215,17 +185,14 @@ export default function NoKYCExchangesPage() {
                         </span>
                       )}
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
           )}
 
           {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="grid gap-6 sm:grid-cols-3">
@@ -242,13 +209,10 @@ export default function NoKYCExchangesPage() {
                 <div className="mt-1 text-sm text-[var(--color-text-muted)]">CEXs with No-KYC Option</div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
             <Link
@@ -260,7 +224,7 @@ export default function NoKYCExchangesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </main>

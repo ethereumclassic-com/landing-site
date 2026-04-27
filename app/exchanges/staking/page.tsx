@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 export default function StakingExchangesPage() {
   return (
@@ -43,33 +25,27 @@ export default function StakingExchangesPage() {
       <div className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {/* Header */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mb-12"
           >
-            <motion.div variants={fadeInUp} className="mb-4">
+            <div className="mb-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                 </svg>
                 Important Info
               </span>
-            </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+            </div>
+            <h1 className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Staking on Exchanges
-            </motion.h1>
-            <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
               Understanding yield opportunities for Ethereum Classic holders.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* Important Notice */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="mb-12 rounded-xl border border-amber-500/30 bg-amber-500/10 p-6"
           >
             <div className="flex items-start gap-4">
@@ -85,13 +61,10 @@ export default function StakingExchangesPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Why PoW */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Why Ethereum Classic Uses Proof-of-Work</h2>
@@ -130,13 +103,10 @@ export default function StakingExchangesPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Alternatives */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
             className="mb-12"
           >
             <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Ways to Earn with ETC</h2>
@@ -237,13 +207,10 @@ export default function StakingExchangesPage() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Warning about "Staking" offers */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="mb-12 rounded-xl border border-red-500/30 bg-red-500/10 p-6"
           >
             <div className="flex items-start gap-4">
@@ -265,13 +232,10 @@ export default function StakingExchangesPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <div
             className="text-center"
           >
             <p className="mb-4 text-[var(--color-text-secondary)]">
@@ -286,7 +250,7 @@ export default function StakingExchangesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </main>

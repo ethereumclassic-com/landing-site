@@ -1,21 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { gettingStartedSteps, networks, faucets, getRecommendedTools, buildStats } from '../data/build'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
 
 // Icons
 const ChevronRightIcon = () => (
@@ -89,10 +75,7 @@ export default function GettingStartedPage() {
       {/* Hero Section */}
       <section className="border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
               Getting Started with ETC Development
@@ -101,7 +84,7 @@ export default function GettingStartedPage() {
               Deploy your first smart contract to Ethereum Classic in under 10 minutes. Follow this
               step-by-step guide using industry-standard tools.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -132,10 +115,7 @@ export default function GettingStartedPage() {
       {/* Prerequisites */}
       <section className="px-6 py-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Prerequisites</h2>
             <div className="grid gap-4 md:grid-cols-2">
@@ -178,33 +158,25 @@ export default function GettingStartedPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Step by Step Guide */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-12 text-center text-3xl font-bold text-[var(--text-primary)]"
           >
             Step-by-Step Guide
-          </motion.h2>
+          </h2>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="space-y-8"
           >
             {gettingStartedSteps.map((step, index) => (
-              <motion.div
+              <div
                 key={step.step}
-                variants={fadeInUp}
                 className="relative"
               >
                 {/* Connector Line */}
@@ -258,19 +230,16 @@ export default function GettingStartedPage() {
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Network Configuration Quick Reference */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">
               Network Configuration
@@ -379,17 +348,14 @@ export default function GettingStartedPage() {
                 </code>
               </pre>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Recommended Tools */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Recommended Tools</h2>
 
@@ -424,17 +390,14 @@ export default function GettingStartedPage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Tips Section */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Development Tips</h2>
 
@@ -470,17 +433,14 @@ export default function GettingStartedPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Need More Help?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
@@ -503,7 +463,7 @@ export default function GettingStartedPage() {
                 <ExternalLinkIcon />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

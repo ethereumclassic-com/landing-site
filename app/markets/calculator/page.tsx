@@ -1,26 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { sampleRates } from '../data/markets'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 // Historical ATH for comparison
 const ATH_PRICE = 176.16
@@ -75,14 +57,11 @@ export default function CalculatorPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/markets"
               className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -92,34 +71,32 @@ export default function CalculatorPage() {
               </svg>
               Back to Markets
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z" />
               </svg>
               Investment Tool
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Investment{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Calculator
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Calculate potential returns on your ETC investment. Explore different price scenarios and plan your strategy.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Calculator Tool */}
@@ -127,9 +104,7 @@ export default function CalculatorPage() {
         <div className="mx-auto max-w-4xl">
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Input Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
               className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Investment Details</h2>
@@ -225,13 +200,10 @@ export default function CalculatorPage() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Results Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Projected Returns</h2>
@@ -287,7 +259,7 @@ export default function CalculatorPage() {
                   <span className="text-[var(--color-primary)]">{formatUSD(calculations.futureValue)}</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -295,17 +267,14 @@ export default function CalculatorPage() {
       {/* Scenario Comparison */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price Scenarios</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               See how your {formatUSD(parseFloat(investmentAmount) || 1000)} investment could grow at different price levels
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {priceScenarios.map((scenario, index) => {
@@ -316,12 +285,8 @@ export default function CalculatorPage() {
               const profit = futureValue - investment
 
               return (
-                <motion.div
+                <div
                   key={scenario.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                   onClick={() => setFuturePrice(scenario.price.toString())}
                   className={`cursor-pointer rounded-xl border p-4 transition-all ${
                     futurePrice === scenario.price.toString()
@@ -339,7 +304,7 @@ export default function CalculatorPage() {
                     <p className="font-semibold text-[var(--color-primary)]">{formatUSD(futureValue)}</p>
                     <p className="text-sm text-emerald-400">+{formatUSD(profit)}</p>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
@@ -349,17 +314,14 @@ export default function CalculatorPage() {
       {/* DCA Calculator */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Dollar-Cost Averaging</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               See how regular investments can accumulate over time
             </p>
-          </motion.div>
+          </div>
 
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -377,11 +339,8 @@ export default function CalculatorPage() {
                   const price = parseFloat(etcPrice) || CURRENT_PRICE
                   const monthlyEtc = monthly / price
                   return (
-                    <motion.tr
+                    <tr
                       key={monthly}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
                       className="border-b border-[var(--border)]/50"
                     >
                       <td className="px-4 py-3 font-medium text-[var(--text-primary)]">${monthly}/mo</td>
@@ -397,7 +356,7 @@ export default function CalculatorPage() {
                       <td className="px-4 py-3 text-right text-[var(--color-primary)]">
                         {(monthlyEtc * 60).toFixed(2)} ETC
                       </td>
-                    </motion.tr>
+                    </tr>
                   )
                 })}
               </tbody>
@@ -431,10 +390,7 @@ export default function CalculatorPage() {
       {/* CTA */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Invest?</h2>
@@ -461,7 +417,7 @@ export default function CalculatorPage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

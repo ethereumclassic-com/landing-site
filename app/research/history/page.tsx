@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
 import {
@@ -15,15 +14,6 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 // Sample historical price data
 const priceHistory = [
@@ -125,7 +115,7 @@ export default function HistoricalDataPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/research"
               className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -143,17 +133,14 @@ export default function HistoricalDataPage() {
               Explore Ethereum Classic&apos;s historical price, hashrate, and network activity.
               Data visualization powered by Recharts.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Data Notice */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
           >
             <div className="flex items-start gap-3">
@@ -168,7 +155,7 @@ export default function HistoricalDataPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -213,11 +200,8 @@ export default function HistoricalDataPage() {
       {/* Charts */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
+          <div
             key={activeChart}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             {activeChart === 'price' && (
@@ -368,7 +352,7 @@ export default function HistoricalDataPage() {
                 </p>
               </>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -383,18 +367,14 @@ export default function HistoricalDataPage() {
               { label: 'All-Time High', value: '$176.16', note: 'May 6, 2021' },
               { label: 'Post-Merge Peak', value: '263 TH/s', note: 'September 2022' },
             ].map((stat, index) => (
-              <motion.div
+              <div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <p className="text-sm text-[var(--color-text-muted)]">{stat.label}</p>
                 <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">{stat.value}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">{stat.note}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -403,10 +383,7 @@ export default function HistoricalDataPage() {
       {/* Related Links */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Related Research</h3>
@@ -433,7 +410,7 @@ export default function HistoricalDataPage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Transaction fees and gas analysis</p>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

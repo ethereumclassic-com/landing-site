@@ -1,16 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useState } from 'react'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const referralTiers = [
   {
@@ -141,7 +131,7 @@ export default function ReferralPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl text-center">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
               Earn ETC
             </span>
@@ -153,17 +143,14 @@ export default function ReferralPage() {
               Earn Ethereum Classic by referring users to our products and services.
               Commission paid directly to your wallet with no minimums.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Coming Soon Banner */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -179,27 +166,20 @@ export default function ReferralPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* How It Works */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">How It Works</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {howItWorks.map((item, index) => (
-                <motion.div
+                <div
                   key={item.step}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-lg font-bold text-[var(--color-primary)]">
@@ -207,20 +187,17 @@ export default function ReferralPage() {
                   </div>
                   <h3 className="mt-4 font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-2 text-sm text-[var(--color-text-muted)]">{item.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Commission Tiers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Commission Tiers</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
@@ -228,12 +205,8 @@ export default function ReferralPage() {
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {referralTiers.map((tier, index) => (
-                <motion.div
+                <div
                   key={tier.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                   className={`rounded-xl border ${tier.borderColor} ${tier.bgColor} p-6 text-center`}
                 >
                   <div className={`text-2xl font-bold ${tier.color}`}>{tier.name}</div>
@@ -244,20 +217,17 @@ export default function ReferralPage() {
                       ? `${tier.minReferrals}-${tier.maxReferrals} referrals`
                       : `${tier.minReferrals}+ referrals`}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Products */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Products & Services</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
@@ -265,12 +235,8 @@ export default function ReferralPage() {
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {referralProducts.map((product, index) => (
-                <motion.div
+                <div
                   key={product.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
                 >
                   <div className="flex items-start justify-between">
@@ -291,20 +257,17 @@ export default function ReferralPage() {
                     <span className="text-xs text-[var(--color-text-muted)]">Commission:</span>
                     <span className="ml-2 font-medium text-[var(--color-primary)]">{product.commission}</span>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Waitlist Signup */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8"
           >
             <div className="mx-auto max-w-xl text-center">
@@ -314,9 +277,7 @@ export default function ReferralPage() {
               </p>
 
               {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                <div
                   className="mt-6 rounded-xl border border-green-500/30 bg-green-500/10 p-4"
                 >
                   <div className="flex items-center justify-center gap-2 text-green-400">
@@ -328,7 +289,7 @@ export default function ReferralPage() {
                   <p className="mt-2 text-sm text-green-400/80">
                     We&apos;ll notify you when the referral program launches.
                   </p>
-                </motion.div>
+                </div>
               ) : (
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                   <div>
@@ -363,17 +324,14 @@ export default function ReferralPage() {
                 </form>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Frequently Asked Questions</h2>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -406,17 +364,14 @@ export default function ReferralPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Resources */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">Promotional Resources</h2>
@@ -443,7 +398,7 @@ export default function ReferralPage() {
                 <span className="text-sm text-[var(--text-primary)]">Performance Dashboard</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

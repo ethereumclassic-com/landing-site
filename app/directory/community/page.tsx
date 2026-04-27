@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const socialPlatforms = [
   {
@@ -95,8 +77,8 @@ export default function DirectoryCommunityPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/directory"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -106,22 +88,22 @@ export default function DirectoryCommunityPage() {
                 </svg>
                 Back to Directory
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
+            </div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Community Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Connect with the Ethereum Classic community across social platforms,
                 forums, and developer channels.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Social Platforms */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Social Platforms</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {socialPlatforms.map((platform) => (
@@ -145,14 +127,14 @@ export default function DirectoryCommunityPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Community Resources */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Resources & Governance</h2>
             <div className="grid gap-4 md:grid-cols-2">
               {communityResources.map((resource) => (
@@ -175,14 +157,14 @@ export default function DirectoryCommunityPage() {
                 </Link>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/community"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
@@ -195,7 +177,7 @@ export default function DirectoryCommunityPage() {
             >
               How to Contribute
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

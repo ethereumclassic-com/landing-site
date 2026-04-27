@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   walletReviews,
@@ -11,23 +10,6 @@ import {
   getRatingLabel,
   type WalletReview,
 } from '../data/reviews'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' as const },
-  },
-}
 
 type SortOption = 'rating' | 'name' | 'verdict'
 type VerdictFilter = 'all' | WalletReview['verdict']
@@ -95,8 +77,7 @@ function ReviewCard({ review }: { review: WalletReview }) {
   const verdictColor = getVerdictColor(review.verdict)
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel)] transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
     >
       <Link href={`/wallet/reviews/${review.slug}`} className="block p-6">
@@ -188,7 +169,7 @@ function ReviewCard({ review }: { review: WalletReview }) {
           </svg>
         </div>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 
@@ -251,14 +232,11 @@ export default function WalletReviewsPage() {
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-6xl"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 text-sm">
+          <div className="mb-6 flex items-center gap-2 text-sm">
             <Link
               href="/wallet"
               className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -267,40 +245,38 @@ export default function WalletReviewsPage() {
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
             <span className="text-[var(--text-primary)]">Reviews</span>
-          </motion.div>
+          </div>
 
           {/* Badge */}
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
               <svg aria-hidden="true" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
               {walletReviews.length} In-Depth Reviews
             </span>
-          </motion.div>
+          </div>
 
           {/* Title */}
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Wallet{' '}
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
               Reviews
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Honest, in-depth reviews of ETC-compatible wallets. We test security, usability,
             features, and customer support so you can make an informed decision.
-          </motion.p>
+          </p>
 
           {/* Quick Stats */}
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3">
               <div className="text-2xl font-bold text-green-400">{verdictCounts['highly-recommended']}</div>
               <div className="text-sm text-[var(--color-text-muted)]">Highly Recommended</div>
@@ -313,8 +289,8 @@ export default function WalletReviewsPage() {
               <div className="text-2xl font-bold text-amber-400">{verdictCounts.acceptable}</div>
               <div className="text-sm text-[var(--color-text-muted)]">Acceptable</div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Filters */}
@@ -384,16 +360,13 @@ export default function WalletReviewsPage() {
             Showing {filteredReviews.length} review{filteredReviews.length !== 1 ? 's' : ''}
           </p>
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-2"
           >
             {filteredReviews.map((review) => (
               <ReviewCard key={review.id} review={review} />
             ))}
-          </motion.div>
+          </div>
 
           {filteredReviews.length === 0 && (
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center">
@@ -422,10 +395,7 @@ export default function WalletReviewsPage() {
       {/* Rating Methodology */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8"
           >
             <h2 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Our Rating Methodology</h2>
@@ -476,17 +446,14 @@ export default function WalletReviewsPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
@@ -509,7 +476,7 @@ export default function WalletReviewsPage() {
                 Hardware Guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

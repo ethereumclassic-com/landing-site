@@ -1,19 +1,9 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { miningHardware, networkStats, type MiningHardware } from '../data/mining'
 import { calculateHardwareProfitability, formatUSD, NETWORK_CONSTANTS } from '../lib/calculations'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 type HardwareTab = 'ASIC' | 'GPU'
 type SortOption = 'hashrate' | 'efficiency' | 'profit' | 'power'
@@ -134,10 +124,7 @@ function HardwareCard({
   const brandColor = brandColors[hardware.brand] || { bg: 'bg-gray-500/10', text: 'text-gray-400' }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
     >
       <div className="mb-3 flex items-start justify-between">
@@ -179,7 +166,7 @@ function HardwareCard({
       {hardware.notes && (
         <p className="mt-3 text-xs text-[var(--color-text-muted)]">{hardware.notes}</p>
       )}
-    </motion.div>
+    </div>
   )
 }
 
@@ -234,10 +221,7 @@ export default function MiningHardwarePage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
+          <div
           >
             <Link
               href="/mining"
@@ -269,17 +253,14 @@ export default function MiningHardwarePage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Settings */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
           >
             <div className="flex flex-wrap items-center gap-6">
@@ -318,7 +299,7 @@ export default function MiningHardwarePage() {
                 Network: {networkStats.hashrate} • {networkStats.blockReward}/block
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -421,10 +402,7 @@ export default function MiningHardwarePage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h3 className="mb-3 text-lg font-semibold text-[var(--text-primary)]">ASIC vs GPU Mining</h3>
@@ -438,13 +416,9 @@ export default function MiningHardwarePage() {
                   <p>Versatile and resellable. Lower initial efficiency but can mine multiple algorithms. Good for hobbyists.</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h3 className="mb-3 text-lg font-semibold text-[var(--text-primary)]">Understanding Efficiency</h3>
@@ -459,7 +433,7 @@ export default function MiningHardwarePage() {
                   Profitability depends on your electricity rate. At higher rates (&gt;$0.15/kWh), only the most efficient hardware may be profitable.
                 </p>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -467,10 +441,7 @@ export default function MiningHardwarePage() {
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Calculate Your Profitability</h2>
@@ -503,7 +474,7 @@ export default function MiningHardwarePage() {
                 Browse Pools
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

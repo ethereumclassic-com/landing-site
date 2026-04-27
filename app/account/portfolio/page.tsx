@@ -3,21 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useAuth, type PortfolioItem } from '../context/AuthContext'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 },
-  },
-}
 
 // Available assets with current prices
 const assetPrices: Record<string, { name: string; price: number; change24h: number }> = {
@@ -105,10 +91,7 @@ export default function PortfolioPage() {
     <main className="min-h-screen py-20">
       <div className="mx-auto max-w-4xl px-4">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="mb-8"
         >
           <Link
@@ -137,14 +120,11 @@ export default function PortfolioPage() {
               Add Holding
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Portfolio Summary */}
         {portfolio.length > 0 && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
+          <div
             className="mb-8 grid gap-4 sm:grid-cols-3"
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6">
@@ -168,15 +148,12 @@ export default function PortfolioPage() {
                 {portfolioGainPercent >= 0 ? '+' : ''}{portfolioGainPercent.toFixed(2)}%
               </p>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* Holdings List */}
         {portfolio.length === 0 ? (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-12 text-center"
           >
             <svg aria-hidden="true" className="mx-auto h-16 w-16 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
@@ -195,12 +172,9 @@ export default function PortfolioPage() {
               </svg>
               Add Your First Holding
             </button>
-          </motion.div>
+          </div>
         ) : (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="space-y-3"
           >
             {portfolio.map((item, index) => {
@@ -211,9 +185,8 @@ export default function PortfolioPage() {
               const gainPercent = (gain / cost) * 100
 
               return (
-                <motion.div
+                <div
                   key={`${item.symbol}-${index}`}
-                  variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-4"
                 >
                   <div className="flex items-center justify-between">
@@ -259,18 +232,16 @@ export default function PortfolioPage() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
-          </motion.div>
+          </div>
         )}
 
         {/* Add Holding Modal */}
         {showAddModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+            <div
               className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="mb-6 flex items-center justify-between">
@@ -374,7 +345,7 @@ export default function PortfolioPage() {
                   Add Holding
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
         )}
       </div>

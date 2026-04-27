@@ -1,17 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { hardwareManufacturers, miningHardware } from '../../data/mining'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const brandColors: Record<string, { bg: string; border: string; text: string }> = {
   Bitmain: { bg: 'bg-orange-500/10', border: 'border-orange-500/30', text: 'text-orange-400' },
@@ -27,10 +17,7 @@ function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManuf
   const relatedHardware = miningHardware.filter(hw => hw.brand === manufacturer.name)
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+    <div
       className={`rounded-xl border ${colors.border} ${colors.bg} p-6`}
     >
       <div className="mb-4 flex items-start justify-between">
@@ -70,7 +57,7 @@ function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManuf
           </div>
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
 
@@ -83,7 +70,7 @@ export default function HardwareBuyPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/mining/hardware"
               className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -101,17 +88,14 @@ export default function HardwareBuyPage() {
               Purchase ETChash-compatible mining hardware directly from official manufacturer stores.
               Compare ASIC and GPU options for Ethereum Classic mining.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Important Notice */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
           >
             <div className="flex items-start gap-3">
@@ -127,21 +111,18 @@ export default function HardwareBuyPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ASIC Manufacturers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-6 text-2xl font-bold text-[var(--text-primary)]"
           >
             ASIC Manufacturers
-          </motion.h2>
+          </h2>
           <p className="mb-6 text-[var(--color-text-muted)]">
             Purpose-built miners designed specifically for ETChash. Highest efficiency and hashrate, but single-purpose hardware.
           </p>
@@ -156,14 +137,11 @@ export default function HardwareBuyPage() {
       {/* GPU Manufacturers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-6 text-2xl font-bold text-[var(--text-primary)]"
           >
             GPU Manufacturers
-          </motion.h2>
+          </h2>
           <p className="mb-6 text-[var(--color-text-muted)]">
             Versatile graphics cards that can mine multiple algorithms. Lower efficiency than ASICs but maintain resale value.
           </p>
@@ -178,10 +156,7 @@ export default function HardwareBuyPage() {
       {/* Buying Tips */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h3 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Buying Tips</h3>
@@ -223,17 +198,14 @@ export default function HardwareBuyPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
@@ -254,7 +226,7 @@ export default function HardwareBuyPage() {
                 Browse Pools
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

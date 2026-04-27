@@ -1,26 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { getArticlesByCategory, getCategoryById } from '../data/articles'
 import ArticleCard from '../components/ArticleCard'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const defiFeatures = [
   {
@@ -93,14 +75,11 @@ export default function DeFiPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/learn"
               className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -110,34 +89,32 @@ export default function DeFiPage() {
               </svg>
               Back to Learn
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm font-medium text-purple-400">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               {defiArticles.length} Article{defiArticles.length !== 1 ? 's' : ''}
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             DeFi on{' '}
             <span className="bg-gradient-to-r from-purple-400 to-[var(--color-primary)] bg-clip-text text-transparent">
               Ethereum Classic
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             {category?.description || 'Explore decentralized finance on Ethereum Classic. Swap tokens, provide liquidity, and earn yield with ETC DeFi protocols.'}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* DeFi Concepts */}
@@ -145,12 +122,8 @@ export default function DeFiPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {defiFeatures.map((feature, index) => (
-              <motion.div
+              <div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
@@ -158,7 +131,7 @@ export default function DeFiPage() {
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -167,10 +140,7 @@ export default function DeFiPage() {
       {/* DeFi Protocols */}
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">ETC DeFi Protocols</h2>
@@ -200,24 +170,21 @@ export default function DeFiPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Articles Grid */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">All DeFi Guides</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Learn how to use decentralized finance on Ethereum Classic
             </p>
-          </motion.div>
+          </div>
 
           {defiArticles.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -226,9 +193,7 @@ export default function DeFiPage() {
               ))}
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10">
@@ -239,7 +204,7 @@ export default function DeFiPage() {
               <p className="text-[var(--color-text-secondary)]">
                 DeFi guides coming soon!
               </p>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
@@ -247,10 +212,7 @@ export default function DeFiPage() {
       {/* Safety Notice */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6"
           >
             <div className="flex items-start gap-4">
@@ -266,16 +228,13 @@ export default function DeFiPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-purple-500/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
@@ -303,7 +262,7 @@ export default function DeFiPage() {
               Browse DeFi Apps
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { currencies, sampleRates, getCurrencyByCode, formatCurrency } from '../data/markets'
 
@@ -45,23 +44,6 @@ function useExchangeRates() {
   }, [])
 
   return { rates, isLoading, source, lastUpdated }
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
 }
 
 // Quick conversion amounts
@@ -137,14 +119,11 @@ export default function ConverterPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/markets"
               className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -154,42 +133,38 @@ export default function ConverterPage() {
               </svg>
               Back to Markets
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
               </svg>
               Price Tool
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             ETC Price{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Converter
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Convert between ETC and other currencies. Get real-time exchange rates for fiat, crypto, and stablecoins.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Converter Tool */}
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
           >
             {/* From Currency */}
@@ -323,7 +298,7 @@ export default function ConverterPage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Data source note */}
           <div className="mt-4 text-center">
@@ -358,17 +333,14 @@ export default function ConverterPage() {
       {/* Conversion Table */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">ETC Conversion Table</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Quick reference for common ETC conversions
             </p>
-          </motion.div>
+          </div>
 
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -383,11 +355,8 @@ export default function ConverterPage() {
               </thead>
               <tbody>
                 {[0.1, 0.5, 1, 5, 10, 50, 100, 500, 1000].map((etcAmount) => (
-                  <motion.tr
+                  <tr
                     key={etcAmount}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
                     className="border-b border-[var(--border)]/50"
                   >
                     <td className="px-4 py-3 font-medium text-[var(--text-primary)]">{etcAmount} ETC</td>
@@ -403,7 +372,7 @@ export default function ConverterPage() {
                     <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">
                       {(etcAmount * (liveRates['ETC-ETH'] || 0)).toFixed(6)} ETH
                     </td>
-                  </motion.tr>
+                  </tr>
                 ))}
               </tbody>
             </table>
@@ -414,17 +383,14 @@ export default function ConverterPage() {
       {/* Popular Conversions */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Popular Conversions</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Frequently used ETC conversion pairs
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -433,11 +399,8 @@ export default function ConverterPage() {
               { from: 'ETC', to: 'BTC', rate: liveRates['ETC-BTC'] },
               { from: 'ETC', to: 'ETH', rate: liveRates['ETC-ETH'] },
             ].map(({ from, to, rate: pairRate }) => (
-              <motion.div
+              <div
                 key={`${from}-${to}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
@@ -450,7 +413,7 @@ export default function ConverterPage() {
                 <p className="mt-2 text-lg font-semibold text-[var(--text-primary)]">
                   1 {from} = {pairRate && (pairRate < 0.01 ? pairRate.toFixed(8) : pairRate.toLocaleString('en-US', { maximumFractionDigits: 4 }))} {to}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -459,10 +422,7 @@ export default function ConverterPage() {
       {/* CTA */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Buy ETC?</h2>
@@ -489,7 +449,7 @@ export default function ConverterPage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

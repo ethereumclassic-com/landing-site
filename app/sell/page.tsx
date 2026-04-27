@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 interface SellMethodProps {
   name: string
@@ -36,8 +18,7 @@ function SellMethodCard({ name, description, features, pros, cons, link, badge, 
   const linkProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-center justify-between">
@@ -100,7 +81,7 @@ function SellMethodCard({ name, description, features, pros, cons, link, badge, 
           )}
         </svg>
       </LinkComponent>
-    </motion.div>
+    </div>
   )
 }
 
@@ -114,8 +95,7 @@ interface EcosystemProductProps {
 
 function EcosystemProductCard({ name, description, useCase, website, badge }: EcosystemProductProps) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-3 flex items-center justify-between">
@@ -141,14 +121,13 @@ function EcosystemProductCard({ name, description, useCase, website, badge }: Ec
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
-    </motion.div>
+    </div>
   )
 }
 
 function StepCard({ number, title, description }: { number: number; title: string; description: string }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="relative rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
       <div className="absolute -top-3 left-6 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--background)]">
@@ -156,7 +135,7 @@ function StepCard({ number, title, description }: { number: number; title: strin
       </div>
       <h3 className="mt-2 text-lg font-bold text-[var(--text-primary)]">{title}</h3>
       <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{description}</p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -269,10 +248,7 @@ export default function SellPage() {
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="text-center"
           >
             <Link
@@ -293,48 +269,36 @@ export default function SellPage() {
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
               Convert your Ethereum Classic to fiat currency or stablecoins. Compare platforms, fees, and payout methods for the best rates.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Sell Methods */}
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Selling Methods</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Choose the best method based on your needs for speed, fees, and privacy
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {sellMethods.map((method) => (
               <SellMethodCard key={method.name} {...method} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Native Off-Ramp Path */}
       <section className="bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-8 text-center"
           >
             <span className="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
@@ -346,25 +310,17 @@ export default function SellPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               Convert ETC to USD without using centralized exchanges using the native ClassicUSD (USC) stablecoin and Brale integration
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 md:grid-cols-3"
           >
             {braleSteps.map((step) => (
               <StepCard key={step.number} {...step} />
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <div
             className="mt-8 flex flex-wrap justify-center gap-4"
           >
             <a
@@ -389,18 +345,14 @@ export default function SellPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Ecosystem Products */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-8"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -412,40 +364,28 @@ export default function SellPage() {
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Alternative ways to use and spend your ETC without traditional selling
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 md:grid-cols-3"
           >
             {ecosystemProducts.map((product) => (
               <EcosystemProductCard key={product.name} {...product} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Tips Section */}
       <section className="bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Tips for Selling ETC</h2>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {[
@@ -504,9 +444,8 @@ export default function SellPage() {
                 ),
               },
             ].map((tip) => (
-              <motion.div
+              <div
                 key={tip.title}
-                variants={fadeInUp}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -514,20 +453,16 @@ export default function SellPage() {
                 </div>
                 <h3 className="text-lg font-bold text-[var(--text-primary)]">{tip.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{tip.description}</p>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="rounded-3xl border border-[var(--border)] bg-gradient-to-br from-[var(--panel)] to-[var(--bg)] p-8 text-center md:p-12"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
@@ -553,7 +488,7 @@ export default function SellPage() {
                 Exchange Directory
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

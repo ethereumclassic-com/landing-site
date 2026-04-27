@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { miningSoftware, type MiningSoftware } from '../data/mining'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const platformColors: Record<string, { bg: string; text: string }> = {
   Windows: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
@@ -35,8 +17,7 @@ const gpuColors: Record<string, { bg: string; text: string }> = {
 
 function SoftwareCard({ software }: { software: MiningSoftware }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
       <div className="mb-4 flex items-start justify-between">
@@ -96,7 +77,7 @@ function SoftwareCard({ software }: { software: MiningSoftware }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
-    </motion.div>
+    </div>
   )
 }
 
@@ -118,8 +99,8 @@ export default function MiningSoftwarePage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/mining"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -129,9 +110,9 @@ export default function MiningSoftwarePage() {
                 </svg>
                 Back to Mining
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Mining Software Guide
               </h1>
@@ -139,18 +120,15 @@ export default function MiningSoftwarePage() {
                 Choose the best mining software for Ethereum Classic. All miners listed support the ETChash
                 algorithm used by ETC.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Recommendation */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
             <div className="flex items-start gap-4">
@@ -168,41 +146,32 @@ export default function MiningSoftwarePage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Software Cards */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Available Mining Software
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {miningSoftware.map((software) => (
               <SoftwareCard key={software.id} software={software} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Comparison Table */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Software Comparison</h2>
@@ -272,17 +241,14 @@ export default function MiningSoftwarePage() {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Configuration Examples */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
           >
             <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">Configuration Examples</h2>
             <p className="mb-6 text-sm text-[var(--color-text-muted)]">
@@ -310,17 +276,14 @@ export default function MiningSoftwarePage() {
                 description="High performance miner with dual mining support."
               />
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Optimization Tips */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Optimization Tips</h2>
@@ -372,17 +335,14 @@ export default function MiningSoftwarePage() {
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Security Warning */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <div
             className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6"
           >
             <div className="flex items-start gap-4">
@@ -398,17 +358,14 @@ export default function MiningSoftwarePage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
@@ -432,7 +389,7 @@ export default function MiningSoftwarePage() {
                 Browse Pools
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

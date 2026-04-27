@@ -1,32 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const networkConfig = {
-  networkName: 'Ethereum Classic',
-  rpcUrl: 'https://etc.rivet.link',
-  chainId: '61',
-  symbol: 'ETC',
-  blockExplorer: 'https://etc.blockscout.com',
-}
 
 const setupSteps = [
   {
@@ -142,14 +116,11 @@ export default function MetaMaskPage() {
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 text-sm">
+          <div className="mb-6 flex items-center gap-2 text-sm">
             <Link
               href="/wallet"
               className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -158,40 +129,38 @@ export default function MetaMaskPage() {
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
             <span className="text-[var(--text-primary)]">MetaMask Setup</span>
-          </motion.div>
+          </div>
 
           {/* Badge */}
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-sm font-medium text-orange-400">
               <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M21.83 6.33L12.6 1.5c-.33-.2-.87-.2-1.2 0L2.17 6.33c-.2.13-.2.47 0 .6l9.23 5.17c.33.2.87.2 1.2 0l9.23-5.17c.2-.13.2-.47 0-.6zM12 13.17L3.6 8.33v7.84c0 .27.13.53.4.67l7.6 4.33c.13.07.27.1.4.1s.27-.03.4-.1l7.6-4.33c.27-.13.4-.4.4-.67V8.33L12 13.17z"/>
               </svg>
               Browser Wallet
             </span>
-          </motion.div>
+          </div>
 
           {/* Title */}
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             MetaMask Setup Guide for{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               Ethereum Classic
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mt-4 text-lg text-[var(--color-text-secondary)]"
           >
             MetaMask is the most popular browser wallet for interacting with EVM-compatible blockchains.
             Follow this guide to configure MetaMask for Ethereum Classic in just a few minutes.
-          </motion.p>
+          </p>
 
           {/* Quick Stats */}
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap gap-6">
+          <div className="mt-8 flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -210,8 +179,8 @@ export default function MetaMaskPage() {
               </svg>
               <span className="text-sm text-[var(--color-text-secondary)]">Non-custodial</span>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Setup Steps */}
@@ -219,12 +188,8 @@ export default function MetaMaskPage() {
         <div className="mx-auto max-w-4xl">
           <div className="space-y-8">
             {setupSteps.map((item, index) => (
-              <motion.div
+              <div
                 key={item.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="relative"
               >
                 {/* Connector line */}
@@ -290,7 +255,7 @@ export default function MetaMaskPage() {
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -299,10 +264,7 @@ export default function MetaMaskPage() {
       {/* Alternative RPC Endpoints */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Alternative RPC Endpoints</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
@@ -352,17 +314,14 @@ export default function MetaMaskPage() {
                 Chainlist
               </a>.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Troubleshooting */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Troubleshooting</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
@@ -388,17 +347,14 @@ export default function MetaMaskPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
@@ -427,7 +383,7 @@ export default function MetaMaskPage() {
                 Buy ETC
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PoolCard from './components/PoolCard'
 import HashRateChart, { HashRateBar, MiningStat } from './components/HashRateChart'
@@ -10,23 +9,6 @@ import {
   getRecommendedPools,
   miningResources,
 } from './data/mining'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 export default function MiningPage() {
   const recommendedPools = getRecommendedPools()
@@ -39,40 +21,35 @@ export default function MiningPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm font-medium text-amber-400">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
               </svg>
               Proof of Work
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Mine{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Ethereum Classic
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             ETC is the largest Proof of Work smart contract platform. Start mining with GPUs or ASICs using the ETChash algorithm.
-          </motion.p>
+          </p>
 
           {/* Quick Actions */}
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/mining/getting-started"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
@@ -94,8 +71,8 @@ export default function MiningPage() {
             >
               Hardware Guide
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Network Stats Bar */}
@@ -159,33 +136,27 @@ export default function MiningPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 lg:grid-cols-2">
             <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
               >
                 <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Pool Distribution</h2>
                 <p className="mt-2 text-[var(--color-text-secondary)]">
                   Choose a pool to join based on hashrate share and features
                 </p>
-              </motion.div>
+              </div>
               <div className="mt-6">
                 <HashRateChart pools={miningPools} />
               </div>
             </div>
 
             <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
                 className="mb-6"
               >
                 <h3 className="text-xl font-bold text-[var(--text-primary)]">Recommended Pools</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Trusted pools with good hashrate and features
                 </p>
-              </motion.div>
+              </div>
               <div className="space-y-3">
                 {recommendedPools.map((pool, index) => (
                   <PoolCard key={pool.id} pool={pool} index={index} variant="compact" />
@@ -208,24 +179,18 @@ export default function MiningPage() {
       {/* Quick Links Grid */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Mining Resources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Everything you need to start and optimize your mining operation
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {/* Getting Started */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
             >
               <Link
                 href="/mining/getting-started"
@@ -243,14 +208,10 @@ export default function MiningPage() {
                   Step-by-step guide to start mining ETC today
                 </p>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Hardware Guide */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
             >
               <Link
                 href="/mining/hardware"
@@ -268,14 +229,10 @@ export default function MiningPage() {
                   Compare GPUs and ASICs for ETC mining
                 </p>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Mining Pools */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
             >
               <Link
                 href="/mining/pools"
@@ -293,14 +250,10 @@ export default function MiningPage() {
                   Find and compare ETC mining pools
                 </p>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Software */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+            <div
             >
               <Link
                 href="/mining/software"
@@ -318,14 +271,10 @@ export default function MiningPage() {
                   Download mining software for your hardware
                 </p>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Mining OS */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
+            <div
             >
               <Link
                 href="/mining/os"
@@ -343,14 +292,10 @@ export default function MiningPage() {
                   HiveOS, minerstat, and other mining systems
                 </p>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Profitability */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+            <div
             >
               <Link
                 href="/mining/profitability"
@@ -368,14 +313,10 @@ export default function MiningPage() {
                   Calculate your potential mining earnings
                 </p>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Network Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
+            <div
             >
               <Link
                 href="/mining/stats"
@@ -393,7 +334,7 @@ export default function MiningPage() {
                   Real-time ETC network statistics
                 </p>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -401,29 +342,22 @@ export default function MiningPage() {
       {/* External Resources */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">External Resources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Useful tools and statistics from trusted sources
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {miningResources.map((resource, index) => (
-              <motion.a
+              <a
                 key={resource.id}
                 href={resource.url}
                 target={resource.url.startsWith('/') ? undefined : '_blank'}
                 rel={resource.url.startsWith('/') ? undefined : 'noopener noreferrer'}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="group flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div>
@@ -445,7 +379,7 @@ export default function MiningPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                   )}
                 </svg>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
@@ -454,10 +388,7 @@ export default function MiningPage() {
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
@@ -484,7 +415,7 @@ export default function MiningPage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

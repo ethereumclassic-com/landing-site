@@ -1,27 +1,9 @@
 'use client'
 
 import { use } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getClientById, type NodeClient } from '../../data/build'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const platformColors: Record<string, { bg: string; text: string }> = {
   Windows: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
@@ -42,10 +24,7 @@ interface Props {
 
 function InstallationSection({ client }: { client: NodeClient }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
       <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Installation</h2>
@@ -122,16 +101,13 @@ function InstallationSection({ client }: { client: NodeClient }) {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 function ConfigurationSection({ client }: { client: NodeClient }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4 }}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
       <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Configuration</h2>
@@ -190,7 +166,7 @@ function ConfigurationSection({ client }: { client: NodeClient }) {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -209,8 +185,8 @@ export default function ClientPage({ params }: Props) {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/build/clients"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -220,9 +196,9 @@ export default function ClientPage({ params }: Props) {
                 </svg>
                 Back to Node Clients
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="flex flex-wrap items-start gap-4">
+            <div className="flex flex-wrap items-start gap-4">
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-3">
                   <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
@@ -251,18 +227,15 @@ export default function ClientPage({ params }: Props) {
                   {client.description}
                 </p>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Links */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="flex flex-wrap gap-4"
           >
             <a
@@ -287,17 +260,14 @@ export default function ClientPage({ params }: Props) {
               </svg>
               GitHub
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Platform Support */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Platform Support</h2>
@@ -314,17 +284,14 @@ export default function ClientPage({ params }: Props) {
                 )
               })}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Features */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Key Features</h2>
@@ -338,7 +305,7 @@ export default function ClientPage({ params }: Props) {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -359,10 +326,7 @@ export default function ClientPage({ params }: Props) {
       {/* Status Badge */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-green-500/30 bg-green-500/5 p-4"
           >
             <div className="flex items-center gap-3">
@@ -378,17 +342,14 @@ export default function ClientPage({ params }: Props) {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need Help Getting Started?</h2>
@@ -412,7 +373,7 @@ export default function ClientPage({ params }: Props) {
                 Testnet Faucets
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

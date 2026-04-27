@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 // Inline SVG icons (etc-com does not use lucide-react)
 type IconProps = { size?: number; className?: string; style?: React.CSSProperties; 'aria-hidden'?: boolean | 'true' | 'false' }
@@ -48,16 +47,6 @@ const Code2 = ({ size = 20, className = '', style, ...rest }: IconProps) => (
 )
 import OlympiaCountdown from '../components/OlympiaCountdown'
 import { faqs } from '../data/olympia'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 const ecips = [
   {
@@ -180,13 +169,6 @@ const roadmapStages = [
   },
 ]
 
-const statusStyles = {
-  complete: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
-  active: 'bg-[#00ffae]/10 text-[#00ffae] border border-[#00ffae]/30',
-  research: 'bg-[#38bdf8]/10 text-[#38bdf8] border border-[#38bdf8]/30',
-  future: 'bg-[var(--border-subtle)] text-[var(--color-text-muted)] border border-[var(--border-subtle)]',
-}
-
 const clientData = [
   {
     name: 'Fukuii',
@@ -233,42 +215,36 @@ export default function UpgradeGuidePage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl"
         >
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="mb-4">
             <Link href="/olympia" className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80">
               ← Olympia Hub
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="mb-4">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10 px-4 py-1.5 text-sm font-medium text-[#00ffae]">
               Network Upgrade
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             The <span className="text-[#00ffae]">Olympia</span> Upgrade
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Olympia delivers three protocol changes in a single activation on the
             longest-running EVM and the only Proof-of-Work smart contract platform
             in the world.
-          </motion.p>
+          </p>
 
-          <motion.ul
-            variants={fadeInUp}
+          <ul
             className="mt-6 max-w-2xl space-y-3 text-sm text-[var(--color-text-muted)]"
           >
             <li className="flex gap-3">
@@ -299,8 +275,8 @@ export default function UpgradeGuidePage() {
                 , MiCA and GENIUS Act-compliant), digital commodity classification under the CLARITY Act, and the broadest cross-jurisdictional institutional access profile of any Proof-of-Work smart contract network.
               </span>
             </li>
-          </motion.ul>
-        </motion.div>
+          </ul>
+        </div>
       </section>
 
       {/* Activation countdown */}
@@ -313,26 +289,21 @@ export default function UpgradeGuidePage() {
       {/* What Olympia Brings — ECIP cards */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               What Olympia Brings to Ethereum Classic
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Three protocol upgrades in a single activation — fee market, protocol treasury, and Fusaka EVM alignment — delivered to the only Proof-of-Work smart contract platform in the world.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {ecips.map((item) => {
                 const Icon = item.icon
                 return (
-                  <motion.div
+                  <div
                     key={item.ecip}
-                    variants={fadeInUp}
                     className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition hover:border-[#00ffae]/20"
                   >
                     <div className="mb-3 flex items-center gap-3">
@@ -348,35 +319,31 @@ export default function UpgradeGuidePage() {
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
                       {item.description}
                     </p>
-                  </motion.div>
+                  </div>
                 )
               })}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ECIP-1121 EVM Deep Dive */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.div variants={fadeInUp}>
+            <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#38bdf8]">ECIP-1121</span>
-            </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
+            </div>
+            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Three Ethereum upgrade cycles delivered to ETC in a single fork — every execution-layer improvement independent of Proof-of-Stake and blob data availability.
-            </motion.p>
+            </p>
 
             {/* Fork Timeline */}
-            <motion.div variants={fadeInUp} className="mt-8 mb-6 relative">
+            <div className="mt-8 mb-6 relative">
               <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[#00ffae]/30" />
               <div className="flex flex-col md:flex-row gap-6 md:gap-0 md:justify-between">
                 {forkTimeline.map((fork, i, arr) => (
@@ -407,23 +374,22 @@ export default function UpgradeGuidePage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Divergence callout */}
-            <motion.div variants={fadeInUp} className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
+            <div className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
               Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
               ECIP-1111 now delivers those deferred London EIPs. ECIP-1121 advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
               Together, Olympia brings ETC to full Fusaka execution-layer parity.
-            </motion.div>
+            </div>
 
             {/* EVM Categories */}
             <div className="mb-6 grid gap-4 sm:grid-cols-2">
               {evmCategories.map((cat) => {
                 const Icon = cat.icon
                 return (
-                  <motion.div
+                  <div
                     key={cat.title}
-                    variants={fadeInUp}
                     className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
                   >
                     <div className="mb-3 flex items-center gap-2">
@@ -446,13 +412,13 @@ export default function UpgradeGuidePage() {
                       ))}
                     </div>
                     <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{cat.description}</p>
-                  </motion.div>
+                  </div>
                 )
               })}
             </div>
 
             {/* Blobs excluded */}
-            <motion.p variants={fadeInUp} className="mb-8 text-xs italic text-[var(--color-text-muted)]">
+            <p className="mb-8 text-xs italic text-[var(--color-text-muted)]">
               Explicitly excluded: all blob-dependent EIPs ({' '}
               {['EIP-4844', 'EIP-7516', 'EIP-7691'].map((eip, i, arr) => (
                 <span key={eip}>
@@ -468,46 +434,40 @@ export default function UpgradeGuidePage() {
                 </span>
               ))}
               {' '}). Ethereum Classic is a pure Layer 1 execution chain with no data availability requirement: blobs are L2 scaffolding ETC does not need.
-            </motion.p>
+            </p>
 
             {/* Developer tooling */}
-            <motion.h3 variants={fadeInUp} className="mb-4 text-base font-semibold text-[var(--text-primary)]">
+            <h3 className="mb-4 text-base font-semibold text-[var(--text-primary)]">
               Developer Tooling — Works Without Modification
-            </motion.h3>
+            </h3>
             <div className="grid gap-4 sm:grid-cols-3">
               {[
                 { name: 'Solidity 0.8.x+', description: 'All recent compiler versions produce compatible bytecode for ETC without modification.' },
                 { name: 'Foundry / Hardhat', description: 'Standard EVM testing and deployment toolchains work on ETC without ETC-specific forks or patches.' },
                 { name: 'wagmi / viem / ethers.js', description: 'Standard wallet libraries and RPC types work on ETC without patching or overrides. One codebase, every EVM chain.' },
               ].map((tool) => (
-                <motion.div
+                <div
                   key={tool.name}
-                  variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[#00ffae]/20"
                 >
                   <p className="mb-1 text-sm font-semibold text-[var(--text-primary)]">{tool.name}</p>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* The Olympia Upgrade — callout box */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               The Olympia Upgrade
-            </motion.h2>
-            <motion.div
-              variants={fadeInUp}
+            </h2>
+            <div
               className="mt-4 space-y-4 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
             >
               <p>
@@ -519,30 +479,26 @@ export default function UpgradeGuidePage() {
               <p>
                 The EIP-1559 fee market redirects the basefee &mdash; value that would otherwise be destroyed &mdash; to a protocol-managed treasury. Block rewards and tips remain completely untouched and go entirely to miners. Anyone can submit proposals on-chain. Members vote on resource allocation and execute decisions. Every step is transparent and verifiable on-chain.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Olympia Roadmap */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Olympia Roadmap
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Five stages from consensus upgrades to permanent protocol integration.
-            </motion.p>
+            </p>
 
             <div className="mt-8 space-y-0">
               {roadmapStages.map((stage, i) => (
-                <motion.div key={stage.title} variants={fadeInUp} className="relative flex gap-6 pb-8">
+                <div key={stage.title} className="relative flex gap-6 pb-8">
                   <div className="flex flex-col items-center">
                     <div
                       className={`h-3 w-3 shrink-0 rounded-full ${
@@ -573,34 +529,29 @@ export default function UpgradeGuidePage() {
                       ))}
                     </ul>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Client Upgrade Guides */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Steps to Upgrade Your Client
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Node operators must upgrade before the activation block. All client releases are published well in advance.
-            </motion.p>
+            </p>
 
             <div className="mt-8 space-y-6">
               {clientData.map((client) => (
-                <motion.div
+                <div
                   key={client.name}
-                  variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition hover:border-[#00ffae]/20"
                 >
                   <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -661,30 +612,26 @@ export default function UpgradeGuidePage() {
                       Docs <ExternalLink size={12} />
                     </a>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Frequently Asked Questions
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Common questions about the Olympia upgrade, treasury funding, governance, and node operations.
-            </motion.p>
+            </p>
 
-            <motion.div variants={fadeInUp} className="mt-8 divide-y divide-[var(--border)]">
+            <div className="mt-8 divide-y divide-[var(--border)]">
               {faqs.map((item) => (
                 <details key={item.question} className="group py-5" open>
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
@@ -693,8 +640,8 @@ export default function UpgradeGuidePage() {
                   <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">{item.answer}</p>
                 </details>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

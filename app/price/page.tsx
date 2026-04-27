@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PriceChart from '../markets/components/PriceChart'
 import {
@@ -10,23 +9,6 @@ import {
 } from '../markets/data/markets'
 import { usePrice, useAllPrices } from '@/app/hooks/usePrice'
 import LivePriceDisplay from '../markets/components/LivePriceDisplay'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 // Live multi-currency price display component
 function LivePricePairs() {
@@ -134,12 +116,8 @@ function LiveKeyMetrics() {
     <>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat, index) => (
-          <motion.div
+          <div
             key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
           >
             <p className="text-xs text-[var(--color-text-muted)]">{stat.label}</p>
@@ -157,7 +135,7 @@ function LiveKeyMetrics() {
             {stat.tooltip && (
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">{stat.tooltip}</p>
             )}
-          </motion.div>
+          </div>
         ))}
       </div>
       {source && (
@@ -196,13 +174,10 @@ export default function ETCPricePage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-75" />
@@ -210,27 +185,25 @@ export default function ETCPricePage() {
               </span>
               Live Price
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Ethereum Classic{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Price
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Real-time ETC price data, historical charts, and market analysis from trusted sources.
-          </motion.p>
+          </p>
 
           {/* Main Price Display - Live Data */}
-          <motion.div variants={fadeInUp} className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] px-8 py-6">
               <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
@@ -250,13 +223,13 @@ export default function ETCPricePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Multi-currency prices - Live Data */}
-          <motion.div variants={fadeInUp} className="mt-6">
+          <div className="mt-6">
             <LivePricePairs />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Price Chart */}
@@ -269,17 +242,14 @@ export default function ETCPricePage() {
       {/* Key Metrics - Live Data */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Key Metrics</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Live market data for ETC
             </p>
-          </motion.div>
+          </div>
 
           <LiveKeyMetrics />
         </div>
@@ -288,10 +258,7 @@ export default function ETCPricePage() {
       {/* About ETC Price */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">About ETC Price</h2>
             <div className="mt-6 space-y-4 text-[var(--color-text-secondary)]">
@@ -311,33 +278,26 @@ export default function ETCPricePage() {
                 contract platform, attracting miners and supporting its security model.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Price History */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price Milestones</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Key moments in ETC&apos;s price history
             </p>
-          </motion.div>
+          </div>
 
           <div className="space-y-4">
             {priceMilestones.map((milestone, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="flex items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="flex-shrink-0">
@@ -348,7 +308,7 @@ export default function ETCPricePage() {
                   <p className="text-sm text-[var(--color-text-muted)]">{milestone.date}</p>
                   <p className="text-[var(--text-primary)]">{milestone.event}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -357,29 +317,22 @@ export default function ETCPricePage() {
       {/* Price Data Sources */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Where to Check ETC Price</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Trusted sources for real-time ETC price data
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2">
             {aggregators.map((source, index) => (
-              <motion.a
+              <a
                 key={source.id}
                 href={source.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="group flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div>
@@ -399,7 +352,7 @@ export default function ETCPricePage() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
@@ -408,10 +361,7 @@ export default function ETCPricePage() {
       {/* CTA */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Buy ETC?</h2>
@@ -438,7 +388,7 @@ export default function ETCPricePage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

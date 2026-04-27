@@ -1,17 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 const regulatoryProfiles = [
   {
@@ -114,67 +103,57 @@ export default function RegulationPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/8 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="mb-4">
             <Link
               href="/olympia"
               className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80"
             >
               ← Olympia Hub
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10 px-4 py-1.5 text-sm font-medium text-[#00ffae]">
               Regulatory Positioning
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Regulatory Framework
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Ethereum Classic sits at the intersection of every major regulatory trajectory being
             legislated simultaneously: digital commodity under PoW consensus frameworks, decentralized
             asset under MiCA, and live stablecoin infrastructure under the GENIUS Act. Its regulatory
             surface is additive by design.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Regulatory Profiles */}
       <section className="px-6 pb-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               ETC&apos;s Regulatory Profile
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Ethereum Classic is positioned across every major regulatory classification, by design.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {regulatoryProfiles.map((profile) => (
-                <motion.div
+                <div
                   key={profile.act}
-                  variants={fadeInUp}
                   className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
                 >
                   <div className="mb-4 flex items-start justify-between gap-2">
@@ -209,39 +188,34 @@ export default function RegulationPage() {
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Classic USD */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.div variants={fadeInUp}>
+            <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#00ffae]">
                 Regulated Stablecoin
               </span>
-            </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
+            </div>
+            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Classic USD: Live GENIUS Act-Aligned Stablecoin on ETC
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               The first fiat-backed stablecoin native to Ethereum Classic. A live demonstration of
               GENIUS Act-aligned stablecoin infrastructure on a Proof-of-Work EVM.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {/* Token identity */}
-              <motion.div
-                variants={fadeInUp}
+              <div
                 className="rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-6"
               >
                 <p className="text-xs font-mono text-[#00ffae]">$USC / Classic USD</p>
@@ -275,10 +249,10 @@ export default function RegulationPage() {
                 >
                   classicusd.com →
                 </a>
-              </motion.div>
+              </div>
 
               {/* Why it matters */}
-              <motion.div variants={fadeInUp} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 {[
                   {
                     title: 'US-Regulated Issuer',
@@ -306,34 +280,29 @@ export default function RegulationPage() {
                     </p>
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Global Regulatory Landscape */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               The 2025–2026 Regulatory Wave
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Virtually every major jurisdiction now has or is finalizing crypto regulation. ETC
               qualifies under both trajectories being legislated simultaneously.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {jurisdictions.map((j) => (
-                <motion.div
+                <div
                   key={j.region}
-                  variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
                 >
                   <div className="flex items-center gap-3">
@@ -349,52 +318,47 @@ export default function RegulationPage() {
                   <p className="mt-3 text-xs leading-relaxed text-[var(--color-text-muted)]">
                     {j.detail}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Market Depth */}
       <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
             className="text-center"
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Market Depth: A Prerequisite for Stablecoin Viability
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
               Deep liquidity, broad fiat coverage, and 300+ exchanges make ETC one of the most
               accessible digital assets globally, a prerequisite for stablecoin viability as a
               global payment rail.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {marketStats.map((stat) => (
-                <motion.div
+                <div
                   key={stat.label}
-                  variants={fadeInUp}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
                 >
                   <p className="text-3xl font-bold text-[var(--text-primary)]">{stat.value}</p>
                   <p className="mt-1 text-sm font-medium text-[var(--color-text-secondary)]">{stat.label}</p>
                   <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{stat.detail}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            <motion.p variants={fadeInUp} className="mt-8 text-sm text-[var(--color-text-muted)]">
+            <p className="mt-8 text-sm text-[var(--color-text-muted)]">
               ETC/USD spot markets have operated continuously since 2016, one of the longest-running
               fiat price discovery mechanisms in the asset class.
-            </motion.p>
+            </p>
 
-            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/investment-products"
                 className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
@@ -407,8 +371,8 @@ export default function RegulationPage() {
               >
                 Olympia Upgrade
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

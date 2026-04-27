@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 interface InstantBuyProviderProps {
   name: string
@@ -42,11 +24,7 @@ function InstantBuyProvider({
   index,
 }: InstantBuyProviderProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+    <div
       className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-start justify-between">
@@ -97,7 +75,7 @@ function InstantBuyProvider({
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
-    </motion.div>
+    </div>
   )
 }
 
@@ -111,11 +89,7 @@ interface StepCardProps {
 
 function StepCard({ number, title, description, icon, index }: StepCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+    <div
       className="relative flex flex-col items-center text-center"
     >
       <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -124,7 +98,7 @@ function StepCard({ number, title, description, icon, index }: StepCardProps) {
       <span className="mb-2 text-xs font-medium text-[var(--color-primary)]">Step {number}</span>
       <h3 className="mb-2 font-semibold text-[var(--text-primary)]">{title}</h3>
       <p className="text-sm text-[var(--color-text-muted)]">{description}</p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -243,13 +217,10 @@ export default function InstantBuyPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl"
         >
-          <motion.div variants={fadeInUp}>
+          <div>
             <Link
               href="/buy"
               className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -259,35 +230,33 @@ export default function InstantBuyPage() {
               </svg>
               Back to Buy ETC
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
               </svg>
               Fastest Way to Buy
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy ETC{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Instantly
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Purchase Ethereum Classic in minutes using your credit card, debit card, or mobile payment. No trading experience required.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#providers"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
@@ -306,18 +275,14 @@ export default function InstantBuyPage() {
               </svg>
               P2P Trading
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* How It Works */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -329,7 +294,7 @@ export default function InstantBuyPage() {
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Get ETC in your wallet in just a few minutes
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-8 md:grid-cols-4">
             {steps.map((step, index) => (
@@ -342,11 +307,7 @@ export default function InstantBuyPage() {
       {/* Instant Buy Providers */}
       <section id="providers" className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -358,7 +319,7 @@ export default function InstantBuyPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               Purchase ETC instantly using your credit or debit card from these trusted exchanges
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {providers.map((provider, index) => (
@@ -371,11 +332,7 @@ export default function InstantBuyPage() {
       {/* Comparison Section */}
       <section className="bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -384,7 +341,7 @@ export default function InstantBuyPage() {
             <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Instant Buy vs Other Methods
             </h2>
-          </motion.div>
+          </div>
 
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -436,11 +393,7 @@ export default function InstantBuyPage() {
       {/* Tips Section */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8"
           >
             <h3 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Tips for Instant Buying</h3>
@@ -498,18 +451,14 @@ export default function InstantBuyPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
               Prefer Lower Fees?
@@ -546,7 +495,7 @@ export default function InstantBuyPage() {
                 All Exchanges
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

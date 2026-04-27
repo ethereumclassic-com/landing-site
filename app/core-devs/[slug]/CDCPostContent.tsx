@@ -1,21 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { type CDCEntry } from '../data/index'
 import { ECIPChip } from '../components/ECIPChip'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 function PlaceholderTemplate({ entry }: { entry: CDCEntry }) {
   const tbd = <span className="font-mono text-[var(--color-text-muted)]">TBD</span>
@@ -92,22 +81,19 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
           <div className="absolute left-1/2 top-0 h-[200px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/6 blur-[80px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-3xl"
         >
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="mb-4">
             <Link
               href="/core-devs"
               className="text-sm text-[var(--color-primary)] transition hover:text-[var(--color-primary)]/80"
             >
               ← Core Devs Archive
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="font-mono text-sm text-[var(--color-text-muted)]">{formatDate(entry.date)}</span>
             {entry.forkBlock !== null && (
               <span className="font-mono text-xs text-[var(--color-text-muted)]">
@@ -119,30 +105,29 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
                 WITHDRAWN
               </span>
             )}
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl"
           >
             {entry.title}
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mt-3 text-[var(--color-text-secondary)]">
+          <p className="mt-3 text-[var(--color-text-secondary)]">
             {entry.summary}
-          </motion.p>
+          </p>
 
           {/* ECIP chips */}
           {entry.ecipRefs.length > 0 && (
-            <motion.div variants={fadeInUp} className="mt-4 flex flex-wrap items-center gap-3">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               {entry.ecipRefs.map((id) => (
                 <ECIPChip key={id} id={id} />
               ))}
-            </motion.div>
+            </div>
           )}
 
           {entry.recordingUrl && (
-            <motion.div variants={fadeInUp} className="mt-4">
+            <div className="mt-4">
               <a
                 href={entry.recordingUrl}
                 target="_blank"
@@ -154,9 +139,9 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
                 </svg>
                 Watch Recording
               </a>
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
       </section>
 
       {/* Content */}

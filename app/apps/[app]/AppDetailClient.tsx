@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import type { App } from '../data/apps'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 function CategoryIcon({ category }: { category: App['category'] }) {
   switch (category) {
@@ -62,14 +44,11 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/apps"
               className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -79,12 +58,11 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
               </svg>
               Back to Apps
             </Link>
-          </motion.div>
+          </div>
 
           <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
             {/* App Icon */}
-            <motion.div
-              variants={fadeInUp}
+            <div
               className={`flex h-20 w-20 items-center justify-center rounded-2xl text-3xl font-bold ${
                 app.featured
                   ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]'
@@ -92,30 +70,30 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
               }`}
             >
               {app.name[0]}
-            </motion.div>
+            </div>
 
             <div className="flex-1">
-              <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">{app.name}</h1>
                 {app.featured && (
                   <span className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                     Featured
                   </span>
                 )}
-              </motion.div>
+              </div>
 
-              <motion.div variants={fadeInUp} className="mt-2 flex items-center gap-2 text-[var(--color-text-muted)]">
+              <div className="mt-2 flex items-center gap-2 text-[var(--color-text-muted)]">
                 <CategoryIcon category={app.category} />
                 <span>{app.category}</span>
-              </motion.div>
+              </div>
 
-              <motion.p variants={fadeInUp} className="mt-4 text-lg text-[var(--color-text-secondary)]">
+              <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
                 {app.description}
-              </motion.p>
+              </p>
 
               {/* Tags */}
               {app.tags && app.tags.length > 0 && (
-                <motion.div variants={fadeInUp} className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-2">
                   {app.tags.map((tag) => (
                     <span
                       key={tag}
@@ -124,13 +102,13 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
                       {tag}
                     </span>
                   ))}
-                </motion.div>
+                </div>
               )}
             </div>
           </div>
 
           {/* CTA Buttons */}
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <a
               href={app.link}
               target="_blank"
@@ -157,8 +135,8 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
                 More {app.category} Apps
               </Link>
             )}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Stats Section (if available) */}
@@ -167,17 +145,13 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
           <div className="mx-auto max-w-4xl">
             <div className="grid grid-cols-3 gap-8">
               {app.stats.map((stat, index) => (
-                <motion.div
+                <div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="text-center"
                 >
                   <div className="text-2xl font-bold text-[var(--color-primary)]">{stat.value}</div>
                   <div className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.label}</div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -187,34 +161,24 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
       {/* About Section */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">About {app.name}</h2>
             <p className="mt-4 text-lg leading-relaxed text-[var(--color-text-secondary)]">
               {app.longDescription || app.description}
             </p>
-          </motion.div>
+          </div>
 
           {/* Features */}
           {app.features && app.features.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="mt-12"
             >
               <h3 className="text-xl font-bold text-[var(--text-primary)]">Key Features</h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
                 {app.features.map((feature, index) => (
-                  <motion.div
+                  <div
                     key={feature}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
                     className="flex items-start gap-3"
                   >
                     <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/20">
@@ -223,20 +187,17 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
                       </svg>
                     </div>
                     <span className="text-[var(--color-text-secondary)]">{feature}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
@@ -275,7 +236,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
               </Link>
             )}
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

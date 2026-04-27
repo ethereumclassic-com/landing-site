@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const ecosystemStats = [
   { label: 'dApps', value: '14+', description: 'Active applications', href: '/apps' },
@@ -60,8 +42,8 @@ export default function ResearchEcosystemPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/research"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -71,25 +53,22 @@ export default function ResearchEcosystemPage() {
                 </svg>
                 Back to Research
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
+            </div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Ecosystem Overview</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 A snapshot of the Ethereum Classic ecosystem — DeFi, infrastructure,
                 governance, and mining across the network.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Stats Grid */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {ecosystemStats.map((stat) => (
@@ -103,14 +82,14 @@ export default function ResearchEcosystemPage() {
                 <div className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.description}</div>
               </Link>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Ecosystem Sections */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Ecosystem Verticals</h2>
             <div className="grid gap-6 md:grid-cols-2">
               {ecosystemSections.map((section) => (
@@ -134,14 +113,14 @@ export default function ResearchEcosystemPage() {
                 </Link>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/research/reports"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
@@ -154,7 +133,7 @@ export default function ResearchEcosystemPage() {
             >
               Apps Directory
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

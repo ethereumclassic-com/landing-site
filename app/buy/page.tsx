@@ -1,26 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { exchanges } from './data/exchanges'
 import ExchangeCard from './components/ExchangeCard'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 interface StepProps {
   number: number
@@ -32,11 +14,7 @@ interface StepProps {
 
 function Step({ number, title, description, icon, index }: StepProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+    <div
       className="group relative flex gap-4"
     >
       {/* Connector line */}
@@ -54,7 +32,7 @@ function Step({ number, title, description, icon, index }: StepProps) {
         <h3 className="mt-1 font-semibold text-[var(--text-primary)]">{title}</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -192,39 +170,34 @@ export default function BuyPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl"
         >
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               100+ Exchanges
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Ethereum Classic
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Get ETC on major centralized exchanges or trade directly on ETCswap DEX. Multiple payment methods available worldwide.
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#exchanges"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
@@ -245,18 +218,14 @@ export default function BuyPage() {
               </svg>
               Trade on DEX
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Payment Methods */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-8 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -265,16 +234,12 @@ export default function BuyPage() {
             <h2 className="mt-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Multiple Ways to Buy
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {paymentMethods.map((method, index) => (
-              <motion.div
+              <div
                 key={method.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="flex flex-col items-center rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -282,7 +247,7 @@ export default function BuyPage() {
                 </div>
                 <span className="text-sm font-medium text-[var(--text-primary)]">{method.name}</span>
                 <span className="mt-1 text-xs text-[var(--color-text-muted)]">{method.description}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -292,11 +257,7 @@ export default function BuyPage() {
       {dex && (
         <section className="border-b border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <div
               className="mb-8 text-center"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -312,14 +273,10 @@ export default function BuyPage() {
               <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
                 ETCswap is Ethereum Classic&apos;s native DEX - trade directly from your wallet with no KYC required
               </p>
-            </motion.div>
+            </div>
             <ExchangeCard exchange={dex} index={0} />
 
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+            <div
               className="mt-6 flex flex-wrap justify-center gap-3"
             >
               <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--panel)] px-3 py-1.5 text-xs text-[var(--color-text-muted)]">
@@ -340,7 +297,7 @@ export default function BuyPage() {
                 </svg>
                 Instant Swaps
               </span>
-            </motion.div>
+            </div>
           </div>
         </section>
       )}
@@ -348,11 +305,7 @@ export default function BuyPage() {
       {/* Native On-Ramp Path */}
       <section className="border-b border-[var(--border)] bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-8 text-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
@@ -367,7 +320,7 @@ export default function BuyPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               Use Brale to purchase ClassicUSD (USC) with ACH bank transfer, then swap to ETC on ETCswap - no centralized exchange needed
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-3">
             {[
@@ -387,12 +340,8 @@ export default function BuyPage() {
                 description: 'Your ETC is now in your wallet - no exchange custody needed.',
               },
             ].map((item, index) => (
-              <motion.div
+              <div
                 key={item.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
               >
                 <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-[var(--text-primary)]">
@@ -400,15 +349,11 @@ export default function BuyPage() {
                 </div>
                 <h3 className="mt-2 font-semibold text-[var(--text-primary)]">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <div
             className="mt-8 flex flex-wrap justify-center gap-4"
           >
             <a
@@ -442,18 +387,14 @@ export default function BuyPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Major Exchanges */}
       <section id="exchanges" className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -465,7 +406,7 @@ export default function BuyPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               Top centralized exchanges by 24h trading volume. All support ETC deposits and withdrawals.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {majorExchanges.map((exchange, index) => (
@@ -473,11 +414,7 @@ export default function BuyPage() {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <div
             className="mt-8 text-center"
           >
             <Link
@@ -489,18 +426,14 @@ export default function BuyPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* All Exchanges */}
       <section className="bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -512,7 +445,7 @@ export default function BuyPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               {additionalExchanges.length + majorExchanges.length}+ centralized exchanges support ETC trading
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {additionalExchanges.map((exchange, index) => (
@@ -525,11 +458,7 @@ export default function BuyPage() {
       {/* How to Buy */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -541,7 +470,7 @@ export default function BuyPage() {
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
               Follow these simple steps to purchase Ethereum Classic
             </p>
-          </motion.div>
+          </div>
 
           <div className="space-y-2">
             {steps.map((step, index) => (
@@ -549,11 +478,7 @@ export default function BuyPage() {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+          <div
             className="mt-12 flex flex-wrap justify-center gap-4"
           >
             <Link
@@ -576,18 +501,14 @@ export default function BuyPage() {
               </svg>
               Launch Classic OS
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Trust Signals */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6"
           >
             <div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
@@ -603,13 +524,9 @@ export default function BuyPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
             className="mt-6 grid gap-4 md:grid-cols-3"
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center">
@@ -639,7 +556,7 @@ export default function BuyPage() {
               <span className="text-sm font-medium text-[var(--text-primary)]">Global Access</span>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">Available worldwide</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

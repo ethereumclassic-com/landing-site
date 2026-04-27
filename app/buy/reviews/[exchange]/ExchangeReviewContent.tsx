@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import {
   type ExchangeReview,
   getVerdictLabel,
@@ -9,19 +8,6 @@ import {
   formatRating,
   getRatingLabel,
 } from '../../data/reviews'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // Star rating component
 function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md' | 'lg' }) {
@@ -125,12 +111,9 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
       {/* Hero Section */}
       <section className="border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 to-transparent px-4 py-12">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
           >
-            <motion.div variants={fadeInUp} className="flex flex-wrap items-start justify-between gap-6">
+            <div className="flex flex-wrap items-start justify-between gap-6">
               <div>
                 <div className="mb-3 flex flex-wrap items-center gap-2">
                   <span
@@ -155,9 +138,9 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                 <StarRating rating={review.rating.overall} size="lg" />
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{getRatingLabel(review.rating.overall)}</p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href={review.website}
                 target="_blank"
@@ -178,8 +161,8 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                 </svg>
                 All Reviews
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -190,20 +173,15 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
             {/* Main Review Content */}
             <div className="lg:col-span-2 space-y-8">
               {/* Summary */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Summary</h2>
                 <p className="text-[var(--color-text-secondary)] leading-relaxed">{review.summary}</p>
-              </motion.div>
+              </div>
 
               {/* Pros & Cons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+              <div
                 className="grid gap-6 sm:grid-cols-2"
               >
                 <div className="rounded-2xl border border-green-500/30 bg-green-500/5 p-6">
@@ -238,13 +216,10 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Full Review */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Full Review</h2>
@@ -272,13 +247,10 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                     )
                   })}
                 </div>
-              </motion.div>
+              </div>
 
               {/* ETC Support Details */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">ETC Support Details</h2>
@@ -318,16 +290,13 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Sidebar */}
             <div className="space-y-6">
               {/* Rating Breakdown */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Rating Breakdown</h3>
@@ -338,13 +307,10 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                   <RatingBar label="UX" rating={review.rating.userExperience} />
                   <RatingBar label="Support" rating={review.rating.support} />
                 </div>
-              </motion.div>
+              </div>
 
               {/* Quick Facts */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Facts</h3>
@@ -370,13 +336,10 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                     <dd className="text-sm font-medium text-[var(--text-primary)] text-right">{review.regions.join(', ')}</dd>
                   </div>
                 </dl>
-              </motion.div>
+              </div>
 
               {/* Best For */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Best For</h3>
@@ -390,13 +353,10 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Payment Methods */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Payment Methods</h3>
@@ -410,7 +370,7 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Last Updated */}
               <div className="text-center text-sm text-[var(--color-text-muted)]">

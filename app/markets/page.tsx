@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { PriceStat } from './components/PriceDisplay'
 import PriceChart from './components/PriceChart'
@@ -12,41 +11,6 @@ import {
   marketResources,
   priceMilestones,
 } from './data/markets'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const sourceTypeIcons = {
-  aggregator: (
-    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-    </svg>
-  ),
-  exchange: (
-    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-    </svg>
-  ),
-  dex: (
-    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-    </svg>
-  ),
-}
 
 // Live market stats grid component
 function LiveMarketStatsGrid() {
@@ -113,12 +77,8 @@ function LiveMarketStatsGrid() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {stats.map((stat, index) => (
-        <motion.div
+        <div
           key={stat.label}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.1 }}
         >
           <PriceStat
             label={stat.label}
@@ -127,7 +87,7 @@ function LiveMarketStatsGrid() {
             changeDirection={stat.changeDirection}
             tooltip={stat.tooltip}
           />
-        </motion.div>
+        </div>
       ))}
     </div>
   )
@@ -150,13 +110,10 @@ export default function MarketsPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-primary)] opacity-75" />
@@ -164,27 +121,25 @@ export default function MarketsPage() {
               </span>
               Live Market Data
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             ETC{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Markets
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Track Ethereum Classic price, market cap, trading volume, and historical data across major exchanges and data providers.
-          </motion.p>
+          </p>
 
           {/* Live Price Display */}
-          <motion.div variants={fadeInUp} className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] px-8 py-6">
               <LivePriceDisplay
                 currency="usd"
@@ -195,13 +150,13 @@ export default function MarketsPage() {
                 refreshInterval={60000}
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Quick Stats */}
-          <motion.div variants={fadeInUp} className="mt-8">
+          <div className="mt-8">
             <LiveMarketStats showVolume showRank showSupply />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Price Chart Section */}
@@ -214,17 +169,14 @@ export default function MarketsPage() {
       {/* Market Stats Grid */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Market Statistics</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Key metrics for Ethereum Classic
             </p>
-          </motion.div>
+          </div>
 
           <LiveMarketStatsGrid />
         </div>
@@ -233,26 +185,19 @@ export default function MarketsPage() {
       {/* Trading Pairs */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Trading Pairs</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Popular ETC trading pairs across exchanges
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {marketPairs.map((pair, index) => (
-              <motion.div
+              <div
                 key={pair.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
               >
                 <div className="flex items-center justify-between">
@@ -266,7 +211,7 @@ export default function MarketsPage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   {pair.base} to {pair.quote}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -275,29 +220,22 @@ export default function MarketsPage() {
       {/* Price Sources */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price Sources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Trusted data providers and exchanges for ETC price data
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {priceSources.map((source, index) => (
-              <motion.a
+              <a
                 key={source.id}
                 href={source.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="group flex items-start gap-4 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -325,7 +263,7 @@ export default function MarketsPage() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
@@ -334,29 +272,22 @@ export default function MarketsPage() {
       {/* Price History Timeline */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Price History</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Key milestones in ETC&apos;s price history
             </p>
-          </motion.div>
+          </div>
 
           <div className="relative">
             {/* Timeline line */}
             <div className="absolute left-4 top-0 h-full w-0.5 bg-[var(--border)] md:left-1/2 md:-translate-x-1/2" />
 
             {priceMilestones.map((milestone, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className={`relative mb-8 pl-12 md:w-1/2 md:pl-0 md:pr-8 ${
                   index % 2 === 0 ? 'md:ml-auto md:pl-8 md:pr-0' : ''
                 }`}
@@ -373,7 +304,7 @@ export default function MarketsPage() {
                   </div>
                   <p className="mt-2 text-sm text-[var(--text-primary)]">{milestone.event}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -382,29 +313,22 @@ export default function MarketsPage() {
       {/* Market Resources */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Market Resources</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Tools and resources for ETC market analysis
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {marketResources.map((resource, index) => (
-              <motion.a
+              <a
                 key={resource.id}
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="flex items-start justify-between">
@@ -426,7 +350,7 @@ export default function MarketsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                   </svg>
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
@@ -435,23 +359,17 @@ export default function MarketsPage() {
       {/* Market Tools */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Market Tools</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Tools to help you analyze and plan your ETC investments
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
             >
               <Link
                 href="/markets/converter"
@@ -473,13 +391,9 @@ export default function MarketsPage() {
                   </svg>
                 </div>
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
             >
               <Link
                 href="/markets/calculator"
@@ -501,13 +415,9 @@ export default function MarketsPage() {
                   </svg>
                 </div>
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
             >
               <Link
                 href="/markets/price"
@@ -529,7 +439,7 @@ export default function MarketsPage() {
                   </svg>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -537,10 +447,7 @@ export default function MarketsPage() {
       {/* Quick Links / CTAs */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Trade?</h2>
@@ -567,7 +474,7 @@ export default function MarketsPage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -1,26 +1,8 @@
 'use client'
 
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { exchanges } from '../../buy/data/exchanges'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const ExternalLinkIcon = () => (
   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -63,33 +45,27 @@ export default function MostSecureExchangesPage() {
       <div className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {/* Header */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mb-12"
           >
-            <motion.div variants={fadeInUp} className="mb-4">
+            <div className="mb-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
                 Security First
               </span>
-            </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
+            </div>
+            <h1 className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Most Secure Exchanges
-            </motion.h1>
-            <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
               Trade ETC on exchanges with the strongest security track records, regulatory compliance, and institutional-grade custody solutions.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* Security Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {[
@@ -124,13 +100,10 @@ export default function MostSecureExchangesPage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.desc}</p>
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Security Notice */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mb-12 rounded-xl border border-blue-500/30 bg-blue-500/10 p-5"
           >
             <div className="flex items-start gap-3">
@@ -144,7 +117,7 @@ export default function MostSecureExchangesPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* US Regulated */}
           {regulated.length > 0 && (
@@ -157,14 +130,11 @@ export default function MostSecureExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {regulated.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-blue-500/20 bg-[var(--panel)] p-5 transition-all hover:border-blue-500/40"
                   >
                     <div className="flex items-start justify-between">
@@ -211,7 +181,7 @@ export default function MostSecureExchangesPage() {
                         </span>
                       ))}
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
@@ -228,14 +198,11 @@ export default function MostSecureExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {globalSecure.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-primary)]/30"
                   >
                     <div className="flex items-start justify-between">
@@ -268,17 +235,14 @@ export default function MostSecureExchangesPage() {
                         24h Volume: <span className="text-[var(--text-primary)]">{exchange.volume24h}</span>
                       </p>
                     )}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
           )}
 
           {/* Security Best Practices */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Your Security Checklist</h2>
@@ -320,13 +284,10 @@ export default function MostSecureExchangesPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Self Custody CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6 text-center"
           >
             <h2 className="mb-2 text-xl font-bold text-[var(--text-primary)]">Ultimate Security: Self-Custody</h2>
@@ -350,13 +311,10 @@ export default function MostSecureExchangesPage() {
                 Try DEXs
               </Link>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
             <Link
@@ -368,7 +326,7 @@ export default function MostSecureExchangesPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </main>

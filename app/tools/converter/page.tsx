@@ -1,26 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePrice, useAllPrices } from '@/app/hooks/usePrice'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const currencies = [
   { code: 'usd', symbol: '$', name: 'US Dollar' },
@@ -71,8 +53,8 @@ export default function ToolsConverterPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/tools"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -82,8 +64,8 @@ export default function ToolsConverterPage() {
                 </svg>
                 Back to Tools
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
+            </div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Price Converter
               </h1>
@@ -91,18 +73,15 @@ export default function ToolsConverterPage() {
                 Convert Ethereum Classic to any currency instantly. Real-time exchange
                 rates updated every 60 seconds from CoinGecko.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Converter */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             {/* From */}
@@ -199,17 +178,14 @@ export default function ToolsConverterPage() {
                 )}
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Quick Reference Table */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Reference</h2>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden">
@@ -234,17 +210,14 @@ export default function ToolsConverterPage() {
                 </table>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Related Links */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="flex flex-wrap justify-center gap-4"
           >
             <Link
@@ -268,7 +241,7 @@ export default function ToolsConverterPage() {
             >
               Markets
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

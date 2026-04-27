@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { getAllFAQSections } from './data/faqs'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 export default function FAQPage() {
   const sections = getAllFAQSections()
@@ -30,45 +12,38 @@ export default function FAQPage() {
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               FAQ
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Frequently Asked{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               Questions
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Find answers about Ethereum Classic — whether you&apos;re a user, investor, miner, developer, or community
             member.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Audience Cards */}
       <section className="px-6 pb-20 md:px-10 lg:px-12">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {sections.map((section) => (
-            <motion.div key={section.id} variants={fadeInUp}>
+            <div key={section.id}>
               <Link
                 href={`/faq/${section.id}`}
                 className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/50 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
@@ -91,9 +66,9 @@ export default function FAQPage() {
                   </svg>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </section>
     </main>
   )

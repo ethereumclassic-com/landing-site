@@ -3,13 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
 
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'KRW', 'CAD', 'AUD', 'BTC', 'ETH']
 
@@ -84,10 +78,7 @@ export default function SettingsPage() {
     <main className="min-h-screen py-20">
       <div className="mx-auto max-w-2xl px-4">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="mb-8"
         >
           <Link
@@ -103,24 +94,19 @@ export default function SettingsPage() {
           <p className="mt-1 text-[var(--color-text-muted)]">
             Manage your profile and preferences
           </p>
-        </motion.div>
+        </div>
 
         {/* Success Message */}
         {successMessage && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="mb-6 rounded-lg border border-green-500/20 bg-green-500/10 p-4 text-sm text-green-400"
           >
             {successMessage}
-          </motion.div>
+          </div>
         )}
 
         {/* Profile Section */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
         >
           <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Profile</h2>
@@ -162,13 +148,10 @@ export default function SettingsPage() {
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Preferences Section */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
         >
           <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Preferences</h2>
@@ -220,13 +203,10 @@ export default function SettingsPage() {
               </button>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Account Info Section */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="mb-6 rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
         >
           <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Account Information</h2>
@@ -242,13 +222,10 @@ export default function SettingsPage() {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Danger Zone */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="rounded-xl border border-red-500/20 bg-red-500/5 p-6"
         >
           <h2 className="mb-2 text-lg font-semibold text-red-400">Danger Zone</h2>
@@ -261,7 +238,7 @@ export default function SettingsPage() {
           >
             Delete Account
           </button>
-        </motion.div>
+        </div>
       </div>
     </main>
   )

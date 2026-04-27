@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { miningHardware, networkStats, type MiningHardware } from '../data/mining'
 import {
@@ -14,15 +13,6 @@ import {
   type ProfitabilityResult,
 } from '../lib/calculations'
 import { useNetworkStats } from '../hooks/useNetworkStats'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 // Common electricity rate presets
 const electricityPresets = [
@@ -135,7 +125,7 @@ export default function MiningProfitabilityPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/mining"
               className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -153,17 +143,14 @@ export default function MiningProfitabilityPage() {
               Estimate your Ethereum Classic mining earnings. Enter your hardware specs and electricity costs
               to see projected profits.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <div className="mx-auto max-w-6xl px-6 md:px-10 lg:px-12">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Input Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="space-y-6"
           >
             {/* Hardware Presets */}
@@ -358,13 +345,10 @@ export default function MiningProfitabilityPage() {
                 </a>
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Results Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="space-y-6"
           >
             {/* Summary */}
@@ -509,7 +493,7 @@ export default function MiningProfitabilityPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 

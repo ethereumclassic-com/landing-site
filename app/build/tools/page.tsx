@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { getToolsByCategory, type DevTool } from '../data/build'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const categoryLabels: Record<DevTool['category'], { label: string; description: string; color: string }> = {
   framework: {
@@ -65,8 +47,7 @@ const languageColors: Record<string, { bg: string; text: string }> = {
 
 function ToolCard({ tool }: { tool: DevTool }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-colors hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-start justify-between">
@@ -112,7 +93,7 @@ function ToolCard({ tool }: { tool: DevTool }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
-    </motion.div>
+    </div>
   )
 }
 
@@ -128,16 +109,13 @@ function CategorySection({ category }: { category: DevTool['category'] }) {
         <h2 className={`text-xl font-semibold ${color}`}>{label}</h2>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
       </div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
+      <div
         className="grid gap-6 md:grid-cols-2"
       >
         {tools.map((tool) => (
           <ToolCard key={tool.id} tool={tool} />
         ))}
-      </motion.div>
+      </div>
     </section>
   )
 }
@@ -150,8 +128,8 @@ export default function BuildToolsPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/build"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -161,9 +139,9 @@ export default function BuildToolsPage() {
                 </svg>
                 Back to Build
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Developer Tools
               </h1>
@@ -171,18 +149,15 @@ export default function BuildToolsPage() {
                 Essential tools for building on Ethereum Classic. Frameworks, libraries, IDEs, and security tools
                 to accelerate your development workflow.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Start Recommendation */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
             <div className="flex items-start gap-4">
@@ -200,7 +175,7 @@ export default function BuildToolsPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -216,10 +191,7 @@ export default function BuildToolsPage() {
       {/* ETC Compatibility Note */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">ETC Compatibility</h2>
@@ -241,17 +213,14 @@ export default function BuildToolsPage() {
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Configuration Example */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <div
           >
             <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">Configuration Examples</h2>
             <div className="grid gap-6 md:grid-cols-2">
@@ -296,17 +265,14 @@ mordor = "https://rpc.mordor.etccooperative.org"
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Building?</h2>
@@ -330,7 +296,7 @@ mordor = "https://rpc.mordor.etccooperative.org"
                 Getting Started Guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

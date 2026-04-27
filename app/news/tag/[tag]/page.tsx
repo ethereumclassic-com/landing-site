@@ -1,27 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { getArticlesByTag, getAllTags } from '../../data/articles'
 import NewsCard from '../../components/NewsCard'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 function formatTagName(tag: string): string {
   return tag
@@ -47,14 +29,11 @@ export default function NewsTagPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/news"
               className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -64,9 +43,9 @@ export default function NewsTagPage() {
               </svg>
               Back to News
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
@@ -78,22 +57,21 @@ export default function NewsTagPage() {
               </svg>
               {articles.length} Articles
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Tagged:{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               {matchedTag || tagName}
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Browse all news articles tagged with &ldquo;{matchedTag || tagName}&rdquo;
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Popular Tags */}
@@ -127,7 +105,7 @@ export default function NewsTagPage() {
               ))}
             </div>
           ) : (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="py-16 text-center">
+            <div className="py-16 text-center">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--panel)]">
                 <svg aria-hidden="true"
                   className="h-8 w-8 text-[var(--color-text-muted)]"
@@ -159,17 +137,14 @@ export default function NewsTagPage() {
                   Browse all news
                 </Link>
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
 
       {/* Back to News CTA */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Explore More News</h2>
@@ -187,7 +162,7 @@ export default function NewsTagPage() {
               All News
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

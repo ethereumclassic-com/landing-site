@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { miningPools, miningResources } from '../data/mining'
@@ -56,23 +55,6 @@ function useMiningStats() {
   return { stats, isLoading, error }
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
 function StatCard({
   label,
   value,
@@ -87,8 +69,7 @@ function StatCard({
   highlight?: boolean
 }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className={`rounded-xl border p-6 ${
         highlight
           ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
@@ -105,7 +86,7 @@ function StatCard({
       {description && (
         <p className="mt-1 text-xs text-[var(--color-text-muted)]">{description}</p>
       )}
-    </motion.div>
+    </div>
   )
 }
 
@@ -170,7 +151,7 @@ export default function MiningStatsPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/mining"
               className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -206,17 +187,14 @@ export default function MiningStatsPage() {
               Ethereum Classic network metrics and mining statistics. Monitor hashrate, difficulty,
               and other key metrics that affect mining profitability.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Key Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             <StatCard
@@ -260,7 +238,7 @@ export default function MiningStatsPage() {
                 </svg>
               }
             />
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -268,10 +246,7 @@ export default function MiningStatsPage() {
       {miningStats && (
         <section className="px-6 pb-12 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
+            <div
               className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
             >
               <div className="flex items-center gap-2 mb-4">
@@ -312,7 +287,7 @@ export default function MiningStatsPage() {
                   : `${Math.round(miningStats.cacheAgeMinutes / 60)} hours ago`
                 } from ETC RPC
               </p>
-            </motion.div>
+            </div>
           </div>
         </section>
       )}
@@ -320,10 +295,7 @@ export default function MiningStatsPage() {
       {/* Additional Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">Daily Metrics</h2>
@@ -349,30 +321,24 @@ export default function MiningStatsPage() {
                 <p className="text-xs text-[var(--color-text-muted)]">From Blockscout</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Pool Distribution */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
           >
             <HashRateChart pools={miningPools} />
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Pool Stats Table */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="mb-4 flex items-center justify-between">
@@ -427,17 +393,14 @@ export default function MiningStatsPage() {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* External Resources */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">External Resources</h2>
             <p className="mb-6 text-sm text-[var(--color-text-muted)]">
@@ -454,17 +417,14 @@ export default function MiningStatsPage() {
                 />
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Calculate Your Mining Profits</h2>
@@ -488,7 +448,7 @@ export default function MiningStatsPage() {
                 View Hardware
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

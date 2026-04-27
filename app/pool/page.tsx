@@ -1,29 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
 // Sample data for pool statistics (would be live data in production)
-const poolStats = {
-  hashrate: '12.5 TH/s',
-  workers: 1247,
-  blocks24h: 18,
-  luck: '98.2%',
-  fee: 0.9,
-  minPayout: 0.1,
-  networkShare: '7.2%',
-}
-
 const recentBlocks = [
   { height: 23856789, time: '2 min ago', reward: '2.05 ETC', finder: '0x1234...5678' },
   { height: 23856756, time: '18 min ago', reward: '2.05 ETC', finder: '0xabcd...efgh' },
@@ -103,7 +83,7 @@ export default function PoolPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="text-center">
+          <div className="text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
               Coming Soon
             </span>
@@ -133,17 +113,14 @@ export default function PoolPage() {
                 Explore Mining Guides
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Pool Stats Preview */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="mb-4 flex items-center justify-between">
@@ -171,30 +148,23 @@ export default function PoolPage() {
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{poolStats.networkShare}</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Features */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]"
           >
             Pool Features
-          </motion.h2>
+          </h2>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
-              <motion.div
+              <div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
               >
                 <div className="flex items-start gap-4">
@@ -206,7 +176,7 @@ export default function PoolPage() {
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feature.description}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -215,10 +185,7 @@ export default function PoolPage() {
       {/* Connection Info */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Connection Details</h2>
@@ -260,17 +227,14 @@ export default function PoolPage() {
             <p className="mt-4 text-sm text-[var(--color-text-muted)]">
               Replace YOUR_WALLET with your ETC address and WORKER_NAME with a name for this miner.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Recent Blocks */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="mb-4 flex items-center justify-between">
@@ -302,17 +266,14 @@ export default function PoolPage() {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Compare with Other Pools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">Looking for Active Pools?</h2>
@@ -328,17 +289,14 @@ export default function PoolPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Waitlist CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8 text-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-sm font-medium text-amber-400">
@@ -366,7 +324,7 @@ export default function PoolPage() {
             <p className="mt-4 text-xs text-[var(--color-text-muted)]">
               Waitlist signup coming soon. Pool infrastructure under development.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

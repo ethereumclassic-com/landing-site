@@ -1,29 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { wallets } from './data/wallets'
 import WalletCard from './components/WalletCard'
 import ClassicOSSection from './components/ClassicOSSection'
 import WhyClassicOS from './components/WhyClassicOS'
 import SecurityMessage from './components/SecurityMessage'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 export default function WalletPage() {
   const categories = ['Hardware', 'Browser', 'Mobile', 'Web'] as const
@@ -37,23 +19,19 @@ export default function WalletPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl"
         >
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
               </svg>
               Secure Your ETC
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Wallets & Interface for
@@ -61,16 +39,15 @@ export default function WalletPage() {
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Ethereum Classic
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Choose a secure wallet for key management, then use Classic OS to manage capital flows and orchestrate earning strategies
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#wallets"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
@@ -91,10 +68,10 @@ export default function WalletPage() {
               </svg>
               Launch Classic OS
             </a>
-          </motion.div>
+          </div>
 
           {/* Quick Links */}
-          <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap justify-center gap-6 text-sm">
+          <div className="mt-10 flex flex-wrap justify-center gap-6 text-sm">
             <Link
               href="/wallet/reviews"
               className="flex items-center gap-2 text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -131,8 +108,8 @@ export default function WalletPage() {
               </svg>
               MetaMask Setup
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Security Message */}
@@ -144,11 +121,7 @@ export default function WalletPage() {
       {/* Wallet Directory */}
       <section id="wallets" className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-block rounded-full bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -160,7 +133,7 @@ export default function WalletPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               Secure your ETC with hardware wallets for maximum security, or use browser/mobile wallets for convenience
             </p>
-          </motion.div>
+          </div>
 
           {categories.map((category, categoryIndex) => {
             const categoryWallets = wallets.filter((wallet) => wallet.type === category)
@@ -168,12 +141,8 @@ export default function WalletPage() {
             if (categoryWallets.length === 0) return null
 
             return (
-              <motion.div
+              <div
                 key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
                 className="mb-16"
               >
                 <div className="mb-6 flex items-center gap-3">
@@ -188,7 +157,7 @@ export default function WalletPage() {
                     <WalletCard key={wallet.name} wallet={wallet} index={index} />
                   ))}
                 </div>
-              </motion.div>
+              </div>
             )
           })}
         </div>

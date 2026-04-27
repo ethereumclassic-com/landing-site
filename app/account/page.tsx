@@ -2,29 +2,9 @@
 
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useAuth } from './context/AuthContext'
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
 // Mock price data - in production this would come from an API
-const mockPriceData = {
-  ETC: { price: 24.56, change24h: 3.2 },
-  BTC: { price: 67234.12, change24h: 1.8 },
-  ETH: { price: 3456.78, change24h: -0.5 },
-}
-
 export default function AccountDashboardPage() {
   const router = useRouter()
   const { user, isAuthenticated, isLoading, logout, watchlist, portfolio } = useAuth()
@@ -72,10 +52,7 @@ export default function AccountDashboardPage() {
     <main className="min-h-screen py-20">
       <div className="mx-auto max-w-6xl px-4">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="mb-8"
         >
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -97,17 +74,13 @@ export default function AccountDashboardPage() {
               Sign Out
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Quick Stats */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
-          <motion.div
-            variants={fadeInUp}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="flex items-center gap-3">
@@ -128,10 +101,9 @@ export default function AccountDashboardPage() {
                 {portfolioChange >= 0 ? '+' : ''}{portfolioChange.toFixed(2)}% all time
               </p>
             )}
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeInUp}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="flex items-center gap-3">
@@ -148,10 +120,9 @@ export default function AccountDashboardPage() {
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
               {portfolio.length === 1 ? '1 asset' : `${portfolio.length} assets`} tracked
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeInUp}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="flex items-center gap-3">
@@ -168,10 +139,9 @@ export default function AccountDashboardPage() {
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
               {watchlist.length === 1 ? '1 asset' : `${watchlist.length} assets`} watching
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeInUp}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="flex items-center gap-3">
@@ -189,19 +159,15 @@ export default function AccountDashboardPage() {
             <Link href="/account/settings" className="mt-2 block text-sm text-[var(--color-primary)] hover:underline">
               Change settings
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Main Content Grid */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="grid gap-6 lg:grid-cols-2"
         >
           {/* Watchlist Section */}
-          <motion.div
-            variants={fadeInUp}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="mb-4 flex items-center justify-between">
@@ -259,11 +225,10 @@ export default function AccountDashboardPage() {
                 })}
               </div>
             )}
-          </motion.div>
+          </div>
 
           {/* Portfolio Section */}
-          <motion.div
-            variants={fadeInUp}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)]/50 p-6"
           >
             <div className="mb-4 flex items-center justify-between">
@@ -321,14 +286,11 @@ export default function AccountDashboardPage() {
                 })}
               </div>
             )}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Quick Actions */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="mt-8"
         >
           <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Actions</h2>
@@ -394,7 +356,7 @@ export default function AccountDashboardPage() {
               </div>
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </main>
   )

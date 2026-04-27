@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { exchanges, sortExchangesByVolume, type Exchange, type PaymentMethod } from '../../buy/data/exchanges'
 
 type ViewMode = 'grid' | 'table'
@@ -10,28 +9,6 @@ type SortOption = 'volume' | 'name' | 'fee'
 type TypeFilter = 'all' | 'CEX' | 'DEX'
 type RegionFilter = 'all' | 'Global' | 'US' | 'EU' | 'Asia'
 type KYCFilter = 'all' | 'required' | 'optional'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.03,
-    },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: 'easeOut' as const,
-    },
-  },
-}
 
 function ExchangeIcon() {
   return (
@@ -110,8 +87,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
   const isDEX = exchange.type === 'DEX'
 
   return (
-    <motion.a
-      variants={fadeInUp}
+    <a
       href={exchange.link}
       target="_blank"
       rel="noopener noreferrer"
@@ -223,7 +199,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         <span>Trade Now</span>
         <ExternalLinkIcon />
       </div>
-    </motion.a>
+    </a>
   )
 }
 
@@ -231,8 +207,7 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
   const isDEX = exchange.type === 'DEX'
 
   return (
-    <motion.tr
-      variants={fadeInUp}
+    <tr
       className="group border-b border-[var(--border)]/50 transition-colors hover:bg-[var(--panel)]"
     >
       <td className="py-4">
@@ -322,7 +297,7 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
           <ExternalLinkIcon />
         </a>
       </td>
-    </motion.tr>
+    </tr>
   )
 }
 
@@ -406,10 +381,7 @@ export default function DirectoryExchangesPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary)]/5 via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <Link
               href="/directory"
@@ -452,7 +424,7 @@ export default function DirectoryExchangesPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -619,22 +591,16 @@ export default function DirectoryExchangesPage() {
           </div>
 
           {viewMode === 'grid' ? (
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
+            <div
               className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             >
               {filteredExchanges.map((exchange) => (
                 <ExchangeCard key={exchange.name} exchange={exchange} />
               ))}
-            </motion.div>
+            </div>
           ) : (
             <div className="overflow-x-auto">
-              <motion.table
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
+              <table
                 className="w-full"
               >
                 <thead>
@@ -654,7 +620,7 @@ export default function DirectoryExchangesPage() {
                     <ExchangeTableRow key={exchange.name} exchange={exchange} />
                   ))}
                 </tbody>
-              </motion.table>
+              </table>
             </div>
           )}
 

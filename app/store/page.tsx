@@ -1,17 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 type Category = 'all' | 'mining-hardware' | 'equipment' | 'network' | 'hardware-wallets' | 'apparel' | 'accessories'
 
@@ -603,10 +593,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
   const hasSpecs = 'specs' in product
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+    <div
       className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
     >
       {/* Product Image Placeholder */}
@@ -696,7 +683,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -716,7 +703,7 @@ export default function StorePage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="text-center">
+          <div className="text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -749,17 +736,14 @@ export default function StorePage() {
                 <span className="text-[var(--color-text-muted)]">Partners</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Store Info Banner */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 p-4"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -781,7 +765,7 @@ export default function StorePage() {
                 View Hardware Guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -823,10 +807,7 @@ export default function StorePage() {
       {/* About Our Store */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">About Our Store</h2>
@@ -860,17 +841,14 @@ export default function StorePage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Community Designs CTA */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Submit Your Design</h2>
@@ -889,7 +867,7 @@ export default function StorePage() {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

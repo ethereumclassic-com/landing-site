@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import {
   exchangeReviews,
   getVerdictLabel,
@@ -10,19 +9,6 @@ import {
   formatRating,
   type ExchangeReview,
 } from '../data/reviews'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // Star rating component
 function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md' | 'lg' }) {
@@ -53,7 +39,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
 // Review card component
 function ReviewCard({ review }: { review: ExchangeReview }) {
   return (
-    <motion.div variants={fadeInUp}>
+    <div>
       <Link
         href={`/buy/reviews/${review.slug}`}
         className="group block h-full rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
@@ -121,7 +107,7 @@ function ReviewCard({ review }: { review: ExchangeReview }) {
           </svg>
         </div>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 
@@ -180,32 +166,27 @@ export default function ExchangeReviewsPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 to-transparent px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="text-center"
           >
-            <motion.div variants={fadeInUp} className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
               In-Depth Reviews
-            </motion.div>
-            <motion.h1
-              variants={fadeInUp}
+            </div>
+            <h1
               className="mb-4 text-4xl font-bold text-[var(--text-primary)] sm:text-5xl"
             >
               Exchange Reviews
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
+            </h1>
+            <p
               className="mx-auto max-w-2xl text-lg text-[var(--color-text-secondary)]"
             >
               Comprehensive reviews of exchanges supporting Ethereum Classic. We evaluate security,
               fees, liquidity, and user experience to help you choose the right platform.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -279,16 +260,13 @@ export default function ExchangeReviewsPage() {
             </p>
           </div>
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filteredReviews.map((review) => (
               <ReviewCard key={review.id} review={review} />
             ))}
-          </motion.div>
+          </div>
 
           {filteredReviews.length === 0 && (
             <div className="py-12 text-center">

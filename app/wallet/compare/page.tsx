@@ -1,26 +1,8 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { wallets, type Wallet, type WalletType } from '../data/wallets'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 type FilterType = 'all' | WalletType
 type SortOption = 'name' | 'type' | 'security'
@@ -133,10 +115,7 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
   const securityColor = securityColors[wallet.securityLevel || 'medium']
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
     >
       <div className="mb-3 flex items-start justify-between">
@@ -201,7 +180,7 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
-    </motion.div>
+    </div>
   )
 }
 
@@ -248,14 +227,11 @@ export default function ComparePage() {
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-6xl"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 text-sm">
+          <div className="mb-6 flex items-center gap-2 text-sm">
             <Link
               href="/wallet"
               className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -264,38 +240,36 @@ export default function ComparePage() {
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
             <span className="text-[var(--text-primary)]">Compare</span>
-          </motion.div>
+          </div>
 
           {/* Badge */}
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
               </svg>
               {wallets.length} Wallets
             </span>
-          </motion.div>
+          </div>
 
           {/* Title */}
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Compare{' '}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               ETC Wallets
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Find the perfect wallet for your needs. Compare features, security levels, and platform support
             across all Ethereum Classic compatible wallets.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Filters */}
@@ -477,10 +451,7 @@ export default function ComparePage() {
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
@@ -503,7 +474,7 @@ export default function ComparePage() {
                 MetaMask Setup
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

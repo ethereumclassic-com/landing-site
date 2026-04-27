@@ -1,30 +1,12 @@
 'use client'
 
 import { use } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPoolById, miningPools, type PayoutScheme } from '../../data/mining'
 
 interface Props {
   params: Promise<{ pool: string }>
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
 }
 
 const payoutSchemeDescriptions: Record<PayoutScheme, { name: string; description: string }> = {
@@ -116,8 +98,8 @@ export default function PoolPage({ params }: Props) {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/mining/pools"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -127,9 +109,9 @@ export default function PoolPage({ params }: Props) {
                 </svg>
                 Back to Pools
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="flex items-start justify-between">
+            <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-3">
                   <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">{pool.name}</h1>
@@ -154,18 +136,15 @@ export default function PoolPage({ params }: Props) {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Key Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             <StatCard
@@ -189,7 +168,7 @@ export default function PoolPage({ params }: Props) {
               value={`${pool.servers.length} Region${pool.servers.length > 1 ? 's' : ''}`}
               description="Available server locations"
             />
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -213,10 +192,7 @@ export default function PoolPage({ params }: Props) {
       {/* Server Addresses */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Server Addresses</h2>
@@ -240,17 +216,14 @@ export default function PoolPage({ params }: Props) {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Payout Schemes */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Payout Methods</h2>
@@ -276,17 +249,14 @@ export default function PoolPage({ params }: Props) {
                 )
               })}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Features */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Pool Features</h2>
@@ -306,17 +276,14 @@ export default function PoolPage({ params }: Props) {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Quick Start */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Start Configuration</h2>
@@ -347,17 +314,14 @@ export default function PoolPage({ params }: Props) {
                 Complete getting started guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Compare with Other Pools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <div
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Compare with Other Pools</h2>
             <div className="grid gap-4 md:grid-cols-3">
@@ -406,17 +370,14 @@ export default function PoolPage({ params }: Props) {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need a Wallet?</h2>
@@ -440,7 +401,7 @@ export default function PoolPage({ params }: Props) {
                 Calculate Profits
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

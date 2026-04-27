@@ -1,32 +1,13 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { networks, rpcEndpoints, explorerAPIs, buildStats, getMainnetEndpoints, getTestnetEndpoints } from '../data/build'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 function NetworkCard({ network }: { network: typeof networks[0] }) {
   const isMainnet = network.type === 'mainnet'
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className={`rounded-xl border p-6 ${
         isMainnet
           ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
@@ -75,7 +56,7 @@ function NetworkCard({ network }: { network: typeof networks[0] }) {
           </svg>
         </a>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -120,8 +101,8 @@ export default function BuildNetworksPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/build"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -131,9 +112,9 @@ export default function BuildNetworksPage() {
                 </svg>
                 Back to Build
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Network Information
               </h1>
@@ -141,18 +122,15 @@ export default function BuildNetworksPage() {
                 Ethereum Classic network configuration details. Chain IDs, RPC endpoints, and explorer links
                 for mainnet and testnet development.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="grid gap-4 sm:grid-cols-2 md:grid-cols-4"
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
@@ -171,67 +149,52 @@ export default function BuildNetworksPage() {
               <p className="text-xs text-[var(--color-text-muted)]">Algorithm</p>
               <p className="text-xl font-bold text-[var(--text-primary)]">ETChash</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Networks */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Networks
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {networks.map((network) => (
               <NetworkCard key={network.chainId} network={network} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Mainnet RPC Endpoints */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
           >
             <EndpointTable endpoints={mainnetEndpoints} title="Mainnet RPC Endpoints" />
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Testnet RPC Endpoints */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
           >
             <EndpointTable endpoints={testnetEndpoints} title="Mordor Testnet RPC Endpoints" />
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Block Explorers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Block Explorers & APIs</h3>
@@ -275,17 +238,14 @@ export default function BuildNetworksPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Quick Config */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
             <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Wallet Configuration</h3>
@@ -362,17 +322,14 @@ export default function BuildNetworksPage() {
                 Add Mordor via Chainlist
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Developing?</h2>
@@ -396,7 +353,7 @@ export default function BuildNetworksPage() {
                 Run Your Own Node
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

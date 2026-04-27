@@ -1,26 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { reports, ecosystemStats, dataSources, getLatestReports } from './data/research'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const categoryIcons: Record<string, React.ReactNode> = {
   network: (
@@ -56,8 +38,7 @@ function ReportCard({ report }: { report: typeof reports[0] }) {
   const colors = categoryColors[report.category]
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-colors hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-start justify-between">
@@ -96,7 +77,7 @@ function ReportCard({ report }: { report: typeof reports[0] }) {
           </svg>
         </Link>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -110,8 +91,7 @@ interface LiveMetric {
 
 function MetricCard({ metric }: { metric: LiveMetric }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
     >
       <p className="text-xs text-[var(--color-text-muted)]">{metric.label}</p>
@@ -127,7 +107,7 @@ function MetricCard({ metric }: { metric: LiveMetric }) {
         )}
       </div>
       <p className="mt-1 text-xs text-[var(--color-text-muted)]">{metric.description}</p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -191,20 +171,14 @@ function LiveNetworkMetrics() {
 
   return (
     <>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
+      <div
         className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
       >
         {metrics.map((metric) => (
           <MetricCard key={metric.label} metric={metric} />
         ))}
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
+      </div>
+      <div
         className="mt-4 flex items-center gap-2 text-xs text-[var(--color-text-muted)]"
       >
         <span className="relative flex h-2 w-2">
@@ -215,7 +189,7 @@ function LiveNetworkMetrics() {
         <a href="https://etc.blockscout.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">Blockscout</a>
         {' '}&amp;{' '}
         <a href="https://www.coingecko.com/en/coins/ethereum-classic" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">CoinGecko</a>
-      </motion.div>
+      </div>
     </>
   )
 }
@@ -228,8 +202,8 @@ export default function ResearchPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Research Hub
               </h1>
@@ -237,18 +211,15 @@ export default function ResearchPage() {
                 In-depth research and analysis of the Ethereum Classic ecosystem. Network statistics,
                 market reports, and technical documentation.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Navigation */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             <Link
@@ -315,21 +286,18 @@ export default function ResearchPage() {
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Mining Stats</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Network hashrate and mining data</p>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Network Metrics - Live Data */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Network Metrics
-          </motion.h2>
+          </h2>
           <LiveNetworkMetrics />
         </div>
       </section>
@@ -337,10 +305,7 @@ export default function ResearchPage() {
       {/* Latest Reports */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mb-6 flex items-center justify-between"
           >
             <h2 className="text-xl font-semibold text-[var(--text-primary)]">Latest Reports</h2>
@@ -350,35 +315,26 @@ export default function ResearchPage() {
             >
               View All Reports
             </Link>
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </div>
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {latestReports.map((report) => (
               <ReportCard key={report.id} report={report} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Ecosystem Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Ecosystem Overview
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
+          </h2>
+          <div
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
             {ecosystemStats.map((section) => (
@@ -397,17 +353,14 @@ export default function ResearchPage() {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Data Sources */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Data Sources</h2>
@@ -433,17 +386,14 @@ export default function ResearchPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Stay Informed</h2>
@@ -467,7 +417,7 @@ export default function ResearchPage() {
                 Learn More
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -1,27 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useGasPrices } from '@/app/hooks/useNetworkStats'
 import { usePrice } from '@/app/hooks/usePrice'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // Common transaction types with typical gas limits
 const transactionTypes = [
@@ -84,8 +66,8 @@ export default function GasTrackerPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/tools"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -95,9 +77,9 @@ export default function GasTrackerPage() {
                 </svg>
                 Back to Tools
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Gas Tracker
               </h1>
@@ -105,32 +87,25 @@ export default function GasTrackerPage() {
                 Monitor Ethereum Classic gas prices and optimize your transaction costs.
                 ETC typically has very low gas fees compared to other networks.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Gas Price Tiers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Current Gas Prices
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 md:grid-cols-3"
           >
             {gasTiers.map((tier) => (
-              <motion.button
+              <button
                 key={tier.name}
-                variants={fadeInUp}
                 onClick={() => setSelectedGas(tier.gwei)}
                 className={`rounded-xl border p-6 text-left transition-colors ${
                   selectedGas === tier.gwei
@@ -146,14 +121,11 @@ export default function GasTrackerPage() {
                   {tier.gwei} <span className="text-lg text-[var(--color-text-muted)]">Gwei</span>
                 </div>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{tier.description}</p>
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mt-4 text-center text-sm text-[var(--color-text-muted)]"
           >
             {isLoading ? (
@@ -178,25 +150,19 @@ export default function GasTrackerPage() {
                 </a>
               </span>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Transaction Cost Calculator */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Transaction Cost Estimator
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
+          </h2>
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
           >
             <div className="overflow-x-auto">
@@ -249,17 +215,14 @@ export default function GasTrackerPage() {
                 <span className="text-amber-400">(reference)</span>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Gas Optimization Tips */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Gas Optimization Tips</h2>
@@ -317,17 +280,14 @@ export default function GasTrackerPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ETC vs Other Networks */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Why ETC Gas is Cheap</h2>
@@ -349,17 +309,14 @@ export default function GasTrackerPage() {
               Ethereum Classic maintains low gas prices due to its efficient block production and lower network
               congestion compared to Ethereum. This makes ETC ideal for frequent transactions and DeFi activities.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Related Links */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="flex flex-wrap justify-center gap-4"
           >
             <Link
@@ -388,7 +345,7 @@ export default function GasTrackerPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

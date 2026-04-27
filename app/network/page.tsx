@@ -1,17 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 // Format time ago helper
 function formatTimeAgo(date: Date): string {
@@ -127,7 +117,7 @@ export default function NetworkHealthPage() {
       {/* Hero */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
@@ -159,17 +149,14 @@ export default function NetworkHealthPage() {
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Data Source Notice - Now shows live data status */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className={`rounded-xl border p-4 ${
               stats ? 'border-green-500/30 bg-green-500/10' : 'border-blue-500/30 bg-blue-500/10'
             }`}
@@ -192,7 +179,7 @@ export default function NetworkHealthPage() {
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -200,10 +187,7 @@ export default function NetworkHealthPage() {
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="flex items-center justify-between">
@@ -217,12 +201,9 @@ export default function NetworkHealthPage() {
               <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : formatted?.price ?? '$--'}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="flex items-center justify-between">
@@ -231,12 +212,9 @@ export default function NetworkHealthPage() {
               <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : formatted?.marketCap ?? '$--'}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="flex items-center justify-between">
@@ -246,12 +224,9 @@ export default function NetworkHealthPage() {
               <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : formatted?.blockTime ?? '13.5s'}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="flex items-center justify-between">
@@ -261,7 +236,7 @@ export default function NetworkHealthPage() {
               <div className="mt-2 text-2xl font-bold text-[var(--color-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : `#${formatted?.blockHeight ?? '--'}`}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -269,10 +244,7 @@ export default function NetworkHealthPage() {
       {/* Health Checks */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">Health Status</h2>
             <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -280,12 +252,8 @@ export default function NetworkHealthPage() {
             </p>
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {healthChecks.map((check, index) => (
-                <motion.div
+                <div
                   key={check.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
                 >
                   <div className="flex items-start justify-between">
@@ -296,10 +264,10 @@ export default function NetworkHealthPage() {
                     <StatusIcon status={check.status} />
                   </div>
                   <div className="mt-3 text-sm font-medium text-[var(--color-primary)]">{check.metric}</div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -308,10 +276,7 @@ export default function NetworkHealthPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Recent Blocks - Links to Blockscout */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
             >
               <div className="p-4 border-b border-[var(--border)]">
@@ -345,13 +310,10 @@ export default function NetworkHealthPage() {
                   Or use our Explorer page →
                 </Link>
               </div>
-            </motion.div>
+            </div>
 
             {/* Pool Distribution - Reference Estimates */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
             >
               <div className="p-4 border-b border-[var(--border)]">
@@ -385,7 +347,7 @@ export default function NetworkHealthPage() {
                   Start mining →
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -393,10 +355,7 @@ export default function NetworkHealthPage() {
       {/* Node Distribution - Reference Estimates */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
@@ -426,17 +385,14 @@ export default function NetworkHealthPage() {
             <p className="mt-4 text-xs text-[var(--color-text-muted)]">
               Node counts are community estimates. Live data source needed for accurate reporting.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Resources */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)]">Network Resources</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -484,7 +440,7 @@ export default function NetworkHealthPage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Current gas prices and recommendations</p>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

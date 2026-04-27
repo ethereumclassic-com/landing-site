@@ -1,26 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePrice } from '@/app/hooks/usePrice'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const presets = [
   { label: '$100', value: 100 },
@@ -47,8 +29,8 @@ export default function ToolsCalculatorPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/tools"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -58,8 +40,8 @@ export default function ToolsCalculatorPage() {
                 </svg>
                 Back to Tools
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
+            </div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Investment Calculator
               </h1>
@@ -67,18 +49,15 @@ export default function ToolsCalculatorPage() {
                 Calculate potential returns on your Ethereum Classic investment.
                 Enter an amount and optional entry price to see your position value.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Calculator */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="grid gap-8 lg:grid-cols-2"
           >
             {/* Input Panel */}
@@ -197,17 +176,14 @@ export default function ToolsCalculatorPage() {
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Scenario Table */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">Price Scenarios</h2>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden">
@@ -259,17 +235,14 @@ export default function ToolsCalculatorPage() {
                 </table>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Related Links */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="flex flex-wrap justify-center gap-4"
           >
             <Link
@@ -293,7 +266,7 @@ export default function ToolsCalculatorPage() {
             >
               Markets
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

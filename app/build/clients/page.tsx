@@ -1,21 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { networks, getActiveClients, executionPlugins } from '../data/build'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
 
 // Icons
 const ChevronRightIcon = () => (
@@ -71,10 +57,7 @@ export default function ClientsPage() {
       {/* Hero Section */}
       <section className="border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
               <ServerIcon />
@@ -87,17 +70,14 @@ export default function ClientsPage() {
               Run your own Ethereum Classic node for maximum decentralization and independence.
               Choose from multiple client implementations in Go, Java, and Scala.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Why Run a Node */}
       <section className="px-6 py-12">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Why Run Your Own Node?</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -131,33 +111,25 @@ export default function ClientsPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Client Cards */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-8 text-center text-3xl font-bold text-[var(--text-primary)]"
           >
             Available Clients
-          </motion.h2>
+          </h2>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="space-y-8"
           >
             {activeClients.map((client) => (
-              <motion.div
+              <div
                 key={client.id}
-                variants={fadeInUp}
                 className={`rounded-2xl border p-8 ${
                   client.recommended
                     ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
@@ -266,19 +238,16 @@ export default function ClientsPage() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Network Configuration */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Network Configuration</h2>
 
@@ -337,17 +306,14 @@ export default function ClientsPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Hardware Requirements */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Hardware Requirements</h2>
 
@@ -398,17 +364,14 @@ export default function ClientsPage() {
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Execution Client Plugins — Post-Olympia Roadmap */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-2 text-2xl font-bold text-[var(--text-primary)]">
               Execution Client Plugins
@@ -443,17 +406,14 @@ export default function ClientsPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--bg)] to-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
@@ -477,7 +437,7 @@ export default function ClientsPage() {
                 Olympia Client Details
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

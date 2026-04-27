@@ -1,25 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 type InquiryType = 'general' | 'partnership' | 'technical' | 'listing' | 'media' | 'other'
 
@@ -122,25 +104,20 @@ export default function ContactPage() {
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
         <div className="container relative mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mx-auto max-w-3xl text-center"
           >
-            <motion.h1
-              variants={fadeInUp}
+            <h1
               className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
               Get in Touch
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
+            </h1>
+            <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
               Have questions, feedback, or partnership ideas? We would love to hear from you.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -150,9 +127,7 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-5">
             {/* Contact Form */}
             <div className="lg:col-span-3">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+              <div
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
               >
                 <h2 className="text-xl font-bold text-[var(--text-primary)]">Send us a Message</h2>
@@ -161,9 +136,7 @@ export default function ContactPage() {
                 </p>
 
                 {status === 'success' ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                  <div
                     className="mt-8 rounded-xl bg-[var(--color-success)]/10 p-6 text-center"
                   >
                     <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-success)]/20">
@@ -181,7 +154,7 @@ export default function ContactPage() {
                     >
                       Send another message
                     </button>
-                  </motion.div>
+                  </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="mt-6 space-y-6">
                     {/* Name and Email */}
@@ -265,13 +238,11 @@ export default function ContactPage() {
 
                     {/* Error Message */}
                     {status === 'error' && (
-                      <motion.p
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                      <p
                         className="text-sm text-[var(--color-error)]"
                       >
                         {errorMessage}
-                      </motion.p>
+                      </p>
                     )}
 
                     {/* Submit Button */}
@@ -294,15 +265,12 @@ export default function ContactPage() {
                     </button>
                   </form>
                 )}
-              </motion.div>
+              </div>
             </div>
 
             {/* Sidebar */}
             <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+              <div
                 className="space-y-6"
               >
                 {/* Community Channels */}
@@ -381,7 +349,7 @@ export default function ContactPage() {
                     </Link>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

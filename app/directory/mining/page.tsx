@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { miningPools, miningHardware, miningSoftware } from '@/app/mining/data/mining'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 export default function DirectoryMiningPage() {
   const topGPUs = miningHardware.filter((h) => h.type === 'GPU').slice(0, 6)
@@ -30,8 +12,8 @@ export default function DirectoryMiningPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/directory"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -41,22 +23,22 @@ export default function DirectoryMiningPage() {
                 </svg>
                 Back to Directory
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
+            </div>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Mining Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Complete directory of Ethereum Classic mining resources — pools, hardware, and software.
                 ETC uses Etchash proof-of-work, mineable with GPUs and ASICs.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Mining Pools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">Mining Pools ({miningPools.length})</h2>
               <Link href="/mining/pools" className="text-sm text-[var(--color-primary)] hover:underline">
@@ -109,14 +91,14 @@ export default function DirectoryMiningPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Hardware Overview */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">Top Hardware ({miningHardware.length} total)</h2>
               <Link href="/mining/hardware" className="text-sm text-[var(--color-primary)] hover:underline">
@@ -153,14 +135,14 @@ export default function DirectoryMiningPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Software */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div>
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">Mining Software ({miningSoftware.length})</h2>
               <Link href="/mining/software" className="text-sm text-[var(--color-primary)] hover:underline">
@@ -182,14 +164,14 @@ export default function DirectoryMiningPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/mining"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
@@ -202,7 +184,7 @@ export default function DirectoryMiningPage() {
             >
               Profitability Calculator
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

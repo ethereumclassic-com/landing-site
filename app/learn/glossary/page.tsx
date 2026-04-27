@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 interface GlossaryTerm {
@@ -432,10 +431,7 @@ export default function GlossaryPage() {
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           <Link
@@ -465,7 +461,7 @@ export default function GlossaryPage() {
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Your comprehensive guide to cryptocurrency and blockchain terminology. Learn the language of Ethereum Classic.
           </p>
-        </motion.div>
+        </div>
       </section>
 
       {/* Search & Filter */}
@@ -518,11 +514,8 @@ export default function GlossaryPage() {
           {Object.keys(groupedTerms).length > 0 ? (
             <div className="space-y-8">
               {Object.entries(groupedTerms).map(([letter, terms]) => (
-                <motion.div
+                <div
                   key={letter}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
                 >
                   <div className="mb-4 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-lg font-bold text-[var(--color-primary)]">
@@ -561,9 +554,7 @@ export default function GlossaryPage() {
                         </button>
 
                         {expandedTerms.has(item.term) && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
+                          <div
                             className="border-t border-[var(--border)] px-4 pb-4 pt-3"
                           >
                             <p className="text-[var(--color-text-secondary)]">{item.definition}</p>
@@ -584,18 +575,16 @@ export default function GlossaryPage() {
                                 ))}
                               </div>
                             )}
-                          </motion.div>
+                          </div>
                         )}
                       </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
@@ -615,17 +604,14 @@ export default function GlossaryPage() {
               >
                 Clear search
               </button>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
@@ -648,7 +634,7 @@ export default function GlossaryPage() {
               Browse All Guides
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

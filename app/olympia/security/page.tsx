@@ -1,17 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 interface CVE {
   id: string
@@ -121,40 +110,36 @@ export default function SecurityPage() {
           <div className="absolute left-1/2 top-0 h-[200px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/6 blur-[80px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-3xl"
         >
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="mb-4">
             <Link
               href="/olympia"
               className="text-sm text-[var(--color-primary)] transition hover:text-[var(--color-primary)]/80"
             >
               ← Olympia Hub
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <span className="rounded-sm bg-red-500/15 px-2 py-0.5 font-mono text-[10px] font-medium text-red-400">
               SECURITY
             </span>
             <span className="font-mono text-sm text-[var(--color-text-muted)]">March 2026</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl"
           >
             Core-Geth Security Gap Analysis
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mt-3 text-[var(--color-text-secondary)]">
+          <p className="mt-3 text-[var(--color-text-secondary)]">
             Assessment of the Core-Geth execution client covering the 21-month maintenance gap from
             February 2024 through April 2026: the longest maintenance gap in the network&apos;s history.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Content */}

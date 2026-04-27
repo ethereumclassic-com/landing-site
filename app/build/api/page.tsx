@@ -1,14 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
-}
 
 interface ApiEndpoint {
   method: 'GET' | 'POST'
@@ -166,7 +159,7 @@ export default function ApiDocsPage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <motion.div {...fadeInUp} className="text-center">
+          <div className="text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
@@ -179,16 +172,13 @@ export default function ApiDocsPage() {
             <p className="mx-auto max-w-2xl text-lg text-[var(--color-text-secondary)]">
               Access ETC price data, network statistics, and blockchain information through our REST API endpoints.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Quick Start */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+        <section
           className="mb-16"
         >
           <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Quick Start</h2>
@@ -212,23 +202,17 @@ export default function ApiDocsPage() {
               <code className="text-[var(--color-text-secondary)]">{codeExamples[selectedLang]}</code>
             </pre>
           </div>
-        </motion.section>
+        </section>
 
         {/* REST API Endpoints */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+        <section
           className="mb-16"
         >
           <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">REST API Endpoints</h2>
           <div className="space-y-6">
             {apiEndpoints.map((endpoint, index) => (
-              <motion.div
+              <div
                 key={endpoint.path}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
               >
                 <div className="border-b border-[var(--border)] bg-[var(--bg)] px-6 py-4">
@@ -285,16 +269,13 @@ export default function ApiDocsPage() {
                     </pre>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.section>
+        </section>
 
         {/* RPC Endpoints */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+        <section
           className="mb-16"
         >
           <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Public RPC Endpoints</h2>
@@ -316,13 +297,10 @@ export default function ApiDocsPage() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </section>
 
         {/* Rate Limits */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+        <section
           className="mb-16"
         >
           <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Rate Limits & Best Practices</h2>
@@ -362,13 +340,10 @@ export default function ApiDocsPage() {
               </ul>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Additional Resources */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+        <section
         >
           <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">Additional Resources</h2>
           <div className="grid gap-4 md:grid-cols-3">
@@ -408,7 +383,7 @@ export default function ApiDocsPage() {
               </p>
             </Link>
           </div>
-        </motion.section>
+        </section>
       </div>
     </main>
   )

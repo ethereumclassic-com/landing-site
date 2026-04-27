@@ -1,14 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { categoryDescriptions, type ArticleCategory } from '@/lib/content-types'
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
-}
 
 const categories: ArticleCategory[] = ['Updates', 'Security', 'Ecosystem', 'Community']
 
@@ -138,7 +131,7 @@ Wrap up your article with a conclusion.`,
     <div className="min-h-screen bg-[var(--bg)] py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div {...fadeInUp} className="mb-12 text-center">
+        <div className="mb-12 text-center">
           <h1 className="mb-4 text-4xl font-bold text-[var(--color-text-primary)] md:text-5xl">
             Content Editor
           </h1>
@@ -146,14 +139,11 @@ Wrap up your article with a conclusion.`,
             Create and edit MDX articles for EthereumClassic.com. Fill in the form below to generate
             an MDX file ready for the content directory.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Editor Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <div
           >
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
               <div className="mb-6 flex items-center justify-between">
@@ -314,13 +304,10 @@ Wrap up your article with a conclusion.`,
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Preview Panel */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div
           >
             <div className="sticky top-24 rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
               <div className="mb-6 flex items-center justify-between">
@@ -368,14 +355,11 @@ Wrap up your article with a conclusion.`,
                 </ol>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Markdown Guide */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+        <div
           className="mt-12"
         >
           <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
@@ -412,7 +396,7 @@ Wrap up your article with a conclusion.`,
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   )

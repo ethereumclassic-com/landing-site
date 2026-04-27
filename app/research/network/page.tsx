@@ -1,26 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { dataSources } from '../data/research'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // Types for API response
 interface NetworkStats {
@@ -107,11 +89,9 @@ function BarChart({ data, label }: { data: { label: string; value: number; color
             <span className="font-medium text-[var(--text-primary)]">{item.value}%</span>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-[var(--bg)]">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: `${(item.value / max) * 100}%` }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              className={`h-full ${item.color}`}
+            <div
+              className={`h-full transition-all duration-700 ease-out ${item.color}`}
+              style={{ width: `${(item.value / max) * 100}%` }}
             />
           </div>
         </div>
@@ -182,8 +162,8 @@ export default function NetworkAnalysisPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/research"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -193,9 +173,9 @@ export default function NetworkAnalysisPage() {
                 </svg>
                 Back to Research
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Network Dashboard
               </h1>
@@ -205,29 +185,26 @@ export default function NetworkAnalysisPage() {
                   Live Data
                 </span>
               )}
-            </motion.div>
-            <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
+            </div>
+            <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
               Real-time network metrics and statistics from the Ethereum Classic blockchain.
               Data sourced from{' '}
               <a href="https://etc.blockscout.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
                 Blockscout
               </a>.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Live Stats Grid */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Network Status
-          </motion.h2>
+          </h2>
 
           {isLoading ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -243,14 +220,11 @@ export default function NetworkAnalysisPage() {
               </p>
             </div>
           ) : stats && (
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
+            <div
               className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
             >
               {/* ETC Price */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">ETC Price</p>
                 <div className="mt-1 flex items-baseline gap-2">
                   <p className="text-2xl font-bold text-[var(--text-primary)]">{stats.priceFormatted}</p>
@@ -261,52 +235,52 @@ export default function NetworkAnalysisPage() {
                   </span>
                 </div>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">24h change</p>
-              </motion.div>
+              </div>
 
               {/* Market Cap */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Market Cap</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.marketCapFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Total market value</p>
-              </motion.div>
+              </div>
 
               {/* Block Height */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Height</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.blockHeightFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Current block number</p>
-              </motion.div>
+              </div>
 
               {/* Total Transactions */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Total Transactions</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.totalTransactionsFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">All-time on-chain</p>
-              </motion.div>
+              </div>
 
               {/* Block Time */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Time</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.avgBlockTimeFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Average confirmation</p>
-              </motion.div>
+              </div>
 
               {/* Block Reward */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Reward</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.blockRewardFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Per block mined</p>
-              </motion.div>
+              </div>
 
               {/* Gas Price */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Gas Price</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.gasPriceFormatted}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">Average gas price</p>
-              </motion.div>
+              </div>
 
               {/* Data Freshness */}
-              <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Data Updated</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
                   {stats.cacheAgeMinutes !== undefined ? (
@@ -316,16 +290,13 @@ export default function NetworkAnalysisPage() {
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">
                   Source: {stats.source === 'blockscout' ? 'Blockscout API' : 'Fallback data'}
                 </p>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           )}
 
           {/* Cache Info */}
           {stats && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+            <p
               className="mt-4 text-xs text-[var(--color-text-muted)]"
             >
               Data is cached for 24 hours to minimize API calls. Last updated:{' '}
@@ -333,7 +304,7 @@ export default function NetworkAnalysisPage() {
               {stats.nextRefresh && (
                 <> Next refresh: {new Date(stats.nextRefresh).toLocaleString()}.</>
               )}
-            </motion.p>
+            </p>
           )}
         </div>
       </section>
@@ -342,13 +313,10 @@ export default function NetworkAnalysisPage() {
       {stats && (
         <section className="px-6 pb-12 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <div
             >
               <GasPriceCard gasPrice={stats.gasPrice} />
-            </motion.div>
+            </div>
           </div>
         </section>
       )}
@@ -356,18 +324,12 @@ export default function NetworkAnalysisPage() {
       {/* Chain Parameters */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Chain Parameters
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-3"
           >
             {chainMetrics.map((section) => (
@@ -386,25 +348,19 @@ export default function NetworkAnalysisPage() {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Mining Distribution */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Mining Distribution
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
@@ -444,25 +400,19 @@ export default function NetworkAnalysisPage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Historical Timeline */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Network History
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
+          </h2>
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="space-y-4">
@@ -483,17 +433,14 @@ export default function NetworkAnalysisPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Data Sources */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Data Sources</h2>
@@ -516,17 +463,14 @@ export default function NetworkAnalysisPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Explore Mining</h2>
@@ -550,7 +494,7 @@ export default function NetworkAnalysisPage() {
                 Pool Directory
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -1,21 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { explorerAPIs, getDocsByCategory, getMainnetEndpoints, getTestnetEndpoints } from '../data/build'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
 
 // Icons
 const ChevronRightIcon = () => (
@@ -115,10 +101,7 @@ export default function DocsPage() {
       {/* Hero Section */}
       <section className="border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
           >
             <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
               Developer Documentation
@@ -127,7 +110,7 @@ export default function DocsPage() {
               Everything you need to build on Ethereum Classic. Protocol specs, API references,
               tutorials, and tools documentation.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -135,11 +118,8 @@ export default function DocsPage() {
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
           {categories.map(({ key, docs }) => (
-            <motion.div
+            <div
               key={key}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               className="mb-12"
             >
               <div className="mb-6 flex items-center gap-3">
@@ -168,7 +148,7 @@ export default function DocsPage() {
                   </a>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
@@ -176,24 +156,18 @@ export default function DocsPage() {
       {/* RPC Endpoints */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">RPC Endpoints</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Public RPC endpoints for connecting to Ethereum Classic
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {/* Mainnet RPC */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--bg)] p-6"
             >
               <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Mainnet (Chain ID: 61)</h3>
@@ -226,13 +200,10 @@ export default function DocsPage() {
               >
                 View all on Chainlist <ExternalLinkIcon />
               </a>
-            </motion.div>
+            </div>
 
             {/* Testnet RPC */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6"
             >
               <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Mordor Testnet (Chain ID: 63)</h3>
@@ -265,7 +236,7 @@ export default function DocsPage() {
               >
                 View all on Chainlist <ExternalLinkIcon />
               </a>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -273,29 +244,21 @@ export default function DocsPage() {
       {/* Block Explorers */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Block Explorers & APIs</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Explore transactions, verify contracts, and access blockchain data
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-4 md:grid-cols-2"
           >
             {explorerAPIs.map((explorer, i) => (
-              <motion.div
+              <div
                 key={i}
-                variants={fadeInUp}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="mb-4 flex items-center justify-between">
@@ -332,19 +295,16 @@ export default function DocsPage() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Quick Links */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-8 text-center text-2xl font-bold text-[var(--text-primary)]">Quick Links</h2>
 
@@ -378,17 +338,14 @@ export default function DocsPage() {
                 </Link>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--bg)] to-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Need Help?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
@@ -414,7 +371,7 @@ export default function DocsPage() {
                 <ExternalLinkIcon />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -1,18 +1,8 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { exchanges } from '../../buy/data/exchanges'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const ExternalLinkIcon = () => (
   <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -111,10 +101,7 @@ export default function CompareExchangesPage() {
       <div className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
+          <div
             className="mb-8"
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
@@ -129,13 +116,10 @@ export default function CompareExchangesPage() {
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
               Side-by-side comparison of all {exchanges.length} exchanges. Sort by fees, volume, or pairs to find the best fit for your needs.
             </p>
-          </motion.div>
+          </div>
 
           {/* Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="mb-6 flex flex-wrap items-center gap-4"
           >
             <div className="flex items-center gap-2">
@@ -159,13 +143,10 @@ export default function CompareExchangesPage() {
             <div className="text-sm text-[var(--color-text-muted)]">
               Showing {sortedExchanges.length} exchanges
             </div>
-          </motion.div>
+          </div>
 
           {/* Comparison Table */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="overflow-x-auto rounded-xl border border-[var(--border)] bg-[var(--panel)]"
           >
             <table className="w-full min-w-[800px]">
@@ -316,13 +297,10 @@ export default function CompareExchangesPage() {
                 ))}
               </tbody>
             </table>
-          </motion.div>
+          </div>
 
           {/* Legend */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mt-6 flex flex-wrap gap-6 text-sm text-[var(--color-text-muted)]"
           >
             <div className="flex items-center gap-2">
@@ -341,13 +319,10 @@ export default function CompareExchangesPage() {
               <span className="rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-400">CEX</span>
               <span>Centralized</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
             className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             <Link
@@ -378,7 +353,7 @@ export default function CompareExchangesPage() {
               <h3 className="font-semibold text-[var(--text-primary)]">US Friendly</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Regulated for US users</p>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </main>

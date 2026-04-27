@@ -1,28 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PoolCard, { PoolTableRow } from '../components/PoolCard'
 import HashRateChart from '../components/HashRateChart'
 import { miningPools, networkStats } from '../data/mining'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 type ViewMode = 'cards' | 'table'
 type SortKey = 'hashShare' | 'fee' | 'minPayout'
@@ -54,14 +36,11 @@ export default function MiningPoolsPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/mining"
               className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -71,27 +50,25 @@ export default function MiningPoolsPage() {
               </svg>
               Back to Mining
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Mining{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               Pools
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Compare Ethereum Classic mining pools by hashrate, fees, and features. Join a pool to receive consistent payouts.
-          </motion.p>
+          </p>
 
           {/* Quick Stats */}
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">Network Hashrate</p>
               <p className="font-semibold text-[var(--text-primary)]">{networkStats.hashrate}</p>
@@ -104,8 +81,8 @@ export default function MiningPoolsPage() {
               <p className="text-xs text-[var(--color-text-muted)]">Block Reward</p>
               <p className="font-semibold text-[var(--text-primary)]">{networkStats.blockReward}</p>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Hashrate Distribution */}
@@ -251,69 +228,51 @@ export default function MiningPoolsPage() {
       {/* How to Choose Section */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">How to Choose a Pool</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Consider these factors when selecting a mining pool
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h3 className="font-semibold text-[var(--text-primary)]">Pool Fee</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Lower fees mean more of your earnings go to you. Most pools charge 0.5-3%. Consider the fee vs. features trade-off.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h3 className="font-semibold text-[var(--text-primary)]">Hashrate Share</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Larger pools find blocks more often but split rewards among more miners. Smaller pools have less frequent but larger payouts.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h3 className="font-semibold text-[var(--text-primary)]">Minimum Payout</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Lower minimum payouts let smaller miners receive rewards faster. Higher minimums may save on transaction fees.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <h3 className="font-semibold text-[var(--text-primary)]">Server Location</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 Choose a pool with servers close to you for lower latency. This reduces stale shares and maximizes your effective hashrate.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -321,23 +280,17 @@ export default function MiningPoolsPage() {
       {/* Payout Schemes */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Payout Schemes Explained</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Understanding how mining pools distribute rewards
             </p>
-          </motion.div>
+          </div>
 
           <div className="space-y-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
@@ -349,13 +302,9 @@ export default function MiningPoolsPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
@@ -367,13 +316,9 @@ export default function MiningPoolsPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
@@ -385,13 +330,9 @@ export default function MiningPoolsPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
@@ -403,7 +344,7 @@ export default function MiningPoolsPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -411,10 +352,7 @@ export default function MiningPoolsPage() {
       {/* CTA */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Mining?</h2>
@@ -435,7 +373,7 @@ export default function MiningPoolsPage() {
                 Hardware Guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

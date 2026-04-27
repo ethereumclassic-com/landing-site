@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   articles,
@@ -11,23 +10,6 @@ import {
   type ArticleCategory,
 } from './data/articles'
 import NewsCard from './components/NewsCard'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
@@ -82,11 +64,7 @@ function CategoryCard({ category, index }: { category: ArticleCategory; index: n
   const categoryArticles = getArticlesByCategory(category)
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+    <div
     >
       <Link
         href={`/news/category/${category.toLowerCase()}`}
@@ -109,7 +87,7 @@ function CategoryCard({ category, index }: { category: ArticleCategory; index: n
           <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 
@@ -124,13 +102,10 @@ export default function NewsPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
@@ -141,24 +116,23 @@ export default function NewsPage() {
               </svg>
               {articles.length} Articles
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Ethereum Classic{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               News
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Stay updated with the latest developments, security updates, and community news from the Ethereum Classic
             ecosystem
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#featured"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
@@ -185,21 +159,18 @@ export default function NewsPage() {
               </svg>
               Learn About ETC
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Category Navigation */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-6 text-center text-lg font-semibold text-[var(--color-text-muted)]"
           >
             Browse by Category
-          </motion.h2>
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map((category, index) => (
               <CategoryCard key={category} category={category} index={index} />
@@ -211,10 +182,7 @@ export default function NewsPage() {
       {/* Featured Articles Section */}
       <section id="featured" className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -228,7 +196,7 @@ export default function NewsPage() {
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               The most important updates and announcements from the Ethereum Classic ecosystem
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-3">
             {featuredArticles.map((article, index) => (
@@ -251,10 +219,7 @@ export default function NewsPage() {
             className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12"
           >
             <div className="mx-auto max-w-6xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
                 className="mb-8 flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
@@ -281,7 +246,7 @@ export default function NewsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                   </svg>
                 </Link>
-              </motion.div>
+              </div>
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {categoryArticles.map((article, index) => (
@@ -313,10 +278,7 @@ export default function NewsPage() {
 
       {/* Subscribe CTA */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-20 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10">
@@ -371,7 +333,7 @@ export default function NewsPage() {
               </svg>
             </a>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

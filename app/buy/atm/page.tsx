@@ -1,25 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // ATM Network Providers
 const atmProviders = [
@@ -139,8 +121,7 @@ const atmAggregators = [
 
 function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
       <div className="mb-4 flex items-start justify-between">
@@ -215,7 +196,7 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
           Website
         </a>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -236,8 +217,8 @@ export default function ATMPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/buy"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
@@ -247,9 +228,9 @@ export default function ATMPage() {
                 </svg>
                 Back to Buy ETC
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
+            <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Crypto ATM Locator
               </h1>
@@ -257,18 +238,15 @@ export default function ATMPage() {
                 Find Bitcoin and cryptocurrency ATMs near you. Buy Ethereum Classic with cash at thousands
                 of locations, or purchase Bitcoin and swap to ETC.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="grid gap-4 sm:grid-cols-3"
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-center">
@@ -283,17 +261,14 @@ export default function ATMPage() {
               <p className="text-3xl font-bold text-amber-400">5-25%</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Typical ATM Fees</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Important Note */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
             <div className="flex items-start gap-4">
@@ -319,7 +294,7 @@ export default function ATMPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -354,26 +329,20 @@ export default function ATMPage() {
       {/* ATM Providers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {filteredProviders.map((provider) => (
               <ProviderCard key={provider.id} provider={provider} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ATM Finder Services */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
             <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">ATM Finder Services</h2>
             <p className="mb-6 text-sm text-[var(--color-text-muted)]">
@@ -402,17 +371,14 @@ export default function ATMPage() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* How It Works */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">How to Use a Crypto ATM</h2>
@@ -450,17 +416,14 @@ export default function ATMPage() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Tips */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6">
@@ -522,17 +485,14 @@ export default function ATMPage() {
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Prefer to Buy Online?</h2>
@@ -557,7 +517,7 @@ export default function ATMPage() {
                 Buy with Card
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

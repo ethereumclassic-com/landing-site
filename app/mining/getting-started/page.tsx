@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { gettingStartedSteps, networkStats, getRecommendedPools } from '../data/mining'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 export default function MiningGettingStartedPage() {
   const recommendedPools = getRecommendedPools()
@@ -32,14 +14,11 @@ export default function MiningGettingStartedPage() {
           <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/mining"
               className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
@@ -49,25 +28,23 @@ export default function MiningGettingStartedPage() {
               </svg>
               Back to Mining
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
+          <h1
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Getting Started with{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
               ETC Mining
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Follow this step-by-step guide to set up your mining operation and start earning Ethereum Classic today.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Quick Stats */}
@@ -97,26 +74,19 @@ export default function MiningGettingStartedPage() {
       {/* Steps Section */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">5 Steps to Start Mining</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               From hardware selection to your first mined block
             </p>
-          </motion.div>
+          </div>
 
           <div className="space-y-6">
             {gettingStartedSteps.map((step, index) => (
-              <motion.div
+              <div
                 key={step.step}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="relative flex gap-6 rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 {/* Step Number */}
@@ -145,7 +115,7 @@ export default function MiningGettingStartedPage() {
                 {index < gettingStartedSteps.length - 1 && (
                   <div className="absolute -bottom-6 left-11 h-6 w-px bg-[var(--border)]" />
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -154,24 +124,18 @@ export default function MiningGettingStartedPage() {
       {/* Requirements Section */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">What You Need</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Essential requirements for mining Ethereum Classic
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2">
             {/* Hardware */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10">
@@ -186,14 +150,10 @@ export default function MiningGettingStartedPage() {
               <Link href="/mining/hardware" className="mt-4 inline-block text-sm text-[var(--color-primary)] hover:underline">
                 View hardware guide →
               </Link>
-            </motion.div>
+            </div>
 
             {/* Wallet */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10">
@@ -208,14 +168,10 @@ export default function MiningGettingStartedPage() {
               <Link href="/wallet" className="mt-4 inline-block text-sm text-[var(--color-primary)] hover:underline">
                 Set up wallet →
               </Link>
-            </motion.div>
+            </div>
 
             {/* Software */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/10">
@@ -230,14 +186,10 @@ export default function MiningGettingStartedPage() {
               <Link href="/mining/software" className="mt-4 inline-block text-sm text-[var(--color-primary)] hover:underline">
                 View software options →
               </Link>
-            </motion.div>
+            </div>
 
             {/* Internet */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10">
@@ -249,7 +201,7 @@ export default function MiningGettingStartedPage() {
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 A stable internet connection is required to communicate with the mining pool. Low latency helps reduce stale shares.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -257,29 +209,22 @@ export default function MiningGettingStartedPage() {
       {/* Recommended Pools */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Recommended Pools</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Trusted mining pools with good uptime and fair fees
             </p>
-          </motion.div>
+          </div>
 
           <div className="space-y-4">
             {recommendedPools.map((pool, index) => (
-              <motion.a
+              <a
                 key={pool.id}
                 href={pool.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="group flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="flex items-center gap-4">
@@ -306,7 +251,7 @@ export default function MiningGettingStartedPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                   </svg>
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
 
@@ -325,23 +270,17 @@ export default function MiningGettingStartedPage() {
       {/* Tips Section */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Mining Tips</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               Best practices for successful ETC mining
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4"
             >
               <div className="flex items-start gap-3">
@@ -355,13 +294,9 @@ export default function MiningGettingStartedPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <div
               className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-4"
             >
               <div className="flex items-start gap-3">
@@ -375,13 +310,9 @@ export default function MiningGettingStartedPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4"
             >
               <div className="flex items-start gap-3">
@@ -395,13 +326,9 @@ export default function MiningGettingStartedPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+            <div
               className="rounded-xl border border-purple-500/30 bg-purple-500/5 p-4"
             >
               <div className="flex items-start gap-3">
@@ -415,7 +342,7 @@ export default function MiningGettingStartedPage() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -423,10 +350,7 @@ export default function MiningGettingStartedPage() {
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-8 text-center"
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Mine?</h2>
@@ -447,7 +371,7 @@ export default function MiningGettingStartedPage() {
                 Browse Pools
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>
