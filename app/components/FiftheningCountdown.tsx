@@ -137,7 +137,7 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
           </div>
           {/* −20% badge */}
           <span className="rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-400">
-            −20% block reward
+            20% Block Reward Reduction
           </span>
         </div>
 
