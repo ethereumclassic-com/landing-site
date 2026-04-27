@@ -57,7 +57,8 @@ export function useFifthening(): UseFiftheningReturn {
     const supplyStats = calculateSupplyStats(currentBlock)
     const currentEra = supplyStats.currentEra
     const nextEra = currentEra + 1
-    const targetBlock = nextEra * EMISSION_CONSTANTS.ERA_LENGTH
+    // Era N ends at block N * ERA_LENGTH (not nextEra * ERA_LENGTH)
+    const targetBlock = currentEra * EMISSION_CONSTANTS.ERA_LENGTH
 
     // Era is complete when we've passed the boundary (shouldn't happen mid-poll, but safe guard)
     if (currentBlock >= targetBlock) {
