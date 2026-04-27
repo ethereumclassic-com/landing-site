@@ -53,7 +53,8 @@ export default function EmissionCurveChart() {
     <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
       <h2 className="mb-1 text-xl font-semibold text-[var(--text-primary)]">ETC Total Supply by Era</h2>
       <p className="mb-6 text-sm text-[var(--text-muted)]">
-        Cumulative supply from genesis through each fifthening era. Reward reduces 20% per era under ECIP-1017.
+        Cumulative supply from genesis through each fifthening era. Reward reduces 20% per era under{' '}
+        <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>.
       </p>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={emissionCurveData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { FadeIn } from '@/app/components/ui/FadeIn'
 import { useFifthening } from '@/app/hooks/useFifthening'
+import FiftheningCountdown from '@/app/components/FiftheningCountdown'
 import EraHistoryTable from '../fifthening/components/EraHistoryTable'
 import ECIP1017Explainer from '../fifthening/components/ECIP1017Explainer'
 import RelatedLinks from '../fifthening/components/RelatedLinks'
@@ -79,7 +80,10 @@ export default function EmissionSchedulePage() {
                 <> · Currently Era {currentEra}</>
               )}
             </p>
-            <div className="mt-3">
+            <div className="mt-6">
+              <FiftheningCountdown variant="card" />
+            </div>
+            <div className="mt-4">
               <Link
                 href="/block-reward-countdown"
                 className="inline-flex items-center gap-1.5 text-sm text-[var(--brand-green)] transition-colors hover:underline"

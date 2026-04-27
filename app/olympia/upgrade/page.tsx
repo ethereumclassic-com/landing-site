@@ -320,7 +320,7 @@ export default function UpgradeGuidePage() {
                       >
                         <Icon size={20} style={{ color: item.color }} aria-hidden="true" />
                       </div>
-                      <span className="font-mono text-xs text-[var(--color-text-muted)]">{item.ecip}</span>
+                      <a href={`https://ecips.ethereumclassic.org/ECIPs/${item.ecip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-[var(--color-text-muted)] transition-opacity hover:opacity-70">{item.ecip}</a>
                     </div>
                     <h3 className="text-base font-semibold text-[var(--text-primary)]">{item.title}</h3>
                     <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -340,7 +340,7 @@ export default function UpgradeGuidePage() {
           <div
           >
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#38bdf8]">ECIP-1121</span>
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-widest text-[#38bdf8] transition-opacity hover:opacity-80">ECIP-1121</a>
             </div>
             <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
@@ -386,7 +386,10 @@ export default function UpgradeGuidePage() {
             {/* Divergence callout */}
             <div className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
               Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
-              ECIP-1111 now delivers those deferred London EIPs. ECIP-1121 advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1111" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1111</a>{' '}
+              now delivers those deferred London EIPs.{' '}
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1121</a>{' '}
+              advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
               Together, Olympia brings ETC to full Fusaka execution-layer parity.
             </div>
 

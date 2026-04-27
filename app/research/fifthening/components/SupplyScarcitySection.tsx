@@ -117,7 +117,9 @@ export default function SupplyScarcitySection() {
               Stock-to-Flow measures total supply relative to annual new issuance. Higher values indicate lower
               inflation relative to existing supply. This chart shows supply-side scarcity metrics only and is{' '}
               <strong className="text-[var(--text-primary)]">not a price model or financial forecast</strong>.
-              Future era values are projections based on ECIP-1017 schedule at 13s avg block time.
+              Future era values are projections based on{' '}
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>{' '}
+              schedule at 13s avg block time.
             </p>
           </div>
         </div>

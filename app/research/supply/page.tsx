@@ -98,7 +98,7 @@ function EraScheduleTable() {
       <div className="p-4 border-b border-[var(--border)]">
         <h3 className="font-semibold text-[var(--text-primary)]">Emission Schedule by Era</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-          ECIP-1017: 20% reduction every 5M blocks
+          <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>: 20% reduction every 5M blocks
         </p>
       </div>
 
@@ -283,7 +283,7 @@ export default function SupplyTrackerPage() {
               ETC Supply Tracker
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Track Ethereum Classic&apos;s emission schedule under ECIP-1017. Monitor the &quot;Fifthening&quot;
+              Track Ethereum Classic&apos;s emission schedule under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Monitor the &quot;Fifthening&quot;
               countdown and total supply growth.
             </p>
           </div>
@@ -328,7 +328,7 @@ export default function SupplyTrackerPage() {
             <h3 className="font-semibold text-[var(--text-primary)] mb-4">About ECIP-1017</h3>
             <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
               <p>
-                <strong className="text-[var(--text-primary)]">ECIP-1017</strong> established Ethereum Classic&apos;s monetary
+                <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">ECIP-1017</a> established Ethereum Classic&apos;s monetary
                 policy, implementing a disinflationary emission schedule inspired by Bitcoin&apos;s halving model.
               </p>
               <div className="rounded-lg bg-[var(--bg)] p-4 space-y-2">

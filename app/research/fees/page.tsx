@@ -85,7 +85,7 @@ function FeeMarketContext() {
         <div>
           <h3 className="font-semibold text-[var(--text-primary)]">Why Fee Markets Matter for ETC</h3>
           <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-            As block rewards continue to decrease through ECIP-1017&apos;s Fifthening schedule
+            As block rewards continue to decrease through <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>&apos;s Fifthening schedule
             (currently {formatBlockReward(2.048)} ETC per block), transaction fees become increasingly
             important for miner revenue and long-term network security. A healthy fee market
             indicates sustainable demand for block space.

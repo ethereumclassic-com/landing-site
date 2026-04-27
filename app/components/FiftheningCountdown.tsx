@@ -132,7 +132,15 @@ export default function FiftheningCountdown({ variant = 'card' }: FiftheningCoun
               </h2>
             </div>
             <p className="mt-1 text-xs text-[var(--text-muted)]">
-              Block {targetBlock?.toLocaleString() ?? '…'} · ECIP-1017
+              Block {targetBlock?.toLocaleString() ?? '…'} ·{' '}
+              <a
+                href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-[var(--brand-green)]"
+              >
+                ECIP-1017
+              </a>
             </p>
           </div>
           {/* −20% badge */}
