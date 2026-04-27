@@ -14,7 +14,7 @@ import {
 } from 'recharts'
 import { emissionRateData } from '../data/fiftheningChartData'
 
-const BRAND_GREEN = '#3AB83A'
+const BRAND_GREEN = '#00ffae'
 const AMBER = '#F59E0B'
 
 interface TooltipEntry {

@@ -12,7 +12,7 @@ import {
 } from 'recharts'
 import { s2fData } from '../data/fiftheningChartData'
 
-const BRAND_GREEN = '#3AB83A'
+const BRAND_GREEN = '#00ffae'
 
 interface TooltipEntry {
   payload?: Record<string, unknown>

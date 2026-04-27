@@ -7,13 +7,13 @@
    LIGHT MODE (default)
    ============================================ */
 :root {
-  /* Brand green — ETC logo green */
-  --brand-green: #3AB83A;
-  --brand-green-hover: #2D9E2D;
-  --brand-green-active: #258F25;
-  --brand-green-muted: #1f7a1f;
-  --brand-green-subtle: rgba(58, 184, 58, 0.08);
-  --brand-green-glow: rgba(58, 184, 58, 0.2);
+  /* Brand green — darker for WCAG AA on white (5.4:1 contrast) */
+  --brand-green: #007a53;
+  --brand-green-hover: #006644;
+  --brand-green-active: #005238;
+  --brand-green-muted: #004d30;
+  --brand-green-subtle: rgba(0, 122, 83, 0.08);
+  --brand-green-glow: rgba(0, 122, 83, 0.2);
 
   /* Backgrounds */
   --background: #f8faf9;
@@ -242,13 +242,13 @@
    DARK MODE
    ============================================ */
 .dark {
-  /* Brand green — ETC logo green */
-  --brand-green: #3AB83A;
-  --brand-green-hover: #44C744;
-  --brand-green-active: #2D9E2D;
-  --brand-green-muted: #2D9E2D;
-  --brand-green-subtle: rgba(58, 184, 58, 0.08);
-  --brand-green-glow: rgba(58, 184, 58, 0.3);
+  /* Brand green — neon for dark backgrounds */
+  --brand-green: #00ffae;
+  --brand-green-hover: #14f1b4;
+  --brand-green-active: #00cc8a;
+  --brand-green-muted: #007a53;
+  --brand-green-subtle: rgba(0, 255, 174, 0.08);
+  --brand-green-glow: rgba(0, 255, 174, 0.4);
 
   /* Backgrounds */
   --background: #0a0f10;
