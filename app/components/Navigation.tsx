@@ -9,11 +9,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useSearch, getTypeLabel, getTypeIcon, type SearchResult, type SearchResultType } from '@/hooks/useSearch'
 
 // Navigation structure with dropdowns
+type NavDropdownItem =
+  | { type?: 'link'; href: string; label: string }
+  | { type: 'separator'; label: string }
+
 const navItems: {
   href?: string
   label: string
   highlight?: boolean
-  dropdown?: { href: string; label: string }[]
+  dropdown?: NavDropdownItem[]
 }[] = [
   { href: '/news', label: 'News' },
   {
@@ -56,12 +60,20 @@ const navItems: {
     href: '/learn',
     label: 'Learn',
     dropdown: [
+      { type: 'separator', label: 'Education' },
       { href: '/learn', label: 'Learning Center' },
       { href: '/learn/ethereum-classic', label: 'What is ETC?' },
       { href: '/learn/basics', label: 'ETC Basics' },
       { href: '/learn/wallets', label: 'Wallet Guides' },
       { href: '/learn/defi', label: 'DeFi on ETC' },
+      { type: 'separator', label: 'Research & Data' },
+      { href: '/research', label: 'Research Hub' },
       { href: '/regulation', label: 'Regulatory Framework' },
+      { href: '/markets', label: 'Markets' },
+      { href: '/price', label: 'ETC Price' },
+      { href: '/investment-products', label: 'Investment Products' },
+      { href: '/block-reward-countdown', label: 'Fifthing Countdown' },
+      { href: '/research/emission-schedule', label: 'Emission Schedule' },
       { href: '/environmental-impact', label: 'Energy Infrastructure' },
     ],
   },
@@ -99,22 +111,6 @@ const navItems: {
       { href: '/upgrades', label: 'Network Upgrades' },
     ],
   },
-  {
-    label: 'More',
-    dropdown: [
-      { href: '/markets', label: 'Markets' },
-      { href: '/price', label: 'ETC Price' },
-      { href: '/exchanges', label: 'Exchanges Directory' },
-      { href: '/buy/reviews', label: 'Exchange Reviews' },
-      { href: '/investment-products', label: 'Investment Products' },
-      { href: '/research', label: 'Research' },
-      { href: '/block-reward-countdown', label: 'Fifthing' },
-      { href: '/research/emission-schedule', label: 'Emission Schedule' },
-      { href: '/tools', label: 'Tools' },
-      { href: '/directory', label: 'Directory' },
-      { href: '/community', label: 'Community' },
-    ],
-  },
 ]
 
 // Mobile navigation groups
@@ -133,15 +129,20 @@ const mobileNavGroups: {
     ],
   },
   {
-    label: 'Learn',
+    label: 'Learn & Research',
     items: [
       { href: '/learn', label: 'Learning Center' },
       { href: '/learn/ethereum-classic', label: 'What is ETC?' },
       { href: '/learn/basics', label: 'ETC Basics' },
-      { href: '/regulation', label: 'Regulatory Framework' },
-      { href: '/environmental-impact', label: 'Energy Infrastructure' },
+      { href: '/learn/wallets', label: 'Wallet Guides' },
+      { href: '/learn/defi', label: 'DeFi on ETC' },
       { href: '/news', label: 'News' },
-      { href: '/research', label: 'Research' },
+      { href: '/research', label: 'Research Hub' },
+      { href: '/regulation', label: 'Regulatory Framework' },
+      { href: '/markets', label: 'Markets' },
+      { href: '/price', label: 'ETC Price' },
+      { href: '/investment-products', label: 'Investment Products' },
+      { href: '/environmental-impact', label: 'Energy Infrastructure' },
       { href: '/block-reward-countdown', label: 'Fifthing' },
       { href: '/research/emission-schedule', label: 'Emission Schedule' },
     ],
@@ -163,18 +164,6 @@ const mobileNavGroups: {
       { href: '/olympia/clients', label: 'Clients' },
       { href: '/olympia/governance', label: 'Governance' },
       { href: '/upgrades', label: 'Network Upgrades' },
-    ],
-  },
-  {
-    label: 'Resources',
-    items: [
-      { href: '/markets', label: 'Markets' },
-      { href: '/price', label: 'ETC Price' },
-      { href: '/investment-products', label: 'Investment Products' },
-      { href: '/buy/reviews', label: 'Exchange Reviews' },
-      { href: '/tools', label: 'Tools' },
-      { href: '/directory', label: 'Directory' },
-      { href: '/community', label: 'Community' },
     ],
   },
 ]
@@ -427,12 +416,27 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
 }
 
 interface DropdownProps {
-  items: { href: string; label: string }[]
+  items: NavDropdownItem[]
   isOpen: boolean
   onClose: () => void
 }
 
 function Dropdown({ items, isOpen, onClose }: DropdownProps) {
+  // Group items into sections delimited by separators
+  const sections: { label: string; links: { href: string; label: string }[] }[] = []
+  let current: { label: string; links: { href: string; label: string }[] } = { label: '', links: [] }
+  for (const item of items) {
+    if (item.type === 'separator') {
+      if (current.links.length > 0 || current.label) sections.push(current)
+      current = { label: item.label, links: [] }
+    } else {
+      current.links.push({ href: item.href, label: item.label })
+    }
+  }
+  if (current.links.length > 0 || current.label) sections.push(current)
+
+  const isTwoColumn = sections.length === 2 && sections.every((s) => s.label)
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -441,19 +445,43 @@ function Dropdown({ items, isOpen, onClose }: DropdownProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}
           transition={{ duration: 0.15 }}
-          className="absolute left-0 top-full z-50 mt-1 min-w-[200px] rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-2 shadow-2xl backdrop-blur-xl"
+          className={`absolute left-0 top-full z-50 mt-1 rounded-xl border border-[var(--border-default)] bg-[var(--bg-surface)] p-3 shadow-2xl backdrop-blur-xl ${
+            isTwoColumn ? 'min-w-[460px]' : 'min-w-[200px]'
+          }`}
           onMouseLeave={onClose}
         >
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={onClose}
-              className="block rounded-lg px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {isTwoColumn ? (
+            <div className="grid grid-cols-2 gap-1">
+              {sections.map((section) => (
+                <div key={section.label}>
+                  <p className="mb-1 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+                    {section.label}
+                  </p>
+                  {section.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={onClose}
+                      className="block rounded-lg px-3 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : (
+            sections.flatMap((s) => s.links).map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={onClose}
+                className="block rounded-lg px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-elevated)] hover:text-[var(--text-primary)]"
+              >
+                {link.label}
+              </Link>
+            ))
+          )}
         </motion.div>
       )}
     </AnimatePresence>
@@ -484,7 +512,7 @@ export default function Navigation() {
     }
     if (item.dropdown) {
       return item.dropdown.some(
-        (child) => pathname === child.href || pathname.startsWith(child.href)
+        (child) => 'href' in child && (pathname === child.href || pathname.startsWith(child.href))
       )
     }
     return false
