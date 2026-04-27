@@ -83,6 +83,7 @@ export function useFifthening(): UseFiftheningReturn {
 
   useEffect(() => {
     if (derived.status !== 'pending' || derived.totalSeconds <= 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCountdown(null)
       return
     }
