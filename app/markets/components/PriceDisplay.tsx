@@ -45,14 +45,14 @@ const changeBgColors = {
 function ChangeIcon({ direction, iconClass }: { direction: 'up' | 'down' | 'neutral'; iconClass: string }) {
   if (direction === 'up') {
     return (
-      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg aria-hidden="true" className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
       </svg>
     )
   }
   if (direction === 'down') {
     return (
-      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg aria-hidden="true" className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
       </svg>
     )

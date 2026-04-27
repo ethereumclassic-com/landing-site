@@ -80,7 +80,7 @@ export default function FAQPage() {
                 <p className="mt-2 flex-1 text-sm text-[var(--color-text-secondary)]">{section.description}</p>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-sm text-[var(--color-text-muted)]">{section.faqs.length} questions</span>
-                  <svg
+                  <svg aria-hidden="true"
                     className="h-4 w-4 text-[var(--color-text-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[var(--color-primary)]"
                     fill="none"
                     viewBox="0 0 24 24"

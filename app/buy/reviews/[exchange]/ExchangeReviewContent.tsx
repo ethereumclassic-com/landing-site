@@ -34,7 +34,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
   return (
     <div className="flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((star) => (
-        <svg
+        <svg aria-hidden="true"
           key={star}
           className={`${sizeClasses[size]} ${
             star <= Math.round(rating) ? 'text-yellow-400' : 'text-[var(--color-text-muted)]/30'
@@ -165,7 +165,7 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Visit {review.name}
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>
@@ -173,7 +173,7 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                 href="/buy/reviews"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:border-[var(--color-primary)]/30"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
                 All Reviews
@@ -208,7 +208,7 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
               >
                 <div className="rounded-2xl border border-green-500/30 bg-green-500/5 p-6">
                   <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-green-400">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Pros
@@ -224,7 +224,7 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                 </div>
                 <div className="rounded-2xl border border-red-500/30 bg-red-500/5 p-6">
                   <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold text-red-400">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Cons

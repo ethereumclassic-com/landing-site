@@ -442,14 +442,14 @@ export default function GlossaryPage() {
             href="/learn"
             className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
           >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
             Back to Learn
           </Link>
 
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
             {glossaryTerms.length} Terms
@@ -474,7 +474,7 @@ export default function GlossaryPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
             {/* Search */}
             <div className="relative flex-1">
-              <svg
+              <svg aria-hidden="true"
                 className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--color-text-muted)]"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -547,7 +547,7 @@ export default function GlossaryPage() {
                               {item.category}
                             </span>
                           </div>
-                          <svg
+                          <svg aria-hidden="true"
                             className={`h-5 w-5 text-[var(--color-text-muted)] transition-transform ${
                               expandedTerms.has(item.term) ? 'rotate-180' : ''
                             }`}
@@ -599,7 +599,7 @@ export default function GlossaryPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
-                <svg className="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
               </div>

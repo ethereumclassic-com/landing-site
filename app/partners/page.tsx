@@ -398,25 +398,25 @@ export default function PartnersPage() {
                 <h3 className="font-semibold text-white">Partnership Benefits</h3>
                 <ul className="mt-4 space-y-2 text-left text-sm text-[var(--color-text-secondary)]">
                   <li className="flex items-start gap-2">
-                    <svg className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     Featured listing in our partner directory
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     Promotion through our newsletter and social channels
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     Integration with Classic OS and ecosystem products
                   </li>
                   <li className="flex items-start gap-2">
-                    <svg className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     Co-marketing opportunities

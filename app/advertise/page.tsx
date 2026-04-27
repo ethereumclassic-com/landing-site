@@ -265,7 +265,7 @@ export default function AdvertisePage() {
               <ul className="mt-6 space-y-3">
                 {guidelines.map((guideline, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <svg
+                    <svg aria-hidden="true"
                       className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -338,7 +338,7 @@ export default function AdvertisePage() {
                 title: 'Targeted Audience',
                 description: 'Reach users actively engaged with the ETC ecosystem. No wasted impressions.',
                 icon: (
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
@@ -348,7 +348,7 @@ export default function AdvertisePage() {
                 title: 'High Engagement',
                 description: 'Our community is active and engaged. Real users making real decisions.',
                 icon: (
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
                 ),
@@ -357,7 +357,7 @@ export default function AdvertisePage() {
                 title: 'Flexible Options',
                 description: 'From banner ads to sponsored content. Find the format that works for you.',
                 icon: (
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                   </svg>
                 ),

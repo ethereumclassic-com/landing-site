@@ -119,7 +119,7 @@ function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; i
             </p>
           </div>
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20">
-            <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </div>
@@ -162,7 +162,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? formatSupply(stats.totalSupply) + ' ETC' : '--',
       description: 'Including genesis supply',
       icon: (
-        <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
         </svg>
       ),
@@ -172,7 +172,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? formatSupply(stats.totalEmitted) + ' ETC' : '--',
       description: 'Block rewards emitted',
       icon: (
-        <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
         </svg>
       ),
@@ -182,7 +182,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: formatSupply(EMISSION_CONSTANTS.GENESIS_SUPPLY) + ' ETC',
       description: 'From Ethereum fork',
       icon: (
-        <svg className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
         </svg>
       ),
@@ -192,7 +192,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? stats.percentOfMaxSupply.toFixed(1) + '%' : '--',
       description: `of ~${formatSupply(EMISSION_CONSTANTS.REALISTIC_MAX_SUPPLY)} max`,
       icon: (
-        <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
         </svg>
@@ -366,7 +366,7 @@ function EmissionMilestones() {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-[var(--color-text-muted)]">{milestone.rewardBefore} ETC</span>
-                  <svg className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
                   <span className="font-medium text-white">{milestone.rewardAfter} ETC</span>
@@ -418,7 +418,7 @@ export default function SupplyTrackerPage() {
               href="/research"
               className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
               </svg>
               Back to Research
@@ -510,7 +510,7 @@ export default function SupplyTrackerPage() {
                 className="inline-flex items-center gap-1 text-[var(--color-primary)] hover:underline"
               >
                 Read ECIP-1017 Specification
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>

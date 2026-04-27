@@ -83,7 +83,7 @@ export default function WhyClassicPage() {
                   </h2>
                   <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{article.description}</p>
                 </div>
-                <svg
+                <svg aria-hidden="true"
                   className="mt-1 h-5 w-5 shrink-0 text-[var(--color-text-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[var(--color-primary)]"
                   fill="none"
                   viewBox="0 0 24 24"
