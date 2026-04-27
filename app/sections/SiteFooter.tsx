@@ -18,7 +18,7 @@ const footerLinks = {
       { href: '/learn', label: 'Learning Center' },
       { href: '/learn/ethereum-classic', label: 'What is ETC?' },
       { href: '/learn/basics', label: 'ETC Basics' },
-      { href: '/learn/mining', label: 'Mining Guides' },
+      { href: '/why-classic', label: 'Why Classic' },
       { href: '/learn/glossary', label: 'Glossary' },
     ],
   },
@@ -29,7 +29,7 @@ const footerLinks = {
       { href: '/exchanges', label: 'Exchanges' },
       { href: '/mining', label: 'Mining' },
       { href: '/build', label: 'Developers' },
-      { href: '/community', label: 'Community' },
+      { href: '/store', label: 'Store' },
     ],
   },
   resources: {
@@ -38,7 +38,7 @@ const footerLinks = {
       { href: '/news', label: 'News' },
       { href: '/markets', label: 'Markets' },
       { href: '/research', label: 'Research' },
-      { href: '/tools', label: 'Tools' },
+      { href: '/faq', label: 'FAQ' },
       { href: '/directory', label: 'Directory' },
     ],
   },
@@ -112,7 +112,7 @@ export function SiteFooter() {
               <span className="text-lg font-bold text-[var(--text-primary)]">Ethereum Classic</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-[var(--text-muted)]">
-              The original Ethereum Virtual Machine — immutable, censorship-resistant, globally accessible.
+              The original Ethereum Virtual Machine. Immutable, censorship-resistant, globally accessible.
             </p>
 
             {/* Social Links */}
