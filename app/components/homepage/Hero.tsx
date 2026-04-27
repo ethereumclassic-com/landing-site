@@ -6,8 +6,8 @@ import FiftheningCountdown from '@/app/components/FiftheningCountdown'
 
 export default function Hero() {
   return (
-    <section className="hero-gradient noise-overlay grid-overlay relative overflow-hidden px-6 py-24 md:px-10 md:py-32 lg:px-12 lg:py-40">
-      <FadeIn className="relative mx-auto max-w-3xl text-center">
+    <section className="hero-gradient noise-overlay grid-overlay relative overflow-hidden px-6 pb-24 pt-12 md:px-10 md:pb-32 md:pt-16 lg:px-12 lg:pb-40 lg:pt-20">
+      <FadeIn className="relative mx-auto max-w-4xl text-center">
         {/* Badge */}
         <div className="mb-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/10 px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
@@ -15,23 +15,24 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand-green)]" />
             </span>
-            The Original Smart Contract Platform
+            The Leading Smart Contract Platform secured by Proof-of-Work
           </span>
         </div>
 
         {/* Main heading */}
         <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
-          <span>Proof-of-Work</span>
-          <br />
-          <span className="bg-gradient-to-r from-[var(--brand-green)] to-emerald-400 bg-clip-text text-transparent">
-            Smart Contracts
+          <span>The Original{' '}
+            <span className="bg-gradient-to-r from-[var(--brand-green)] to-emerald-400 bg-clip-text text-transparent">
+              Ethereum
+            </span>
           </span>
+          <br />
+          <span>Virtual Machine</span>
         </h1>
 
         {/* Subheading */}
         <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--text-secondary)] md:text-xl">
-          Ethereum Classic is the only mature Proof-of-Work blockchain with smart contracts.
-          Secured by real mining power, compatible with Ethereum tools.
+          Ethereum Classic is built for immutable, censorship-resistant global finance. The only mature Proof-of-Work blockchain with native smart contracts. Secured by accessible hardware and global energy sources.
         </p>
 
         {/* CTA buttons */}
@@ -70,22 +71,6 @@ export default function Hero() {
           <FiftheningCountdown variant="card" />
         </div>
 
-        {/* Quick stats row */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-8 md:gap-12">
-          {[
-            { value: '9+', label: 'Years Running' },
-            { value: '200+', label: 'TH/s Hashrate' },
-            { value: '35M+', label: 'Addresses' },
-            { value: '100%', label: 'Uptime' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl font-bold text-[var(--brand-green)] md:text-3xl">
-                {stat.value}
-              </div>
-              <div className="mt-1 text-sm text-[var(--text-muted)]">{stat.label}</div>
-            </div>
-          ))}
-        </div>
       </FadeIn>
     </section>
   )
