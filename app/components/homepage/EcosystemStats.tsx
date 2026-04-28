@@ -15,8 +15,8 @@ interface StatCardProps {
 
 function StatCard({ label, value, description, icon, index }: StatCardProps) {
   return (
-    <FadeIn delay={index * 100}>
-      <div className="rounded-xl border border-[var(--border-default)] bg-[var(--panel)] p-6">
+    <FadeIn delay={index * 100} className="h-full">
+      <div className="flex h-full flex-col rounded-xl border border-[var(--border-default)] bg-[var(--panel)] p-6">
         <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--brand-green)]/10 text-[var(--brand-green)]">
           {icon}
         </div>
@@ -79,6 +79,7 @@ const defaultStats = {
 export default function EcosystemStats() {
   const [networkStats, setNetworkStats] = useState<NetworkStats>(defaultStats)
   const [isLive, setIsLive] = useState(false)
+  const [hashrateTHs, setHashrateTHs] = useState<string>('200+ TH/s')
 
   useEffect(() => {
     async function fetchStats() {
@@ -104,6 +105,10 @@ export default function EcosystemStats() {
       }
     }
     fetchStats()
+    fetch('/api/hashrate')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d?.currentTHs) setHashrateTHs(d.currentTHs.toFixed(1) + ' TH/s') })
+      .catch(() => {})
   }, [])
 
   const stats = [
@@ -168,7 +173,7 @@ export default function EcosystemStats() {
                 { label: 'Total Blocks', value: networkStats.blockHeightFormatted },
                 { label: 'Total Transactions', value: networkStats.totalTransactionsFormatted },
                 { label: 'Avg Block Time', value: networkStats.avgBlockTimeFormatted },
-                { label: 'Network Hashrate', value: '200+ TH/s' },
+                { label: 'Network Hashrate', value: hashrateTHs },
                 { label: 'Mining Algorithm', value: 'ETChash (GPU + ASIC)' },
               ]}
             />

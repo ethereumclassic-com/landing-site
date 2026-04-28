@@ -35,8 +35,8 @@ function HeroStats({ stats }: { stats: HeroStat[] }) {
   return (
     <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
       {stats.map((stat, i) => (
-        <FadeIn key={stat.label} delay={i * 80}>
-          <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4 text-center">
+        <FadeIn key={stat.label} delay={i * 80} className="h-full">
+          <div className="flex h-full flex-col rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4 text-center">
             <div className="text-2xl font-bold text-[var(--text-primary)] sm:text-3xl">
               {stat.value}
             </div>

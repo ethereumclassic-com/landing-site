@@ -1,3 +1,5 @@
+import { ETCswapLink, ClassicUSDLink } from '@/app/components/ui'
+
 export default function WhatIsDefi() {
   return (
     <>
@@ -54,13 +56,13 @@ export default function WhatIsDefi() {
         Ethereum Classic&apos;s DeFi ecosystem centers around proven, battle-tested protocols:
       </p>
       <ul>
-        <li><strong>ETCswap:</strong> The primary decentralized exchange on ETC, offering token swaps (V2 and V3), concentrated liquidity, and a token launchpad</li>
-        <li><strong>Classic USD (USC):</strong> A native stablecoin pegged 1:1 to USD, backed by real assets and redeemable through Brale</li>
+        <li><strong><ETCswapLink />:</strong> The primary decentralized exchange on ETC, offering token swaps (V2 and V3), concentrated liquidity, and a token launchpad</li>
+        <li><strong><ClassicUSDLink /> (USC):</strong> A native stablecoin pegged 1:1 to USD, backed by real assets and redeemable through Brale</li>
       </ul>
 
       <h2>Getting Started</h2>
       <p>
-        To begin using DeFi on Ethereum Classic, you need a Web3 wallet like MetaMask configured for ETC (Chain ID 61) and some ETC for gas fees. From there, you can connect to ETCswap and start swapping tokens or providing liquidity. Explore our other guides for step-by-step instructions on each DeFi activity.
+        To begin using DeFi on Ethereum Classic, you need a Web3 wallet like MetaMask configured for ETC (Chain ID 61) and some ETC for gas fees. From there, you can connect to <ETCswapLink /> and start swapping tokens or providing liquidity. Explore our other guides for step-by-step instructions on each DeFi activity.
       </p>
     </>
   )

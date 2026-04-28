@@ -117,7 +117,7 @@ const hubs: Hub[] = [
 
 function HubCard({ hub, index }: { hub: Hub; index: number }) {
   return (
-    <FadeIn delay={index * 40}>
+    <FadeIn delay={index * 40} className="h-full">
       <Link
         href={hub.href}
         className={`group flex h-full flex-col rounded-xl border p-4 transition-all hover:shadow-md ${
@@ -168,7 +168,7 @@ function HubCard({ hub, index }: { hub: Hub; index: number }) {
 
 export default function SiteHubGrid() {
   return (
-    <section className="px-6 py-16 md:px-10 md:py-20 lg:px-12">
+    <section className="bg-[var(--bg-elevated)]/40 px-6 py-16 md:px-10 md:py-20 lg:px-12">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-10">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">

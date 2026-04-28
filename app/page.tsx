@@ -1,8 +1,10 @@
 import {
   Hero,
+  NetworkOverviewSection,
+  NetworkArchitectureSection,
+  RegulatoryOverviewSection,
   ActiveEventsSection,
   SiteHubGrid,
-  NetworkOverviewSection,
   TrendingNews,
   TrustSignals,
   FinalCTA,
@@ -14,10 +16,13 @@ export default function Page() {
   return (
     <main>
       <Hero />
-      <ActiveEventsSection />
-      <SiteHubGrid />
-      <SectionDivider />
       <NetworkOverviewSection />
+      <NetworkArchitectureSection />
+      <RegulatoryOverviewSection />
+      <SectionDivider />
+      <ActiveEventsSection />
+      <SectionDivider />
+      <SiteHubGrid />
       <SectionDivider />
       <TrendingNews />
       <SectionDivider />

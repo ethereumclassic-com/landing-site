@@ -2,53 +2,43 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const footerLinks = {
-  products: {
-    title: 'Products',
+  getEtc: {
+    title: 'Get ETC',
     links: [
-      { href: 'https://app.classicos.org', label: 'Classic OS', external: true },
-      { href: 'https://etcswap.org', label: 'ETCswap', external: true },
-      { href: 'https://classicusd.com', label: 'ClassicUSD', external: true },
+      { href: '/buy', label: 'Buy ETC' },
       { href: '/wallet', label: 'Wallets' },
-      { href: '/apps', label: 'Apps Directory' },
+      { href: '/exchanges', label: 'Exchanges' },
+      { href: '/sell', label: 'Sell ETC' },
+      { href: '/investment-products', label: 'Investment Products' },
+    ],
+  },
+  buildAndMine: {
+    title: 'Build & Mine',
+    links: [
+      { href: '/mining', label: 'Start Mining' },
+      { href: '/build', label: 'Build on ETC' },
+      { href: '/olympia', label: 'Olympia Upgrade' },
+      { href: '/markets', label: 'Network Stats' },
+      { href: '/research', label: 'Research' },
     ],
   },
   learn: {
     title: 'Learn',
     links: [
-      { href: '/learn', label: 'Learning Center' },
+      { href: '/learn', label: 'Learning Hub' },
       { href: '/learn/ethereum-classic', label: 'What is ETC?' },
-      { href: '/learn/basics', label: 'ETC Basics' },
       { href: '/why-classic', label: 'Why Classic' },
-      { href: '/learn/glossary', label: 'Glossary' },
-    ],
-  },
-  ecosystem: {
-    title: 'Ecosystem',
-    links: [
-      { href: '/buy', label: 'Buy ETC' },
-      { href: '/exchanges', label: 'Exchanges' },
-      { href: '/mining', label: 'Mining' },
-      { href: '/build', label: 'Developers' },
-      { href: '/store', label: 'Store' },
-    ],
-  },
-  resources: {
-    title: 'Resources',
-    links: [
-      { href: '/news', label: 'News' },
-      { href: '/markets', label: 'Markets' },
-      { href: '/research', label: 'Research' },
+      { href: '/regulation', label: 'Regulation' },
       { href: '/faq', label: 'FAQ' },
-      { href: '/directory', label: 'Directory' },
     ],
   },
-  company: {
-    title: 'Company',
+  about: {
+    title: 'About',
     links: [
       { href: '/about', label: 'About' },
+      { href: '/news', label: 'News' },
+      { href: '/directory', label: 'Directory' },
       { href: '/contact', label: 'Contact' },
-      { href: '/advertise', label: 'Advertise' },
-      { href: '/partners', label: 'Partners' },
       { href: '/legal', label: 'Privacy Policy' },
     ],
   },
@@ -133,80 +123,23 @@ export function SiteFooter() {
           </div>
 
           {/* Link Columns */}
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.products.title}</h3>
-            <ul className="mt-4 space-y-2">
-              {footerLinks.products.links.map((link) => (
-                <li key={link.href}>
-                  {link.external ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
+          {Object.values(footerLinks).map((col) => (
+            <div key={col.title}>
+              <h3 className="text-sm font-semibold text-[var(--text-primary)]">{col.title}</h3>
+              <ul className="mt-4 space-y-2">
+                {col.links.map((link) => (
+                  <li key={link.href}>
                     <Link
                       href={link.href}
                       className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                     >
                       {link.label}
                     </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.learn.title}</h3>
-            <ul className="mt-4 space-y-2">
-              {footerLinks.learn.links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.ecosystem.title}</h3>
-            <ul className="mt-4 space-y-2">
-              {footerLinks.ecosystem.links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--text-primary)]">{footerLinks.company.title}</h3>
-            <ul className="mt-4 space-y-2">
-              {footerLinks.company.links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 

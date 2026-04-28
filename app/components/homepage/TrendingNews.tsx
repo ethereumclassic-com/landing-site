@@ -23,9 +23,9 @@ function formatDate(dateStr: string): string {
 
 function NewsCard({ title, date, category, slug, index }: NewsCardProps) {
   return (
-    <FadeIn delay={index * 100}>
-      <Link href={`/news/${slug}`} className="group block">
-        <div className="rounded-xl border border-[var(--border-default)] bg-[var(--background)] p-5 transition-all hover:border-[var(--brand-green)]/30 hover:shadow-lg">
+    <FadeIn delay={index * 100} className="h-full">
+      <Link href={`/news/${slug}`} className="group flex h-full flex-col">
+        <div className="flex h-full flex-col rounded-xl border border-[var(--border-default)] bg-[var(--background)] p-5 transition-all hover:border-[var(--brand-green)]/30 hover:shadow-lg">
           <span className="inline-block rounded-full bg-[var(--brand-green)]/10 px-3 py-1 text-xs font-medium text-[var(--brand-green)]">
             {category}
           </span>

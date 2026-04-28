@@ -91,6 +91,7 @@ const staticRoutes = [
 
   // News section
   { path: '/news', priority: 0.9, changeFrequency: 'daily' as const },
+  { path: '/news/feeds', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/news/category/updates', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/news/category/security', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/news/category/ecosystem', priority: 0.7, changeFrequency: 'daily' as const },
@@ -109,6 +110,7 @@ const staticRoutes = [
   { path: '/mining/getting-started', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/mining/pools', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/mining/hardware', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/mining/hardware/buy', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/mining/software', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/mining/profitability', priority: 0.8, changeFrequency: 'daily' as const },
   { path: '/mining/stats', priority: 0.7, changeFrequency: 'daily' as const },
@@ -180,6 +182,7 @@ const staticRoutes = [
 
   // Standalone pages
   { path: '/earn', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/pool', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/environmental-impact', priority: 0.5, changeFrequency: 'weekly' as const },
   { path: '/investment-products', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/learn/on-ramp', priority: 0.6, changeFrequency: 'weekly' as const },

@@ -21,9 +21,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
-  title: "Ethereum Classic — Proof-of-Work Smart Contracts",
+  title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
   description:
-    "Ethereum Classic is the only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
+    "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by the energy of the physical world.",
   keywords: [
     "Ethereum Classic",
     "ETC",
@@ -58,8 +58,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Ethereum Classic" }],
   creator: "Ethereum Classic",
   openGraph: {
-    title: "Ethereum Classic — Proof-of-Work Smart Contracts",
-    description: "The only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
+    title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
+    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by the energy of the physical world.",
     url: "https://ethereumclassic.com",
     siteName: "Ethereum Classic",
     locale: "en_US",
@@ -68,8 +68,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ethereum Classic — Proof-of-Work Smart Contracts",
-    description: "The only mature Proof-of-Work blockchain with smart contracts.",
+    title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
+    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, secured by the energy of the physical world.",
     images: ["/og.png"],
   },
   icons: {

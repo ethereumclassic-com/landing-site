@@ -78,3 +78,6 @@ export type { IconProps, IconName, IconSize } from './Icon'
 export { FadeIn } from './FadeIn'
 export { SectionDivider } from './SectionDivider'
 export { OverviewTable } from './OverviewTable'
+
+// Brand links
+export { ETCswapLink, ClassicUSDLink } from './BrandLinks'

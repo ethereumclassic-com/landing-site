@@ -1,5 +1,7 @@
 export { default as Hero } from './Hero'
+export { default as RegulatoryOverviewSection } from './RegulatoryOverviewSection'
 export { default as NetworkOverviewSection } from './NetworkOverviewSection'
+export { default as NetworkArchitectureSection } from './NetworkArchitectureSection'
 export { default as ActiveEventsSection } from './ActiveEventsSection'
 export { default as SiteHubGrid } from './SiteHubGrid'
 export { default as TrendingNews } from './TrendingNews'

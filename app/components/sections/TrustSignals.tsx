@@ -28,8 +28,8 @@ function TrustSignalItem({
 }) {
   if (horizontal) {
     return (
-      <FadeIn delay={delay}>
-        <div className="flex items-center gap-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4">
+      <FadeIn delay={delay} className="h-full">
+        <div className="flex h-full items-center gap-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4">
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-green)]/10 text-[var(--brand-green)]">
             {signal.icon}
           </div>
@@ -47,8 +47,8 @@ function TrustSignalItem({
   }
 
   return (
-    <FadeIn delay={delay}>
-      <div className="flex flex-col items-center rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 text-center">
+    <FadeIn delay={delay} className="h-full">
+      <div className="flex h-full flex-col items-center rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 text-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--brand-green)]/10 text-[var(--brand-green)] text-2xl">
           {signal.icon}
         </div>

@@ -35,7 +35,7 @@ function ProductCardItem({ card, delay }: { card: ProductCard; delay: number }) 
   const CardWrapper = isExternal ? 'a' : Link
 
   return (
-    <FadeIn delay={delay}>
+    <FadeIn delay={delay} className="h-full">
       <CardWrapper
         href={card.href}
         {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}

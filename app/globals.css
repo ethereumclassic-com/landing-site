@@ -382,6 +382,19 @@ p {
   animation: fade-in-up var(--transition-slow) var(--ease-out);
 }
 
+@keyframes logo-breathe {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(0, 255, 174, 0.35));
+  }
+  50% {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 28px rgba(0, 255, 174, 0.7));
+  }
+}
+
+
+
 /* ============================================
    UTILITY CLASSES
    ============================================ */

@@ -1,3 +1,5 @@
+import { ETCswapLink, ClassicUSDLink } from '@/app/components/ui'
+
 export default function ETCvsETH() {
   return (
     <>
@@ -104,8 +106,8 @@ export default function ETCvsETH() {
 
       <h3>ETC Ecosystem</h3>
       <ul>
-        <li><strong>ETCswap:</strong> Primary DEX with V2 and V3 pools</li>
-        <li><strong>Classic USD (USC):</strong> USD-backed stablecoin</li>
+        <li><strong><ETCswapLink />:</strong> Primary DEX with V2 and V3 pools</li>
+        <li><strong><ClassicUSDLink /> (USC):</strong> USD-backed stablecoin</li>
         <li><strong>Classic OS:</strong> DeFi dashboard and economic control center</li>
         <li><strong>Blockscout:</strong> Block explorer at etc.blockscout.com</li>
       </ul>

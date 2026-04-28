@@ -1,3 +1,5 @@
+import { ETCswapLink } from '@/app/components/ui'
+
 export default function SafeDefiPractices() {
   return (
     <>
@@ -35,12 +37,12 @@ export default function SafeDefiPractices() {
 
       <h2>Understand Impermanent Loss</h2>
       <p>
-        Providing liquidity to automated market makers like ETCswap means your token ratio shifts as prices change. If the price of one token in your pair moves significantly relative to the other, you may end up with less total value than if you had simply held both tokens. This is called impermanent loss, and it becomes permanent when you withdraw your liquidity. Understand this risk before providing liquidity, particularly for volatile pairs.
+        Providing liquidity to automated market makers like <ETCswapLink /> means your token ratio shifts as prices change. If the price of one token in your pair moves significantly relative to the other, you may end up with less total value than if you had simply held both tokens. This is called impermanent loss, and it becomes permanent when you withdraw your liquidity. Understand this risk before providing liquidity, particularly for volatile pairs.
       </p>
 
       <h2>Use Only Verified dApps</h2>
       <p>
-        Stick to established, community-verified protocols on Ethereum Classic. ETCswap is the primary decentralized exchange, and Classic USD provides a stablecoin mechanism. Be wary of unfamiliar protocols offering unusually high yields &mdash; these may be short-lived, poorly audited, or intentionally malicious.
+        Stick to established, community-verified protocols on Ethereum Classic. <ETCswapLink /> is the primary decentralized exchange, and Classic USD provides a stablecoin mechanism. Be wary of unfamiliar protocols offering unusually high yields &mdash; these may be short-lived, poorly audited, or intentionally malicious.
       </p>
 
       <h2>Watch for Flash Loan Attacks</h2>
