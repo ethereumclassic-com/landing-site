@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
   title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
   description:
-    "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by the energy of the physical world.",
+    "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by dedicated mining infrastructure operating continuously since 2015.",
   keywords: [
     "Ethereum Classic",
     "ETC",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   creator: "Ethereum Classic",
   openGraph: {
     title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
-    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by the energy of the physical world.",
+    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by dedicated mining infrastructure operating continuously since 2015.",
     url: "https://ethereumclassic.com",
     siteName: "Ethereum Classic",
     locale: "en_US",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
-    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, secured by the energy of the physical world.",
+    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, secured by dedicated mining infrastructure operating continuously since 2015.",
     images: ["/og.png"],
   },
   icons: {

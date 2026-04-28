@@ -8,18 +8,22 @@ interface TrustCardProps {
   description: string
   icon: React.ReactNode
   index: number
+  href?: string
 }
 
-function TrustCard({ title, description, icon, index }: TrustCardProps) {
+function TrustCard({ title, description, icon, index, href }: TrustCardProps) {
+  const inner = (
+    <div className="group text-center">
+      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--brand-green)]/10 text-[var(--brand-green)] transition-all group-hover:scale-110 group-hover:bg-[var(--brand-green)]/20">
+        {icon}
+      </div>
+      <h3 className="text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
+      <p className="mt-2 text-sm text-[var(--text-muted)]">{description}</p>
+    </div>
+  )
   return (
     <FadeIn delay={index * 100}>
-      <div className="group text-center">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--brand-green)]/10 text-[var(--brand-green)] transition-all group-hover:scale-110 group-hover:bg-[var(--brand-green)]/20">
-          {icon}
-        </div>
-        <h3 className="text-lg font-semibold text-[var(--text-primary)]">{title}</h3>
-        <p className="mt-2 text-sm text-[var(--text-muted)]">{description}</p>
-      </div>
+      {href ? <Link href={href}>{inner}</Link> : inner}
     </FadeIn>
   )
 }
@@ -48,27 +52,43 @@ const ScaleIcon = () => (
   </svg>
 )
 
+const BuildingIcon = () => (
+  <svg aria-hidden="true" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+  </svg>
+)
+
 export default function TrustSignals() {
   const signals = [
+    {
+      title: 'Immutable',
+      description: 'Code is law, no contentious forks',
+      icon: <ScaleIcon />,
+      href: '/why-classic',
+    },
     {
       title: 'Security',
       description: 'PoW-secured, battle-tested since 2015',
       icon: <ShieldIcon />,
+      href: '/mining',
     },
     {
       title: 'Longevity',
       description: '9+ years continuous operation',
       icon: <ClockIcon />,
+      href: '/upgrades',
     },
     {
       title: 'EVM Compatible',
       description: 'Ethereum tooling works on ETC',
       icon: <CubeIcon />,
+      href: '/build',
     },
     {
-      title: 'Immutable',
-      description: 'Code is law, no contentious forks',
-      icon: <ScaleIcon />,
+      title: 'Institutional Access',
+      description: 'Commodity classification, regulated exchanges, and ETF exposure across major jurisdictions',
+      icon: <BuildingIcon />,
+      href: '/regulatory',
     },
   ]
 
@@ -86,7 +106,7 @@ export default function TrustSignals() {
             Built on principles of decentralization, immutability, and censorship resistance
           </p>
         </FadeIn>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {signals.map((signal, index) => (
             <TrustCard key={signal.title} {...signal} index={index} />
           ))}
