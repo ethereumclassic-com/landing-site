@@ -1,8 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import { FadeIn } from '@/app/components/ui'
+import { OverviewTable } from '@/app/components/ui/OverviewTable'
 
 interface StatCardProps {
   label: string
@@ -12,36 +13,18 @@ interface StatCardProps {
   index: number
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: 'easeOut' as const,
-    },
-  }),
-}
-
 function StatCard({ label, value, description, icon, index }: StatCardProps) {
   return (
-    <motion.div
-      custom={index}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      variants={fadeInUp}
-      className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
-    >
-      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-        {icon}
+    <FadeIn delay={index * 100} className="h-full">
+      <div className="flex h-full flex-col rounded-xl border border-[var(--border-default)] bg-[var(--panel)] p-6">
+        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--brand-green)]/10 text-[var(--brand-green)]">
+          {icon}
+        </div>
+        <div className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">{value}</div>
+        <div className="mt-1 text-sm font-medium text-[var(--text-secondary)]">{label}</div>
+        <div className="mt-2 text-xs text-[var(--text-muted)]">{description}</div>
       </div>
-      <div className="text-2xl font-bold text-white md:text-3xl">{value}</div>
-      <div className="mt-1 text-sm font-medium text-[var(--color-text-secondary)]">{label}</div>
-      <div className="mt-2 text-xs text-[var(--color-text-muted)]">{description}</div>
-    </motion.div>
+    </FadeIn>
   )
 }
 
@@ -81,7 +64,6 @@ interface NetworkStats {
   source: 'blockscout' | 'fallback'
 }
 
-// Fallback values based on Jan 2026 network data
 const defaultStats = {
   price: 12.75,
   priceFormatted: '$12.75',
@@ -97,6 +79,7 @@ const defaultStats = {
 export default function EcosystemStats() {
   const [networkStats, setNetworkStats] = useState<NetworkStats>(defaultStats)
   const [isLive, setIsLive] = useState(false)
+  const [hashrateTHs, setHashrateTHs] = useState<string>('200+ TH/s')
 
   useEffect(() => {
     async function fetchStats() {
@@ -122,6 +105,10 @@ export default function EcosystemStats() {
       }
     }
     fetchStats()
+    fetch('/api/hashrate')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d?.currentTHs) setHashrateTHs(d.currentTHs.toFixed(1) + ' TH/s') })
+      .catch(() => {})
   }, [])
 
   const stats = [
@@ -154,26 +141,20 @@ export default function EcosystemStats() {
   return (
     <section className="px-6 py-20 md:px-10 lg:px-12">
       <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
-        >
+        <FadeIn className="mb-12 text-center">
           <div className="mb-2 flex items-center justify-center gap-2">
-            <h2 className="text-3xl font-bold text-white md:text-4xl">Network Activity</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">Network Activity</h2>
             {isLive && (
-              <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+              <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-green-600 dark:text-[var(--color-success)]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success)] dark:bg-[var(--color-success)]" />
                 Live
               </span>
             )}
           </div>
-          <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-4 max-w-2xl text-[var(--text-secondary)]">
             Statistics from the Ethereum Classic blockchain
           </p>
-        </motion.div>
+        </FadeIn>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => (
@@ -181,42 +162,61 @@ export default function EcosystemStats() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-10 text-center"
-        >
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <FadeIn delay={200}>
+            <OverviewTable
+              heading="Network Overview"
+              rows={[
+                { label: 'Genesis Date', value: 'July 30, 2015' },
+                { label: 'Consensus', value: 'Proof-of-Work / ETChash' },
+                { label: 'Chain ID', value: '61' },
+                { label: 'Total Blocks', value: networkStats.blockHeightFormatted },
+                { label: 'Total Transactions', value: networkStats.totalTransactionsFormatted },
+                { label: 'Avg Block Time', value: networkStats.avgBlockTimeFormatted },
+                { label: 'Network Hashrate', value: hashrateTHs },
+                { label: 'Mining Algorithm', value: 'ETChash (GPU + ASIC)' },
+              ]}
+            />
+          </FadeIn>
+          <FadeIn delay={300}>
+            <OverviewTable
+              heading="Market Data"
+              rows={[
+                { label: 'ETC Price', value: networkStats.priceFormatted },
+                { label: 'Max Supply', value: '210.7M ETC' },
+                { label: 'Exchange Listings', value: '300+' },
+                { label: 'Fiat Pairs', value: '17 currencies' },
+                { label: 'Crypto Pairs', value: '13 pairs' },
+                { label: 'Spot Trading Since', value: '2016' },
+                { label: 'Investment Products', value: 'ETCG (Grayscale)' },
+                { label: 'Regulatory Profile', value: 'CLARITY · MiCA · GENIUS' },
+              ]}
+            />
+          </FadeIn>
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
           <Link
             href="/markets"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-primary)] transition-colors hover:text-[var(--color-primary)]/80"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--brand-green)] transition-colors hover:text-[var(--brand-green-hover)]"
           >
             View Full Network Stats
             <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </Link>
-        </motion.div>
-
-        {/* Data source attribution */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-6 text-center text-xs text-[var(--color-text-muted)]"
-        >
-          Data from{' '}
-          <a
-            href="https://etc.blockscout.com/stats"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--color-primary)] hover:underline"
-          >
-            Blockscout
-          </a>
-        </motion.p>
+          <span className="text-xs text-[var(--text-muted)]">
+            Live data from{' '}
+            <a
+              href="https://etc.blockscout.com/stats"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--brand-green)] hover:underline"
+            >
+              Blockscout
+            </a>
+          </span>
+        </div>
       </div>
     </section>
   )

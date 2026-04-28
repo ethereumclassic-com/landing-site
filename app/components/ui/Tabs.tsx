@@ -27,7 +27,7 @@ const variantStyles: Record<TabsVariant, { container: string; tab: string; activ
   pills: {
     container: 'gap-2',
     tab: 'px-4 py-2 rounded-full text-[var(--color-text-secondary)] border border-transparent hover:text-[var(--color-text-primary)] hover:bg-[var(--panel)]',
-    active: 'bg-[var(--color-primary)] text-white border-[var(--color-primary)]',
+    active: 'bg-[var(--color-primary)] text-[var(--text-primary)] border-[var(--color-primary)]',
   },
   underline: {
     container: 'border-b border-[var(--border)]',
@@ -121,7 +121,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
                   className={`text-[var(--text-xs)] px-1.5 py-0.5 rounded-full ${
                     isActive
                       ? variant === 'pills'
-                        ? 'bg-white/20'
+                        ? 'bg-[var(--bg-elevated)]'
                         : 'bg-[var(--color-primary-alpha)] text-[var(--color-primary)]'
                       : 'bg-[var(--panel)] text-[var(--color-text-muted)]'
                   }`}

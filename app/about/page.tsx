@@ -19,7 +19,7 @@ export default function AboutPage() {
             About
           </span>
 
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
             The Primary Website for{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               Ethereum Classic
@@ -36,7 +36,7 @@ export default function AboutPage() {
       {/* What We Cover */}
       <section className="px-6 pb-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-2xl font-bold text-white">What We Cover</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">What We Cover</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { title: 'News', description: 'Protocol updates, ecosystem developments, and EVM industry analysis.', href: '/news' },
@@ -51,7 +51,7 @@ export default function AboutPage() {
                 href={item.href}
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-primary)]/50"
               >
-                <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">{item.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{item.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{item.description}</p>
               </Link>
             ))}
@@ -62,7 +62,7 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-2xl font-bold text-white">Our Mission</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Our Mission</h2>
           <div className="mt-6 space-y-4 text-[var(--color-text-secondary)]">
             <p>
               Ethereum Classic is the original, unaltered Ethereum blockchain — secured by proof-of-work, governed by a
@@ -84,7 +84,7 @@ export default function AboutPage() {
       {/* Community */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-2xl font-bold text-white">Join the Community</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Join the Community</h2>
           <p className="mt-4 text-[var(--color-text-secondary)]">
             Ethereum Classic is built by a global, decentralized community. Connect with developers, miners, and
             enthusiasts.
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-sm font-medium text-[var(--color-text-primary)] transition-all hover:border-[var(--color-primary)]/50 hover:text-[var(--color-primary)]"
               >
                 {link.label}
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                 </svg>
               </a>
@@ -116,7 +116,7 @@ export default function AboutPage() {
       {/* Disclaimer */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-          <h3 className="font-semibold text-white">Disclaimer</h3>
+          <h3 className="font-semibold text-[var(--text-primary)]">Disclaimer</h3>
           <p className="mt-3 text-sm text-[var(--color-text-muted)]">
             EthereumClassic.com provides information for educational purposes only. Nothing on this website constitutes
             financial advice, investment guidance, or a recommendation to buy, sell, or hold any cryptocurrency.

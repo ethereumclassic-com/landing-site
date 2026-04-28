@@ -1,16 +1,29 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
-import BackgroundSystem from "./components/BackgroundSystem";
 import Navigation from "./components/Navigation";
 import { Providers } from "./providers";
 import { OrganizationJsonLd, WebsiteJsonLd, CryptocurrencyJsonLd } from "./components/JsonLd";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
-  title: "Ethereum Classic — Proof-of-Work Smart Contracts",
+  title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
   description:
-    "Ethereum Classic is the only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
+    "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by the energy of the physical world.",
   keywords: [
     "Ethereum Classic",
     "ETC",
@@ -45,8 +58,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Ethereum Classic" }],
   creator: "Ethereum Classic",
   openGraph: {
-    title: "Ethereum Classic — Proof-of-Work Smart Contracts",
-    description: "The only mature Proof-of-Work blockchain with smart contracts. Get wallets, buy ETC, and discover apps.",
+    title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
+    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by the energy of the physical world.",
     url: "https://ethereumclassic.com",
     siteName: "Ethereum Classic",
     locale: "en_US",
@@ -55,8 +68,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ethereum Classic — Proof-of-Work Smart Contracts",
-    description: "The only mature Proof-of-Work blockchain with smart contracts.",
+    title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
+    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, secured by the energy of the physical world.",
     images: ["/og.png"],
   },
   icons: {
@@ -76,7 +89,7 @@ export const metadata: Metadata = {
       'application/feed+json': '/news/feed.json',
     },
   },
-  other: { "color-scheme": "dark" },
+  other: { "color-scheme": "light dark" },
   formatDetection: { telephone: false, email: false },
   appleWebApp: {
     capable: true,
@@ -89,28 +102,36 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <OrganizationJsonLd />
         <WebsiteJsonLd />
         <CryptocurrencyJsonLd />
       </head>
-      {/* isolate = background stays behind even if future components create stacking contexts */}
-      <body className="relative isolate min-h-dvh bg-[#0B0F14] text-white antialiased">
-        <Providers>
-          {/* Skip to main content link for keyboard accessibility */}
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--color-primary)] focus:px-4 focus:py-2 focus:text-white focus:outline-none"
-          >
-            Skip to main content
-          </a>
-          <BackgroundSystem />
-          <Navigation />
-          <main id="main-content" className="relative z-10 pt-16">
-            {children}
-          </main>
-        </Providers>
+      <body className="relative isolate min-h-dvh antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[var(--brand-green)] focus:px-4 focus:py-2 focus:text-[var(--background)] focus:outline-none"
+            >
+              Skip to main content
+            </a>
+            <Navigation />
+            <main id="main-content" className="relative z-10 pt-16">
+              {children}
+            </main>
+          </Providers>
+        </ThemeProvider>
         <Script
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "977635a2225b49e9929b117b3be16267"}'

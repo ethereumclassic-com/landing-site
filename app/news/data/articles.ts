@@ -1016,7 +1016,7 @@ A fixed, predictable supply schedule makes ETC a deflationary asset. Unlike fiat
 Miners, investors, and users can calculate exactly how many ETC will exist at any future point. There are no surprises and no discretionary monetary decisions.
 
 ### Bitcoin Parallel
-The 20% reduction per era is ETC's equivalent of Bitcoin's halving events, though with a gentler reduction curve. The community calls these reductions "fifthenings" (keeping four-fifths of the previous reward).
+The 20% reduction per era is ETC's equivalent of Bitcoin's halving events, though with a gentler reduction curve. The community calls these reductions "fifthings" (keeping four-fifths of the previous reward).
 
 ## Uncle/Nephew Rewards
 
@@ -1049,7 +1049,7 @@ The monetary policy was activated at block 5,000,000 (Era 2) via the Gotham hard
 | Era | 1 | 2 |
 | Activation block | — | 5,000,000 |
 
-The 20% reduction from 5 ETC to 4 ETC per block marked the first "fifthening" — the beginning of ETC's deflationary emission curve.
+The 20% reduction from 5 ETC to 4 ETC per block marked the first "fifthing" — the beginning of ETC's deflationary emission curve.
 
 ## Technical Details
 
@@ -1155,7 +1155,7 @@ By the start of Era 3, approximately 113.4 million ETC had been minted — just 
 
 The Era 3 reduction continued the predictable deflationary curve established by ECIP-1017. Each era lasts 5 million blocks (~2.5 years at 13-second block times), and each reduces the reward by exactly 20%.
 
-Unlike Bitcoin's abrupt halvings (50% reduction), ETC's fifthenings are a gentler 20% reduction. This provides miners with a more gradual revenue adjustment while still ensuring the supply converges to a hard cap.
+Unlike Bitcoin's abrupt halvings (50% reduction), ETC's fifthings are a gentler 20% reduction. This provides miners with a more gradual revenue adjustment while still ensuring the supply converges to a hard cap.
 
 ## Mining Economics
 
@@ -1217,10 +1217,10 @@ The combination of reduced block rewards and dramatically increased hashrate mea
   },
   {
     slug: 'era-5-fifthening',
-    title: "Era 5 'Fifthening': Block Reward Drops to 2.048 ETC",
+    title: "Era 5 'Fifthing': Block Reward Drops to 2.048 ETC",
     excerpt:
       'At block 20,000,001, Ethereum Classic enters its fifth monetary era, reducing block rewards from 2.56 ETC to 2.048 ETC per block.',
-    content: `On May 31, 2024, at block 20,000,001, Ethereum Classic entered Era 5 of its fixed monetary policy — the fifth "fifthening" since the ECIP-1017 emission schedule was established.
+    content: `On May 31, 2024, at block 20,000,001, Ethereum Classic entered Era 5 of its fixed monetary policy — the fifth "fifthing" since the ECIP-1017 emission schedule was established.
 
 ## The Numbers
 
@@ -1235,9 +1235,9 @@ The combination of reduced block rewards and dramatically increased hashrate mea
 
 By the start of Era 5, approximately 144.0 million ETC had been minted — roughly 68% of the ~210.7 million maximum supply. The remaining ~66.7 million ETC will be emitted over subsequent eras, with each era producing 20% fewer coins than the last.
 
-## Why "Fifthening"
+## Why "Fifthing"
 
-The ETC community uses the term "fifthening" because each era keeps four-fifths (80%) of the previous reward — or equivalently, reduces by one-fifth (20%). This distinguishes ETC's gentler reduction curve from Bitcoin's more aggressive halvings.
+The ETC community uses the term "fifthing" because each era keeps four-fifths (80%) of the previous reward — or equivalently, reduces by one-fifth (20%). This distinguishes ETC's gentler reduction curve from Bitcoin's more aggressive halvings.
 
 ## Network State at Era 5
 
@@ -1257,7 +1257,7 @@ The emission asymptotically approaches zero but never technically reaches it. In
 [View the next block reward reduction →](/research/supply)`,
     date: '2024-05-31',
     category: 'Updates',
-    tags: ['Monetary Policy', 'Era 5', 'Fifthening', 'Block Reward'],
+    tags: ['Monetary Policy', 'Era 5', 'Fifthing', 'Block Reward'],
     author: 'ETC Community',
     readTime: 4,
   },

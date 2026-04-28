@@ -1,22 +1,12 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { type Article, type ArticleCategory, getRelatedArticles, getAuthorInfo } from '../data/articles'
 import NewsCard from '../components/NewsCard'
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -25,7 +15,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Security: (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -34,7 +24,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Ecosystem: (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -43,7 +33,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Community: (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -52,7 +42,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Development: (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -116,7 +106,7 @@ function renderContent(content: string): React.ReactNode {
             <thead>
               <tr className="border-b border-[var(--border)]">
                 {header.map((cell, i) => (
-                  <th key={i} className="px-4 py-2 text-left font-semibold text-white">
+                  <th key={i} className="px-4 py-2 text-left font-semibold text-[var(--text-primary)]">
                     {cell.trim()}
                   </th>
                 ))}
@@ -184,7 +174,7 @@ function renderContent(content: string): React.ReactNode {
     if (line.startsWith('## ')) {
       flushList()
       elements.push(
-        <h2 key={elements.length} className="mb-4 mt-8 text-xl font-bold text-white">
+        <h2 key={elements.length} className="mb-4 mt-8 text-xl font-bold text-[var(--text-primary)]">
           {line.slice(3)}
         </h2>
       )
@@ -194,7 +184,7 @@ function renderContent(content: string): React.ReactNode {
     if (line.startsWith('### ')) {
       flushList()
       elements.push(
-        <h3 key={elements.length} className="mb-3 mt-6 text-lg font-semibold text-white">
+        <h3 key={elements.length} className="mb-3 mt-6 text-lg font-semibold text-[var(--text-primary)]">
           {line.slice(4)}
         </h3>
       )
@@ -219,7 +209,7 @@ function renderContent(content: string): React.ReactNode {
         <div key={elements.length} className="my-1 flex items-center gap-2 text-[var(--color-text-secondary)]">
           <span className={`flex h-5 w-5 items-center justify-center rounded border ${checked ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/20 text-[var(--color-primary)]' : 'border-[var(--border)]'}`}>
             {checked && (
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+              <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
             )}
@@ -282,7 +272,7 @@ function renderInlineContent(text: string): React.ReactNode {
 
     if (firstMatch.type === 'bold') {
       parts.push(
-        <strong key={keyCounter++} className="font-semibold text-white">
+        <strong key={keyCounter++} className="font-semibold text-[var(--text-primary)]">
           {firstMatch.match![1]}
         </strong>
       )
@@ -338,10 +328,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
+        <div
           className="relative mx-auto max-w-4xl"
         >
           <div className="mb-6">
@@ -349,7 +336,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               href="/news"
               className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
               Back to News
@@ -366,8 +353,8 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
             </Link>
             <time className="text-sm text-[var(--color-text-muted)]">{formatDate(article.date)}</time>
             {article.featured && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-400">
-                <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-warning)]/20 px-3 py-1 text-xs font-medium text-[var(--color-warning)]">
+                <svg aria-hidden="true" className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
                 </svg>
                 Featured
@@ -375,7 +362,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
             )}
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">{article.title}</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl">{article.title}</h1>
 
           <p className="mt-6 text-lg text-[var(--color-text-secondary)]">{article.excerpt}</p>
 
@@ -383,7 +370,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
             {article.author && (
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-[var(--color-primary)]">
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -393,7 +380,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-white">{article.author}</span>
+                    <span className="font-medium text-[var(--text-primary)]">{article.author}</span>
                     {authorInfo?.twitter && (
                       <a
                         href={`https://twitter.com/${authorInfo.twitter}`}
@@ -401,7 +388,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
                         rel="noopener noreferrer"
                         className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
                       >
-                        <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                         </svg>
                       </a>
@@ -413,7 +400,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
             )}
             {article.readTime && (
               <div className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 {article.readTime} min read
@@ -434,15 +421,12 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               ))}
             </div>
           )}
-        </motion.div>
+        </div>
       </section>
 
       {/* Article Content */}
       <section className="border-y border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+        <div
           className="mx-auto max-w-3xl"
         >
           {article.content ? (
@@ -452,34 +436,31 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
           ) : (
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8 text-center">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
-                <svg className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white">Full Article Coming Soon</h3>
+              <h3 className="text-xl font-semibold text-[var(--text-primary)]">Full Article Coming Soon</h3>
               <p className="mx-auto mt-3 max-w-md text-[var(--color-text-secondary)]">
                 This article content is being prepared. Check back soon for the full story.
               </p>
             </div>
           )}
-        </motion.div>
+        </div>
       </section>
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
         <section className="px-6 py-16 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
               className="mb-8"
             >
-              <h2 className="text-2xl font-bold text-white">Related Articles</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)]">Related Articles</h2>
               <p className="mt-2 text-[var(--color-text-secondary)]">
                 More news and updates from the Ethereum Classic ecosystem
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relatedArticles.map((relatedArticle, index) => (
@@ -490,7 +471,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
             <div className="mt-8 text-center">
               <Link href="/news" className="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline">
                 View all news
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </Link>
@@ -501,13 +482,10 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
 
       {/* Share CTA */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white">Share This Article</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Share This Article</h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
             Help spread the word about Ethereum Classic and support the ecosystem
           </p>
@@ -516,24 +494,24 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               href={`https://x.com/intent/post?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(`https://ethereumclassic.com/news/${article.slug}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Share on X
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg aria-hidden="true" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
             <Link
               href="/news"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
               Back to News
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

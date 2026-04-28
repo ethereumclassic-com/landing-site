@@ -18,14 +18,14 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
   const otherHashrate = Math.max(0, 100 - listedHashrate)
 
   const colors = [
-    '#3AB83A', // ETC Green (primary)
-    '#34d399', // Emerald
-    '#22d3ee', // Cyan
-    '#a78bfa', // Purple
-    '#f472b6', // Pink
-    '#fb923c', // Orange
-    '#fbbf24', // Amber
-    '#64748b', // Slate (for "Other")
+    'var(--brand-green)',       // ETC brand green (primary)
+    'var(--color-success)',     // Secondary green
+    'var(--color-info)',        // Cyan/info
+    'var(--color-purple)',      // Purple
+    'var(--color-pink)',        // Pink
+    'var(--color-orange)',      // Orange
+    'var(--color-yellow)',      // Amber/yellow
+    'var(--text-muted)',        // Slate (for "Other")
   ]
 
   // Build segments for pie chart
@@ -78,7 +78,7 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
   return (
     <div className={`rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 ${className}`}>
       <div className="mb-4">
-        <h3 className="text-lg font-semibold text-white">Network Hashrate Distribution</h3>
+        <h3 className="text-lg font-semibold text-[var(--text-primary)]">Network Hashrate Distribution</h3>
         <p className="text-sm text-[var(--color-text-muted)]">
           Approximate pool share of ETC network hashrate
         </p>
@@ -133,7 +133,7 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
                   style={{ backgroundColor: segment.color }}
                 />
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-white">{segment.name}</p>
+                  <p className="truncate text-sm font-medium text-[var(--text-primary)]">{segment.name}</p>
                   <p className="text-xs text-[var(--color-text-muted)]">{segment.value}%</p>
                 </div>
               </div>
@@ -171,24 +171,24 @@ export function HashRateBar({ hashrate, difficulty, blockTime, className = '' }:
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
-            <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
             </svg>
           </div>
           <div>
             <p className="text-sm text-[var(--color-text-muted)]">Network Hashrate</p>
-            <p className="text-lg font-bold text-white">{hashrate}</p>
+            <p className="text-lg font-bold text-[var(--text-primary)]">{hashrate}</p>
           </div>
         </div>
         <div className="hidden h-8 w-px bg-[var(--border)] sm:block" />
         <div className="hidden sm:block">
           <p className="text-sm text-[var(--color-text-muted)]">Difficulty</p>
-          <p className="font-semibold text-white">{difficulty}</p>
+          <p className="font-semibold text-[var(--text-primary)]">{difficulty}</p>
         </div>
         <div className="hidden h-8 w-px bg-[var(--border)] md:block" />
         <div className="hidden md:block">
           <p className="text-sm text-[var(--color-text-muted)]">Block Time</p>
-          <p className="font-semibold text-white">{blockTime}</p>
+          <p className="font-semibold text-[var(--text-primary)]">{blockTime}</p>
         </div>
       </div>
     </div>
@@ -223,7 +223,7 @@ export function MiningStat({ label, value, icon, highlight = false }: MiningStat
         </div>
         <div>
           <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
-          <p className="text-lg font-bold text-white">{value}</p>
+          <p className="text-lg font-bold text-[var(--text-primary)]">{value}</p>
         </div>
       </div>
     </motion.div>

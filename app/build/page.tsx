@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   nodeClients,
@@ -11,60 +10,45 @@ import {
   faucets,
 } from './data/build'
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
 // Icons
 const CodeIcon = () => (
-  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
   </svg>
 )
 
 const ServerIcon = () => (
-  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
   </svg>
 )
 
 const BookIcon = () => (
-  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
   </svg>
 )
 
 const RocketIcon = () => (
-  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
   </svg>
 )
 
 const WrenchIcon = () => (
-  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z" />
   </svg>
 )
 
 const CubeIcon = () => (
-  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
   </svg>
 )
 
 const ExternalLinkIcon = () => (
-  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
   </svg>
 )
@@ -79,24 +63,21 @@ export default function BuildPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-20">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          <div
             className="text-center"
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
               <CodeIcon />
               <span>EVM Compatible</span>
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
               Build on Ethereum Classic
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg text-[var(--color-text-muted)] md:text-xl">
               Full EVM compatibility means you can use familiar Ethereum tools like Hardhat, Foundry,
               and Remix. Deploy your Solidity contracts to a network that values
-              <span className="text-white"> immutability</span> and
-              <span className="text-white"> code is law</span>.
+              <span className="text-[var(--text-primary)]"> immutability</span> and
+              <span className="text-[var(--text-primary)]"> code is law</span>.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
@@ -108,13 +89,13 @@ export default function BuildPage() {
               </Link>
               <Link
                 href="/build/docs"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 <BookIcon />
                 Documentation
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -131,7 +112,7 @@ export default function BuildPage() {
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <p className="text-sm text-[var(--color-text-muted)]">{stat.label}</p>
-                <p className="text-lg font-semibold text-white">{stat.value}</p>
+                <p className="text-lg font-semibold text-[var(--text-primary)]">{stat.value}</p>
               </div>
             ))}
           </div>
@@ -141,19 +122,12 @@ export default function BuildPage() {
       {/* Quick Links Grid */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8 text-center text-3xl font-bold text-white"
+          <h2
+            className="mb-8 text-center text-3xl font-bold text-[var(--text-primary)]"
           >
             Developer Resources
-          </motion.h2>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          </h2>
+          <div
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
           >
             {[
@@ -182,7 +156,7 @@ export default function BuildPage() {
                 icon: <WrenchIcon />,
               },
             ].map((card, i) => (
-              <motion.div key={i} variants={fadeInUp}>
+              <div key={i}>
                 <Link
                   href={card.href}
                   className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel-hover)]"
@@ -190,38 +164,32 @@ export default function BuildPage() {
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                     {card.icon}
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="mb-2 text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {card.title}
                   </h3>
                   <p className="text-sm text-[var(--color-text-muted)]">{card.description}</p>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Network Configuration */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Network Configuration</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Network Configuration</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Add ETC to your wallet or configure your development environment
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Mainnet */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-2xl border border-[var(--color-primary)]/30 bg-[var(--bg)] p-6"
             >
               <div className="mb-4 flex items-center gap-3">
@@ -229,7 +197,7 @@ export default function BuildPage() {
                   <CubeIcon />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">{mainnet.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{mainnet.name}</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">Production Network</p>
                 </div>
               </div>
@@ -240,11 +208,11 @@ export default function BuildPage() {
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Symbol</span>
-                  <code className="font-mono text-white">{mainnet.symbol}</code>
+                  <code className="font-mono text-[var(--text-primary)]">{mainnet.symbol}</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="font-mono text-white">https://etc.rivet.link</code>
+                  <code className="font-mono text-[var(--text-primary)]">https://etc.rivet.link</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Explorer</span>
@@ -267,13 +235,10 @@ export default function BuildPage() {
                 Add to Wallet via Chainlist
                 <ExternalLinkIcon />
               </a>
-            </motion.div>
+            </div>
 
             {/* Testnet */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+            <div
               className="rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6"
             >
               <div className="mb-4 flex items-center gap-3">
@@ -281,22 +246,22 @@ export default function BuildPage() {
                   <CubeIcon />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white">{testnet.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{testnet.name}</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">Development & Testing</p>
                 </div>
               </div>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Chain ID</span>
-                  <code className="font-mono text-white">{testnet.chainId}</code>
+                  <code className="font-mono text-[var(--text-primary)]">{testnet.chainId}</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Symbol</span>
-                  <code className="font-mono text-white">{testnet.symbol}</code>
+                  <code className="font-mono text-[var(--text-primary)]">{testnet.symbol}</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="font-mono text-xs text-white">rpc.mordor.etccooperative.org</code>
+                  <code className="font-mono text-xs text-[var(--text-primary)]">rpc.mordor.etccooperative.org</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Explorer</span>
@@ -314,12 +279,12 @@ export default function BuildPage() {
                 href={faucets[0].url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] py-3 text-sm font-medium text-white transition hover:bg-[var(--panel-hover)]"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] py-3 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 Get Testnet ETC from Faucet
                 <ExternalLinkIcon />
               </a>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -327,36 +292,28 @@ export default function BuildPage() {
       {/* Recommended Tools */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Recommended Tools</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Recommended Tools</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Industry-standard development tools that work seamlessly with ETC
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {recommendedTools.map((tool) => (
-              <motion.a
+              <a
                 key={tool.id}
-                variants={fadeInUp}
                 href={tool.website}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel-hover)]"
               >
                 <div className="flex items-start justify-between">
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {tool.name}
                   </h3>
                   <ExternalLinkIcon />
@@ -375,9 +332,9 @@ export default function BuildPage() {
                     </span>
                   ))}
                 </div>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
 
           <div className="mt-8 text-center">
             <Link
@@ -385,7 +342,7 @@ export default function BuildPage() {
               className="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline"
             >
               View all developer tools
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
@@ -396,29 +353,21 @@ export default function BuildPage() {
       {/* Node Clients */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Node Clients</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Node Clients</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Run your own Ethereum Classic node for maximum decentralization
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 lg:grid-cols-3"
           >
             {nodeClients.map((client) => (
-              <motion.div
+              <div
                 key={client.id}
-                variants={fadeInUp}
                 className={`rounded-2xl border p-6 ${
                   client.recommended
                     ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
@@ -426,7 +375,7 @@ export default function BuildPage() {
                 }`}
               >
                 <div className="mb-4 flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-white">{client.name}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{client.name}</h3>
                   {client.recommended && (
                     <span className="rounded-full bg-[var(--color-primary)]/20 px-2 py-0.5 text-xs text-[var(--color-primary)]">
                       Recommended
@@ -435,7 +384,7 @@ export default function BuildPage() {
                 </div>
                 <p className="mb-4 text-sm text-[var(--color-text-muted)]">{client.description}</p>
                 <div className="mb-4 flex flex-wrap gap-2">
-                  <span className="rounded-full bg-[var(--panel)] px-2 py-0.5 text-xs text-white">
+                  <span className="rounded-full bg-[var(--panel)] px-2 py-0.5 text-xs text-[var(--text-primary)]">
                     {client.language}
                   </span>
                   {client.platforms.slice(0, 3).map((platform) => (
@@ -452,7 +401,7 @@ export default function BuildPage() {
                     href={client.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-white transition hover:bg-[var(--panel-hover)]"
+                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
                   >
                     Docs <ExternalLinkIcon />
                   </a>
@@ -460,14 +409,14 @@ export default function BuildPage() {
                     href={client.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-white transition hover:bg-[var(--panel-hover)]"
+                    className="inline-flex flex-1 items-center justify-center gap-1 rounded-lg bg-[var(--panel)] py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
                   >
                     GitHub <ExternalLinkIcon />
                   </a>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           <div className="mt-8 text-center">
             <Link
@@ -475,7 +424,7 @@ export default function BuildPage() {
               className="inline-flex items-center gap-2 text-[var(--color-primary)] hover:underline"
             >
               View detailed client comparison
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
@@ -486,36 +435,28 @@ export default function BuildPage() {
       {/* External Resources */}
       <section className="px-6 py-16">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-8 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Learning Resources</h2>
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Learning Resources</h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
               Tutorials, documentation, and guides to help you get started
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             {docResources.slice(0, 6).map((resource) => (
-              <motion.a
+              <a
                 key={resource.id}
-                variants={fadeInUp}
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel-hover)]"
               >
                 <div className="flex items-start justify-between">
-                  <h3 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {resource.name}
                   </h3>
                   <ExternalLinkIcon />
@@ -524,21 +465,18 @@ export default function BuildPage() {
                 <span className="mt-2 inline-block rounded-full bg-[var(--bg)] px-2 py-0.5 text-xs capitalize text-[var(--color-text-muted)]">
                   {resource.category}
                 </span>
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] px-6 py-20">
         <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
-            <h2 className="text-3xl font-bold text-white md:text-4xl">
+            <h2 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
               Ready to Build on ETC?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
@@ -557,13 +495,13 @@ export default function BuildPage() {
                 href="https://discord.com/invite/Tq57jxSwsa"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 font-semibold text-white transition hover:bg-[var(--panel-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
                 Join Developer Discord
                 <ExternalLinkIcon />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

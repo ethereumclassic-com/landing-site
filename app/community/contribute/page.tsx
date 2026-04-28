@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const contributionAreas = [
   {
@@ -49,7 +31,7 @@ const contributionAreas = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
       </svg>
     ),
-    color: 'text-amber-400 bg-amber-500/10',
+    color: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
   },
   {
     title: 'Governance & ECIPs',
@@ -64,7 +46,7 @@ const contributionAreas = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
       </svg>
     ),
-    color: 'text-green-400 bg-green-500/10',
+    color: 'text-[var(--color-success)] bg-[var(--color-success-bg)]',
   },
   {
     title: 'Community & Content',
@@ -89,26 +71,26 @@ export default function CommunityContributePage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/community"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
                 Back to Community
               </Link>
-            </motion.div>
-            <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">How to Contribute</h1>
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">How to Contribute</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Ethereum Classic is a community-driven project. Everyone can contribute —
                 whether through code, mining, governance, or community building.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -117,18 +99,15 @@ export default function CommunityContributePage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 md:grid-cols-2">
             {contributionAreas.map((area, idx) => (
-              <motion.div
+              <div
                 key={area.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * idx }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="flex items-center gap-3">
                   <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${area.color}`}>
                     {area.icon}
                   </div>
-                  <h2 className="text-lg font-semibold text-white">{area.title}</h2>
+                  <h2 className="text-lg font-semibold text-[var(--text-primary)]">{area.title}</h2>
                 </div>
                 <p className="mt-3 text-sm text-[var(--color-text-muted)]">{area.description}</p>
                 <div className="mt-4 space-y-3">
@@ -140,12 +119,12 @@ export default function CommunityContributePage() {
                       rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       className="group block rounded-lg bg-[var(--bg)] p-3 transition-colors hover:bg-[var(--bg)]/80"
                     >
-                      <div className="font-medium text-white group-hover:text-[var(--color-primary)]">{item.label}</div>
+                      <div className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{item.label}</div>
                       <div className="text-xs text-[var(--color-text-muted)]">{item.detail}</div>
                     </Link>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -154,38 +133,35 @@ export default function CommunityContributePage() {
       {/* Getting Started */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Quick Start</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Start</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center">
                 <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-lg font-bold text-[var(--color-primary)]">1</div>
-                <h3 className="font-medium text-white">Join Discord</h3>
+                <h3 className="font-medium text-[var(--text-primary)]">Join Discord</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Introduce yourself and find your niche</p>
               </div>
               <div className="text-center">
                 <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-lg font-bold text-[var(--color-primary)]">2</div>
-                <h3 className="font-medium text-white">Pick an Area</h3>
+                <h3 className="font-medium text-[var(--text-primary)]">Pick an Area</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Code, mine, govern, or educate</p>
               </div>
               <div className="text-center">
                 <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-lg font-bold text-[var(--color-primary)]">3</div>
-                <h3 className="font-medium text-white">Start Building</h3>
+                <h3 className="font-medium text-[var(--text-primary)]">Start Building</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Open a PR, submit an ECIP, or run a node</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
               href="https://discord.com/invite/Tq57jxSwsa"
               target="_blank"
@@ -198,11 +174,11 @@ export default function CommunityContributePage() {
               href="https://github.com/ethereumclassic"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               GitHub
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

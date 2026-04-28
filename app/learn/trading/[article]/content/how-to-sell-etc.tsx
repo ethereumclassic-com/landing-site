@@ -1,3 +1,5 @@
+import { ETCswapLink, ClassicUSDLink } from '@/app/components/ui'
+
 export default function HowToSellEtc() {
   return (
     <>
@@ -25,19 +27,19 @@ export default function HowToSellEtc() {
 
       <h2>Option 2: Swap to Stablecoin via DEX</h2>
       <p>
-        If you want to exit your ETC position without going through a centralized exchange, you can swap ETC for ClassicUSD (USC) on ETCswap. USC is a fiat-backed stablecoin pegged to the US dollar and available natively on the Ethereum Classic network.
+        If you want to exit your ETC position without going through a centralized exchange, you can swap ETC for <ClassicUSDLink /> (USC) on <ETCswapLink />. USC is a fiat-backed stablecoin pegged to the US dollar and available natively on the Ethereum Classic network.
       </p>
 
       <h3>Step-by-Step</h3>
       <ul>
-        <li>Connect your wallet to ETCswap</li>
+        <li>Connect your wallet to <ETCswapLink /></li>
         <li>Select ETC as the input token and USC as the output token</li>
         <li>Enter the amount, review slippage and price impact</li>
         <li>Confirm the swap in your wallet</li>
         <li>To convert USC to USD in your bank account, use Brale&apos;s redemption service</li>
       </ul>
       <p>
-        This two-step approach (ETC to USC on ETCswap, then USC to USD via Brale) gives you a fully on-chain off-ramp. You maintain custody of your funds until the final fiat conversion.
+        This two-step approach (ETC to USC on <ETCswapLink />, then USC to USD via Brale) gives you a fully on-chain off-ramp. You maintain custody of your funds until the final fiat conversion.
       </p>
 
       <h2>Option 3: Spend ETC Directly</h2>

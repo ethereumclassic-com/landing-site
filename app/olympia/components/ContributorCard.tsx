@@ -27,7 +27,7 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/30"
+      className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-brand)]"
     >
       <div className="flex items-center gap-3">
         <span
@@ -37,7 +37,7 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
           {contributor.language.slice(0, 2)}
         </span>
         <div>
-          <h3 className="text-lg font-semibold text-white">{contributor.name}</h3>
+          <h3 className="text-lg font-semibold text-[var(--text-primary)]">{contributor.name}</h3>
           <span
             className="rounded-full px-2 py-0.5 text-xs font-medium"
             style={{ backgroundColor: `${contributor.roleColor}15`, color: contributor.roleColor }}
@@ -54,9 +54,9 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
       {/* Stats grid */}
       <div className="mt-4 grid grid-cols-2 gap-2">
         {contributor.stats.map((stat) => (
-          <div key={stat.label} className="rounded-lg bg-white/5 px-3 py-2">
+          <div key={stat.label} className="rounded-lg bg-[var(--border-subtle)] px-3 py-2">
             <p className="text-xs text-[var(--color-text-muted)]">{stat.label}</p>
-            <p className="mt-0.5 text-sm font-semibold text-white">{stat.value}</p>
+            <p className="mt-0.5 text-sm font-semibold text-[var(--text-primary)]">{stat.value}</p>
           </div>
         ))}
       </div>
@@ -65,7 +65,7 @@ export default function ContributorCard({ contributor }: ContributorCardProps) {
         href={contributor.githubUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+        className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
       >
         View on GitHub →
       </a>

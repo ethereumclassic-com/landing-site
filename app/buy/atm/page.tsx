@@ -1,25 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // ATM Network Providers
 const atmProviders = [
@@ -139,22 +121,21 @@ const atmAggregators = [
 
 function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-xl font-bold text-white">{provider.name}</h3>
+          <h3 className="text-xl font-bold text-[var(--text-primary)]">{provider.name}</h3>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">{provider.description}</p>
         </div>
         <div className="flex flex-col items-end gap-2">
           {provider.supportsETC ? (
-            <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs font-medium text-green-400">
+            <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-success)]">
               ETC Supported
             </span>
           ) : (
-            <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">
+            <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-warning)]">
               BTC Only
             </span>
           )}
@@ -164,19 +145,19 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
       <div className="mb-4 grid grid-cols-2 gap-4 text-sm">
         <div>
           <p className="text-[var(--color-text-muted)]">Locations</p>
-          <p className="font-medium text-white">{provider.locations}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.locations}</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Regions</p>
-          <p className="font-medium text-white">{provider.regions.join(', ')}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.regions.join(', ')}</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Buy Limit</p>
-          <p className="font-medium text-white">{provider.buyLimit}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.buyLimit}</p>
         </div>
         <div>
           <p className="text-[var(--color-text-muted)]">Fees</p>
-          <p className="font-medium text-white">{provider.fees}</p>
+          <p className="font-medium text-[var(--text-primary)]">{provider.fees}</p>
         </div>
       </div>
 
@@ -202,7 +183,7 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
           className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
         >
           Find Locations
-          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
           </svg>
         </a>
@@ -210,12 +191,12 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
           href={provider.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
         >
           Website
         </a>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -236,39 +217,36 @@ export default function ATMPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/buy"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
                 Back to Buy ETC
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <div>
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Crypto ATM Locator
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Find Bitcoin and cryptocurrency ATMs near you. Buy Ethereum Classic with cash at thousands
                 of locations, or purchase Bitcoin and swap to ETC.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="grid gap-4 sm:grid-cols-3"
           >
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-center">
@@ -276,38 +254,35 @@ export default function ATMPage() {
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Crypto ATMs Worldwide</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-center">
-              <p className="text-3xl font-bold text-green-400">{etcSupportedCount}</p>
+              <p className="text-3xl font-bold text-[var(--color-success)]">{etcSupportedCount}</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Networks with Direct ETC</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-center">
-              <p className="text-3xl font-bold text-amber-400">5-25%</p>
+              <p className="text-3xl font-bold text-[var(--color-warning)]">5-25%</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Typical ATM Fees</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Important Note */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
-                <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">How to Use ATMs for ETC</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">How to Use ATMs for ETC</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  <strong className="text-green-400">Direct ETC:</strong> Some ATM networks support Ethereum Classic directly.
+                  <strong className="text-[var(--color-success)]">Direct ETC:</strong> Some ATM networks support Ethereum Classic directly.
                   Simply select ETC at the machine and provide your wallet address.{' '}
-                  <strong className="text-amber-400">BTC Only:</strong> If an ATM only supports Bitcoin, buy BTC and then
+                  <strong className="text-[var(--color-warning)]">BTC Only:</strong> If an ATM only supports Bitcoin, buy BTC and then
                   swap to ETC on an exchange like{' '}
                   <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
                     ETCswap
@@ -319,7 +294,7 @@ export default function ATMPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -332,7 +307,7 @@ export default function ATMPage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 filter === 'all'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               All Providers ({atmProviders.length})
@@ -342,7 +317,7 @@ export default function ATMPage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 filter === 'etc'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               Direct ETC ({etcSupportedCount})
@@ -354,28 +329,22 @@ export default function ATMPage() {
       {/* ATM Providers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
             {filteredProviders.map((provider) => (
               <ProviderCard key={provider.id} provider={provider} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ATM Finder Services */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
           >
-            <h2 className="mb-6 text-xl font-semibold text-white">ATM Finder Services</h2>
+            <h2 className="mb-6 text-xl font-semibold text-[var(--text-primary)]">ATM Finder Services</h2>
             <p className="mb-6 text-sm text-[var(--color-text-muted)]">
               Use these services to find the nearest crypto ATM regardless of provider:
             </p>
@@ -389,33 +358,30 @@ export default function ATMPage() {
                   className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30"
                 >
                   <div className="mb-3 text-3xl">{aggregator.icon}</div>
-                  <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                     {aggregator.name}
                   </h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{aggregator.description}</p>
                   <div className="mt-3 flex items-center gap-1 text-sm text-[var(--color-primary)]">
                     Visit Site
-                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                     </svg>
                   </div>
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* How It Works */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-6 text-lg font-semibold text-white">How to Use a Crypto ATM</h2>
+            <h2 className="mb-6 text-lg font-semibold text-[var(--text-primary)]">How to Use a Crypto ATM</h2>
             <div className="grid gap-6 md:grid-cols-4">
               {[
                 {
@@ -444,48 +410,45 @@ export default function ATMPage() {
                     {item.step}
                   </div>
                   <div className="pt-4">
-                    <h3 className="font-semibold text-white">{item.title}</h3>
+                    <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Tips */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="grid gap-6 md:grid-cols-2"
           >
-            <div className="rounded-xl border border-green-500/30 bg-green-500/5 p-6">
-              <h3 className="mb-4 font-semibold text-green-400">Tips for Best Results</h3>
+            <div className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-6">
+              <h3 className="mb-4 font-semibold text-[var(--color-success)]">Tips for Best Results</h3>
               <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                   <span>Compare fees between ATM providers before buying</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                   <span>Have your wallet QR code ready before arriving</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                   <span>Check operating hours - many ATMs are in stores</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                   <span>Keep your receipt until crypto arrives in your wallet</span>
@@ -493,49 +456,46 @@ export default function ATMPage() {
               </ul>
             </div>
 
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-6">
-              <h3 className="mb-4 font-semibold text-amber-400">Things to Know</h3>
+            <div className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-6">
+              <h3 className="mb-4 font-semibold text-[var(--color-warning)]">Things to Know</h3>
               <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                   </svg>
                   <span>ATM fees are typically higher than online exchanges</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                   </svg>
                   <span>Transaction limits vary by provider and verification level</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                   </svg>
                   <span>Most ATMs require phone verification at minimum</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                   </svg>
                   <span>Crypto may take 10-60 minutes to arrive</span>
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Prefer to Buy Online?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Prefer to Buy Online?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Online exchanges typically offer lower fees than ATMs. Check out our exchange directory
               for more options.
@@ -546,18 +506,18 @@ export default function ATMPage() {
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Browse Exchanges
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </Link>
               <Link
                 href="/buy/card"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Buy with Card
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

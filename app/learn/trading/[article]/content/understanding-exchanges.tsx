@@ -1,3 +1,5 @@
+import { ETCswapLink, ClassicUSDLink } from '@/app/components/ui'
+
 export default function UnderstandingExchanges() {
   return (
     <>
@@ -43,9 +45,9 @@ export default function UnderstandingExchanges() {
         Decentralized exchanges operate through smart contracts on the blockchain. There is no company holding your funds or managing an order book. Instead, trades execute peer-to-contract using automated market maker (AMM) algorithms.
       </p>
 
-      <h3>ETCswap: ETC&apos;s Native DEX</h3>
+      <h3><ETCswapLink />: ETC&apos;s Native DEX</h3>
       <p>
-        ETCswap is the primary decentralized exchange on Ethereum Classic. It offers both V2 (constant product AMM) and V3 (concentrated liquidity) protocols. Anyone can swap tokens, provide liquidity, and earn fees without creating an account or submitting identification.
+        <ETCswapLink /> is the primary decentralized exchange on Ethereum Classic. It offers both V2 (constant product AMM) and V3 (concentrated liquidity) protocols. Anyone can swap tokens, provide liquidity, and earn fees without creating an account or submitting identification.
       </p>
 
       <h3>DEX Advantages</h3>
@@ -66,7 +68,7 @@ export default function UnderstandingExchanges() {
 
       <h2>Fiat On-Ramps and Off-Ramps</h2>
       <p>
-        Bridging between traditional finance and crypto is a key consideration. CEX platforms handle this directly, but the ETC ecosystem also has dedicated solutions. Brale provides fiat on-ramp and off-ramp services for ClassicUSD (USC), the native stablecoin on Ethereum Classic. You can convert USD to USC and vice versa, enabling a path from bank account to DEX trading without relying solely on centralized exchanges.
+        Bridging between traditional finance and crypto is a key consideration. CEX platforms handle this directly, but the ETC ecosystem also has dedicated solutions. Brale provides fiat on-ramp and off-ramp services for <ClassicUSDLink /> (USC), the native stablecoin on Ethereum Classic. You can convert USD to USC and vice versa, enabling a path from bank account to DEX trading without relying solely on centralized exchanges.
       </p>
 
       <h2>Choosing the Right Platform</h2>

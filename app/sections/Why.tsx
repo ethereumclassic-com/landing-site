@@ -35,7 +35,7 @@ export function Why() {
                 <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
                     Why Ethereum Classic
                 </h2>
-                <p className="mt-3 text-white/75 leading-relaxed">
+                <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
                     Ethereum Classic is engineered for long-term reliability: Proof-of-Work security,
                     conservative upgrades, and system rules enforced by protocol. The network evolves
                     deliberately, favoring evidence-based improvements and incentive-aligned design over
@@ -48,7 +48,7 @@ export function Why() {
                 {bullets.map((b, i) => (
                     <FadeIn key={b.title} delay={0.05 * i}>
                         <HoverLift>
-                            <div className="group relative overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-white/15 hover:bg-[var(--panel-strong)]">
+                            <div className="group relative overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-default)] hover:bg-[var(--panel-strong)]">
                                 <div className="flex gap-5">
                                     {/* Visual rail */}
                                     <div className="shrink-0">
@@ -69,7 +69,7 @@ export function Why() {
                                         <div className="text-lg font-medium">
                                             {b.title}
                                         </div>
-                                        <div className="mt-2 text-sm text-white/70 leading-relaxed">
+                                        <div className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
                                             {b.body}
                                         </div>
                                     </div>

@@ -34,15 +34,15 @@ function IconSvg({ name, className }: { name: string; className?: string }) {
 function FlowStep({ step, index }: { step: GovernanceStep; index: number }) {
   return (
     <motion.div variants={fadeInUp} className="relative flex flex-col items-center text-center">
-      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10">
-        <IconSvg name={step.icon} className="h-5 w-5 text-[#00ffae]" />
+      <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)]">
+        <IconSvg name={step.icon} className="h-5 w-5 text-[var(--brand-green)]" />
       </div>
 
       {index < governanceFlow.length - 1 && (
-        <div className="absolute left-[calc(50%+24px)] top-6 hidden h-px w-[calc(100%-48px)] bg-gradient-to-r from-[#00ffae]/30 to-[var(--border)] lg:block" />
+        <div className="absolute left-[calc(50%+24px)] top-6 hidden h-px w-[calc(100%-48px)] bg-gradient-to-r from-[var(--brand-green)]/30 to-[var(--border)] lg:block" />
       )}
 
-      <h3 className="mt-3 text-sm font-semibold text-white">{step.title}</h3>
+      <h3 className="mt-3 text-sm font-semibold text-[var(--text-primary)]">{step.title}</h3>
       <p className="mt-1.5 text-xs leading-relaxed text-[var(--color-text-muted)]">
         {step.description}
       </p>
@@ -58,7 +58,7 @@ export default function GovernanceStageComponent() {
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
     >
-      <h2 className="text-2xl font-bold text-white">From Proposal to Execution</h2>
+      <h2 className="text-2xl font-bold text-[var(--text-primary)]">From Proposal to Execution</h2>
       <p className="mt-2 text-[var(--color-text-muted)]">
         Five stages from idea to execution — every step on-chain, transparent, and auditable.
       </p>

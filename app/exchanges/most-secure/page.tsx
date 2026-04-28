@@ -1,29 +1,11 @@
 'use client'
 
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { exchanges } from '../../buy/data/exchanges'
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
 const ExternalLinkIcon = () => (
-  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
   </svg>
 )
@@ -47,15 +29,15 @@ export default function MostSecureExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Most Secure</span>
+            <span className="text-[var(--text-primary)]">Most Secure</span>
           </nav>
         </div>
       </div>
@@ -63,33 +45,27 @@ export default function MostSecureExchangesPage() {
       <div className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {/* Header */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mb-12"
           >
-            <motion.div variants={fadeInUp} className="mb-4">
+            <div className="mb-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
                 Security First
               </span>
-            </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            </div>
+            <h1 className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Most Secure Exchanges
-            </motion.h1>
-            <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
               Trade ETC on exchanges with the strongest security track records, regulatory compliance, and institutional-grade custody solutions.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* Security Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {[
@@ -116,40 +92,37 @@ export default function MostSecureExchangesPage() {
             ].map((item) => (
               <div key={item.title} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
                 <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-white">{item.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.desc}</p>
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Security Notice */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mb-12 rounded-xl border border-blue-500/30 bg-blue-500/10 p-5"
           >
             <div className="flex items-start gap-3">
-              <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
               <div>
-                <h3 className="font-semibold text-white">Selection Criteria</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Selection Criteria</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
                   These exchanges are selected based on: regulatory licenses, security audits, cold storage practices, insurance coverage, years of operation without major security incidents, and institutional-grade custody solutions.
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* US Regulated */}
           {regulated.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 US-Regulated Exchanges
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   Highest compliance standards
@@ -157,19 +130,16 @@ export default function MostSecureExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {regulated.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-blue-500/20 bg-[var(--panel)] p-5 transition-all hover:border-blue-500/40"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-blue-400">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-blue-400">
                           {exchange.name}
                         </h3>
                         <div className="mt-1 flex flex-wrap gap-1">
@@ -192,13 +162,13 @@ export default function MostSecureExchangesPage() {
                     )}
                     <div className="mt-4 space-y-2">
                       <div className="flex items-center gap-2 text-sm">
-                        <svg className="h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span className="text-[var(--color-text-muted)]">FDIC-insured USD</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
-                        <svg className="h-4 w-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span className="text-[var(--color-text-muted)]">SOC 2 Compliant</span>
@@ -211,7 +181,7 @@ export default function MostSecureExchangesPage() {
                         </span>
                       ))}
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
@@ -220,7 +190,7 @@ export default function MostSecureExchangesPage() {
           {/* Global Secure Exchanges */}
           {globalSecure.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Global Security Leaders
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   Strong track records
@@ -228,19 +198,16 @@ export default function MostSecureExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {globalSecure.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-primary)]/30"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         {exchange.featured && (
@@ -265,30 +232,27 @@ export default function MostSecureExchangesPage() {
                     </div>
                     {exchange.volume24h && (
                       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                        24h Volume: <span className="text-white">{exchange.volume24h}</span>
+                        24h Volume: <span className="text-[var(--text-primary)]">{exchange.volume24h}</span>
                       </p>
                     )}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
           )}
 
           {/* Security Best Practices */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">Your Security Checklist</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Your Security Checklist</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="flex items-start gap-3">
                 <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded border border-[var(--color-primary)] text-xs text-[var(--color-primary)]">
                   1
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Enable 2FA</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Enable 2FA</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Use an authenticator app, not SMS. Hardware keys (YubiKey) are even better.</p>
                 </div>
               </div>
@@ -297,7 +261,7 @@ export default function MostSecureExchangesPage() {
                   2
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Use Unique Email</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Use Unique Email</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Create a dedicated email for crypto that you don&apos;t use elsewhere.</p>
                 </div>
               </div>
@@ -306,7 +270,7 @@ export default function MostSecureExchangesPage() {
                   3
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Whitelist Addresses</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Whitelist Addresses</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Enable withdrawal address whitelisting to prevent unauthorized transfers.</p>
                 </div>
               </div>
@@ -315,21 +279,18 @@ export default function MostSecureExchangesPage() {
                   4
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Self-Custody Large Amounts</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Self-Custody Large Amounts</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Move significant holdings to a hardware wallet you control.</p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Self Custody CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6 text-center"
           >
-            <h2 className="mb-2 text-xl font-bold text-white">Ultimate Security: Self-Custody</h2>
+            <h2 className="mb-2 text-xl font-bold text-[var(--text-primary)]">Ultimate Security: Self-Custody</h2>
             <p className="mb-4 text-[var(--color-text-secondary)]">
               &quot;Not your keys, not your coins.&quot; For maximum security, consider using a hardware wallet where only you control the private keys.
             </p>
@@ -339,36 +300,33 @@ export default function MostSecureExchangesPage() {
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-5 py-2.5 font-medium text-black transition-all hover:bg-[var(--color-primary)]/90"
               >
                 Explore Wallets
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </Link>
               <Link
                 href="/exchanges/decentralized"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-5 py-2.5 font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Try DEXs
               </Link>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </main>

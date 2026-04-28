@@ -31,13 +31,13 @@ const sizeClasses = {
 
 const changeColors = {
   up: 'text-emerald-400',
-  down: 'text-red-400',
+  down: 'text-[var(--color-error)]',
   neutral: 'text-[var(--color-text-muted)]',
 }
 
 const changeBgColors = {
   up: 'bg-emerald-500/10',
-  down: 'bg-red-500/10',
+  down: 'bg-[var(--color-error-bg)]',
   neutral: 'bg-[var(--panel)]',
 }
 
@@ -45,14 +45,14 @@ const changeBgColors = {
 function ChangeIcon({ direction, iconClass }: { direction: 'up' | 'down' | 'neutral'; iconClass: string }) {
   if (direction === 'up') {
     return (
-      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg aria-hidden="true" className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
       </svg>
     )
   }
   if (direction === 'down') {
     return (
-      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg aria-hidden="true" className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
       </svg>
     )
@@ -98,7 +98,7 @@ export default function PriceDisplay({
         <span className={`${sizeClasses[size].label} text-[var(--color-text-muted)]`}>{label}</span>
       )}
       <div className="flex items-center gap-3">
-        <span className={`${sizeClasses[size].price} text-white`}>{price}</span>
+        <span className={`${sizeClasses[size].price} text-[var(--text-primary)]`}>{price}</span>
         {(change || changePercent) && (
           <span
             className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 ${sizeClasses[size].change} ${changeColors[changeDirection]} ${changeBgColors[changeDirection]}`}
@@ -122,13 +122,13 @@ interface PriceCompactProps {
 export function PriceCompact({ price, changePercent, changeDirection = 'neutral' }: PriceCompactProps) {
   const changeColors = {
     up: 'text-emerald-400',
-    down: 'text-red-400',
+    down: 'text-[var(--color-error)]',
     neutral: 'text-[var(--color-text-muted)]',
   }
 
   return (
     <div className="flex items-baseline gap-2">
-      <span className="font-semibold text-white">{price}</span>
+      <span className="font-semibold text-[var(--text-primary)]">{price}</span>
       {changePercent && (
         <span className={`text-xs ${changeColors[changeDirection]}`}>
           {changeDirection === 'up' && '+'}
@@ -151,7 +151,7 @@ interface PriceStatProps {
 export function PriceStat({ label, value, change, changeDirection = 'neutral', tooltip }: PriceStatProps) {
   const changeColors = {
     up: 'text-emerald-400',
-    down: 'text-red-400',
+    down: 'text-[var(--color-error)]',
     neutral: 'text-[var(--color-text-muted)]',
   }
 
@@ -160,7 +160,7 @@ export function PriceStat({ label, value, change, changeDirection = 'neutral', t
       <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30">
         <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
         <div className="mt-1 flex items-baseline gap-2">
-          <span className="text-xl font-bold text-white">{value}</span>
+          <span className="text-xl font-bold text-[var(--text-primary)]">{value}</span>
           {change && (
             <span className={`text-xs ${changeColors[changeDirection]}`}>
               {changeDirection === 'up' && '+'}

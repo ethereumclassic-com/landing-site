@@ -1,19 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import GovernanceStageComponent from '../components/GovernanceStage'
 import { olympiaLinks } from '../data/olympia'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 const fundingFlow = [
   { label: 'Transactions', sublabel: 'Users pay gas fees' },
@@ -47,39 +36,34 @@ export default function GovernancePage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/8 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/8 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="mb-4">
             <Link
               href="/olympia"
-              className="text-sm text-[#00ffae] transition hover:text-[#00ffae]/80"
+              className="text-sm text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
             >
               ← Olympia Hub
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+          <h1
+            className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             Olympia Governance Framework
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Membership-based governance with on-chain proposals, voting, and execution.
             Transparent, auditable, and built on Ethereum Classic.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* How It Works — Governance Flow */}
@@ -92,25 +76,20 @@ export default function GovernancePage() {
       {/* Treasury Funding */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Treasury Funding
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               How the Olympia Treasury is funded — sustainably and without impacting miners.
-            </motion.p>
+            </p>
 
             {/* Callout */}
-            <motion.div
-              variants={fadeInUp}
-              className="mt-8 rounded-xl border border-[#F59E0B]/20 bg-[#F59E0B]/5 p-8"
+            <div
+              className="mt-8 rounded-xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-8"
             >
-              <p className="text-lg font-semibold text-white">
+              <p className="text-lg font-semibold text-[var(--text-primary)]">
                 Basefee revenue funds the Olympia Treasury
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -119,10 +98,10 @@ export default function GovernancePage() {
                 rewards directed to the treasury address. This creates sustainable, transparent
                 funding without inflation or reduced miner compensation.
               </p>
-            </motion.div>
+            </div>
 
             {/* Funding Flow */}
-            <motion.div variants={fadeInUp} className="mt-10">
+            <div className="mt-10">
               <p className="text-xs font-medium uppercase tracking-widest text-[var(--color-text-muted)]">
                 Funding Flow
               </p>
@@ -135,11 +114,11 @@ export default function GovernancePage() {
                     {fundingFlow.map((step) => (
                       <div key={step.label} className="text-center">
                         <div className="relative mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]">
-                          <span className="text-xs font-bold text-[#00ffae]">
+                          <span className="text-xs font-bold text-[var(--brand-green)]">
                             {fundingFlow.indexOf(step) + 1}
                           </span>
                         </div>
-                        <p className="mt-3 text-sm font-semibold text-white">{step.label}</p>
+                        <p className="mt-3 text-sm font-semibold text-[var(--text-primary)]">{step.label}</p>
                         <p className="mt-1 text-xs text-[var(--color-text-muted)]">{step.sublabel}</p>
                       </div>
                     ))}
@@ -152,62 +131,57 @@ export default function GovernancePage() {
                 {fundingFlow.map((step) => (
                   <div key={step.label} className="flex items-center gap-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--background)]">
-                      <span className="text-xs font-bold text-[#00ffae]">
+                      <span className="text-xs font-bold text-[var(--brand-green)]">
                         {fundingFlow.indexOf(step) + 1}
                       </span>
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-white">{step.label}</p>
+                      <p className="text-sm font-semibold text-[var(--text-primary)]">{step.label}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{step.sublabel}</p>
                     </div>
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="mt-8">
+            <div className="mt-8">
               <a
                 href={olympiaLinks.treasuryDashboard}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#00ffae] transition hover:text-[#00ffae]/80"
+                className="inline-flex items-center gap-2 text-sm font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
               >
                 View the Olympia Treasury Dashboard →
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Safeguards */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Safeguards
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Built-in protections that keep governance secure and compliant.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-6 sm:grid-cols-3">
               {safeguards.map((sg) => (
-                <motion.div
+                <div
                   key={sg.label}
-                  variants={fadeInUp}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--brand-green)]/20"
                 >
-                  <h3 className="text-sm font-semibold text-[#00ffae]">{sg.label}</h3>
+                  <h3 className="text-sm font-semibold text-[var(--brand-green)]">{sg.label}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">{sg.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -218,7 +192,7 @@ export default function GovernancePage() {
             href={olympiaLinks.governanceApp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90"
           >
             Launch Governance App
           </a>
@@ -226,7 +200,7 @@ export default function GovernancePage() {
             href={olympiaLinks.treasuryDashboard}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
           >
             View Treasury
           </a>
@@ -234,7 +208,7 @@ export default function GovernancePage() {
             href={olympiaLinks.ethereumClassicDAO}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
           >
             Ethereum Classic DAO
           </a>

@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   articles,
@@ -12,26 +11,9 @@ import {
 } from './data/articles'
 import NewsCard from './components/NewsCard'
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -40,7 +22,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Security: (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -49,7 +31,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Ecosystem: (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -58,7 +40,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Community: (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -67,7 +49,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Development: (
-    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -82,11 +64,7 @@ function CategoryCard({ category, index }: { category: ArticleCategory; index: n
   const categoryArticles = getArticlesByCategory(category)
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+    <div
     >
       <Link
         href={`/news/category/${category.toLowerCase()}`}
@@ -96,10 +74,10 @@ function CategoryCard({ category, index }: { category: ArticleCategory; index: n
           {categoryIcons[category]}
         </div>
         <div className="flex-1">
-          <div className="font-semibold text-white group-hover:text-[var(--color-primary)]">{category}</div>
+          <div className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">{category}</div>
           <div className="text-sm text-[var(--color-text-muted)]">{categoryArticles.length} articles</div>
         </div>
-        <svg
+        <svg aria-hidden="true"
           className="h-5 w-5 text-[var(--color-text-muted)] transition-transform group-hover:translate-x-1 group-hover:text-[var(--color-primary)]"
           fill="none"
           viewBox="0 0 24 24"
@@ -109,7 +87,7 @@ function CategoryCard({ category, index }: { category: ArticleCategory; index: n
           <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 
@@ -124,15 +102,12 @@ export default function NewsPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -141,29 +116,28 @@ export default function NewsPage() {
               </svg>
               {articles.length} Articles
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+          <h1
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Ethereum Classic{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               News
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Stay updated with the latest developments, security updates, and community news from the Ethereum Classic
             ecosystem
-          </motion.p>
+          </p>
 
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
               href="#featured"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -174,9 +148,9 @@ export default function NewsPage() {
             </a>
             <Link
               href="/learn"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -185,21 +159,18 @@ export default function NewsPage() {
               </svg>
               Learn About ETC
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Category Navigation */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="mb-6 text-center text-lg font-semibold text-[var(--color-text-muted)]"
           >
             Browse by Category
-          </motion.h2>
+          </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map((category, index) => (
               <CategoryCard key={category} category={category} index={index} />
@@ -211,10 +182,7 @@ export default function NewsPage() {
       {/* Featured Articles Section */}
       <section id="featured" className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 text-center"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
@@ -224,11 +192,11 @@ export default function NewsPage() {
               </span>
               Featured
             </span>
-            <h2 className="mt-4 text-2xl font-bold text-white md:text-3xl">Top Stories</h2>
+            <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Top Stories</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
               The most important updates and announcements from the Ethereum Classic ecosystem
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-3">
             {featuredArticles.map((article, index) => (
@@ -251,10 +219,7 @@ export default function NewsPage() {
             className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12"
           >
             <div className="mx-auto max-w-6xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <div
                 className="mb-8 flex items-center justify-between"
               >
                 <div className="flex items-center gap-3">
@@ -262,7 +227,7 @@ export default function NewsPage() {
                     {categoryIcons[category]}
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-white md:text-2xl">{category}</h2>
+                    <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">{category}</h2>
                     <p className="text-sm text-[var(--color-text-muted)]">{categoryDescriptions[category]}</p>
                   </div>
                 </div>
@@ -271,7 +236,7 @@ export default function NewsPage() {
                   className="hidden items-center gap-1 text-sm font-medium text-[var(--color-primary)] transition-colors hover:text-[var(--color-primary-hover)] sm:flex"
                 >
                   View All
-                  <svg
+                  <svg aria-hidden="true"
                     className="h-4 w-4"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -281,7 +246,7 @@ export default function NewsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                   </svg>
                 </Link>
-              </motion.div>
+              </div>
 
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {categoryArticles.map((article, index) => (
@@ -295,7 +260,7 @@ export default function NewsPage() {
                   className="inline-flex items-center gap-1 text-sm font-medium text-[var(--color-primary)] transition-colors hover:text-[var(--color-primary-hover)]"
                 >
                   View All {category}
-                  <svg
+                  <svg aria-hidden="true"
                     className="h-4 w-4"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -313,14 +278,11 @@ export default function NewsPage() {
 
       {/* Subscribe CTA */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-20 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-primary)]/10">
-            <svg
+            <svg aria-hidden="true"
               className="h-8 w-8 text-[var(--color-primary)]"
               fill="none"
               viewBox="0 0 24 24"
@@ -334,7 +296,7 @@ export default function NewsPage() {
               />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-white md:text-3xl">Stay Connected</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Stay Connected</h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
             Join the Ethereum Classic community to get the latest updates and participate in discussions
           </p>
@@ -343,18 +305,18 @@ export default function NewsPage() {
               href="https://x.com/ETC_Network"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               Follow on X
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg aria-hidden="true" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
             <Link
               href="/news/feeds"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12.75 19.5v-.75a7.5 7.5 0 00-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
               </svg>
               News Feeds
@@ -363,15 +325,15 @@ export default function NewsPage() {
               href="https://discord.com/invite/Tq57jxSwsa"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Join Discord
-              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg aria-hidden="true" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
               </svg>
             </a>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

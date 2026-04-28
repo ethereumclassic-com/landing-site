@@ -35,7 +35,7 @@ export function WhoFor() {
                 <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
                     Who is Ethereum Classic for?
                 </h2>
-                <p className="mt-3 text-white/75 leading-relaxed">
+                <p className="mt-3 text-[var(--text-secondary)] leading-relaxed">
                     Ethereum Classic is used by participants who need predictable infrastructure and continuous
                     global access. It brings together power users operating in programmable markets, miners and
                     energy providers securing a global PoW network, builders shipping EVM applications and
@@ -51,7 +51,7 @@ export function WhoFor() {
                 {groups.map((g, i) => (
                     <FadeIn key={g.title} delay={0.05 * i}>
                         <HoverLift className="h-full">
-                            <div className="flex h-full flex-col justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-white/15 hover:bg-[var(--panel-strong)]">
+                            <div className="flex h-full flex-col justify-between rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-default)] hover:bg-[var(--panel-strong)]">
                                 {/* Visual */}
                                 <div className="mb-4 flex justify-center">
                                     <div className="relative h-40 w-full max-w-[240px]">
@@ -69,7 +69,7 @@ export function WhoFor() {
                                 {/* Copy */}
                                 <div>
                                     <div className="text-lg font-medium">{g.title}</div>
-                                    <div className="mt-2 text-sm text-white/70 leading-relaxed">
+                                    <div className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
                                         {g.body}
                                     </div>
                                 </div>

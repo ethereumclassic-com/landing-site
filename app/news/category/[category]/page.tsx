@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound, useParams } from 'next/navigation'
 import {
@@ -11,26 +10,9 @@ import {
 } from '../../data/articles'
 import NewsCard from '../../components/NewsCard'
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -39,7 +21,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Security: (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -48,7 +30,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Ecosystem: (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -57,7 +39,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Community: (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -66,7 +48,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
     </svg>
   ),
   Development: (
-    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -102,46 +84,42 @@ export default function NewsCategoryPage() {
         {/* Background gradient */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           {/* Breadcrumb */}
-          <motion.div variants={fadeInUp} className="mb-6">
+          <div className="mb-6">
             <Link
               href="/news"
               className="inline-flex items-center gap-1 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
               Back to News
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp}>
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
               {categoryIcons[category]}
               {articles.length} Articles
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+          <h1
+            className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             {category}{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               News
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             {categoryDescriptions[category]}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Category Tabs */}
@@ -154,7 +132,7 @@ export default function NewsCategoryPage() {
                 href={`/news/category/${cat.toLowerCase()}`}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   cat === category
-                    ? 'bg-[var(--color-primary)] text-white'
+                    ? 'bg-[var(--color-primary)] text-[var(--background)]'
                     : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)]'
                 }`}
               >
@@ -175,13 +153,11 @@ export default function NewsCategoryPage() {
               ))}
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            <div
               className="text-center py-16"
             >
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--panel)]">
-                <svg
+                <svg aria-hidden="true"
                   className="h-8 w-8 text-[var(--color-text-muted)]"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -195,39 +171,36 @@ export default function NewsCategoryPage() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-white">No articles yet</h3>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">No articles yet</h3>
               <p className="mt-2 text-[var(--color-text-muted)]">
                 Check back soon for {category.toLowerCase()} news and updates.
               </p>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
 
       {/* Back to News CTA */}
       <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white">Explore More News</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Explore More News</h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
             Browse all categories to stay updated with the latest from the Ethereum Classic ecosystem
           </p>
           <div className="mt-8">
             <Link
               href="/news"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
               </svg>
               All News
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

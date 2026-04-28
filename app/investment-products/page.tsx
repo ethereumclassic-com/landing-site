@@ -1,17 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 const fundFacts = [
   { label: 'Ticker', value: 'ETCG' },
@@ -54,7 +43,7 @@ const thesisPoints = [
   {
     number: '03',
     title: 'Regulated Stablecoin Infrastructure',
-    body: <>Classic USD ($USC) is live on ETC mainnet, the first GENIUS Act-aligned stablecoin on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[#00ffae] transition-opacity hover:opacity-80">ETCswap</a> V2/V3.</>,
+    body: <>Classic USD ($USC) is live on ETC mainnet, the first GENIUS Act-aligned stablecoin on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] transition-opacity hover:opacity-80">ETCswap</a> V2/V3.</>,
   },
   {
     number: '04',
@@ -74,71 +63,61 @@ export default function InvestmentProductsPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#F59E0B]/8 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-warning)]/8 blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#F59E0B]/30 bg-[#F59E0B]/10 px-4 py-1.5 text-sm font-medium text-[#F59E0B]">
+          <div className="mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
               Institutional Products
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+          <h1
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Institutional Investment Products
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Regulated securities exposure to Ethereum Classic through established TradFi channels,
             no self-custody required. Available at the same brokerages used for stocks and bonds.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* ETCG Trust */}
       <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.div variants={fadeInUp}>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#F59E0B]">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-warning)]">
                 Regulated Securities Exposure
               </span>
-            </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            </div>
+            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Grayscale Ethereum Classic Trust
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               ETCG · OTCQX Best Market · Established May 10, 2018
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               {/* Fund facts */}
-              <motion.div
-                variants={fadeInUp}
-                className="rounded-xl border border-[#F59E0B]/30 bg-[#F59E0B]/5 p-6"
+              <div
+                className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-6"
               >
-                <p className="mb-4 text-sm font-semibold text-white">Fund Facts</p>
+                <p className="mb-4 text-sm font-semibold text-[var(--text-primary)]">Fund Facts</p>
                 <div className="space-y-2.5">
                   {fundFacts.map((fact) => (
                     <div key={fact.label} className="flex justify-between text-xs">
                       <span className="text-[var(--color-text-muted)]">{fact.label}</span>
-                      <span className="text-white">{fact.value}</span>
+                      <span className="text-[var(--text-primary)]">{fact.value}</span>
                     </div>
                   ))}
                 </div>
@@ -146,14 +125,14 @@ export default function InvestmentProductsPage() {
                   href="https://grayscale.com/funds/grayscale-ethereum-classic-trust"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 inline-block text-xs font-medium text-[#F59E0B] transition hover:text-[#F59E0B]/80"
+                  className="mt-5 inline-block text-xs font-medium text-[var(--color-warning)] transition hover:text-[var(--color-warning)]/80"
                 >
                   grayscale.com →
                 </a>
-              </motion.div>
+              </div>
 
               {/* How it trades */}
-              <motion.div variants={fadeInUp} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 {[
                   {
                     title: 'Structure',
@@ -175,40 +154,35 @@ export default function InvestmentProductsPage() {
                     key={item.title}
                     className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
                   >
-                    <p className="text-sm font-semibold text-white">{item.title}</p>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{item.title}</p>
                     <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-muted)]">
                       {item.description}
                     </p>
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* TradFi Access */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.p variants={fadeInUp} className="font-mono text-xs font-semibold uppercase tracking-widest text-[#F59E0B]">
+            <p className="font-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-warning)]">
               Brokerage Access
-            </motion.p>
-            <motion.h2 variants={fadeInUp} className="mt-2 text-2xl font-bold text-white">
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
               ETC in Traditional Finance
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
               ETCG is an OTCQX-listed grantor trust. Search the ticker at your existing brokerage — it trades alongside equities and ETFs. IRA-eligible at major full-service platforms.
-            </motion.p>
+            </p>
 
             {/* Brokerage grid */}
-            <motion.div
-              variants={fadeInUp}
+            <div
               className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3"
             >
               {brokerages.map((b) => (
@@ -217,19 +191,19 @@ export default function InvestmentProductsPage() {
                   href={b.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col justify-between rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[#F59E0B]/30"
+                  className="group flex flex-col justify-between rounded-xl border border-[var(--border)] bg-[var(--background)] px-4 py-4 transition-colors hover:border-[var(--color-warning-border)]"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <p className="text-sm font-semibold text-white">{b.name}</p>
-                    <span className="shrink-0 font-mono text-[10px] text-[var(--color-text-muted)] transition-colors group-hover:text-[#F59E0B]">↗</span>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{b.name}</p>
+                    <span className="shrink-0 font-mono text-[10px] text-[var(--color-text-muted)] transition-colors group-hover:text-[var(--color-warning)]">↗</span>
                   </div>
-                  <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[#F59E0B]/70">{b.tag}</p>
+                  <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-[var(--color-warning)]/70">{b.tag}</p>
                 </a>
               ))}
-            </motion.div>
+            </div>
 
             {/* Data providers strip */}
-            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[var(--border)] pt-6">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[var(--border)] pt-6">
               <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-[var(--color-text-muted)]">
                 Track on
               </span>
@@ -240,7 +214,7 @@ export default function InvestmentProductsPage() {
                     href={p.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono font-semibold text-[#F59E0B] transition-opacity hover:opacity-70"
+                    className="font-mono font-semibold text-[var(--color-warning)] transition-opacity hover:opacity-70"
                   >
                     {p.ticker}
                   </a>
@@ -249,63 +223,58 @@ export default function InvestmentProductsPage() {
               <span className="ml-auto text-xs italic text-[var(--color-text-muted)] opacity-60">
                 OTC security. Not investment advice.
               </span>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Investment Thesis */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               The ETC Investment Case
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Five structural properties that distinguish Ethereum Classic in the 2025–2026
               institutional digital asset landscape.
-            </motion.p>
+            </p>
 
             <div className="mt-8 space-y-4">
               {thesisPoints.map((point) => (
-                <motion.div
+                <div
                   key={point.number}
-                  variants={fadeInUp}
                   className="flex gap-5 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
                 >
-                  <span className="shrink-0 font-mono text-lg font-bold text-[#F59E0B]/40">
+                  <span className="shrink-0 font-mono text-lg font-bold text-[var(--color-warning)]/40">
                     {point.number}
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">{point.title}</p>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{point.title}</p>
                     <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">
                       {point.body}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            <motion.div variants={fadeInUp} className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/regulation"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90"
               >
                 Regulatory Framework
               </Link>
               <Link
                 href="/olympia"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)]"
               >
                 Olympia Upgrade
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

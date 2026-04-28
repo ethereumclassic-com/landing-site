@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 interface GlossaryTerm {
@@ -432,30 +431,27 @@ export default function GlossaryPage() {
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
           <Link
             href="/learn"
             className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-primary)]"
           >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
             Back to Learn
           </Link>
 
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
             </svg>
             {glossaryTerms.length} Terms
           </span>
 
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
             Crypto{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
               Glossary
@@ -465,7 +461,7 @@ export default function GlossaryPage() {
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Your comprehensive guide to cryptocurrency and blockchain terminology. Learn the language of Ethereum Classic.
           </p>
-        </motion.div>
+        </div>
       </section>
 
       {/* Search & Filter */}
@@ -474,7 +470,7 @@ export default function GlossaryPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center">
             {/* Search */}
             <div className="relative flex-1">
-              <svg
+              <svg aria-hidden="true"
                 className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--color-text-muted)]"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -488,7 +484,7 @@ export default function GlossaryPage() {
                 placeholder="Search terms..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] py-2.5 pl-10 pr-4 text-white placeholder-[var(--color-text-muted)] outline-none transition-colors focus:border-[var(--color-primary)]"
+                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] py-2.5 pl-10 pr-4 text-[var(--text-primary)] placeholder-[var(--color-text-muted)] outline-none transition-colors focus:border-[var(--color-primary)]"
               />
             </div>
 
@@ -500,7 +496,7 @@ export default function GlossaryPage() {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
                     selectedCategory === cat.id
-                      ? 'bg-[var(--color-primary)] text-white'
+                      ? 'bg-[var(--color-primary)] text-[var(--background)]'
                       : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)]'
                   }`}
                 >
@@ -518,11 +514,8 @@ export default function GlossaryPage() {
           {Object.keys(groupedTerms).length > 0 ? (
             <div className="space-y-8">
               {Object.entries(groupedTerms).map(([letter, terms]) => (
-                <motion.div
+                <div
                   key={letter}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
                 >
                   <div className="mb-4 flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-lg font-bold text-[var(--color-primary)]">
@@ -542,12 +535,12 @@ export default function GlossaryPage() {
                           className="flex w-full items-center justify-between p-4 text-left"
                         >
                           <div className="flex items-center gap-3">
-                            <span className="font-semibold text-white">{item.term}</span>
+                            <span className="font-semibold text-[var(--text-primary)]">{item.term}</span>
                             <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium capitalize text-[var(--color-primary)]">
                               {item.category}
                             </span>
                           </div>
-                          <svg
+                          <svg aria-hidden="true"
                             className={`h-5 w-5 text-[var(--color-text-muted)] transition-transform ${
                               expandedTerms.has(item.term) ? 'rotate-180' : ''
                             }`}
@@ -561,9 +554,7 @@ export default function GlossaryPage() {
                         </button>
 
                         {expandedTerms.has(item.term) && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
+                          <div
                             className="border-t border-[var(--border)] px-4 pb-4 pt-3"
                           >
                             <p className="text-[var(--color-text-secondary)]">{item.definition}</p>
@@ -584,22 +575,20 @@ export default function GlossaryPage() {
                                 ))}
                               </div>
                             )}
-                          </motion.div>
+                          </div>
                         )}
                       </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-primary)]/10">
-                <svg className="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
               </div>
@@ -615,20 +604,17 @@ export default function GlossaryPage() {
               >
                 Clear search
               </button>
-            </motion.div>
+            </div>
           )}
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
             Ready to Learn More?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
@@ -637,18 +623,18 @@ export default function GlossaryPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/learn/basics/what-is-ethereum-classic"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)]"
             >
               What is Ethereum Classic?
             </Link>
             <Link
               href="/learn"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Browse All Guides
             </Link>
           </div>
-        </motion.div>
+        </div>
       </section>
     </main>
   )

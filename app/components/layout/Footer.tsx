@@ -143,7 +143,7 @@ const Newsletter = () => (
             className={[
               'px-6 py-2',
               'text-[var(--text-sm)] font-medium',
-              'text-white',
+              'text-[var(--text-primary)]',
               'bg-[var(--color-primary)]',
               'hover:bg-[var(--color-primary-hover)]',
               'rounded-[var(--radius-md)]',

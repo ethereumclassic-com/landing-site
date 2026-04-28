@@ -219,7 +219,7 @@ export const emissionMilestones = [
   {
     era: 1,
     block: 5_000_000,
-    event: 'First Fifthening',
+    event: 'First Fifthing',
     date: 'Dec 2017',
     rewardBefore: 5,
     rewardAfter: 4,
@@ -227,7 +227,7 @@ export const emissionMilestones = [
   {
     era: 2,
     block: 10_000_000,
-    event: 'Second Fifthening',
+    event: 'Second Fifthing',
     date: 'Mar 2020',
     rewardBefore: 4,
     rewardAfter: 3.2,
@@ -235,7 +235,7 @@ export const emissionMilestones = [
   {
     era: 3,
     block: 15_000_000,
-    event: 'Third Fifthening',
+    event: 'Third Fifthing',
     date: 'Apr 2022',
     rewardBefore: 3.2,
     rewardAfter: 2.56,
@@ -243,7 +243,7 @@ export const emissionMilestones = [
   {
     era: 4,
     block: 20_000_000,
-    event: 'Fourth Fifthening',
+    event: 'Fourth Fifthing',
     date: 'Oct 2024',
     rewardBefore: 2.56,
     rewardAfter: 2.048,
@@ -251,7 +251,7 @@ export const emissionMilestones = [
   {
     era: 5,
     block: 25_000_000,
-    event: 'Fifth Fifthening',
+    event: 'Fifth Fifthing',
     date: '~May 2027',
     rewardBefore: 2.048,
     rewardAfter: 1.6384,

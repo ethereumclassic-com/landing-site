@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { FadeIn } from '@/app/components/ui'
 
 interface ProductCardProps {
   title: string
@@ -12,47 +12,28 @@ interface ProductCardProps {
   index: number
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: 'easeOut' as const,
-    },
-  }),
-}
-
 function ProductCard({ title, description, link, icon, cta, index }: ProductCardProps) {
   return (
-    <motion.div
-      custom={index}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
-      variants={fadeInUp}
-    >
+    <FadeIn delay={index * 100}>
       <Link
         href={link}
-        className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all duration-300 hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel)]/80 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
+        className="olympia-card group flex h-full flex-col rounded-2xl border border-[var(--border-default)] bg-[var(--panel)] p-6"
       >
-        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] transition-transform duration-300 group-hover:scale-110">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--brand-green)]/10 text-[var(--brand-green)] transition-transform duration-300 group-hover:scale-110">
           {icon}
         </div>
-        <h3 className="text-xl font-semibold text-white transition-colors group-hover:text-[var(--color-primary)]">
+        <h3 className="text-xl font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[var(--brand-green)]">
           {title}
         </h3>
-        <p className="mt-2 flex-1 text-sm text-[var(--color-text-secondary)]">{description}</p>
-        <div className="mt-4 flex items-center gap-1 text-sm font-medium text-[var(--color-primary)] opacity-0 transition-opacity group-hover:opacity-100">
+        <p className="mt-2 flex-1 text-sm text-[var(--text-secondary)]">{description}</p>
+        <div className="mt-4 flex items-center gap-1 text-sm font-medium text-[var(--brand-green)] opacity-0 transition-opacity group-hover:opacity-100">
           {cta}
           <svg aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
         </div>
       </Link>
-    </motion.div>
+    </FadeIn>
   )
 }
 
@@ -115,20 +96,14 @@ export default function ProductCards() {
   return (
     <section className="px-6 py-20 md:px-10 lg:px-12">
       <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="text-3xl font-bold text-white md:text-4xl">
+        <FadeIn className="mb-12 text-center">
+          <h2 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
             Get Started with Ethereum Classic
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
+          <p className="mx-auto mt-4 max-w-2xl text-[var(--text-secondary)]">
             Everything you need to use, invest in, and build on the original Ethereum
           </p>
-        </motion.div>
+        </FadeIn>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {products.map((product, index) => (
             <ProductCard key={product.title} {...product} index={index} />

@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import {
   exchangeReviews,
   getVerdictLabel,
@@ -10,19 +9,6 @@ import {
   formatRating,
   type ExchangeReview,
 } from '../data/reviews'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // Star rating component
 function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md' | 'lg' }) {
@@ -35,10 +21,10 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
   return (
     <div className="flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((star) => (
-        <svg
+        <svg aria-hidden="true"
           key={star}
           className={`${sizeClasses[size]} ${
-            star <= Math.round(rating) ? 'text-yellow-400' : 'text-[var(--color-text-muted)]/30'
+            star <= Math.round(rating) ? 'text-[var(--color-warning)]' : 'text-[var(--color-text-muted)]/30'
           }`}
           fill="currentColor"
           viewBox="0 0 24 24"
@@ -53,7 +39,7 @@ function StarRating({ rating, size = 'md' }: { rating: number; size?: 'sm' | 'md
 // Review card component
 function ReviewCard({ review }: { review: ExchangeReview }) {
   return (
-    <motion.div variants={fadeInUp}>
+    <div>
       <Link
         href={`/buy/reviews/${review.slug}`}
         className="group block h-full rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
@@ -75,13 +61,13 @@ function ReviewCard({ review }: { review: ExchangeReview }) {
                 {getVerdictLabel(review.verdict)}
               </span>
             </div>
-            <h3 className="text-xl font-semibold text-white transition-colors group-hover:text-[var(--color-primary)]">
+            <h3 className="text-xl font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]">
               {review.name}
             </h3>
             <p className="text-sm text-[var(--color-text-muted)]">{review.tagline}</p>
           </div>
           <div className="text-right">
-            <div className="text-2xl font-bold text-white">{formatRating(review.rating.overall)}</div>
+            <div className="text-2xl font-bold text-[var(--text-primary)]">{formatRating(review.rating.overall)}</div>
             <StarRating rating={review.rating.overall} size="sm" />
           </div>
         </div>
@@ -93,11 +79,11 @@ function ReviewCard({ review }: { review: ExchangeReview }) {
         <div className="mb-4 grid grid-cols-2 gap-2 text-xs">
           <div className="rounded-lg bg-[var(--bg)]/50 px-3 py-2">
             <span className="text-[var(--color-text-muted)]">Trading Fee</span>
-            <div className="font-medium text-white">{review.fees.trading}</div>
+            <div className="font-medium text-[var(--text-primary)]">{review.fees.trading}</div>
           </div>
           <div className="rounded-lg bg-[var(--bg)]/50 px-3 py-2">
             <span className="text-[var(--color-text-muted)]">KYC</span>
-            <div className="font-medium text-white">{review.kycRequired ? 'Required' : 'Optional'}</div>
+            <div className="font-medium text-[var(--text-primary)]">{review.kycRequired ? 'Required' : 'Optional'}</div>
           </div>
         </div>
 
@@ -116,12 +102,12 @@ function ReviewCard({ review }: { review: ExchangeReview }) {
         {/* Read Review Link */}
         <div className="mt-4 flex items-center gap-1 text-sm font-medium text-[var(--color-primary)]">
           Read Full Review
-          <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </div>
       </Link>
-    </motion.div>
+    </div>
   )
 }
 
@@ -180,32 +166,27 @@ export default function ExchangeReviewsPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 to-transparent px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="text-center"
           >
-            <motion.div variants={fadeInUp} className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
+              <svg aria-hidden="true" className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
               In-Depth Reviews
-            </motion.div>
-            <motion.h1
-              variants={fadeInUp}
-              className="mb-4 text-4xl font-bold text-white sm:text-5xl"
+            </div>
+            <h1
+              className="mb-4 text-4xl font-bold text-[var(--text-primary)] sm:text-5xl"
             >
               Exchange Reviews
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
+            </h1>
+            <p
               className="mx-auto max-w-2xl text-lg text-[var(--color-text-secondary)]"
             >
               Comprehensive reviews of exchanges supporting Ethereum Classic. We evaluate security,
               fees, liquidity, and user experience to help you choose the right platform.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -215,7 +196,7 @@ export default function ExchangeReviewsPage() {
           <div className="flex flex-wrap items-center gap-4">
             {/* Search */}
             <div className="relative flex-1 min-w-[200px]">
-              <svg
+              <svg aria-hidden="true"
                 className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-text-muted)]"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -229,7 +210,7 @@ export default function ExchangeReviewsPage() {
                 placeholder="Search exchanges..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 pl-10 pr-4 text-sm text-white placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 pl-10 pr-4 text-sm text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
               />
             </div>
 
@@ -237,7 +218,7 @@ export default function ExchangeReviewsPage() {
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+              className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
             >
               <option value="all">All Types</option>
               <option value="CEX">CEX</option>
@@ -248,7 +229,7 @@ export default function ExchangeReviewsPage() {
             <select
               value={verdictFilter}
               onChange={(e) => setVerdictFilter(e.target.value)}
-              className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+              className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
             >
               <option value="all">All Verdicts</option>
               <option value="highly-recommended">Highly Recommended</option>
@@ -260,7 +241,7 @@ export default function ExchangeReviewsPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as 'rating' | 'name' | 'fees')}
-              className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-white focus:border-[var(--color-primary)] focus:outline-none"
+              className="rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
             >
               <option value="rating">Highest Rated</option>
               <option value="name">Name A-Z</option>
@@ -279,16 +260,13 @@ export default function ExchangeReviewsPage() {
             </p>
           </div>
 
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filteredReviews.map((review) => (
               <ReviewCard key={review.id} review={review} />
             ))}
-          </motion.div>
+          </div>
 
           {filteredReviews.length === 0 && (
             <div className="py-12 text-center">
@@ -311,7 +289,7 @@ export default function ExchangeReviewsPage() {
       {/* Rating Methodology */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)] px-4 py-12">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-center text-2xl font-bold text-white">Our Rating Methodology</h2>
+          <h2 className="mb-6 text-center text-2xl font-bold text-[var(--text-primary)]">Our Rating Methodology</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
@@ -359,10 +337,10 @@ export default function ExchangeReviewsPage() {
             ].map((criterion) => (
               <div key={criterion.name} className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4">
                 <div className="mb-2 flex items-center gap-2">
-                  <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     {criterion.icon}
                   </svg>
-                  <h3 className="font-semibold text-white">{criterion.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)]">{criterion.name}</h3>
                 </div>
                 <p className="text-sm text-[var(--color-text-muted)]">{criterion.description}</p>
               </div>
@@ -374,23 +352,23 @@ export default function ExchangeReviewsPage() {
       {/* CTA Section */}
       <section className="px-4 py-12">
         <div className="mx-auto max-w-4xl rounded-2xl border border-[var(--color-primary)]/30 bg-gradient-to-br from-[var(--color-primary)]/10 to-transparent p-8 text-center">
-          <h2 className="mb-4 text-2xl font-bold text-white">Ready to Buy ETC?</h2>
+          <h2 className="mb-4 text-2xl font-bold text-[var(--text-primary)]">Ready to Buy ETC?</h2>
           <p className="mb-6 text-[var(--color-text-secondary)]">
             Compare our top-rated exchanges and find the perfect platform for your needs.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/buy/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--color-primary-hover)]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-colors hover:bg-[var(--color-primary-hover)]"
             >
               View All Exchanges
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
             <Link
               href="/buy"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:border-[var(--color-primary)]/30"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary)]/30"
             >
               Buy ETC Guide
             </Link>

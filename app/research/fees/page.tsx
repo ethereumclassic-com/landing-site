@@ -1,26 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { formatBlockReward } from '../data/emission'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 interface FeeStats {
   gasPrices: {
@@ -91,20 +73,19 @@ function formatPercent(value: number, decimals: number = 2): string {
 // Fee Context Banner - explains why fee market matters
 function FeeMarketContext() {
   return (
-    <motion.div
-      variants={fadeInUp}
-      className="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 to-amber-500/5 p-6"
+    <div
+      className="rounded-2xl border border-[var(--color-warning-border)] bg-gradient-to-br from-[var(--color-warning)]/10 to-[var(--color-warning)]/5 p-6"
     >
       <div className="flex items-start gap-4">
-        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-amber-500/20">
-          <svg className="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-warning)]/20">
+          <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
           </svg>
         </div>
         <div>
-          <h3 className="font-semibold text-white">Why Fee Markets Matter for ETC</h3>
+          <h3 className="font-semibold text-[var(--text-primary)]">Why Fee Markets Matter for ETC</h3>
           <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-            As block rewards continue to decrease through ECIP-1017&apos;s Fifthening schedule
+            As block rewards continue to decrease through <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>&apos;s Fifthing schedule
             (currently {formatBlockReward(2.048)} ETC per block), transaction fees become increasingly
             important for miner revenue and long-term network security. A healthy fee market
             indicates sustainable demand for block space.
@@ -112,20 +93,20 @@ function FeeMarketContext() {
           <div className="mt-4 flex flex-wrap gap-4">
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Current Block Reward</p>
-              <p className="text-lg font-bold text-white">~2.05 ETC</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">~2.05 ETC</p>
             </div>
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Next Era Reward</p>
-              <p className="text-lg font-bold text-amber-400">~1.64 ETC</p>
+              <p className="text-lg font-bold text-[var(--color-warning)]">~1.64 ETC</p>
             </div>
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Reduction</p>
-              <p className="text-lg font-bold text-red-400">-20%</p>
+              <p className="text-lg font-bold text-[var(--color-error)]">-20%</p>
             </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -153,18 +134,17 @@ function GasPriceCards({ gasPrices, isLoading }: { gasPrices: FeeStats['gasPrice
       name: 'Fast',
       price: gasPrices.fast,
       time: '~15 sec',
-      color: 'text-amber-400',
-      bgColor: 'bg-amber-500/10',
-      borderColor: 'border-amber-500/30',
+      color: 'text-[var(--color-warning)]',
+      bgColor: 'bg-[var(--color-warning-bg)]',
+      borderColor: 'border-[var(--color-warning-border)]',
     },
   ]
 
   return (
-    <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="grid gap-4 md:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-3">
       {tiers.map((tier) => (
-        <motion.div
+        <div
           key={tier.name}
-          variants={fadeInUp}
           className={`rounded-xl border ${tier.borderColor} ${tier.bgColor} p-4`}
         >
           <div className="flex items-center justify-between">
@@ -175,14 +155,14 @@ function GasPriceCards({ gasPrices, isLoading }: { gasPrices: FeeStats['gasPrice
               </span>
             )}
           </div>
-          <p className="mt-2 text-3xl font-bold text-white">
+          <p className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
             {isLoading ? '--' : formatGasPrice(tier.price)}
             <span className="ml-1 text-base font-normal text-[var(--color-text-muted)]">Gwei</span>
           </p>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">Est. confirmation: {tier.time}</p>
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   )
 }
 
@@ -191,17 +171,17 @@ function NetworkUtilization({ utilization, isLoading }: { utilization: number; i
   // Determine health status based on utilization
   const getHealthStatus = (util: number) => {
     if (util < 25) return { label: 'Low', color: 'text-blue-400', bgColor: 'bg-blue-500' }
-    if (util < 50) return { label: 'Moderate', color: 'text-green-400', bgColor: 'bg-green-500' }
-    if (util < 75) return { label: 'High', color: 'text-amber-400', bgColor: 'bg-amber-500' }
-    return { label: 'Very High', color: 'text-red-400', bgColor: 'bg-red-500' }
+    if (util < 50) return { label: 'Moderate', color: 'text-[var(--color-success)]', bgColor: 'bg-[var(--color-success)]' }
+    if (util < 75) return { label: 'High', color: 'text-[var(--color-warning)]', bgColor: 'bg-[var(--color-warning)]' }
+    return { label: 'Very High', color: 'text-[var(--color-error)]', bgColor: 'bg-[var(--color-error)]' }
   }
 
   const health = getHealthStatus(utilization)
 
   return (
-    <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+    <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold text-white">Network Utilization</h3>
+        <h3 className="font-semibold text-[var(--text-primary)]">Network Utilization</h3>
         <span className={`rounded-full px-2 py-0.5 text-xs ${health.color} bg-opacity-20`} style={{ backgroundColor: `${health.bgColor}20` }}>
           {isLoading ? 'Loading...' : health.label}
         </span>
@@ -210,16 +190,14 @@ function NetworkUtilization({ utilization, isLoading }: { utilization: number; i
       {/* Gauge Display */}
       <div className="relative">
         <div className="h-4 rounded-full bg-[var(--bg)] overflow-hidden">
-          <motion.div
-            className={`h-full ${health.bgColor}`}
-            initial={{ width: 0 }}
-            animate={{ width: isLoading ? '0%' : `${Math.min(utilization, 100)}%` }}
-            transition={{ duration: 1, ease: 'easeOut' }}
+          <div
+            className={`h-full transition-all duration-700 ease-out ${health.bgColor}`}
+            style={{ width: isLoading ? '0%' : `${Math.min(utilization, 100)}%` }}
           />
         </div>
         <div className="mt-2 flex justify-between text-xs text-[var(--color-text-muted)]">
           <span>0%</span>
-          <span className="text-lg font-bold text-white">{isLoading ? '--' : formatPercent(utilization)}</span>
+          <span className="text-lg font-bold text-[var(--text-primary)]">{isLoading ? '--' : formatPercent(utilization)}</span>
           <span>100%</span>
         </div>
       </div>
@@ -228,7 +206,7 @@ function NetworkUtilization({ utilization, isLoading }: { utilization: number; i
         Network utilization measures the percentage of available block gas being used.
         Higher utilization generally leads to higher gas prices.
       </p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -248,15 +226,15 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
   const feePercentage = totalDailyRevenue > 0 ? (dailyFees / totalDailyRevenue) * 100 : 0
 
   return (
-    <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="font-semibold text-white mb-4">Estimated Daily Miner Revenue</h3>
+    <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Estimated Daily Miner Revenue</h3>
 
       <div className="space-y-4">
         {/* Block Rewards */}
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-[var(--color-text-muted)]">Block Rewards</span>
-            <span className="text-white font-medium">
+            <span className="text-[var(--text-primary)] font-medium">
               {isLoading ? '--' : `~${dailyBlockRewards.toLocaleString('en-US', { maximumFractionDigits: 0 })} ETC`}
             </span>
           </div>
@@ -272,13 +250,13 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-[var(--color-text-muted)]">Transaction Fees</span>
-            <span className="text-white font-medium">
+            <span className="text-[var(--text-primary)] font-medium">
               {isLoading ? '--' : `~${dailyFees.toLocaleString('en-US', { maximumFractionDigits: 2 })} ETC`}
             </span>
           </div>
           <div className="h-3 rounded-full bg-[var(--bg)] overflow-hidden">
             <div
-              className="h-full bg-amber-500"
+              className="h-full bg-[var(--color-warning)]"
               style={{ width: `${feePercentage}%` }}
             />
           </div>
@@ -289,13 +267,13 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm text-[var(--color-text-muted)]">Total Daily Revenue</p>
-              <p className="text-2xl font-bold text-white">
+              <p className="text-2xl font-bold text-[var(--text-primary)]">
                 {isLoading ? '--' : `~${totalDailyRevenue.toLocaleString('en-US', { maximumFractionDigits: 0 })} ETC`}
               </p>
             </div>
             <div className="text-right">
               <p className="text-sm text-[var(--color-text-muted)]">Fee Ratio</p>
-              <p className={`text-xl font-bold ${feePercentage < 1 ? 'text-amber-400' : 'text-green-400'}`}>
+              <p className={`text-xl font-bold ${feePercentage < 1 ? 'text-[var(--color-warning)]' : 'text-[var(--color-success)]'}`}>
                 {isLoading ? '--' : formatPercent(feePercentage, 3)}
               </p>
             </div>
@@ -308,7 +286,7 @@ function MinerRevenueBreakdown({ stats, isLoading }: { stats: FeeStats; isLoadin
         ~{Math.round(blocksPerDay).toLocaleString()} blocks/day, and current gas prices.
         Actual revenue varies based on network activity.
       </p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -336,24 +314,24 @@ function FeeMarketHealth({ stats, isLoading }: { stats: FeeStats; isLoading: boo
   ]
 
   return (
-    <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="font-semibold text-white mb-4">Fee Market Health</h3>
+    <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fee Market Health</h3>
 
       <div className="space-y-4">
         {indicators.map((indicator) => (
           <div key={indicator.label} className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-white">{indicator.label}</p>
+              <p className="text-sm font-medium text-[var(--text-primary)]">{indicator.label}</p>
               <p className="text-xs text-[var(--color-text-muted)]">{indicator.description}</p>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-sm text-white">{isLoading ? '--' : indicator.value}</span>
+              <span className="text-sm text-[var(--text-primary)]">{isLoading ? '--' : indicator.value}</span>
               <span
                 className={`h-2 w-2 rounded-full ${
                   indicator.status === 'good'
-                    ? 'bg-green-400'
+                    ? 'bg-[var(--color-success)]'
                     : indicator.status === 'moderate'
-                    ? 'bg-amber-400'
+                    ? 'bg-[var(--color-warning)]'
                     : 'bg-blue-400'
                 }`}
               />
@@ -361,7 +339,7 @@ function FeeMarketHealth({ stats, isLoading }: { stats: FeeStats; isLoading: boo
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -381,8 +359,8 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
   const etcPrice = 12.75 // Using fallback price
 
   return (
-    <motion.div variants={fadeInUp} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-      <h3 className="font-semibold text-white mb-4">Transaction Cost Estimator</h3>
+    <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Transaction Cost Estimator</h3>
 
       {/* Tier Selector */}
       <div className="flex gap-2 mb-4">
@@ -393,7 +371,7 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
             className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
               selectedTier === tier
                 ? 'bg-[var(--color-primary)] text-black'
-                : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-white'
+                : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
             }`}
           >
             {tier.charAt(0).toUpperCase() + tier.slice(1)}
@@ -410,13 +388,13 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
           return (
             <div key={tx.name} className="flex items-center justify-between rounded-lg bg-[var(--bg)] p-3">
               <div>
-                <p className="text-sm font-medium text-white">{tx.name}</p>
+                <p className="text-sm font-medium text-[var(--text-primary)]">{tx.name}</p>
                 <p className="text-xs text-[var(--color-text-muted)]">
                   {tx.description} • {tx.gas.toLocaleString()} gas
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-sm font-medium text-white">
+                <p className="text-sm font-medium text-[var(--text-primary)]">
                   {isLoading ? '--' : `${costEtc.toFixed(6)} ETC`}
                 </p>
                 <p className="text-xs text-[var(--color-text-muted)]">
@@ -432,7 +410,7 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
         Costs calculated at {formatGasPrice(gasPrice)} Gwei ({selectedTier}).
         Actual costs may vary based on contract complexity.
       </p>
-    </motion.div>
+    </div>
   )
 }
 
@@ -444,29 +422,29 @@ export default function FeeMarketPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/research"
-              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
+              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
               </svg>
               Back to Research
             </Link>
 
             <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Fee Market Dashboard
               </h1>
               {isLoading ? (
-                <span className="flex items-center gap-1.5 rounded-full bg-amber-500/10 px-3 py-1 text-xs text-amber-400">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-xs text-[var(--color-warning)]">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                   Loading...
                 </span>
               ) : (
-                <span className="flex items-center gap-1.5 rounded-full bg-green-500/10 px-3 py-1 text-xs text-green-400">
-                  <span className="h-2 w-2 rounded-full bg-green-400" />
+                <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-success-bg)] px-3 py-1 text-xs text-[var(--color-success)]">
+                  <span className="h-2 w-2 rounded-full bg-[var(--color-success)]" />
                   Live
                 </span>
               )}
@@ -475,7 +453,7 @@ export default function FeeMarketPage() {
               Monitor ETC&apos;s transaction fee market. Track gas prices, network utilization,
               and the transition from block rewards to fee-based miner incentives.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -489,13 +467,11 @@ export default function FeeMarketPage() {
       {/* Gas Prices */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 text-xl font-semibold text-white"
+          <h2
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Current Gas Prices
-          </motion.h2>
+          </h2>
           <GasPriceCards gasPrices={feeStats.gasPrices} isLoading={isLoading} />
         </div>
       </section>
@@ -519,65 +495,59 @@ export default function FeeMarketPage() {
       {/* Historical Note */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="font-semibold text-white mb-4">Fee Market Evolution</h3>
+            <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fee Market Evolution</h3>
             <p className="text-sm text-[var(--color-text-muted)] mb-4">
               ETC&apos;s fee market is currently in an early stage, with block rewards comprising
               the vast majority of miner revenue. As block rewards continue to decrease through
-              the Fifthening schedule, transaction fees will become increasingly important for
+              the Fifthing schedule, transaction fees will become increasingly important for
               network security.
             </p>
             <div className="rounded-lg bg-[var(--bg)] p-4">
-              <h4 className="text-sm font-medium text-white mb-2">Key Milestones</h4>
+              <h4 className="text-sm font-medium text-[var(--text-primary)] mb-2">Key Milestones</h4>
               <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li className="flex items-start gap-2">
                   <span className="text-[var(--color-primary)]">•</span>
-                  <span><strong className="text-white">Current Era (5):</strong> ~2.05 ETC block reward, fees are ~0.01% of miner revenue</span>
+                  <span><strong className="text-[var(--text-primary)]">Current Era (5):</strong> ~2.05 ETC block reward, fees are ~0.01% of miner revenue</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-400">•</span>
-                  <span><strong className="text-white">Era 6 (~2027):</strong> ~1.64 ETC block reward, 20% reduction in block rewards</span>
+                  <span className="text-[var(--color-warning)]">•</span>
+                  <span><strong className="text-[var(--text-primary)]">Era 6 (~2027):</strong> ~1.64 ETC block reward, 20% reduction in block rewards</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-blue-400">•</span>
-                  <span><strong className="text-white">Long-term:</strong> Fee market will need to grow to maintain miner incentives as block rewards approach zero</span>
+                  <span><strong className="text-[var(--text-primary)]">Long-term:</strong> Fee market will need to grow to maintain miner incentives as block rewards approach zero</span>
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Related Links */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             <Link
               href="/research/supply"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+              <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Supply Tracker
               </h4>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                Emission schedule and Fifthening countdown
+                Emission schedule and Fifthing countdown
               </p>
             </Link>
             <Link
               href="/mining/stats"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+              <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Mining Stats
               </h4>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -588,14 +558,14 @@ export default function FeeMarketPage() {
               href="/tools/gas"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <h4 className="font-medium text-white group-hover:text-[var(--color-primary)]">
+              <h4 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                 Gas Tracker
               </h4>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                 Simple gas price tracker tool
               </p>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 

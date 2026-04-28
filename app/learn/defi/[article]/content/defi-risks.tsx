@@ -1,3 +1,5 @@
+import { ETCswapLink } from '@/app/components/ui'
+
 export default function DefiRisks() {
   return (
     <>
@@ -39,7 +41,7 @@ export default function DefiRisks() {
         <li>Contract source code is not verified on the block explorer</li>
       </ul>
       <p>
-        ETCswap Launchpad mitigates this risk by burning liquidity when a token graduates from the bonding curve to a V3 pool. Burned liquidity cannot be removed by anyone.
+        <ETCswapLink /> Launchpad mitigates this risk by burning liquidity when a token graduates from the bonding curve to a V3 pool. Burned liquidity cannot be removed by anyone.
       </p>
 
       <h2>Oracle Manipulation</h2>
@@ -69,7 +71,7 @@ export default function DefiRisks() {
 
       <h2>Building Confidence</h2>
       <p>
-        DeFi risks are real but manageable. By understanding the mechanisms, starting conservatively, and using established protocols like ETCswap, you can participate in decentralized finance with informed confidence.
+        DeFi risks are real but manageable. By understanding the mechanisms, starting conservatively, and using established protocols like <ETCswapLink />, you can participate in decentralized finance with informed confidence.
       </p>
     </>
   )

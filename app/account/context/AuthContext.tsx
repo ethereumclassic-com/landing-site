@@ -2,6 +2,13 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
 
+const STORAGE_KEYS = {
+  user: 'etc_user',
+  users: 'etc_users',
+  watchlist: 'etc_watchlist',
+  portfolio: 'etc_portfolio',
+} as const
+
 export interface User {
   id: string
   email: string
@@ -50,13 +57,6 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
-
-const STORAGE_KEYS = {
-  user: 'etc_user',
-  watchlist: 'etc_watchlist',
-  portfolio: 'etc_portfolio',
-  users: 'etc_users', // For demo purposes - stores registered users
-}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)

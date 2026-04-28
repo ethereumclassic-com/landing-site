@@ -1,8 +1,8 @@
 'use client'
 
 import { forwardRef, type ReactNode, type HTMLAttributes } from 'react'
-import { motion } from 'framer-motion'
 import { Container } from '../layout/Container'
+import { FadeIn } from '../ui'
 
 export interface TrustSignal {
   icon: ReactNode
@@ -17,66 +17,49 @@ export interface TrustSignalsProps extends HTMLAttributes<HTMLElement> {
   variant?: 'horizontal' | 'grid'
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
 function TrustSignalItem({
   signal,
   horizontal,
+  delay,
 }: {
   signal: TrustSignal
   horizontal: boolean
+  delay: number
 }) {
   if (horizontal) {
     return (
-      <motion.div
-        variants={fadeInUp}
-        className="flex items-center gap-4 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
-      >
-        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-          {signal.icon}
+      <FadeIn delay={delay} className="h-full">
+        <div className="flex h-full items-center gap-4 rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4">
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-green)]/10 text-[var(--brand-green)]">
+            {signal.icon}
+          </div>
+          <div>
+            <h3 className="font-semibold text-[var(--text-primary)]">
+              {signal.title}
+            </h3>
+            <p className="text-sm text-[var(--text-secondary)]">
+              {signal.description}
+            </p>
+          </div>
         </div>
-        <div>
-          <h3 className="font-semibold text-[var(--color-text-primary)]">
-            {signal.title}
-          </h3>
-          <p className="text-sm text-[var(--color-text-secondary)]">
-            {signal.description}
-          </p>
-        </div>
-      </motion.div>
+      </FadeIn>
     )
   }
 
   return (
-    <motion.div
-      variants={fadeInUp}
-      className="flex flex-col items-center rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
-    >
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-2xl">
-        {signal.icon}
+    <FadeIn delay={delay} className="h-full">
+      <div className="flex h-full flex-col items-center rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--brand-green)]/10 text-[var(--brand-green)] text-2xl">
+          {signal.icon}
+        </div>
+        <h3 className="mt-4 font-semibold text-[var(--text-primary)]">
+          {signal.title}
+        </h3>
+        <p className="mt-2 text-sm text-[var(--text-secondary)]">
+          {signal.description}
+        </p>
       </div>
-      <h3 className="mt-4 font-semibold text-[var(--color-text-primary)]">
-        {signal.title}
-      </h3>
-      <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-        {signal.description}
-      </p>
-    </motion.div>
+    </FadeIn>
   )
 }
 
@@ -119,7 +102,7 @@ export const TrustSignals = forwardRef<HTMLElement, TrustSignalsProps>(
         aria-labelledby={title ? 'trust-signals-heading' : undefined}
         className={[
           'py-12 md:py-16',
-          'bg-[var(--color-bg-secondary)]',
+          'bg-[var(--bg-surface)]',
           className,
         ]
           .filter(Boolean)
@@ -128,41 +111,32 @@ export const TrustSignals = forwardRef<HTMLElement, TrustSignalsProps>(
       >
         <Container size="xl">
           {(title || subtitle) && (
-            <motion.div
-              className="mb-8 text-center"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              variants={fadeInUp}
-            >
-              {subtitle && (
-                <p className="mb-2 text-sm font-medium uppercase tracking-wider text-[var(--color-primary)]">
-                  {subtitle}
-                </p>
-              )}
-              {title && (
-                <h2 id="trust-signals-heading" className="text-2xl font-bold text-[var(--color-text-primary)] md:text-3xl">
-                  {title}
-                </h2>
-              )}
-            </motion.div>
+            <FadeIn>
+              <div className="mb-8 text-center">
+                {subtitle && (
+                  <p className="mb-2 text-sm font-medium uppercase tracking-wider text-[var(--brand-green)]">
+                    {subtitle}
+                  </p>
+                )}
+                {title && (
+                  <h2 id="trust-signals-heading" className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
+                    {title}
+                  </h2>
+                )}
+              </div>
+            </FadeIn>
           )}
 
-          <motion.div
-            className={gridClassName}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainer}
-          >
-            {signals.map((signal) => (
+          <div className={gridClassName}>
+            {signals.map((signal, index) => (
               <TrustSignalItem
                 key={signal.title}
                 signal={signal}
                 horizontal={isHorizontal}
+                delay={index * 80}
               />
             ))}
-          </motion.div>
+          </div>
         </Container>
       </section>
     )

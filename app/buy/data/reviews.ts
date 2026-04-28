@@ -746,10 +746,10 @@ export function getVerdictLabel(verdict: ExchangeReview['verdict']): string {
 
 export function getVerdictColor(verdict: ExchangeReview['verdict']): string {
   const colors: Record<ExchangeReview['verdict'], string> = {
-    'highly-recommended': 'text-green-400',
+    'highly-recommended': 'text-[var(--color-success)]',
     recommended: 'text-emerald-400',
-    acceptable: 'text-yellow-400',
-    'not-recommended': 'text-red-400',
+    acceptable: 'text-[var(--color-warning)]',
+    'not-recommended': 'text-[var(--color-error)]',
   }
   return colors[verdict]
 }

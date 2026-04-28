@@ -1,25 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { getToolsByCategory, type DevTool } from '../data/build'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 const categoryLabels: Record<DevTool['category'], { label: string; description: string; color: string }> = {
   framework: {
@@ -35,17 +17,17 @@ const categoryLabels: Record<DevTool['category'], { label: string; description: 
   ide: {
     label: 'IDEs & Editors',
     description: 'Integrated development environments for writing smart contracts',
-    color: 'text-green-400',
+    color: 'text-[var(--color-success)]',
   },
   testing: {
     label: 'Security & Testing',
     description: 'Tools for analyzing and auditing smart contract security',
-    color: 'text-red-400',
+    color: 'text-[var(--color-error)]',
   },
   deployment: {
     label: 'Deployment',
     description: 'Tools for deploying contracts to the network',
-    color: 'text-amber-400',
+    color: 'text-[var(--color-warning)]',
   },
   debugging: {
     label: 'Debugging',
@@ -55,24 +37,23 @@ const categoryLabels: Record<DevTool['category'], { label: string; description: 
 }
 
 const languageColors: Record<string, { bg: string; text: string }> = {
-  JavaScript: { bg: 'bg-yellow-500/10', text: 'text-yellow-400' },
+  JavaScript: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
   TypeScript: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
   Solidity: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
-  Vyper: { bg: 'bg-green-500/10', text: 'text-green-400' },
+  Vyper: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
   Python: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
   React: { bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
 }
 
 function ToolCard({ tool }: { tool: DevTool }) {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-colors hover:border-[var(--color-primary)]/30"
     >
       <div className="mb-4 flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="text-lg font-bold text-white">{tool.name}</h3>
+            <h3 className="text-lg font-bold text-[var(--text-primary)]">{tool.name}</h3>
             {tool.recommended && (
               <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
                 Recommended
@@ -108,11 +89,11 @@ function ToolCard({ tool }: { tool: DevTool }) {
         className="inline-flex items-center gap-2 text-sm text-[var(--color-primary)] hover:underline"
       >
         Visit Website
-        <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
-    </motion.div>
+    </div>
   )
 }
 
@@ -128,16 +109,13 @@ function CategorySection({ category }: { category: DevTool['category'] }) {
         <h2 className={`text-xl font-semibold ${color}`}>{label}</h2>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
       </div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
+      <div
         className="grid gap-6 md:grid-cols-2"
       >
         {tools.map((tool) => (
           <ToolCard key={tool.id} tool={tool} />
         ))}
-      </motion.div>
+      </div>
     </section>
   )
 }
@@ -150,49 +128,46 @@ export default function BuildToolsPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/build"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
                 Back to Build
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <div>
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Developer Tools
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Essential tools for building on Ethereum Classic. Frameworks, libraries, IDEs, and security tools
                 to accelerate your development workflow.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Quick Start Recommendation */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
-                <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
                 </svg>
               </div>
               <div>
-                <h3 className="font-semibold text-white">Quick Start Recommendation</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">Quick Start Recommendation</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   <strong className="text-purple-400">New to Solidity?</strong> Start with Remix IDE for browser-based development.{' '}
                   <strong className="text-blue-400">Production projects:</strong> Use Hardhat or Foundry for full development workflow.{' '}
@@ -200,7 +175,7 @@ export default function BuildToolsPage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -216,13 +191,10 @@ export default function BuildToolsPage() {
       {/* ETC Compatibility Note */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">ETC Compatibility</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">ETC Compatibility</h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div>
                 <h3 className="mb-2 font-medium text-[var(--color-primary)]">Full EVM Compatibility</h3>
@@ -241,22 +213,19 @@ export default function BuildToolsPage() {
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Configuration Example */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <div
           >
-            <h2 className="mb-4 text-xl font-semibold text-white">Configuration Examples</h2>
+            <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">Configuration Examples</h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4">
-                <h4 className="mb-2 font-medium text-white">Hardhat Configuration</h4>
+                <h4 className="mb-2 font-medium text-[var(--text-primary)]">Hardhat Configuration</h4>
                 <div className="rounded-lg bg-[var(--panel)] p-3 font-mono text-xs overflow-x-auto">
                   <pre className="text-[var(--color-text-muted)]">
 {`// hardhat.config.js
@@ -278,7 +247,7 @@ module.exports = {
                 </div>
               </div>
               <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4">
-                <h4 className="mb-2 font-medium text-white">Foundry Configuration</h4>
+                <h4 className="mb-2 font-medium text-[var(--text-primary)]">Foundry Configuration</h4>
                 <div className="rounded-lg bg-[var(--panel)] p-3 font-mono text-xs overflow-x-auto">
                   <pre className="text-[var(--color-text-muted)]">
 {`# foundry.toml
@@ -296,20 +265,17 @@ mordor = "https://rpc.mordor.etccooperative.org"
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Ready to Start Building?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Start Building?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               Get testnet ETC from a faucet and start deploying contracts on Mordor testnet.
             </p>
@@ -319,18 +285,18 @@ mordor = "https://rpc.mordor.etccooperative.org"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Get Testnet ETC
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </Link>
               <Link
                 href="/build/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Getting Started Guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

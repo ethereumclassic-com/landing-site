@@ -1,3 +1,5 @@
+import { ETCswapLink } from '@/app/components/ui'
+
 export default function WrappedEtc() {
   return (
     <>
@@ -30,17 +32,17 @@ export default function WrappedEtc() {
         WETC is essential for participating in many DeFi activities on Ethereum Classic:
       </p>
       <ul>
-        <li><strong>Liquidity pools:</strong> ETCswap pools that include ETC actually use WETC behind the scenes. When you provide ETC to a pool, the interface wraps it automatically.</li>
+        <li><strong>Liquidity pools:</strong> <ETCswapLink /> pools that include ETC actually use WETC behind the scenes. When you provide ETC to a pool, the interface wraps it automatically.</li>
         <li><strong>Token approvals:</strong> ERC-20 tokens support the &ldquo;approve&rdquo; pattern, allowing smart contracts to spend tokens on your behalf. Native ETC lacks this mechanism. WETC enables you to pre-approve exact amounts for contracts to use.</li>
         <li><strong>Composability:</strong> Since WETC follows the same standard as every other ERC-20 token, it plugs into any protocol that supports the standard without custom integration.</li>
       </ul>
 
-      <h2>Wrapping and Unwrapping on ETCswap</h2>
+      <h2>Wrapping and Unwrapping on <ETCswapLink /></h2>
       <p>
-        ETCswap handles wrapping automatically in most cases. When you swap ETC for another token, the interface wraps your ETC into WETC behind the scenes before executing the swap. You don&apos;t need to wrap manually for standard swaps.
+        <ETCswapLink /> handles wrapping automatically in most cases. When you swap ETC for another token, the interface wraps your ETC into WETC behind the scenes before executing the swap. You don&apos;t need to wrap manually for standard swaps.
       </p>
       <p>
-        If you need WETC explicitly&mdash;for example, to interact with a contract that requires it&mdash;you can wrap ETC directly through the WETC contract or use the ETCswap interface to swap ETC for WETC. The reverse works the same way.
+        If you need WETC explicitly&mdash;for example, to interact with a contract that requires it&mdash;you can wrap ETC directly through the WETC contract or use the <ETCswapLink /> interface to swap ETC for WETC. The reverse works the same way.
       </p>
 
       <h2>Is WETC Safe?</h2>
@@ -55,7 +57,7 @@ export default function WrappedEtc() {
       <ul>
         <li>WETC is a 1:1 representation of native ETC as an ERC-20 token</li>
         <li>Wrapping and unwrapping is instant and costs only gas</li>
-        <li>ETCswap handles wrapping automatically for most interactions</li>
+        <li><ETCswapLink /> handles wrapping automatically for most interactions</li>
         <li>WETC enables ETC to participate in ERC-20-based DeFi protocols</li>
         <li>The wrapping contract is simple, auditable, and proven across all EVM chains</li>
       </ul>

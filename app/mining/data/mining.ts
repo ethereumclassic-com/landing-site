@@ -226,7 +226,7 @@ export const networkStats: NetworkStats = {
   hashrate: '174 TH/s',
   difficulty: '2.47 PH',
   blockTime: '~13 seconds',
-  blockReward: '~2.05 ETC',
+  blockReward: '~2.048 ETC',
   dailyBlocks: 6646,
   lastUpdated: 'Live from Blockscout',
 }

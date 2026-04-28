@@ -90,8 +90,8 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
   // Calculate if price is up or down
   const priceChange = data[data.length - 1].price - data[0].price
   const isUp = priceChange >= 0
-  const strokeColor = isUp ? '#34d399' : '#f87171'
-  const fillColor = isUp ? 'rgba(52, 211, 153, 0.1)' : 'rgba(248, 113, 113, 0.1)'
+  const strokeColor = isUp ? 'var(--color-success)' : 'var(--color-error)'
+  const fillColor = isUp ? 'var(--color-success-bg)' : 'var(--color-error-bg)'
 
   const timeRanges: { label: string; value: TimeRange }[] = [
     { label: '24H', value: '24h' },
@@ -107,7 +107,7 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
       {/* Header */}
       <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-white">Price Chart</h3>
+          <h3 className="text-lg font-semibold text-[var(--text-primary)]">Price Chart</h3>
           <p className="text-sm text-[var(--color-text-muted)]">
             ETC/USD historical price data
           </p>
@@ -119,8 +119,8 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
               onClick={() => setTimeRange(range.value)}
               className={`rounded px-3 py-1.5 text-sm font-medium transition ${
                 timeRange === range.value
-                  ? 'bg-[var(--color-primary)] text-white'
-                  : 'text-[var(--color-text-muted)] hover:text-white'
+                  ? 'bg-[var(--color-primary)] text-[var(--text-primary)]'
+                  : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               {range.label}
@@ -137,7 +137,7 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
         transition={{ duration: 0.3 }}
         className="relative"
       >
-        <svg
+        <svg aria-hidden="true"
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
           className="h-48 w-full md:h-64"
           preserveAspectRatio="none"
@@ -188,15 +188,15 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-[var(--border)] pt-4">
         <div className="flex items-center gap-4 text-sm">
           <span className="text-[var(--color-text-muted)]">
-            Range: <span className="text-white">${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}</span>
+            Range: <span className="text-[var(--text-primary)]">${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}</span>
           </span>
-          <span className={`flex items-center gap-1 ${isUp ? 'text-emerald-400' : 'text-red-400'}`}>
+          <span className={`flex items-center gap-1 ${isUp ? 'text-emerald-400' : 'text-[var(--color-error)]'}`}>
             {isUp ? (
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
               </svg>
             ) : (
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
               </svg>
             )}
@@ -239,7 +239,7 @@ export function Sparkline({ data, width = 100, height = 30, className = '' }: Sp
   }).join(' ')
 
   const isUp = data[data.length - 1] >= data[0]
-  const strokeColor = isUp ? '#34d399' : '#f87171'
+  const strokeColor = isUp ? 'var(--color-success)' : 'var(--color-error)'
 
   return (
     <svg width={width} height={height} className={className}>

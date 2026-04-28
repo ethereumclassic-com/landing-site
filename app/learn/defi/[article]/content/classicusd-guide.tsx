@@ -1,8 +1,10 @@
+import { ETCswapLink, ClassicUSDLink } from '@/app/components/ui'
+
 export default function ClassicusdGuide() {
   return (
     <>
       <p>
-        Classic USD (USC) is the native stablecoin of the Ethereum Classic ecosystem. Pegged 1:1 to the US dollar and backed by real assets, USC provides a stable store of value on-chain without the volatility of ETC. It is not an algorithmic stablecoin&mdash;every USC is redeemable for one US dollar.
+        <ClassicUSDLink /> (USC) is the native stablecoin of the Ethereum Classic ecosystem. Pegged 1:1 to the US dollar and backed by real assets, USC provides a stable store of value on-chain without the volatility of ETC. It is not an algorithmic stablecoin&mdash;every USC is redeemable for one US dollar.
       </p>
 
       <h2>What Makes USC Different</h2>
@@ -26,9 +28,9 @@ export default function ClassicusdGuide() {
         <li>Purchase USC and withdraw to your ETC wallet address</li>
       </ul>
 
-      <h3>Option 2: ETCswap (Swap ETC for USC)</h3>
+      <h3>Option 2: <ETCswapLink /> (Swap ETC for USC)</h3>
       <p>
-        If you already hold ETC, you can swap it for USC on ETCswap. Navigate to the swap interface, select ETC as the input and USC as the output, enter your amount, and confirm the trade. This is the fastest method if you already have ETC.
+        If you already hold ETC, you can swap it for USC on <ETCswapLink />. Navigate to the swap interface, select ETC as the input and USC as the output, enter your amount, and confirm the trade. This is the fastest method if you already have ETC.
       </p>
 
       <h2>Using USC</h2>
@@ -38,9 +40,9 @@ export default function ClassicusdGuide() {
         USC lets you hold dollar-denominated value on the ETC blockchain. This is useful for traders who want to exit volatile positions without converting to fiat, or for anyone who needs price stability on-chain.
       </p>
 
-      <h3>Trading Pair on ETCswap</h3>
+      <h3>Trading Pair on <ETCswapLink /></h3>
       <p>
-        USC serves as a key trading pair on ETCswap. The ETC/USC pool is one of the most liquid pools on the platform, providing stable pricing reference for ETC and enabling low-slippage swaps between ETC and dollars.
+        USC serves as a key trading pair on <ETCswapLink />. The ETC/USC pool is one of the most liquid pools on the platform, providing stable pricing reference for ETC and enabling low-slippage swaps between ETC and dollars.
       </p>
 
       <h3>Payments</h3>
@@ -68,7 +70,7 @@ export default function ClassicusdGuide() {
 
       <h2>Getting Started</h2>
       <p>
-        To start using Classic USD, choose your preferred on-ramp&mdash;Brale for direct fiat conversion or ETCswap if you already hold ETC. Having USC in your wallet gives you a stable asset for trading, payments, and DeFi participation on Ethereum Classic.
+        To start using <ClassicUSDLink />, choose your preferred on-ramp&mdash;Brale for direct fiat conversion or <ETCswapLink /> if you already hold ETC. Having USC in your wallet gives you a stable asset for trading, payments, and DeFi participation on Ethereum Classic.
       </p>
     </>
   )

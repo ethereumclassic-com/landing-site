@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import OlympiaCountdown from './components/OlympiaCountdown'
 import OlympiaRoadmap from './components/OlympiaRoadmap'
@@ -8,34 +7,24 @@ import GovernanceStageComponent from './components/GovernanceStage'
 import { FAQAccordion } from '@/app/components/sections/FAQAccordion'
 import { faqs as olympiaFAQ, olympiaLinks } from './data/olympia'
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
-
 const howItWorks = [
   {
     title: 'Basefee Revenue',
     description:
       'Every transaction pays a basefee via EIP-1559. The basefee is directed to the Treasury. Block rewards and tips remain completely untouched. Miners are unaffected.',
-    color: '#F59E0B',
+    color: 'var(--color-warning)',
   },
   {
     title: 'Protocol Treasury',
     description:
       'Protocol-managed vault accumulates basefee revenue, voluntary donations, and mining rewards directed to the treasury address. Real-time monitoring via public dashboard.',
-    color: '#00ffae',
+    color: 'var(--brand-green)',
   },
   {
     title: 'On-Chain Governance',
     description:
       'On-chain governance via the OpenZeppelin Governor 5.x contract suite. The Olympia DAO handles critical protocol decisions — security maintenance, EVM parity, and client funding — using non-transferable membership NFTs. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
-    color: '#38bdf8',
+    color: 'var(--color-info)',
   },
 ]
 
@@ -45,40 +34,34 @@ export default function OlympiaHubPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ffae]/10 blur-[100px]" />
+          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green-subtle)] blur-[100px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-4xl text-center"
         >
-          <motion.div variants={fadeInUp} className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#00ffae]/30 bg-[#00ffae]/10 px-4 py-1.5 text-sm font-medium text-[#00ffae]">
+          <div className="mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
               Network Upgrade
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+          <h1
+            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
-            <span className="bg-gradient-to-r from-[#00ffae] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--brand-green)] to-[var(--color-success)] bg-clip-text text-transparent">
               Olympia
             </span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={fadeInUp}
+          <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Active protocol development for Ethereum Classic: EVM modernization, maintained
             clients, and funded development through sustainable basefee revenue.
-          </motion.p>
+          </p>
 
-          <motion.ul
-            variants={fadeInUp}
+          <ul
             className="mx-auto mt-6 max-w-2xl space-y-2 text-left text-sm text-[var(--color-text-muted)]"
           >
             {[
@@ -88,16 +71,16 @@ export default function OlympiaHubPage() {
               'Institutional infrastructure: the Proof-of-Work foundation for regulated stablecoin issuance (Classic USD, MiCA and GENIUS Act-compliant), digital commodity classification under the CLARITY Act, and the broadest cross-jurisdictional institutional access profile of any Proof-of-Work smart contract network',
             ].map((point) => (
               <li key={point} className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00ffae]" />
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-green)]" />
                 {point}
               </li>
             ))}
-          </motion.ul>
+          </ul>
 
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/olympia/clients"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90 hover:shadow-lg hover:shadow-[#00ffae]/25"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90 hover:shadow-lg hover:shadow-[var(--brand-green)]/25"
             >
               View Clients
             </Link>
@@ -105,12 +88,12 @@ export default function OlympiaHubPage() {
               href={olympiaLinks.olympiaDAO}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
             >
               OlympiaDAO.org
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Countdown */}
@@ -123,18 +106,14 @@ export default function OlympiaHubPage() {
       {/* What Olympia Changes — ECIP Explainer */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               What Olympia Changes
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Three client-facing ECIPs that modernize the protocol in a single coordinated upgrade.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {[
@@ -143,65 +122,60 @@ export default function OlympiaHubPage() {
                   title: 'EIP-1559 Fee Market',
                   description:
                     'The most widely adopted transaction format in the EVM ecosystem, now on Ethereum Classic. Dynamic gas pricing delivers predictable fees. Unlike Ethereum where basefee is burned, ETC redirects it to the protocol treasury. Miner block rewards and tips remain completely untouched.',
-                  color: '#F59E0B',
+                  color: 'var(--color-warning)',
                 },
                 {
                   ecip: 'ECIP-1112',
                   title: 'Protocol Treasury',
                   description:
                     'A protocol-controlled vault funded by basefee revenue and voluntary contributions. Institutions, developers, and stakeholders can fund Ethereum Classic core development without fielding their own team. No admin keys, no multisig. Only on-chain governance can release funds.',
-                  color: '#00ffae',
+                  color: 'var(--brand-green)',
                 },
                 {
                   ecip: 'ECIP-1121',
                   title: 'Fusaka EVM Alignment',
                   description:
                     'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka: every improvement independent of Proof-of-Stake and blob data availability. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework. One codebase, every EVM chain.',
-                  color: '#38bdf8',
+                  color: 'var(--color-info)',
                 },
               ].map((item) => (
-                <motion.div
+                <div
                   key={item.ecip}
-                  variants={fadeInUp}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--brand-green)]/20"
                 >
                   <div className="mb-3 flex items-center gap-3">
                     <div className="h-1 w-12 rounded-full" style={{ backgroundColor: item.color }} />
-                    <span className="font-mono text-xs text-[var(--color-text-muted)]">{item.ecip}</span>
+                    <a href={`https://ecips.ethereumclassic.org/ECIPs/${item.ecip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-[var(--color-text-muted)] transition-opacity hover:opacity-70">{item.ecip}</a>
                   </div>
-                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {item.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ECIP-1121 EVM Deep Dive */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.div variants={fadeInUp}>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#38bdf8]">ECIP-1121</span>
-            </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            <div>
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-widest text-[var(--color-info)] transition-opacity hover:opacity-80">ECIP-1121</a>
+            </div>
+            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Three Ethereum upgrade cycles delivered to ETC in a single fork: every execution-layer improvement independent of Proof-of-Stake and blob data availability.
-            </motion.p>
+            </p>
 
             {/* Fork Timeline */}
-            <motion.div variants={fadeInUp} className="mt-8 mb-6 relative">
-              <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[#00ffae]/30" />
+            <div className="mt-8 mb-6 relative">
+              <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[var(--brand-green)]/30" />
               <div className="flex flex-col md:flex-row gap-6 md:gap-0 md:justify-between">
                 {[
                   { name: 'Dencun', fullName: 'Cancun-Deneb', year: '2024', eips: ['EIP-1153', 'EIP-5656', 'EIP-2935'] },
@@ -210,13 +184,13 @@ export default function OlympiaHubPage() {
                 ].map((fork, i, arr) => (
                   <div key={fork.name} className="relative flex md:flex-col md:items-center md:w-1/3 gap-4 md:gap-0">
                     {i < arr.length - 1 && (
-                      <div className="md:hidden absolute left-[17px] top-[38px] bottom-[-22px] w-px bg-[#00ffae]/30" />
+                      <div className="md:hidden absolute left-[17px] top-[38px] bottom-[-22px] w-px bg-[var(--brand-green)]/30" />
                     )}
-                    <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[#00ffae]/40 bg-[#00ffae]/10 font-mono text-xs font-bold text-[#00ffae] relative z-10">
+                    <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--brand-green)]/40 bg-[var(--brand-green-subtle)] font-mono text-xs font-bold text-[var(--brand-green)] relative z-10">
                       {String(i + 1).padStart(2, '0')}
                     </div>
                     <div className="md:mt-4 md:text-center">
-                      <p className="font-semibold text-sm text-white">{fork.name}</p>
+                      <p className="font-semibold text-sm text-[var(--text-primary)]">{fork.name}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{fork.fullName} · {fork.year}</p>
                       <div className="mt-2 flex flex-wrap gap-1 md:justify-center">
                         {fork.eips.map((eip) => (
@@ -229,51 +203,53 @@ export default function OlympiaHubPage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Divergence callout */}
-            <motion.div variants={fadeInUp} className="mb-8 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-5 text-sm text-[var(--color-text-secondary)]">
+            <div className="mb-8 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-5 text-sm text-[var(--color-text-secondary)]">
               Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
-              ECIP-1111 now delivers those deferred London EIPs. ECIP-1121 advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1111" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1111</a>{' '}
+              now delivers those deferred London EIPs.{' '}
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1121</a>{' '}
+              advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
               Together, Olympia brings ETC to full Fusaka execution-layer parity.
-            </motion.div>
+            </div>
 
             {/* EIP Categories */}
             <div className="mb-6 grid gap-4 sm:grid-cols-2">
               {[
                 {
                   title: 'Gas & State Access',
-                  color: '#38bdf8',
+                  color: 'var(--color-info)',
                   eips: ['EIP-7702', 'EIP-7623', 'EIP-7825', 'EIP-7883', 'EIP-7935'],
                   description: 'Account delegation, cheaper calldata, gas limit enforcement, opcode repricing, and jumpdest removal. Reduces transaction costs and enables smart account patterns without protocol changes.',
                 },
                 {
                   title: 'EVM Safety',
-                  color: '#F59E0B',
+                  color: 'var(--color-warning)',
                   eips: ['EIP-6780', 'EIP-7934', 'EIP-7910'],
                   description: 'SELFDESTRUCT restricted to deployment context, stack size enforcement, and call target constraints. Makes contract behavior more predictable and reduces attack surface.',
                 },
                 {
                   title: 'Cryptographic Precompiles',
-                  color: '#a78bfa',
+                  color: 'var(--color-purple)',
                   eips: ['EIP-2537', 'EIP-7951'],
                   description: 'BLS12-381 pairing operations for ZK-friendly proof verification, P256VERIFY for WebAuthn and passkey authentication. Native cryptographic primitives for privacy and identity.',
                 },
                 {
                   title: 'Execution Context',
-                  color: '#00ffae',
+                  color: 'var(--brand-green)',
                   eips: ['EIP-5656', 'EIP-2935', 'EIP-1153'],
                   description: 'MCOPY for efficient memory operations, historical block hashes in state, transient storage TSTORE/TLOAD. Unlocks reentrancy guards, flash loans, and cross-contract patterns without persistent storage.',
                 },
               ].map((cat) => (
-                <motion.div
+                <div
                   key={cat.title}
-                  variants={fadeInUp}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/20"
                 >
                   <div className="mb-3 flex items-center gap-3">
                     <div className="h-1 w-12 rounded-full" style={{ backgroundColor: cat.color }} />
-                    <h3 className="text-sm font-semibold text-white">{cat.title}</h3>
+                    <h3 className="text-sm font-semibold text-[var(--text-primary)]">{cat.title}</h3>
                   </div>
                   <div className="mb-3 flex flex-wrap gap-1">
                     {cat.eips.map((eip) => (
@@ -283,59 +259,54 @@ export default function OlympiaHubPage() {
                     ))}
                   </div>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{cat.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Blobs excluded note */}
-            <motion.p variants={fadeInUp} className="mb-8 text-xs text-[var(--color-text-muted)] italic">
+            <p className="mb-8 text-xs text-[var(--color-text-muted)] italic">
               Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain with no data availability requirement. Blobs are L2 scaffolding ETC does not need.
-            </motion.p>
+            </p>
 
             {/* Developer tooling */}
-            <motion.h3 variants={fadeInUp} className="mb-4 text-base font-semibold text-white">
+            <h3 className="mb-4 text-base font-semibold text-[var(--text-primary)]">
               Developer Tooling — Works Without Modification
-            </motion.h3>
+            </h3>
             <div className="grid gap-4 sm:grid-cols-3">
               {[
                 { name: 'Solidity 0.8.x+', description: 'All recent compiler versions produce compatible bytecode for ETC without modification.' },
                 { name: 'Foundry / Hardhat', description: 'Standard EVM testing and deployment toolchains work on ETC without ETC-specific forks or patches.' },
                 { name: 'wagmi / viem / ethers.js', description: 'Standard wallet libraries and RPC types work on ETC without patching or overrides. One codebase, every EVM chain.' },
               ].map((tool) => (
-                <motion.div
+                <div
                   key={tool.name}
-                  variants={fadeInUp}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[var(--brand-green)]/20"
                 >
-                  <p className="mb-1 text-sm font-semibold text-white">{tool.name}</p>
+                  <p className="mb-1 text-sm font-semibold text-[var(--text-primary)]">{tool.name}</p>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Global Regulatory Recognition */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.div variants={fadeInUp}>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#00ffae]">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--brand-green)]">
                 Regulatory Positioning
               </span>
-            </motion.div>
-            <motion.h2 variants={fadeInUp} className="mt-3 text-2xl font-bold text-white">
+            </div>
+            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Global Regulatory Recognition
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Ethereum Classic has received formal regulatory classification across four major jurisdictions.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {[
@@ -368,40 +339,34 @@ export default function OlympiaHubPage() {
                     'Recognized crypto-asset on the FSA Green List via JVCEA. Enables fast-track listing across all Japanese regulated exchanges without additional review requirements.',
                 },
               ].map((item) => (
-                <motion.div
+                <div
                   key={item.framework}
-                  variants={fadeInUp}
                   className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-5"
                 >
-                  <div className="mb-3 h-0.5 w-8 rounded-full bg-[#00ffae]" />
+                  <div className="mb-3 h-0.5 w-8 rounded-full bg-[var(--brand-green)]" />
                   <p className="text-xs font-mono text-[var(--color-text-muted)]">{item.framework}</p>
-                  <p className="mt-1 text-base font-semibold text-white">{item.classification}</p>
-                  <p className="mt-0.5 text-xs text-[#00ffae]">{item.detail}</p>
+                  <p className="mt-1 text-base font-semibold text-[var(--text-primary)]">{item.classification}</p>
+                  <p className="mt-0.5 text-xs text-[var(--brand-green)]">{item.detail}</p>
                   <p className="mt-3 flex-1 text-xs leading-relaxed text-[var(--color-text-muted)]">
                     {item.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Olympia Upgrade Callout */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               The Olympia Upgrade
-            </motion.h2>
-            <motion.div
-              variants={fadeInUp}
-              className="mt-4 space-y-4 rounded-xl border border-[#00ffae]/30 bg-[#00ffae]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
+            </h2>
+            <div
+              className="mt-4 space-y-4 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
             >
               <p>
                 Olympia is Ethereum Classic&rsquo;s most significant protocol upgrade. Three changes arrive in a single activation: Fusaka EVM alignment, EIP-1559 fee market, and a protocol-managed treasury.
@@ -412,46 +377,41 @@ export default function OlympiaHubPage() {
               <p>
                 The EIP-1559 fee market redirects the basefee &mdash; value that would otherwise be destroyed &mdash; to a protocol-managed treasury. Block rewards and tips remain completely untouched and go entirely to miners. Anyone can submit proposals on-chain. Members vote on resource allocation and execute decisions. Every step is transparent and verifiable on-chain.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* How It Works */}
       <section className="px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               How It Works
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Funded by basefee revenue, not inflation. Block rewards and tips remain untouched.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               {howItWorks.map((item) => (
-                <motion.div
+                <div
                   key={item.title}
-                  variants={fadeInUp}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/20"
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--brand-green)]/20"
                 >
                   <div
                     className="mb-3 h-1 w-12 rounded-full"
                     style={{ backgroundColor: item.color }}
                   />
-                  <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {item.description}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -472,18 +432,14 @@ export default function OlympiaHubPage() {
       {/* Coordinating Organizations */}
       <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
+          <div
           >
-            <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Coordinating Organizations
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="mt-2 text-[var(--color-text-muted)]">
+            </h2>
+            <p className="mt-2 text-[var(--color-text-muted)]">
               Coordinating organizations working together to govern and advance the Ethereum Classic network.
-            </motion.p>
+            </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
@@ -512,26 +468,25 @@ export default function OlympiaHubPage() {
                   href: olympiaLinks.ethereumClassicDAO,
                 },
               ].map((entity) => (
-                <motion.a
+                <a
                   key={entity.name}
-                  variants={fadeInUp}
                   href={entity.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition-all hover:-translate-y-0.5 hover:border-[#00ffae]/20"
+                  className="group flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition-all hover:-translate-y-0.5 hover:border-[var(--brand-green)]/20"
                 >
-                  <h3 className="text-base font-semibold text-white">{entity.name}</h3>
+                  <h3 className="text-base font-semibold text-[var(--text-primary)]">{entity.name}</h3>
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">{entity.role}</p>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
                     {entity.description}
                   </p>
-                  <span className="mt-4 text-xs font-medium text-[#00ffae] transition group-hover:translate-x-0.5">
+                  <span className="mt-4 text-xs font-medium text-[var(--brand-green)] transition group-hover:translate-x-0.5">
                     Visit →
                   </span>
-                </motion.a>
+                </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -544,34 +499,30 @@ export default function OlympiaHubPage() {
 
       {/* Bottom CTA */}
       <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={staggerContainer}
+        <div
           className="mx-auto max-w-3xl text-center"
         >
-          <motion.h2 variants={fadeInUp} className="text-2xl font-bold text-white">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">
             Ready to Upgrade?
-          </motion.h2>
-          <motion.p variants={fadeInUp} className="mt-3 text-[var(--color-text-muted)]">
+          </h2>
+          <p className="mt-3 text-[var(--color-text-muted)]">
             Fukuii is the recommended client. Core-Geth is maintained through the transition.
-          </motion.p>
-          <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/olympia/upgrade"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#00ffae] px-6 py-3 font-medium text-black transition-all hover:bg-[#00ffae]/90 hover:shadow-lg hover:shadow-[#00ffae]/25"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90 hover:shadow-lg hover:shadow-[var(--brand-green)]/25"
             >
               Upgrade Guide
             </Link>
             <Link
               href="/olympia/clients"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
             >
               View Clients
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
       <script
         type="application/ld+json"

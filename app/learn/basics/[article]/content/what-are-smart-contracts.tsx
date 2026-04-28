@@ -1,3 +1,5 @@
+import { ETCswapLink, ClassicUSDLink } from '@/app/components/ui'
+
 export default function WhatAreSmartContracts() {
   return (
     <>
@@ -53,9 +55,9 @@ export default function WhatAreSmartContracts() {
         Smart contracts power financial applications without traditional intermediaries. On ETC, you can:
       </p>
       <ul>
-        <li>Swap tokens on decentralized exchanges like ETCswap</li>
+        <li>Swap tokens on decentralized exchanges like <ETCswapLink /></li>
         <li>Provide liquidity and earn trading fees</li>
-        <li>Use stablecoins like Classic USD (USC)</li>
+        <li>Use stablecoins like <ClassicUSDLink /> (USC)</li>
         <li>Access lending and borrowing protocols</li>
       </ul>
 
@@ -107,7 +109,7 @@ export default function WhatAreSmartContracts() {
 
       <h2>Getting Started</h2>
       <p>
-        To interact with smart contracts on ETC, you&apos;ll need a wallet like MetaMask or Classic OS connected to the Ethereum Classic network. From there, you can explore dApps, swap tokens on ETCswap, or even deploy your own contracts.
+        To interact with smart contracts on ETC, you&apos;ll need a wallet like MetaMask or Classic OS connected to the Ethereum Classic network. From there, you can explore dApps, swap tokens on <ETCswapLink />, or even deploy your own contracts.
       </p>
     </>
   )

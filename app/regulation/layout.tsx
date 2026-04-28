@@ -3,7 +3,22 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Regulatory Framework — Ethereum Classic',
   description:
-    "ETC's regulatory surface is additive: digital commodity under PoW consensus frameworks, decentralized asset under MiCA, and live stablecoin infrastructure under the GENIUS Act. No single classification captures it.",
+    'Ethereum Classic qualifies as a digital commodity under the CLARITY Act, a decentralized asset under MiCA, and a stablecoin platform under the GENIUS Act — simultaneously. Its regulatory surface is additive by design.',
+  keywords: [
+    'CLARITY Act',
+    'MiCA',
+    'GENIUS Act',
+    'ETC regulation',
+    'digital commodity',
+    'decentralized asset',
+    'Classic USD',
+    'ETChash',
+    'PoW blockchain regulation',
+    'Ethereum Classic regulatory',
+    'CFTC digital commodity',
+    'stablecoin platform',
+    'Brale',
+  ],
   openGraph: {
     title: 'Regulatory Framework — Ethereum Classic',
     description:

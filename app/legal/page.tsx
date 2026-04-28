@@ -13,12 +13,12 @@ export default function LegalPage() {
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-3xl">
-          <h1 className="text-4xl font-bold tracking-tight text-white">Terms of Service</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)]">Terms of Service</h1>
           <p className="mt-4 text-[var(--color-text-secondary)]">Last updated: March 2026</p>
 
           <div className="mt-12 space-y-10 text-[var(--color-text-secondary)]">
             <section>
-              <h2 className="text-xl font-semibold text-white">Acceptance of Terms</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Acceptance of Terms</h2>
               <p className="mt-3">
                 By accessing and using EthereumClassic.com, you agree to these terms of service. If you do not agree with
                 any part of these terms, please do not use this website.
@@ -26,7 +26,7 @@ export default function LegalPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Informational Purpose Only</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Informational Purpose Only</h2>
               <p className="mt-3">
                 All content on EthereumClassic.com is provided for informational and educational purposes only. Nothing on
                 this website constitutes:
@@ -40,7 +40,7 @@ export default function LegalPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Risk Disclaimer</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Risk Disclaimer</h2>
               <p className="mt-3">
                 Cryptocurrency and blockchain technology involve significant risks, including but not limited to:
               </p>
@@ -58,7 +58,7 @@ export default function LegalPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Third-Party Links</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Third-Party Links</h2>
               <p className="mt-3">
                 This website contains links to third-party websites, applications, and services. We do not control, endorse,
                 or assume responsibility for the content, privacy policies, or practices of any third-party services.
@@ -67,7 +67,7 @@ export default function LegalPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Accuracy of Information</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Accuracy of Information</h2>
               <p className="mt-3">
                 While we strive to provide accurate and up-to-date information, we make no warranties or representations
                 regarding the completeness, accuracy, reliability, or availability of any content. Network statistics,
@@ -76,7 +76,7 @@ export default function LegalPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Intellectual Property</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Intellectual Property</h2>
               <p className="mt-3">
                 Original content on this website is provided under open terms. The Ethereum Classic protocol, brand assets,
                 and community resources are governed by their respective licenses. Third-party trademarks and logos belong to
@@ -85,7 +85,7 @@ export default function LegalPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Limitation of Liability</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Limitation of Liability</h2>
               <p className="mt-3">
                 To the maximum extent permitted by law, EthereumClassic.com and its contributors shall not be liable for any
                 direct, indirect, incidental, consequential, or punitive damages arising from your use of this website or
@@ -94,7 +94,7 @@ export default function LegalPage() {
             </section>
 
             <section>
-              <h2 className="text-xl font-semibold text-white">Changes to Terms</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Changes to Terms</h2>
               <p className="mt-3">
                 We reserve the right to modify these terms at any time. Continued use of the website following changes
                 constitutes acceptance of the updated terms.

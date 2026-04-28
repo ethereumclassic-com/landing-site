@@ -1,17 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
 
 interface CVE {
   id: string
@@ -66,9 +55,9 @@ const cves: CVE[] = [
 ]
 
 const severityColors: Record<CVE['severity'], string> = {
-  Critical: 'text-red-400 bg-red-500/10',
+  Critical: 'text-[var(--color-error)] bg-[var(--color-error-bg)]',
   High: 'text-orange-400 bg-orange-500/10',
-  Medium: 'text-amber-400 bg-amber-500/10',
+  Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
   Low: 'text-blue-400 bg-blue-500/10',
 }
 
@@ -107,9 +96,9 @@ const riskAssessment: RiskItem[] = [
 ]
 
 const riskColors: Record<RiskItem['risk'], string> = {
-  Critical: 'text-red-400 bg-red-500/10',
+  Critical: 'text-[var(--color-error)] bg-[var(--color-error-bg)]',
   High: 'text-orange-400 bg-orange-500/10',
-  Medium: 'text-amber-400 bg-amber-500/10',
+  Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
 }
 
 export default function SecurityPage() {
@@ -118,43 +107,39 @@ export default function SecurityPage() {
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[200px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/6 blur-[80px]" />
+          <div className="absolute left-1/2 top-0 h-[200px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-error)]/6 blur-[80px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <div
           className="relative mx-auto max-w-3xl"
         >
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="mb-4">
             <Link
               href="/olympia"
               className="text-sm text-[var(--color-primary)] transition hover:text-[var(--color-primary)]/80"
             >
               ← Olympia Hub
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeInUp} className="flex items-center gap-2">
-            <span className="rounded-sm bg-red-500/15 px-2 py-0.5 font-mono text-[10px] font-medium text-red-400">
+          <div className="flex items-center gap-2">
+            <span className="rounded-sm bg-[var(--color-error)]/15 px-2 py-0.5 font-mono text-[10px] font-medium text-[var(--color-error)]">
               SECURITY
             </span>
             <span className="font-mono text-sm text-[var(--color-text-muted)]">March 2026</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="mt-3 text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl"
+          <h1
+            className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl"
           >
             Core-Geth Security Gap Analysis
-          </motion.h1>
+          </h1>
 
-          <motion.p variants={fadeInUp} className="mt-3 text-[var(--color-text-secondary)]">
+          <p className="mt-3 text-[var(--color-text-secondary)]">
             Assessment of the Core-Geth execution client covering the 21-month maintenance gap from
             February 2024 through April 2026: the longest maintenance gap in the network&apos;s history.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
       </section>
 
       {/* Content */}
@@ -204,7 +189,7 @@ export default function SecurityPage() {
                     className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4"
                   >
                     <div className="flex flex-wrap items-center gap-2">
-                      <code className="text-sm text-white">{cve.id}</code>
+                      <code className="text-sm text-[var(--text-primary)]">{cve.id}</code>
                       <span
                         className={`rounded-sm px-2 py-0.5 text-[10px] font-mono font-medium ${severityColors[cve.severity]}`}
                       >
@@ -263,7 +248,7 @@ export default function SecurityPage() {
                       {item.date}
                     </div>
                     <div className="flex-1 border-l border-[var(--border)] pl-4">
-                      <p className="text-sm text-white">{item.event}</p>
+                      <p className="text-sm text-[var(--text-primary)]">{item.event}</p>
                       <p className="text-xs text-[var(--color-text-muted)]">{item.note}</p>
                     </div>
                   </div>
@@ -281,7 +266,7 @@ export default function SecurityPage() {
                     className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="font-semibold text-white">{item.area}</span>
+                      <span className="font-semibold text-[var(--text-primary)]">{item.area}</span>
                       <span
                         className={`rounded-sm px-2 py-0.5 text-[10px] font-mono font-medium ${riskColors[item.risk]}`}
                       >

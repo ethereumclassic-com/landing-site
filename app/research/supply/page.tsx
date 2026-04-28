@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
+import FifthingCountdown from '@/app/components/FifthingCountdown'
 import {
   EMISSION_CONSTANTS,
   calculateSupplyStats,
@@ -15,145 +15,6 @@ import {
   type SupplyStats,
 } from '../data/emission'
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-// Fifthening Countdown Component
-function FitheningCountdown({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
-  // Calculate initial time left based on stats
-  const initialTimeLeft = useMemo(() => {
-    if (!stats) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-    const totalSeconds = stats.timeUntilNextEra.totalSeconds
-    return {
-      days: Math.floor(totalSeconds / 86400),
-      hours: Math.floor((totalSeconds % 86400) / 3600),
-      minutes: Math.floor((totalSeconds % 3600) / 60),
-      seconds: Math.floor(totalSeconds % 60),
-    }
-  }, [stats])
-
-  const [timeLeft, setTimeLeft] = useState(initialTimeLeft)
-
-  // Reset timeLeft when stats change
-  useEffect(() => {
-    setTimeLeft(initialTimeLeft)
-  }, [initialTimeLeft])
-
-  // Countdown timer
-  useEffect(() => {
-    if (!stats) return
-
-    let totalSeconds = stats.timeUntilNextEra.totalSeconds
-
-    const timer = setInterval(() => {
-      totalSeconds -= 1
-      if (totalSeconds <= 0) {
-        clearInterval(timer)
-        return
-      }
-
-      setTimeLeft({
-        days: Math.floor(totalSeconds / 86400),
-        hours: Math.floor((totalSeconds % 86400) / 3600),
-        minutes: Math.floor((totalSeconds % 3600) / 60),
-        seconds: Math.floor(totalSeconds % 60),
-      })
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [stats])
-
-  const nextEraNumber = stats ? stats.currentEra + 1 : 6
-  const nextEraBlock = nextEraNumber * EMISSION_CONSTANTS.ERA_LENGTH
-
-  return (
-    <motion.div
-      variants={fadeInUp}
-      className="rounded-2xl border border-[var(--color-primary)]/30 bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/5 p-6 md:p-8"
-    >
-      <div className="text-center">
-        <h2 className="text-lg font-semibold text-[var(--color-primary)]">
-          {getOrdinalSuffix(nextEraNumber - 1)} Fifthening Countdown
-        </h2>
-        <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-          Block Reward Reduction at Block {formatBlockNumber(nextEraBlock)}
-        </p>
-
-        {/* Countdown Display */}
-        <div className="mt-6 grid grid-cols-4 gap-3 md:gap-6">
-          {[
-            { label: 'Days', value: timeLeft.days },
-            { label: 'Hours', value: timeLeft.hours },
-            { label: 'Minutes', value: timeLeft.minutes },
-            { label: 'Seconds', value: timeLeft.seconds },
-          ].map((item) => (
-            <div key={item.label} className="rounded-xl bg-[var(--panel)] p-3 md:p-4">
-              <p className="text-2xl font-bold text-white md:text-4xl">
-                {isLoading ? '--' : item.value.toString().padStart(2, '0')}
-              </p>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">{item.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Reward Change */}
-        <div className="mt-6 flex items-center justify-center gap-4">
-          <div className="text-center">
-            <p className="text-xs text-[var(--color-text-muted)]">Current Reward</p>
-            <p className="text-xl font-bold text-white">
-              {stats ? formatBlockReward(stats.currentBlockReward) : '--'} ETC
-            </p>
-          </div>
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/20">
-            <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </div>
-          <div className="text-center">
-            <p className="text-xs text-[var(--color-text-muted)]">After Fifthening</p>
-            <p className="text-xl font-bold text-amber-400">
-              {stats ? formatBlockReward(stats.nextEraReward) : '--'} ETC
-            </p>
-          </div>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="mt-6">
-          <div className="flex justify-between text-xs text-[var(--color-text-muted)]">
-            <span>Era {stats?.currentEra || '--'} Progress</span>
-            <span>{stats ? `${stats.percentThroughEra.toFixed(1)}%` : '--'}</span>
-          </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--bg)]">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-hover)]"
-              initial={{ width: 0 }}
-              animate={{ width: stats ? `${stats.percentThroughEra}%` : '0%' }}
-              transition={{ duration: 1, ease: 'easeOut' }}
-            />
-          </div>
-          <p className="mt-2 text-xs text-[var(--color-text-muted)]">
-            {stats ? formatBlockNumber(stats.blocksUntilNextEra) : '--'} blocks remaining
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
 // Supply Stats Cards
 function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
   const statItems = [
@@ -162,7 +23,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? formatSupply(stats.totalSupply) + ' ETC' : '--',
       description: 'Including genesis supply',
       icon: (
-        <svg className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
         </svg>
       ),
@@ -172,7 +33,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? formatSupply(stats.totalEmitted) + ' ETC' : '--',
       description: 'Block rewards emitted',
       icon: (
-        <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
         </svg>
       ),
@@ -182,7 +43,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: formatSupply(EMISSION_CONSTANTS.GENESIS_SUPPLY) + ' ETC',
       description: 'From Ethereum fork',
       icon: (
-        <svg className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
         </svg>
       ),
@@ -192,7 +53,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: stats ? stats.percentOfMaxSupply.toFixed(1) + '%' : '--',
       description: `of ~${formatSupply(EMISSION_CONSTANTS.REALISTIC_MAX_SUPPLY)} max`,
       icon: (
-        <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
         </svg>
@@ -201,31 +62,27 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
   ]
 
   return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      animate="visible"
+    <div
       className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
     >
       {statItems.map((item) => (
-        <motion.div
+        <div
           key={item.label}
-          variants={fadeInUp}
           className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
         >
           <div className="flex items-start justify-between">
             <div>
               <p className="text-xs text-[var(--color-text-muted)]">{item.label}</p>
-              <p className="mt-1 text-xl font-bold text-white">
+              <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">
                 {isLoading ? '--' : item.value}
               </p>
               <p className="mt-1 text-xs text-[var(--color-text-muted)]">{item.description}</p>
             </div>
             <div className="rounded-lg bg-[var(--bg)] p-2">{item.icon}</div>
           </div>
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   )
 }
 
@@ -235,14 +92,13 @@ function EraScheduleTable() {
   const displayedEras = showAll ? eraSchedule : eraSchedule.slice(0, 8)
 
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
     >
       <div className="p-4 border-b border-[var(--border)]">
-        <h3 className="font-semibold text-white">Emission Schedule by Era</h3>
+        <h3 className="font-semibold text-[var(--text-primary)]">Emission Schedule by Era</h3>
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-          ECIP-1017: 20% reduction every 5M blocks
+          <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>: 20% reduction every 5M blocks
         </p>
       </div>
 
@@ -272,7 +128,7 @@ function EraScheduleTable() {
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <span className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-white'}`}>
+                      <span className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}>
                         Era {era.number}
                       </span>
                       {isCurrent && (
@@ -281,7 +137,7 @@ function EraScheduleTable() {
                         </span>
                       )}
                       {isPast && (
-                        <span className="rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                        <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                           Complete
                         </span>
                       )}
@@ -290,13 +146,13 @@ function EraScheduleTable() {
                   <td className="px-4 py-3 text-[var(--color-text-muted)]">
                     {formatBlockNumber(era.startBlock)} - {formatBlockNumber(era.endBlock)}
                   </td>
-                  <td className="px-4 py-3 text-right font-mono text-white">
+                  <td className="px-4 py-3 text-right font-mono text-[var(--text-primary)]">
                     {formatBlockReward(era.blockReward)} ETC
                   </td>
                   <td className="px-4 py-3 text-right text-[var(--color-text-muted)]">
                     {formatSupply(era.eraSupply)} ETC
                   </td>
-                  <td className="px-4 py-3 text-right font-medium text-white">
+                  <td className="px-4 py-3 text-right font-medium text-[var(--text-primary)]">
                     {formatSupply(era.totalSupply)} ETC
                   </td>
                 </tr>
@@ -316,18 +172,17 @@ function EraScheduleTable() {
           </button>
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
 
 // Emission Milestones Timeline
 function EmissionMilestones() {
   return (
-    <motion.div
-      variants={fadeInUp}
+    <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
     >
-      <h3 className="font-semibold text-white mb-4">Fifthening History</h3>
+      <h3 className="font-semibold text-[var(--text-primary)] mb-4">Fifthing History</h3>
 
       <div className="space-y-4">
         {emissionMilestones.map((milestone, idx) => {
@@ -345,7 +200,7 @@ function EmissionMilestones() {
               <div
                 className={`absolute -left-2 top-0 h-4 w-4 rounded-full border-2 ${
                   isPast
-                    ? 'border-green-400 bg-green-400/20'
+                    ? 'border-[var(--color-success)] bg-[var(--color-success)]/20'
                     : isCurrent
                     ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/20'
                     : 'border-[var(--border)] bg-[var(--panel)]'
@@ -354,7 +209,7 @@ function EmissionMilestones() {
 
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
-                  <p className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-white'}`}>
+                  <p className={`font-medium ${isCurrent ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}>
                     {milestone.event}
                     {isCurrent && (
                       <span className="ml-2 text-xs text-[var(--color-primary)]">(Upcoming)</span>
@@ -366,17 +221,17 @@ function EmissionMilestones() {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-[var(--color-text-muted)]">{milestone.rewardBefore} ETC</span>
-                  <svg className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
-                  <span className="font-medium text-white">{milestone.rewardAfter} ETC</span>
+                  <span className="font-medium text-[var(--text-primary)]">{milestone.rewardAfter} ETC</span>
                 </div>
               </div>
             </div>
           )
         })}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
@@ -413,32 +268,32 @@ export default function SupplyTrackerPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/research"
-              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
+              className="mb-4 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
               </svg>
               Back to Research
             </Link>
 
-            <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               ETC Supply Tracker
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Track Ethereum Classic&apos;s emission schedule under ECIP-1017. Monitor the &quot;Fifthening&quot;
+              Track Ethereum Classic&apos;s emission schedule under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Monitor the &quot;Fifthing&quot;
               countdown and total supply growth.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Fifthening Countdown */}
+      {/* Fifthing Countdown */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <FitheningCountdown stats={stats} isLoading={isLoading} />
+          <FifthingCountdown variant="card" />
         </div>
       </section>
 
@@ -452,13 +307,11 @@ export default function SupplyTrackerPage() {
       {/* Era Schedule */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 text-xl font-semibold text-white"
+          <h2
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Emission Schedule
-          </motion.h2>
+          </h2>
           <EraScheduleTable />
         </div>
       </section>
@@ -469,38 +322,35 @@ export default function SupplyTrackerPage() {
           <EmissionMilestones />
 
           {/* About ECIP-1017 */}
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="font-semibold text-white mb-4">About ECIP-1017</h3>
+            <h3 className="font-semibold text-[var(--text-primary)] mb-4">About ECIP-1017</h3>
             <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
               <p>
-                <strong className="text-white">ECIP-1017</strong> established Ethereum Classic&apos;s monetary
+                <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">ECIP-1017</a> established Ethereum Classic&apos;s monetary
                 policy, implementing a disinflationary emission schedule inspired by Bitcoin&apos;s halving model.
               </p>
               <div className="rounded-lg bg-[var(--bg)] p-4 space-y-2">
                 <div className="flex justify-between">
                   <span>Era Length:</span>
-                  <span className="text-white">5,000,000 blocks</span>
+                  <span className="text-[var(--text-primary)]">5,000,000 blocks</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Reduction Rate:</span>
-                  <span className="text-white">20% per era</span>
+                  <span className="text-[var(--text-primary)]">20% per era</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Starting Reward:</span>
-                  <span className="text-white">5 ETC (Era 1)</span>
+                  <span className="text-[var(--text-primary)]">5 ETC (Era 1)</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Max Supply:</span>
-                  <span className="text-white">~199-210M ETC</span>
+                  <span className="text-[var(--text-primary)]">~199-210M ETC</span>
                 </div>
               </div>
               <p>
-                The &quot;Fifthening&quot; (20% reduction, or keeping 4/5ths) occurs approximately every 2.5 years,
+                The &quot;Fifthing&quot; (20% reduction, or keeping 4/5ths) occurs approximately every 2.5 years,
                 gradually reducing new supply entering circulation.
               </p>
               <a
@@ -510,67 +360,64 @@ export default function SupplyTrackerPage() {
                 className="inline-flex items-center gap-1 text-[var(--color-primary)] hover:underline"
               >
                 Read ECIP-1017 Specification
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Comparison with Bitcoin */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="font-semibold text-white mb-4">ETC vs BTC Emission</h3>
+            <h3 className="font-semibold text-[var(--text-primary)] mb-4">ETC vs BTC Emission</h3>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="h-8 w-8 rounded-full bg-[var(--color-primary)]/20 flex items-center justify-center">
                     <span className="text-xs font-bold text-[var(--color-primary)]">ETC</span>
                   </div>
-                  <span className="font-medium text-white">Ethereum Classic</span>
+                  <span className="font-medium text-[var(--text-primary)]">Ethereum Classic</span>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Reduction Event</span>
-                    <span className="text-white">Fifthening (20%)</span>
+                    <span className="text-[var(--text-primary)]">Fifthing (20%)</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Frequency</span>
-                    <span className="text-white">~2.5 years</span>
+                    <span className="text-[var(--text-primary)]">~2.5 years</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Max Supply</span>
-                    <span className="text-white">~199-210M</span>
+                    <span className="text-[var(--text-primary)]">~199-210M</span>
                   </div>
                 </div>
               </div>
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="h-8 w-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                    <span className="text-xs font-bold text-amber-400">BTC</span>
+                  <div className="h-8 w-8 rounded-full bg-[var(--color-warning)]/20 flex items-center justify-center">
+                    <span className="text-xs font-bold text-[var(--color-warning)]">BTC</span>
                   </div>
-                  <span className="font-medium text-white">Bitcoin</span>
+                  <span className="font-medium text-[var(--text-primary)]">Bitcoin</span>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Reduction Event</span>
-                    <span className="text-white">Halving (50%)</span>
+                    <span className="text-[var(--text-primary)]">Halving (50%)</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Frequency</span>
-                    <span className="text-white">~4 years</span>
+                    <span className="text-[var(--text-primary)]">~4 years</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Max Supply</span>
-                    <span className="text-white">21M</span>
+                    <span className="text-[var(--text-primary)]">21M</span>
                   </div>
                 </div>
               </div>
@@ -579,7 +426,7 @@ export default function SupplyTrackerPage() {
               ETC&apos;s more gradual reduction (20% vs 50%) provides smoother transitions for miners
               while still achieving disinflationary monetary policy.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

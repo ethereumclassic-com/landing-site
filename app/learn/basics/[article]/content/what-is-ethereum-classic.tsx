@@ -1,3 +1,5 @@
+import { ETCswapLink, ClassicUSDLink } from '@/app/components/ui'
+
 export default function WhatIsEthereumClassic() {
   return (
     <>
@@ -48,8 +50,8 @@ export default function WhatIsEthereumClassic() {
         Ethereum Classic has a growing ecosystem of applications and services:
       </p>
       <ul>
-        <li><strong>ETCswap:</strong> Decentralized exchange for token swaps and liquidity provision</li>
-        <li><strong>Classic USD (USC):</strong> Native stablecoin backed 1:1 by USD</li>
+        <li><strong><ETCswapLink />:</strong> Decentralized exchange for token swaps and liquidity provision</li>
+        <li><strong><ClassicUSDLink /> (USC):</strong> Native stablecoin backed 1:1 by USD</li>
         <li><strong>Classic OS:</strong> Economic control center for DeFi and portfolio management</li>
         <li><strong>Olympia DAO:</strong> Decentralized governance for the ecosystem</li>
       </ul>

@@ -86,7 +86,7 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
           {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className="mt-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl"
+            className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             {article.title}
           </motion.h1>
@@ -138,7 +138,7 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
             viewport={{ once: true }}
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
-            <h2 className="text-xl font-bold text-white md:text-2xl">
+            <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
               Ready to Get Started?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-[var(--color-text-secondary)]">
@@ -147,13 +147,13 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/wallet"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-white transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
                 Get a Wallet
               </Link>
               <Link
                 href="/buy"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Buy ETC
               </Link>
@@ -173,7 +173,7 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
               className="mb-8 flex items-center justify-between"
             >
               <div>
-                <h2 className="text-xl font-bold text-white md:text-2xl">Related Articles</h2>
+                <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">Related Articles</h2>
                 <p className="mt-1 text-[var(--color-text-muted)]">
                   Continue learning about {categoryLabels[article.category].toLowerCase()}
                 </p>
@@ -183,7 +183,7 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
                 className="hidden items-center gap-1 text-sm font-medium text-[var(--color-primary)] transition-colors hover:text-[var(--color-primary-hover)] sm:flex"
               >
                 View All
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
               </Link>

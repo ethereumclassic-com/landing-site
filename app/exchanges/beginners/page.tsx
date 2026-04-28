@@ -1,29 +1,11 @@
 'use client'
 
 import { useMemo } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { exchanges } from '../../buy/data/exchanges'
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
 const ExternalLinkIcon = () => (
-  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
   </svg>
 )
@@ -50,15 +32,15 @@ export default function BeginnersExchangesPage() {
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Home
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-white">
+            <Link href="/exchanges" className="text-[var(--color-text-muted)] hover:text-[var(--text-primary)]">
               Exchanges
             </Link>
             <span className="text-[var(--color-text-muted)]">/</span>
-            <span className="text-white">Beginners</span>
+            <span className="text-[var(--text-primary)]">Beginners</span>
           </nav>
         </div>
       </div>
@@ -66,33 +48,27 @@ export default function BeginnersExchangesPage() {
       <div className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           {/* Header */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mb-12"
           >
-            <motion.div variants={fadeInUp} className="mb-4">
+            <div className="mb-4">
               <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
                 </svg>
                 Getting Started
               </span>
-            </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl font-bold text-white md:text-5xl">
+            </div>
+            <h1 className="text-4xl font-bold text-[var(--text-primary)] md:text-5xl">
               Best Exchanges for Beginners
-            </motion.h1>
-            <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
               New to crypto? These exchanges are trusted, easy to use, and offer simple ways to buy your first ETC with a credit card or bank transfer.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
 
           {/* What Makes Beginner Friendly */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             {[
@@ -103,31 +79,28 @@ export default function BeginnersExchangesPage() {
             ].map((item) => (
               <div key={item.title} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
                 <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-white">{item.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.desc}</p>
               </div>
             ))}
-          </motion.div>
+          </div>
 
           {/* Getting Started Steps */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mb-12 rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">How to Buy Your First ETC</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">How to Buy Your First ETC</h2>
             <div className="grid gap-4 md:grid-cols-4">
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
                   1
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Create Account</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Create Account</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Sign up with email and verify your identity</p>
                 </div>
               </div>
@@ -136,7 +109,7 @@ export default function BeginnersExchangesPage() {
                   2
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Add Payment</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Add Payment</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Link your credit card or bank account</p>
                 </div>
               </div>
@@ -145,7 +118,7 @@ export default function BeginnersExchangesPage() {
                   3
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Buy ETC</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Buy ETC</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Search for Ethereum Classic and purchase</p>
                 </div>
               </div>
@@ -154,17 +127,17 @@ export default function BeginnersExchangesPage() {
                   4
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Secure It</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Secure It</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Consider a personal wallet for storage</p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* US Available */}
           {usAvailable.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Available in the US
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   {usAvailable.length} exchanges
@@ -172,19 +145,16 @@ export default function BeginnersExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {usAvailable.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-primary)]/30"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         <div className="mt-1 flex flex-wrap gap-1">
@@ -193,7 +163,7 @@ export default function BeginnersExchangesPage() {
                               Featured
                             </span>
                           )}
-                          <span className="inline-block rounded bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                          <span className="inline-block rounded bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                             Beginner Friendly
                           </span>
                         </div>
@@ -218,11 +188,11 @@ export default function BeginnersExchangesPage() {
                     <div className="mt-3 flex items-center justify-between text-sm">
                       {exchange.tradingFee && (
                         <span className="text-[var(--color-text-muted)]">
-                          Fee: <span className="text-white">{exchange.tradingFee}</span>
+                          Fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                         </span>
                       )}
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
@@ -231,7 +201,7 @@ export default function BeginnersExchangesPage() {
           {/* Global Exchanges */}
           {globalOnly.length > 0 && (
             <section className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-white">
+              <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
                 Global Exchanges
                 <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
                   {globalOnly.length} exchanges
@@ -239,19 +209,16 @@ export default function BeginnersExchangesPage() {
               </h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {globalOnly.map((exchange) => (
-                  <motion.a
+                  <a
                     key={exchange.name}
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
                     className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-primary)]/30"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
                         <div className="mt-1 flex flex-wrap gap-1">
@@ -260,7 +227,7 @@ export default function BeginnersExchangesPage() {
                               Featured
                             </span>
                           )}
-                          <span className="inline-block rounded bg-green-500/10 px-2 py-0.5 text-xs text-green-400">
+                          <span className="inline-block rounded bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
                             Beginner Friendly
                           </span>
                         </div>
@@ -285,114 +252,105 @@ export default function BeginnersExchangesPage() {
                     <div className="mt-3 flex items-center justify-between text-sm">
                       {exchange.tradingFee && (
                         <span className="text-[var(--color-text-muted)]">
-                          Fee: <span className="text-white">{exchange.tradingFee}</span>
+                          Fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                         </span>
                       )}
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </section>
           )}
 
           {/* Tips for Beginners */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-xl font-bold text-white">Tips for New Crypto Investors</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Tips for New Crypto Investors</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="flex items-start gap-3">
-                <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Start Small</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Start Small</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Only invest what you can afford to lose. Start with a small amount to learn how everything works.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Enable 2FA</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Enable 2FA</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Always enable two-factor authentication on your exchange account for extra security.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Learn About Wallets</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Learn About Wallets</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">For long-term holding, consider moving ETC to a personal wallet where you control the keys.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <h3 className="font-medium text-white">Beware of Scams</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Beware of Scams</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">Never share your password or seed phrase. No legitimate service will ever ask for these.</p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Ready for More */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
           >
-            <h2 className="mb-2 text-xl font-bold text-white">Ready for Advanced Options?</h2>
+            <h2 className="mb-2 text-xl font-bold text-[var(--text-primary)]">Ready for Advanced Options?</h2>
             <p className="mb-4 text-[var(--color-text-secondary)]">
               Once you&apos;re comfortable, explore DEXs for self-custody trading or find the lowest fee exchanges.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link
                 href="/exchanges/decentralized"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Explore DEXs
               </Link>
               <Link
                 href="/exchanges/lowest-fees"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Compare Fees
               </Link>
               <Link
                 href="/wallets"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-white transition-all hover:border-[var(--color-primary)]/30"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Get a Wallet
               </Link>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
             <Link
               href="/exchanges"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               View All Exchanges
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </div>
     </main>

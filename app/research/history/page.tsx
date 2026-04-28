@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
 import {
@@ -15,15 +14,6 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
 
 // Sample historical price data
 const priceHistory = [
@@ -105,7 +95,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-3 shadow-lg">
-        <p className="text-sm font-medium text-white">{label}</p>
+        <p className="text-sm font-medium text-[var(--text-primary)]">{label}</p>
         {payload.map((entry: TooltipPayloadEntry, index: number) => (
           <p key={index} className="text-sm" style={{ color: entry.color }}>
             {entry.name}: {typeof entry.value === 'number' ? entry.value.toLocaleString() : entry.value}
@@ -125,50 +115,47 @@ export default function HistoricalDataPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+          <div>
             <Link
               href="/research"
-              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+              className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
               </svg>
               Back to Research
             </Link>
 
-            <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
               Historical Data
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
               Explore Ethereum Classic&apos;s historical price, hashrate, and network activity.
               Data visualization powered by Recharts.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Data Notice */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4"
+          <div
+            className="rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] p-4"
           >
             <div className="flex items-start gap-3">
-              <svg className="h-5 w-5 mt-0.5 shrink-0 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-5 w-5 mt-0.5 shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
               <div>
-                <p className="font-medium text-amber-400">Sample Data</p>
-                <p className="mt-1 text-sm text-amber-400/80">
+                <p className="font-medium text-[var(--color-warning)]">Sample Data</p>
+                <p className="mt-1 text-sm text-[var(--color-warning)]/80">
                   Charts display sample data for demonstration. Live historical data integration requires
                   node infrastructure deployment in Phase 7/8.
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -181,7 +168,7 @@ export default function HistoricalDataPage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeChart === 'price'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               Price History
@@ -191,7 +178,7 @@ export default function HistoricalDataPage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeChart === 'hashrate'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               Network Hashrate
@@ -201,7 +188,7 @@ export default function HistoricalDataPage() {
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeChart === 'transactions'
                   ? 'bg-[var(--color-primary)] text-black'
-                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-white'
+                  : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
               Transactions
@@ -213,41 +200,38 @@ export default function HistoricalDataPage() {
       {/* Charts */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
+          <div
             key={activeChart}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             {activeChart === 'price' && (
               <>
-                <h2 className="mb-4 text-lg font-semibold text-white">ETC Price History (USD)</h2>
+                <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">ETC Price History (USD)</h2>
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={priceHistory}>
                       <defs>
                         <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#3AB83A" stopOpacity={0.3} />
-                          <stop offset="95%" stopColor="#3AB83A" stopOpacity={0} />
+                          <stop offset="5%" stopColor="var(--brand-green)" stopOpacity={0.3} />
+                          <stop offset="95%" stopColor="var(--brand-green)" stopOpacity={0} />
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
                       <XAxis
                         dataKey="date"
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                       />
                       <YAxis
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                         tickFormatter={(value) => `$${value}`}
                       />
                       <Tooltip content={<CustomTooltip />} />
                       <Area
                         type="monotone"
                         dataKey="price"
-                        stroke="#3AB83A"
+                        stroke="var(--brand-green)"
                         fill="url(#priceGradient)"
                         strokeWidth={2}
                         name="Price (USD)"
@@ -263,27 +247,27 @@ export default function HistoricalDataPage() {
 
             {activeChart === 'hashrate' && (
               <>
-                <h2 className="mb-4 text-lg font-semibold text-white">Network Hashrate & Difficulty</h2>
+                <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Network Hashrate & Difficulty</h2>
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={hashrateHistory}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
                       <XAxis
                         dataKey="date"
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                       />
                       <YAxis
                         yAxisId="left"
-                        stroke="#3AB83A"
-                        tick={{ fill: '#3AB83A', fontSize: 12 }}
+                        stroke="var(--brand-green)"
+                        tick={{ fill: 'var(--brand-green)', fontSize: 12 }}
                         tickFormatter={(value) => `${value} TH/s`}
                       />
                       <YAxis
                         yAxisId="right"
                         orientation="right"
-                        stroke="#3B82F6"
-                        tick={{ fill: '#3B82F6', fontSize: 12 }}
+                        stroke="var(--color-blue)"
+                        tick={{ fill: 'var(--color-blue)', fontSize: 12 }}
                         tickFormatter={(value) => `${value} PH`}
                       />
                       <Tooltip content={<CustomTooltip />} />
@@ -292,7 +276,7 @@ export default function HistoricalDataPage() {
                         yAxisId="left"
                         type="monotone"
                         dataKey="hashrate"
-                        stroke="#3AB83A"
+                        stroke="var(--brand-green)"
                         strokeWidth={2}
                         dot={false}
                         name="Hashrate (TH/s)"
@@ -301,7 +285,7 @@ export default function HistoricalDataPage() {
                         yAxisId="right"
                         type="monotone"
                         dataKey="difficulty"
-                        stroke="#3B82F6"
+                        stroke="var(--color-blue)"
                         strokeWidth={2}
                         dot={false}
                         name="Difficulty (PH)"
@@ -317,27 +301,27 @@ export default function HistoricalDataPage() {
 
             {activeChart === 'transactions' && (
               <>
-                <h2 className="mb-4 text-lg font-semibold text-white">Daily Transactions & Fees</h2>
+                <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Daily Transactions & Fees</h2>
                 <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={txHistory}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--divider)" />
                       <XAxis
                         dataKey="date"
-                        stroke="#64748b"
-                        tick={{ fill: '#64748b', fontSize: 12 }}
+                        stroke="var(--text-muted)"
+                        tick={{ fill: 'var(--text-muted)', fontSize: 12 }}
                       />
                       <YAxis
                         yAxisId="left"
-                        stroke="#F59E0B"
-                        tick={{ fill: '#F59E0B', fontSize: 12 }}
+                        stroke="var(--color-warning)"
+                        tick={{ fill: 'var(--color-warning)', fontSize: 12 }}
                         tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
                       />
                       <YAxis
                         yAxisId="right"
                         orientation="right"
-                        stroke="#8B5CF6"
-                        tick={{ fill: '#8B5CF6', fontSize: 12 }}
+                        stroke="var(--color-purple)"
+                        tick={{ fill: 'var(--color-purple)', fontSize: 12 }}
                         tickFormatter={(value) => `${value} ETC`}
                       />
                       <Tooltip content={<CustomTooltip />} />
@@ -346,7 +330,7 @@ export default function HistoricalDataPage() {
                         yAxisId="left"
                         type="monotone"
                         dataKey="transactions"
-                        stroke="#F59E0B"
+                        stroke="var(--color-warning)"
                         strokeWidth={2}
                         dot={false}
                         name="Daily Transactions"
@@ -355,7 +339,7 @@ export default function HistoricalDataPage() {
                         yAxisId="right"
                         type="monotone"
                         dataKey="avgFee"
-                        stroke="#8B5CF6"
+                        stroke="var(--color-purple)"
                         strokeWidth={2}
                         dot={false}
                         name="Avg Fee (ETC)"
@@ -368,14 +352,14 @@ export default function HistoricalDataPage() {
                 </p>
               </>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Key Statistics */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-6 text-xl font-bold text-white">Key Historical Milestones</h2>
+          <h2 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Key Historical Milestones</h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {[
               { label: 'Genesis', value: 'July 30, 2015', note: 'Original Ethereum launch' },
@@ -383,18 +367,14 @@ export default function HistoricalDataPage() {
               { label: 'All-Time High', value: '$176.16', note: 'May 6, 2021' },
               { label: 'Post-Merge Peak', value: '263 TH/s', note: 'September 2022' },
             ].map((stat, index) => (
-              <motion.div
+              <div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <p className="text-sm text-[var(--color-text-muted)]">{stat.label}</p>
-                <p className="mt-1 text-xl font-bold text-white">{stat.value}</p>
+                <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">{stat.value}</p>
                 <p className="mt-1 text-xs text-[var(--color-text-muted)]">{stat.note}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -403,37 +383,34 @@ export default function HistoricalDataPage() {
       {/* Related Links */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h3 className="mb-4 text-lg font-semibold text-white">Related Research</h3>
+            <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Related Research</h3>
             <div className="grid gap-4 md:grid-cols-3">
               <Link
                 href="/research/network"
                 className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-colors hover:border-[var(--color-primary)]/50"
               >
-                <p className="font-medium text-white">Network Stats</p>
+                <p className="font-medium text-[var(--text-primary)]">Network Stats</p>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Live network metrics and activity</p>
               </Link>
               <Link
                 href="/research/supply"
                 className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-colors hover:border-[var(--color-primary)]/50"
               >
-                <p className="font-medium text-white">Supply Analysis</p>
+                <p className="font-medium text-[var(--text-primary)]">Supply Analysis</p>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Emission schedule and circulation</p>
               </Link>
               <Link
                 href="/research/fees"
                 className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-colors hover:border-[var(--color-primary)]/50"
               >
-                <p className="font-medium text-white">Fee Market</p>
+                <p className="font-medium text-[var(--text-primary)]">Fee Market</p>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Transaction fees and gas analysis</p>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

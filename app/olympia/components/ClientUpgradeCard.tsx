@@ -16,13 +16,13 @@ interface ClientUpgradeCardProps {
 }
 
 const roleColors: Record<string, string> = {
-  primary: '#00ffae',
-  enterprise: '#38bdf8',
-  maintenance: '#a78bfa',
+  primary: 'var(--brand-green)',
+  enterprise: 'var(--color-info)',
+  maintenance: 'var(--color-purple)',
 }
 
 export default function ClientUpgradeCard({ client, detail = false }: ClientUpgradeCardProps) {
-  const roleColor = roleColors[client.role] ?? '#9ca3af'
+  const roleColor = roleColors[client.role] ?? 'var(--text-muted)'
 
   if (!detail) {
     // Summary card for hub page
@@ -30,7 +30,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       <motion.div variants={fadeInUp}>
         <Link
           href={`/olympia/clients/${client.id}`}
-          className="group block rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+          className="group block rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
         >
           <div className="flex items-center gap-3">
             <span
@@ -40,7 +40,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
               {client.language.slice(0, 2)}
             </span>
             <div>
-              <h3 className="font-semibold text-white group-hover:text-[#00ffae]">{client.name}</h3>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">{client.name}</h3>
               <div className="flex items-center gap-2">
                 <span
                   className="rounded-full px-2 py-0.5 text-xs font-medium"
@@ -61,7 +61,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
             <span className="text-xs text-[var(--color-text-muted)]">
               Current: {client.currentVersion}
             </span>
-            <span className="text-xs font-medium text-[#00ffae] group-hover:text-[#00ffae]/80">
+            <span className="text-xs font-medium text-[var(--brand-green)] group-hover:text-[var(--brand-green)]/80">
               View upgrade guide →
             </span>
           </div>
@@ -82,7 +82,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
           {client.language.slice(0, 2)}
         </span>
         <div>
-          <h1 className="text-3xl font-bold text-white">{client.name}</h1>
+          <h1 className="text-3xl font-bold text-[var(--text-primary)]">{client.name}</h1>
           <div className="mt-1 flex items-center gap-2">
             <span
               className="rounded-full px-3 py-0.5 text-sm font-medium"
@@ -101,21 +101,21 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
           <p className="text-xs text-[var(--color-text-muted)]">Current Version</p>
-          <p className="mt-1 font-mono text-lg text-white">{client.currentVersion}</p>
+          <p className="mt-1 font-mono text-lg text-[var(--text-primary)]">{client.currentVersion}</p>
         </div>
-        <div className="rounded-xl border border-[#00ffae]/20 bg-[#00ffae]/5 p-4">
-          <p className="text-xs text-[#00ffae]">Olympia Version</p>
-          <p className="mt-1 font-mono text-lg text-white">{client.olympiaVersion}</p>
+        <div className="rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 p-4">
+          <p className="text-xs text-[var(--brand-green)]">Olympia Version</p>
+          <p className="mt-1 font-mono text-lg text-[var(--text-primary)]">{client.olympiaVersion}</p>
         </div>
       </div>
 
       {/* Prerequisites */}
       <div>
-        <h2 className="text-xl font-semibold text-white">Prerequisites</h2>
+        <h2 className="text-xl font-semibold text-[var(--text-primary)]">Prerequisites</h2>
         <ul className="mt-3 space-y-2">
           {client.prerequisites.map((prereq) => (
             <li key={prereq} className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
-              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#00ffae]" />
+              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-green)]" />
               {prereq}
             </li>
           ))}
@@ -124,12 +124,12 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
 
       {/* Install commands */}
       <div>
-        <h2 className="text-xl font-semibold text-white">Installation</h2>
+        <h2 className="text-xl font-semibold text-[var(--text-primary)]">Installation</h2>
         <div className="mt-3 space-y-3">
           {client.installCommands.map(({ platform, command }) => (
             <div key={platform} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
               <p className="text-xs font-medium text-[var(--color-text-muted)]">{platform}</p>
-              <code className="mt-2 block font-mono text-sm text-[#00ffae]">{command}</code>
+              <code className="mt-2 block font-mono text-sm text-[var(--brand-green)]">{command}</code>
             </div>
           ))}
         </div>
@@ -137,9 +137,9 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
 
       {/* Verify */}
       <div>
-        <h2 className="text-xl font-semibold text-white">Verify Installation</h2>
+        <h2 className="text-xl font-semibold text-[var(--text-primary)]">Verify Installation</h2>
         <div className="mt-3 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
-          <code className="font-mono text-sm text-[#00ffae]">{client.verifyCommand}</code>
+          <code className="font-mono text-sm text-[var(--brand-green)]">{client.verifyCommand}</code>
         </div>
       </div>
 
@@ -149,7 +149,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
           href={client.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-white transition hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
         >
           GitHub →
         </a>
@@ -157,7 +157,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
           href={client.docsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-white transition hover:border-[#00ffae]/30 hover:bg-[#00ffae]/5"
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
         >
           Documentation →
         </a>

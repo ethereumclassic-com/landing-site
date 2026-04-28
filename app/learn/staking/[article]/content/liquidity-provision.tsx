@@ -1,29 +1,31 @@
+import { ETCswapLink } from '@/app/components/ui'
+
 export default function LiquidityProvision() {
   return (
     <>
       <p>
-        Ethereum Classic is a proof-of-work blockchain, which means there is no native staking mechanism for validators. However, ETC holders can still earn passive yield by providing liquidity to decentralized exchanges. Liquidity provision on ETCswap is the primary way to put your ETC to work and earn trading fees.
+        Ethereum Classic is a proof-of-work blockchain, which means there is no native staking mechanism for validators. However, ETC holders can still earn passive yield by providing liquidity to decentralized exchanges. Liquidity provision on <ETCswapLink /> is the primary way to put your ETC to work and earn trading fees.
       </p>
 
       <h2>What Is Liquidity Provision?</h2>
       <p>
-        Liquidity provision means depositing a pair of tokens into an automated market maker (AMM) pool. Instead of matching buyers and sellers through an order book, AMMs like ETCswap use these pooled reserves to facilitate trades. When you deposit tokens, you become a liquidity provider (LP) and receive LP tokens as a receipt representing your share of the pool.
+        Liquidity provision means depositing a pair of tokens into an automated market maker (AMM) pool. Instead of matching buyers and sellers through an order book, AMMs like <ETCswapLink /> use these pooled reserves to facilitate trades. When you deposit tokens, you become a liquidity provider (LP) and receive LP tokens as a receipt representing your share of the pool.
       </p>
       <p>
-        Every time someone trades through the pool, a small fee is charged. On ETCswap V2, this fee is 0.3% per swap, distributed proportionally to all LPs in the pool. Your LP tokens accumulate value as fees build up in the reserves.
+        Every time someone trades through the pool, a small fee is charged. On <ETCswapLink /> V2, this fee is 0.3% per swap, distributed proportionally to all LPs in the pool. Your LP tokens accumulate value as fees build up in the reserves.
       </p>
 
-      <h2>How It Works on ETCswap V2</h2>
+      <h2>How It Works on <ETCswapLink /> V2</h2>
       <p>
-        ETCswap V2 uses a straightforward model: you deposit equal value of two tokens in a 50/50 split. For example, to provide liquidity to the ETC/USC pool, you would deposit $100 worth of ETC and $100 worth of Classic USD. The pool uses the constant product formula to determine prices automatically.
+        <ETCswapLink /> V2 uses a straightforward model: you deposit equal value of two tokens in a 50/50 split. For example, to provide liquidity to the ETC/USC pool, you would deposit $100 worth of ETC and $100 worth of Classic USD. The pool uses the constant product formula to determine prices automatically.
       </p>
       <p>
         Your liquidity is spread across the entire price range from zero to infinity. This means your position is always active regardless of where the price moves, making V2 a hands-off approach to earning yield.
       </p>
 
-      <h2>Concentrated Liquidity on ETCswap V3</h2>
+      <h2>Concentrated Liquidity on <ETCswapLink /> V3</h2>
       <p>
-        ETCswap V3 introduced concentrated liquidity, allowing you to choose a specific price range for your deposit. If ETC trades at $20, you might provide liquidity only between $15 and $25. Your capital works much harder within that range, earning significantly more fees per dollar compared to V2.
+        <ETCswapLink /> V3 introduced concentrated liquidity, allowing you to choose a specific price range for your deposit. If ETC trades at $20, you might provide liquidity only between $15 and $25. Your capital works much harder within that range, earning significantly more fees per dollar compared to V2.
       </p>
       <p>
         The tradeoff is active management. If the price moves outside your chosen range, your position stops earning fees entirely. V3 rewards providers who monitor and adjust their positions, making it better suited for experienced LPs.
@@ -31,7 +33,7 @@ export default function LiquidityProvision() {
 
       <h2>Adding and Removing Liquidity</h2>
       <p>
-        To add liquidity, connect your wallet to ETCswap, select the pool and token pair, approve both tokens, and confirm the deposit. You&apos;ll receive LP tokens (V2) or an NFT position (V3) representing your share. To remove liquidity, navigate to your positions and withdraw. You&apos;ll receive back both tokens at the current pool ratio, plus any accumulated fees.
+        To add liquidity, connect your wallet to <ETCswapLink />, select the pool and token pair, approve both tokens, and confirm the deposit. You&apos;ll receive LP tokens (V2) or an NFT position (V3) representing your share. To remove liquidity, navigate to your positions and withdraw. You&apos;ll receive back both tokens at the current pool ratio, plus any accumulated fees.
       </p>
 
       <h2>LP Yield vs Staking on Other Chains</h2>
@@ -45,7 +47,7 @@ export default function LiquidityProvision() {
       <h2>Getting Started</h2>
       <ul>
         <li>Start with a stablecoin pair like ETC/USC to reduce volatility risk</li>
-        <li>Begin with ETCswap V2 for simplicity before exploring V3 concentrated positions</li>
+        <li>Begin with <ETCswapLink /> V2 for simplicity before exploring V3 concentrated positions</li>
         <li>Only provide liquidity with funds you can afford to leave deposited for weeks or months</li>
         <li>Read our impermanent loss guide before committing significant capital</li>
       </ul>

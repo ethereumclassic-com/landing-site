@@ -32,27 +32,27 @@ const sizeClasses = {
 
 const changeColors = {
   up: 'text-emerald-400',
-  down: 'text-red-400',
+  down: 'text-[var(--color-error)]',
   neutral: 'text-[var(--color-text-muted)]',
 }
 
 const changeBgColors = {
   up: 'bg-emerald-500/10',
-  down: 'bg-red-500/10',
+  down: 'bg-[var(--color-error-bg)]',
   neutral: 'bg-[var(--panel)]',
 }
 
 function ChangeIcon({ direction, iconClass }: { direction: 'up' | 'down' | 'neutral'; iconClass: string }) {
   if (direction === 'up') {
     return (
-      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg aria-hidden="true" className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
       </svg>
     )
   }
   if (direction === 'down') {
     return (
-      <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg aria-hidden="true" className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
       </svg>
     )
@@ -109,7 +109,7 @@ export default function LivePriceDisplay({
           </span>
         ) : (
           <>
-            <span className={`${sizeClasses[size].price} text-white`}>{priceFormatted}</span>
+            <span className={`${sizeClasses[size].price} text-[var(--text-primary)]`}>{priceFormatted}</span>
             {changeFormatted && (
               <span
                 className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 ${sizeClasses[size].change} ${changeColors[changeDirection]} ${changeBgColors[changeDirection]}`}
@@ -195,24 +195,24 @@ export function LiveMarketStats({
     <div className={`flex flex-wrap justify-center gap-6 text-sm ${className}`}>
       <div className="text-center">
         <p className="text-[var(--color-text-muted)]">Market Cap</p>
-        <p className="font-semibold text-white">{marketCapFormatted}</p>
+        <p className="font-semibold text-[var(--text-primary)]">{marketCapFormatted}</p>
       </div>
       {showVolume && (
         <div className="text-center">
           <p className="text-[var(--color-text-muted)]">24h Volume</p>
-          <p className="font-semibold text-white">{volumeFormatted}</p>
+          <p className="font-semibold text-[var(--text-primary)]">{volumeFormatted}</p>
         </div>
       )}
       {showRank && (
         <div className="text-center">
           <p className="text-[var(--color-text-muted)]">Rank</p>
-          <p className="font-semibold text-white">#28</p>
+          <p className="font-semibold text-[var(--text-primary)]">#28</p>
         </div>
       )}
       {showSupply && (
         <div className="text-center">
           <p className="text-[var(--color-text-muted)]">Circulating</p>
-          <p className="font-semibold text-white">148.3M ETC</p>
+          <p className="font-semibold text-[var(--text-primary)]">148.3M ETC</p>
         </div>
       )}
     </div>

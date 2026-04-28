@@ -1,24 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 interface FundingSource {
   name: string
@@ -160,36 +142,31 @@ export default function BuildGrantsPage() {
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
         <div className="container relative mx-auto max-w-6xl px-4">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          <div
             className="mx-auto max-w-3xl text-center"
           >
-            <motion.div variants={fadeInUp} className="mb-4">
+            <div className="mb-4">
               <Link
                 href="/build"
-                className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-white"
+                className="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--text-primary)]"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
                 Back to Build
               </Link>
-            </motion.div>
-            <motion.h1
-              variants={fadeInUp}
-              className="text-4xl font-bold tracking-tight text-white md:text-5xl"
+            </div>
+            <h1
+              className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
               Grants & Funding
-            </motion.h1>
-            <motion.p
-              variants={fadeInUp}
+            </h1>
+            <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
               Get funding to build on Ethereum Classic. Grants, bounties, and community support for developers and projects.
-            </motion.p>
-            <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-4">
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
                 href="#funding-sources"
                 className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
@@ -198,12 +175,12 @@ export default function BuildGrantsPage() {
               </a>
               <a
                 href="#project-ideas"
-                className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--panel)]"
+                className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
               >
                 Project Ideas
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -217,16 +194,13 @@ export default function BuildGrantsPage() {
               { value: '4', label: 'Active Programs' },
               { value: '24/7', label: 'Community Support' },
             ].map((stat) => (
-              <motion.div
+              <div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
               >
                 <div className="text-3xl font-bold text-[var(--color-primary)]">{stat.value}</div>
                 <div className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -235,31 +209,24 @@ export default function BuildGrantsPage() {
       {/* Funding Sources */}
       <section id="funding-sources" className="py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Funding Sources</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Funding Sources</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
               Multiple avenues to fund your ETC project
             </p>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {fundingSources.map((source, index) => (
-              <motion.div
+              <div
                 key={source.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-white">{source.name}</h3>
+                    <h3 className="text-lg font-semibold text-[var(--text-primary)]">{source.name}</h3>
                     <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-xs ${
                       source.status === 'active'
                         ? 'bg-[var(--color-success)]/10 text-[var(--color-success)]'
@@ -299,11 +266,11 @@ export default function BuildGrantsPage() {
                   className="mt-4 inline-flex items-center gap-2 text-sm text-[var(--color-primary)] hover:underline"
                 >
                   Learn More
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </a>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -312,39 +279,32 @@ export default function BuildGrantsPage() {
       {/* Project Ideas */}
       <section id="project-ideas" className="border-t border-[var(--border)] bg-[var(--panel)] py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Project Ideas</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Project Ideas</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
               Looking for inspiration? Here are some areas where the ETC ecosystem needs builders.
             </p>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {projectIdeas.map((idea, index) => (
-              <motion.div
+              <div
                 key={idea.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
               >
-                <h3 className="font-semibold text-white">{idea.title}</h3>
+                <h3 className="font-semibold text-[var(--text-primary)]">{idea.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{idea.description}</p>
                 <div className="mt-4 flex items-center gap-4 text-xs">
                   <span className="text-[var(--color-text-muted)]">
-                    Difficulty: <span className="text-white">{idea.difficulty}</span>
+                    Difficulty: <span className="text-[var(--text-primary)]">{idea.difficulty}</span>
                   </span>
                   <span className="text-[var(--color-text-muted)]">
                     Impact: <span className="text-[var(--color-primary)]">{idea.impact}</span>
                   </span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -353,34 +313,27 @@ export default function BuildGrantsPage() {
       {/* Application Process */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-white md:text-3xl">Application Process</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Application Process</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
               Follow these steps to apply for funding
             </p>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {applicationSteps.map((step, index) => (
-              <motion.div
+              <div
                 key={step.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="absolute -top-3 left-6 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
                   {step.step}
                 </div>
-                <h3 className="mt-2 font-semibold text-white">{step.title}</h3>
+                <h3 className="mt-2 font-semibold text-[var(--text-primary)]">{step.title}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{step.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -390,12 +343,9 @@ export default function BuildGrantsPage() {
       <section className="border-t border-[var(--border)] bg-[var(--panel)] py-16 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="mx-auto max-w-2xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <div
             >
-              <h2 className="text-2xl font-bold text-white md:text-3xl">Ready to Build?</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ready to Build?</h2>
               <p className="mt-4 text-[var(--color-text-muted)]">
                 Have questions about funding or need help with your proposal? Join our community channels.
               </p>
@@ -411,13 +361,13 @@ export default function BuildGrantsPage() {
                 </a>
                 <Link
                   href="/build"
-                  className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--bg)]"
+                  className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
                 >
                   Developer Hub
                 </Link>
                 <Link
                   href="/contact?type=partnership"
-                  className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-white transition hover:bg-[var(--bg)]"
+                  className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
                 >
                   Contact Us
                 </Link>
@@ -434,7 +384,7 @@ export default function BuildGrantsPage() {
                   ETC Cooperative
                 </a>
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

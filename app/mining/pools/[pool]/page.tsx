@@ -1,30 +1,12 @@
 'use client'
 
 import { use } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPoolById, miningPools, type PayoutScheme } from '../../data/mining'
 
 interface Props {
   params: Promise<{ pool: string }>
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
 }
 
 const payoutSchemeDescriptions: Record<PayoutScheme, { name: string; description: string }> = {
@@ -70,7 +52,7 @@ function StatCard({
       }`}
     >
       <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
-      <p className={`mt-1 text-xl font-bold ${highlight ? 'text-[var(--color-primary)]' : 'text-white'}`}>
+      <p className={`mt-1 text-xl font-bold ${highlight ? 'text-[var(--color-primary)]' : 'text-[var(--text-primary)]'}`}>
         {value}
       </p>
       {description && <p className="mt-1 text-xs text-[var(--color-text-muted)]">{description}</p>}
@@ -84,10 +66,10 @@ function ServerRow({ region, url, port }: { region: string; url: string; port: n
   return (
     <tr className="border-b border-[var(--border)]/50 last:border-0">
       <td className="py-3">
-        <span className="font-medium text-white">{region}</span>
+        <span className="font-medium text-[var(--text-primary)]">{region}</span>
       </td>
       <td className="py-3 font-mono text-sm text-[var(--color-text-muted)]">{url}</td>
-      <td className="py-3 text-center font-mono text-sm text-white">{port}</td>
+      <td className="py-3 text-center font-mono text-sm text-[var(--text-primary)]">{port}</td>
       <td className="py-3 text-right">
         <button
           onClick={() => navigator.clipboard.writeText(fullAddress)}
@@ -116,23 +98,23 @@ export default function PoolPage({ params }: Props) {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/mining/pools"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
                 Back to Pools
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp} className="flex items-start justify-between">
+            <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-3">
-                  <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">{pool.name}</h1>
+                  <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">{pool.name}</h1>
                   {pool.recommended && (
                     <span className="rounded-full bg-[var(--color-primary)] px-3 py-1 text-sm font-medium text-black">
                       Recommended
@@ -150,22 +132,19 @@ export default function PoolPage({ params }: Props) {
                 className="hidden items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)] md:inline-flex"
               >
                 Visit Pool
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Key Stats */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
             <StatCard
@@ -189,7 +168,7 @@ export default function PoolPage({ params }: Props) {
               value={`${pool.servers.length} Region${pool.servers.length > 1 ? 's' : ''}`}
               description="Available server locations"
             />
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -203,7 +182,7 @@ export default function PoolPage({ params }: Props) {
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
           >
             Visit Pool Website
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
             </svg>
           </a>
@@ -213,13 +192,10 @@ export default function PoolPage({ params }: Props) {
       {/* Server Addresses */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Server Addresses</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Server Addresses</h2>
             <p className="mb-4 text-sm text-[var(--color-text-muted)]">
               Choose the server closest to your location for the best connection.
             </p>
@@ -240,20 +216,17 @@ export default function PoolPage({ params }: Props) {
                 </tbody>
               </table>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Payout Schemes */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Payout Methods</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Payout Methods</h2>
             <p className="mb-4 text-sm text-[var(--color-text-muted)]">
               {pool.name} supports the following payout schemes:
             </p>
@@ -269,31 +242,28 @@ export default function PoolPage({ params }: Props) {
                       <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
                         {scheme}
                       </span>
-                      <span className="font-medium text-white">{info.name}</span>
+                      <span className="font-medium text-[var(--text-primary)]">{info.name}</span>
                     </div>
                     <p className="text-sm text-[var(--color-text-muted)]">{info.description}</p>
                   </div>
                 )
               })}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Features */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Pool Features</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Pool Features</h2>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {pool.features.map((feature, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <svg
+                  <svg aria-hidden="true"
                     className="h-5 w-5 flex-shrink-0 text-[var(--color-primary)]"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -302,34 +272,31 @@ export default function PoolPage({ params }: Props) {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="text-white">{feature}</span>
+                  <span className="text-[var(--text-primary)]">{feature}</span>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Quick Start */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Quick Start Configuration</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Quick Start Configuration</h2>
             <p className="mb-4 text-sm text-[var(--color-text-muted)]">
               Example miner command line configuration. Replace YOUR_WALLET_ADDRESS with your ETC address.
             </p>
             <div className="rounded-lg bg-[var(--bg)] p-4 font-mono text-sm">
               <p className="text-[var(--color-text-muted)]"># Example for lolMiner (AMD/NVIDIA)</p>
-              <p className="mt-2 text-white">
+              <p className="mt-2 text-[var(--text-primary)]">
                 lolminer --algo ETCHASH --pool {pool.servers[0].url}:{pool.servers[0].port} --user YOUR_WALLET_ADDRESS.WORKER_NAME
               </p>
               <p className="mt-4 text-[var(--color-text-muted)]"># Example for T-Rex (NVIDIA)</p>
-              <p className="mt-2 text-white">
+              <p className="mt-2 text-[var(--text-primary)]">
                 t-rex -a etchash -o stratum+tcp://{pool.servers[0].url}:{pool.servers[0].port} -u YOUR_WALLET_ADDRESS -p x -w WORKER_NAME
               </p>
             </div>
@@ -347,19 +314,16 @@ export default function PoolPage({ params }: Props) {
                 Complete getting started guide
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Compare with Other Pools */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+          <div
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Compare with Other Pools</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Compare with Other Pools</h2>
             <div className="grid gap-4 md:grid-cols-3">
               {otherPools.map((otherPool) => (
                 <Link
@@ -368,7 +332,7 @@ export default function PoolPage({ params }: Props) {
                   className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-white group-hover:text-[var(--color-primary)]">
+                    <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                       {otherPool.name}
                     </h3>
                     {otherPool.recommended && (
@@ -380,13 +344,13 @@ export default function PoolPage({ params }: Props) {
                   <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
                     <div>
                       <span className="text-[var(--color-text-muted)]">Fee: </span>
-                      <span className={`font-medium ${otherPool.fee < pool.fee ? 'text-green-400' : 'text-white'}`}>
+                      <span className={`font-medium ${otherPool.fee < pool.fee ? 'text-[var(--color-success)]' : 'text-[var(--text-primary)]'}`}>
                         {otherPool.fee}%
                       </span>
                     </div>
                     <div>
                       <span className="text-[var(--color-text-muted)]">Min: </span>
-                      <span className="font-medium text-white">{otherPool.minPayout} ETC</span>
+                      <span className="font-medium text-[var(--text-primary)]">{otherPool.minPayout} ETC</span>
                     </div>
                   </div>
                   <div className="mt-2 text-xs text-[var(--color-text-muted)]">
@@ -401,25 +365,22 @@ export default function PoolPage({ params }: Props) {
                 className="inline-flex items-center gap-1 text-sm text-[var(--color-primary)] hover:underline"
               >
                 View all pools
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-white">Need a Wallet?</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need a Wallet?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               You need an ETC wallet address to receive mining payouts. Set up a secure wallet before you start mining.
             </p>
@@ -429,18 +390,18 @@ export default function PoolPage({ params }: Props) {
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Set Up Wallet
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </Link>
               <Link
                 href="/mining/profitability"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
                 Calculate Profits
               </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

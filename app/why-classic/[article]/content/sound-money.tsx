@@ -11,13 +11,13 @@ export default function SoundMoney() {
 
       <h2>ECIP-1017: The Monetary Policy</h2>
       <p>
-        In December 2017, the Ethereum Classic network adopted ECIP-1017, which
+        In December 2017, the Ethereum Classic network adopted <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">ECIP-1017</a>, which
         established a fixed emission schedule with era-based reward reductions. Before
         ECIP-1017, ETC had the same uncapped emission model as early Ethereum: a flat 5
         ETC per block with no planned reduction or supply cap.
       </p>
       <p>
-        ECIP-1017 introduced two changes:
+        <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">ECIP-1017</a> introduced two changes:
       </p>
       <ul>
         <li>

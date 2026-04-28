@@ -1,27 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useGasPrices } from '@/app/hooks/useNetworkStats'
 import { usePrice } from '@/app/hooks/usePrice'
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' as const },
-  },
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
 
 // Common transaction types with typical gas limits
 const transactionTypes = [
@@ -54,16 +36,16 @@ export default function GasTrackerPage() {
       gwei: average?.toFixed(2) ?? '2',
       time: '~1 min',
       description: 'Average speed',
-      color: 'text-green-400',
-      bgColor: 'bg-green-500/10',
+      color: 'text-[var(--color-success)]',
+      bgColor: 'bg-[var(--color-success-bg)]',
     },
     {
       name: 'Fast',
       gwei: fast?.toFixed(2) ?? '5',
       time: '~15 sec',
       description: 'High priority, faster',
-      color: 'text-amber-400',
-      bgColor: 'bg-amber-500/10',
+      color: 'text-[var(--color-warning)]',
+      bgColor: 'bg-[var(--color-warning-bg)]',
     },
   ]
 
@@ -84,53 +66,46 @@ export default function GasTrackerPage() {
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.div variants={fadeInUp}>
+          <div>
+            <div>
               <Link
                 href="/tools"
-                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-white"
+                className="mb-6 inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
                 Back to Tools
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeInUp}>
-              <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+            <div>
+              <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                 Gas Tracker
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 Monitor Ethereum Classic gas prices and optimize your transaction costs.
                 ETC typically has very low gas fees compared to other networks.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Gas Price Tiers */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mb-6 text-xl font-semibold text-white"
+          <h2
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Current Gas Prices
-          </motion.h2>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
+          </h2>
+          <div
             className="grid gap-4 md:grid-cols-3"
           >
             {gasTiers.map((tier) => (
-              <motion.button
+              <button
                 key={tier.name}
-                variants={fadeInUp}
                 onClick={() => setSelectedGas(tier.gwei)}
                 className={`rounded-xl border p-6 text-left transition-colors ${
                   selectedGas === tier.gwei
@@ -142,30 +117,27 @@ export default function GasTrackerPage() {
                   <span className={`text-sm font-medium ${tier.color}`}>{tier.name}</span>
                   <span className="text-xs text-[var(--color-text-muted)]">{tier.time}</span>
                 </div>
-                <div className="mt-2 text-3xl font-bold text-white">
+                <div className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
                   {tier.gwei} <span className="text-lg text-[var(--color-text-muted)]">Gwei</span>
                 </div>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">{tier.description}</p>
-              </motion.button>
+              </button>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="mt-4 text-center text-sm text-[var(--color-text-muted)]"
           >
             {isLoading ? (
               <span className="inline-flex items-center gap-2">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--color-warning)]" />
                 Loading live gas prices...
               </span>
             ) : (
               <span className="inline-flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                 </span>
                 Live data from{' '}
                 <a
@@ -178,25 +150,19 @@ export default function GasTrackerPage() {
                 </a>
               </span>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Transaction Cost Calculator */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-6 text-xl font-semibold text-white"
+          <h2
+            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
             Transaction Cost Estimator
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
+          </h2>
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
           >
             <div className="overflow-x-auto">
@@ -223,16 +189,16 @@ export default function GasTrackerPage() {
                     return (
                       <tr key={tx.name} className="hover:bg-[var(--bg)]/50">
                         <td className="px-4 py-3">
-                          <div className="font-medium text-white">{tx.name}</div>
+                          <div className="font-medium text-[var(--text-primary)]">{tx.name}</div>
                           <div className="text-xs text-[var(--color-text-muted)]">{tx.description}</div>
                         </td>
                         <td className="px-4 py-3 text-right font-mono text-sm text-[var(--color-text-muted)]">
                           {tx.gasLimit.toLocaleString()}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono text-sm text-white">
+                        <td className="px-4 py-3 text-right font-mono text-sm text-[var(--text-primary)]">
                           {costEtc}
                         </td>
-                        <td className="px-4 py-3 text-right font-mono text-sm text-green-400">
+                        <td className="px-4 py-3 text-right font-mono text-sm text-[var(--color-success)]">
                           ${costUsd}
                         </td>
                       </tr>
@@ -244,34 +210,31 @@ export default function GasTrackerPage() {
             <div className="border-t border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-xs text-[var(--color-text-muted)]">
               Costs calculated at {selectedGas} Gwei gas price and ${liveEtcPrice.toFixed(2)} ETC{' '}
               {etcPrice ? (
-                <span className="text-green-400">(live)</span>
+                <span className="text-[var(--color-success)]">(live)</span>
               ) : (
-                <span className="text-amber-400">(reference)</span>
+                <span className="text-[var(--color-warning)]">(reference)</span>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Gas Optimization Tips */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+          <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Gas Optimization Tips</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Gas Optimization Tips</h2>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-success-bg)] text-[var(--color-success)]">
+                  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Use Standard Gas</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Use Standard Gas</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     ETC has low network congestion. Standard gas usually confirms within a block.
                   </p>
@@ -279,12 +242,12 @@ export default function GasTrackerPage() {
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Batch Transactions</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Batch Transactions</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Combine multiple operations when possible to save on base transaction costs.
                   </p>
@@ -292,45 +255,42 @@ export default function GasTrackerPage() {
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Set Gas Limits Correctly</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Set Gas Limits Correctly</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Do not overset gas limits. Unused gas is refunded but wallet estimates can be high.
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-warning-bg)] text-[var(--color-warning)]">
+                  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-white">Verify Contract Interactions</h3>
+                  <h3 className="font-medium text-[var(--text-primary)]">Verify Contract Interactions</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
                     Review transaction details before confirming. Failed transactions still cost gas.
                   </p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ETC vs Other Networks */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
+          <div
             className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-white">Why ETC Gas is Cheap</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Why ETC Gas is Cheap</h2>
             <div className="grid gap-6 md:grid-cols-3">
               <div>
                 <div className="text-2xl font-bold text-[var(--color-primary)]">~$0.001</div>
@@ -349,17 +309,14 @@ export default function GasTrackerPage() {
               Ethereum Classic maintains low gas prices due to its efficient block production and lower network
               congestion compared to Ethereum. This makes ETC ideal for frequent transactions and DeFi activities.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Related Links */}
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="flex flex-wrap justify-center gap-4"
           >
             <Link
@@ -367,13 +324,13 @@ export default function GasTrackerPage() {
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
             >
               Block Explorers
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </Link>
             <Link
               href="/mining/stats"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Network Stats
             </Link>
@@ -381,14 +338,14 @@ export default function GasTrackerPage() {
               href="https://etc.blockscout.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--bg)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
             >
               Live Gas Data
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

@@ -13,8 +13,8 @@ import * as path from 'path'
 
 const BLOCKSCOUT_API_BASE = 'https://etc.blockscout.com/api/v2'
 
-// Cache duration: 24 hours to avoid rate limiting
-const CACHE_DURATION_MS = 24 * 60 * 60 * 1000
+// Cache duration: 10 minutes — fresh enough for countdown accuracy, good RPC citizenship
+const CACHE_DURATION_MS = 10 * 60 * 1000
 
 // Cache file path - stored in .next/cache for persistence
 const CACHE_DIR = path.join(process.cwd(), '.next', 'cache', 'blockscout')

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { motion } from 'framer-motion'
+import { FadeIn } from './ui'
 
 interface NewsletterProps {
   variant?: 'default' | 'compact' | 'inline'
@@ -25,13 +25,8 @@ export function Newsletter({ variant = 'default', showDescription = true, classN
 
     setStatus('loading')
 
-    // Simulate API call - replace with actual newsletter service integration
-    // Example services: Mailchimp, ConvertKit, Buttondown, etc.
     try {
-      // For now, we'll simulate a successful submission
-      // In production, this would POST to /api/newsletter or external service
       await new Promise(resolve => setTimeout(resolve, 1000))
-
       setStatus('success')
       setMessage('Thanks for subscribing! Check your email to confirm.')
       setEmail('')
@@ -49,13 +44,13 @@ export function Newsletter({ variant = 'default', showDescription = true, classN
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="flex-1 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
+          className="flex-1 rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] px-4 py-2 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] outline-none transition focus:border-[var(--brand-green)]"
           disabled={status === 'loading'}
         />
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-black transition hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
+          className="rounded-lg bg-[var(--brand-green)] px-4 py-2 text-sm font-medium text-[var(--background)] transition hover:bg-[var(--brand-green-hover)] disabled:opacity-50"
         >
           {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
         </button>
@@ -72,13 +67,13 @@ export function Newsletter({ variant = 'default', showDescription = true, classN
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
+            className="flex-1 rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] px-4 py-3 text-[var(--text-primary)] placeholder-[var(--text-muted)] outline-none transition focus:border-[var(--brand-green)]"
             disabled={status === 'loading'}
           />
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
+            className="rounded-xl bg-[var(--brand-green)] px-6 py-3 font-semibold text-[var(--background)] transition hover:bg-[var(--brand-green-hover)] disabled:opacity-50"
           >
             {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
           </button>
@@ -94,22 +89,17 @@ export function Newsletter({ variant = 'default', showDescription = true, classN
 
   // Default variant - full featured
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8 ${className}`}
-    >
+    <FadeIn className={`rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 md:p-8 ${className}`}>
       <div className="flex items-start gap-4">
-        <div className="rounded-xl bg-[var(--color-primary)]/10 p-3">
-          <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <div className="rounded-xl bg-[var(--brand-green)]/10 p-3">
+          <svg aria-hidden="true" className="h-6 w-6 text-[var(--brand-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
           </svg>
         </div>
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-white">Stay Updated</h3>
+          <h3 className="text-lg font-bold text-[var(--text-primary)]">Stay Updated</h3>
           {showDescription && (
-            <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+            <p className="mt-1 text-sm text-[var(--text-muted)]">
               Get the latest ETC news, network upgrades, and ecosystem updates delivered to your inbox.
             </p>
           )}
@@ -123,13 +113,13 @@ export function Newsletter({ variant = 'default', showDescription = true, classN
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
+            className="flex-1 rounded-xl border border-[var(--border-default)] bg-[var(--background)] px-4 py-3 text-[var(--text-primary)] placeholder-[var(--text-muted)] outline-none transition focus:border-[var(--brand-green)]"
             disabled={status === 'loading'}
           />
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
+            className="rounded-xl bg-[var(--brand-green)] px-6 py-3 font-semibold text-[var(--background)] transition hover:bg-[var(--brand-green-hover)] disabled:opacity-50"
           >
             {status === 'loading' ? (
               <span className="flex items-center gap-2">
@@ -146,20 +136,16 @@ export function Newsletter({ variant = 'default', showDescription = true, classN
         </div>
 
         {status !== 'idle' && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`mt-3 text-sm ${status === 'success' ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}
-          >
+          <p className={`mt-3 text-sm ${status === 'success' ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
             {message}
-          </motion.p>
+          </p>
         )}
 
-        <p className="mt-4 text-xs text-[var(--color-text-muted)]">
+        <p className="mt-4 text-xs text-[var(--text-muted)]">
           No spam, unsubscribe anytime. We respect your privacy.
         </p>
       </form>
-    </motion.div>
+    </FadeIn>
   )
 }
 
