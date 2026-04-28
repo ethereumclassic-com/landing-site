@@ -168,14 +168,17 @@ function HubCard({ hub, index }: { hub: Hub; index: number }) {
 
 export default function SiteHubGrid() {
   return (
-    <section className="bg-[var(--bg-elevated)]/40 px-6 py-16 md:px-10 md:py-20 lg:px-12">
+    <section className="px-6 py-16 md:px-10 md:py-20 lg:px-12">
       <div className="mx-auto max-w-6xl">
         <FadeIn className="mb-10">
-          <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--brand-green)]">
+            Ecosystem
+          </p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">
             Explore Ethereum Classic
           </h2>
-          <p className="mt-2 text-sm text-[var(--text-muted)]">
-            Everything across the ETC ecosystem — select a section to explore
+          <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+            Ethereum Classic has a complete, globally accessible ecosystem covering every layer — retail wallets, institutional custody, regulated investment products, DeFi apps, mining infrastructure, and developer tooling. A decade of uninterrupted operation makes it the most mature Proof-of-Work smart contract platform in existence. Select a section to go directly to what you&apos;re looking for.
           </p>
         </FadeIn>
 

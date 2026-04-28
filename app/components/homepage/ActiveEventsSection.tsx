@@ -78,7 +78,7 @@ export default function ActiveEventsSection() {
   } = useFifthing()
 
   return (
-    <section className="border-y border-[var(--border-default)] py-16 md:py-20">
+    <section className="bg-[var(--bg-elevated)]/40 py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <FadeIn>
           <p className="font-mono text-xs uppercase tracking-widest text-[var(--brand-green)]">

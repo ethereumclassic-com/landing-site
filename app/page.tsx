@@ -18,6 +18,7 @@ export default function Page() {
       <Hero />
       <NetworkOverviewSection />
       <NetworkArchitectureSection />
+      <SectionDivider />
       <RegulatoryOverviewSection />
       <SectionDivider />
       <ActiveEventsSection />
