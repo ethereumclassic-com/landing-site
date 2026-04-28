@@ -1,9 +1,31 @@
 'use client'
 
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import { FadeIn } from '@/app/components/ui'
 import { useOlympiaBlock } from '@/app/olympia/hooks/useOlympiaBlock'
 import { useFifthing } from '@/app/hooks/useFifthing'
+
+const OLYMPIA_PLACEHOLDER_DATE = new Date('2027-01-01T00:00:00Z')
+
+function getCountdownTo(target: Date) {
+  const diff = Math.max(0, target.getTime() - Date.now())
+  return {
+    days: Math.floor(diff / 86_400_000),
+    hours: Math.floor((diff % 86_400_000) / 3_600_000),
+    minutes: Math.floor((diff % 3_600_000) / 60_000),
+    seconds: Math.floor((diff % 60_000) / 1_000),
+  }
+}
+
+function usePlaceholderCountdown() {
+  const [cd, setCd] = useState(() => getCountdownTo(OLYMPIA_PLACEHOLDER_DATE))
+  useEffect(() => {
+    const id = setInterval(() => setCd(getCountdownTo(OLYMPIA_PLACEHOLDER_DATE)), 1000)
+    return () => clearInterval(id)
+  }, [])
+  return cd
+}
 
 function DigitBox({ value, label, loading }: { value: number; label: string; loading: boolean }) {
   return (
@@ -28,6 +50,8 @@ const fifthingPoints = [
 ]
 
 export default function ActiveEventsSection() {
+  const placeholderCd = usePlaceholderCountdown()
+
   const {
     status: olympiaStatus,
     loading: olympiaLoading,
@@ -100,25 +124,20 @@ export default function ActiveEventsSection() {
 
               {/* Olympia countdown */}
               <div className="mt-5">
-                {olympiaStatus === 'tbd' && (
-                  <div className="rounded-lg border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 px-3 py-2.5 text-xs text-[var(--text-muted)]">
-                    Activation block TBD — announced after the Olympia community developer calls.
-                  </div>
-                )}
                 {olympiaStatus === 'activated' && (
                   <div className="inline-flex items-center gap-2 rounded-lg border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-3 py-2">
                     <span className="text-sm font-semibold text-[var(--brand-green)]">✦ Olympia is Live</span>
                   </div>
                 )}
-                {olympiaStatus === 'pending' && (
+                {(olympiaStatus === 'tbd' || olympiaStatus === 'pending') && (
                   <div>
                     <div className="grid grid-cols-4 gap-2">
-                      <DigitBox value={olympiaCountdown?.days ?? 0} label="Days" loading={olympiaLoading} />
-                      <DigitBox value={olympiaCountdown?.hours ?? 0} label="Hours" loading={olympiaLoading} />
-                      <DigitBox value={olympiaCountdown?.minutes ?? 0} label="Min" loading={olympiaLoading} />
-                      <DigitBox value={olympiaCountdown?.seconds ?? 0} label="Sec" loading={olympiaLoading} />
+                      <DigitBox value={olympiaStatus === 'pending' ? (olympiaCountdown?.days ?? 0) : placeholderCd.days} label="Days" loading={olympiaLoading} />
+                      <DigitBox value={olympiaStatus === 'pending' ? (olympiaCountdown?.hours ?? 0) : placeholderCd.hours} label="Hours" loading={olympiaLoading} />
+                      <DigitBox value={olympiaStatus === 'pending' ? (olympiaCountdown?.minutes ?? 0) : placeholderCd.minutes} label="Min" loading={olympiaLoading} />
+                      <DigitBox value={olympiaStatus === 'pending' ? (olympiaCountdown?.seconds ?? 0) : placeholderCd.seconds} label="Sec" loading={olympiaLoading} />
                     </div>
-                    {olympiaBlocksRemaining !== null && (
+                    {olympiaStatus === 'pending' && olympiaBlocksRemaining !== null && (
                       <div className="mt-2.5">
                         <div className="h-1 overflow-hidden rounded-full bg-[var(--border-subtle)]">
                           <div
@@ -130,6 +149,11 @@ export default function ActiveEventsSection() {
                           {olympiaBlocksRemaining.toLocaleString()} blocks remaining
                         </p>
                       </div>
+                    )}
+                    {olympiaStatus === 'tbd' && (
+                      <p className="mt-1.5 text-xs text-[var(--text-muted)]">
+                        * Placeholder date — activation block announced after CDC community calls
+                      </p>
                     )}
                   </div>
                 )}
