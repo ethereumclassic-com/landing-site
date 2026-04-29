@@ -145,7 +145,7 @@ export function SiteFooter() {
 
       {/* Bottom Bar */}
       <div className="border-t border-[var(--border-default)]">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-4 px-6 py-6 md:grid-cols-3 md:px-10 lg:px-12">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-4 px-6 py-6 md:grid-cols-[1fr_2fr_1fr] md:px-10 lg:px-12">
           <p className="text-xs text-[var(--text-muted)]">
             © {new Date().getFullYear()}{' '}
             <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">

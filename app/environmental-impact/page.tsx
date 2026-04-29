@@ -1,250 +1,38 @@
-'use client'
+import type { Metadata } from 'next'
+import { EnergyHeroSection } from './components/EnergyHeroSection'
+import { POWEnergyEconomicsSection } from './components/POWEnergyEconomicsSection'
+import { ETCUniquePositionSection } from './components/ETCUniquePositionSection'
+import { StrandedEnergySection } from './components/StrandedEnergySection'
+import { ETCAsEnergyMarketSection } from './components/ETCAsEnergyMarketSection'
+import { MiningHardwareSection } from './components/MiningHardwareSection'
+import { GlobalHashrateSection } from './components/GlobalHashrateSection'
 
-import Link from 'next/link'
-
-const strandedUseCases = [
-  {
-    title: 'Remote Hydroelectric',
-    description:
-      'Mountain rivers and remote streams produce power with no transmission link to population centers. Mining hardware shipped to site earns revenue from day one, with no grid connection required.',
-    color: 'var(--color-info)',
-  },
-  {
-    title: 'Flared Gas / Wellhead Gas',
-    description:
-      'Associated gas at oil wells is routinely flared due to lack of pipelines. Containerized mining at the wellhead converts otherwise wasted BTUs into economic output while reducing methane emissions.',
-    color: 'var(--color-warning)',
-  },
-  {
-    title: 'Curtailed Wind and Solar',
-    description:
-      'Renewables regularly produce more power than grids can absorb. Mining provides elastic demand that absorbs curtailment, improving project economics and accelerating renewable deployment.',
-    color: 'var(--brand-green)',
-  },
-  {
-    title: 'Off-Peak Industrial Power',
-    description:
-      'Industrial facilities carry transmission fees for peak capacity 24/7. Mining during off-peak hours uses contracted-but-unused capacity, reducing effective energy costs.',
-    color: 'var(--color-purple)',
-  },
-  {
-    title: 'Landfill Gas',
-    description:
-      'Decomposing waste produces methane continuously. Mining at landfill sites monetizes gas that would otherwise be vented or burned, turning waste infrastructure into revenue-generating assets.',
-    color: 'var(--color-warning)',
-  },
-  {
-    title: 'Geothermal',
-    description:
-      'Geothermal resources in seismically active regions (Iceland, Kenya, Indonesia) often lack transmission to major markets. Proof-of-Work mining is the natural first customer.',
-    color: 'var(--color-info)',
-  },
-]
-
-const energyMechanics = [
-  {
-    label: 'When energy is cheap',
-    detail:
-      'Mining profitability rises, driving up hash rate and energy consumption. Stranded power finds a buyer.',
-  },
-  {
-    label: 'When energy is expensive',
-    detail:
-      'Miners curtail operations, freeing capacity for other uses. The network self-regulates without central coordination.',
-  },
-  {
-    label: '24/7 price discovery',
-    detail:
-      'With 300+ exchanges across every time zone, ETC markets never close (unlike energy futures, which halt on weekends).',
-  },
-  {
-    label: 'Local currency signals',
-    detail:
-      'Fiat pairs across 11 currencies let energy producers in any market price their output in local terms.',
-  },
-]
+export const metadata: Metadata = {
+  title: 'Environmental Impact & Energy Infrastructure — Ethereum Classic',
+  description:
+    'Ethereum Classic proof-of-work mining as programmable energy infrastructure. Stranded energy monetization, grid stabilization, methane conversion, and sustainable PoW economics.',
+  keywords: [
+    'ETC mining energy',
+    'stranded energy crypto',
+    'proof of work sustainability',
+    'ETChash energy infrastructure',
+    'grid stabilization mining',
+    'methane conversion mining',
+    'sustainable proof of work',
+    'Ethereum Classic environmental impact',
+  ],
+}
 
 export default function EnvironmentalImpactPage() {
   return (
-    <main className="min-h-screen">
-      {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/8 blur-[100px]" />
-        </div>
-
-        <div
-          className="relative mx-auto max-w-4xl text-center"
-        >
-          <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
-              Energy &amp; Sustainability
-            </span>
-          </div>
-
-          <h1
-            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
-          >
-            Proof-of-Work as{' '}
-            <span className="bg-gradient-to-r from-[var(--brand-green)] to-[var(--color-success)] bg-clip-text text-transparent">
-              Energy Infrastructure
-            </span>
-          </h1>
-
-          <p
-            className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
-          >
-            Mining is not waste. It is programmable demand. Ethereum Classic&apos;s Proof-of-Work
-            network functions as a global, 24/7, permissionless buyer of last resort for stranded
-            and excess energy worldwide.
-          </p>
-
-          <div
-            className="mt-8 grid gap-4 sm:grid-cols-3"
-          >
-            {[
-              { value: 'Largest PoW', label: 'with native smart contracts', detail: 'Full Solidity EVM on PoW consensus' },
-              { value: '24/7', label: 'Global energy demand signal', detail: 'Continuous, permissionless, every time zone' },
-              { value: 'Any Scale', label: 'Stranded energy monetization', detail: 'Retail GPU through institutional ASIC' },
-            ].map((stat) => (
-              <div
-                key={stat.value}
-                className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
-              >
-                <p className="text-xl font-bold text-[var(--text-primary)]">{stat.value}</p>
-                <p className="mt-0.5 text-xs font-medium text-[var(--brand-green)]">{stat.label}</p>
-                <p className="mt-1 text-xs text-[var(--color-text-muted)]">{stat.detail}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stranded Energy Use Cases */}
-      <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div
-          >
-            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
-              Stranded Energy: The Global Opportunity
-            </h2>
-            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Proof-of-Work mining is one of the few industries that can physically relocate to
-              where energy is wasted. Remote hydro with no transmission line, gas that would be
-              flared at the wellhead, renewables that overproduce at night: PoW mining converts all
-              of it into economic output.
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {strandedUseCases.map((useCase) => (
-                <div
-                  key={useCase.title}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/20"
-                >
-                  <div className="mb-3 h-0.5 w-8 rounded-full" style={{ backgroundColor: useCase.color }} />
-                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">{useCase.title}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">
-                    {useCase.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ETC as Energy Market */}
-      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div
-          >
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--brand-green)]">
-                Price Discovery
-              </span>
-            </div>
-            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
-              ETC/USD: A Global 24/7 Energy Proxy
-            </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
-              Mining profitability is a direct function of ETC price, block reward, and energy
-              cost. ETC financial markets are therefore a continuous, real-time signal about energy
-              value worldwide: the first always-open, globally accessible energy commodity market.
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {energyMechanics.map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-5"
-                >
-                  <p className="text-sm font-semibold text-[var(--text-primary)]">{item.label}</p>
-                  <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">{item.detail}</p>
-                </div>
-              ))}
-            </div>
-
-            <div
-              className="mt-8 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-6 text-sm text-[var(--color-text-secondary)]"
-            >
-              <span className="font-semibold text-[var(--text-primary)]">Historical context: </span>
-              ETC/USD spot markets have operated continuously since 2016, making them one of the
-              longest-running fiat price discovery mechanisms in the asset class. As global energy
-              markets mature toward 24/7 marginal-cost pricing, Proof-of-Work networks represent
-              the first fully liquid, globally accessible, always-open energy commodity market.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Documentary + CTA */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-4xl">
-          <div
-          >
-            <div
-              className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
-            >
-              <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
-                Featured Documentary
-              </p>
-              <p className="mt-2 text-lg font-semibold text-[var(--text-primary)]">
-                Dirty Coin: The Bitcoin Mining Documentary
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                69 minutes. Filmed over three years across four continents, from rural Texas to the
-                mountains of Malawi. Director Alana Mediavilla documents how Proof-of-Work mining
-                is reshaping energy economics and creating socio-economic opportunity in communities
-                that the traditional grid has never reached. Winner, Best National Documentary,
-                Puerto Rico Film Festival 2025.
-              </p>
-              <a
-                href="https://www.dirtycointhemovie.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-block text-sm font-medium text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
-              >
-                dirtycointhemovie.com →
-              </a>
-            </div>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/regulation"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90"
-              >
-                Regulatory Framework
-              </Link>
-              <Link
-                href="/investment-products"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)]"
-              >
-                Investment Products
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+    <main>
+      <EnergyHeroSection />
+      <POWEnergyEconomicsSection />
+      <ETCUniquePositionSection />
+      <StrandedEnergySection />
+      <ETCAsEnergyMarketSection />
+      <MiningHardwareSection />
+      <GlobalHashrateSection />
     </main>
   )
 }
