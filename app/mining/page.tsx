@@ -10,6 +10,7 @@ import { MiningEquipmentSection } from './components/MiningEquipmentSection'
 import { MiningPoolsSection } from './components/MiningPoolsSection'
 import { FeeMarketCallout } from './components/FeeMarketCallout'
 import { fetchMiningNetworkStats } from '@/lib/etc-rpc'
+import { fetchHashrateTHs } from '@/lib/hashrate'
 import {
   miningPools,
   getRecommendedPools,
@@ -23,8 +24,9 @@ function getBlockReward(blockHeight: number): string {
 }
 
 export default async function MiningPage() {
-  const [stats, recommendedPools] = await Promise.all([
+  const [stats, hashrateTHs, recommendedPools] = await Promise.all([
     fetchMiningNetworkStats(),
+    fetchHashrateTHs(),
     Promise.resolve(getRecommendedPools()),
   ])
 
@@ -80,7 +82,7 @@ export default async function MiningPage() {
           {/* Live network stat cards */}
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {[
-              { label: 'Hashrate', value: stats.hashrateFormatted, live: true },
+              { label: 'Hashrate', value: `${hashrateTHs.toFixed(2)} TH/s`, live: true },
               { label: 'Difficulty', value: stats.difficultyFormatted, live: true },
               { label: 'Block Time', value: stats.blockTimeFormatted, live: true },
               { label: 'Block Reward', value: getBlockReward(stats.blockHeight), live: true },

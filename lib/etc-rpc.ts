@@ -16,8 +16,8 @@ const RPC_ENDPOINTS = [
   'https://besu-at.etc-network.info',
 ]
 
-// Cache duration: 24 hours to avoid rate limiting
-const CACHE_DURATION_MS = 24 * 60 * 60 * 1000
+// Cache duration: 1 hour — matches ISR revalidation interval
+const CACHE_DURATION_MS = 60 * 60 * 1000
 
 // Cache file path
 const CACHE_DIR = path.join(process.cwd(), '.next', 'cache', 'etc-rpc')
