@@ -114,7 +114,7 @@ export default async function MiningPage() {
       {/* New sections */}
       <NetworkConfigSection />
       <ClientImplementationsSection />
-      <MiningOverviewSection />
+      <MiningOverviewSection hashrateTHs={hashrateTHs} />
       <MiningEquipmentSection />
       <MiningPoolsSection />
 

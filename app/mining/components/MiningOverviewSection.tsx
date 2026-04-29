@@ -1,10 +1,10 @@
 import { FadeIn } from '@/app/components/ui'
-import HashrateChart from '@/app/components/homepage/HashrateChart'
-import { fetchHashrateTHs } from '@/lib/hashrate'
 
-export async function MiningOverviewSection() {
-  const hashrateTHs = await fetchHashrateTHs()
+interface MiningOverviewSectionProps {
+  hashrateTHs: number
+}
 
+export function MiningOverviewSection({ hashrateTHs }: MiningOverviewSectionProps) {
   const stats = [
     { value: hashrateTHs.toFixed(1), unit: 'TH/s', label: 'Network Hashrate' },
     { value: 'ETChash', label: 'Mining Algorithm' },
@@ -66,10 +66,6 @@ export async function MiningOverviewSection() {
           </div>
         </FadeIn>
 
-        {/* Hashrate chart */}
-        <FadeIn delay={380}>
-          <HashrateChart />
-        </FadeIn>
       </div>
     </section>
   )
