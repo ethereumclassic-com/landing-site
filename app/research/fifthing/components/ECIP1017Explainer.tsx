@@ -80,7 +80,7 @@ export default function ECIP1017Explainer() {
                 { metric: 'Reward reduction', etc: '20% (×0.8)', btc: '50% (×0.5)' },
                 { metric: 'Era / cycle length', etc: '5,000,000 blocks (~2–2.5 yrs)', btc: '210,000 blocks (~4 yrs)' },
                 { metric: 'Starting reward', etc: '5 ETC (Era 1)', btc: '50 BTC (Cycle 1)' },
-                { metric: 'Genesis / pre-mine', etc: '72,009,990 ETC (ETH fork)', btc: 'None' },
+                { metric: 'Genesis / pre-mine', etc: '72,009,990 ETC (ETH Foundation ICO*)', btc: 'None' },
                 { metric: 'Max supply (est.)', etc: '~199–210M ETC', btc: '21,000,000 BTC' },
                 { metric: 'Mechanism', etc: 'Geometric decay at era boundary', btc: 'Integer halving at cycle boundary' },
                 { metric: 'Event name', etc: 'Fifthing (20% = 1/5th reduction)', btc: 'Halving (50% = 1/2 reduction)' },
@@ -94,6 +94,9 @@ export default function ECIP1017Explainer() {
             </tbody>
           </table>
         </div>
+        <p className="mt-4 text-xs text-[var(--text-muted)]">
+          * ICO funds were weaponized against ETC in the 2016 fork, where large quantities of ETC were market sold on the open market to kill its price. ETC survived and the ICO funds were decentralized to the open market.
+        </p>
       </div>
     </div>
   )

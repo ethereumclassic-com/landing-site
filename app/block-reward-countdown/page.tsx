@@ -9,6 +9,8 @@ import {
   getDaysSinceLastFifthing,
 } from '@/app/research/fifthing/data/fifthingChartData'
 import BlockRewardCountdownClient, { type InitialFifthingData } from './BlockRewardCountdownClient'
+import ECIP1017Explainer from '@/app/research/fifthing/components/ECIP1017Explainer'
+import RelatedLinks from '@/app/research/fifthing/components/RelatedLinks'
 
 export const revalidate = 600
 
@@ -34,6 +36,7 @@ export default async function BlockRewardCountdownPage() {
     daysSinceLastFifthing: getDaysSinceLastFifthing(currentBlock),
     inflationRate: getAnnualInflationRate(currentBlock),
     nextInflationRate: getNextEraInflationRate(currentBlock),
+    progress: supply.percentThroughEra,
   }
 
   return (
@@ -67,7 +70,7 @@ export default async function BlockRewardCountdownPage() {
       {/* Countdown card + stats strip — client shell for live updates */}
       <BlockRewardCountdownClient initial={initial} />
 
-      {/* Explainer — pure static content for SEO */}
+      {/* What is a Fifthing? — pure static content for SEO */}
       <FadeIn delay={150}>
         <section className="px-6 pb-10 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
@@ -125,6 +128,25 @@ export default async function BlockRewardCountdownPage() {
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* What is ECIP-1017? + ETC Fifthing vs. BTC Halving */}
+      <FadeIn delay={170}>
+        <section className="px-6 pb-10 md:px-10 lg:px-12">
+          <div className="mx-auto max-w-6xl">
+            <ECIP1017Explainer />
+          </div>
+        </section>
+      </FadeIn>
+
+      {/* Related */}
+      <FadeIn delay={180}>
+        <section className="px-6 pb-10 md:px-10 lg:px-12">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="mb-4 text-xl font-semibold text-[var(--text-primary)]">Related</h2>
+            <RelatedLinks />
           </div>
         </section>
       </FadeIn>
