@@ -8,15 +8,24 @@ import { MiningOverviewSection } from './components/MiningOverviewSection'
 import { MiningEquipmentSection } from './components/MiningEquipmentSection'
 import { MiningPoolsSection } from './components/MiningPoolsSection'
 import { FeeMarketCallout } from './components/FeeMarketCallout'
+import { fetchMiningNetworkStats } from '@/lib/etc-rpc'
 import {
   miningPools,
-  networkStats,
   getRecommendedPools,
   miningResources,
 } from './data/mining'
 
+function getBlockReward(blockHeight: number): string {
+  const era = Math.floor(blockHeight / 5_000_000)
+  const reward = 5 * Math.pow(0.8, era)
+  return `${reward.toFixed(3)} ETC`
+}
+
 export default async function MiningPage() {
-  const recommendedPools = getRecommendedPools()
+  const [stats, recommendedPools] = await Promise.all([
+    fetchMiningNetworkStats(),
+    Promise.resolve(getRecommendedPools()),
+  ])
 
   return (
     <main className="min-h-screen">
@@ -37,10 +46,8 @@ export default async function MiningPage() {
           </div>
 
           <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
-            Mine{' '}
-            <span className="bg-gradient-to-r from-[var(--brand-green)] to-emerald-300 bg-clip-text text-transparent">
-              Ethereum Classic
-            </span>
+            <span className="text-[var(--brand-green)]">Mine</span>{' '}
+            Ethereum Classic
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--text-secondary)]">
@@ -78,9 +85,9 @@ export default async function MiningPage() {
       <section className="px-6 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <HashRateBar
-            hashrate={networkStats.hashrate}
-            difficulty={networkStats.difficulty}
-            blockTime={networkStats.blockTime}
+            hashrate={stats.hashrateFormatted}
+            difficulty={stats.difficultyFormatted}
+            blockTime={stats.blockTimeFormatted}
           />
         </div>
       </section>
@@ -91,7 +98,7 @@ export default async function MiningPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <MiningStat
               label="Block Reward"
-              value={networkStats.blockReward}
+              value={getBlockReward(stats.blockHeight)}
               highlight
               icon={
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--brand-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -101,7 +108,7 @@ export default async function MiningPage() {
             />
             <MiningStat
               label="Daily Blocks"
-              value={networkStats.dailyBlocks.toLocaleString()}
+              value={Math.round(86400 / stats.blockTime).toLocaleString()}
               icon={
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />

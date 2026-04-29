@@ -4,7 +4,15 @@ import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui'
 import HashrateChart from './HashrateChart'
 
-export default function Hero() {
+interface HeroMiningStats {
+  hashrate: string
+  difficulty: string
+  blockTime: string
+  blockReward: string
+  dailyBlocks: string
+}
+
+export default function Hero({ miningStats }: { miningStats?: HeroMiningStats }) {
   return (
     <section className="hero-gradient noise-overlay grid-overlay relative overflow-hidden px-6 pb-24 pt-6 md:px-10 md:pb-32 md:pt-8 lg:px-12 lg:pb-40 lg:pt-10">
       <FadeIn className="relative mx-auto max-w-4xl text-center">
@@ -53,6 +61,27 @@ export default function Hero() {
         <p className="mx-auto mt-6 max-w-4xl text-lg text-[var(--text-secondary)] md:text-xl">
           Ethereum Classic is immutable infrastructure for global finance. The only mature Proof-of-Work blockchain with native smart contracts — permissionless, censorship-resistant, and secured by dedicated mining infrastructure operating continuously since 2015.
         </p>
+
+        {/* Live network stat cards */}
+        {miningStats && (
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              { label: 'Hashrate', value: miningStats.hashrate },
+              { label: 'Difficulty', value: miningStats.difficulty },
+              { label: 'Block Time', value: miningStats.blockTime },
+              { label: 'Block Reward', value: miningStats.blockReward },
+              { label: 'Daily Blocks', value: miningStats.dailyBlocks },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)]/60 px-4 py-3 backdrop-blur-sm"
+              >
+                <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-subtle)]">{stat.label}</p>
+                <p className="mt-1 text-base font-bold text-[var(--brand-green)]">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Hashrate chart */}
         <HashrateChart />

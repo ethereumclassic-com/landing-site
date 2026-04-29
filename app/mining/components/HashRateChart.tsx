@@ -167,27 +167,27 @@ interface HashRateBarProps {
 
 export function HashRateBar({ hashrate, difficulty, blockTime, className = '' }: HashRateBarProps) {
   return (
-    <div className={`rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 ${className}`}>
+    <div className={`rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4 ${className}`}>
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
-            <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--brand-green)]/10">
+            <svg aria-hidden="true" className="h-5 w-5 text-[var(--brand-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
             </svg>
           </div>
           <div>
-            <p className="text-sm text-[var(--color-text-muted)]">Network Hashrate</p>
+            <p className="text-sm text-[var(--text-muted)]">Network Hashrate</p>
             <p className="text-lg font-bold text-[var(--text-primary)]">{hashrate}</p>
           </div>
         </div>
-        <div className="hidden h-8 w-px bg-[var(--border)] sm:block" />
+        <div className="hidden h-8 w-px bg-[var(--border-default)] sm:block" />
         <div className="hidden sm:block">
-          <p className="text-sm text-[var(--color-text-muted)]">Difficulty</p>
+          <p className="text-sm text-[var(--text-muted)]">Difficulty</p>
           <p className="font-semibold text-[var(--text-primary)]">{difficulty}</p>
         </div>
-        <div className="hidden h-8 w-px bg-[var(--border)] md:block" />
+        <div className="hidden h-8 w-px bg-[var(--border-default)] md:block" />
         <div className="hidden md:block">
-          <p className="text-sm text-[var(--color-text-muted)]">Block Time</p>
+          <p className="text-sm text-[var(--text-muted)]">Block Time</p>
           <p className="font-semibold text-[var(--text-primary)]">{blockTime}</p>
         </div>
       </div>
@@ -211,18 +211,18 @@ export function MiningStat({ label, value, icon, highlight = false }: MiningStat
       viewport={{ once: true }}
       className={`rounded-xl border p-4 ${
         highlight
-          ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
-          : 'border-[var(--border)] bg-[var(--panel)]'
+          ? 'border-[var(--brand-green)]/30 bg-[var(--brand-green)]/5'
+          : 'border-[var(--border-default)] bg-[var(--bg-elevated)]'
       }`}
     >
       <div className="flex items-center gap-3">
         <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${
-          highlight ? 'bg-[var(--color-primary)]/20' : 'bg-[var(--bg)]'
+          highlight ? 'bg-[var(--brand-green)]/20' : 'bg-[var(--background)]'
         }`}>
           {icon}
         </div>
         <div>
-          <p className="text-sm text-[var(--color-text-muted)]">{label}</p>
+          <p className="text-sm text-[var(--text-muted)]">{label}</p>
           <p className="text-lg font-bold text-[var(--text-primary)]">{value}</p>
         </div>
       </div>
