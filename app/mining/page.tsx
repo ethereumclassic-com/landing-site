@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import PoolCard from './components/PoolCard'
-import HashRateChart, { HashRateBar, MiningStat } from './components/HashRateChart'
+import HashRateChart from './components/HashRateChart'
+import HashrateChart from '@/app/components/homepage/HashrateChart'
 import FifthingCountdown from '@/app/components/FifthingCountdown'
 import { NetworkConfigSection } from './components/NetworkConfigSection'
 import { ClientImplementationsSection } from './components/ClientImplementationsSection'
@@ -30,18 +31,15 @@ export default async function MiningPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/10 blur-[100px]" />
-        </div>
-
+      <section className="hero-gradient noise-overlay grid-overlay relative overflow-hidden px-6 pb-16 pt-6 md:px-10 md:pb-24 md:pt-8 lg:px-12 lg:pb-32 lg:pt-10">
         <div className="relative mx-auto max-w-4xl text-center">
           <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
-              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
-              Proof of Work
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/10 px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand-green)]" />
+              </span>
+              Proof of Work · ETChash
             </span>
           </div>
 
@@ -78,62 +76,36 @@ export default async function MiningPage() {
               Hardware Guide
             </Link>
           </div>
-        </div>
-      </section>
 
-      {/* Network Stats Bar */}
-      <section className="px-6 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <HashRateBar
-            hashrate={stats.hashrateFormatted}
-            difficulty={stats.difficultyFormatted}
-            blockTime={stats.blockTimeFormatted}
-          />
-        </div>
-      </section>
-
-      {/* Mining Stats Grid */}
-      <section className="px-6 py-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <MiningStat
-              label="Block Reward"
-              value={getBlockReward(stats.blockHeight)}
-              highlight
-              icon={
-                <svg aria-hidden="true" className="h-5 w-5 text-[var(--brand-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-                </svg>
-              }
-            />
-            <MiningStat
-              label="Daily Blocks"
-              value={Math.round(86400 / stats.blockTime).toLocaleString()}
-              icon={
-                <svg aria-hidden="true" className="h-5 w-5 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                </svg>
-              }
-            />
-            <MiningStat
-              label="Algorithm"
-              value="ETChash"
-              icon={
-                <svg aria-hidden="true" className="h-5 w-5 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" />
-                </svg>
-              }
-            />
-            <MiningStat
-              label="Hardware"
-              value="GPU & ASIC"
-              icon={
-                <svg aria-hidden="true" className="h-5 w-5 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
-                </svg>
-              }
-            />
+          {/* Live network stat cards */}
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              { label: 'Hashrate', value: stats.hashrateFormatted, live: true },
+              { label: 'Difficulty', value: stats.difficultyFormatted, live: true },
+              { label: 'Block Time', value: stats.blockTimeFormatted, live: true },
+              { label: 'Block Reward', value: getBlockReward(stats.blockHeight), live: true },
+              { label: 'Daily Blocks', value: Math.round(86400 / stats.blockTime).toLocaleString(), live: true },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)]/60 px-4 py-3 backdrop-blur-sm"
+              >
+                <div className="flex items-center gap-1.5">
+                  <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-subtle)]">{stat.label}</p>
+                  {stat.live && (
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--brand-green)]" />
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 text-base font-bold text-[var(--brand-green)]">{stat.value}</p>
+              </div>
+            ))}
           </div>
+
+          {/* Hashrate chart */}
+          <HashrateChart />
         </div>
       </section>
 
