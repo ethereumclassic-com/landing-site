@@ -64,7 +64,9 @@ export interface SupplyStats {
  */
 export function getBlockRewardForEra(era: number): number {
   if (era < 1) return 0
-  return EMISSION_CONSTANTS.STARTING_REWARD * Math.pow(EMISSION_CONSTANTS.RETENTION_RATE, era - 1)
+  const raw = EMISSION_CONSTANTS.STARTING_REWARD * Math.pow(EMISSION_CONSTANTS.RETENTION_RATE, era - 1)
+  // Round to 10 decimal places to strip binary float noise (e.g. 1.6384000000000003 → 1.6384)
+  return parseFloat(raw.toFixed(10))
 }
 
 /**
@@ -188,11 +190,7 @@ export function formatSupply(amount: number, decimals: number = 2): string {
  * Format block reward with appropriate precision
  */
 export function formatBlockReward(reward: number): string {
-  if (reward >= 1) {
-    return reward.toFixed(3)
-  }
-  // For very small rewards in late eras
-  return reward.toFixed(6)
+  return parseFloat(reward.toFixed(10)).toString()
 }
 
 /**

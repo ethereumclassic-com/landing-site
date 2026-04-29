@@ -1,8 +1,8 @@
 // ETC network hashrate — current value + multi-timeframe history
 // ISR: revalidates at most once per hour
 // Sources:
-//   Current:  2miners /api/stats → nodes[0].networkhashps (H/s)
-//   History:  Blockscout /api/v2/blocks/{height} → difficulty / avg_block_time → TH/s
+//   Current:  Blockscout /api/v2/blocks/{height} → difficulty / avg_block_time → TH/s
+//   History:  same formula, sampled across NUM_POINTS evenly-spaced blocks
 
 const BLOCKSCOUT = 'https://etc.blockscout.com/api/v2'
 const ETC_AVG_BLOCK_TIME_S = 13
@@ -17,10 +17,6 @@ export interface HashratePoint {
 }
 
 export type HashrateHistories = Record<TimePeriod, HashratePoint[]>
-
-interface TwoMinersStats {
-  nodes: Array<{ networkhashps: string }>
-}
 
 interface BlockscoutBlock {
   difficulty: string
@@ -52,12 +48,16 @@ function formatLabel(isoTimestamp: string, period: TimePeriod): string {
 
 export async function fetchHashrateTHs(): Promise<number> {
   try {
-    const res = await fetch('https://etc.2miners.com/api/stats', { next: { revalidate: 3600 } })
-    if (!res.ok) throw new Error(`2miners ${res.status}`)
-    const data: TwoMinersStats = await res.json()
-    const hps = parseFloat(data.nodes?.[0]?.networkhashps ?? '0')
-    if (!hps) throw new Error('no data')
-    return Math.round((hps / 1e12) * 10) / 10
+    const statsRes = await fetch(`${BLOCKSCOUT}/stats`, { next: { revalidate: 3600 } })
+    if (!statsRes.ok) throw new Error(`stats ${statsRes.status}`)
+    const stats: BlockscoutStats = await statsRes.json()
+    const currentHeight = parseInt(stats.total_blocks, 10)
+    if (!currentHeight) throw new Error('no height')
+    const block = await fetchBlock(currentHeight)
+    if (!block) throw new Error('no block')
+    const difficulty = parseFloat(block.difficulty)
+    if (!difficulty) throw new Error('no difficulty')
+    return Math.round((difficulty / ETC_AVG_BLOCK_TIME_S / 1e12) * 10) / 10
   } catch {
     return FALLBACK_THS
   }

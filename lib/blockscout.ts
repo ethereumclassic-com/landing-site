@@ -4,7 +4,7 @@
  *
  * API Docs: https://etc.blockscout.com/api-docs
  *
- * Cache Strategy: 24-hour file-based cache to minimize API calls
+ * Cache Strategy: 10-minute file-based cache to minimize API calls
  * and avoid rate limiting from Blockscout
  */
 

@@ -2,15 +2,18 @@
 
 import Link from 'next/link'
 import { FadeIn } from './ui/FadeIn'
-import { useFifthing } from '@/app/hooks/useFifthing'
-import { getAnnualInflationRate } from '@/app/research/fifthing/data/fifthingChartData'
+import { useFifthing, type UseFifthingReturn } from '@/app/hooks/useFifthing'
+import { useNetworkStats } from '@/app/hooks/useNetworkStats'
+import { getAnnualInflationRate, getNextEraInflationRate } from '@/app/research/fifthing/data/fifthingChartData'
+import { formatBlockReward } from '@/app/research/data/emission'
 
 function fmt(reward: number | null): string {
-  return reward != null ? reward.toFixed(4) : '…'
+  return reward != null ? formatBlockReward(reward) : '…'
 }
 
 interface FifthingCountdownProps {
   variant?: 'card' | 'banner'
+  data?: UseFifthingReturn & { avgBlockTime?: number | null }
 }
 
 function DigitBox({ value, label, loading }: { value: number; label: string; loading: boolean }) {
@@ -63,7 +66,10 @@ function CompleteState({
   )
 }
 
-export default function FifthingCountdown({ variant = 'card' }: FifthingCountdownProps) {
+export default function FifthingCountdown({ variant = 'card', data }: FifthingCountdownProps) {
+  const internal = useFifthing()
+  const { stats: networkStats } = useNetworkStats({ refreshInterval: 300_000 })
+
   const {
     status,
     loading,
@@ -76,10 +82,12 @@ export default function FifthingCountdown({ variant = 'card' }: FifthingCountdow
     nextReward,
     currentEra,
     nextEra,
-  } = useFifthing()
+  } = data ?? internal
+
+  const avgBlockTime = data?.avgBlockTime ?? networkStats?.avgBlockTime ?? null
 
   const inflationRate = currentBlock != null ? getAnnualInflationRate(currentBlock) : null
-  const nextInflationRate = targetBlock != null ? getAnnualInflationRate(targetBlock + 1) : null
+  const nextInflationRate = currentBlock != null ? getNextEraInflationRate(currentBlock) : null
 
   if (status === 'complete') {
     return <CompleteState variant={variant} currentEra={currentEra} nextReward={nextReward} />
@@ -128,10 +136,20 @@ export default function FifthingCountdown({ variant = 'card' }: FifthingCountdow
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--brand-green)]" />
               </span>
               <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--brand-green)]">
-                Era {currentEra ?? '…'} → Era {nextEra ?? '…'} Fifthing
+                Fifthing Era {currentEra ?? '…'} → Era {nextEra ?? '…'}
               </h2>
             </div>
             <p className="mt-1 text-xs text-[var(--text-muted)]">
+              Current Block:{' '}
+              <span className="font-mono">{loading ? '…' : (currentBlock?.toLocaleString() ?? '…')}</span>
+            </p>
+          </div>
+          {/* −20% badge + target block */}
+          <div className="flex flex-col items-end gap-1">
+            <span className="rounded-full bg-[var(--color-warning-bg)] px-2.5 py-1 text-xs font-medium text-[var(--color-warning)]">
+              20% Block Reward Reduction
+            </span>
+            <p className="text-xs text-[var(--text-muted)]">
               Block {targetBlock?.toLocaleString() ?? '…'} ·{' '}
               <a
                 href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017"
@@ -143,10 +161,6 @@ export default function FifthingCountdown({ variant = 'card' }: FifthingCountdow
               </a>
             </p>
           </div>
-          {/* −20% badge */}
-          <span className="rounded-full bg-[var(--color-warning-bg)] px-2.5 py-1 text-xs font-medium text-[var(--color-warning)]">
-            20% Block Reward Reduction
-          </span>
         </div>
 
         {/* Reward transition — two columns with inflation badges beneath each */}
@@ -209,26 +223,50 @@ export default function FifthingCountdown({ variant = 'card' }: FifthingCountdow
           </div>
         </div>
 
-        <Link
-          href="/research/emission-schedule"
-          className="mt-4 inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)] transition-colors hover:text-[var(--brand-green)]"
-        >
-          View full emission schedule
-          <svg
-            aria-hidden="true"
-            className="h-3 w-3"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link
+            href="/research/emission-schedule"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-4 py-2 text-sm font-medium text-[var(--brand-green)] transition-colors hover:bg-[var(--brand-green)]/20"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-        </Link>
+            View full emission schedule
+            <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+          <a
+            href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
+          >
+            Read ECIP-1017
+            <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+          </a>
+        </div>
+
+        {/* Attribution row */}
+        <div className="mt-4 grid gap-1 border-t border-[var(--border-subtle)] pt-4 text-[10px] text-[var(--text-muted)] sm:grid-cols-3">
+          <p>
+            Expected date estimated at{' '}
+            {avgBlockTime != null ? `${avgBlockTime.toFixed(1)}s` : '13s'} avg block time
+          </p>
+          <div className="sm:text-center">
+            <p>All supply figures exclude uncle rewards.</p>
+          </div>
+          <p className="sm:text-right">
+            Data source:{' '}
+            <a
+              href="https://etc.blockscout.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-[var(--text-primary)]"
+            >
+              Blockscout
+            </a>
+          </p>
+        </div>
       </div>
     </FadeIn>
   )

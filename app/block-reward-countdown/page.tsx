@@ -1,143 +1,76 @@
-'use client'
-
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui/FadeIn'
-import FifthingCountdown from '@/app/components/FifthingCountdown'
-import { useFifthing } from '@/app/hooks/useFifthing'
+import { fetchNetworkStats } from '@/lib/blockscout'
+import { calculateSupplyStats, EMISSION_CONSTANTS } from '@/app/research/data/emission'
 import {
   getExpectedFifthingDate,
   getAnnualInflationRate,
+  getNextEraInflationRate,
   getDaysSinceLastFifthing,
 } from '@/app/research/fifthing/data/fifthingChartData'
+import BlockRewardCountdownClient, { type InitialFifthingData } from './BlockRewardCountdownClient'
 
-function StatCell({
-  label,
-  value,
-  loading,
-  sub,
-}: {
-  label: string
-  value: string
-  loading?: boolean
-  sub?: string
-}) {
-  return (
-    <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4">
-      <p className="text-xs text-[var(--text-muted)]">{label}</p>
-      {loading ? (
-        <div className="mt-2 h-5 w-20 animate-pulse rounded bg-[var(--border-subtle)]" />
-      ) : (
-        <p className="mt-1 font-mono text-base font-semibold text-[var(--text-primary)]">{value}</p>
-      )}
-      {sub && <p className="mt-0.5 text-xs text-[var(--text-muted)]">{sub}</p>}
-    </div>
-  )
-}
+export const revalidate = 600
 
-export default function BlockRewardCountdownPage() {
-  const {
-    status,
+export default async function BlockRewardCountdownPage() {
+  const networkStats = await fetchNetworkStats()
+  const currentBlock = networkStats?.totalBlocks ?? 21_000_000
+
+  const supply = calculateSupplyStats(currentBlock)
+  const currentEra = supply.currentEra
+  const nextEra = currentEra + 1
+  const targetBlock = currentEra * EMISSION_CONSTANTS.ERA_LENGTH
+  const blocksRemaining = supply.blocksUntilNextEra
+
+  const initial: InitialFifthingData = {
     currentBlock,
     currentEra,
     nextEra,
     targetBlock,
     blocksRemaining,
-    currentReward,
-    nextReward,
-    loading,
-  } = useFifthing()
-
-  const expectedDate = getExpectedFifthingDate(blocksRemaining)
-  const daysSinceLastFifthing = currentBlock ? getDaysSinceLastFifthing(currentBlock) : null
-  const inflationRate = currentBlock ? getAnnualInflationRate(currentBlock) : null
+    currentReward: supply.currentBlockReward,
+    nextReward: supply.nextEraReward,
+    expectedDate: getExpectedFifthingDate(blocksRemaining),
+    daysSinceLastFifthing: getDaysSinceLastFifthing(currentBlock),
+    inflationRate: getAnnualInflationRate(currentBlock),
+    nextInflationRate: getNextEraInflationRate(currentBlock),
+  }
 
   return (
-    <main className="min-h-screen bg-[var(--background)] pb-16 pt-24">
-      {/* Hero heading */}
+    <main className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
+
+      {/* Hero heading — server-rendered for SEO */}
       <FadeIn>
         <section className="px-6 pb-8 pt-4 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-3 inline-flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--brand-green)]" />
-              </span>
-              <span className="text-xs font-medium uppercase tracking-widest text-[var(--brand-green)]">
+          <div className="mx-auto max-w-6xl text-center">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
+              Ethereum Classic
+              <br />
+              <span className="text-[var(--brand-green)]">Block Reward</span> Reduction
+            </h1>
+            <p className="mt-4 text-lg text-[var(--text-secondary)] md:text-xl">
+              Emission Fifthing: Era {currentEra} → Era {nextEra}
+            </p>
+            <div className="mt-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/10 px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand-green)]" />
+                </span>
                 Live Countdown
               </span>
             </div>
-            <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
-              {loading
-                ? 'ETC Fifthing Countdown'
-                : `Era ${currentEra ?? '…'} → Era ${nextEra ?? '…'} Fifthing`}
-            </h1>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">
-              ECIP-1017 · Block {targetBlock?.toLocaleString() ?? '…'} · Reward{' '}
-              {currentReward ?? '…'} → {nextReward ?? '…'} ETC
-            </p>
           </div>
         </section>
       </FadeIn>
 
-      {/* Countdown card */}
-      <FadeIn delay={50}>
-        <section className="px-6 pb-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-2xl">
-            <FifthingCountdown variant="card" />
-          </div>
-        </section>
-      </FadeIn>
+      {/* Countdown card + stats strip — client shell for live updates */}
+      <BlockRewardCountdownClient initial={initial} />
 
-      {/* Stats strip */}
-      <FadeIn delay={100}>
-        <section className="px-6 pb-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              <StatCell
-                label="Current Block"
-                value={loading ? '…' : (currentBlock?.toLocaleString() ?? '—')}
-                loading={loading}
-                sub="live from Blockscout"
-              />
-              <StatCell
-                label="Current Era"
-                value={loading ? '…' : `Era ${currentEra ?? '—'}`}
-                loading={loading}
-                sub="of infinite eras"
-              />
-              <StatCell
-                label="Block Reward"
-                value={loading ? '…' : `${currentReward ?? '—'} ETC`}
-                loading={loading}
-                sub={nextReward != null ? `→ ${nextReward} ETC next era` : undefined}
-              />
-              <StatCell
-                label="Expected Date"
-                value={loading ? '…' : expectedDate}
-                loading={loading}
-                sub="at 13s avg block time"
-              />
-              <StatCell
-                label="Days in Era"
-                value={loading || !daysSinceLastFifthing ? '…' : `${daysSinceLastFifthing.toLocaleString()}d`}
-                loading={loading}
-                sub="since last fifthing"
-              />
-              <StatCell
-                label="Annual Inflation"
-                value={loading || !inflationRate ? '…' : `${inflationRate}%`}
-                loading={loading}
-                sub="current era issuance"
-              />
-            </div>
-          </div>
-        </section>
-      </FadeIn>
-
-      {/* Brief explainer */}
+      {/* Explainer — pure static content for SEO */}
       <FadeIn delay={150}>
         <section className="px-6 pb-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
               <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">What is a Fifthing?</h2>
               <div className="space-y-3 text-sm text-[var(--text-muted)]">
@@ -175,19 +108,8 @@ export default function BlockRewardCountdownPage() {
                   className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-4 py-2 text-sm font-medium text-[var(--brand-green)] transition-colors hover:bg-[var(--brand-green)]/20"
                 >
                   View emission schedule &amp; charts
-                  <svg
-                    aria-hidden="true"
-                    className="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                    />
+                  <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
                 </Link>
                 <a
@@ -197,19 +119,8 @@ export default function BlockRewardCountdownPage() {
                   className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
                 >
                   Read ECIP-1017
-                  <svg
-                    aria-hidden="true"
-                    className="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                    />
+                  <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                   </svg>
                 </a>
               </div>
@@ -218,36 +129,6 @@ export default function BlockRewardCountdownPage() {
         </section>
       </FadeIn>
 
-      {/* Footer note */}
-      <div className="px-6 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-xs text-[var(--text-muted)]">
-            Block height:{' '}
-            <a
-              href="https://etc.blockscout.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text-primary)]"
-            >
-              Blockscout
-            </a>
-            {' · '}
-            Emission schedule:{' '}
-            <a
-              href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[var(--text-primary)]"
-            >
-              ECIP-1017
-            </a>
-            {status === 'pending' && blocksRemaining !== null && (
-              <> · Expected date estimated at 13s avg block time</>
-            )}
-            {' · '}All supply figures exclude uncle rewards.
-          </p>
-        </div>
-      </div>
     </main>
   )
 }

@@ -14,10 +14,6 @@ interface HashratePoint {
   hashrateTHs: number
 }
 
-interface TwoMinersStats {
-  nodes: Array<{ networkhashps: string }>
-}
-
 interface BlockscoutBlock {
   difficulty: string
   timestamp: string
@@ -46,14 +42,14 @@ function formatLabel(isoTimestamp: string, period: TimePeriod): string {
   return `${month} '${String(year).slice(2)}`
 }
 
-async function fetchHashrateTHs(): Promise<number> {
+async function fetchHashrateTHs(currentHeight: number): Promise<number> {
   try {
-    const res = await fetch('https://etc.2miners.com/api/stats', { next: { revalidate: 3600 } })
-    if (!res.ok) throw new Error(`2miners ${res.status}`)
-    const data: TwoMinersStats = await res.json()
-    const hps = parseFloat(data.nodes?.[0]?.networkhashps ?? '0')
-    if (!hps) throw new Error('no data')
-    return Math.round((hps / 1e12) * 10) / 10
+    if (!currentHeight) throw new Error('no height')
+    const block = await fetchBlock(currentHeight)
+    if (!block) throw new Error('no block')
+    const difficulty = parseFloat(block.difficulty)
+    if (!difficulty) throw new Error('no difficulty')
+    return Math.round((difficulty / ETC_AVG_BLOCK_TIME_S / 1e12) * 10) / 10
   } catch {
     return FALLBACK_THS
   }
@@ -101,7 +97,7 @@ export async function GET() {
   } catch { /* fall through */ }
 
   const [currentTHs, week, month, year, all] = await Promise.all([
-    fetchHashrateTHs(),
+    fetchHashrateTHs(currentHeight),
     currentHeight ? fetchHistoryFor('week', currentHeight)  : Promise.resolve([]),
     currentHeight ? fetchHistoryFor('month', currentHeight) : Promise.resolve([]),
     currentHeight ? fetchHistoryFor('year', currentHeight)  : Promise.resolve([]),

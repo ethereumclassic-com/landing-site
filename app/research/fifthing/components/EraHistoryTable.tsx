@@ -195,7 +195,7 @@ export default function EraHistoryTable({
                       {(era.startBlock).toLocaleString()}–{(era.endBlock).toLocaleString()}
                     </td>
                     <td className="px-4 py-3 text-[var(--text-muted)]">{era.date}</td>
-                    <td className="px-4 py-3 font-mono text-[var(--text-muted)]">{era.blockReward.toFixed(4).replace(/\.?0+$/, '')} ETC</td>
+                    <td className="px-4 py-3 font-mono text-[var(--text-muted)]">{era.blockReward} ETC</td>
                     <td className="px-4 py-3 font-mono text-[var(--text-muted)]">{(era.eraSupply / 1_000_000).toFixed(2)}M ETC</td>
                     <td className="px-4 py-3 font-mono text-[var(--text-muted)]">{(era.totalSupply / 1_000_000).toFixed(2)}M ETC</td>
                   </tr>

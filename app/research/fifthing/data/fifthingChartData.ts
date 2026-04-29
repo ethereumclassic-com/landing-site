@@ -148,6 +148,12 @@ export function getAnnualInflationRate(currentBlock: number): number {
   return parseFloat(((annualNew / stats.totalSupply) * 100).toFixed(2))
 }
 
+export function getNextEraInflationRate(currentBlock: number): number {
+  const stats = calculateSupplyStats(currentBlock)
+  const annualNew = stats.nextEraReward * BLOCKS_PER_YEAR
+  return parseFloat(((annualNew / stats.totalSupply) * 100).toFixed(2))
+}
+
 export function getExpectedFifthingDate(blocksRemaining: number | null): string {
   if (blocksRemaining === null || blocksRemaining <= 0) return 'Complete'
   const secondsRemaining = blocksRemaining * EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS
