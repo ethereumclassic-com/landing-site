@@ -145,18 +145,22 @@ export function SiteFooter() {
 
       {/* Bottom Bar */}
       <div className="border-t border-[var(--border-default)]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row md:px-10 lg:px-12">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-4 px-6 py-6 md:grid-cols-3 md:px-10 lg:px-12">
           <p className="text-xs text-[var(--text-muted)]">
             © {new Date().getFullYear()}{' '}
             <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">
               EthereumClassic.com
             </Link>
-            . The original Ethereum Virtual Machine. Immutable infrastructure for global finance.
+            .
+          </p>
+
+          <p className="text-center text-xs text-[var(--text-muted)]">
+            The original Ethereum Virtual Machine. Immutable infrastructure for global finance.
           </p>
 
           <a
             href="#top"
-            className="flex items-center gap-1 text-xs text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
+            className="flex items-center justify-center gap-1 text-xs text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)] md:justify-end"
           >
             Back to top
             <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

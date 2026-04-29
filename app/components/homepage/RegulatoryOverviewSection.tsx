@@ -1,77 +1,96 @@
-'use client'
-
 import Link from 'next/link'
-import { FadeIn } from '@/app/components/ui'
+import { FadeIn, FlagImg } from '@/app/components/ui'
+
+interface JurisdictionCardProps {
+  flag: string
+  label: string
+  name: string
+  badgeClass: string
+  badgeLabel: string
+  desc: string
+  delay: number
+}
+
+function JurisdictionCard({ flag, label, name, badgeClass, badgeLabel, desc, delay }: JurisdictionCardProps) {
+  return (
+    <FadeIn delay={delay} className="h-full">
+      <details className="group flex h-full flex-col rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-5 [border-left:2px_solid_var(--brand-green)]">
+        <summary className="list-none cursor-pointer">
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--brand-green-subtle)]">
+              <FlagImg emoji={flag} size={22} />
+            </div>
+            <span className={`${badgeClass} shrink-0`}>{badgeLabel}</span>
+          </div>
+          <p className="mt-4 font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">{label}</p>
+          <h3 className="mt-1 text-sm font-semibold text-[var(--text-primary)]">{name}</h3>
+          <p className="mt-2 flex items-center gap-0.5 text-[10px] text-[var(--brand-green)]">
+            <span className="group-open:hidden">Learn more</span>
+            <span className="hidden group-open:inline">Show less</span>
+            <svg aria-hidden="true" className="h-2.5 w-2.5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </p>
+        </summary>
+        <p className="mt-3 text-xs leading-relaxed text-[var(--text-muted)]">{desc}</p>
+      </details>
+    </FadeIn>
+  )
+}
 
 const primaryFrameworks = [
   {
-    icon: (
-      <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-      </svg>
-    ),
+    flag: '🇺🇸',
     act: 'CLARITY Act',
     jurisdiction: 'United States',
     badge: 'badge-pending' as const,
-    badgeLabel: 'Pending Senate',
-    tagline: 'Digital Commodity',
+    badgeLabel: 'Pending',
+    desc: 'Classifies ETC as a digital commodity under CFTC jurisdiction, separating it from securities oversight',
   },
   {
-    icon: (
-      <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
-      </svg>
-    ),
+    flag: '🇺🇸',
     act: 'GENIUS Act',
     jurisdiction: 'United States',
     badge: 'badge-available' as const,
-    badgeLabel: 'Signed Jul 18, 2025',
-    tagline: 'Stablecoin Platform',
+    badgeLabel: '2025',
+    desc: 'Federal stablecoin framework signed into law; ETC qualifies as a neutral proof-of-work settlement rail',
   },
   {
-    icon: (
-      <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-      </svg>
-    ),
+    flag: '🇪🇺',
     act: 'MiCA',
     jurisdiction: 'European Union',
     badge: 'badge-available' as const,
-    badgeLabel: 'In Force Dec 2024',
-    tagline: 'Decentralized Asset',
+    badgeLabel: '2024',
+    desc: 'ETC classified as a decentralized asset, exempt from issuer obligations across all EU member states',
   },
   {
-    icon: (
-      <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
-      </svg>
-    ),
+    flag: '🇺🇸',
     act: 'Mined in America',
     jurisdiction: 'United States',
     badge: 'badge-pending' as const,
-    badgeLabel: 'Congressional Resolution',
-    tagline: 'Domestic Mining Policy',
+    badgeLabel: 'Pending',
+    desc: 'Voluntary federal certification for domestic proof-of-work mining operations and ASIC manufacturing',
   },
 ]
 
 const secondaryJurisdictions = [
   [
-    { label: 'Japan', value: 'FSA Green List', desc: 'JVCEA · Fast-track listing on all regulated Japanese exchanges' },
-    { label: 'United Kingdom', value: 'FSMA Recognized', desc: 'Digital asset framework · Effective Oct 2027' },
-    { label: 'Canada', value: 'CIRO Registered', desc: 'CSA + FINTRAC MSB framework · 2023–present' },
-    { label: 'South Korea', value: 'FSC/FSS Listed', desc: 'Virtual asset framework · 2024–present' },
+    { flag: '🇯🇵', label: 'Japan', value: 'FSA Green List', desc: 'ETC on the JVCEA recognized list, enabling compliant listing across all regulated Japanese exchanges without additional review', date: '2022' },
+    { flag: '🇬🇧', label: 'United Kingdom', value: 'FSMA Recognized', desc: 'FCA cryptoasset regulations under FSMA 2026; ETC qualifies as a recognized cryptoasset under the incoming framework', date: '2027' },
+    { flag: '🇨🇦', label: 'Canada', value: 'CIRO Registered', desc: 'CIRO-registered exchanges can list ETC under CSA provincial oversight and mandatory FINTRAC MSB registration', date: '2023' },
+    { flag: '🇰🇷', label: 'South Korea', value: 'FSC/FSS Listed', desc: 'Virtual Asset User Protection Act in force Jul 2024; ETC/KRW pairs active on FSC-registered exchanges under formal VASP oversight', date: '2024' },
   ],
   [
-    { label: 'Australia', value: 'AFSL Compliant', desc: 'Digital asset services license framework · 2025–present' },
-    { label: 'Brazil', value: 'BCB Regulated', desc: 'Crypto asset regulation · 2023–present' },
-    { label: 'United Arab Emirates', value: 'VARA Compliant', desc: 'Virtual asset regulation · In force Jun 2025' },
-    { label: 'Singapore', value: 'MAS Licensed', desc: 'Digital payment token framework · 2024–present' },
+    { flag: '🇦🇺', label: 'Australia', value: 'AFSL Compliant', desc: 'Digital Assets Framework Bill enacted Apr 2026; ETC accessible through ASIC-licensed platforms under the new AFSL digital asset regime', date: '2026' },
+    { flag: '🇧🇷', label: 'Brazil', value: 'BCB Regulated', desc: 'BCB designated as crypto regulator under the Virtual Assets Law; ETC/BRL pairs active on BCB-authorized exchanges', date: '2023' },
+    { flag: '🇦🇪', label: 'United Arab Emirates', value: 'VARA Compliant', desc: 'VARA Dubai Rulebook governs virtual asset service providers; ETC accessible through licensed exchanges operating under the comprehensive Dubai framework', date: '2022' },
+    { flag: '🇸🇬', label: 'Singapore', value: 'MAS Licensed', desc: 'Payment Services Act DPT framework with expanded VASP licensing scope from 2024; ETC available through MAS-licensed exchanges', date: '2024' },
   ],
   [
-    { label: 'Hong Kong', value: 'SFC Recognized', desc: 'Virtual asset trading platform regime · 2024' },
-    { label: 'Switzerland', value: 'FINMA Compliant', desc: 'DLT Act · Crypto-forward regulatory environment' },
-    { label: 'Turkey', value: 'CMB Listed', desc: 'Capital Markets Law 2024 · FATF exit 2024' },
-    { label: 'South Africa', value: 'CASP Registered', desc: 'Crypto asset service provider framework · 2025' },
+    { flag: '🇭🇰', label: 'Hong Kong', value: 'SFC Recognized', desc: 'SFC VASP licensing regime operational since Jun 2023; ETC available on licensed platforms under Hong Kong\'s standalone virtual asset framework', date: '2023' },
+    { flag: '🇨🇭', label: 'Switzerland', value: 'FINMA Compliant', desc: 'DLT Act 2021 provides a principles-based legal framework; ETC traded and held across FINMA-regulated Crypto Valley entities in Zug', date: '2021' },
+    { flag: '🇹🇷', label: 'Turkey', value: 'CMB Listed', desc: 'Capital Markets Law No. 7518 mandates CMB/SPK exchange authorization; ETC/TRY pairs active following Turkey\'s FATF grey list exit in 2024', date: '2024' },
+    { flag: '🇿🇦', label: 'South Africa', value: 'CASP Registered', desc: 'FSCA-supervised CASP registration in force since 2023; ETC accessible through licensed providers under Africa\'s most developed crypto regulatory framework', date: '2023' },
   ],
 ]
 
@@ -94,21 +113,16 @@ export default function RegulatoryOverviewSection() {
         {/* Primary frameworks */}
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {primaryFrameworks.map((f, i) => (
-            <FadeIn key={f.act} delay={i * 60} className="h-full">
-              <div className="flex h-full flex-col rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-5 [border-left:2px_solid_var(--brand-green)]">
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--brand-green-subtle)]">
-                    <span className="text-[var(--brand-green)]">{f.icon}</span>
-                  </div>
-                  <span className={f.badge}>{f.badgeLabel}</span>
-                </div>
-                <p className="mt-4 font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">
-                  {f.jurisdiction}
-                </p>
-                <h3 className="mt-1 text-sm font-semibold text-[var(--text-primary)]">{f.act}</h3>
-                <p className="mt-0.5 text-xs text-[var(--brand-green)]">{f.tagline}</p>
-              </div>
-            </FadeIn>
+            <JurisdictionCard
+              key={f.act}
+              flag={f.flag}
+              label={f.jurisdiction}
+              name={f.act}
+              badgeClass={f.badge}
+              badgeLabel={f.badgeLabel}
+              desc={f.desc}
+              delay={i * 60}
+            />
           ))}
         </div>
 
@@ -116,15 +130,16 @@ export default function RegulatoryOverviewSection() {
         {secondaryJurisdictions.map((row, rowIdx) => (
           <div key={rowIdx} className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {row.map((j, i) => (
-              <FadeIn key={j.label} delay={(rowIdx * 4 + i) * 40} className="h-full">
-                <div className="flex h-full flex-col rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-5 [border-left:2px_solid_var(--brand-green)]">
-                  <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">
-                    {j.label}
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-[var(--text-primary)]">{j.value}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-[var(--text-muted)]">{j.desc}</p>
-                </div>
-              </FadeIn>
+              <JurisdictionCard
+                key={j.label}
+                flag={j.flag}
+                label={j.label}
+                name={j.value}
+                badgeClass="badge-available"
+                badgeLabel={j.date}
+                desc={j.desc}
+                delay={(rowIdx * 4 + i) * 40}
+              />
             ))}
           </div>
         ))}
