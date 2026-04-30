@@ -31,12 +31,12 @@ function PriceTable({ rows }: { rows: PriceTableRow[] }) {
 
 function formatBtcPrice(val: number | null | undefined): string | null {
   if (val == null || val === 0) return null
-  return `₿${val.toFixed(8)}`
+  return `${val.toFixed(8)} BTC`
 }
 
 function formatEthPrice(val: number | null | undefined): string | null {
   if (val == null || val === 0) return null
-  return `Ξ${val.toFixed(8)}`
+  return `${val.toFixed(8)} ETH`
 }
 
 function formatEtcPerEth(val: number | null | undefined): string | null {
@@ -126,7 +126,7 @@ interface BtcRoiData {
 }
 
 function computeBtcRoi(rates: ExchangeRates): BtcRoiData {
-  const BTC_REFERENCE = 0.1  // clean reference investment: ₿0.1
+  const BTC_REFERENCE = 0.1  // clean reference investment: 0.1 BTC
   const tokensForRef = BTC_REFERENCE / ETH_ICO_PRICE_BTC  // 0.1 / 0.0005 = 200 ETH
   const etcBtc = rates.btc_usd > 0 ? (rates.etc.usd ?? 0) / rates.btc_usd : 0
   const ethBtc = rates.btc_usd > 0 ? rates.eth_usd / rates.btc_usd : 0
@@ -157,7 +157,7 @@ function formatPctChange(n: number): string {
 
 function formatValue(value: number, currency: string, symbol: string): string {
   if (currency === 'btc') {
-    return `₿${value.toFixed(value >= 1 ? 2 : 4)}`
+    return `${value.toFixed(value >= 1 ? 2 : 4)} BTC`
   }
   if (value >= 1_000_000) return `${symbol}${(value / 1_000_000).toFixed(2)}M`
   if (value >= 1_000) return `${symbol}${Math.round(value).toLocaleString()}`
@@ -277,7 +277,7 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
         <p className="text-xs text-[var(--text-muted)]">
           Fiat multiplier vs {costBasisCaption}.
           {currency !== 'usd' ? ' Local currency values use current exchange rates; ICO was priced in USD and BTC.' : ''}
-          {' '}BTC cards use the ₿0.0005/ETH early bird rate (2,000 ETH/BTC, first 14 days).
+          {' '}BTC cards use the 0.0005 BTC/ETH early bird rate (2,000 ETH/BTC, first 14 days).
           {' '}After the 2016 fork, ICO participants held balances on both chains simultaneously: ETC (original, unmodified) and ETH (new chain).
           {' '}Live prices update every 10 minutes.
         </p>
@@ -287,8 +287,11 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
       <div className="grid gap-3 sm:grid-cols-2">
         <div className="rounded-lg border border-[var(--color-orange-border)] bg-[var(--color-orange-bg)] p-4">
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">ETC vs BTC</p>
-          <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Original chain · ₿0.0005/ETH ICO rate</p>
+          <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Original chain · 0.0005 BTC/ETH ICO rate</p>
           <div className="mt-2 text-center">
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatBtcPrice(rates.etc.btc)}
+            </p>
             <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
               {formatMultiplier(btcRoi.etcMultiplier)}{' '}
               <span className={`text-lg ${btcRoi.etcMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
@@ -296,18 +299,21 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
               </span>
             </p>
             <p className="font-mono text-[10px] text-[var(--text-muted)]">
-              {formatBtcPrice(rates.etc.btc)} ÷ ₿{ETH_ICO_PRICE_BTC} ICO
+              {formatBtcPrice(rates.etc.btc)} ÷ {ETH_ICO_PRICE_BTC} BTC ICO
             </p>
             <p className="mt-1 text-sm text-[var(--text-secondary)]">
-              ₿{btcRoi.costBasisBtc.toFixed(1)} → {formatValue(btcRoi.etcBtcValue100, 'btc', '₿')}
+              {btcRoi.costBasisBtc.toFixed(1)} BTC → {formatValue(btcRoi.etcBtcValue100, 'btc', '')}
             </p>
           </div>
           <PriceTable rows={etcBtcRows} />
         </div>
         <div className="rounded-lg border border-[var(--color-orange-border)] bg-[var(--color-orange-bg)] p-4">
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">ETH vs BTC</p>
-          <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Fork chain · ₿0.0005/ETH ICO rate</p>
+          <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Fork chain · 0.0005 BTC/ETH ICO rate</p>
           <div className="mt-2 text-center">
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatBtcPrice(ethBtcNow)}
+            </p>
             <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
               {formatMultiplier(btcRoi.ethMultiplier)}{' '}
               <span className={`text-lg ${btcRoi.ethMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
@@ -315,10 +321,10 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
               </span>
             </p>
             <p className="font-mono text-[10px] text-[var(--text-muted)]">
-              {formatBtcPrice(ethBtcNow)} ÷ ₿{ETH_ICO_PRICE_BTC} ICO
+              {formatBtcPrice(ethBtcNow)} ÷ {ETH_ICO_PRICE_BTC} BTC ICO
             </p>
             <p className="mt-1 text-sm text-[var(--text-secondary)]">
-              ₿{btcRoi.costBasisBtc.toFixed(1)} → {formatValue(btcRoi.ethBtcValue100, 'btc', '₿')}
+              {btcRoi.costBasisBtc.toFixed(1)} BTC → {formatValue(btcRoi.ethBtcValue100, 'btc', '')}
             </p>
           </div>
           <PriceTable rows={ethBtcRows} />
@@ -326,7 +332,7 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
       </div>
       <div className="mt-3 flex items-start gap-2.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-elevated)] px-4 py-3">
         <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--text-muted)]" />
-        <p className="text-xs text-[var(--text-muted)]">BTC return. The ICO was priced in Bitcoin at 2,000 ETH/BTC (₿0.0005/ETH) for the first 14 days. How much BTC is your ETC or ETH worth today relative to what you paid?</p>
+        <p className="text-xs text-[var(--text-muted)]">BTC return. The ICO was priced in Bitcoin at 2,000 ETH/BTC (0.0005 BTC/ETH) for the first 14 days. How much BTC is your ETC or ETH worth today relative to what you paid?</p>
       </div>
 
       {/* Live fiat ROI */}
@@ -335,6 +341,9 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">ETC vs {CURRENCY_LABELS[currency] ?? currency.toUpperCase()}</p>
           <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Original chain · Created Jul 30, 2015</p>
           <div className="mt-2 text-center">
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatFiatPrice((rates.etc.usd ?? 0) * fiatRate, symbol)}
+            </p>
             <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
               {formatMultiplier(roi.etcMultiplier)}{' '}
               <span className={`text-lg ${roi.etcMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
@@ -355,6 +364,9 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">ETH vs {CURRENCY_LABELS[currency] ?? currency.toUpperCase()}</p>
           <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Fork chain · Created Jul 20, 2016</p>
           <div className="mt-2 text-center">
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatFiatPrice(rates.eth_usd * fiatRate, symbol)}
+            </p>
             <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
               {formatMultiplier(roi.ethMultiplier)}{' '}
               <span className={`text-lg ${roi.ethMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
@@ -385,16 +397,19 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
           <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Original chain · 1 ETC = 1 ETH at genesis</p>
           <div className="mt-2 text-center">
             <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatEthPrice(ethRoi.etcEthNow)}
+            </p>
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
               {formatMultiplier(ethRoi.etcEthMultiplier)}{' '}
               <span className={`text-lg ${ethRoi.etcEthMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
                 ({formatPctChange(ethRoi.etcEthMultiplier)})
               </span>
             </p>
             <p className="font-mono text-[10px] text-[var(--text-muted)]">
-              {formatEthPrice(ethRoi.etcEthNow)} ÷ Ξ1.00 ICO
+              {formatEthPrice(ethRoi.etcEthNow)} ÷ 1.00 ETH ICO
             </p>
             <p className="mt-1 text-sm text-[var(--text-secondary)]">
-              Ξ200 → {formatEthPrice(ethRoi.etcEthValue)}
+              200 ETC → {formatEthPrice(ethRoi.etcEthValue)}
             </p>
           </div>
           <PriceTable rows={etcEthRows} />
@@ -406,6 +421,9 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
           <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Fork chain · 1 ETH = 1 ETC at genesis</p>
           <div className="mt-2 text-center">
             <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatEtcPerEth(ethRoi.ethEtcNow)}
+            </p>
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
               {formatMultiplier(ethRoi.ethEtcMultiplier)}{' '}
               <span className={`text-lg ${ethRoi.ethEtcMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
                 ({formatPctChange(ethRoi.ethEtcMultiplier)})
@@ -415,7 +433,7 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
               {formatEtcPerEth(ethRoi.ethEtcNow)} ÷ 1.00 ETC ICO
             </p>
             <p className="mt-1 text-sm text-[var(--text-secondary)]">
-              Ξ1 → {formatEtcPerEth(ethRoi.ethEtcNow)}
+              1 ETH → {formatEtcPerEth(ethRoi.ethEtcNow)}
             </p>
           </div>
           <PriceTable rows={ethEtcRows} />
