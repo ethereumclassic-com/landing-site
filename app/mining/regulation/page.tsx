@@ -9,7 +9,7 @@ const jurisdictions = [
     status: 'badge-pending' as const,
     statusLabel: 'Pending Senate',
     headline: 'CLARITY Act — Digital Commodity Candidate',
-    body: "Passed the US House in July 2025, awaiting Senate. ETC's PoW consensus and decentralized issuance profile positions it as a digital commodity under CFTC jurisdiction. US miners operate in a legal commodity market — not a securities market. State spotlight: Texas, Wyoming, and Kentucky are favorable; New York remains restrictive. The \"Made in America\" angle is strong: domestic mining monetizes stranded energy, creates local jobs, and reinforces energy independence.",
+    body: "Passed the US House in July 2025, awaiting Senate. ETC's PoW consensus and decentralized issuance profile positions it as a digital commodity under CFTC jurisdiction. US miners operate in a legal commodity market, not a securities market. State spotlight: Texas, Wyoming, and Kentucky are favorable; New York remains restrictive. The \"Made in America\" angle is strong: domestic mining monetizes stranded energy, creates local jobs, and reinforces energy independence.",
   },
   {
     region: 'European Union',
@@ -33,7 +33,7 @@ const jurisdictions = [
     status: 'badge-available' as const,
     statusLabel: 'Province-Dependent',
     headline: 'Province-by-Province Regulatory Landscape',
-    body: "Alberta is the most favorable province — oil-adjacent stranded gas and deregulated power markets make it attractive for flexible load miners. Quebec restricts new mining connections to protect low-cost hydroelectric power for industrial users. British Columbia is neutral with no specific mining restrictions. Federal treatment of mining income is consistent: proceeds are business income or capital gains depending on intent and frequency.",
+    body: "Alberta is the most favorable province. Its oil-adjacent stranded gas and deregulated power markets make it attractive for flexible load miners. Quebec restricts new mining connections to protect low-cost hydroelectric power for industrial users. British Columbia is neutral with no specific mining restrictions. Federal treatment of mining income is consistent: proceeds are business income or capital gains depending on intent and frequency.",
   },
   {
     region: 'Asia-Pacific',
@@ -41,7 +41,7 @@ const jurisdictions = [
     status: 'badge-available' as const,
     statusLabel: 'Mixed',
     headline: 'Legal Across Most of the Region',
-    body: 'Australia treats mining proceeds as ordinary income; capital gains rules apply on disposal. Japan classifies mining income as miscellaneous income — taxed at marginal rates up to 55%. Singapore has no mining-specific regulations; proceeds treated as income. China has officially banned mining since 2021 but substantial activity continues via workarounds — operators accept significant legal and operational risk. Southeast Asian markets (Thailand, Vietnam, Philippines) are mostly permissive but frameworks are informal.',
+    body: 'Australia treats mining proceeds as ordinary income; capital gains rules apply on disposal. Japan classifies mining income as miscellaneous income, taxed at marginal rates up to 55%. Singapore has no mining-specific regulations; proceeds treated as income. China has officially banned mining since 2021 but substantial activity continues via workarounds; operators accept significant legal and operational risk. Southeast Asian markets (Thailand, Vietnam, Philippines) are mostly permissive but frameworks are informal.',
   },
   {
     region: 'Middle East',
@@ -49,7 +49,7 @@ const jurisdictions = [
     status: 'badge-available' as const,
     statusLabel: 'Emerging',
     headline: 'UAE Leading, Others Developing',
-    body: "UAE and Dubai lead the region under VARA (Virtual Assets Regulatory Authority), which explicitly permits mining as a licensed activity. Bahrain and Oman are developing frameworks with generally permissive stances. Saudi Arabia is cautious — no formal ban, but significant ambiguity. Qatar maintains a restrictive posture. The region's energy abundance (particularly in non-UAE Gulf states) makes it structurally attractive for large-scale mining once regulatory clarity develops.",
+    body: "UAE and Dubai lead the region under VARA (Virtual Assets Regulatory Authority), which explicitly permits mining as a licensed activity. Bahrain and Oman are developing frameworks with generally permissive stances. Saudi Arabia is cautious, with no formal ban but significant ambiguity. Qatar maintains a restrictive posture. The region's energy abundance (particularly in non-UAE Gulf states) makes it structurally attractive for large-scale mining once regulatory clarity develops.",
   },
 ]
 
@@ -85,7 +85,7 @@ export default function MiningRegulationPage() {
             PoW mining is increasingly a legally defined activity. Where you mine, how you power it, and how your proceeds are taxed differs by jurisdiction. ETC&apos;s profile is favorable across all major frameworks.
           </p>
           <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
-            ETC&apos;s PoW consensus and decentralized issuance are precisely the technical properties that regulators have chosen as the bar for &ldquo;digital commodity&rdquo; status — developed in 2015, long before any regulatory framework existed.
+            ETC&apos;s PoW consensus and decentralized issuance are precisely the technical properties that regulators have chosen as the bar for &ldquo;digital commodity&rdquo; status. These properties were established in 2015, long before any regulatory framework existed.
           </p>
         </div>
       </section>
@@ -151,12 +151,12 @@ export default function MiningRegulationPage() {
             Across all jurisdictions, the regulatory trend is moving toward treating flexible mining load as a positive grid participant, not a burden. Miners that curtail during peak demand, absorb stranded renewables, or co-locate with otherwise-wasted energy sources are increasingly recognized as grid services providers.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
-            ETC mining is a 24/7 dispatchable load. It can be turned on and off in response to energy price signals faster than most industrial processes. This makes it structurally compatible with the energy policy goals of every major jurisdiction — even those that have been restrictive toward speculative crypto assets.
+            ETC mining is a 24/7 dispatchable load. It can be turned on and off in response to energy price signals faster than most industrial processes. This makes it structurally compatible with the energy policy goals of every major jurisdiction, including those that have been restrictive toward speculative crypto assets.
           </p>
           <div className="mt-8 rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6">
             <p className="text-sm font-medium text-[var(--color-primary)]">The regulatory argument for ETC mining</p>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-              ETC has no central issuer, no foundation, no pre-mine. The network was not launched to enrich a team. It is a pure PoW system where miners are the only participants that earn new issuance. This is the same property that regulators in the US, EU, and UAE are using to classify assets as commodities rather than securities — and it applies directly to mining operations.
+              ETC has no central issuer, no foundation, no pre-mine. The network was not launched to enrich a team. It is a pure PoW system where miners are the only participants that earn new issuance. This is the same property that regulators in the US, EU, and UAE are using to classify assets as commodities rather than securities, and it applies directly to mining operations.
             </p>
           </div>
         </div>

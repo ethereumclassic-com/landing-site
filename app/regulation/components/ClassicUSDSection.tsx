@@ -91,7 +91,7 @@ export function ClassicUSDSection() {
             </h2>
             <p className="mt-3 text-base text-[var(--text-muted)]">
               Classic USD ($USC) is the first fiat-backed stablecoin issued natively on
-              Ethereum Classic — a 1:1 USD-backed ERC-20 token issued by Brale Inc. under US
+              Ethereum Classic. It is a 1:1 USD-backed ERC-20 token issued by Brale Inc. under US
               money transmission licensing, with reserves held in segregated regulated US bank
               accounts and independently attested. It is not a bridged asset or a wrapped
               version of a token from another chain. It was designed for ETC and deployed on
@@ -102,8 +102,8 @@ export function ClassicUSDSection() {
               payment stablecoin issuance in the United States. Classic USD meets those
               requirements: licensed issuer, 1:1 liquid reserves, par-value redemption, and
               third-party attestations. Its existence on ETC demonstrates that a Proof-of-Work
-              EVM can serve as compliant infrastructure for regulated financial instruments —
-              not in theory, but in production.
+              EVM can serve as compliant infrastructure for regulated financial instruments,
+              not in theory but in production.
             </p>
           </FadeIn>
 

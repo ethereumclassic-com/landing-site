@@ -50,7 +50,7 @@ function CustomTooltip({ active, payload }: CustomTooltipProps) {
   return (
     <div className="rounded-lg border border-[var(--border-default)] bg-[var(--bg-elevated)] px-3 py-2 text-xs shadow-lg">
       <p className="font-semibold text-[var(--text-primary)]">{name}</p>
-      <p className="mt-0.5 text-[var(--text-muted)]">{fmt(value)} tokens — {p.pct.toFixed(1)}%</p>
+      <p className="mt-0.5 text-[var(--text-muted)]">{fmt(value)} tokens ({p.pct.toFixed(1)}%)</p>
     </div>
   )
 }
@@ -138,7 +138,7 @@ export default function SupplyPieCharts({ ethSupply, etcSupply }: Props) {
     <div className="mt-8">
       <h3 className="mb-1 text-sm font-semibold text-[var(--text-primary)]">Today&apos;s Circulating Supply</h3>
       <p className="mb-5 text-xs text-[var(--text-muted)]">
-        Both chains share the same ICO genesis allocation. Post-genesis emissions diverge due to differing monetary policies — ETH removed its supply cap after The Merge; ETC follows ECIP-1017&apos;s declining block reward schedule toward a ~210.7M cap.
+        Both chains share the same ICO genesis allocation. Post-genesis emissions diverge because they follow different monetary policies. ETH removed its supply cap after The Merge; ETC follows ECIP-1017&apos;s declining block reward schedule toward a ~210.7M cap.
       </p>
       <div className="grid gap-8 sm:grid-cols-2">
         <SinglePie

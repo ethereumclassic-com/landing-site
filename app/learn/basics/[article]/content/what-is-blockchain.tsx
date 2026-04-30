@@ -10,7 +10,7 @@ export default function WhatIsBlockchain() {
         Think of a blockchain as a digital ledger that&apos;s copied and shared across a network of computers. Every participant has the same copy, and changes must be agreed upon by the network.
       </p>
       <p>
-        Transactions are grouped into &ldquo;blocks&rdquo; which are then linked together in chronological order—forming a chain. Each block contains a reference to the previous block, making the history tamper-evident.
+        Transactions are grouped into &ldquo;blocks&rdquo; which are then linked together in chronological order, forming a chain. Each block contains a reference to the previous block, making the history tamper-evident.
       </p>
 
       <h2>Key Properties</h2>
@@ -27,7 +27,7 @@ export default function WhatIsBlockchain() {
 
       <h3>Immutability</h3>
       <p>
-        Once data is recorded on the blockchain, it cannot be altered or deleted. Each block is cryptographically linked to the previous one, so changing historical data would require re-computing every subsequent block—a practically impossible task.
+        Once data is recorded on the blockchain, it cannot be altered or deleted. Each block is cryptographically linked to the previous one, so changing historical data would require re-computing every subsequent block. This is a practically impossible task.
       </p>
 
       <h3>Permissionless</h3>
@@ -45,7 +45,7 @@ export default function WhatIsBlockchain() {
 
       <h2>Beyond Digital Money</h2>
       <p>
-        While Bitcoin introduced blockchain for digital currency, platforms like Ethereum Classic expand the concept with smart contracts—self-executing programs that run on the blockchain.
+        While Bitcoin introduced blockchain for digital currency, platforms like Ethereum Classic expand the concept with smart contracts. These are self-executing programs that run on the blockchain.
       </p>
       <p>
         Smart contracts enable:

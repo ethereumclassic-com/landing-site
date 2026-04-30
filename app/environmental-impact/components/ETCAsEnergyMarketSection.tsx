@@ -12,7 +12,7 @@ const mechanics = [
   },
   {
     label: '24/7 price discovery',
-    detail: 'With 300+ exchanges across every time zone, ETC markets never close — unlike energy futures, which halt on weekends.',
+    detail: 'ETC markets never close across 300+ exchanges in every time zone. Energy futures halt on weekends.',
   },
   {
     label: 'Local currency signals',
@@ -55,7 +55,7 @@ export function ETCAsEnergyMarketSection() {
             Mining profitability is a direct function of ETC price, block reward, and energy cost.
             This creates a tight arbitrage: miners enter when energy is cheap relative to ETC price,
             exit when it is not. ETC financial markets are therefore a continuous, real-time signal
-            about energy value worldwide &mdash; the first always-open, globally accessible energy
+            about energy value worldwide. ETC/USD is the first always-open, globally accessible energy
             commodity market.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
@@ -64,7 +64,7 @@ export function ETCAsEnergyMarketSection() {
             trades 24/7, in every time zone, across major global currencies, on over 300 exchanges.
             An energy producer in Norway, a wellhead operator in Texas, and a hydro developer in
             Malawi are all pricing their output against the same continuous global signal. That is
-            not a feature of traditional commodity markets &mdash; it is a consequence of
+            not a feature of traditional commodity markets. It is a consequence of
             permissionless, decentralized infrastructure.
           </p>
         </FadeIn>

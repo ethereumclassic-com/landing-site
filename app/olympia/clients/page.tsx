@@ -72,7 +72,7 @@ export default function UpgradeHubPage() {
               ETC Compatibility Plugins
             </h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
-              Planned for release after Olympia activation — compatibility layers that bring
+              Planned for release after Olympia activation. These compatibility layers bring
               Ethereum Classic support to major upstream EVM clients without maintaining full
               forks. Enables enterprise deployments, archive nodes, and cross-chain infrastructure
               on any preferred execution environment.

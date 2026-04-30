@@ -12,7 +12,7 @@ export const revalidate = 600
 export const metadata: Metadata = {
   title: 'Ethereum 2014 ICO | ETC Research',
   description:
-    'Complete data on the Ethereum 2014 presale: $18.5M raised, 72,009,991 ETH issued at $0.308 — the original Ethereum genesis supply, carried today by Ethereum Classic.',
+    'Complete data on the Ethereum 2014 presale: $18.5M raised, 72,009,991 ETH issued at $0.308. These are the original Ethereum genesis tokens, carried today by Ethereum Classic.',
   keywords: [
     'Ethereum ICO',
     'ETH presale 2014',
@@ -42,7 +42,7 @@ const ORIGIN_EVENTS = [
   {
     title: 'Ethereum 2014 ICO',
     date: 'Jul–Sep 2014',
-    description: '42-day public presale collects ~31,529 BTC (~$18.5M) at a starting rate of 2,000 ETH per BTC, declining linearly to 1,337 ETH/BTC by day 42. A total of 72,009,991 ETH — the entire initial supply — is minted. 83.33% goes to crowdsale participants and 16.67% to the Ethereum Foundation and early contributors.',
+    description: '42-day public presale collects ~31,529 BTC (~$18.5M) at a starting rate of 2,000 ETH per BTC, declining linearly to 1,337 ETH/BTC by day 42. A total of 72,009,991 ETH was minted as the entire initial supply. 83.33% went to crowdsale participants and 16.67% to the Ethereum Foundation and early contributors.',
     tags: ['72,009,991 ETH minted', '~31,529 BTC raised', '$18.5M USD equivalent', '83.33% / 16.67% split'],
   },
   {
@@ -108,7 +108,7 @@ export default async function EthereumIcoPage() {
                 The {ETH_ICO.icoTokenSupply.toLocaleString()} tokens issued here are the{' '}
                 <span className="font-medium text-[var(--text-primary)]">original Ethereum genesis supply</span>.
                 In 2016, the Ethereum Foundation forked the chain and applied the ETH name and ticker to the new chain.
-                The original chain — carrying this supply unaltered — was recognised by the global community as Ethereum Classic.
+                The original chain carried this supply unaltered and was recognised by the global community as Ethereum Classic.
               </p>
               <IcoPriceChart />
             </div>
@@ -131,7 +131,7 @@ export default async function EthereumIcoPage() {
           <div className="mx-auto max-w-6xl">
             <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
               <h2 className="mb-1 text-lg font-semibold text-[var(--text-primary)]">Token Distribution</h2>
-              <p className="mb-5 text-xs text-[var(--text-muted)]">Presale allocation — how the 72,009,991 genesis tokens were split</p>
+              <p className="mb-5 text-xs text-[var(--text-muted)]">How the 72,009,991 genesis tokens were distributed in the presale</p>
               {/* Stacked bar */}
               <div className="flex h-5 overflow-hidden rounded-full">
                 {ETH_ICO_TOKENOMICS.map((seg) => (
@@ -205,7 +205,7 @@ export default async function EthereumIcoPage() {
                   The 2016 DAO Fork — How Ethereum Classic Got Its Name
                 </p>
                 <p className="mt-0.5 text-sm text-[var(--text-muted)]">
-                  How the Ethereum Foundation created a new chain and applied the ETH ticker to it — and the original chain survived
+                  How the Ethereum Foundation created a new chain, applied the ETH ticker to it, and the original chain survived
                 </p>
               </div>
               <svg className="ml-4 h-5 w-5 shrink-0 text-[var(--text-muted)] transition-colors group-hover:text-[var(--brand-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

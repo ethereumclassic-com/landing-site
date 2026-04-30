@@ -87,22 +87,22 @@ export default async function BlockRewardCountdownPage() {
                   >
                     ECIP-1017
                   </a>
-                  , Ethereum Classic reduces its block reward by 20% every 5,000,000 blocks — an
-                  event called a{' '}
-                  <strong className="text-[var(--text-primary)]">fifthing</strong>. This creates a
+                  , Ethereum Classic reduces its block reward by 20% every 5,000,000 blocks. This
+                  event is called a{' '}
+                  <strong className="text-[var(--text-primary)]">fifthing</strong>. It creates a
                   predictable, verifiable emission curve that makes ETC progressively more scarce
                   over time without any human intervention.
                 </p>
                 <p>
                   Each era lasts approximately 2 years at 13s average block time. The 20% reduction
                   compounds across eras: Era 1 started at 5 ETC per block, and each era is exactly
-                  80% of the previous. The total ETC supply asymptotically approaches ~210.7M ETC —
+                  80% of the previous. The total ETC supply asymptotically approaches ~210.7M ETC,
                   a fixed, knowable ceiling.
                 </p>
                 <p>
                   Unlike Bitcoin&apos;s 50% halving, ETC&apos;s gentler 20% reduction extends
                   miner viability longer while still enforcing scarcity. The emission schedule is
-                  encoded directly in the protocol — immutable and automatic.
+                  encoded directly in the protocol. It is immutable and automatic.
                 </p>
               </div>
               <div className="mt-5 flex flex-wrap gap-3">

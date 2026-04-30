@@ -23,7 +23,7 @@ export default function TypesOfWallets() {
       </p>
       <h3>Advantages</h3>
       <ul>
-        <li>Easy dApp integration—connect to DEXs, DeFi protocols, and NFT marketplaces</li>
+        <li>Easy dApp integration with DEXs, DeFi protocols, and NFT marketplaces</li>
         <li>Quick setup and intuitive interface</li>
         <li>Support for multiple networks including Ethereum Classic</li>
         <li>Free to use</li>
@@ -46,7 +46,7 @@ export default function TypesOfWallets() {
       </p>
       <h3>Advantages</h3>
       <ul>
-        <li>Always with you—convenient for in-person transactions</li>
+        <li>Always with you and convenient for in-person transactions</li>
         <li>Can scan QR codes for easy address entry</li>
         <li>Often support multiple cryptocurrencies</li>
         <li>Good balance of security and convenience</li>
@@ -117,7 +117,7 @@ export default function TypesOfWallets() {
       <h3>Considerations</h3>
       <ul>
         <li>Must trust the website operator</li>
-        <li>Phishing risk—always verify URLs</li>
+        <li>Phishing risk is higher; always verify URLs before connecting</li>
         <li>Best for small amounts</li>
       </ul>
       <h3>Popular Options</h3>

@@ -15,7 +15,7 @@ const cves: CVE[] = [
   {
     id: 'GHSA-4xc9-8hmq-j652',
     severity: 'Critical',
-    summary: 'Consensus issue in EVM SELFDESTRUCT handling — incorrect state transition under specific contract interaction patterns',
+    summary: 'Consensus issue in EVM SELFDESTRUCT handling causing incorrect state transitions under specific contract interaction patterns',
     affected: 'Core-Geth ≤ 1.12.19',
     patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
     status: 'Patched',
@@ -23,7 +23,7 @@ const cves: CVE[] = [
   {
     id: 'GHSA-7p92-x423-wg5m',
     severity: 'High',
-    summary: 'DoS via crafted p2p message — unbounded memory allocation in devp2p layer',
+    summary: 'DoS via crafted p2p message causing unbounded memory allocation in devp2p layer',
     affected: 'Core-Geth ≤ 1.12.19',
     patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
     status: 'Patched',
@@ -31,7 +31,7 @@ const cves: CVE[] = [
   {
     id: 'GHSA-rjjm-x32p-m3f7',
     severity: 'High',
-    summary: 'JSON-RPC denial of service — specially crafted RPC call causes excessive CPU consumption',
+    summary: 'JSON-RPC denial of service via specially crafted RPC call causing excessive CPU consumption',
     affected: 'Core-Geth ≤ 1.12.19',
     patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
     status: 'Patched',
@@ -39,7 +39,7 @@ const cves: CVE[] = [
   {
     id: 'GHSA-vf56-7gx4-qx8v',
     severity: 'Medium',
-    summary: 'Transaction pool manipulation — priority fee calculation edge case allows queue displacement',
+    summary: 'Transaction pool manipulation via priority fee calculation edge case allowing queue displacement',
     affected: 'Core-Geth ≤ 1.12.19',
     patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
     status: 'Patched',
@@ -47,7 +47,7 @@ const cves: CVE[] = [
   {
     id: 'GO-2024-3321',
     severity: 'High',
-    summary: 'Go 1.21 runtime vulnerability — net/http request smuggling via malformed Transfer-Encoding headers',
+    summary: 'Go 1.21 runtime vulnerability allowing net/http request smuggling via malformed Transfer-Encoding headers',
     affected: 'Go ≤ 1.21.x (Core-Geth build dependency)',
     patched: 'Go 1.24 (Core-Geth 1.13.0)',
     status: 'Patched',
@@ -84,7 +84,7 @@ const riskAssessment: RiskItem[] = [
   {
     area: 'Single Maintainer',
     risk: 'High',
-    description: 'No active maintainer — unresponsive to security disclosures, no redundancy in core development. Effectively deprecated for two years.',
+    description: 'No active maintainer. Unresponsive to security disclosures with no redundancy in core development. Effectively deprecated for two years.',
     mitigation: 'Olympia introduces multi-client architecture (Fukuii, Core-Geth, Besu) with multi-maintainer review.',
   },
   {
@@ -221,7 +221,7 @@ export default function SecurityPage() {
               </p>
               <p>
                 Runtime vulnerabilities in Go&apos;s standard library (net/http, crypto/tls, encoding)
-                affect all binaries compiled with the vulnerable toolchain — including Core-Geth. The
+                affect all binaries compiled with the vulnerable toolchain, including Core-Geth. The
                 GO-2024-3321 advisory above is one example; additional runtime CVEs exist in the Go
                 vulnerability database.
               </p>

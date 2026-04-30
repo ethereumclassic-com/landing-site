@@ -141,7 +141,7 @@ export default function FeeMarketPage() {
               &ldquo;The average ETC block is {emptyPct}% empty. This is not a security-neutral fact.&rdquo;
             </p>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-              Empty blocks mean miner revenue is 100% dependent on block rewards — a supply that is permanently scheduled to decline every 5 million blocks under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>.
+              Empty blocks mean miner revenue is 100% dependent on block rewards, a supply permanently scheduled to decline every 5 million blocks under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>.
             </p>
           </div>
         </div>
@@ -153,10 +153,10 @@ export default function FeeMarketPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Why This Matters for Miners</h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
             <p>
-              Miner revenue has two components: block rewards and transaction fees. Block rewards are the dominant source today — but they fifthened every 5 million blocks under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Era 4 (current) pays 2.048 ETC per block. Era 5 will pay 1.6384 ETC. Era 10 pays under 0.5 ETC. The schedule continues until issuance approaches zero.
+              Miner revenue has two components: block rewards and transaction fees. Block rewards are the dominant source today, but they fifthened every 5 million blocks under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Era 4 (current) pays 2.048 ETC per block. Era 5 will pay 1.6384 ETC. Era 10 pays under 0.5 ETC. The schedule continues until issuance approaches zero.
             </p>
             <p>
-              In a healthy fee market, declining block rewards are offset — or more than offset — by rising fee income as the network becomes more used. This is how Bitcoin is designed to work. Fees take over as the block subsidy falls.
+              In a healthy fee market, rising fee income offsets declining block rewards as the network grows. This is how Bitcoin is designed to work. Fees take over as the block subsidy falls.
             </p>
             <p>
               ETC today has neither. Block rewards are declining on schedule and fee income is near zero. At current utilization, miners have no fee revenue to fall back on when the next fifthing arrives.
@@ -174,13 +174,13 @@ export default function FeeMarketPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">The Alignment Problem</h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
             <p>
-              Growing fee revenue requires an active, growing dApp ecosystem. That requires funded core development — engineers who maintain clients, improve the EVM, build tooling, attract projects, and support builders who deploy on ETC.
+              Growing fee revenue requires an active, growing dApp ecosystem. That requires funded core development. Engineers must maintain clients, improve the EVM, build tooling, attract projects, and support builders who deploy on ETC.
             </p>
             <p>
               Historically, ETC has had no sustainable development funding mechanism. The Ethereum Classic Labs and ETC Cooperative organizations have operated on donations and grants with no guaranteed continuity. When funding dries up, development slows. When development slows, builders go elsewhere. When builders go elsewhere, transactions don&apos;t happen. When transactions don&apos;t happen, blocks stay empty.
             </p>
             <p>
-              The chain has remained secure because miners have continued to secure it. But miners are not a charity. They are rational economic actors. The current model asks them to secure a network for free — only a block reward that declines on a fixed schedule, with no mechanism to grow fee revenue.
+              The chain has remained secure because miners have continued to secure it. But miners are not a charity. They are rational economic actors. The current model offers only a block reward that declines on a fixed schedule, with no mechanism to grow fee revenue.
             </p>
           </div>
         </div>
@@ -192,10 +192,10 @@ export default function FeeMarketPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Olympia&apos;s Answer</h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
             <p>
-              Olympia redirects the EIP-1559 basefee — currently burned on Ethereum and simply discarded on ETC — to a Protocol Treasury. At today&apos;s near-zero utilization, this is near zero. But as utilization grows, treasury income grows proportionally.
+              Olympia redirects the EIP-1559 basefee to a Protocol Treasury. Currently, this basefee is burned on Ethereum and simply discarded on ETC. At today&apos;s near-zero utilization, this is near zero. But as utilization grows, treasury income grows proportionally.
             </p>
             <p>
-              The treasury funds on-chain governance-directed development. Protocol teams, grant programs, ecosystem incentives — all funded from the protocol itself, without relying on donations or external organizations. This creates a compounding feedback loop.
+              The treasury funds on-chain governance-directed development. Protocol teams, grant programs, and ecosystem incentives are all funded from the protocol itself, without relying on donations or external organizations. This creates a compounding feedback loop.
             </p>
           </div>
 
@@ -204,11 +204,11 @@ export default function FeeMarketPage() {
             <div className="mt-4 space-y-3 text-sm text-[var(--color-text-muted)]">
               <div className="flex items-center gap-3">
                 <span className="h-2 w-2 rounded-full bg-[var(--color-primary)]" />
-                <span>Block reward ({stats.blockReward} ETC) → Miner — unchanged</span>
+                <span>Block reward ({stats.blockReward} ETC) → Miner (unchanged)</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="h-2 w-2 rounded-full bg-[var(--color-primary)]" />
-                <span>Priority fee (tip) → Miner — unchanged</span>
+                <span>Priority fee (tip) → Miner (unchanged)</span>
               </div>
               <div className="flex items-center gap-3">
                 <span className="h-2 w-2 rounded-full bg-[var(--color-warning)]" />
@@ -240,7 +240,7 @@ export default function FeeMarketPage() {
           <div className="mt-6 rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-5">
             <p className="text-sm text-[var(--color-text-muted)]">
               <span className="font-medium text-[var(--color-primary)]">This is not speculation.</span>{' '}
-              It is the same mechanism that funds Ethereum&apos;s development today — except ETC&apos;s basefee went to no one until Olympia. The flywheel already exists. Olympia connects ETC to it.
+              It is the same mechanism that funds Ethereum&apos;s development today. ETC&apos;s basefee, however, went to no one until Olympia. The flywheel already exists. Olympia connects ETC to it.
             </p>
           </div>
         </div>
@@ -252,13 +252,13 @@ export default function FeeMarketPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">The Miner&apos;s Stake</h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
             <p>
-              Miners have more to gain from Olympia than any other participant class. Block rewards are untouched. Priority fees go directly to miners. The basefee — previously discarded — now funds the development that makes ETC worth mining.
+              Miners have more to gain from Olympia than any other participant class. Block rewards are untouched. Priority fees go directly to miners. The basefee was previously discarded. It now funds the development that makes ETC worth mining.
             </p>
             <p>
               Every dApp that deploys on ETC because of Olympia-funded development generates transactions. Every transaction generates basefee and priority fees. Both grow miner revenue. Active ETC development is miner development.
             </p>
             <p>
-              The alternative — a network that does not grow transaction volume, where block rewards continue to fifthened, and where fee income never materializes — is not a long-term security model. It is a slow exit. The only viable path for PoW miners who want ETC to still exist in 10 years is a network with an active fee market.
+              A network that does not grow transaction volume, where block rewards continue to fifthened, and where fee income never materializes, is not a long-term security model. It is a slow exit. The only viable path for PoW miners who want ETC to still exist in 10 years is a network with an active fee market.
             </p>
             <p className="font-medium text-[var(--text-primary)]">
               Olympia is not a threat to miners. It is the mechanism that aligns the rest of the protocol ecosystem with miner interests for the first time.

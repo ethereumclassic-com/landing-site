@@ -4,7 +4,7 @@ export default function WhatAreSmartContracts() {
   return (
     <>
       <p>
-        Smart contracts are self-executing programs that run on the blockchain. Once deployed, they execute exactly as programmed—automatically and without intermediaries.
+        Smart contracts are self-executing programs that run on the blockchain. Once deployed, they execute exactly as programmed. No intermediaries are involved.
       </p>
 
       <h2>How Smart Contracts Work</h2>
@@ -20,7 +20,7 @@ export default function WhatAreSmartContracts() {
         <li>Contract automatically sends tokens back to the user</li>
       </ul>
       <p>
-        No human intervention is needed—the code runs exactly as written.
+        No human intervention is needed. The code runs exactly as written.
       </p>
 
       <h2>The Ethereum Virtual Machine</h2>
@@ -38,7 +38,7 @@ export default function WhatAreSmartContracts() {
 
       <h2>Gas and Execution</h2>
       <p>
-        Every operation in a smart contract requires computational resources. &ldquo;Gas&rdquo; measures this cost—each operation has a gas price, and users pay for the gas their transactions consume.
+        Every operation in a smart contract requires computational resources. &ldquo;Gas&rdquo; is the unit that measures this cost. Each operation has a gas price, and users pay for the gas their transactions consume.
       </p>
       <p>
         Gas serves two purposes:
@@ -68,7 +68,7 @@ export default function WhatAreSmartContracts() {
 
       <h3>Decentralized Applications</h3>
       <p>
-        dApps use smart contracts as their backend. Unlike traditional apps, the business logic runs on the blockchain—transparent, auditable, and unstoppable.
+        dApps use smart contracts as their backend. Unlike traditional apps, the business logic runs on the blockchain. It is transparent, auditable, and unstoppable.
       </p>
 
       <h3>DAOs</h3>

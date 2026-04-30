@@ -99,7 +99,7 @@ export default function ToolsCalculatorPage() {
 
                 <div>
                   <label className="mb-2 block text-sm font-medium text-[var(--color-text-muted)]">
-                    Entry Price (USD) — leave blank for current price
+                    Entry Price (USD, optional)
                   </label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]">$</span>
@@ -171,7 +171,7 @@ export default function ToolsCalculatorPage() {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-75" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                     </span>
-                    Live price from CoinGecko — refreshes every 60s
+                    Live price from CoinGecko, refreshes every 60s
                   </span>
                 )}
               </div>

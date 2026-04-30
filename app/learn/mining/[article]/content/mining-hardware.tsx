@@ -160,7 +160,7 @@ export default function MiningHardware() {
         <li>80+ Gold or Platinum rated PSUs for efficiency</li>
         <li>Plan for 80% load maximum (don&apos;t run at full capacity)</li>
         <li>Multiple PSUs may be needed for larger rigs</li>
-        <li>Quality matters—cheap PSUs can fail or cause fires</li>
+        <li>Quality matters; cheap PSUs can fail or cause fires</li>
       </ul>
 
       <h3>Power Calculation</h3>

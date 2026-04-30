@@ -86,7 +86,7 @@ export default function CommunityContributePage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">How to Contribute</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Ethereum Classic is a community-driven project. Everyone can contribute —
+                Ethereum Classic is a community-driven project. Everyone can contribute,
                 whether through code, mining, governance, or community building.
               </p>
             </div>

@@ -31,7 +31,7 @@ export default function FinalCTA() {
 
           {/* Description */}
           <p className="mx-auto mt-4 max-w-xl text-lg text-[var(--text-secondary)]">
-            Buy, mine, build, or hold — your path into Ethereum Classic
+            Buy, mine, build, or hold. Find your path into Ethereum Classic.
           </p>
 
           {/* CTA Buttons */}

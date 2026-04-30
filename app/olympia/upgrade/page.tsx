@@ -62,7 +62,7 @@ const ecips = [
     icon: Flame,
     color: 'var(--color-warning)',
     description:
-      'Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury — the mechanism that funds open-source core development without any foundation or donor dependency. Dynamic gas pricing delivers predictable fees for users and applications. Fully additive: legacy transactions remain valid indefinitely. Miner block rewards and tips remain completely untouched.',
+      'Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury. This is the mechanism that funds open-source core development without any foundation or donor dependency. Dynamic gas pricing delivers predictable fees for users and applications. Fully additive: legacy transactions remain valid indefinitely. Miner block rewards and tips remain completely untouched.',
   },
   {
     ecip: 'ECIP-1112',
@@ -257,13 +257,13 @@ export default function UpgradeGuidePage() {
             <li className="flex gap-3">
               <span className="mt-0.5 shrink-0 text-[var(--brand-green)]">—</span>
               <span>
-                <span className="font-semibold text-[var(--text-primary)]">Fusaka EVM alignment:</span> the headline change — closes years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
+                <span className="font-semibold text-[var(--text-primary)]">Fusaka EVM alignment:</span> the headline change that closes years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
               </span>
             </li>
             <li className="flex gap-3">
               <span className="mt-0.5 shrink-0 text-[var(--brand-green)]">—</span>
               <span>
-                <span className="font-semibold text-[var(--text-primary)]">EIP-1559 fee market:</span> predictable base fees, type 2 transaction support, and the fee market parity the entire EVM ecosystem assumes. Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury — funding open-source core development without any foundation or donor dependency.
+                <span className="font-semibold text-[var(--text-primary)]">EIP-1559 fee market:</span> predictable base fees, type 2 transaction support, and the fee market parity the entire EVM ecosystem assumes. Unlike Ethereum where the basefee is burned, ETC redirects it to the protocol treasury, funding open-source core development without any foundation or donor dependency.
               </span>
             </li>
             <li className="flex gap-3">
@@ -302,7 +302,7 @@ export default function UpgradeGuidePage() {
               What Olympia Brings to Ethereum Classic
             </h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
-              Three protocol upgrades in a single activation — fee market, protocol treasury, and Fusaka EVM alignment — delivered to the only Proof-of-Work smart contract platform in the world.
+              Three protocol upgrades in a single activation (fee market, protocol treasury, and Fusaka EVM alignment), delivered to the only Proof-of-Work smart contract platform in the world.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -346,7 +346,7 @@ export default function UpgradeGuidePage() {
               EVM Compatibility in Detail
             </h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
-              Three Ethereum upgrade cycles delivered to ETC in a single fork — every execution-layer improvement independent of Proof-of-Stake and blob data availability.
+              Three Ethereum upgrade cycles delivered to ETC in a single fork. Every execution-layer improvement is independent of Proof-of-Stake and blob data availability.
             </p>
 
             {/* Fork Timeline */}

@@ -29,7 +29,7 @@ const securityProperties = [
     ),
     title: 'Permissionless Entry',
     description:
-      'GPU hardware available at consumer electronics retail. Purpose-built ASIC hardware for institutional scale. No licensing, no KYC, no operator approval — the widest mining participation curve of any programmable blockchain.',
+      'GPU hardware available at consumer electronics retail. Purpose-built ASIC hardware for institutional scale. No licensing, no KYC, no operator approval. This gives ETC the widest mining participation curve of any programmable blockchain.',
   },
   {
     icon: (
@@ -76,18 +76,18 @@ export function NetworkSecuritySection() {
               <p className="text-base text-[var(--text-muted)]">
                 Proof-of-Work consensus makes network security measurable. The hashrate
                 represents independent, competing economic actors deploying capital to secure
-                the network — no single operator controls the outcome. Reversing a transaction
+                the network. No single operator controls the outcome. Reversing a transaction
                 on ETC requires outpacing the combined computational investment of every miner
-                globally. That is not a governance decision or an administrative act — it is a
+                globally. That is not a governance decision or an administrative act. It is a
                 thermodynamic constraint.
               </p>
               <p className="text-base text-[var(--text-muted)]">
                 The CLARITY Act, MiCA, and every framework that distinguishes a digital
                 commodity from a security requires evidence that no single entity controls the
                 protocol. Proof-of-Work provides that evidence continuously, on-chain, with
-                every block. ETC&apos;s hashrate — absorbing the global GPU mining network and
-                onboarding a mature ASIC manufacturing market built specifically for the
-                ETChash algorithm after Ethereum&apos;s 2022 transition — represents the largest
+                every block. ETC&apos;s hashrate absorbed the global GPU mining network and
+                onboarded a mature ASIC manufacturing market built specifically for the
+                ETChash algorithm after Ethereum&apos;s 2022 transition. It represents the largest
                 distributed security budget of any smart contract platform.
               </p>
             </div>
@@ -134,7 +134,7 @@ export function NetworkSecuritySection() {
                 The regulatory criterion for digital commodity classification centers on a
                 single question: does any person or entity control the protocol? Proof-of-Work
                 answers that question with computational evidence rather than legal assurance.
-                Every block mined is a timestamp of distributed consensus — an auditable record
+                Every block mined is a timestamp of distributed consensus, an auditable record
                 of the network&apos;s independence from centralized governance.
               </p>
             </div>

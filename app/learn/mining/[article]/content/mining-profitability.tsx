@@ -182,7 +182,7 @@ export default function MiningProfitability() {
 
       <h2>Summary</h2>
       <p>
-        Mining profitability requires careful analysis of your specific situation. Use current data, realistic efficiency numbers, and accurate electricity costs. Remember that market conditions change—what&apos;s unprofitable today may become profitable (or vice versa) as prices and difficulty shift.
+        Mining profitability requires careful analysis of your specific situation. Use current data, realistic efficiency numbers, and accurate electricity costs. Market conditions shift constantly. What is unprofitable today may become profitable as prices and difficulty change.
       </p>
     </>
   )

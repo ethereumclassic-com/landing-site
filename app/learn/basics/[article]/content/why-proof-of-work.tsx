@@ -15,7 +15,7 @@ export default function WhyProofOfWork() {
 
       <h2>Security Through Real Resources</h2>
       <p>
-        PoW derives its security from the physical world—electricity and hardware investments—not from tokens within the system. This fundamental property creates powerful security guarantees:
+        PoW derives its security from real-world resources: electricity and hardware investments. Security is not internal to the token system. This fundamental property creates powerful security guarantees:
       </p>
       <ul>
         <li><strong>Attack cost is real:</strong> Attempting to attack the network requires massive ongoing energy expenditure</li>
@@ -51,7 +51,7 @@ export default function WhyProofOfWork() {
 
       <h2>Network Hashrate</h2>
       <p>
-        ETC benefits from being the dominant GPU-minable smart contract platform. This massive hashrate makes 51% attacks economically impractical—an attacker would need to acquire and operate more mining hardware than the entire rest of the network combined.
+        ETC benefits from being the dominant GPU-minable smart contract platform. This massive hashrate makes 51% attacks economically impractical. An attacker would need to acquire and operate more mining hardware than the entire rest of the network combined.
       </p>
 
       <h2>Comparison with Proof-of-Stake</h2>

@@ -46,7 +46,7 @@ export function MiningOverviewSection({ hashrateTHs }: MiningOverviewSectionProp
             <p className="text-sm leading-relaxed text-[var(--text-muted)]">
               Ethereum Classic is the only EVM-compatible chain secured by Proof-of-Work. When
               Ethereum transitioned to Proof-of-Stake, ETC absorbed the majority of the ETHash
-              mining ecosystem — including established ASIC manufacturers like Bitmain and
+              mining ecosystem, including established ASIC manufacturers like Bitmain and
               Jasminer. ETChash supports both ASIC efficiency for commercial-grade operations and
               GPU accessibility for global participation, decentralizing hashrate across
               geographies and reducing supply chain risk. Run{' '}

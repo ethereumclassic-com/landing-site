@@ -59,7 +59,7 @@ export function MiningEquipmentSection() {
           <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
             ETChash supports dedicated ASIC hardware and consumer GPU rigs, distributing hashrate
             across a broad base of independent operators. ASIC efficiency enables
-            commercial-scale operations; GPU accessibility brings in global retail miners —
+            commercial-scale operations; GPU accessibility brings in global retail miners,
             together diversifying the security budget and reducing single-vendor supply chain risk.
           </p>
         </FadeIn>

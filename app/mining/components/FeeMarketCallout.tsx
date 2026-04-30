@@ -21,7 +21,7 @@ export async function FeeMarketCallout() {
             The Fee Market Problem
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            ETC blocks are currently near ATL utilization — the average block is over 99% empty.
+            ETC blocks are currently near ATL utilization. The average block is over 99% empty.
             Block rewards fifthened every 5M blocks under ECIP-1017. Without fee revenue to replace
             diminishing block rewards, PoW miners eventually have no financial incentive to secure
             the network. Olympia is how ETC fixes this: it funds the core development that fills

@@ -46,7 +46,7 @@ export default function MiningGettingStarted() {
 
       <h3>ETC Wallet</h3>
       <p>
-        You need a wallet address to receive mining rewards. Any ETC wallet works—we recommend MetaMask or a hardware wallet for security.
+        You need a wallet address to receive mining rewards. Any ETC wallet works. We recommend MetaMask or a hardware wallet for security.
       </p>
 
       <h3>Mining Pool (Recommended)</h3>
@@ -59,7 +59,7 @@ export default function MiningGettingStarted() {
       <h3>1. Prepare Your Hardware</h3>
       <ul>
         <li>Install or update GPU drivers (latest stable version)</li>
-        <li>Ensure adequate cooling—mining generates significant heat</li>
+        <li>Ensure adequate cooling, as mining generates significant heat</li>
         <li>Verify your power supply can handle the load</li>
         <li>Check that GPU VRAM meets minimum requirements (4GB+)</li>
       </ul>
@@ -67,7 +67,7 @@ export default function MiningGettingStarted() {
       <h3>2. Get a Wallet Address</h3>
       <ul>
         <li>Create a wallet if you don&apos;t have one</li>
-        <li>Copy your ETC address—this is where rewards go</li>
+        <li>Copy your ETC address (this is where rewards go)</li>
         <li>Never share your private keys with anyone</li>
       </ul>
 
@@ -94,7 +94,7 @@ export default function MiningGettingStarted() {
       <ol>
         <li>Download your chosen miner from its official GitHub/website</li>
         <li>Extract the files to a folder</li>
-        <li>Your antivirus may flag miners—add an exception if trusted</li>
+        <li>Your antivirus may flag miners; add an exception if the source is trusted</li>
       </ol>
 
       <h3>5. Configure the Miner</h3>
@@ -104,7 +104,7 @@ export default function MiningGettingStarted() {
       <ul>
         <li>Pool address and port</li>
         <li>Your wallet address</li>
-        <li>Worker name (optional—helps identify rigs)</li>
+        <li>Worker name (optional, helps identify rigs)</li>
         <li>Any GPU-specific settings</li>
       </ul>
       <p>
@@ -168,7 +168,7 @@ export default function MiningGettingStarted() {
       <h3>Stability</h3>
       <ul>
         <li>Avoid aggressive overclocks that cause crashes</li>
-        <li>Monitor for rejected shares—high rejection indicates issues</li>
+        <li>Monitor for rejected shares, as a high rejection rate indicates issues</li>
         <li>Set up auto-restart if miner crashes</li>
         <li>Keep drivers updated but stable (avoid beta versions)</li>
       </ul>

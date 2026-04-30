@@ -10,8 +10,8 @@ export default function HowToSecureWallet() {
         Your seed phrase (also called recovery phrase or mnemonic) is the master key to your wallet. It&apos;s typically 12 or 24 words that can regenerate all your private keys.
       </p>
       <ul>
-        <li><strong>Never share it with anyone</strong>—legitimate services will never ask for it</li>
-        <li><strong>Never store it digitally</strong>—not in photos, notes apps, cloud storage, or email</li>
+        <li><strong>Never share it with anyone.</strong> Legitimate services will never ask for it</li>
+        <li><strong>Never store it digitally.</strong> Avoid photos, notes apps, cloud storage, and email</li>
         <li><strong>Write it down on paper</strong> and store securely offline</li>
         <li><strong>Consider metal backup</strong> for fire/water resistance</li>
       </ul>
@@ -80,7 +80,7 @@ export default function HowToSecureWallet() {
       <ul>
         <li>Verify the recipient address (send small test amounts first)</li>
         <li>Check you&apos;re on the correct network (ETC Chain ID: 61)</li>
-        <li>Review what you&apos;re approving—unlimited token approvals are risky</li>
+        <li>Review what you&apos;re approving before confirming, since unlimited token approvals carry significant risk</li>
         <li>Understand the transaction before confirming</li>
       </ul>
 
@@ -88,7 +88,7 @@ export default function HowToSecureWallet() {
       <ul>
         <li>Always double-check the first and last characters</li>
         <li>Use address book features when available</li>
-        <li>Copy addresses directly—never type manually</li>
+        <li>Always copy addresses directly rather than typing them manually</li>
         <li>Watch for clipboard-hijacking malware</li>
       </ul>
 

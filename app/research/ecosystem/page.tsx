@@ -13,7 +13,7 @@ const ecosystemSections = [
   {
     title: 'DeFi',
     description: 'Decentralized exchanges, lending, stablecoins, and yield opportunities on Ethereum Classic.',
-    items: ['ETCswap — leading DEX with liquidity pools', 'ClassicUSD — native stablecoin', 'HeightFi — lending and borrowing'],
+    items: ['ETCswap, the leading DEX with liquidity pools', 'ClassicUSD, the native stablecoin', 'HeightFi for lending and borrowing'],
     href: '/apps/defi',
   },
   {
@@ -24,7 +24,7 @@ const ecosystemSections = [
   },
   {
     title: 'Governance',
-    description: 'On-chain governance through Olympia DAO — basefee-funded treasury, Olympia DAO membership, futarchy.',
+    description: 'On-chain governance through Olympia DAO, with basefee-funded treasury, Olympia DAO membership, and futarchy.',
     items: ['EIP-1559 basefee treasury funding', 'Olympia DAO NFT voting membership', 'Futarchy prediction markets'],
     href: '/olympia/governance',
   },
@@ -57,7 +57,7 @@ export default function ResearchEcosystemPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Ecosystem Overview</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                A snapshot of the Ethereum Classic ecosystem — DeFi, infrastructure,
+                A snapshot of the Ethereum Classic ecosystem spanning DeFi, infrastructure,
                 governance, and mining across the network.
               </p>
             </div>

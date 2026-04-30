@@ -29,7 +29,7 @@ const frameworks = [
     status: 'badge-available' as const,
     statusLabel: 'In Force',
     description:
-      'Fully applied December 30, 2024. ETC qualifies as a decentralized asset exempt from ART/EMT issuer obligations. MiCA-licensed CASPs may offer ETC without per-asset approval — the most favorable classification under the regulation.',
+      'Fully applied December 30, 2024. ETC qualifies as a decentralized asset exempt from ART/EMT issuer obligations. MiCA-licensed CASPs may offer ETC without per-asset approval. This is the most favorable classification under the regulation.',
   },
   {
     icon: (
@@ -71,14 +71,14 @@ export function RegulationHeroSection() {
             consensus satisfies the decentralization criteria regulators use to
             classify assets as commodities. Its EVM compatibility makes it a
             live platform for regulated stablecoin issuance. These are not
-            separate positioning choices — they are the same technical
+            separate positioning choices. They are the same technical
             properties expressed from different regulatory vantage points. Its
             regulatory surface is additive, not exclusive.
           </p>
           <p className="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
             The global regulatory frameworks that define ETC&apos;s position were
             enacted in 2024 and 2025. ETC&apos;s technical profile was built in
-            2015 and 2016 — it was not retrofitted to match regulators. The
+            2015 and 2016. It was not retrofitted to match regulators. The
             network arrived at this moment as it was designed: open, immutable,
             and without a central issuer.
           </p>

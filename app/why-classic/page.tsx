@@ -29,7 +29,7 @@ export default function WhyClassicPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            The principles and philosophy that define Ethereum Classic — from its origin story to the protocol design
+            The principles and philosophy that define Ethereum Classic, from its origin story to the protocol design
             decisions that set it apart.
           </p>
         </div>

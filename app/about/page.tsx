@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About | Ethereum Classic',
   description:
-    'EthereumClassic.com is the primary website for Ethereum Classic — covering news, learning resources, apps, mining, research, and development tools.',
+    'EthereumClassic.com is the primary website for Ethereum Classic. It covers news, learning resources, apps, mining, research, and development tools.',
 }
 
 export default function AboutPage() {
@@ -27,7 +27,7 @@ export default function AboutPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            EthereumClassic.com is the comprehensive resource for everything Ethereum Classic — from breaking news and
+            EthereumClassic.com is the comprehensive resource for everything Ethereum Classic, from breaking news and
             educational content to developer tools and ecosystem applications.
           </p>
         </div>
@@ -65,12 +65,12 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Our Mission</h2>
           <div className="mt-6 space-y-4 text-[var(--color-text-secondary)]">
             <p>
-              Ethereum Classic is the original, unaltered Ethereum blockchain — secured by proof-of-work, governed by a
+              Ethereum Classic is the original, unaltered Ethereum blockchain. It is secured by proof-of-work, governed by a
               fixed monetary policy, and committed to the principle that code is law.
             </p>
             <p>
               This website exists to provide accurate, up-to-date information about the ETC ecosystem. We cover protocol
-              developments, review dApps, publish educational guides, and maintain developer resources — all without
+              developments, review dApps, publish educational guides, and maintain developer resources, all without
               gatekeeping or editorial bias.
             </p>
             <p>

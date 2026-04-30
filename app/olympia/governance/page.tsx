@@ -26,7 +26,7 @@ const safeguards = [
   {
     label: 'Two-Layer Governance',
     description:
-      'Olympia DAO membership NFTs are non-transferable, preventing vote buying and governance manipulation. Public participation is enabled through futarchy prediction markets — ensuring both protocol accountability and broad community input.',
+      'Olympia DAO membership NFTs are non-transferable, preventing vote buying and governance manipulation. Public participation is enabled through futarchy prediction markets, ensuring both protocol accountability and broad community input.',
   },
 ]
 
@@ -82,7 +82,7 @@ export default function GovernancePage() {
               Treasury Funding
             </h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
-              How the Olympia Treasury is funded — sustainably and without impacting miners.
+              How the Olympia Treasury achieves sustainable funding without impacting miners.
             </p>
 
             {/* Callout */}
@@ -93,7 +93,7 @@ export default function GovernancePage() {
                 Basefee revenue funds the Olympia Treasury
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                Block rewards and tips remain completely untouched — miners are unaffected.
+                Block rewards and tips remain completely untouched. Miners are unaffected.
                 The treasury receives basefee revenue, voluntary on-chain donations, and mining
                 rewards directed to the treasury address. This creates sustainable, transparent
                 funding without inflation or reduced miner compensation.

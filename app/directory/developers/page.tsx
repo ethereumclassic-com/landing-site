@@ -24,7 +24,7 @@ export default function DirectoryDevelopersPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Developer Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Everything you need to build on Ethereum Classic — networks, RPC endpoints,
+                Everything you need to build on Ethereum Classic: networks, RPC endpoints,
                 node clients, and developer tools.
               </p>
             </div>

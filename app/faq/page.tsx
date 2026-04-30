@@ -31,8 +31,8 @@ export default function FAQPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Find answers about Ethereum Classic — whether you&apos;re a user, investor, miner, developer, or community
-            member.
+            Find answers about Ethereum Classic for users, investors, miners, developers, and community
+            members.
           </p>
         </div>
       </section>

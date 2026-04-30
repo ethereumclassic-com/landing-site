@@ -7,7 +7,7 @@ export default function ETCTokenomics() {
 
       <h2>Maximum Supply</h2>
       <p>
-        The maximum supply of ETC is approximately <strong>210.7 million</strong> coins. This cap is enforced by the protocol and cannot be changed without a hard fork—which the community has consistently rejected.
+        The maximum supply of ETC is approximately <strong>210.7 million</strong> coins. This cap is enforced by the protocol. Any attempt to change it would require a hard fork, which the community has consistently rejected.
       </p>
       <p>
         Unlike many cryptocurrencies with unlimited or uncertain supply, you can calculate exactly how much ETC will ever exist.
@@ -116,7 +116,7 @@ export default function ETCTokenomics() {
         <li>Contract deployments</li>
       </ul>
       <p>
-        Fees are determined by network demand—higher activity means higher fees, though ETC generally maintains lower fees than congested networks.
+        Fees are determined by network demand. Higher activity means higher fees, though ETC generally maintains lower fees than congested networks.
       </p>
 
       <h2>Use Cases</h2>
@@ -144,7 +144,7 @@ export default function ETCTokenomics() {
 
       <h2>Summary</h2>
       <p>
-        Ethereum Classic combines smart contract capability with sound monetary policy. The fixed supply, predictable emission, and fair distribution make ETC a unique asset—a programmable blockchain with the scarcity properties of hard money.
+        Ethereum Classic combines smart contract capability with sound monetary policy. The fixed supply, predictable emission, and fair distribution make ETC a programmable blockchain with the scarcity properties of hard money.
       </p>
     </>
   )

@@ -41,7 +41,7 @@ export default function SupplyScarcitySection() {
       <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
         <h2 className="mb-1 text-xl font-semibold text-[var(--text-primary)]">Supply Scarcity by Era</h2>
         <p className="mb-6 text-sm text-[var(--text-muted)]">
-          Stock-to-Flow ratio — total supply divided by annual new issuance. Higher values indicate lower inflation
+          The Stock-to-Flow ratio is total supply divided by annual new issuance. Higher values indicate lower inflation
           relative to existing supply. ETC&apos;s S2F ratio grows with each fifthing.
         </p>
         <ResponsiveContainer width="100%" height={280}>

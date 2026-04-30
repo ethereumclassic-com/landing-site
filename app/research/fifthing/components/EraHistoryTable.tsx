@@ -111,7 +111,7 @@ export default function EraHistoryTable({
                 </span>
               </div>
               <p className="mt-1 text-sm text-[var(--text-muted)]">
-                Blocks {currentEra.startBlock.toLocaleString()} — {currentEra.endBlock.toLocaleString()}
+                Blocks {currentEra.startBlock.toLocaleString()} to {currentEra.endBlock.toLocaleString()}
               </p>
             </div>
             <div className="text-right text-sm">

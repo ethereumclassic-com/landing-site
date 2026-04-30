@@ -26,7 +26,7 @@ export default function IcoPriceChart() {
     <div className="mt-8">
       <h3 className="mb-1 text-sm font-semibold text-[var(--text-primary)]">ICO Sale Rate — Jul 22 to Sep 2, 2014</h3>
       <p className="mb-4 text-xs text-[var(--text-muted)]">
-        ~31,529 BTC raised over 42 days. Early bird rate (days 1–14): 2,000 ETH per BTC — then linearly declining to 1,337 ETH per BTC by the final day.
+        ~31,529 BTC raised over 42 days. Early bird rate (days 1–14): 2,000 ETH per BTC, then linearly declining to 1,337 ETH per BTC by the final day.
       </p>
       <ResponsiveContainer width="100%" height={200}>
         <LineChart data={ETH_ICO_PRICE_SCHEDULE} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>

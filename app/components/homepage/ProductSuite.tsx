@@ -137,7 +137,7 @@ export default function ProductSuite() {
             ETC Ecosystem
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[var(--text-secondary)]">
-            Products designed to work together — trade, spend, and manage your Ethereum Classic
+            Products designed to work together. Trade, spend, and manage your Ethereum Classic.
           </p>
         </FadeIn>
 

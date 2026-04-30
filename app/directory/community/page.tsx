@@ -5,7 +5,7 @@ import Link from 'next/link'
 const socialPlatforms = [
   {
     name: 'Discord',
-    description: 'Main community server — real-time discussions, support, and announcements',
+    description: 'Main community server for real-time discussions, support, and announcements',
     url: 'https://discord.com/invite/Tq57jxSwsa',
     members: '20K+',
     category: 'Chat',
@@ -19,21 +19,21 @@ const socialPlatforms = [
   },
   {
     name: 'X (Twitter)',
-    description: 'Official ETC Network account — news, updates, and ecosystem highlights',
+    description: 'Official ETC Network account for news, updates, and ecosystem highlights',
     url: 'https://x.com/ETC_Network',
     members: '600K+',
     category: 'Social',
   },
   {
     name: 'Reddit',
-    description: 'r/EthereumClassic — discussions, memes, and community governance',
+    description: 'r/EthereumClassic for discussions, memes, and community governance',
     url: 'https://reddit.com/r/EthereumClassic',
     members: '200K+',
     category: 'Forum',
   },
   {
     name: 'GitHub',
-    description: 'Open-source development — core clients, tools, and ecosystem projects',
+    description: 'Open-source development hub for core clients, tools, and ecosystem projects',
     url: 'https://github.com/ethereumclassic',
     members: '50+ repos',
     category: 'Development',
@@ -55,7 +55,7 @@ const communityResources = [
   },
   {
     title: 'ECIPs',
-    description: 'Ethereum Classic Improvement Proposals — the governance process for protocol changes',
+    description: 'Ethereum Classic Improvement Proposals govern the protocol change process',
     href: 'https://ecips.ethereumclassic.org',
     external: true,
   },

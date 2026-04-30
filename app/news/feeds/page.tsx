@@ -68,7 +68,7 @@ export default function FeedsPage() {
 
         <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl">News Feeds</h1>
         <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
-          Subscribe to Ethereum Classic news using a feed reader. Get network upgrades, security updates, and ecosystem news delivered automatically — no account needed.
+          Subscribe to Ethereum Classic news using a feed reader. Get network upgrades, security updates, and ecosystem news delivered automatically. No account needed.
         </p>
 
         {/* Available Feeds */}
@@ -145,7 +145,7 @@ export default function FeedsPage() {
               All pages on this site include <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">&lt;link rel=&quot;alternate&quot;&gt;</code> tags for autodiscovery. Feed readers and aggregators can detect our feeds automatically from any page URL.
             </p>
             <p>
-              Feeds include full article content (not just excerpts) and update hourly. Please respect the <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">Cache-Control</code> and <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">TTL</code> headers — polling more frequently than once per hour returns cached content.
+              Feeds include full article content (not just excerpts) and update hourly. Please respect the <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">Cache-Control</code> and <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">TTL</code> headers. Polling more frequently than once per hour returns cached content.
             </p>
           </div>
         </section>

@@ -87,8 +87,8 @@ export async function MiningPoolsSection() {
           <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
             Active ETChash mining pools contributing to Ethereum Classic&apos;s security budget.
             Pool selection affects expected earnings variance, payout frequency, and
-            infrastructure dependence. Hashrate is estimated from recent block attribution —
-            larger pools appear at the top.
+            infrastructure dependence. Hashrate is estimated from recent block attribution.
+            Larger pools appear at the top.
           </p>
         </FadeIn>
 

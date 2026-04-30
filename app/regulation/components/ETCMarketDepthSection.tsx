@@ -93,12 +93,12 @@ export function ETCMarketDepthSection() {
               function as a global payment rail, the underlying asset must be tradeable against
               local currencies in every jurisdiction where the stablecoin is used. ETC has
               continuous fiat price discovery across 17 major currencies and 300+ active
-              exchange markets — ETC/USD, ETC/EUR, ETC/JPY, ETC/KRW, ETC/INR, and coverage
+              exchange markets: ETC/USD, ETC/EUR, ETC/JPY, ETC/KRW, ETC/INR, and coverage
               across Latin America, Southeast Asia, the Middle East, and Eastern Europe.
               Classic USD ($USC) settles on the same network that these markets are pricing.
             </p>
             <p className="mt-3 text-base text-[var(--text-muted)]">
-              ETC/USD spot markets have operated continuously since 2016 — one of the
+              ETC/USD spot markets have operated continuously since 2016. This is one of the
               longest-running fiat price discovery mechanisms in digital assets. That track
               record is what OTC desks, custodians, and compliance teams look for when
               evaluating whether a network can support institutional-scale stablecoin

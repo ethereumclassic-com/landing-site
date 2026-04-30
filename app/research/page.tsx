@@ -234,7 +234,7 @@ export default function ResearchPage() {
                 <span className="rounded-full bg-[var(--brand-green)]/15 px-2 py-0.5 text-xs font-medium text-[var(--brand-green)]">Live Countdown</span>
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">Block Reward Countdown</h3>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Live countdown to the next fifthing — ECIP-1017 era transition</p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Live countdown to the next fifthing under ECIP-1017</p>
             </Link>
             <Link
               href="/research/emission-schedule"
@@ -334,7 +334,7 @@ export default function ResearchPage() {
                 </svg>
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">2016 DAO Fork</h3>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">How the original Ethereum chain became Ethereum Classic — and who tried to suppress it</p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">How the original Ethereum chain became Ethereum Classic, and who tried to suppress it</p>
             </Link>
           </div>
         </div>

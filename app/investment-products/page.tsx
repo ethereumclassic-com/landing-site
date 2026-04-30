@@ -178,7 +178,7 @@ export default function InvestmentProductsPage() {
               ETC in Traditional Finance
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
-              ETCG is an OTCQX-listed grantor trust. Search the ticker at your existing brokerage — it trades alongside equities and ETFs. IRA-eligible at major full-service platforms.
+              ETCG is an OTCQX-listed grantor trust. Search the ticker at your existing brokerage. It trades alongside equities and ETFs and is IRA-eligible at major full-service platforms.
             </p>
 
             {/* Brokerage grid */}

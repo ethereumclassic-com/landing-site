@@ -32,7 +32,7 @@ export default function ECIP1017Explainer() {
             {
               n: '2',
               title: 'Geometric Reduction',
-              body: 'At each era boundary (the "fifthing"), the block reward is multiplied by 0.8 — a 20% reduction. Starting from 5 ETC, rewards halve approximately every 3 eras.',
+              body: 'At each era boundary (the "fifthing"), the block reward is multiplied by 0.8, a 20% reduction. Starting from 5 ETC, rewards halve approximately every 3 eras.',
             },
             {
               n: '3',
@@ -103,7 +103,7 @@ export default function ECIP1017Explainer() {
             <Link href="/research/ethereum-ico" className="text-[var(--brand-green)] hover:underline">
               Ethereum 2014 ICO
             </Link>
-            {' '}— ETC is the original chain. In 2016 the Ethereum Foundation forked away and applied the ETH name and ticker to the new chain. Leaked internal chat logs confirm that Foundation insiders and associates coordinated a campaign to sell ETC and buy ETH — deliberately depressing the original chain&apos;s price while elevating the new one. The Foundation&apos;s 16.67% ICO allocation was dumped into the open market at pennies. There is no premine on ETC — much of that allocation was distributed to open-market buyers via legacy centralized exchanges.{' '}
+            {'. '}ETC is the original chain. In 2016 the Ethereum Foundation forked away and applied the ETH name and ticker to the new chain. Leaked internal chat logs confirm that Foundation insiders and associates coordinated a campaign to sell ETC and buy ETH, deliberately depressing the original chain&apos;s price while elevating the new one. The Foundation&apos;s 16.67% ICO allocation was dumped into the open market at pennies. There is no premine on ETC; much of that allocation was distributed to open-market buyers via legacy centralized exchanges.{' '}
             <Link href="/research/dao-fork" className="text-[var(--brand-green)] hover:underline">
               Full story →
             </Link>

@@ -289,7 +289,7 @@ export default function LearnPage() {
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
             >
               <p className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Block Reward Countdown</p>
-              <p className="mt-1.5 text-sm text-[var(--color-text-muted)]">Live countdown to the next fifthing — the ECIP-1017 era transition.</p>
+              <p className="mt-1.5 text-sm text-[var(--color-text-muted)]">Live countdown to the next fifthing, the ECIP-1017 era transition.</p>
             </Link>
           </div>
           <div className="mt-4 text-right">

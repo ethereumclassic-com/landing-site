@@ -27,7 +27,7 @@ export default function DirectoryMiningPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Mining Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Complete directory of Ethereum Classic mining resources — pools, hardware, and software.
+                Complete directory of Ethereum Classic mining resources: pools, hardware, and software.
                 ETC uses Etchash proof-of-work, mineable with GPUs and ASICs.
               </p>
             </div>

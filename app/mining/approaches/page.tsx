@@ -55,7 +55,7 @@ export default function MiningApproachesPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            ETC supports both GPU and ASIC mining via the ETChash algorithm. Every scale of operation has a valid entry point — from a single home rig to grid-scale industrial deployment.
+            ETC supports both GPU and ASIC mining via the ETChash algorithm. Every scale of operation has a valid entry point, from a single home rig to grid-scale industrial deployment.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -188,7 +188,7 @@ export default function MiningApproachesPage() {
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8">
               <h3 className="text-lg font-bold text-[var(--text-primary)]">Dedicated Mining</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                Always-on operations targeting maximum uptime. Best for stable, low-cost power contracts where curtailment isn&apos;t needed. Industrial ASIC farms typically operate this way — fixed capacity, predictable revenue, optimized power agreements.
+                Always-on operations targeting maximum uptime. Best for stable, low-cost power contracts where curtailment isn&apos;t needed. Industrial ASIC farms typically operate this way. They run fixed capacity at predictable revenue on optimized power agreements.
               </p>
               <ul className="mt-6 space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Maximum hash output per installation</li>
@@ -202,7 +202,7 @@ export default function MiningApproachesPage() {
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8">
               <h3 className="text-lg font-bold text-[var(--text-primary)]">Flexible Load Mining</h3>
               <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                Operations that curtail mining during expensive grid hours and ramp up during cheap or stranded periods. Natural fit for co-located renewable energy, flared gas monetization, or grid-balancing contracts. The miner acts as a dispatchable load — valuable to grid operators.
+                Operations that curtail mining during expensive grid hours and ramp up during cheap or stranded periods. Natural fit for co-located renewable energy, flared gas monetization, or grid-balancing contracts. The miner acts as a dispatchable load, valuable to grid operators.
               </p>
               <ul className="mt-6 space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li className="flex gap-2"><span className="text-[var(--color-primary)]">+</span> Captures cheapest available energy</li>
@@ -247,7 +247,7 @@ export default function MiningApproachesPage() {
               rows={[
                 { label: 'ETChash Efficiency', value: 'Moderate' },
                 { label: 'Capital Cost', value: 'Low–Medium' },
-                { label: 'Flexibility', value: 'High — multi-algorithm' },
+                { label: 'Flexibility', value: 'High (multi-algorithm)' },
                 { label: 'Resale Value', value: 'Strong' },
                 { label: 'Setup Complexity', value: 'Low' },
                 { label: 'Minimum Scale', value: 'Single card' },
@@ -260,11 +260,11 @@ export default function MiningApproachesPage() {
               rows={[
                 { label: 'ETChash Efficiency', value: 'Peak', color: 'green' },
                 { label: 'Capital Cost', value: 'High' },
-                { label: 'Flexibility', value: 'None — ETChash only' },
+                { label: 'Flexibility', value: 'None (ETChash only)' },
                 { label: 'Resale Value', value: 'Low outside crypto' },
                 { label: 'Setup Complexity', value: 'Low–Medium' },
                 { label: 'Minimum Scale', value: 'Single unit' },
-                { label: 'Noise / Heat', value: 'High — datacenter environment' },
+                { label: 'Noise / Heat', value: 'High (datacenter environment)' },
                 { label: 'Hardware Availability', value: 'Manufacturer direct / brokers' },
               ]}
             />

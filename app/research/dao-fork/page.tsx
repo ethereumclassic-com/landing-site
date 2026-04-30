@@ -7,7 +7,7 @@ export const dynamic = 'force-static'
 export const metadata: Metadata = {
   title: '2016 DAO Fork — How Ethereum Classic Got Its Name | ETC Research',
   description:
-    'In 2016 the Ethereum Foundation forked the original chain and applied the ETH name and ticker to the new chain. The original chain — operating since 2015 — became known as Ethereum Classic.',
+    'In 2016 the Ethereum Foundation forked the original chain and applied the ETH name and ticker to the new chain. The original chain has operated since 2015 and became known as Ethereum Classic.',
   keywords: [
     'DAO fork 2016',
     'Ethereum Classic genesis',
@@ -44,7 +44,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Apr 30 – May 27, 2016',
     type: 'action',
     description:
-      "Slock.it deploys The DAO smart contract; members of the public send it ETH in exchange for DAO tokens. The crowdsale closes on May 27 raising $150 million — the world's largest crowdfund at the time. Approximately 14% of all circulating ETH becomes locked in a single contract. When the Ethereum Foundation created a new chain in July 2016, this ETH remained on the original chain — intact, in its pre-exploit state.",
+      "Slock.it deploys The DAO smart contract; members of the public send it ETH in exchange for DAO tokens. The crowdsale closes on May 27 raising $150 million, the world's largest crowdfund at the time. Approximately 14% of all circulating ETH becomes locked in a single contract. When the Ethereum Foundation created a new chain in July 2016, this ETH remained on the original chain, intact and in its pre-exploit state.",
     tags: ['$150M raised', '~14% of all ETH locked', 'DAO token holders', 'Slock.it'],
   },
   {
@@ -60,7 +60,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Jul 20, 2016',
     type: 'defining',
     description:
-      "The Ethereum Foundation implements an irregular state change, creating a new chain that reverses the DAO exploit. The Foundation applies the Ethereum name, brand, and ETH ticker to this new chain. The original chain — operating continuously and unmodified since the July 2015 genesis block — retains the full original state, including the 72,009,991-token genesis supply and the RHG's child DAO position. The global community names the original chain Ethereum Classic; exchanges assign it the ETC ticker.",
+      "The Ethereum Foundation implements an irregular state change, creating a new chain that reverses the DAO exploit. The Foundation applies the Ethereum name, brand, and ETH ticker to this new chain. The original chain had operated continuously and unmodified since the July 2015 genesis block; it retained the full original state, including the 72,009,991-token genesis supply and the RHG's child DAO position. The global community names the original chain Ethereum Classic; exchanges assign it the ETC ticker.",
     tags: ['New chain created — takes ETH name & ticker', 'Original chain retains genesis supply', 'ETC = original unmodified chain', 'Code is Law'],
   },
   {
@@ -68,7 +68,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Jul 23, 2016',
     type: 'action',
     description:
-      "Three days after the fork, Poloniex lists the original chain under the ETC ticker — one of the first uses of the Ethereum Classic name — against expectations: the Ethereum Foundation had told exchanges the original chain would have little to no community interest or value. Poloniex's listing triggers an immediate price discovery market and signals that the original chain would not disappear. Many exchanges quickly follow. This unexpected survival is the direct context for the suppression activity that follows.",
+      "Three days after the fork, Poloniex lists the original chain under the ETC ticker (one of the first uses of the Ethereum Classic name), against expectations: the Ethereum Foundation had told exchanges the original chain would have little to no community interest or value. Poloniex's listing triggers an immediate price discovery market and signals that the original chain would not disappear. Many exchanges quickly follow. This unexpected survival is the direct context for the suppression activity that follows.",
     tags: ['ETC ticker first applied by Poloniex', 'EF told exchanges original chain would be worthless', 'Price discovery established', 'Many exchanges follow'],
   },
   {
@@ -100,7 +100,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Aug 8, 2016',
     type: 'action',
     description:
-      'Alex van de Sande (Ethereum Foundation) had publicly led the white hat counter-attack on June 21 — tweeting "DAO IS BEING SECURELY DRAINED. DO NOT PANIC." and "we launched our white hat counter attack." On August 8, he publicly states: "TLDR: I had nothing to do with it."',
+      'Alex van de Sande (Ethereum Foundation) had publicly led the white hat counter-attack on June 21, tweeting "DAO IS BEING SECURELY DRAINED. DO NOT PANIC." and "we launched our white hat counter attack." On August 8, he publicly states: "TLDR: I had nothing to do with it."',
     tags: ['Jun 21: publicly announced counter-attack', 'Aug 8: "I had nothing to do with it"'],
   },
   {
@@ -133,7 +133,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Apr 2017',
     type: 'institutional',
     description:
-      'Grayscale establishes the Ethereum Classic Trust approximately eight months after the August 2016 events. The trust becomes publicly quoted on OTCQX in May 2018, accessible through Charles Schwab, Fidelity, and Interactive Brokers — pioneering regulated institutional access to ETC. ETC is held in cold storage by Coinbase Custody under a 2.50% annual management fee. As of March 31, 2026, ETCG reports $89.31M in assets under management at 0.78020295 ETC per share.',
+      'Grayscale establishes the Ethereum Classic Trust approximately eight months after the August 2016 events. The trust becomes publicly quoted on OTCQX in May 2018, accessible through Charles Schwab, Fidelity, and Interactive Brokers. This pioneered regulated institutional access to ETC. ETC is held in cold storage by Coinbase Custody under a 2.50% annual management fee. As of March 31, 2026, ETCG reports $89.31M in assets under management at 0.78020295 ETC per share.',
     tags: ['ETCG inception Apr 2017', 'OTCQX public quotation May 2018', '$89.31M AUM (Mar 2026)', '2.50% annual management fee', 'Coinbase Custody cold storage'],
   },
   {
@@ -149,7 +149,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Feb 22, 2022',
     type: 'action',
     description:
-      "Journalist Laura Shin, in a joint investigation with Chainalysis, identifies Austrian programmer Toby Hoenisch — co-founder and former CEO of TenX — as the likely perpetrator of the 2016 DAO hack. The investigation traced the stolen ETH to Bitcoin, through Wasabi Wallet mixing, de-mixed by Chainalysis to four exchanges, then converted to Grin (a privacy coin) and withdrawn to a non-custodial node named 'grin.toby.ai' — hosted on the same IP address as a node named 'TenX.' Hoenisch had previously written blog posts warning about the DAO's vulnerability before the hack. He denied the allegations, stating Shin's conclusion was 'factually inaccurate.' The investigation was published in Shin's book The Cryptopians.",
+      "Journalist Laura Shin, in a joint investigation with Chainalysis, identifies Austrian programmer Toby Hoenisch, co-founder and former CEO of TenX, as the likely perpetrator of the 2016 DAO hack. The investigation traced the stolen ETH to Bitcoin, through Wasabi Wallet mixing, de-mixed by Chainalysis to four exchanges, then converted to Grin (a privacy coin) and withdrawn to a non-custodial node named 'grin.toby.ai', hosted on the same IP address as a node named 'TenX.' Hoenisch had previously written blog posts warning about the DAO's vulnerability before the hack. He denied the allegations, stating Shin's conclusion was 'factually inaccurate.' The investigation was published in Shin's book The Cryptopians.",
     tags: ['Toby Hoenisch (TenX co-founder) accused', 'Laura Shin + Chainalysis investigation', 'ETH → BTC → Wasabi Wallet → Grin trail', '"grin.toby.ai" node on same IP as "TenX"', 'Hoenisch denies: "factually inaccurate"', 'The Cryptopians published Feb 2022'],
     link: { href: 'https://decrypt.co/93547/crypto-ceo-denies-11-billion-ethereum-dao-hack', label: 'Decrypt coverage — Feb 22, 2022 ↗' },
   },
@@ -158,7 +158,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Jan 29, 2026',
     type: 'legacy',
     description:
-      "Griff Green announces that approximately 70,500 ETH from the ExtraBalance Withdrawal contract and ~4,600 ETH from TheDAO's Curator Multisig — funds with \"no clear claimants\" — will be deployed as TheDAO Security Fund, part of the Ethereum Foundation's Trillion Dollar Security initiative. About 20% of the original refund pool was never claimed; that ~$6M in 2016 is now estimated at ~$200 million. The funds will be staked, with revenue directed to Ethereum security grants via quadratic funding and retroactive mechanisms. Named curators include Vitalik Buterin and Jordi Baylina — the same Baylina who posted the 2016 follow-up acknowledging the ETC had been converted to ETH \"to support Ethereum projects.\"",
+      "Griff Green announces that approximately 70,500 ETH from the ExtraBalance Withdrawal contract and ~4,600 ETH from TheDAO's Curator Multisig (funds with \"no clear claimants\") will be deployed as TheDAO Security Fund, part of the Ethereum Foundation's Trillion Dollar Security initiative. About 20% of the original refund pool was never claimed; that ~$6M in 2016 is now estimated at ~$200 million. The funds will be staked, with revenue directed to Ethereum security grants via quadratic funding and retroactive mechanisms. Named curators include Vitalik Buterin and Jordi Baylina, the same Baylina who posted the 2016 follow-up acknowledging the ETC had been converted to ETH \"to support Ethereum projects.\"",
     tags: ['70,500 ETH from ExtraBalance contract', '~4,600 ETH from Curator Multisig', '~$200M estimated value', 'Part of EF Trillion Dollar Security initiative', 'Jordi Baylina named curator', 'Funds staked, yield funds operations'],
   },
 ]
@@ -181,9 +181,12 @@ export default function DaoForkPage() {
               Research
             </Link>
             <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
-              The 2016 DAO Fork — How Ethereum Classic Got Its Name
+              The 2016 DAO Fork
+              <span className="mt-1 block text-2xl font-semibold text-[var(--text-secondary)] md:text-3xl">
+                How Ethereum Classic Got Its Name
+              </span>
             </h1>
-            <p className="mt-3 max-w-2xl text-lg text-[var(--text-secondary)]">
+            <p className="mt-3 text-lg text-[var(--text-secondary)]">
               The Ethereum Foundation forked the original chain and applied the ETH name to the new chain. The original, unmodified chain became Ethereum Classic.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -203,9 +206,7 @@ export default function DaoForkPage() {
         <div className="mx-auto max-w-6xl">
           <FadeIn delay={60}>
             <p className="mb-6 text-sm text-[var(--text-muted)]">
-              The original Ethereum chain — operating since the July 2015 genesis block — continued unmodified after the 2016 fork.
-              The Ethereum Foundation applied the ETH name and ticker to the new chain; the global community recognised the original as Ethereum Classic.
-              This is the sequence of events — and who fought to suppress it.
+              The original Ethereum chain has operated continuously since the July 2015 genesis block. After the 2016 fork, the Ethereum Foundation applied the ETH name and ticker to the new chain. The global community recognised the original as Ethereum Classic. This is the sequence of events, and who fought to suppress it.
             </p>
           </FadeIn>
           <div className="relative">

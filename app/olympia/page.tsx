@@ -23,7 +23,7 @@ const howItWorks = [
   {
     title: 'On-Chain Governance',
     description:
-      'On-chain governance via the OpenZeppelin Governor 5.x contract suite. The Olympia DAO handles critical protocol decisions — security maintenance, EVM parity, and client funding — using non-transferable membership NFTs. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
+      'On-chain governance via the OpenZeppelin Governor 5.x contract suite. The Olympia DAO handles critical protocol decisions (security maintenance, EVM parity, and client funding) using non-transferable membership NFTs. Futarchy prediction markets open public participation to inform treasury allocation. All on-chain and auditable.',
     color: 'var(--color-info)',
   },
 ]

@@ -79,7 +79,7 @@ export default function ETCvsETH() {
       </p>
       <ul>
         <li>Scarcity through mathematical certainty</li>
-        <li>No surprises—supply is fully calculable</li>
+        <li>Supply is fully calculable with no surprises</li>
         <li>Protection against inflation</li>
       </ul>
 
@@ -99,7 +99,7 @@ export default function ETCvsETH() {
         <li>Token standards (ERC-20, ERC-721) are compatible</li>
       </ul>
       <p>
-        If you can build on Ethereum, you can build on ETC—and often at lower fees.
+        If you can build on Ethereum, you can build on ETC. Transaction fees are generally lower as well.
       </p>
 
       <h2>Ecosystem Comparison</h2>

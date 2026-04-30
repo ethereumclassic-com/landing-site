@@ -117,7 +117,7 @@ export default function CoreDevsPage() {
             </p>
             <p className="mt-2 text-[var(--color-text-muted)] leading-relaxed">
               CDCs are public meetings where ETC client developers coordinate protocol changes.
-              Every network fork — from Frontier (2015) through Olympia — is discussed, debated,
+              Every network fork, from Frontier (2015) through Olympia, is discussed, debated,
               and finalized through this process. Rejected proposals (ECIP-1049, 1051, 1098)
               are also documented here.
             </p>
@@ -169,8 +169,7 @@ export default function CoreDevsPage() {
                 <span className="text-[var(--color-primary)]">/ </span>Archive
               </h2>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                Every protocol decision since genesis — {cdcEntries.length} calls, reverse
-                chronological.
+                All {cdcEntries.length} protocol decisions since genesis, in reverse chronological order.
               </p>
             </div>
 

@@ -6,7 +6,7 @@ const revenueCards = [
   {
     label: 'Block Reward',
     value: '2.048 ETC',
-    note: 'Era 4 — unchanged by Olympia',
+    note: 'Era 4, unchanged by Olympia',
     color: 'var(--brand-green)',
   },
   {
@@ -59,8 +59,8 @@ export default function MinersPage() {
           <p
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Block rewards and tips remain completely untouched. Only the EIP-1559 basefee — the portion
-            Ethereum burns — is redirected to the protocol treasury.
+            Block rewards and tips remain completely untouched. Only the EIP-1559 basefee (the portion
+            Ethereum burns) is redirected to the protocol treasury.
           </p>
         </div>
       </section>

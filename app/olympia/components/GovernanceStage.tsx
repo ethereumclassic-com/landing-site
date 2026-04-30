@@ -60,7 +60,7 @@ export default function GovernanceStageComponent() {
     >
       <h2 className="text-2xl font-bold text-[var(--text-primary)]">From Proposal to Execution</h2>
       <p className="mt-2 text-[var(--color-text-muted)]">
-        Five stages from idea to execution — every step on-chain, transparent, and auditable.
+        Five stages from idea to execution. Every step is on-chain, transparent, and auditable.
       </p>
 
       <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">

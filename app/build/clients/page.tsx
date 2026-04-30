@@ -379,7 +379,7 @@ export default function ClientsPage() {
             <p className="mb-2 text-sm font-mono text-[var(--color-text-muted)]">Post-Olympia Roadmap</p>
             <p className="mb-8 max-w-3xl text-[var(--color-text-muted)]">
               Upstream Ethereum clients separated the consensus engine from the execution engine to support
-              Proof-of-Stake. ETC plugins leverage this separation — adding Ethereum Classic chain support
+              Proof-of-Stake. ETC plugins leverage this separation to add Ethereum Classic chain support
               to the execution layer only. No mining, no PoW consensus. Products and infrastructure built on
               geth, Nethermind, Erigon, or Besu can add ETC support via a lightweight plugin without running
               a separate PoW consensus client. Fukuii remains the primary and long-term supported Proof-of-Work
@@ -417,7 +417,7 @@ export default function ClientsPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
-              Fukuii is the recommended client for Ethereum Classic — purpose-built for ETC with PoW
+              Fukuii is the recommended client for Ethereum Classic. It is purpose-built for ETC with PoW
               consensus and mining support. For upgrade-specific guidance, see the Olympia client details.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">

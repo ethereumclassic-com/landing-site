@@ -8,7 +8,7 @@ import { FadeIn, HoverLift } from "../components/Motion";
 const groups = [
     {
         title: "Users & Power Users",
-        body: "Individuals who use ETC within decentralized markets and smart-contract applications built on Ethereum Classic. Programmability enables financial primitives familiar to traditional markets — exchanges, lending, settlement, liquidity provision, and automated strategies — to operate on a global, public network. For users in regions with limited banking access, unstable currencies, or fragmented financial infrastructure, ETC-based systems provide access to stable digital currencies and scarce assets through protocol-enforced rules rather than intermediaries. This allows capital to move from higher-risk local systems into more predictable, globally accessible markets wherever an internet connection is available. For users in established economies, Ethereum Classic offers a low-friction, non-discretionary settlement layer that enables global value transfer without rent-seeking fees, custody risk, or unnecessary delay.",
+        body: "Individuals who use ETC within decentralized markets and smart-contract applications built on Ethereum Classic. Programmability enables financial primitives familiar to traditional markets, including exchanges, lending, settlement, liquidity provision, and automated strategies, to operate on a global, public network. For users in regions with limited banking access, unstable currencies, or fragmented financial infrastructure, ETC-based systems provide access to stable digital currencies and scarce assets through protocol-enforced rules rather than intermediaries. This allows capital to move from higher-risk local systems into more predictable, globally accessible markets wherever an internet connection is available. For users in established economies, Ethereum Classic offers a low-friction, non-discretionary settlement layer that enables global value transfer without rent-seeking fees, custody risk, or unnecessary delay.",
         image: "/for/users.png",
     },
     {
@@ -42,7 +42,7 @@ export function WhoFor() {
                     infrastructure, and institutions integrating ETC into products and portfolios. Each group
                     benefits from the same core properties: a public network, open participation, and
                     protocol-enforced rules. The cards below summarize how these constituencies use the same base
-                    layer for distinct needs — from market activity to energy monetization to institutional
+                    layer for distinct needs, spanning market activity, energy monetization, and institutional
                     settlement.
                 </p>
             </FadeIn>

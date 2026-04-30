@@ -48,7 +48,7 @@ const olympiaPoints = [
 ]
 
 const fifthingPoints = [
-  'Fixed monetary policy — no governance vote, no override, enforced at the protocol level',
+  'Fixed monetary policy with no governance vote or override, enforced at the protocol level',
   'Raises stock-to-flow ratio, reducing annual inflation toward Bitcoin-tier scarcity',
 ]
 
@@ -111,7 +111,7 @@ export default function ActiveEventsSection() {
                 Era {currentEra ?? '…'} → Era {nextEra ?? '…'} Fifthing
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
-                Ethereum Classic reduces its block reward by 20% every 5 million blocks — an
+                Ethereum Classic reduces its block reward by 20% every 5 million blocks in an
                 event called a &quot;fifthing.&quot; The next reduction takes place at block{' '}
                 {fifthingTargetBlock?.toLocaleString() ?? '…'} under{' '}
                 <a
@@ -208,7 +208,7 @@ export default function ActiveEventsSection() {
                 Olympia Protocol Upgrade
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
-                The next Ethereum Classic hard fork — EVM modernization, EIP-1559 fee market, and
+                The next Ethereum Classic hard fork delivers EVM modernization, an EIP-1559 fee market, and
                 a protocol treasury funded by basefee revenue without touching miner rewards.
               </p>
 

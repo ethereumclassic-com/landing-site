@@ -178,7 +178,7 @@ export default function SiteHubGrid() {
             Explore Ethereum Classic
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-            Ethereum Classic has a complete, globally accessible ecosystem covering every layer — retail wallets, institutional custody, regulated investment products, DeFi apps, mining infrastructure, and developer tooling. A decade of uninterrupted operation makes it the most mature Proof-of-Work smart contract platform in existence. Select a section to go directly to what you&apos;re looking for.
+            Ethereum Classic has a complete, globally accessible ecosystem spanning retail wallets, institutional custody, regulated investment products, DeFi apps, mining infrastructure, and developer tooling. A decade of uninterrupted operation makes it the most mature Proof-of-Work smart contract platform in existence. Select a section to go directly to what you&apos;re looking for.
           </p>
         </FadeIn>
 
