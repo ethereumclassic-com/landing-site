@@ -27,10 +27,10 @@ export const ETH_ICO_ROI_REFERENCE = [
     per100: '$1,607,650',
   },
   {
-    label: 'ATL (ETH)',
-    date: 'Oct 21, 2015',
-    multiplier: '×1.37',
-    per100: '$136.64',
+    label: 'ATH (ETC)',
+    date: 'May 6, 2021',
+    multiplier: '×572',
+    per100: '$57,200',
   },
 ] as const
 
