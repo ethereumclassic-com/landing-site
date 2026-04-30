@@ -13,21 +13,21 @@ export const ETH_ICO = {
   tokenSupplyAfterIco: 'Increases',
 } as const
 
-export const ETH_ICO_ROI = [
+// ICO price constants — used for live ROI computation
+export const ETH_ICO_PRICE_USD = 0.308
+// 2,000 ETH per BTC initial rate (first 14 days of the 42-day sale)
+export const ETH_ICO_PRICE_BTC = 0.0005
+
+// Static reference points (ATH/ATL stay hardcoded — they're historical facts)
+export const ETH_ICO_ROI_REFERENCE = [
   {
-    label: 'Now',
-    date: 'Apr 29, 2026',
-    multiplier: '×7,315',
-    per100: '$731,484',
-  },
-  {
-    label: 'ATH',
+    label: 'ATH (ETH)',
     date: 'Aug 24, 2025',
     multiplier: '×16,076',
     per100: '$1,607,650',
   },
   {
-    label: 'ATL',
+    label: 'ATL (ETH)',
     date: 'Oct 21, 2015',
     multiplier: '×1.37',
     per100: '$136.64',

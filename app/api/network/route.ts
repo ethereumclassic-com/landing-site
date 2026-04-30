@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { fetchNetworkStats, getFallbackStats, formatNetworkStats } from '@/lib/blockscout'
+import { fetchExchangeRates, getFallbackRates } from '@/lib/exchange-rates'
 
 /**
  * GET /api/network
@@ -13,8 +14,11 @@ import { fetchNetworkStats, getFallbackStats, formatNetworkStats } from '@/lib/b
  */
 export async function GET() {
   try {
-    // Try to fetch live data from Blockscout (will use 24-hour cache if available)
-    const liveStats = await fetchNetworkStats()
+    // Fetch Blockscout network stats and CoinGecko rates in parallel (both 10-min caches)
+    const [liveStats, rates] = await Promise.all([
+      fetchNetworkStats(),
+      fetchExchangeRates(),
+    ])
 
     if (liveStats) {
       const formatted = formatNetworkStats(liveStats)
@@ -49,6 +53,10 @@ export async function GET() {
           gasPrice: liveStats.gasPrice,
           gasPriceFormatted: formatted.gasPrice,
 
+          // Cross-asset prices (derived from CoinGecko, 10-min cache)
+          ethPrice: rates.eth_usd,
+          btcPrice: rates.btc_usd,
+
           // Metadata
           source: 'blockscout',
           lastUpdated: liveStats.lastUpdated,
@@ -66,6 +74,7 @@ export async function GET() {
 
     // Fallback to static data
     const fallback = getFallbackStats()
+    const fallbackRates = getFallbackRates()
     const formatted = formatNetworkStats(fallback)
 
     return NextResponse.json(
@@ -89,6 +98,9 @@ export async function GET() {
 
         gasPrice: fallback.gasPrice,
         gasPriceFormatted: formatted.gasPrice,
+
+        ethPrice: fallbackRates.eth_usd,
+        btcPrice: fallbackRates.btc_usd,
 
         source: 'fallback',
         lastUpdated: fallback.lastUpdated,

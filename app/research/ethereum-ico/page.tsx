@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui/FadeIn'
-import { ETH_ICO, ETH_ICO_ROI, ETH_ICO_TOKENOMICS } from '@/app/research/data/ethereumIco'
+import { ETH_ICO, ETH_ICO_TOKENOMICS } from '@/app/research/data/ethereumIco'
+import { fetchExchangeRates } from '@/lib/exchange-rates'
+import IcoRoiCard from './components/IcoRoiCard'
 
-export const dynamic = 'force-static'
+export const revalidate = 600
 
 export const metadata: Metadata = {
   title: 'Ethereum 2014 ICO | ETC Research',
@@ -48,7 +50,9 @@ const ORIGIN_EVENTS = [
   },
 ] as const
 
-export default function EthereumIcoPage() {
+export default async function EthereumIcoPage() {
+  const rates = await fetchExchangeRates()
+
   return (
     <main className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
 
@@ -108,29 +112,11 @@ export default function EthereumIcoPage() {
         </section>
       </FadeIn>
 
-      {/* ROI */}
+      {/* ROI — live, denomination-selectable */}
       <FadeIn delay={80}>
         <section className="px-6 pb-8 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
-            <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
-              <h2 className="mb-5 text-lg font-semibold text-[var(--text-primary)]">ETH ICO ROI</h2>
-              <div className="grid gap-3 sm:grid-cols-3">
-                {ETH_ICO_ROI.map((entry) => (
-                  <div
-                    key={entry.label}
-                    className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-elevated)] p-4"
-                  >
-                    <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">{entry.label}</p>
-                    <p className="mt-0.5 text-xs text-[var(--text-muted)]">{entry.date}</p>
-                    <p className="mt-2 font-mono text-2xl font-bold text-[var(--brand-green)]">{entry.multiplier}</p>
-                    <p className="mt-0.5 text-sm text-[var(--text-secondary)]">$100 → {entry.per100}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-xs text-[var(--text-muted)]">
-                ROI calculated from {ETH_ICO.priceAtIco} ICO price. ETH price data; does not reflect ETC trading prices after the 2016 fork.
-              </p>
-            </div>
+            <IcoRoiCard rates={rates} />
           </div>
         </section>
       </FadeIn>

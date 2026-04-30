@@ -15,8 +15,8 @@ import * as path from 'path'
 
 const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3'
 
-// Cache duration: 24 hours
-const CACHE_DURATION_MS = 24 * 60 * 60 * 1000
+// Cache duration: 10 minutes — matches Blockscout pull cadence
+const CACHE_DURATION_MS = 10 * 60 * 1000
 
 // Cache file paths
 const CACHE_DIR = path.join(process.cwd(), '.next', 'cache', 'rates')
@@ -38,6 +38,9 @@ export interface ExchangeRates {
   etc_24h_change: Record<string, number>
   // Fiat-to-USD rates for cross conversion
   fiat_to_usd: Record<string, number>
+  // Derived cross-asset USD prices
+  eth_usd: number  // ETH price in USD (derived: etc.usd / etc.eth)
+  btc_usd: number  // BTC price in USD (derived: etc.usd / etc.btc)
   // Metadata
   lastUpdated: string
   source: 'coingecko' | 'fallback'
@@ -193,10 +196,16 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
     // Ensure USD is 1
     fiat_to_usd['usd'] = 1
 
+    // Derive ETH and BTC USD prices from ETC cross-rates
+    const eth_usd = (etc.usd && etc.eth) ? etc.usd / etc.eth : 0
+    const btc_usd = (etc.usd && etc.btc) ? etc.usd / etc.btc : 0
+
     return {
       etc,
       etc_24h_change,
       fiat_to_usd,
+      eth_usd,
+      btc_usd,
       lastUpdated: new Date().toISOString(),
       source: 'coingecko',
     }
@@ -250,6 +259,9 @@ export function getFallbackRates(): ExchangeRates {
       inr: 84.7,
       rub: 100,
     },
+    // Approximate Jan 2026 fallback values
+    eth_usd: 3350,
+    btc_usd: 104000,
     lastUpdated: new Date().toISOString(),
     source: 'fallback',
   }
