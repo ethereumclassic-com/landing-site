@@ -37,6 +37,10 @@ function formatResponse(rates: ExchangeRates, currency: string) {
     // All available prices for reference
     prices: rates.etc,
     changes: rates.etc_24h_change,
+    // Cross-asset USD prices (derived from ETC/ETH and ETC/BTC ratios in the same CoinGecko call)
+    eth_usd: rates.eth_usd,
+    btc_usd: rates.btc_usd,
+    fiat_to_usd: rates.fiat_to_usd,
   }
 }
 

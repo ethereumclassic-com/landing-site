@@ -24,6 +24,7 @@ const RATES_CACHE_FILE = path.join(CACHE_DIR, 'exchange-rates.json')
 
 // Supported currencies for conversion
 export const SUPPORTED_FIAT = ['usd', 'eur', 'gbp', 'jpy', 'krw', 'cad', 'aud', 'try', 'brl', 'cny', 'inr', 'rub'] as const
+// BTC and ETH prices are fetched directly as source-of-truth; ETC/BTC and ETC/ETH are derived from them
 export const SUPPORTED_CRYPTO = ['btc', 'eth', 'bnb'] as const
 
 export type FiatCurrency = (typeof SUPPORTED_FIAT)[number]
@@ -128,15 +129,14 @@ function getCachedRates(): ExchangeRates | null {
  */
 async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
   try {
-    // Fetch ETC price in multiple currencies
-    const currencies = [...SUPPORTED_FIAT, ...SUPPORTED_CRYPTO].join(',')
-    const priceUrl = `${COINGECKO_API_BASE}/simple/price?ids=ethereum-classic&vs_currencies=${currencies}&include_24hr_change=true`
+    // Single bulk request: ETC, ETH, and BTC prices in all fiat currencies + BNB
+    // ETH/USD and BTC/USD are pulled directly (most liquid markets) — not derived from ETC ratios
+    const fiatCurrencies = SUPPORTED_FIAT.join(',')
+    const priceUrl = `${COINGECKO_API_BASE}/simple/price?ids=ethereum-classic,ethereum,bitcoin&vs_currencies=${fiatCurrencies},bnb&include_24hr_change=true`
 
     const priceResponse = await fetch(priceUrl, {
-      headers: {
-        Accept: 'application/json',
-      },
-      next: { revalidate: 300 }, // 5 min revalidation for Next.js
+      headers: { Accept: 'application/json' },
+      next: { revalidate: 300 },
     })
 
     if (!priceResponse.ok) {
@@ -146,17 +146,23 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
 
     const priceData = await priceResponse.json()
     const etcData = priceData['ethereum-classic']
+    const ethData = priceData['ethereum']
+    const btcData = priceData['bitcoin']
 
     if (!etcData) {
       console.error('No ETC data in CoinGecko response')
       return null
     }
 
-    // Extract prices and 24h changes
+    // ETH/USD and BTC/USD are source-of-truth: fetched directly from the most liquid markets
+    const eth_usd: number = ethData?.usd ?? 0
+    const btc_usd: number = btcData?.usd ?? 0
+
+    // Extract ETC prices in fiat currencies
     const etc: Record<string, number> = {}
     const etc_24h_change: Record<string, number> = {}
 
-    for (const currency of [...SUPPORTED_FIAT, ...SUPPORTED_CRYPTO]) {
+    for (const currency of SUPPORTED_FIAT) {
       if (etcData[currency] !== undefined) {
         etc[currency] = etcData[currency]
       }
@@ -165,9 +171,13 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
         etc_24h_change[currency] = etcData[changeKey]
       }
     }
+    if (etcData.bnb !== undefined) etc.bnb = etcData.bnb
 
-    // Fetch fiat-to-USD rates for cross conversion
-    // CoinGecko provides exchange rates endpoint
+    // Derive ETC/ETH and ETC/BTC from the authoritative USD prices
+    if (eth_usd > 0) etc.eth = etc.usd / eth_usd
+    if (btc_usd > 0) etc.btc = etc.usd / btc_usd
+
+    // Fetch fiat-to-USD rates for denomination conversion
     const fxUrl = `${COINGECKO_API_BASE}/exchange_rates`
     const fxResponse = await fetch(fxUrl, {
       headers: { Accept: 'application/json' },
@@ -179,26 +189,17 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
     if (fxResponse.ok) {
       const fxData = await fxResponse.json()
       const rates = fxData.rates || {}
-
-      // CoinGecko rates are relative to BTC, so we need to convert
-      // Get USD rate first (BTC in USD)
       const btcToUsd = rates.usd?.value || 100000
 
       for (const currency of SUPPORTED_FIAT) {
         const rate = rates[currency]?.value
         if (rate && btcToUsd) {
-          // Convert to USD rate (1 USD = X currency)
           fiat_to_usd[currency] = rate / btcToUsd
         }
       }
     }
 
-    // Ensure USD is 1
     fiat_to_usd['usd'] = 1
-
-    // Derive ETH and BTC USD prices from ETC cross-rates
-    const eth_usd = (etc.usd && etc.eth) ? etc.usd / etc.eth : 0
-    const btc_usd = (etc.usd && etc.btc) ? etc.usd / etc.btc : 0
 
     return {
       etc,

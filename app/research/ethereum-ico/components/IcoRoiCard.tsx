@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import type { ExchangeRates } from '@/lib/exchange-rates'
+import { useAllPrices } from '@/app/hooks/usePrice'
 import { ETH_ICO_PRICE_USD, ETH_ICO_PRICE_BTC, ETH_ICO_ROI_REFERENCE } from '@/app/research/data/ethereumIco'
 
 const CURRENCY_LABELS: Record<string, string> = {

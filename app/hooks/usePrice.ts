@@ -24,6 +24,10 @@ export interface PriceData {
   source: 'coingecko' | 'fallback'
   prices?: Record<string, number>
   changes?: Record<string, number>
+  // Cross-asset USD prices — derived from ETC ratios in the same CoinGecko bulk call
+  eth_usd?: number
+  btc_usd?: number
+  fiat_to_usd?: Record<string, number>
 }
 
 export interface UsePriceOptions {
@@ -181,6 +185,9 @@ export function usePrice(
 export function useAllPrices(options: UsePriceOptions = {}): {
   prices: Record<string, number> | null
   changes: Record<string, number> | null
+  eth_usd: number | null
+  btc_usd: number | null
+  fiat_to_usd: Record<string, number> | null
   loading: boolean
   error: string | null
   refresh: () => Promise<void>
@@ -190,6 +197,9 @@ export function useAllPrices(options: UsePriceOptions = {}): {
   return {
     prices: data?.prices ?? null,
     changes: data?.changes ?? null,
+    eth_usd: data?.eth_usd ?? null,
+    btc_usd: data?.btc_usd ?? null,
+    fiat_to_usd: data?.fiat_to_usd ?? null,
     loading,
     error,
     refresh,
