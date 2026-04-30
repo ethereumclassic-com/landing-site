@@ -176,11 +176,13 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
   // ETC/ETH cross-pair ROI (ICO genesis parity was 1:1)
   const ethRoi = computeEthRoi(rates)
   const etcEthRows: PriceTableRow[] = [
+    { label: 'Now', price: formatEthPrice(ethRoi.etcEthNow),                                                                               date: null },
     { label: 'ATL', price: formatEthPrice(rates.history.etc.atl_eth),                                                                      date: formatHistoryDate(rates.history.etc.atl_date_eth) },
     { label: 'ATH', price: formatEthPrice(rates.history.etc.ath_eth),                                                                      date: formatHistoryDate(rates.history.etc.ath_date_eth) },
   ]
   // ETH/ETC is the inverse: ETH's ATH in ETC = 1 / ETC/ETH ATL, and vice versa
   const ethEtcRows: PriceTableRow[] = [
+    { label: 'Now', price: formatEtcPerEth(ethRoi.ethEtcNow),                                                                              date: null },
     { label: 'ATL', price: formatEtcPerEth(rates.history.etc.ath_eth != null ? 1 / rates.history.etc.ath_eth : null), date: formatHistoryDate(rates.history.etc.ath_date_eth) },
     { label: 'ATH', price: formatEtcPerEth(rates.history.etc.atl_eth != null ? 1 / rates.history.etc.atl_eth : null), date: formatHistoryDate(rates.history.etc.atl_date_eth) },
   ]
@@ -381,27 +383,19 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
         <div className="rounded-lg border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/5 p-4">
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">ETC/ETH</p>
           <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Original chain · 1 ETC = 1 ETH at genesis</p>
-          <div className="mt-2 grid grid-cols-2 gap-3">
-            <div className="flex flex-col items-center justify-center text-center">
-              <p className="font-mono text-xl font-bold text-[var(--text-primary)]">
-                {formatEthPrice(ethRoi.etcEthNow)}
-              </p>
-              <p className="mt-0.5 text-[10px] text-[var(--text-muted)]">current price</p>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center">
-              <p className="font-mono text-xl font-bold text-[var(--text-primary)]">
-                {formatMultiplier(ethRoi.etcEthMultiplier)}{' '}
-                <span className={`text-base ${ethRoi.etcEthMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
-                  ({formatPctChange(ethRoi.etcEthMultiplier)})
-                </span>
-              </p>
-              <p className="mt-0.5 font-mono text-[10px] text-[var(--text-muted)]">
-                {formatEthPrice(ethRoi.etcEthNow)} ÷ Ξ1.00000000 ICO
-              </p>
-              <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                Ξ200 → {formatEthPrice(ethRoi.etcEthValue)}
-              </p>
-            </div>
+          <div className="mt-2 text-center">
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatMultiplier(ethRoi.etcEthMultiplier)}{' '}
+              <span className={`text-lg ${ethRoi.etcEthMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
+                ({formatPctChange(ethRoi.etcEthMultiplier)})
+              </span>
+            </p>
+            <p className="font-mono text-[10px] text-[var(--text-muted)]">
+              {formatEthPrice(ethRoi.etcEthNow)} ÷ Ξ1.00 ICO
+            </p>
+            <p className="mt-1 text-sm text-[var(--text-secondary)]">
+              Ξ200 → {formatEthPrice(ethRoi.etcEthValue)}
+            </p>
           </div>
           <PriceTable rows={etcEthRows} />
         </div>
@@ -410,27 +404,19 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
         <div className="rounded-lg border border-[var(--color-violet-border)] bg-[var(--color-violet-bg)] p-4">
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">ETH/ETC</p>
           <p className="mt-0.5 text-xs text-[var(--text-muted)] text-center">Fork chain · 1 ETH = 1 ETC at genesis</p>
-          <div className="mt-2 grid grid-cols-2 gap-3">
-            <div className="flex flex-col items-center justify-center text-center">
-              <p className="font-mono text-xl font-bold text-[var(--text-primary)]">
-                {formatEtcPerEth(ethRoi.ethEtcNow)}
-              </p>
-              <p className="mt-0.5 text-[10px] text-[var(--text-muted)]">current price</p>
-            </div>
-            <div className="flex flex-col items-center justify-center text-center">
-              <p className="font-mono text-xl font-bold text-[var(--text-primary)]">
-                {formatMultiplier(ethRoi.ethEtcMultiplier)}{' '}
-                <span className={`text-base ${ethRoi.ethEtcMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
-                  ({formatPctChange(ethRoi.ethEtcMultiplier)})
-                </span>
-              </p>
-              <p className="mt-0.5 font-mono text-[10px] text-[var(--text-muted)]">
-                {formatEtcPerEth(ethRoi.ethEtcNow)} ÷ 1.00 ETC ICO
-              </p>
-              <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                Ξ1 → {formatEtcPerEth(ethRoi.ethEtcNow)}
-              </p>
-            </div>
+          <div className="mt-2 text-center">
+            <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
+              {formatMultiplier(ethRoi.ethEtcMultiplier)}{' '}
+              <span className={`text-lg ${ethRoi.ethEtcMultiplier < 1 ? 'text-[var(--color-error)]' : 'text-[var(--brand-green)]'}`}>
+                ({formatPctChange(ethRoi.ethEtcMultiplier)})
+              </span>
+            </p>
+            <p className="font-mono text-[10px] text-[var(--text-muted)]">
+              {formatEtcPerEth(ethRoi.ethEtcNow)} ÷ 1.00 ETC ICO
+            </p>
+            <p className="mt-1 text-sm text-[var(--text-secondary)]">
+              Ξ1 → {formatEtcPerEth(ethRoi.ethEtcNow)}
+            </p>
           </div>
           <PriceTable rows={ethEtcRows} />
         </div>
