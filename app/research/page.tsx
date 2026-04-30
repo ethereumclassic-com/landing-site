@@ -312,6 +312,30 @@ export default function ResearchPage() {
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Mining Stats</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Network hashrate and mining data</p>
             </Link>
+            <Link
+              href="/research/ethereum-ico"
+              className="group rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4 transition-colors hover:border-[var(--brand-green)]/40 hover:bg-[var(--brand-green)]/5"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--brand-green)]/10 text-[var(--brand-green)]">
+                <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">Ethereum 2014 ICO</h3>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Presale data, ROI history &amp; tokenomics</p>
+            </Link>
+            <Link
+              href="/research/dao-fork"
+              className="group rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4 transition-colors hover:border-[var(--brand-green)]/40 hover:bg-[var(--brand-green)]/5"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--brand-green)]/10 text-[var(--brand-green)]">
+                <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">2016 DAO Fork</h3>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">How the original Ethereum chain became Ethereum Classic — and who tried to suppress it</p>
+            </Link>
           </div>
         </div>
       </section>

@@ -136,6 +136,9 @@ const staticRoutes = [
   // Research section
   { path: '/research', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/research/emission-schedule', priority: 0.8, changeFrequency: 'daily' as const },
+  { path: '/research/fifthing', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/research/ethereum-ico', priority: 0.7, changeFrequency: 'yearly' as const },
+  { path: '/research/dao-fork', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/research/reports', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/research/network', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/supply', priority: 0.6, changeFrequency: 'daily' as const },

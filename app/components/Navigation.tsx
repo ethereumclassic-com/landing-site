@@ -84,6 +84,7 @@ const navItems: {
       { href: '/research/emission-schedule', label: 'Emission Schedule' },
       { href: '/research/reports', label: 'Research Reports' },
       { href: '/research/history', label: 'Price History' },
+      { href: '/research/ethereum-ico', label: 'Ethereum 2014 ICO' },
     ],
   },
   {
@@ -179,6 +180,7 @@ const mobileNavGroups: {
       { href: '/environmental-impact', label: 'Energy Infrastructure' },
       { href: '/block-reward-countdown', label: 'Fifthing' },
       { href: '/research/emission-schedule', label: 'Emission Schedule' },
+      { href: '/research/ethereum-ico', label: 'Ethereum 2014 ICO' },
     ],
   },
   {

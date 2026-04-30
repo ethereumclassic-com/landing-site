@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function ECIP1017Explainer() {
   return (
     <div className="space-y-8">
@@ -80,7 +82,7 @@ export default function ECIP1017Explainer() {
                 { metric: 'Reward reduction', etc: '20% (×0.8)', btc: '50% (×0.5)' },
                 { metric: 'Era / cycle length', etc: '5,000,000 blocks (~2–2.5 yrs)', btc: '210,000 blocks (~4 yrs)' },
                 { metric: 'Starting reward', etc: '5 ETC (Era 1)', btc: '50 BTC (Cycle 1)' },
-                { metric: 'Genesis / pre-mine', etc: '72,009,990 ETC (ETH Foundation ICO*)', btc: 'None' },
+                { metric: 'Genesis / pre-mine', etc: '72,009,990 ETC (inherited)', btc: 'None' },
                 { metric: 'Max supply (est.)', etc: '~199–210M ETC', btc: '21,000,000 BTC' },
                 { metric: 'Mechanism', etc: 'Geometric decay at era boundary', btc: 'Integer halving at cycle boundary' },
                 { metric: 'Event name', etc: 'Fifthing (20% = 1/5th reduction)', btc: 'Halving (50% = 1/2 reduction)' },
@@ -94,9 +96,19 @@ export default function ECIP1017Explainer() {
             </tbody>
           </table>
         </div>
-        <p className="mt-4 text-xs text-[var(--text-muted)]">
-          * ICO funds were weaponized against ETC in the 2016 fork, where large quantities of ETC were market sold on the open market to kill its price. ETC survived and the ICO funds were decentralized to the open market.
-        </p>
+        <div className="mt-6 border-t border-[var(--border-subtle)] pt-5">
+          <h3 className="mb-2 text-sm font-semibold text-[var(--text-primary)]">A note on the ETC genesis supply</h3>
+          <p className="text-sm leading-relaxed text-[var(--text-muted)]">
+            The 72,009,990 ETC genesis balance is the original Ethereum supply from the{' '}
+            <Link href="/research/ethereum-ico" className="text-[var(--brand-green)] hover:underline">
+              Ethereum 2014 ICO
+            </Link>
+            {' '}— ETC is the original chain. In 2016 the Ethereum Foundation forked away and applied the ETH name and ticker to the new chain. Leaked internal chat logs confirm that Foundation insiders and associates coordinated a campaign to sell ETC and buy ETH — deliberately depressing the original chain&apos;s price while elevating the new one. The Foundation&apos;s 16.67% ICO allocation was dumped into the open market at pennies. There is no premine on ETC — much of that allocation was distributed to open-market buyers via legacy centralized exchanges.{' '}
+            <Link href="/research/dao-fork" className="text-[var(--brand-green)] hover:underline">
+              Full story →
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   )

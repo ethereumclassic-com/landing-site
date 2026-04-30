@@ -35,6 +35,9 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 - [News](https://ethereumclassic.com/news) — Latest Ethereum Classic news and updates
 - [Research](https://ethereumclassic.com/research) — Network analytics, supply data, and reports
 - [Emission Schedule](https://ethereumclassic.com/research/emission-schedule) — Supply reduction countdown, S2F charts, and era history
+- [Fifthing](https://ethereumclassic.com/research/fifthing) — Live countdown to the next block reward reduction, emission curve, and ECIP-1017 explainer
+- [Ethereum 2014 ICO](https://ethereumclassic.com/research/ethereum-ico) — Original Ethereum presale data: $18.5M raised, 72M ETH issued — the genesis supply ETC carries today
+- [2016 DAO Fork](https://ethereumclassic.com/research/dao-fork) — How the Ethereum Foundation forked the original chain and applied the ETH name to the new chain; how Ethereum Classic got its name
 - [Block Reward Countdown](https://ethereumclassic.com/block-reward-countdown) — Live countdown to next block reward reduction
 - [Price](https://ethereumclassic.com/price) — Live ETC price and market data
 - [Community](https://ethereumclassic.com/community) — Social channels and events

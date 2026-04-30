@@ -124,6 +124,9 @@ ETC's ideological foundation:
 - /research/network — Network health metrics (hashrate, difficulty, uncle rate)
 - /research/supply — ETC supply breakdown and circulating supply
 - /research/emission-schedule — Live countdown to next fifthing, S2F ratio charts, era history table, ECIP-1017 explainer
+- /research/fifthing — Fifthing countdown, emission curve chart, inflation rate, era history, ECIP-1017 explainer
+- /research/ethereum-ico — Ethereum 2014 presale data: $18.5M raised, 72,009,991 ETH issued at $0.308; ROI history; tokenomics split; the original genesis supply ETC carries today
+- /research/dao-fork — How the Ethereum Foundation forked the original Ethereum chain in 2016 and applied the ETH name and ticker to the new chain; leaked internal communications confirming coordinated ETC sell campaign; Poloniex ETC listing; Grayscale ETCG; ETC Cooperative; DAO hacker identification; TheDAO Security Fund (2026)
 - /research/fees — Gas fee trends and basefee analytics
 - /research/history — Historical price and chain data
 - /research/ecosystem — Ecosystem metrics
