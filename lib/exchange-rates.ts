@@ -32,6 +32,27 @@ export type CryptoCurrency = (typeof SUPPORTED_CRYPTO)[number]
 export type SupportedCurrency = FiatCurrency | CryptoCurrency
 
 // Rate data structure
+export interface AssetSupply {
+  total: number        // total supply (tokens ever created)
+  circulating: number  // circulating supply
+  max: number | null   // max supply cap (null = uncapped)
+}
+
+export interface AssetPriceHistory {
+  ath_usd: number | null
+  atl_usd: number | null
+  ath_date_usd: string | null
+  atl_date_usd: string | null
+  ath_btc: number | null
+  atl_btc: number | null
+  ath_date_btc: string | null
+  atl_date_btc: string | null
+  ath_eth: number | null
+  atl_eth: number | null
+  ath_date_eth: string | null
+  atl_date_eth: string | null
+}
+
 export interface ExchangeRates {
   // ETC prices in various currencies
   etc: Record<string, number>
@@ -42,6 +63,17 @@ export interface ExchangeRates {
   // Derived cross-asset USD prices
   eth_usd: number  // ETH price in USD (derived: etc.usd / etc.eth)
   btc_usd: number  // BTC price in USD (derived: etc.usd / etc.btc)
+  // Token supply data
+  supply: {
+    etc: AssetSupply
+    eth: AssetSupply
+    btc: AssetSupply
+  }
+  // ATH/ATL price history (with pre-fork attribution)
+  history: {
+    etc: AssetPriceHistory
+    eth: AssetPriceHistory
+  }
   // Metadata
   lastUpdated: string
   source: 'coingecko' | 'fallback'
@@ -129,15 +161,31 @@ function getCachedRates(): ExchangeRates | null {
  */
 async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
   try {
-    // Single bulk request: ETC, ETH, and BTC prices in all fiat currencies + BNB
-    // ETH/USD and BTC/USD are pulled directly (most liquid markets) — not derived from ETC ratios
     const fiatCurrencies = SUPPORTED_FIAT.join(',')
-    const priceUrl = `${COINGECKO_API_BASE}/simple/price?ids=ethereum-classic,ethereum,bitcoin&vs_currencies=${fiatCurrencies},bnb&include_24hr_change=true`
 
-    const priceResponse = await fetch(priceUrl, {
-      headers: { Accept: 'application/json' },
-      next: { revalidate: 300 },
-    })
+    // All five requests fire in parallel
+    const [priceResponse, fxResponse, marketsResponse, marketsBtcResponse, marketsEthResponse] = await Promise.all([
+      fetch(
+        `${COINGECKO_API_BASE}/simple/price?ids=ethereum-classic,ethereum,bitcoin&vs_currencies=${fiatCurrencies},bnb&include_24hr_change=true`,
+        { headers: { Accept: 'application/json' }, next: { revalidate: 300 } }
+      ),
+      fetch(
+        `${COINGECKO_API_BASE}/exchange_rates`,
+        { headers: { Accept: 'application/json' }, next: { revalidate: 300 } }
+      ),
+      fetch(
+        `${COINGECKO_API_BASE}/coins/markets?vs_currency=usd&ids=ethereum-classic,ethereum,bitcoin&order=market_cap_desc&per_page=3&page=1&sparkline=false`,
+        { headers: { Accept: 'application/json' }, next: { revalidate: 300 } }
+      ),
+      fetch(
+        `${COINGECKO_API_BASE}/coins/markets?vs_currency=btc&ids=ethereum-classic,ethereum&order=market_cap_desc&per_page=2&page=1&sparkline=false`,
+        { headers: { Accept: 'application/json' }, next: { revalidate: 300 } }
+      ),
+      fetch(
+        `${COINGECKO_API_BASE}/coins/markets?vs_currency=eth&ids=ethereum-classic&order=market_cap_desc&per_page=1&page=1&sparkline=false`,
+        { headers: { Accept: 'application/json' }, next: { revalidate: 300 } }
+      ),
+    ])
 
     if (!priceResponse.ok) {
       console.error('CoinGecko price API error:', priceResponse.status)
@@ -177,29 +225,128 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
     if (eth_usd > 0) etc.eth = etc.usd / eth_usd
     if (btc_usd > 0) etc.btc = etc.usd / btc_usd
 
-    // Fetch fiat-to-USD rates for denomination conversion
-    const fxUrl = `${COINGECKO_API_BASE}/exchange_rates`
-    const fxResponse = await fetch(fxUrl, {
-      headers: { Accept: 'application/json' },
-      next: { revalidate: 300 },
-    })
-
+    // Fiat-to-USD rates
     const fiat_to_usd: Record<string, number> = {}
-
     if (fxResponse.ok) {
       const fxData = await fxResponse.json()
       const rates = fxData.rates || {}
       const btcToUsd = rates.usd?.value || 100000
-
       for (const currency of SUPPORTED_FIAT) {
         const rate = rates[currency]?.value
-        if (rate && btcToUsd) {
-          fiat_to_usd[currency] = rate / btcToUsd
-        }
+        if (rate && btcToUsd) fiat_to_usd[currency] = rate / btcToUsd
       }
     }
-
     fiat_to_usd['usd'] = 1
+
+    // Supply + ATH/ATL data from /coins/markets (USD)
+    const fallback = getFallbackRates()
+    const fallbackSupply = fallback.supply
+    let supply = fallbackSupply
+    let history = fallback.history
+
+    type MarketsEntry = {
+      id: string
+      total_supply: number | null
+      circulating_supply: number | null
+      max_supply: number | null
+      ath: number | null
+      atl: number | null
+      ath_date: string | null
+      atl_date: string | null
+    }
+
+    if (marketsResponse.ok) {
+      const marketsData: MarketsEntry[] = await marketsResponse.json()
+      const byId = Object.fromEntries(marketsData.map((d) => [d.id, d]))
+
+      supply = {
+        etc: {
+          total: byId['ethereum-classic']?.total_supply ?? fallbackSupply.etc.total,
+          circulating: byId['ethereum-classic']?.circulating_supply ?? fallbackSupply.etc.circulating,
+          max: byId['ethereum-classic']?.max_supply ?? fallbackSupply.etc.max,
+        },
+        eth: {
+          total: byId['ethereum']?.total_supply ?? fallbackSupply.eth.total,
+          circulating: byId['ethereum']?.circulating_supply ?? fallbackSupply.eth.circulating,
+          max: byId['ethereum']?.max_supply ?? fallbackSupply.eth.max,
+        },
+        btc: {
+          total: byId['bitcoin']?.total_supply ?? fallbackSupply.btc.total,
+          circulating: byId['bitcoin']?.circulating_supply ?? fallbackSupply.btc.circulating,
+          max: byId['bitcoin']?.max_supply ?? fallbackSupply.btc.max,
+        },
+      }
+
+      // Parse BTC-denominated ATH/ATL (4th fetch)
+      type BtcEntry = { id: string; ath: number | null; atl: number | null; ath_date: string | null; atl_date: string | null }
+      let byIdBtc: Record<string, BtcEntry> = {}
+      if (marketsBtcResponse.ok) {
+        const marketsBtcData: BtcEntry[] = await marketsBtcResponse.json()
+        byIdBtc = Object.fromEntries(marketsBtcData.map((d) => [d.id, d]))
+      }
+
+      // Parse ETH-denominated ATH/ATL for ETC (5th fetch)
+      type EthEntry = { id: string; ath: number | null; atl: number | null; ath_date: string | null; atl_date: string | null }
+      let etcEthEntry: EthEntry | undefined
+      if (marketsEthResponse.ok) {
+        const marketsEthData: EthEntry[] = await marketsEthResponse.json()
+        etcEthEntry = marketsEthData[0]
+      }
+
+      // Pre-fork history applies to BOTH chains: ETC and ETH share the same genesis block
+      // and all price discovery from Jul 2015 through the fork on Jul 20, 2016.
+      // The true historical ATL (Oct 2015, ~$0.42) belongs to both — omitting it from ETH
+      // would falsely imply ETH started at the Jul 20, 2016 post-fork price.
+      const etcUsd = byId['ethereum-classic']
+      const ethUsd = byId['ethereum']
+      const etcBtcEntry = byIdBtc['ethereum-classic']
+      const ethBtcEntry = byIdBtc['ethereum']
+
+      // USD: shared ATL = whichever CoinGecko coin recorded the lower all-time low
+      // (ethereum-classic ATL is post-fork only; ethereum ATL covers full history including pre-fork)
+      const useEthAtlForUsd = (ethUsd?.atl ?? Infinity) < (etcUsd?.atl ?? Infinity)
+      const sharedAtlUsd = useEthAtlForUsd ? (ethUsd?.atl ?? null) : (etcUsd?.atl ?? null)
+      const sharedAtlDateUsd = useEthAtlForUsd ? (ethUsd?.atl_date ?? null) : (etcUsd?.atl_date ?? null)
+
+      // BTC: each coin uses its own ATL — ETC/BTC has set post-fork lows ETH/BTC never reached.
+      // ethereum-classic ATL is ETC's post-fork specific low.
+      // ethereum ATL covers full history including pre-fork (ETH's true all-time BTC low).
+      const etcAtlBtc = etcBtcEntry?.atl ?? null
+      const etcAtlDateBtc = etcBtcEntry?.atl_date ?? null
+      const ethAtlBtc = ethBtcEntry?.atl ?? null
+      const ethAtlDateBtc = ethBtcEntry?.atl_date ?? null
+
+      history = {
+        etc: {
+          ath_usd: etcUsd?.ath ?? null,
+          atl_usd: sharedAtlUsd,
+          ath_date_usd: etcUsd?.ath_date ?? null,
+          atl_date_usd: sharedAtlDateUsd,
+          ath_btc: etcBtcEntry?.ath ?? null,
+          atl_btc: etcAtlBtc,
+          ath_date_btc: etcBtcEntry?.ath_date ?? null,
+          atl_date_btc: etcAtlDateBtc,
+          ath_eth: etcEthEntry?.ath ?? null,
+          atl_eth: etcEthEntry?.atl ?? null,
+          ath_date_eth: etcEthEntry?.ath_date ?? null,
+          atl_date_eth: etcEthEntry?.atl_date ?? null,
+        },
+        eth: {
+          ath_usd: ethUsd?.ath ?? null,
+          atl_usd: sharedAtlUsd,
+          ath_date_usd: ethUsd?.ath_date ?? null,
+          atl_date_usd: sharedAtlDateUsd,
+          ath_btc: ethBtcEntry?.ath ?? null,
+          atl_btc: ethAtlBtc,
+          ath_date_btc: ethBtcEntry?.ath_date ?? null,
+          atl_date_btc: ethAtlDateBtc,
+          ath_eth: null,
+          atl_eth: null,
+          ath_date_eth: null,
+          atl_date_eth: null,
+        },
+      }
+    }
 
     return {
       etc,
@@ -207,6 +354,8 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
       fiat_to_usd,
       eth_usd,
       btc_usd,
+      supply,
+      history,
       lastUpdated: new Date().toISOString(),
       source: 'coingecko',
     }
@@ -263,6 +412,34 @@ export function getFallbackRates(): ExchangeRates {
     // Approximate Jan 2026 fallback values
     eth_usd: 3350,
     btc_usd: 104000,
+    supply: {
+      etc: { total: 147_600_000, circulating: 147_600_000, max: 210_700_000 },
+      eth: { total: 120_400_000, circulating: 120_400_000, max: null },
+      btc: { total: 19_800_000, circulating: 19_800_000, max: 21_000_000 },
+    },
+    history: {
+      etc: {
+        ath_usd: 176.16,  atl_usd: 0.4315,
+        ath_date_usd: '2021-05-06T00:00:00.000Z',
+        atl_date_usd: '2015-10-21T00:00:00.000Z',  // pre-fork low from ETH chain history
+        ath_btc: 0.00343,  atl_btc: 0.0000035,
+        ath_date_btc: '2021-05-04T00:00:00.000Z',
+        atl_date_btc: '2015-10-21T00:00:00.000Z',
+        ath_eth: 0.042,   atl_eth: null,            // ETC/ETH ATH ~May 2021 (ETH ~$4k, ETC ~$167)
+        ath_date_eth: '2021-05-06T00:00:00.000Z',
+        atl_date_eth: null,
+      },
+      eth: {
+        ath_usd: 4878.26,  atl_usd: 0.4315,  // shared pre-fork history — same genesis, same price discovery
+        ath_date_usd: '2021-11-10T00:00:00.000Z',
+        atl_date_usd: '2015-10-21T00:00:00.000Z',
+        ath_btc: 0.1549,  atl_btc: 0.00195,
+        ath_date_btc: '2017-06-12T00:00:00.000Z',
+        atl_date_btc: '2015-10-25T00:00:00.000Z',
+        ath_eth: null,    atl_eth: null,
+        ath_date_eth: null, atl_date_eth: null,
+      },
+    },
     lastUpdated: new Date().toISOString(),
     source: 'fallback',
   }

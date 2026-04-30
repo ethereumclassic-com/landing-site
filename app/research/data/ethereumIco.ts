@@ -1,14 +1,25 @@
+// Total tokens created at genesis (crowdsale + foundation allocations)
+export const ETH_ICO_GENESIS_SUPPLY = 72_009_991
+
+// Absolute token counts from the ICO allocation
+export const ETH_ICO_ALLOCATION = {
+  crowdsale: Math.round(72_009_991 * 0.8333),    // ~60,001,121
+  foundation: Math.round(72_009_991 * 0.1667),   // ~12,008,870
+} as const
+
 export const ETH_ICO = {
   tokenName: 'Ethereum',
   ticker: 'ETH',
   priceAtIco: '$0.3080',
   status: 'Finished',
   target: '$16,000,000',
-  date: '07/22/2014',
+  dateStart: 'Jul 22, 2014',
+  dateEnd: 'Sep 2, 2014',
   tokenRole: 'Utility',
   tokenType: 'Own wallet',
   fundingCap: 'Unlimited',
   fundsRaised: '$18,500,000',
+  fundsRaisedBtc: '~31,529 BTC',
   icoTokenSupply: 72_009_991,
   tokenSupplyAfterIco: 'Increases',
 } as const
@@ -18,23 +29,14 @@ export const ETH_ICO_PRICE_USD = 0.308
 // 2,000 ETH per BTC initial rate (first 14 days of the 42-day sale)
 export const ETH_ICO_PRICE_BTC = 0.0005
 
-// Static reference points (ATH/ATL stay hardcoded — they're historical facts)
-export const ETH_ICO_ROI_REFERENCE = [
-  {
-    label: 'ATH (ETH)',
-    date: 'Aug 24, 2025',
-    multiplier: '×16,076',
-    per100: '$1,607,650',
-  },
-  {
-    label: 'ATH (ETC)',
-    date: 'May 6, 2021',
-    multiplier: '×572',
-    per100: '$57,200',
-  },
-] as const
+// 42-day sale price schedule: flat early-bird rate for days 1–14, then linear decline
+export const ETH_ICO_PRICE_SCHEDULE = Array.from({ length: 42 }, (_, i) => {
+  const day = i + 1
+  const rate = day <= 14 ? 2000 : Math.round(2000 - (663 / 28) * (day - 14))
+  return { day, rate }
+})
 
 export const ETH_ICO_TOKENOMICS = [
-  { label: 'Crowdsale', pct: 83.33, color: 'var(--brand-green)' },
-  { label: 'Foundation / Early Contributors & Others', pct: 16.67, color: 'var(--text-muted)' },
+  { label: 'ETH Foundation Crowdsale', pct: 83.33, color: 'var(--color-violet-border)' },
+  { label: 'Foundation / Early Contributors & Others', pct: 16.67, color: 'var(--color-violet)' },
 ] as const

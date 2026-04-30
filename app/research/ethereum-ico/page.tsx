@@ -4,6 +4,8 @@ import { FadeIn } from '@/app/components/ui/FadeIn'
 import { ETH_ICO, ETH_ICO_TOKENOMICS } from '@/app/research/data/ethereumIco'
 import { fetchExchangeRates } from '@/lib/exchange-rates'
 import IcoRoiCard from './components/IcoRoiCard'
+import IcoPriceChart from './components/IcoPriceChart'
+import SupplyPieCharts from './components/SupplyPieCharts'
 
 export const revalidate = 600
 
@@ -27,7 +29,8 @@ const META_ROWS = [
   { label: 'Price at ICO', value: ETH_ICO.priceAtIco },
   { label: 'Status', value: ETH_ICO.status },
   { label: 'Target', value: ETH_ICO.target },
-  { label: 'Funds Raised', value: ETH_ICO.fundsRaised },
+  { label: 'Funds Raised (USD)', value: ETH_ICO.fundsRaised },
+  { label: 'Funds Raised (BTC)', value: ETH_ICO.fundsRaisedBtc },
   { label: 'ICO Token Supply', value: ETH_ICO.icoTokenSupply.toLocaleString() },
   { label: 'Funding Cap', value: ETH_ICO.fundingCap },
   { label: 'Token Role', value: ETH_ICO.tokenRole },
@@ -39,8 +42,8 @@ const ORIGIN_EVENTS = [
   {
     title: 'Ethereum 2014 ICO',
     date: 'Jul–Sep 2014',
-    description: '42-day public presale raises $18.5 million at $0.308 per token, minting 72,009,991 ETH — the entire initial supply. 83.33% goes to crowdsale participants and 16.67% to the Ethereum Foundation and early contributors.',
-    tags: ['72,009,991 ETH minted', '$0.308 per token', '$18.5M raised', '83.33% / 16.67% split'],
+    description: '42-day public presale collects ~31,529 BTC (~$18.5M) at a starting rate of 2,000 ETH per BTC, declining linearly to 1,337 ETH/BTC by day 42. A total of 72,009,991 ETH — the entire initial supply — is minted. 83.33% goes to crowdsale participants and 16.67% to the Ethereum Foundation and early contributors.',
+    tags: ['72,009,991 ETH minted', '~31,529 BTC raised', '$18.5M USD equivalent', '83.33% / 16.67% split'],
   },
   {
     title: 'Ethereum Mainnet Launch',
@@ -72,12 +75,12 @@ export default async function EthereumIcoPage() {
             <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
               Ethereum 2014 ICO
             </h1>
-            <p className="mt-3 max-w-2xl text-lg text-[var(--text-secondary)]">
-              The public presale that funded the original Ethereum chain — whose genesis supply Ethereum Classic carries today.
+            <p className="mt-4 text-lg leading-relaxed text-[var(--text-secondary)]">
+              In July 2014, the Ethereum Foundation ran a 42-day public presale that raised ~31,529 BTC (roughly $18.5 million) and issued 72,009,991 ETH tokens at a starting rate of 2,000 ETH per BTC. Combined with the 16.67% reserved for the Ethereum Foundation and early contributors, these tokens formed the entire genesis supply that activated when the Ethereum mainnet launched on July 30, 2015. After the Ethereum Foundation&apos;s 2016 hard fork, the original unmodified chain carried all ICO token balances forward and continued under the name Ethereum Classic.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               <span className="inline-flex items-center rounded-full border border-[var(--border-default)] bg-[var(--bg-elevated)] px-3 py-1 text-xs font-medium text-[var(--text-muted)]">
-                Finished · {ETH_ICO.date}
+                Crowdfund Campaign Duration · {ETH_ICO.dateStart} through {ETH_ICO.dateEnd}
               </span>
               <span className="inline-flex items-center rounded-full border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-3 py-1 text-xs font-medium text-[var(--brand-green)]">
                 {ETH_ICO.fundsRaised} Raised
@@ -107,6 +110,7 @@ export default async function EthereumIcoPage() {
                 In 2016, the Ethereum Foundation forked the chain and applied the ETH name and ticker to the new chain.
                 The original chain — carrying this supply unaltered — was recognised by the global community as Ethereum Classic.
               </p>
+              <IcoPriceChart />
             </div>
           </div>
         </section>
@@ -126,13 +130,14 @@ export default async function EthereumIcoPage() {
         <section className="px-6 pb-8 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
             <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
-              <h2 className="mb-5 text-lg font-semibold text-[var(--text-primary)]">Token Distribution</h2>
+              <h2 className="mb-1 text-lg font-semibold text-[var(--text-primary)]">Token Distribution</h2>
+              <p className="mb-5 text-xs text-[var(--text-muted)]">Presale allocation — how the 72,009,991 genesis tokens were split</p>
               {/* Stacked bar */}
               <div className="flex h-5 overflow-hidden rounded-full">
                 {ETH_ICO_TOKENOMICS.map((seg) => (
                   <div
                     key={seg.label}
-                    style={{ width: `${seg.pct}%`, backgroundColor: seg.color, opacity: seg.pct > 50 ? 1 : 0.4 }}
+                    style={{ width: `${seg.pct}%`, backgroundColor: seg.color }}
                   />
                 ))}
               </div>
@@ -141,16 +146,14 @@ export default async function EthereumIcoPage() {
                 {ETH_ICO_TOKENOMICS.map((seg) => (
                   <div key={seg.label} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div
-                        className="h-3 w-3 rounded-sm"
-                        style={{ backgroundColor: seg.color, opacity: seg.pct > 50 ? 1 : 0.4 }}
-                      />
+                      <div className="h-3 w-3 rounded-sm" style={{ backgroundColor: seg.color }} />
                       <span className="text-sm text-[var(--text-muted)]">{seg.label}</span>
                     </div>
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">{seg.pct}%</span>
                   </div>
                 ))}
               </div>
+              <SupplyPieCharts ethSupply={rates.supply.eth} etcSupply={rates.supply.etc} />
             </div>
           </div>
         </section>
