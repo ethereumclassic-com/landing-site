@@ -51,6 +51,12 @@ const ORIGIN_EVENTS = [
     description: 'The Frontier genesis block. All 72,009,991 ICO tokens activate on the live chain.',
     tags: ['Frontier genesis', '72,009,991-token initial supply'],
   },
+  {
+    title: '2016 DAO Hard Fork',
+    date: 'Jul 20, 2016',
+    description: 'The Ethereum Foundation executes a hard fork to reverse the DAO hack, creating two chains from the same genesis. The forked chain retains the ETH name and ticker. The original unmodified chain continues as Ethereum Classic, carrying all 72,009,991 ICO token balances forward unchanged.',
+    tags: ['Chain split', 'ETC — original chain', 'ETH — fork chain', 'Same genesis supply'],
+  },
 ] as const
 
 export default async function EthereumIcoPage() {
@@ -131,7 +137,7 @@ export default async function EthereumIcoPage() {
           <div className="mx-auto max-w-6xl">
             <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
               <h2 className="mb-1 text-lg font-semibold text-[var(--text-primary)]">Token Distribution</h2>
-              <p className="mb-5 text-xs text-[var(--text-muted)]">How the 72,009,991 genesis tokens were distributed in the presale</p>
+              <p className="mb-5 text-xs text-[var(--text-muted)]">In July 2014, the Ethereum Foundation ran a 42-day public presale that issued 72,009,991 ETH tokens across two tranches: 83.33% to crowdsale participants and 16.67% reserved for the Foundation and early contributors. These genesis tokens formed the entire initial supply that activated on the Ethereum mainnet on July 30, 2015, and are carried today, unmodified, by Ethereum Classic.</p>
               {/* Stacked bar */}
               <div className="flex h-5 overflow-hidden rounded-full">
                 {ETH_ICO_TOKENOMICS.map((seg) => (

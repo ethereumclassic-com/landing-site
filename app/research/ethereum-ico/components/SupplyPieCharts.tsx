@@ -60,11 +60,10 @@ interface ChartProps {
   sublabel: string | string[]
   slices: Slice[]
   ticker: string
-  tickerColor: string
   uncapped?: boolean
 }
 
-function SinglePie({ label, sublabel, slices, ticker, tickerColor, uncapped = false }: ChartProps) {
+function SinglePie({ label, sublabel, slices, ticker, uncapped = false }: ChartProps) {
   const sublabels = Array.isArray(sublabel) ? sublabel : [sublabel]
   return (
     <div className="flex flex-col items-center gap-3">
@@ -92,7 +91,7 @@ function SinglePie({ label, sublabel, slices, ticker, tickerColor, uncapped = fa
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
-          <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central" fill={tickerColor} fontSize={16} fontWeight={700} fontFamily="monospace">
+          <text x="50%" y="50%" textAnchor="middle" dominantBaseline="central" fill="var(--text-muted)" fontSize={16} fontWeight={700} fontFamily="monospace">
             {ticker}
           </text>
         </PieChart>
@@ -149,7 +148,6 @@ export default function SupplyPieCharts({ ethSupply, etcSupply }: Props) {
           ]}
           slices={etcSlices}
           ticker="ETC"
-          tickerColor="var(--brand-green)"
         />
         <SinglePie
           label="Ethereum — ETH Token Supply Composition"
@@ -159,7 +157,6 @@ export default function SupplyPieCharts({ ethSupply, etcSupply }: Props) {
           ]}
           slices={ethSlices}
           ticker="ETH"
-          tickerColor="var(--color-violet)"
           uncapped
         />
       </div>
