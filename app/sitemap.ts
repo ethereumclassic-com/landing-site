@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { execSync } from 'child_process'
 import { miningPools, miningHardware } from './mining/data/mining'
 import { walletReviews } from './wallet/data/reviews'
 import { articles as newsArticles } from './news/data/articles'
@@ -11,6 +12,44 @@ import { philosophyArticles } from './why-classic/data/philosophy'
 import { getAllFAQSections } from './faq/data/faqs'
 
 const baseUrl = 'https://ethereumclassic.com'
+
+// Build a map of file path → last commit date in one git log pass.
+// Single subprocess call covers all ~150 static routes efficiently.
+function buildDateMap(): Map<string, Date> {
+  const map = new Map<string, Date>()
+  try {
+    const raw = execSync(
+      `git log --name-only --diff-filter=AM --pretty=format:"%cI" HEAD -- app/`,
+      { encoding: 'utf8', cwd: process.cwd() }
+    )
+    let currentDate = new Date()
+    for (const line of raw.split('\n')) {
+      const trimmed = line.trim()
+      if (!trimmed) continue
+      const d = new Date(trimmed)
+      if (!isNaN(d.getTime())) {
+        currentDate = d
+      } else if (!map.has(trimmed)) {
+        // First occurrence = most recent commit for that file
+        map.set(trimmed, currentDate)
+      }
+    }
+  } catch {
+    // fallback: map stays empty, pageDate/dataDate return new Date()
+  }
+  return map
+}
+
+const dateMap = buildDateMap()
+
+function pageDate(route: string): Date {
+  const file = route === '' ? 'app/page.tsx' : `app${route}/page.tsx`
+  return dateMap.get(file) ?? new Date()
+}
+
+function dataDate(dataFile: string): Date {
+  return dateMap.get(dataFile) ?? new Date()
+}
 
 // Static routes - all main pages
 const staticRoutes = [
@@ -208,49 +247,49 @@ const staticRoutes = [
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
-
-  // Static routes
+  // Static routes — each gets the git commit date of its page.tsx
   const staticEntries = staticRoutes.map((route) => ({
     url: `${baseUrl}${route.path}`,
-    lastModified: now,
+    lastModified: pageDate(route.path),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }))
 
   // Dynamic routes - Mining pools
+  const miningDataDate = dataDate('app/mining/data/mining.ts')
   const poolEntries = miningPools.map((pool) => ({
     url: `${baseUrl}/mining/pools/${pool.id}`,
-    lastModified: now,
+    lastModified: miningDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }))
 
-  // Dynamic routes - Mining hardware (if we have individual pages)
   const hardwareEntries = miningHardware.map((hw) => ({
     url: `${baseUrl}/mining/hardware/${hw.id}`,
-    lastModified: now,
+    lastModified: miningDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
   }))
 
   // Dynamic routes - Wallet reviews
+  const walletDataDate = dataDate('app/wallet/data/reviews.ts')
   const walletReviewEntries = walletReviews.map((review) => ({
     url: `${baseUrl}/wallet/reviews/${review.slug}`,
-    lastModified: now,
+    lastModified: walletDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }))
 
   // Dynamic routes - Apps
+  const appsDataDate = dataDate('app/apps/data/apps.ts')
   const appEntries = apps.map((app) => ({
     url: `${baseUrl}/apps/${app.slug}`,
-    lastModified: now,
+    lastModified: appsDataDate,
     changeFrequency: 'weekly' as const,
     priority: app.featured ? 0.7 : 0.5,
   }))
 
-  // Dynamic routes - News articles
+  // Dynamic routes - News articles (already use article.date — correct)
   const newsEntries = newsArticles.map((article) => ({
     url: `${baseUrl}/news/${article.slug}`,
     lastModified: new Date(article.date),
@@ -258,40 +297,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: article.featured ? 0.7 : 0.5,
   }))
 
-  // Dynamic routes - News tags (extract unique tags)
+  // Dynamic routes - News tags
+  const newsDataDate = dataDate('app/news/data/articles.ts')
   const allTags = [...new Set(newsArticles.flatMap((a) => a.tags || []))]
   const tagEntries = allTags.map((tag) => ({
     url: `${baseUrl}/news/tag/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`,
-    lastModified: now,
+    lastModified: newsDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.4,
   }))
 
   // Dynamic routes - Learn articles by category
+  const learnDataDate = dataDate('app/learn/data/articles.ts')
   const learnEntries = learnArticles.map((article) => ({
     url: `${baseUrl}/learn/${article.category}/${article.slug}`,
-    lastModified: now,
+    lastModified: learnDataDate,
     changeFrequency: 'weekly' as const,
     priority: article.featured ? 0.7 : 0.5,
   }))
 
   // Dynamic routes - Exchange reviews
+  const exchangeDataDate = dataDate('app/buy/data/reviews.ts')
   const exchangeReviewEntries = exchangeReviews.map((review) => ({
     url: `${baseUrl}/exchanges/reviews/${review.slug}`,
-    lastModified: now,
+    lastModified: exchangeDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }))
 
-  // Dynamic routes - Buy reviews (same data)
   const buyReviewEntries = exchangeReviews.map((review) => ({
     url: `${baseUrl}/buy/reviews/${review.slug}`,
-    lastModified: now,
+    lastModified: exchangeDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.5,
   }))
 
-  // Dynamic routes - Core Devs Call entries
+  // Dynamic routes - Core Devs Call entries (already use entry.date — correct)
   const cdcSitemapEntries = cdcEntries
     .filter((e) => !e.date.includes('TBD'))
     .map((entry) => ({
@@ -301,7 +342,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     }))
 
-  // Dynamic routes - Research reports
+  // Dynamic routes - Research reports (already use report.date — correct)
   const reportEntries = reports.map((report) => ({
     url: `${baseUrl}/research/reports/${report.slug}`,
     lastModified: new Date(report.date),
@@ -310,9 +351,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   // Dynamic routes - Why Classic philosophy articles
+  const philosophyDataDate = dataDate('app/why-classic/data/philosophy.ts')
   const philosophyEntries = philosophyArticles.map((article) => ({
     url: `${baseUrl}/why-classic/${article.slug}`,
-    lastModified: now,
+    lastModified: philosophyDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
