@@ -140,7 +140,12 @@ export default function OlympiaNamePage() {
           <div className="flex flex-wrap items-center gap-2">
             {[
               'Frontier',
+              'Frontier Thawing',
               'Homestead',
+              'Gas Reprice',
+              'Die Hard',
+              'Gotham',
+              'Defuse Difficulty Bomb',
               'Atlantis',
               'Agharta',
               'Phoenix',
