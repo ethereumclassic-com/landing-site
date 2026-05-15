@@ -145,7 +145,7 @@ export default function BuildPage() {
               },
               {
                 title: 'Node Clients',
-                description: 'Run your own node with Core-Geth or Hyperledger Besu',
+                description: 'Run your own node with Fukuii or Core-Geth',
                 href: '/build/clients',
                 icon: <ServerIcon />,
               },
@@ -363,9 +363,9 @@ export default function BuildPage() {
           </div>
 
           <div
-            className="grid gap-6 lg:grid-cols-3"
+            className="grid gap-6 lg:grid-cols-2"
           >
-            {nodeClients.map((client) => (
+            {nodeClients.filter((c) => c.id !== 'hyperledger-besu').map((client) => (
               <div
                 key={client.id}
                 className={`rounded-2xl border p-6 ${
