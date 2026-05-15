@@ -5,11 +5,12 @@ import Link from 'next/link'
 const threads = [
   {
     label: 'Origin',
-    heading: 'An ode to the original testnet',
+    heading: 'From Olympic to Olympia',
     color: 'var(--brand-green)',
     body: [
-      'Olympia was the last testnet before Ethereum Classic launched on July 30, 2015. Before the chain existed, before the first block, before the Declaration of Independence — there was the Olympia testnet.',
-      "Using that name for ETC's most significant upgrade closes a full circle. The chain that began on the Olympia testnet carries that name into its second decade. A return to the beginning, to start again with everything the first decade built.",
+      'Olympic was the ninth and final Ethereum testnet — Ethereum 0.9, the last proving ground before Frontier launched on July 30, 2015. Application developers, data providers, and exchanges were incentivized to push it to its absolute limits: send maximum load, mine every block, find every vulnerability. It was not a soft launch. It was a deliberate stress test designed to break things before they could break in production. The Ethereum chain that went live after Olympic is the direct ancestor of Ethereum Classic.',
+      "Olympia is not the same name. That's the point. Olympic was the competition — the stress test, the trial by fire. Olympia is the arena — the sacred site in the Greek Peloponnese where the ancient Olympic Games were held every four years, where the best gathered at a fixed location to compete at the highest level. One is the event. The other is where the event is held.",
+      "The chain forged in the Olympic proving ground — preserved through the DAO fork, maintained through a decade without predictable resources — now arrives at Olympia. Not to prove it can run. Not to survive another year. To compete.",
     ],
   },
   {

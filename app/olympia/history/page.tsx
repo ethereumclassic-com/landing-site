@@ -64,14 +64,14 @@ const threads = [
     color: 'var(--color-purple)',
     body: [
       "ETC's first decade (2015–2025) was defined by survival. A contentious origin, industry skepticism, the long proof-of-work vigil, development without predictable resources. The Ethereum Classic network endured — maintained by ETC Cooperative through a decade of institutional commitment and by Grayscale's ETCG trust, which built the earliest regulated institutional access product for any proof-of-work smart contract network.",
-      "The second decade opens with alignment and strength. Regulatory clarity across four major jurisdictions — CLARITY Act digital commodity classification, GENIUS Act stablecoin platform designation, MiCA decentralized asset recognition, FSA Green List status in Japan. Grayscale's ETCG trust, established in May 2018 with $100M+ AUM. Protocol-funded development through a treasury that requires no central organization. Multi-client architecture eliminating single-point-of-failure risk. Classic USD: the first MiCA and GENIUS Act-compliant stablecoin on a proof-of-work network.",
+      "The second decade opens with alignment and strength. ETC's regulatory surface is global and additive — the same technical properties that satisfy one framework satisfy the next. In the US: digital commodity candidate under the CLARITY Act (House passage July 2025), live stablecoin platform under the GENIUS Act (signed July 18, 2025). In the EU: decentralized asset under MiCA, fully in force December 2024, tradeable by licensed CASPs across all 27 member states without per-asset approval. In Asia: FSA Green List in Japan, SFC licensing in Hong Kong, MAS framework in Singapore, VASP registration in South Korea. Across 300+ active exchange markets with continuous fiat pairs in 17 currencies — USD, EUR, JPY, GBP, KRW, BRL, TRY, AED, and more — covering every major currency region. Virtually every jurisdiction that has finalized crypto regulation has a framework ETC fits. Grayscale's ETCG trust, established in May 2018 with $100M+ AUM, remains the only Grayscale trust for a proof-of-work smart contract platform. Protocol-funded development through a treasury that requires no central organization. Multi-client architecture eliminating single-point-of-failure risk. Classic USD: the first GENIUS Act and MiCA-compliant stablecoin on a proof-of-work network, live on ETC mainnet.",
       'Olympia is the stake in the ground that marks this transition. The first decade of survival is over. The second decade of active development, institutional adoption, and competitive positioning has begun. And it builds on the foundation that ETC Cooperative and the Grayscale ETCG userbase held together long enough to reach.',
     ],
   },
 ]
 
 const timeline = [
-  { year: '2015', events: 'Olympia testnet · ETC genesis block (July 30) · EVM goes live' },
+  { year: '2015', events: 'Olympic testnet · ETC genesis block (July 30) · EVM goes live' },
   { year: '2016', events: 'DAO Fork rejected · Code is Law · 17,313 ETC community fund · Dr. Avtar Sehra governance slides' },
   { year: '2017', events: 'ECIP-1017 (5M20 monetary policy) · ETC Cooperative founded · Grayscale ETCG launched (May)' },
   { year: '2018', events: 'ETCDEV collapse (bear market) · ECIP-1051 rejected · Difficulty bomb removed' },
