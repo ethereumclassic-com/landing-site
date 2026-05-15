@@ -100,6 +100,16 @@ On July 20th, 2016, at block 1,920,000, the Ethereum Classic community stood uni
 - **On-chain donations** — The Olympia Treasury enables direct on-chain contributions to the network's sustainability. Anyone can send funds to the vault — through mining rewards, on-chain transactions, or voluntary donations — consistent with the Declaration's principle that project development can be funded by anyone using a transparent, open, and decentralized protocol.
 - **Legal wrapper** — The Wyoming-registered [Ethereum Classic DAO LLC](https://ethereumclassicdao.org) (Filing ID 2025-001671865) is downstream of the Olympia DAO as specified in ECIP-1113. The LLC handles all off-chain fiat operations, regulatory reporting, tax compliance, and the operational overhead of running a DAO in the modern regulated landscape.
 
+### Sustainable Funding — A Decade-Long Community Priority
+
+Sustainable development funding was identified as a top priority by the Ethereum Classic community at its first meetups in 2016, immediately following the Declaration of Independence. For nearly a decade, the network relied on a stopgap donation model — primarily funded by ETC Cooperative through Grayscale donations from the ETCG decentralized userbase, a $100M AUM trust product that has underwritten the majority of ETC's core development and critical infrastructure since 2017. That model worked. It kept the network maintained through a critical period. Olympia delivers on what the community has sought since the beginning: a self-sustaining protocol treasury funded by basefee revenue, complementing the established voluntary donation model rather than replacing it. The donation model endures — Olympia makes it matter less.
+
+### Fukuii — The 2018 Orbita Client Vision Realized
+
+The 2018 Orbita Client initiative established a long-term vision for an ETC-native execution client independent of Ethereum's development upstream. Fukuii delivers on that vision. Built in Scala 3 and forked from IOHK's abandoned Mantis client, Fukuii is purpose-built for ETC with no upstream dependency on go-ethereum or any active Ethereum client codebase — it evolves on ETC's schedule, not Ethereum's.
+
+Its three-layer architecture separates a chain-agnostic EVM core (`fukuii-core`) from networking and runtime (`fukuii-env`), with a pluggable consensus module that accepts Engine API V1–V4. This positions Fukuii not only as ETC's primary PoW consensus client, but as the execution layer foundation for ETC-based sidechains, L2 constructions, and multi-EVM deployments — native Ethash on ETC and Mordor, Engine API on Ethereum mainnet and Sepolia. One client, built for ETC's long-term future.
+
 ---
 
 ## Regulatory & Institutional Positioning
@@ -141,12 +151,14 @@ All three clients produce identical genesis hashes and have been verified throug
 1. Network security context and maintenance gap
 2. Olympia Phase 1 review — ECIP-1111, ECIP-1112, ECIP-1121
 3. Multi-client implementation status (Fukuii, Core-Geth, Besu)
-4. Development sustainability — ETC Cooperative, Olympia DAO, legal wrapper
-5. Regulatory and institutional positioning
-6. Mordor testnet activation block
-7. ETC mainnet activation block
-8. Client release and node operator upgrade timeline
-9. Open discussion
+4. Sustainable funding milestone — a decade of community priority, from ETCG-backed donations to protocol treasury
+5. Fukuii client launch — realizing the 2018 Orbita Client vision, native ETC execution client, no upstream dependencies
+6. Development sustainability — ETC Cooperative, Olympia DAO, legal wrapper
+7. Regulatory and institutional positioning
+8. Mordor testnet activation block
+9. ETC mainnet activation block
+10. Client release and node operator upgrade timeline
+11. Open discussion
 
 ---
 
