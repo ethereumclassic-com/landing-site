@@ -108,7 +108,7 @@ Sustainable development funding was identified as a top priority by the Ethereum
 
 The 2018 Orbita Client initiative established a long-term vision for an ETC-native execution client independent of Ethereum's development upstream. Fukuii delivers on that vision. Built in Scala 3 and forked from IOHK's abandoned Mantis client, Fukuii is purpose-built for ETC with no upstream dependency on go-ethereum or any active Ethereum client codebase — it evolves on ETC's schedule, not Ethereum's.
 
-Its three-layer architecture separates a chain-agnostic EVM core (`fukuii-core`) from networking and runtime (`fukuii-env`), with a pluggable consensus module that accepts Engine API V1–V4. This positions Fukuii not only as ETC's primary PoW consensus client, but as the execution layer foundation for ETC-based sidechains, L2 constructions, and multi-EVM deployments — native Ethash on ETC and Mordor, Engine API on Ethereum mainnet and Sepolia. One client, built for ETC's long-term future.
+Its three-layer architecture separates a chain-agnostic EVM core (\`fukuii-core\`) from networking and runtime (\`fukuii-env\`), with a pluggable consensus module that accepts Engine API V1–V4. This positions Fukuii not only as ETC's primary PoW consensus client, but as the execution layer foundation for ETC-based sidechains, L2 constructions, and multi-EVM deployments — native Ethash on ETC and Mordor, Engine API on Ethereum mainnet and Sepolia. One client, built for ETC's long-term future.
 
 ---
 
@@ -134,6 +134,14 @@ Three independent client implementations are ready for the Olympia hard fork and
 All three clients produce identical genesis hashes and have been verified through Mordor testnet with matching chain state. See [client details](/olympia/clients) for upgrade instructions.
 
 **Post-Olympia client architecture** — Upstream Ethereum clients have separated the consensus engine from the execution engine to support Proof-of-Stake. This separation creates an opportunity for ETC: Fukuii, as the only ETC-native client, is positioned as the primary Proof-of-Work consensus and execution client moving forward. Core-Geth and other Ethereum-derived clients transition from full consensus-capable clients to execution-layer implementations via ETC plugins — expanding execution client diversity while Fukuii anchors the PoW consensus layer.
+
+---
+
+## The Name: Olympia
+
+See [Why the Name Olympia](/olympia/name) for the full naming context — the pre-genesis testnet, Marvel upgrade lineage, Greek mythology, and the competitive return to active development.
+
+See [A Decade of Conviction](/olympia/history) for the full institutional history — the teams that came and went, two rejected treasury proposals that defined what the community would and wouldn't accept, the stewards who held the line, and how Olympia delivers what the community has sought since 2016.
 
 ---
 

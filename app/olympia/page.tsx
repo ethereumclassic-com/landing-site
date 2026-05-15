@@ -521,6 +521,18 @@ export default function OlympiaHubPage() {
             >
               View Clients
             </Link>
+            <Link
+              href="/olympia/name"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
+            >
+              Why the name Olympia
+            </Link>
+            <Link
+              href="/olympia/history"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
+            >
+              A Decade of Conviction
+            </Link>
           </div>
         </div>
       </section>
