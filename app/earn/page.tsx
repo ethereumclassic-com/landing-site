@@ -64,7 +64,7 @@ export default function EarnPage() {
 
                         <a
                             className="rounded-2xl border border-[var(--border-soft)] bg-[var(--panel)] p-5 hover:bg-[var(--panel-strong)] transition"
-                            href="https://github.com/etclabscore/core-geth"
+                            href="https://github.com/ethereumclassic/core-geth"
                             target="_blank"
                             rel="noopener noreferrer"
                         >

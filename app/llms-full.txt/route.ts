@@ -214,7 +214,7 @@ Repo: https://github.com/input-output-hk/ethereum-classic-fukuii
 Core-Geth — Legacy ETC client
 Go-based fork of go-ethereum. Actively maintained through Olympia.
 Scheduled for phased retirement as Fukuii matures.
-Repo: https://github.com/etclabscore/core-geth
+Repo: https://github.com/ethereumclassic/core-geth
 
 Besu (ETC plugin) — Enterprise Java client
 Hyperledger Besu with ETC consensus plugin. Production-grade, formally maintained.

@@ -35,7 +35,7 @@ const fundingSources: FundingSource[] = [
     name: 'Bug Bounties',
     description: 'Security-focused bounties for finding and responsibly disclosing vulnerabilities in ETC protocol clients and critical infrastructure.',
     type: 'bounties',
-    url: 'https://github.com/etclabscore/core-geth/security',
+    url: 'https://github.com/ethereumclassic/core-geth/security',
     fundingRange: '$100 - $50K+',
     status: 'active',
     focus: ['Security', 'Core Clients', 'Critical Infrastructure'],

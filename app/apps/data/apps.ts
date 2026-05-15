@@ -162,7 +162,7 @@ export const apps: App[] = [
     description: 'Current primary ETC client based on go-ethereum. In sunsetting phase as upstream deprecates PoW.',
     longDescription: 'Core-Geth is currently the most widely used Ethereum Classic client, based on the go-ethereum codebase. However, it is entering a sunsetting phase as the upstream Geth project has deprecated Proof of Work support in favor of the Proof of Stake ecosystem. Node operators are encouraged to evaluate migration to Fukuii for long-term stability.',
     category: 'Infrastructure',
-    link: 'https://github.com/etclabscore/core-geth',
+    link: 'https://github.com/ethereumclassic/core-geth',
     tags: ['Node', 'Client', 'Go', 'Legacy'],
     features: [
       'Go-ethereum based',

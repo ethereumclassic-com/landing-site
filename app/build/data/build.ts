@@ -382,7 +382,7 @@ export const docResources: DocResource[] = [
   {
     id: 'core-geth-docs',
     name: 'Core-Geth Documentation',
-    url: 'https://etclabscore.github.io/core-geth/',
+    url: 'https://github.com/ethereumclassic/core-geth',
     description: 'Documentation for the official ETC node client.',
     category: 'official',
   },
