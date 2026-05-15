@@ -17,7 +17,7 @@ const cves: CVE[] = [
     severity: 'Critical',
     summary: 'Consensus issue in EVM SELFDESTRUCT handling causing incorrect state transitions under specific contract interaction patterns',
     affected: 'Core-Geth ≤ 1.12.19',
-    patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
+    patched: 'Core-Geth 1.13.0 (github.com/ethereumclassic/core-geth)',
     status: 'Patched',
   },
   {
@@ -25,7 +25,7 @@ const cves: CVE[] = [
     severity: 'High',
     summary: 'DoS via crafted p2p message causing unbounded memory allocation in devp2p layer',
     affected: 'Core-Geth ≤ 1.12.19',
-    patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
+    patched: 'Core-Geth 1.13.0 (github.com/ethereumclassic/core-geth)',
     status: 'Patched',
   },
   {
@@ -33,7 +33,7 @@ const cves: CVE[] = [
     severity: 'High',
     summary: 'JSON-RPC denial of service via specially crafted RPC call causing excessive CPU consumption',
     affected: 'Core-Geth ≤ 1.12.19',
-    patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
+    patched: 'Core-Geth 1.13.0 (github.com/ethereumclassic/core-geth)',
     status: 'Patched',
   },
   {
@@ -41,7 +41,7 @@ const cves: CVE[] = [
     severity: 'Medium',
     summary: 'Transaction pool manipulation via priority fee calculation edge case allowing queue displacement',
     affected: 'Core-Geth ≤ 1.12.19',
-    patched: 'Core-Geth 1.13.0 (ethereumclassic fork)',
+    patched: 'Core-Geth 1.13.0 (github.com/ethereumclassic/core-geth)',
     status: 'Patched',
   },
   {
@@ -49,7 +49,7 @@ const cves: CVE[] = [
     severity: 'High',
     summary: 'Go 1.21 runtime vulnerability allowing net/http request smuggling via malformed Transfer-Encoding headers',
     affected: 'Go ≤ 1.21.x (Core-Geth build dependency)',
-    patched: 'Go 1.24 (Core-Geth 1.13.0)',
+    patched: 'Go 1.26+ (Core-Geth 1.13.0)',
     status: 'Patched',
   },
 ]
@@ -72,14 +72,14 @@ const riskAssessment: RiskItem[] = [
   {
     area: 'Unpatched CVEs',
     risk: 'Critical',
-    description: 'Multiple disclosed vulnerabilities remain unpatched in the upstream production release, including consensus and DoS vectors.',
-    mitigation: 'All known CVEs patched in Core-Geth 1.13.0 under the ethereumclassic organization.',
+    description: 'Multiple disclosed vulnerabilities remained unpatched in the upstream production release, including consensus and DoS vectors.',
+    mitigation: 'All known CVEs patched in Core-Geth 1.13.0 at github.com/ethereumclassic/core-geth.',
   },
   {
     area: 'Go Runtime EOL',
     risk: 'High',
-    description: 'Upstream Core-Geth builds on Go 1.21, which reached end-of-life in August 2024. Runtime vulnerabilities affect all compiled binaries.',
-    mitigation: 'Core-Geth 1.13.0 builds on Go 1.24 (current stable).',
+    description: 'Upstream Core-Geth was built on Go 1.21, which reached end-of-life in August 2024. Runtime vulnerabilities affect all compiled binaries.',
+    mitigation: 'Core-Geth 1.13.0 builds on Go 1.26+ (current stable).',
   },
   {
     area: 'Single Maintainer',
@@ -110,9 +110,7 @@ export default function SecurityPage() {
           <div className="absolute left-1/2 top-0 h-[200px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-error)]/6 blur-[80px]" />
         </div>
 
-        <div
-          className="relative mx-auto max-w-3xl"
-        >
+        <div className="relative mx-auto max-w-3xl">
           <div className="mb-4">
             <Link
               href="/olympia"
@@ -129,15 +127,23 @@ export default function SecurityPage() {
             <span className="font-mono text-sm text-[var(--color-text-muted)]">March 2026</span>
           </div>
 
-          <h1
-            className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl"
-          >
+          <h1 className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl">
             Core-Geth Security Gap Analysis
           </h1>
 
           <p className="mt-3 text-[var(--color-text-secondary)]">
-            Assessment of the Core-Geth execution client covering the 21-month maintenance gap from
-            February 2024 through April 2026: the longest maintenance gap in the network&apos;s history.
+            Security vulnerabilities discovered during Fukuii development and Olympia cross-client
+            testing. Core developers found a 21-month maintenance gap in upstream Core-Geth — the
+            longest in the network&apos;s history — and brought the client forward under{' '}
+            <a
+              href="https://github.com/ethereumclassic/core-geth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-primary)] transition hover:text-[var(--color-primary)]/80"
+            >
+              github.com/ethereumclassic/core-geth
+            </a>
+            .
           </p>
         </div>
       </section>
@@ -146,23 +152,22 @@ export default function SecurityPage() {
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <div className="cdc-content article-content space-y-10">
-            {/* Executive Summary */}
+
+            {/* Discovery Context */}
             <div>
-              <h2>Executive Summary</h2>
+              <h2>How This Was Found</h2>
               <p>
-                Ethereum Classic&apos;s primary execution client, Core-Geth, has not shipped a maintenance
-                release in 21 months. During this period, multiple security vulnerabilities were disclosed
-                in upstream go-ethereum and the Go runtime, none of which have been patched in the
-                production release available to node operators.
+                While building Fukuii and conducting cross-client validation for the Olympia upgrade,
+                core developers ran compatibility tests against the upstream Core-Geth release available
+                to node operators. The testing process surfaced what the commit history confirmed: upstream
+                Core-Geth had not shipped a maintenance release in 21 months, had accumulated multiple
+                unpatched CVEs, and was still shipping binaries built on Go 1.21 — a runtime version
+                that reached end-of-life in August 2024.
               </p>
               <p>
-                The upstream repository has been unresponsive to security disclosures, with no active
-                maintainer, no redundancy in core development, and no published security advisories.
-                This represents a structural risk to the Ethereum Classic network.
-              </p>
-              <p>
-                For the Olympia transition, Core-Geth has been brought forward with all known security
-                patches under the{' '}
+                Security disclosures sent to the upstream maintainer in February 2025 received no
+                response. With Olympia requiring a reliable, patched client for network continuity,
+                the ETC core development team brought Core-Geth forward under the{' '}
                 <a
                   href="https://github.com/ethereumclassic/core-geth"
                   target="_blank"
@@ -170,7 +175,8 @@ export default function SecurityPage() {
                 >
                   ethereumclassic
                 </a>{' '}
-                organization. We recommend all node operators update to the patched release.
+                organization, applied all known patches, upgraded the Go toolchain to 1.26+, and
+                released Core-Geth 1.13.0. We recommend all node operators update to this release.
               </p>
             </div>
 
@@ -178,8 +184,16 @@ export default function SecurityPage() {
             <div>
               <h2>CVE Gap Analysis</h2>
               <p>
-                The following vulnerabilities affect the current upstream Core-Geth production release.
-                All have been patched in Core-Geth 1.13.0 maintained under the ethereumclassic organization.
+                The following vulnerabilities were present in the upstream Core-Geth production release
+                at the time of discovery. All have been patched in Core-Geth 1.13.0 at{' '}
+                <a
+                  href="https://github.com/ethereumclassic/core-geth"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  github.com/ethereumclassic/core-geth
+                </a>
+                .
               </p>
 
               <div className="mt-4 space-y-3">
@@ -195,9 +209,7 @@ export default function SecurityPage() {
                       >
                         {cve.severity.toUpperCase()}
                       </span>
-                      <span
-                        className="rounded-sm bg-[var(--color-primary)]/10 px-2 py-0.5 text-[10px] font-mono font-medium text-[var(--color-primary)]"
-                      >
+                      <span className="rounded-sm bg-[var(--color-primary)]/10 px-2 py-0.5 text-[10px] font-mono font-medium text-[var(--color-primary)]">
                         {cve.status.toUpperCase()}
                       </span>
                     </div>
@@ -215,9 +227,9 @@ export default function SecurityPage() {
             <div>
               <h2>Go Runtime End-of-Life</h2>
               <p>
-                The upstream Core-Geth production release is built with Go 1.21, which reached end-of-life
+                The upstream Core-Geth production release was built with Go 1.21, which reached end-of-life
                 in August 2024. Go&apos;s release policy provides security patches only for the two most
-                recent major versions. As of March 2026, Go 1.21 has been unsupported for 19 months.
+                recent major versions. As of March 2026, Go 1.21 had been unsupported for 19 months.
               </p>
               <p>
                 Runtime vulnerabilities in Go&apos;s standard library (net/http, crypto/tls, encoding)
@@ -226,8 +238,17 @@ export default function SecurityPage() {
                 vulnerability database.
               </p>
               <p>
-                Core-Geth 1.13.0 under the ethereumclassic organization builds on Go 1.24 (current stable,
-                supported through February 2027).
+                Cross-client testing for Olympia surfaced this directly: Fukuii required Go 1.26+ for
+                build compatibility, which made the toolchain gap between the two clients immediately
+                visible. Core-Geth 1.13.0 at{' '}
+                <a
+                  href="https://github.com/ethereumclassic/core-geth"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  github.com/ethereumclassic/core-geth
+                </a>{' '}
+                is built on Go 1.26+ (current stable).
               </p>
             </div>
 
@@ -241,7 +262,7 @@ export default function SecurityPage() {
                   { date: 'September 2024', event: 'GHSA-4xc9-8hmq-j652 disclosed (Critical)', note: 'No upstream response' },
                   { date: 'December 2024', event: 'Multiple CVEs accumulated, no security advisory published', note: '18 months since last release' },
                   { date: 'February 2025', event: 'Security disclosures sent to upstream maintainer', note: 'No response received' },
-                  { date: 'March 2026', event: 'Core-Geth 1.13.0 released under ethereumclassic org', note: 'All known CVEs patched, Go 1.24' },
+                  { date: 'March 2026', event: 'Core-Geth 1.13.0 released at github.com/ethereumclassic/core-geth', note: 'All known CVEs patched, Go 1.26+' },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="w-32 shrink-0 font-mono text-xs text-[var(--color-text-muted)]">
@@ -288,15 +309,15 @@ export default function SecurityPage() {
               <h2>Recommendations</h2>
               <ul>
                 <li>
-                  <strong>Node operators:</strong> Update to Core-Geth 1.13.0 from the{' '}
+                  <strong>Node operators:</strong> Update to Core-Geth 1.13.0 from{' '}
                   <a
                     href="https://github.com/ethereumclassic/core-geth"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    ethereumclassic/core-geth
-                  </a>{' '}
-                  repository. This release includes all known security patches and is built on Go 1.24.
+                    github.com/ethereumclassic/core-geth
+                  </a>
+                  . This release includes all known security patches and is built on Go 1.26+.
                 </li>
                 <li>
                   <strong>Mining operators:</strong> Evaluate{' '}
@@ -324,15 +345,15 @@ export default function SecurityPage() {
             <div>
               <h2>Methodology</h2>
               <p>
-                This analysis was conducted by reviewing the upstream go-ethereum security advisories
-                (GitHub Advisory Database), the Go vulnerability database (vuln.go.dev), and the Core-Geth
-                commit history from June 2023 through March 2026. Each CVE was verified against the
-                Core-Geth codebase to confirm applicability to Ethereum Classic.
+                These findings emerged from cross-client compatibility work conducted during Fukuii
+                development and Olympia upgrade preparation. Validation included reviewing the upstream
+                go-ethereum security advisories (GitHub Advisory Database), the Go vulnerability database
+                (vuln.go.dev), and the Core-Geth commit history from June 2023 through March 2026. Each
+                CVE was verified against the Core-Geth codebase to confirm applicability to Ethereum Classic.
               </p>
               <p>
-                The patched Core-Geth 1.13.0 release was validated through Mordor testnet deployment,
-                cross-client genesis hash verification, and automated test suites across all three
-                Olympia client implementations.
+                Core-Geth 1.13.0 was validated through Mordor testnet deployment, cross-client genesis
+                hash verification, and automated test suites across all three Olympia client implementations.
               </p>
             </div>
 
@@ -340,6 +361,16 @@ export default function SecurityPage() {
             <div>
               <h2>Related</h2>
               <ul>
+                <li>
+                  <a
+                    href="https://github.com/ethereumclassic/core-geth"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-primary)]"
+                  >
+                    github.com/ethereumclassic/core-geth
+                  </a>
+                </li>
                 <li>
                   <Link href="/olympia/clients" className="text-[var(--color-primary)]">
                     Olympia Client Implementations
@@ -352,24 +383,17 @@ export default function SecurityPage() {
                 </li>
                 <li>
                   <a
-                    href="https://github.com/ethereumclassic/core-geth"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Core-Geth (ethereumclassic fork)
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="https://ecips.ethereumclassic.org/ECIPs/ecip-1111"
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="text-[var(--color-primary)]"
                   >
                     ECIP-1111: Olympia EVM and Protocol Upgrades
                   </a>
                 </li>
               </ul>
             </div>
+
           </div>
         </div>
       </section>

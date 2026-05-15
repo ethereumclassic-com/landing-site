@@ -124,7 +124,7 @@ export const nodeClients: NodeClient[] = [
     platforms: ['Linux', 'macOS', 'Docker'],
     features: [
       'Fast initial sync with SNAP protocol',
-      'Built on Scala 3.3.4 LTS and JDK 21',
+      'Built on Scala 3.3.4 LTS and JDK 25',
       'PoW consensus and mining support',
       'Interactive TUI and CLI utilities',
       'Native ETC-first design',

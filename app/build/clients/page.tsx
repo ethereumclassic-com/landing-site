@@ -127,7 +127,7 @@ export default function ClientsPage() {
           <div
             className="space-y-8"
           >
-            {activeClients.map((client) => (
+            {activeClients.filter((c) => c.id !== 'hyperledger-besu').map((client) => (
               <div
                 key={client.id}
                 className={`rounded-2xl border p-8 ${
@@ -222,7 +222,7 @@ export default function ClientsPage() {
                           href={client.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 rounded-lg bg-[var(--color-primary)] py-2 text-center text-sm font-medium text-black transition hover:bg-[var(--color-primary-hover)]"
+                          className="flex-1 rounded-lg bg-[var(--color-primary)] py-2 text-center text-sm font-medium text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
                         >
                           Documentation
                         </a>
@@ -393,7 +393,7 @@ export default function ClientsPage() {
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 opacity-70"
                 >
                   <div className="mb-3 flex items-center justify-between">
-                    <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">{plugin.name}</span>
+                    <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">{plugin.name.replace('-etc', '')}</span>
                     <span className="rounded-full bg-[var(--color-text-muted)]/10 px-2 py-0.5 text-[10px] font-mono text-[var(--color-text-muted)]">
                       PLANNED
                     </span>
@@ -425,7 +425,7 @@ export default function ClientsPage() {
                 href="https://github.com/ethereumclassic/fukuii"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 Get Fukuii
                 <ExternalLinkIcon />

@@ -137,7 +137,7 @@ export const apps: App[] = [
     name: 'Fukuii',
     slug: 'fukuii',
     description: 'Enterprise-grade ETC client with no upstream dependencies. The only client native to the ETC stack.',
-    longDescription: 'Fukuii is the only Ethereum Classic client built from scratch with ETC as the primary chain and no upstream dependencies. A continuation of the Mantis client, Fukuii is maintained by Chippr Robotics with modern Scala 3 and JDK 21. Features include bootstrap checkpoints for fast sync, MCP integration for AI-assisted operations, and production-ready Docker images with signed attestations.',
+    longDescription: 'Fukuii is the only Ethereum Classic client built from scratch with ETC as the primary chain and no upstream dependencies. A continuation of the Mantis client, Fukuii is maintained by Chippr Robotics with modern Scala 3 and JDK 25. Features include bootstrap checkpoints for fast sync, MCP integration for AI-assisted operations, and production-ready Docker images with signed attestations.',
     category: 'Infrastructure',
     link: 'https://github.com/chippr-robotics/fukuii',
     featured: true,

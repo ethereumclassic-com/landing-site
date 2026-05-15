@@ -150,7 +150,7 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
           {entry.isPlaceholder ? (
             <PlaceholderTemplate entry={entry} />
           ) : (
-            <div className="cdc-content prose prose-invert max-w-none prose-headings:text-[var(--background)] prose-headings:font-semibold prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2 prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-a:text-[var(--color-primary)] prose-a:no-underline hover:prose-a:text-[var(--color-primary)]/80 prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--background)] prose-code:text-[var(--color-primary)] prose-code:bg-[var(--color-primary)]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-ul:my-3 prose-ol:my-3">
+            <div className="cdc-content prose prose-invert max-w-none prose-headings:text-[var(--text-primary)] prose-headings:font-semibold prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-2 prose-p:text-[var(--color-text-secondary)] prose-p:leading-relaxed prose-a:text-[var(--color-primary)] prose-a:no-underline hover:prose-a:text-[var(--color-primary)]/80 prose-li:text-[var(--color-text-secondary)] prose-strong:text-[var(--text-primary)] prose-code:text-[var(--color-primary)] prose-code:bg-[var(--color-primary)]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-ul:my-3 prose-ol:my-3">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{entry.content}</ReactMarkdown>
             </div>
           )}

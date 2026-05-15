@@ -14,6 +14,7 @@
   --brand-green-muted: #004d30;
   --brand-green-subtle: rgba(0, 122, 83, 0.08);
   --brand-green-glow: rgba(0, 122, 83, 0.2);
+  --brand-green-foreground: #ffffff;
 
   /* Backgrounds */
   --background: #f8faf9;
@@ -279,6 +280,7 @@
   --brand-green-muted: #007a53;
   --brand-green-subtle: rgba(0, 255, 174, 0.08);
   --brand-green-glow: rgba(0, 255, 174, 0.4);
+  --brand-green-foreground: #0a0f10;
 
   /* Backgrounds */
   --background: #0a0f10;

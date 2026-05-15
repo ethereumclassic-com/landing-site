@@ -93,7 +93,7 @@ function InstallationSection({ client }: { client: NodeClient }) {
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
-                <code className="block text-[var(--color-text-muted)]"># Requires JDK 21+ and sbt</code>
+                <code className="block text-[var(--color-text-muted)]"># Requires JDK 25+ and sbt</code>
                 <code className="block text-[var(--color-text-muted)]">git clone https://github.com/ethereumclassic/fukuii.git</code>
                 <code className="block text-[var(--color-text-muted)]">cd fukuii && sbt assembly</code>
               </div>
@@ -242,7 +242,7 @@ export default function ClientPage({ params }: Props) {
               href={client.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
             >
               Documentation
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -359,7 +359,7 @@ export default function ClientPage({ params }: Props) {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/build/networks"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Network Info
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

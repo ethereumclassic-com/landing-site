@@ -55,7 +55,7 @@ export const clients: ClientUpgrade[] = [
       { platform: 'Source', command: 'sbt stage' },
     ],
     verifyCommand: 'fukuii --version',
-    prerequisites: ['JDK 21+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
+    prerequisites: ['JDK 25+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
   },
   {
     id: 'core-geth',
@@ -77,7 +77,7 @@ export const clients: ClientUpgrade[] = [
       { platform: 'Linux/macOS', command: 'make geth' },
     ],
     verifyCommand: 'geth version',
-    prerequisites: ['Go 1.24+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
+    prerequisites: ['Go 1.26+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
   },
   {
     id: 'besu',

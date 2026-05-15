@@ -27,10 +27,10 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
   if (!detail) {
     // Summary card for hub page
     return (
-      <motion.div variants={fadeInUp}>
+      <motion.div variants={fadeInUp} className="h-full">
         <Link
           href={`/olympia/clients/${client.id}`}
-          className="group block rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
+          className="group flex h-full flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
         >
           <div className="flex items-center gap-3">
             <span
@@ -53,7 +53,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
             </div>
           </div>
 
-          <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
+          <p className="mt-4 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
             {client.description}
           </p>
 

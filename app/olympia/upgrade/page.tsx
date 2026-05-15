@@ -182,7 +182,7 @@ const clientData = [
     language: 'Scala',
     languageColor: '#DC322F',
     role: 'Primary Client · Enterprise Grade',
-    runtime: 'JDK 21+',
+    runtime: 'JDK 25+',
     disk: '500 GB+ (SNAP sync)',
     ram: '8 GB minimum',
     steps: [
@@ -199,7 +199,7 @@ const clientData = [
     language: 'Go',
     languageColor: '#00ADD8',
     role: 'Legacy Client · Maintenance Mode',
-    runtime: 'Go 1.24+',
+    runtime: 'Go 1.26+',
     disk: '500 GB+ (full sync)',
     ram: '8 GB minimum',
     steps: [
@@ -665,7 +665,7 @@ export default function UpgradeGuidePage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/olympia/clients"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-black transition-all hover:bg-[var(--brand-green)]/90 hover:shadow-lg hover:shadow-[var(--brand-green)]/25"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-all hover:bg-[var(--brand-green)]/90 hover:shadow-lg hover:shadow-[var(--brand-green)]/25"
             >
               View All Clients
             </Link>

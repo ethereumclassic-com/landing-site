@@ -11,9 +11,51 @@ function formatDate(date: string) {
   })
 }
 
-export function CDCCard({ entry }: { entry: CDCEntry }) {
+export function CDCCard({ entry, isUpcoming }: { entry: CDCEntry; isUpcoming?: boolean }) {
   const visibleEcips = entry.ecipRefs.slice(0, 3)
   const overflowCount = entry.ecipRefs.length - visibleEcips.length
+
+  if (isUpcoming) {
+    return (
+      <Link
+        href={`/core-devs/${entry.slug}`}
+        className="group block rounded-lg border-2 border-[var(--brand-green)]/40 bg-[var(--brand-green)]/[0.04] p-4 transition hover:border-[var(--brand-green)]/60 hover:bg-[var(--brand-green)]/[0.07]"
+      >
+        {/* Upcoming badge */}
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand-green)]" />
+          </span>
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-[var(--brand-green)]">
+            Upcoming
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="mt-1.5 text-sm font-semibold text-[var(--brand-green)] line-clamp-2 transition">
+          {entry.title}
+        </h3>
+
+        {/* Summary */}
+        <p className="mt-1 text-xs text-[var(--color-text-muted)] line-clamp-2">{entry.summary}</p>
+
+        {/* ECIP chips */}
+        {visibleEcips.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1">
+            {visibleEcips.map((id) => (
+              <ECIPChip key={id} id={id} linked={false} />
+            ))}
+            {overflowCount > 0 && (
+              <span className="inline-flex items-center rounded-md bg-slate-500/10 px-1.5 py-0.5 text-[10px] text-slate-400">
+                +{overflowCount}
+              </span>
+            )}
+          </div>
+        )}
+      </Link>
+    )
+  }
 
   return (
     <Link

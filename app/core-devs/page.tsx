@@ -174,9 +174,9 @@ export default function CoreDevsPage() {
             </div>
 
             <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {archiveEntries.map((entry) => (
+              {archiveEntries.map((entry, index) => (
                 <div key={entry.slug}>
-                  <CDCCard entry={entry} />
+                  <CDCCard entry={entry} isUpcoming={index === 0} />
                 </div>
               ))}
             </div>
