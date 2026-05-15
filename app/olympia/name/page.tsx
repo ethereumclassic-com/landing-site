@@ -8,9 +8,19 @@ const threads = [
     heading: 'From Olympic to Olympia',
     color: 'var(--brand-green)',
     body: [
-      'Olympic was the ninth and final Ethereum testnet — Ethereum 0.9, the last proving ground before Frontier launched on July 30, 2015. Application developers, data providers, and exchanges were incentivized to push it to its absolute limits: send maximum load, mine every block, find every vulnerability. It was not a soft launch. It was a deliberate stress test designed to break things before they could break in production. The Ethereum chain that went live after Olympic is the direct ancestor of Ethereum Classic.',
-      "Olympia is not the same name. That's the point. Olympic was the competition — the stress test, the trial by fire. Olympia is the arena — the sacred site in the Greek Peloponnese where the ancient Olympic Games were held every four years, where the best gathered at a fixed location to compete at the highest level. One is the event. The other is where the event is held.",
-      "The chain forged in the Olympic proving ground — preserved through the DAO fork, maintained through a decade without predictable resources — now arrives at Olympia. Not to prove it can run. Not to survive another year. To compete.",
+      'Olympic was the ninth and final Ethereum testnet — Ethereum 0.9, the last proving ground before Frontier launched on July 30, 2015. Application developers, data providers, and exchanges were incentivized to push it to its absolute limits: send maximum load, mine every block, find every vulnerability. It was not a soft launch. It was a deliberate stress test, designed to break things before they could break in production. The Ethereum chain that went live after Olympic is the direct ancestor of Ethereum Classic.',
+      "Olympia is not the same name. That's the point. Olympic was the trial — the proving ground, the gauntlet. Olympia is the destination — the sacred site the trial pointed toward all along. One is the test. The other is what you build once you've passed it.",
+      'The chain forged in the Olympic proving ground — preserved through the DAO fork, maintained through a decade without predictable resources — now arrives at Olympia. Not as a survivor. As an institution.',
+    ],
+  },
+  {
+    label: 'Mythology',
+    heading: 'The sacred site',
+    color: 'var(--color-warning)',
+    body: [
+      'In ancient Greece, Olympia was a sanctuary in the western Peloponnese — sacred ground dedicated to Zeus, set apart from the conflicts of mortals. It was a place of sovereignty and continuity, where the affairs of the gods were honored and where civic order was preserved across generations. The site held the Temple of Zeus and the great statue counted among the seven wonders of the ancient world. Authority resided there. It was not contested there.',
+      "This is the parallel that matters for ETC. After a decade of being defined by what it endured — the DAO fork, hash wars, deprecation, the constant pressure to justify its existence — Olympia marks the shift from a chain that survives to a chain with a seat. A treasury. A funded development organization. A governance structure. A legal wrapper. Permanent infrastructure on permanent ground.",
+      'Ten years of conviction becomes institution.',
     ],
   },
   {
@@ -19,27 +29,40 @@ const threads = [
     color: 'var(--color-purple)',
     body: [
       "Ethereum Classic's network upgrades have always drawn from Marvel and comics: Phoenix, Magneto, Mystique, Spiral. The tradition is deliberate — these names carry meaning beyond the technical specs.",
-      "Olympia continues that lineage with the Eternals — Marvel's oldest cosmic beings, immortal and unkillable since the beginning of time. Beings who predate civilizations, who cannot be destroyed, who persist across every conflict and catastrophe. The alignment with ETC's own story is not accidental: the original chain that refused to die, now entering its eternal phase.",
+      "Olympia closes the Marvel arc with the Eternals — Marvel's oldest cosmic beings, immortal and unkillable since the beginning of time. Beings who predate civilizations, who cannot be destroyed, who persist across every conflict and catastrophe.",
+      "The alignment with ETC's own story is not accidental. The original chain that refused to die now enters its eternal phase — not because it won a fight, but because it was never going to end. Persistence as a property of the thing itself, not the outcome of a struggle.",
     ],
   },
   {
-    label: 'Mythology',
-    heading: 'Home of the Eternals',
-    color: 'var(--color-warning)',
-    body: [
-      'In Greek mythology, Olympia is the sacred site of the gods — timeless, sovereign, set apart from the conflicts of mortals. The seat of power where the highest beings convene.',
-      'The ancient Olympic Games were held at Olympia, the city in the Peloponnese — not Mount Olympus. Every four years, competing city-states gathered at a fixed location for structured, prestigious competition. The Games were a civilizational institution: a recurring cycle, a demonstration of peak performance, a gathering that transcended the ordinary conflicts between states.',
-      'Both meanings carry forward. ETC\'s Olympia is the seat where ten years of conviction becomes infrastructure. And it is the arena where ETC returns — not to survive, but to compete at the highest level.',
-    ],
-  },
-  {
-    label: 'Competitive Return',
-    heading: 'Positioned to compete and win',
+    label: 'Inheritance',
+    heading: 'What Olympia receives',
     color: 'var(--color-info)',
     body: [
-      'Olympia marks the end of maintenance mode and the return to active competition. Not reacting to deprecation. Not surviving another year. Entering the arena positioned to win.',
-      "The longest gap between network upgrades in ETC's history ends with Olympia. Multi-client architecture. Protocol-funded development. EVM parity through Fusaka. These are not defensive measures — they are offensive positioning. ETC is not leaving maintenance mode reluctantly. It is leaving it with a plan.",
-      'The competitive spirit of the Olympic Games — the best, prepared, competing on a fixed cycle — is exactly the posture Olympia establishes. A rhythm of upgrades. A funded development organization. Clients that evolve on ETC\'s own schedule.',
+      'Olympia is a place of inheritance. The flame, the rites, the records — what was built by predecessors held in trust and passed forward across generations. The sanctuary endured because each generation accepted custody of what the last had built.',
+      'ETC inherits more than code. It inherits the original social contract of Ethereum — immutability, neutrality, code is law — held intact through a decade when those principles were traded away elsewhere. Olympia is where that inheritance stops being a memory and becomes a working system: a treasury that funds the principles, clients that implement them, governance that defends them.',
+      "A decade of ETC Cooperative stewardship, Grayscale's ETCG trust providing regulated institutional access since 2018, and a global volunteer network holding the line across every upgrade since 2016 — all of it passes forward into Olympia's on-chain governance. The custody chain is unbroken.",
+    ],
+  },
+  {
+    label: 'The Decade Ahead',
+    heading: 'The world caught up',
+    color: 'var(--brand-green)',
+    body: [
+      "ETC's first decade was spent proving it could persist. The second begins in a world that has finally caught up to what the chain was built for.",
+      'Regulatory clarity has arrived. The GENIUS Act — signed July 18, 2025 — establishes the first U.S. federal framework for payment stablecoin issuance, and Classic USD is live on ETC mainnet as a compliant instrument. The CLARITY Act has passed the House, advancing the clearest jurisdictional framework yet for digital commodities — and ETC\'s profile fits natively: no pre-mine, no foundation-controlled treasury, no insider allocation, no securities-like issuance. MiCA is in force across all 27 EU member states. Japan\'s FSA Green List, Hong Kong\'s SFC regime, Singapore\'s MAS framework. The properties that made ETC unfashionable during the ICO era are the properties that make it legible to regulators now.',
+      "Investment products are maturing. Spot Bitcoin ETFs cleared in 2024. Spot Ether ETFs followed. The Grayscale Ethereum Classic Trust has held ETC in regulated custody since May 2018 — predating most of the assets that have since converted to ETF structure, building the institutional track record that conversion requires. The infrastructure exists. The regulatory path is open.",
+      "Proof of work is being recognized as infrastructure. What was dismissed as wasteful a decade ago is now understood as something else: dispatchable load, grid stabilization, monetizable stranded energy, and a hardware-anchored security model that nation-states are treating as strategic. Governments from Bhutan to El Salvador operate sovereign mining programs. The United States has shifted from regulatory hostility toward active encouragement — the Mined in America Act positions domestic PoW mining as a federal energy asset program. The energy argument has inverted. Proof of work is no longer the liability. It is the moat.",
+    ],
+  },
+  {
+    label: 'Arriving On Time',
+    heading: 'Not late — on time',
+    color: 'var(--color-purple)',
+    body: [
+      'Olympia is not a late upgrade. It is an on-time arrival.',
+      'The treasury launches when regulatory frameworks finally support protocol-funded development. The DAO LLC wrapper is filed when Wyoming\'s statute exists to wrap it. The institutional bridge to regulated investment products forms when the conversion path is open. The proof-of-work commitment hardens when proof-of-work is being adopted as national infrastructure.',
+      "A decade of conviction did not produce an upgrade that catches ETC up to the market. It produced an upgrade that meets the market exactly where it has now arrived. The longest gap between network upgrades in ETC's history ends with Olympia — not reluctantly, but with a plan, with multi-client architecture, protocol-funded development, EVM parity through Fusaka, and a rhythm of upgrades on ETC's own schedule.",
+      "Maintenance mode ends here. Not with a return to a fight. With the establishment of ground that no longer needs to be defended.",
     ],
   },
 ]
@@ -77,8 +100,8 @@ export default function OlympiaNamePage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            A name that carries ten years of Ethereum Classic history — from the pre-genesis
-            testnet to the upgrade that opens the second decade.
+            From the proving ground to the arena — the name that carries ten years of Ethereum
+            Classic history into its second decade.
           </p>
         </div>
       </section>
@@ -138,8 +161,8 @@ export default function OlympiaNamePage() {
             </span>
           </div>
           <p className="mt-4 text-sm text-[var(--color-text-muted)]">
-            ETC&apos;s network upgrades have always carried names that mean something beyond the technical.
-            Olympia closes the Marvel arc with the Eternals — and opens the second decade.
+            ETC&apos;s network upgrades have always carried names that mean something beyond the
+            technical. Olympia closes the Marvel arc with the Eternals — and opens the second decade.
           </p>
         </div>
       </section>
