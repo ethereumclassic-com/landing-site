@@ -140,6 +140,9 @@ const navItems: {
       { href: '/olympia/governance', label: 'Governance' },
       { href: '/olympia/miners', label: 'Miners & Fees' },
       { href: '/olympia/security', label: 'Security' },
+      { type: 'separator', label: 'History & Context' },
+      { href: '/olympia/name', label: 'Why the Name Olympia' },
+      { href: '/olympia/history', label: 'A Decade of Conviction' },
     ],
   },
 ]
@@ -237,6 +240,8 @@ const mobileNavGroups: {
       { href: '/olympia/miners', label: 'Miners & Fees' },
       { href: '/olympia/security', label: 'Security' },
       { href: '/upgrades', label: 'Network Upgrades' },
+      { href: '/olympia/name', label: 'Why the Name Olympia' },
+      { href: '/olympia/history', label: 'A Decade of Conviction' },
     ],
   },
 ]
