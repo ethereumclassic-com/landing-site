@@ -41,7 +41,7 @@ export const clients: ClientUpgrade[] = [
     language: 'Scala',
     languageColor: '#DC322F',
     description:
-      'Next-generation ETC client purpose-built for Ethereum Classic. The recommended client for node operators upgrading to Olympia.',
+      'EVM-compliant execution layer client in Scala 3. Native PoW consensus for ETC and Mordor; pairs with any consensus client via Engine API V1–V4 for post-Merge Ethereum. Forked from Mantis, purpose-built for the Olympia era.',
     role: 'primary',
     roleLabel: 'Recommended',
     currentVersion: 'v0.1.240',

@@ -85,6 +85,13 @@ export const rpcEndpoints: RPCEndpoint[] = [
 ]
 
 // Node Clients
+export interface SecurityAdvisory {
+  cve: string
+  severity: 'Critical' | 'High' | 'Moderate' | 'Low'
+  description: string
+  commit?: string
+}
+
 export interface NodeClient {
   id: string
   name: string
@@ -99,6 +106,7 @@ export interface NodeClient {
   recommended?: boolean
   installCommand?: string
   configNotes?: string
+  securityAdvisories?: SecurityAdvisory[]
 }
 
 // Execution Client Plugins (Post-Olympia Roadmap)
@@ -119,7 +127,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://github.com/ethereumclassic/fukuii',
     github: 'https://github.com/ethereumclassic/fukuii',
     description:
-      'Recommended — Purpose-built for ETC, the only ETC-native client. Modern Scala 3 architecture with PoW consensus and mining capabilities. The primary and long-term supported client for Ethereum Classic in the post-Olympia world.',
+      'EVM-compliant execution layer client in Scala 3. Native PoW consensus for ETC and Mordor; pairs with any consensus client via Engine API V1–V4 for post-Merge Ethereum. Forked from Mantis, purpose-built for the Olympia era.',
     language: 'Scala',
     platforms: ['Linux', 'macOS', 'Docker'],
     features: [
@@ -157,6 +165,38 @@ export const nodeClients: NodeClient[] = [
     installCommand: 'docker pull ghcr.io/ethereumclassic/core-geth:latest',
     configNotes:
       'Use --classic flag for ETC mainnet, --mordor for testnet',
+    securityAdvisories: [
+      {
+        cve: 'CVE-2026-26314',
+        severity: 'High',
+        description: 'secp256k1 coordinate validation — invalid curve points accepted in P2P handshake.',
+        commit: '21f515da2',
+      },
+      {
+        cve: 'CVE-2026-22862',
+        severity: 'High',
+        description: 'ECIES decrypt length overflow — crafted messages can cause out-of-bounds reads.',
+        commit: '9dc4fadf3',
+      },
+      {
+        cve: 'CVE-2026-26315',
+        severity: 'Moderate',
+        description: 'ECIES GenerateShared invalid-curve attack — missing validation allows key recovery.',
+        commit: 'c9fc287b8',
+      },
+      {
+        cve: 'CVE-2025-24883',
+        severity: 'Moderate',
+        description: 'UnmarshalPubkey missing curve check — unvalidated public keys accepted.',
+        commit: 'c62b31054',
+      },
+      {
+        cve: 'DEPS',
+        severity: 'High',
+        description: 'golang.org/x/crypto and x/net dependency updates for known vulnerabilities.',
+        commit: 'ac56a1cc9',
+      },
+    ],
   },
   {
     id: 'hyperledger-besu',
@@ -192,7 +232,7 @@ export const nodeClients: NodeClient[] = [
 export const executionPlugins: ExecutionPlugin[] = [
   {
     id: 'geth-etc',
-    name: 'geth-etc',
+    name: 'Go-Ethereum',
     baseClient: 'go-ethereum',
     language: 'Go',
     github: 'https://github.com/ethereumclassic/geth-etc',
@@ -202,7 +242,7 @@ export const executionPlugins: ExecutionPlugin[] = [
   },
   {
     id: 'nethermind-etc',
-    name: 'nethermind-etc',
+    name: 'Nethermind',
     baseClient: 'Nethermind',
     language: 'C#',
     github: 'https://github.com/ethereumclassic/nethermind-etc',
@@ -212,7 +252,7 @@ export const executionPlugins: ExecutionPlugin[] = [
   },
   {
     id: 'erigon-etc',
-    name: 'erigon-etc',
+    name: 'Erigon',
     baseClient: 'Erigon',
     language: 'Go',
     github: 'https://github.com/ethereumclassic/erigon-etc',
@@ -222,12 +262,22 @@ export const executionPlugins: ExecutionPlugin[] = [
   },
   {
     id: 'besu-etc',
-    name: 'besu-etc',
+    name: 'Besu',
     baseClient: 'Hyperledger Besu',
     language: 'Java',
     github: 'https://github.com/ethereumclassic/besu-etc',
     description:
       'ETC execution plugin for Hyperledger Besu. Adds Ethereum Classic chain support to the enterprise-grade Java client.',
+    status: 'planned',
+  },
+  {
+    id: 'reth-etc',
+    name: 'Reth',
+    baseClient: 'Reth',
+    language: 'Rust',
+    github: 'https://github.com/ethereumclassic/reth-etc',
+    description:
+      'ETC execution plugin for Reth. Brings Ethereum Classic support to the modular, performance-focused Rust client.',
     status: 'planned',
   },
 ]
@@ -626,4 +676,8 @@ export function getRecommendedClient(): NodeClient | undefined {
 
 export function getExecutionPlugins(): ExecutionPlugin[] {
   return executionPlugins
+}
+
+export function getPluginById(id: string): ExecutionPlugin | undefined {
+  return executionPlugins.find((p) => p.id === id)
 }

@@ -381,19 +381,20 @@ export default function ClientsPage() {
               Upstream Ethereum clients separated the consensus engine from the execution engine to support
               Proof-of-Stake. ETC plugins leverage this separation to add Ethereum Classic chain support
               to the execution layer only. No mining, no PoW consensus. Products and infrastructure built on
-              geth, Nethermind, Erigon, or Besu can add ETC support via a lightweight plugin without running
+              Go-Ethereum, Nethermind, Erigon, Besu, or Reth can add ETC support via a lightweight plugin without running
               a separate PoW consensus client. Fukuii remains the primary and long-term supported Proof-of-Work
               client for the mining ecosystem.
             </p>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
               {executionPlugins.map((plugin) => (
-                <div
+                <Link
                   key={plugin.id}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 opacity-70"
+                  href={`/build/clients/${plugin.id}`}
+                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 opacity-70 transition hover:opacity-100 hover:border-[var(--color-primary)]/30"
                 >
                   <div className="mb-3 flex items-center justify-between">
-                    <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">{plugin.name.replace('-etc', '')}</span>
+                    <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">{plugin.name}</span>
                     <span className="rounded-full bg-[var(--color-text-muted)]/10 px-2 py-0.5 text-[10px] font-mono text-[var(--color-text-muted)]">
                       PLANNED
                     </span>
@@ -401,9 +402,9 @@ export default function ClientsPage() {
                   <p className="mb-3 text-xs text-[var(--color-text-muted)]">{plugin.description}</p>
                   <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
                     <span>{plugin.language}</span>
-                    <span>Base: {plugin.baseClient}</span>
+                    <span className="text-[var(--color-primary)]">View →</span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
