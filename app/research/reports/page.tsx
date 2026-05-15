@@ -109,7 +109,7 @@ export default function ReportsPage() {
               onClick={() => setSelectedCategory('all')}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 selectedCategory === 'all'
-                  ? 'bg-[var(--color-primary)] text-black'
+                  ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:bg-[var(--bg)]'
               }`}
             >
@@ -168,7 +168,7 @@ export default function ReportsPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/news"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Latest News
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

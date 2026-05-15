@@ -142,7 +142,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full rounded-lg bg-[var(--color-primary)] px-4 py-3 font-semibold text-black transition-all hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-lg bg-[var(--color-primary)] px-4 py-3 font-semibold text-[var(--brand-green-foreground)] transition-all hover:bg-[var(--color-primary-hover)] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">

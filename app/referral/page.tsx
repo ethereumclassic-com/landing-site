@@ -317,7 +317,7 @@ export default function ReferralPage() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full rounded-xl bg-[var(--color-primary)] py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+                    className="w-full rounded-xl bg-[var(--color-primary)] py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
                   >
                     Join Waitlist
                   </button>

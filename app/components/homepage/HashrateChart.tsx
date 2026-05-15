@@ -96,7 +96,7 @@ export default function HashrateChart() {
                 onClick={() => setPeriod(key)}
                 className={`rounded-md px-2.5 py-1 font-mono text-[10px] transition-colors duration-150 ${
                   period === key
-                    ? 'bg-[var(--brand-green)] font-semibold text-white dark:text-black'
+                    ? 'bg-[var(--brand-green)] font-semibold text-white dark:text-[var(--brand-green-foreground)]'
                     : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
                 }`}
               >

@@ -96,7 +96,7 @@ export default function BeginnersExchangesPage() {
             <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">How to Buy Your First ETC</h2>
             <div className="grid gap-4 md:grid-cols-4">
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--brand-green-foreground)]">
                   1
                 </div>
                 <div>
@@ -105,7 +105,7 @@ export default function BeginnersExchangesPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--brand-green-foreground)]">
                   2
                 </div>
                 <div>
@@ -114,7 +114,7 @@ export default function BeginnersExchangesPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--brand-green-foreground)]">
                   3
                 </div>
                 <div>
@@ -123,7 +123,7 @@ export default function BeginnersExchangesPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--brand-green-foreground)]">
                   4
                 </div>
                 <div>

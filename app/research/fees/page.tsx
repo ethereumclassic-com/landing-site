@@ -370,7 +370,7 @@ function TransactionCostCalculator({ gasPrices, isLoading }: { gasPrices: FeeSta
             onClick={() => setSelectedTier(tier)}
             className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
               selectedTier === tier
-                ? 'bg-[var(--color-primary)] text-black'
+                ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                 : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
             }`}
           >

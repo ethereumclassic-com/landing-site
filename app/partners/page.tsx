@@ -221,7 +221,7 @@ export default function PartnersPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=partnership"
-                className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 Become a Partner
               </Link>
@@ -268,7 +268,7 @@ export default function PartnersPage() {
                 onClick={() => setActiveCategory(category.id)}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   activeCategory === category.id
-                    ? 'bg-[var(--color-primary)] text-black'
+                    ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                     : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                 }`}
               >
@@ -394,7 +394,7 @@ export default function PartnersPage() {
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Link
                   href="/contact?type=partnership"
-                  className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                  className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
                 >
                   Contact Us
                 </Link>

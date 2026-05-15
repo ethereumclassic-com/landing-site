@@ -142,7 +142,7 @@ export default function VerifyPage() {
                 href="https://etc.blockscout.com/contract-verification"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Verify Contract on Blockscout
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -210,7 +210,7 @@ export default function VerifyPage() {
                 {index < steps.length - 1 && (
                   <div className="absolute right-0 top-1/2 hidden h-0.5 w-4 -translate-y-1/2 translate-x-full bg-[var(--border)] md:block" />
                 )}
-                <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
+                <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--brand-green-foreground)]">
                   {step.number}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{step.title}</h3>
@@ -302,7 +302,7 @@ export default function VerifyPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/build/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Getting Started
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -249,7 +249,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === 'loading'}
-                      className="w-full rounded-xl bg-[var(--color-primary)] px-6 py-4 font-semibold text-black transition hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
+                      className="w-full rounded-xl bg-[var(--color-primary)] px-6 py-4 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
                     >
                       {status === 'loading' ? (
                         <span className="flex items-center justify-center gap-2">

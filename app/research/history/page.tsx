@@ -167,7 +167,7 @@ export default function HistoricalDataPage() {
               onClick={() => setActiveChart('price')}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeChart === 'price'
-                  ? 'bg-[var(--color-primary)] text-black'
+                  ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
@@ -177,7 +177,7 @@ export default function HistoricalDataPage() {
               onClick={() => setActiveChart('hashrate')}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeChart === 'hashrate'
-                  ? 'bg-[var(--color-primary)] text-black'
+                  ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
@@ -187,7 +187,7 @@ export default function HistoricalDataPage() {
               onClick={() => setActiveChart('transactions')}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 activeChart === 'transactions'
-                  ? 'bg-[var(--color-primary)] text-black'
+                  ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >

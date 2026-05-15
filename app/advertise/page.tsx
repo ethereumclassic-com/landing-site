@@ -95,7 +95,7 @@ export default function AdvertisePage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=partnership"
-                className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 Get Started
               </Link>
@@ -256,7 +256,7 @@ export default function AdvertisePage() {
 
                 <Link
                   href="/contact?type=partnership"
-                  className="mt-6 block w-full rounded-xl bg-[var(--color-primary)] px-6 py-4 text-center font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                  className="mt-6 block w-full rounded-xl bg-[var(--color-primary)] px-6 py-4 text-center font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
                 >
                   Contact Us
                 </Link>

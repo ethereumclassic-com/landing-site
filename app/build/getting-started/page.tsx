@@ -186,7 +186,7 @@ export default function GettingStartedPage() {
 
                 <div className="flex gap-6">
                   {/* Step Number */}
-                  <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-lg font-bold text-black">
+                  <div className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-lg font-bold text-[var(--brand-green-foreground)]">
                     {step.step}
                   </div>
 
@@ -449,7 +449,7 @@ export default function GettingStartedPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/build/docs"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 View Documentation
               </Link>

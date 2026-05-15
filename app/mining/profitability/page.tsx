@@ -239,7 +239,7 @@ export default function MiningProfitabilityPage() {
                         onClick={() => setElectricityRate(preset.value)}
                         className={`rounded-lg px-3 py-1 text-xs transition-colors ${
                           electricityRate === preset.value
-                            ? 'bg-[var(--color-primary)] text-black'
+                            ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                             : 'bg-[var(--bg)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                         }`}
                       >

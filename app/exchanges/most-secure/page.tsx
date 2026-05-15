@@ -297,7 +297,7 @@ export default function MostSecureExchangesPage() {
             <div className="flex flex-wrap justify-center gap-3">
               <Link
                 href="/wallets"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-5 py-2.5 font-medium text-black transition-all hover:bg-[var(--color-primary)]/90"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-5 py-2.5 font-medium text-[var(--brand-green-foreground)] transition-all hover:bg-[var(--color-primary)]/90"
               >
                 Explore Wallets
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

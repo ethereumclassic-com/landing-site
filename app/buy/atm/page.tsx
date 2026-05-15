@@ -180,7 +180,7 @@ function ProviderCard({ provider }: { provider: typeof atmProviders[0] }) {
           href={provider.locatorUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+          className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
         >
           Find Locations
           <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -306,7 +306,7 @@ export default function ATMPage() {
               onClick={() => setFilter('all')}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 filter === 'all'
-                  ? 'bg-[var(--color-primary)] text-black'
+                  ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
@@ -316,7 +316,7 @@ export default function ATMPage() {
               onClick={() => setFilter('etc')}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 filter === 'etc'
-                  ? 'bg-[var(--color-primary)] text-black'
+                  ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
@@ -406,7 +406,7 @@ export default function ATMPage() {
                 },
               ].map((item) => (
                 <div key={item.step} className="relative">
-                  <div className="absolute -top-3 left-0 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-primary)] text-xs font-bold text-black">
+                  <div className="absolute -top-3 left-0 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-primary)] text-xs font-bold text-[var(--brand-green-foreground)]">
                     {item.step}
                   </div>
                   <div className="pt-4">
@@ -503,7 +503,7 @@ export default function ATMPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/buy/exchanges"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Browse Exchanges
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

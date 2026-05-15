@@ -151,7 +151,7 @@ export default function DirectoryDevelopersPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/build"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
             >
               Build Hub
             </Link>

@@ -138,14 +138,14 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
                 href={ad.url}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
-                className="shrink-0 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="shrink-0 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 {ad.cta || 'Learn More'}
               </a>
             ) : (
               <Link
                 href={ad.url}
-                className="shrink-0 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="shrink-0 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 {ad.cta || 'Learn More'}
               </Link>
@@ -181,14 +181,14 @@ export function AdBanner({ placement, className = '' }: AdBannerProps) {
             href={ad.url}
             target="_blank"
             rel="noopener noreferrer sponsored"
-            className="mt-4 block w-full rounded-lg bg-[var(--color-primary)] px-4 py-2 text-center text-sm font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+            className="mt-4 block w-full rounded-lg bg-[var(--color-primary)] px-4 py-2 text-center text-sm font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
           >
             {ad.cta || 'Learn More'}
           </a>
         ) : (
           <Link
             href={ad.url}
-            className="mt-4 block w-full rounded-lg bg-[var(--color-primary)] px-4 py-2 text-center text-sm font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+            className="mt-4 block w-full rounded-lg bg-[var(--color-primary)] px-4 py-2 text-center text-sm font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
           >
             {ad.cta || 'Learn More'}
           </Link>

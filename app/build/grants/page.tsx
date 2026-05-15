@@ -169,7 +169,7 @@ export default function BuildGrantsPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
                 href="#funding-sources"
-                className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 View Funding Sources
               </a>
@@ -328,7 +328,7 @@ export default function BuildGrantsPage() {
                 key={step.step}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <div className="absolute -top-3 left-6 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-black">
+                <div className="absolute -top-3 left-6 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-[var(--brand-green-foreground)]">
                   {step.step}
                 </div>
                 <h3 className="mt-2 font-semibold text-[var(--text-primary)]">{step.title}</h3>
@@ -355,7 +355,7 @@ export default function BuildGrantsPage() {
                   href="https://discord.com/invite/Tq57jxSwsa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                  className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
                 >
                   Join Discord
                 </a>

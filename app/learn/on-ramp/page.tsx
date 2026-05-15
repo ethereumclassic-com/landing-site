@@ -268,7 +268,7 @@ export default function OnRampGuidePage() {
                 onClick={() => setActiveJourney(key)}
                 className={`rounded-lg px-4 py-3 text-left transition-all ${
                   activeJourney === key
-                    ? 'bg-[var(--color-primary)] text-black'
+                    ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                     : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:border-[var(--color-primary)]/50'
                 }`}
               >
@@ -326,7 +326,7 @@ export default function OnRampGuidePage() {
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-lg font-bold text-black">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-lg font-bold text-[var(--brand-green-foreground)]">
                     {step.number}
                   </div>
                   <div className="flex-1">
@@ -511,7 +511,7 @@ export default function OnRampGuidePage() {
                 href="https://brale.xyz"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-black transition-colors hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Start with Brale
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

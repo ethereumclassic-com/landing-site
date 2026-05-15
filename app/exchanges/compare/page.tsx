@@ -131,7 +131,7 @@ export default function CompareExchangesPage() {
                     onClick={() => setFilterType(type)}
                     className={`rounded-md px-3 py-1 text-sm transition-colors ${
                       filterType === type
-                        ? 'bg-[var(--color-primary)] text-black'
+                        ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                         : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
                     }`}
                   >

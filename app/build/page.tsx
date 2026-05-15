@@ -82,7 +82,7 @@ export default function BuildPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/build/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 <RocketIcon />
                 Get Started
@@ -486,7 +486,7 @@ export default function BuildPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/build/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 font-semibold text-black transition hover:bg-[var(--color-primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 <RocketIcon />
                 Start Building
