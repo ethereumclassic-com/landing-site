@@ -131,7 +131,7 @@ const partners: Partner[] = [
   },
   {
     name: 'Chippr Robotics',
-    description: 'Developers of Fukuii, the native ETC client.',
+    description: 'Developers of Fukuii, the primary Ethereum Classic execution layer client for the Olympia era.',
     category: 'development',
     url: 'https://github.com/chippr-robotics',
     partnerSince: '2024',

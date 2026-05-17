@@ -418,12 +418,12 @@ export default function ClientsPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
-              Fukuii is the recommended client for Ethereum Classic. It is purpose-built for ETC with PoW
-              consensus and mining support. For upgrade-specific guidance, see the Olympia client details.
+              Fukuii is the recommended client for Ethereum Classic — native PoW consensus for ETC and Mordor,
+              Engine API V1–V4 for post-Merge Ethereum. For upgrade-specific guidance, see the Olympia client details.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://github.com/ethereumclassic/fukuii"
+                href="https://github.com/chippr-robotics/fukuii"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
