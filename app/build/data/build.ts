@@ -124,7 +124,7 @@ export const nodeClients: NodeClient[] = [
   {
     id: 'fukuii',
     name: 'Fukuii',
-    website: 'https://github.com/ethereumclassic/fukuii',
+    website: 'https://fukuii.com',
     github: 'https://github.com/ethereumclassic/fukuii',
     description:
       'EVM-compliant execution layer client in Scala 3. Native PoW consensus for ETC and Mordor; pairs with any consensus client via Engine API V1–V4 for post-Merge Ethereum. Forked from Mantis, purpose-built for the Olympia era.',
@@ -275,7 +275,7 @@ export const executionPlugins: ExecutionPlugin[] = [
     name: 'Reth',
     baseClient: 'Reth',
     language: 'Rust',
-    github: 'https://github.com/ethereumclassic/reth-etc',
+    github: 'https://github.com/ethereumclassic/reth',
     description:
       'ETC execution plugin for Reth. Brings Ethereum Classic support to the modular, performance-focused Rust client.',
     status: 'planned',
