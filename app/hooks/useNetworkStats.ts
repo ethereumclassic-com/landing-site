@@ -79,7 +79,7 @@ export function useNetworkStats(_options?: UseNetworkStatsOptions): UseNetworkSt
         blockHeight: (stats.totalBlocks ?? 0).toLocaleString(),
         transactions: formatLargeNumber(stats.totalTransactions ?? 0),
         addresses: formatLargeNumber(stats.totalAddresses ?? 0),
-        blockTime: `${(stats.avgBlockTime ?? 13.5).toFixed(1)}s`,
+        blockTime: `${(stats.avgBlockTime ?? 13).toFixed(1)}s`,
         blockReward: `${(stats.avgBlockReward ?? 2.05).toFixed(2)} ETC`,
         gasPrice: `${(stats.gasPrice?.average ?? 2).toFixed(2)} Gwei`,
       }

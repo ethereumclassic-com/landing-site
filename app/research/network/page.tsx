@@ -130,6 +130,7 @@ export default function NetworkAnalysisPage() {
   const [stats, setStats] = useState<NetworkStats | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [hashrateDisplay, setHashrateDisplay] = useState<string>('...')
 
   useEffect(() => {
     async function fetchStats() {
@@ -146,6 +147,10 @@ export default function NetworkAnalysisPage() {
       }
     }
     fetchStats()
+    fetch('/api/hashrate')
+      .then((r) => r.json())
+      .then((d: { currentTHs?: number }) => { if (d?.currentTHs) setHashrateDisplay(d.currentTHs.toFixed(1) + ' TH/s') })
+      .catch(() => setHashrateDisplay('210+ TH/s'))
   }, [])
 
   // Mining pool distribution (approximate)
@@ -379,7 +384,7 @@ export default function NetworkAnalysisPage() {
               <div className="space-y-4">
                 <div className="rounded-lg bg-[var(--bg)] p-4">
                   <p className="text-xs text-[var(--color-text-muted)]">Network Hashrate</p>
-                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">~174 TH/s</p>
+                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">{hashrateDisplay}</p>
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">Total computational power</p>
                 </div>
                 <div className="rounded-lg bg-[var(--bg)] p-4">

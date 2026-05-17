@@ -13,7 +13,7 @@ const profiles = [
     act: 'CLARITY Act',
     jurisdiction: 'United States',
     badge: 'badge-pending' as const,
-    badgeLabel: 'Pending Senate',
+    badgeLabel: 'Senate Floor Pending',
     tagline: 'Digital Commodity Profile',
     points: [
       "Longest-running EVM: original Ethereum codebase, launched July 2015",
@@ -21,7 +21,7 @@ const profiles = [
       "Proof-of-Work consensus matches Bitcoin's commodity profile",
       "No central issuer or controlling entity, distributed globally",
       "CFTC jurisdiction for derivatives; spot markets governed by existing law",
-      "House passage (July 17, 2025) establishes clear definitional framework",
+      "House passage July 17, 2025; Senate Banking Committee passed 15-9 on May 14, 2026",
     ],
   },
   {

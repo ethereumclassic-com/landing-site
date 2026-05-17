@@ -278,8 +278,8 @@ export function getFallbackMiningStats(): MiningNetworkStats {
   return {
     difficulty: 2470000000000000,
     difficultyFormatted: '2.47 PH',
-    hashrate: 174000000000000,
-    hashrateFormatted: '174.00 TH/s',
+    hashrate: 210000000000000,
+    hashrateFormatted: '210.00 TH/s',
     blockHeight: 23820000,
     blockTime: 13.5,
     blockTimeFormatted: '13.5s',

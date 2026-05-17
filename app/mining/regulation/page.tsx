@@ -7,9 +7,9 @@ const jurisdictions = [
     region: 'United States',
     flag: '🇺🇸',
     status: 'badge-pending' as const,
-    statusLabel: 'Pending Senate',
+    statusLabel: 'Senate Floor Pending',
     headline: 'CLARITY Act — Digital Commodity Candidate',
-    body: "Passed the US House in July 2025, awaiting Senate. ETC's PoW consensus and decentralized issuance profile positions it as a digital commodity under CFTC jurisdiction. US miners operate in a legal commodity market, not a securities market. State spotlight: Texas, Wyoming, and Kentucky are favorable; New York remains restrictive. The \"Made in America\" angle is strong: domestic mining monetizes stranded energy, creates local jobs, and reinforces energy independence.",
+    body: "Passed the US House on July 17, 2025. Passed the Senate Banking Committee 15-9 on May 14, 2026 — a bipartisan milestone. Now advances to the Senate floor, where it must be reconciled with the Senate Agriculture Committee's version and clear a 60-vote threshold. The White House has signaled a path to enactment by July 4, 2026. ETC's PoW consensus and decentralized issuance profile positions it as a digital commodity under CFTC jurisdiction. US miners operate in a legal commodity market, not a securities market. State spotlight: Texas, Wyoming, and Kentucky are favorable; New York remains restrictive.",
   },
   {
     region: 'European Union',

@@ -114,7 +114,7 @@ Its three-layer architecture separates a chain-agnostic EVM core (\`fukuii-core\
 
 ## Regulatory & Institutional Positioning
 
-- **Digital commodity classification** — ETC is positioned for classification as a digital commodity under the CLARITY Act. As a Proof-of-Work blockchain with no pre-mine, no ICO, and decentralized governance, ETC aligns with commodity characteristics. Classification is pending congressional action.
+- **Digital commodity classification** — ETC is positioned for classification as a digital commodity under the CLARITY Act. As a Proof-of-Work blockchain with no pre-mine, no ICO, and decentralized governance, ETC aligns with commodity characteristics. Senate Banking Committee cleared the bill 15-9 in May 2026; Senate floor vote expected before the July 4, 2026 target.
 - **GENIUS Act** — The GENIUS Act creates a pathway for regulated stablecoins on EVM-compatible platforms. ETC's Proof-of-Work foundation positions it as a compliant smart contract platform where regulated stablecoins can operate.
 - **Institutional infrastructure** — Grayscale Ethereum Classic Trust (ETCG), established 2017, provides regulated securities exposure to ETC — the only Proof-of-Work smart contract platform with a Grayscale trust product. 300+ active markets across 20+ major global exchanges. Institutional-grade custody from leading digital asset custodians.
 - **Active development alignment** — Olympia's multi-client architecture, protocol-funded treasury, and on-chain governance align ETC with the institutional requirements for enterprise adoption, sovereign regulation, and participation in the world's largest financial markets.

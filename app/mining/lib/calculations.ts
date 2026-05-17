@@ -8,8 +8,8 @@ import { networkStats } from '../data/mining'
 // These are updated from Blockscout API data (Jan 2026)
 // For live calculations, use /api/network endpoint
 export const NETWORK_CONSTANTS = {
-  // Network hashrate in MH/s (174 TH/s = 174,000,000 MH/s)
-  networkHashrateMH: 174000000,
+  // Network hashrate in MH/s (210 TH/s = 210,000,000 MH/s)
+  networkHashrateMH: 210000000,
   // Average block reward including uncle rewards (~2.048 ETC typical)
   // Base reward is 2.048 ETC, varies with uncle rewards
   blockReward: 2.048,

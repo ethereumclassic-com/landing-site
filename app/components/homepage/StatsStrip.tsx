@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { FadeIn } from '@/app/components/ui'
 
 interface StatProps {
@@ -47,9 +48,18 @@ const ChartIcon = () => (
 )
 
 export default function StatsStrip() {
+  const [hashrateTHs, setHashrateTHs] = useState<string>('200+ TH/s')
+
+  useEffect(() => {
+    fetch('/api/hashrate')
+      .then((r) => r.json())
+      .then((d: { currentTHs?: number }) => { if (d?.currentTHs) setHashrateTHs(d.currentTHs.toFixed(1) + ' TH/s') })
+      .catch(() => {})
+  }, [])
+
   const stats = [
     { label: 'Years Running', value: '9+ Years', icon: <ClockIcon /> },
-    { label: 'Network Hashrate', value: '200+ TH/s', icon: <HashrateIcon /> },
+    { label: 'Network Hashrate', value: hashrateTHs, icon: <HashrateIcon /> },
     { label: 'Unique Addresses', value: '35M+', icon: <AddressIcon /> },
     { label: 'Exchange Listings', value: '80+', icon: <ChartIcon /> },
   ]
