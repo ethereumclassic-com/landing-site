@@ -859,7 +859,7 @@ Olympia brings Cancun execution-layer EIPs to ETC, maintaining the network's tra
 Three independent client implementations are preparing for Olympia:
 - **Core-Geth** (Go) — primary reference client
 - **Hyperledger Besu** (Java) — enterprise-grade alternative
-- **Fukuii** (Scala) — new client in development
+- **Fukuii** (Scala) — primary ETC client for the Olympia era
 
 ## Treasury Funding Mechanism
 
@@ -2233,7 +2233,7 @@ The Olympia upgrade requires simultaneous support from all three ETC clients:
 
 - **Core-Geth:** The Go-based client derived from go-ethereum, maintained as the primary ETC implementation
 - **Hyperledger Besu:** The Java-based enterprise client maintained under the Linux Foundation
-- **Fukuii:** A new Scala 3 implementation built specifically for Ethereum Classic, bringing a third independent codebase to the network
+- **Fukuii:** An Ethereum execution layer client in Scala 3 — native PoW for ETC and Mordor, Engine API V1–V4 for post-Merge Ethereum
 
 Testing across three independent implementations provides strong assurance that the protocol specification is unambiguous and correctly implemented. If all three clients — written in different languages by different teams — produce identical results, the specification is likely correct.
 

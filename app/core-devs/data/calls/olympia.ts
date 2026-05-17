@@ -106,7 +106,7 @@ Sustainable development funding was identified as a top priority by the Ethereum
 
 ### Fukuii — The 2018 Orbita Client Vision Realized
 
-The 2018 Orbita Client initiative established a long-term vision for an ETC-native execution client independent of Ethereum's development upstream. Fukuii delivers on that vision. Built in Scala 3 and forked from IOHK's abandoned Mantis client, Fukuii is purpose-built for ETC with no upstream dependency on go-ethereum or any active Ethereum client codebase — it evolves on ETC's schedule, not Ethereum's.
+The 2018 Orbita Client initiative established a long-term vision for an ETC-native execution client independent of Ethereum's development upstream. Fukuii delivers on that vision. Built in Scala 3 and forked from IOHK's abandoned Mantis client, Fukuii is an Ethereum execution layer client — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. One binary, four networks.
 
 Its three-layer architecture separates a chain-agnostic EVM core (\`fukuii-core\`) from networking and runtime (\`fukuii-env\`), with a pluggable consensus module that accepts Engine API V1–V4. This positions Fukuii not only as ETC's primary PoW consensus client, but as the execution layer foundation for ETC-based sidechains, L2 constructions, and multi-EVM deployments — native Ethash on ETC and Mordor, Engine API on Ethereum mainnet and Sepolia. One client, built for ETC's long-term future.
 
@@ -127,7 +127,7 @@ Three independent client implementations are ready for the Olympia hard fork and
 
 | Client | Language | Release | Role |
 |--------|----------|---------|------|
-| [Fukuii](https://github.com/ethereumclassic/fukuii) | Scala | TBD | **Recommended** — Purpose-built for ETC, the only ETC-native client |
+| [Fukuii](https://github.com/chippr-robotics/fukuii) | Scala | TBD | **Recommended** — Primary ETC client for the Olympia era, native PoW for ETC and Mordor, Engine API V1–V4 |
 | [Core-Geth](https://github.com/ethereumclassic/core-geth) | Go | TBD | **Maintained** — Established go-ethereum fork, maintained through the Olympia transition |
 | [Hyperledger Besu](https://github.com/ethereumclassic/besu) | Java | TBD | **Reference** — Enterprise-grade Hyperledger client for cross-client testing and validation |
 

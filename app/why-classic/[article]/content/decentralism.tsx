@@ -85,8 +85,9 @@ export default function Decentralism() {
           with ETC support maintained independently.
         </li>
         <li>
-          <strong>Fukuii:</strong> A Scala-based client built specifically for Ethereum
-          Classic, providing implementation diversity outside the Go and Java ecosystems.
+          <strong>Fukuii:</strong> An Ethereum execution layer client in Scala 3 —
+          native Proof-of-Work consensus for Ethereum Classic and Mordor, Engine API V1–V4
+          for post-Merge Ethereum.
         </li>
       </ul>
       <p>

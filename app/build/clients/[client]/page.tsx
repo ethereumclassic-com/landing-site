@@ -199,14 +199,14 @@ function InstallationSection({ client }: { client: NodeClient }) {
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull ghcr.io/ethereumclassic/fukuii:latest</code>
+                <code className="text-[var(--color-primary)]">docker pull ghcr.io/chippr-robotics/fukuii:latest</code>
               </div>
             </div>
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
                 <code className="block text-[var(--color-text-muted)]"># Requires JDK 25+ and sbt</code>
-                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/ethereumclassic/fukuii.git</code>
+                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/chippr-robotics/fukuii.git</code>
                 <code className="block text-[var(--color-text-muted)]">cd fukuii && sbt assembly</code>
               </div>
             </div>

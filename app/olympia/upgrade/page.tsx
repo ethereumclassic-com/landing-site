@@ -191,8 +191,8 @@ const clientData = [
       'Replace the existing binary',
       'Restart your node. Fukuii automatically follows the Olympia fork.',
     ],
-    githubUrl: 'https://github.com/ethereumclassic/fukuii/releases',
-    docsUrl: 'https://github.com/ethereumclassic/fukuii#readme',
+    githubUrl: 'https://github.com/chippr-robotics/fukuii/releases',
+    docsUrl: 'https://chippr-robotics.github.io/fukuii',
   },
   {
     name: 'Core-Geth',

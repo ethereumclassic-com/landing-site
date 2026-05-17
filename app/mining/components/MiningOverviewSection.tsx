@@ -51,7 +51,7 @@ export function MiningOverviewSection({ hashrateTHs }: MiningOverviewSectionProp
               GPU accessibility for global participation, decentralizing hashrate across
               geographies and reducing supply chain risk. Run{' '}
               <a
-                href="https://github.com/ethereumclassic/fukuii"
+                href="https://github.com/chippr-robotics/fukuii"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-mono font-semibold text-[var(--brand-green)] transition-colors hover:underline"

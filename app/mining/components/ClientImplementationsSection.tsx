@@ -4,8 +4,8 @@ const primaryClient = {
   name: 'Fukuii',
   language: 'Scala',
   description:
-    'Purpose-built for Ethereum Classic, an independent implementation designed from the ground up for performance, security, and protocol parity. Primary client for the Olympia upgrade.',
-  github: 'https://github.com/ethereumclassic/fukuii',
+    'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. One binary, four networks. The primary ETC client for the Olympia era.',
+  github: 'https://github.com/chippr-robotics/fukuii',
   status: 'Primary',
 }
 

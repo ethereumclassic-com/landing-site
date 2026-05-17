@@ -322,7 +322,7 @@ export default function SecurityPage() {
                 <li>
                   <strong>Mining operators:</strong> Evaluate{' '}
                   <a
-                    href="https://github.com/ethereumclassic/fukuii"
+                    href="https://github.com/chippr-robotics/fukuii"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
