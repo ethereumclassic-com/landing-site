@@ -10,17 +10,17 @@ const threads = [
     body: [
       'Olympic was the ninth and final Ethereum testnet — Ethereum 0.9, the last proving ground before Frontier launched on July 30, 2015. Application developers, data providers, and exchanges were incentivized to push it to its absolute limits: send maximum load, mine every block, find every vulnerability. It was not a soft launch. It was a deliberate stress test, designed to break things before they could break in production. The Ethereum chain that went live after Olympic is the direct ancestor of Ethereum Classic.',
       "Olympia is not the same name. That's the point. Olympic was the trial — the proving ground, the gauntlet. Olympia is the destination — the sacred site the trial pointed toward all along. One is the test. The other is what you build once you've passed it.",
-      'The chain forged in the Olympic proving ground — preserved through the DAO fork, maintained through a decade without predictable resources — now arrives at Olympia. Not as a survivor. As an institution.',
+      'The chain forged in the Olympic proving ground — preserved through the DAO fork, maintained through a decade without predictable resources — now arrives at Olympia. Not as a survivor. As the thing that persisted.',
     ],
   },
   {
     label: 'Mythology',
-    heading: 'The sacred site',
+    heading: 'The common ground',
     color: 'var(--color-warning)',
     body: [
-      'In ancient Greece, Olympia was a sanctuary in the western Peloponnese — sacred ground dedicated to Zeus, set apart from the conflicts of mortals. It was a place of sovereignty and continuity, where the affairs of the gods were honored and where civic order was preserved across generations. The site held the Temple of Zeus and the great statue counted among the seven wonders of the ancient world. Authority resided there. It was not contested there.',
-      "This is the parallel that matters for ETC. After a decade of being defined by what it endured — the DAO fork, hash wars, deprecation, the constant pressure to justify its existence — Olympia marks the shift from a chain that survives to a chain with a seat. A treasury. A funded development organization. A governance structure. A legal wrapper. Permanent infrastructure on permanent ground.",
-      'Ten years of conviction becomes institution.',
+      'In ancient Greece, Olympia was a sanctuary in the western Peloponnese — sacred ground dedicated to Zeus, held in common across rival city-states. Athens, Sparta, Corinth, Thebes — all sent competitors. None owned it. The site imposed the ekecheiria: for the duration of the Panhellenic gathering, hostilities ceased across all of Greece. Olympia was neutral not because everyone agreed to make it neutral, but because it was sovereign to none. What endured at Olympia endured because no one owned it.',
+      "This is the parallel that matters for ETC. After a decade of being defined by what it endured — the DAO fork, hash wars, deprecation, the constant pressure to justify its existence — Olympia marks the shift from a chain that survives to a chain with permanent infrastructure. A treasury funded by the protocol itself. Development it funds directly — no foundation required. Governance on-chain, open to any ETC account. A legal wrapper subordinate to on-chain governance, not above it. Permanent infrastructure on permanent ground.",
+      'Ten years of conviction becomes shared infrastructure.',
     ],
   },
   {
@@ -40,7 +40,7 @@ const threads = [
     body: [
       'Olympia is a place of inheritance. The flame, the rites, the records — what was built by predecessors held in trust and passed forward across generations. The sanctuary endured because each generation accepted custody of what the last had built.',
       'ETC inherits more than code. It inherits the original social contract of Ethereum — immutability, neutrality, code is law — held intact through a decade when those principles were traded away elsewhere. Olympia is where that inheritance stops being a memory and becomes a working system: a treasury that funds the principles, clients that implement them, governance that defends them.',
-      "A decade of ETC Cooperative stewardship, Grayscale's ETCG trust providing regulated institutional access since 2018, and a global volunteer network holding the line across every upgrade since 2016 — all of it passes forward into Olympia's on-chain governance. The custody chain is unbroken.",
+      "A decade of ETC Cooperative stewardship, Grayscale's ETCG trust providing regulated institutional access since 2018, and a global volunteer network holding the line across every upgrade since 2016 — all of it informs Olympia's on-chain governance. The record is continuous.",
     ],
   },
   {
@@ -96,7 +96,7 @@ export default function OlympiaNamePage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            From the proving ground to the arena — the name that carries ten years of Ethereum
+            From the proving ground to common ground — the name that carries ten years of Ethereum
             Classic history into its second decade.
           </p>
         </div>
