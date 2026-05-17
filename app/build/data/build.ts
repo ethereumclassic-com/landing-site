@@ -129,7 +129,7 @@ export const nodeClients: NodeClient[] = [
     description:
       'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. Pairs with Lighthouse, Prysm, Teku, Lodestar, or Nimbus to run Sepolia and ETH mainnet. One binary, four networks. The primary ETC client for the Olympia era.',
     language: 'Scala',
-    platforms: ['Linux', 'macOS', 'Docker'],
+    platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
       'SNAP, fast, and regular sync for ETC and Mordor',
       'Engine API V1–V4 — Sepolia validated, ETH mainnet ready',
