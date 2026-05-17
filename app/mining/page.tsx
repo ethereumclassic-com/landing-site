@@ -1,7 +1,11 @@
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import PoolCard from './components/PoolCard'
-import HashRateChart from './components/HashRateChart'
 import HashrateChart from '@/app/components/homepage/HashrateChart'
+
+// SSR disabled: SVG arc paths use Math.sin/cos which produce floating-point
+// differences between Node.js and the browser, causing hydration mismatches.
+const HashRateChart = dynamic(() => import('./components/HashRateChart'), { ssr: false })
 import FifthingCountdown from '@/app/components/FifthingCountdown'
 import { NetworkConfigSection } from './components/NetworkConfigSection'
 import { ClientImplementationsSection } from './components/ClientImplementationsSection'
