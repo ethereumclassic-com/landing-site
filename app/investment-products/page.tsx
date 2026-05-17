@@ -78,10 +78,22 @@ export default function InvestmentProductsPage() {
           </h1>
 
           <p
-            className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
+            className="mx-auto mt-6 max-w-2xl text-base text-[var(--color-text-secondary)]"
           >
-            Regulated securities exposure to Ethereum Classic through established TradFi channels,
-            no self-custody required. Available at the same brokerages used for stocks and bonds.
+            ETC has had regulated investment product exposure since May 2018 — before most institutional
+            digital asset infrastructure existed. The Grayscale Ethereum Classic Trust was among the
+            earliest digital asset grantor trusts, applying the same structure Grayscale used for GBTC
+            (2013) and ETHE (2017) to Ethereum Classic. It predated the ETF era and has traded as an
+            SEC-reporting security for over six years.
+          </p>
+          <p
+            className="mx-auto mt-4 max-w-2xl text-base text-[var(--color-text-secondary)]"
+          >
+            The product landscape is now expanding. GBTC converted to a spot Bitcoin ETF in January 2024.
+            ETHE followed in July 2024. Regulatory precedent for the trust-to-ETF conversion path is
+            established, and every issuer that built infrastructure for BTC and ETH investment products
+            already has the custody relationships, legal framework, and distribution agreements needed for
+            an ETC product.
           </p>
         </div>
       </section>
@@ -158,6 +170,115 @@ export default function InvestmentProductsPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Grayscale Product Lifecycle */}
+      <section className="border-t border-[var(--border)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <span className="font-mono text-xs uppercase tracking-widest text-[var(--color-warning)]">
+            Conversion Pathway
+          </span>
+          <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
+            The Grayscale Product Lifecycle
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
+            Grayscale has established a repeatable three-stage path from private placement to broadly
+            accessible exchange-listed product. GBTC completed all three stages. ETHE followed. ETCG
+            has completed the first two. Conversion is a function of Grayscale&apos;s prioritization
+            and SEC application timing, not product eligibility.
+          </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                stage: '01',
+                title: 'Closed-End Trust',
+                subtitle: 'OTCQX listing',
+                badge: 'ETCG complete · May 2018',
+                complete: true,
+                description:
+                  'Private placement to accredited investors, then OTCQX secondary market listing. Shares trade at a premium or discount to NAV without an active redemption mechanism.',
+              },
+              {
+                stage: '02',
+                title: 'SEC Reporting',
+                subtitle: 'Institutional adoption',
+                badge: 'ETCG complete · since ~2021',
+                complete: true,
+                description:
+                  'Annual 10-K and quarterly 10-Q filings with the SEC. Full public reporting establishes the regulatory track record required for exchange-listed product consideration.',
+              },
+              {
+                stage: '03',
+                title: 'Exchange-Listed Product',
+                subtitle: 'ETF conversion',
+                badge: 'GBTC Jan 2024 · ETHE Jul 2024',
+                complete: false,
+                description:
+                  'Conversion from OTC trust to exchange-listed ETF via SEC approval. Opens access to retirement accounts, institutional mandates, and regulated fund infrastructure.',
+              },
+            ].map((item) => (
+              <div key={item.stage} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+                <div className="flex items-start justify-between gap-2">
+                  <span className="font-mono text-lg font-bold text-[var(--color-warning)]/40">{item.stage}</span>
+                  <span
+                    className={`rounded-full px-2 py-0.5 font-mono text-[10px] font-medium ${
+                      item.complete
+                        ? 'bg-[var(--brand-green)]/10 text-[var(--brand-green)]'
+                        : 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm font-semibold text-[var(--text-primary)]">{item.title}</p>
+                <p className="text-xs text-[var(--color-text-muted)]">{item.subtitle}</p>
+                <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-muted)]">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 overflow-x-auto rounded-xl border border-[var(--border)] bg-[var(--panel)]">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-[var(--border)]">
+                  <th className="px-5 py-3 text-left font-mono text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Product</th>
+                  <th className="px-5 py-3 text-left font-mono text-xs uppercase tracking-wider text-[var(--color-text-muted)]">Trust Inception</th>
+                  <th className="px-5 py-3 text-left font-mono text-xs uppercase tracking-wider text-[var(--color-text-muted)]">ETF Conversion</th>
+                  <th className="px-5 py-3 text-left font-mono text-xs uppercase tracking-wider text-[var(--color-text-muted)]">AUM Post-Conversion</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[var(--border)]">
+                <tr>
+                  <td className="px-5 py-3 font-mono font-semibold text-[var(--color-warning)]">GBTC</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">Sep 2013</td>
+                  <td className="px-5 py-3 text-[var(--brand-green)]">Jan 2024</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">~$25B+</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono font-semibold text-[var(--color-warning)]">ETHE</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">Dec 2017</td>
+                  <td className="px-5 py-3 text-[var(--brand-green)]">Jul 2024</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">~$9B+</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono font-semibold text-[var(--color-warning)]">ETCG</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">May 2018</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">Pending</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-6 border-l-2 border-[var(--color-warning)] pl-4">
+            <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+              Grayscale has established the regulatory and legal template for trust-to-ETF conversion.
+              ETCG already satisfies Stage 2 requirements. Conversion is a function of Grayscale&apos;s
+              prioritization and SEC application timing.
+            </p>
           </div>
         </div>
       </section>

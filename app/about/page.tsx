@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { Cpu, Code2, Shield, Building2, Scale } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About | Ethereum Classic',
@@ -76,6 +77,120 @@ export default function AboutPage() {
               Every piece of content on this site is factual and verifiable. We do not provide financial advice, endorse
               specific investments, or make price predictions.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Ethereum Classic — three-pillar institutional positioning */}
+      <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Why Ethereum Classic</h2>
+          <p className="mt-2 text-[var(--color-text-secondary)]">
+            Three structural properties that define ETC&apos;s position in the 2025–2026 institutional landscape.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
+                <Shield className="h-5 w-5 text-[var(--color-primary)]" />
+              </div>
+              <h3 className="font-semibold text-[var(--text-primary)]">Proof-of-Work Security</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                The only EVM-compatible blockchain secured by Proof-of-Work. Following Ethereum&apos;s
+                transition to Proof-of-Stake, Ethereum Classic absorbed significant mining infrastructure
+                and stands alone at the intersection of Bitcoin&apos;s security model and Ethereum&apos;s
+                programmability.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
+                <Building2 className="h-5 w-5 text-[var(--color-primary)]" />
+              </div>
+              <h3 className="font-semibold text-[var(--text-primary)]">Institutional Infrastructure</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                Listed on all major global exchanges with 300+ active markets. Institutional-grade custody
+                from leading digital asset custodians. Regulated securities exposure via the Grayscale
+                Ethereum Classic Trust (ETCG), trading on OTCQX since 2018 and positioned for ETF
+                conversion, following Grayscale&apos;s established trust-to-ETF precedent with Bitcoin and
+                Ethereum.
+              </p>
+              <Link
+                href="/investment-products"
+                className="mt-3 inline-block text-xs font-medium text-[var(--color-primary)] transition hover:opacity-80"
+              >
+                View Investment Products →
+              </Link>
+            </div>
+
+            <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
+                <Scale className="h-5 w-5 text-[var(--color-primary)]" />
+              </div>
+              <h3 className="font-semibold text-[var(--text-primary)]">Regulatory Clarity</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                ETC straddles two regulatory trajectories — digital commodity candidate under the CLARITY
+                Act and decentralized asset under MiCA — recognized across leading global regulatory
+                frameworks in the US, EU, UK, Japan, and UAE. The Grayscale Ethereum Classic Trust
+                positions ETC as a second-wave ETF candidate, the only Proof-of-Work smart contract
+                platform in that pipeline.
+              </p>
+              <Link
+                href="/regulation"
+                className="mt-3 inline-block text-xs font-medium text-[var(--color-primary)] transition hover:opacity-80"
+              >
+                View Regulatory Framework →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Only Proof-of-Work EVM — intersection two-column */}
+      <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">The Only Proof-of-Work EVM</h2>
+          <p className="mt-2 text-[var(--color-text-secondary)]">
+            Ethereum Classic sits at the intersection of two independent regulatory and institutional
+            trajectories — combining properties from each without belonging entirely to either.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
+                  <Cpu className="h-5 w-5 text-[var(--color-primary)]" />
+                </div>
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-text-muted)]">From Proof-of-Work</p>
+                  <p className="text-sm font-semibold text-[var(--text-primary)]">Bitcoin&apos;s regulatory trajectory</p>
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-[var(--color-text-secondary)]">
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>No pre-mine, no foundation controlling the protocol, no issuer.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Mining hardware is globally distributed and permissionless to acquire.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Block rewards and tips go to miners — the treasury is funded by basefee, not inflation.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>CLARITY Act digital commodity classification path: same PoW profile as Bitcoin.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Energy demand that co-locates with any power source, anywhere in the world.</li>
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
+                  <Code2 className="h-5 w-5 text-[var(--color-primary)]" />
+                </div>
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-wider text-[var(--color-text-muted)]">From the EVM</p>
+                  <p className="text-sm font-semibold text-[var(--text-primary)]">Ethereum&apos;s regulatory trajectory</p>
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-[var(--color-text-secondary)]">
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Full Solidity and EVM compatibility — every Ethereum tool, library, and framework works without modification.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Classic USD ($USC) by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>GENIUS Act-compliant stablecoin infrastructure, the first on any Proof-of-Work network.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>ETCswap V2 and V3 provide on-chain liquidity for composable DeFi with a regulated stable base.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>MiCA decentralized asset classification: exempt from ART/EMT issuer obligations.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
