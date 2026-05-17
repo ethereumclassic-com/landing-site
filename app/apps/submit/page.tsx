@@ -63,10 +63,7 @@ export default function SubmitAppPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -104,7 +101,7 @@ export default function SubmitAppPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Get your Ethereum Classic application featured in our ecosystem directory. Reach thousands of ETC users looking for quality dApps.
+            Submit your Ethereum Classic application for inclusion in our ecosystem directory. Each submission is reviewed for quality, security, and relevance to the ETC community — approved applications are listed across wallet, DeFi, infrastructure, and tools categories.
           </p>
         </div>
       </section>

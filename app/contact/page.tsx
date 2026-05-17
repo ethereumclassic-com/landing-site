@@ -115,7 +115,7 @@ export default function ContactPage() {
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Have questions, feedback, or partnership ideas? We would love to hear from you.
+              Questions, feedback, or partnership proposals — reach out directly. Whether you are looking to list a wallet or exchange, inquire about advertising, report an issue with the site, or explore a collaboration, we aim to respond within one to two business days.
             </p>
           </div>
         </div>

@@ -24,8 +24,7 @@ export default function DirectoryDevelopersPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Developer Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Everything you need to build on Ethereum Classic: networks, RPC endpoints,
-                node clients, and developer tools.
+                Everything you need to build on Ethereum Classic — networks, RPC endpoints, execution clients, development tools, and contract frameworks. With the Olympia upgrade, the full Ethereum toolchain works on ETC without modification, making the ETC developer experience identical to Ethereum mainnet.
               </p>
             </div>
           </div>

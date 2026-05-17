@@ -99,7 +99,7 @@ export default function DocsPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16">
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden border-b border-[var(--border)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl text-center">
           <div
           >
@@ -107,8 +107,10 @@ export default function DocsPage() {
               Developer Documentation
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Everything you need to build on Ethereum Classic. Protocol specs, API references,
-              tutorials, and tools documentation.
+              Everything you need to build on Ethereum Classic — protocol specifications, JSON-RPC API
+              references, developer tutorials, and tooling documentation. With the Olympia upgrade, the
+              full Ethereum developer toolchain (Hardhat, Foundry, wagmi, viem, ethers.js) works on ETC
+              without modification.
             </p>
           </div>
         </div>
@@ -154,7 +156,7 @@ export default function DocsPage() {
       </section>
 
       {/* RPC Endpoints */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-7xl">
           <div
             className="mb-8"
@@ -302,7 +304,7 @@ export default function DocsPage() {
       </section>
 
       {/* Quick Links */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl">
           <div
           >
@@ -343,7 +345,7 @@ export default function DocsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--bg)] to-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--bg)] to-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl text-center">
           <div
           >

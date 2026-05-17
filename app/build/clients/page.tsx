@@ -55,7 +55,7 @@ export default function ClientsPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16">
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden border-b border-[var(--border)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl text-center">
           <div
           >
@@ -116,7 +116,7 @@ export default function ClientsPage() {
       </section>
 
       {/* Client Cards */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-7xl">
           <h2
             className="mb-8 text-center text-3xl font-bold text-[var(--text-primary)]"
@@ -311,7 +311,7 @@ export default function ClientsPage() {
       </section>
 
       {/* Hardware Requirements */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl">
           <div
           >
@@ -412,7 +412,7 @@ export default function ClientsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--bg)] to-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--bg)] to-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl text-center">
           <div
           >

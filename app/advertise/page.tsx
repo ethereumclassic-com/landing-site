@@ -90,7 +90,7 @@ export default function AdvertisePage() {
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Reach the ETC community directly. Promote your wallet, exchange, mining pool, or blockchain product to a highly engaged audience.
+              Reach the Ethereum Classic community directly — a technically sophisticated audience of miners, developers, DeFi users, and long-term holders. Promote your wallet, exchange, mining pool, or blockchain product to one of the most engaged Proof-of-Work communities in the industry.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link

@@ -212,11 +212,7 @@ export default function InstantBuyPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 text-center md:px-10 md:py-28 lg:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
-        </div>
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl"
         >
@@ -253,7 +249,7 @@ export default function InstantBuyPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Purchase Ethereum Classic in minutes using your credit card, debit card, or mobile payment. No trading experience required.
+            The fastest way to buy Ethereum Classic — card, mobile payment, or one-click exchange with no order books or trading interface. Most providers complete the purchase in under five minutes, with funds available immediately in your connected wallet or exchange account.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -305,7 +301,7 @@ export default function InstantBuyPage() {
       </section>
 
       {/* Instant Buy Providers */}
-      <section id="providers" className="px-6 py-20 md:px-10 lg:px-12">
+      <section id="providers" className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -330,7 +326,7 @@ export default function InstantBuyPage() {
       </section>
 
       {/* Comparison Section */}
-      <section className="bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+      <section className="bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
             className="mb-12 text-center"
@@ -391,7 +387,7 @@ export default function InstantBuyPage() {
       </section>
 
       {/* Tips Section */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
+      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
             className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8"

@@ -26,9 +26,7 @@ export default function FAQPageClient({ section }: { section: FAQSection }) {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <motion.div
           initial="hidden"
           animate="visible"

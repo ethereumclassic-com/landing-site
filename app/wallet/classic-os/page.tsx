@@ -142,7 +142,7 @@ export default function ClassicOSPage() {
       </section>
 
       {/* Modules Section */}
-      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -191,7 +191,7 @@ export default function ClassicOSPage() {
       </section>
 
       {/* Compatible Wallets */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
+      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
             className="text-center"
@@ -233,7 +233,7 @@ export default function ClassicOSPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >

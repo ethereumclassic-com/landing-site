@@ -63,7 +63,7 @@ function HomeHero({
   return (
     <section
       className={[
-        'hero-gradient-light noise-overlay relative overflow-hidden',
+        'hero-gradient-light noise-overlay grid-overlay relative overflow-hidden',
         'pt-24 pb-16 md:pt-32 md:pb-24',
         className,
       ]
@@ -127,8 +127,8 @@ function PageHero({
   return (
     <section
       className={[
-        'hero-gradient-light noise-overlay relative overflow-hidden',
-        'pt-20 pb-12 md:pt-24 md:pb-16',
+        'hero-gradient-light noise-overlay grid-overlay relative overflow-hidden',
+        'pt-24 pb-16 md:pt-32 md:pb-24',
         className,
       ]
         .filter(Boolean)
@@ -142,9 +142,9 @@ function PageHero({
 
       <Container size="xl" className="relative">
         <FadeIn>
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-4xl text-center">
             {subtitle && (
-              <p className="mb-2 text-sm font-medium text-[var(--brand-green)]">
+              <p className="mb-4 text-sm font-medium uppercase tracking-wider text-[var(--brand-green)]">
                 {subtitle}
               </p>
             )}
@@ -154,13 +154,13 @@ function PageHero({
             </h1>
 
             {description && (
-              <p className="mt-4 max-w-2xl text-lg text-[var(--text-secondary)]">
+              <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--text-secondary)]">
                 {description}
               </p>
             )}
 
             {(primaryCTA || secondaryCTA) && (
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 {primaryCTA && (
                   <Button variant="primary" size="md" href={primaryCTA.href}>
                     {primaryCTA.label}

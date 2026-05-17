@@ -123,11 +123,7 @@ export default function MarketsPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
-        </div>
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -153,7 +149,7 @@ export default function MarketsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Track Ethereum Classic price, market cap, trading volume, and historical data across major exchanges and data providers.
+            Track Ethereum Classic price, market cap, trading volume, and historical performance data aggregated across major exchanges and data providers. Coverage includes real-time spot prices, supply metrics from ECIP-1017&apos;s 5M20 emission schedule, and regulatory status across key jurisdictions.
           </p>
 
           {/* Live Price Display */}

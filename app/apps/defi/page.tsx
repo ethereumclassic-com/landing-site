@@ -49,10 +49,7 @@ export default function DeFiPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -90,7 +87,7 @@ export default function DeFiPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Discover decentralized exchanges, stablecoins, lending protocols, and yield opportunities on the ETC network
+            Decentralized exchanges, stablecoins, lending protocols, and yield opportunities on Ethereum Classic. The ETC DeFi stack includes Classic USD — the first MiCA-compliant stablecoin on a Proof-of-Work network — alongside AMM exchanges, CLMM DEXes, and a token launchpad, all running on immutable infrastructure.
           </p>
         </div>
       </section>

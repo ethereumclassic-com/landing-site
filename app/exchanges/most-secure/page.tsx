@@ -60,7 +60,7 @@ export default function MostSecureExchangesPage() {
               Most Secure Exchanges
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-              Trade ETC on exchanges with the strongest security track records, regulatory compliance, and institutional-grade custody solutions.
+              Trade ETC on exchanges with the strongest security track records, regulatory compliance, and institutional-grade custody. These platforms have demonstrated years of reliable operation, transparent proof-of-reserves, and the security infrastructure required for significant holdings.
             </p>
           </div>
 

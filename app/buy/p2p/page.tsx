@@ -252,11 +252,7 @@ export default function P2PPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 text-center md:px-10 md:py-28 lg:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
-        </div>
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl"
         >
@@ -293,7 +289,7 @@ export default function P2PPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Buy and sell ETC directly with other users. Trade with flexible payment methods, competitive rates, and escrow protection.
+            Trade Ethereum Classic directly with other users at rates you negotiate — no exchange spread, no percentage fees. P2P platforms support hundreds of payment methods including bank transfer, PayPal, cash, and mobile money, with platform escrow protecting both sides of every trade.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -342,7 +338,7 @@ export default function P2PPage() {
       </section>
 
       {/* How It Works */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
+      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
             className="mb-12 text-center"
@@ -375,7 +371,7 @@ export default function P2PPage() {
       </section>
 
       {/* P2P Platforms */}
-      <section id="platforms" className="bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+      <section id="platforms" className="bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -400,7 +396,7 @@ export default function P2PPage() {
       </section>
 
       {/* Safety Tips */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
+      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
             className="rounded-2xl border border-[var(--color-warning)]/20 bg-[var(--color-warning)]/5 p-8"

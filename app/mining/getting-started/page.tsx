@@ -9,11 +9,7 @@ export default function MiningGettingStartedPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
-        </div>
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -42,7 +38,7 @@ export default function MiningGettingStartedPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Follow this step-by-step guide to set up your mining operation and start earning Ethereum Classic today.
+            A step-by-step walkthrough for setting up your first Ethereum Classic mining operation — from choosing hardware and configuring the ETChash algorithm to selecting a pool and optimizing for profitability. ETC absorbed a significant share of Ethereum&apos;s former Ethash hashrate after the 2022 Merge, making it one of the most established GPU mining ecosystems available.
           </p>
         </div>
       </section>

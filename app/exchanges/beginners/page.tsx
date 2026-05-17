@@ -63,7 +63,7 @@ export default function BeginnersExchangesPage() {
               Best Exchanges for Beginners
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-              New to crypto? These exchanges are trusted, easy to use, and offer simple ways to buy your first ETC with a credit card or bank transfer.
+              New to crypto? These exchanges are trusted, easy to navigate, and support straightforward ETC purchases with a credit card or bank transfer. Each platform is regulated or publicly audited, with clear fee structures and dedicated customer support for first-time buyers.
             </p>
           </div>
 

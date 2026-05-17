@@ -98,7 +98,7 @@ export default function DirectoryPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16 md:px-10 md:py-24 lg:px-12">
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary)]/5 via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-7xl text-center">
@@ -189,7 +189,7 @@ export default function DirectoryPage() {
       </section>
 
       {/* Quick Access Links */}
-      <section className="bg-[var(--panel)] px-6 py-16 md:px-10 lg:px-12">
+      <section className="bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-7xl">
           <div
             className="mb-10 text-center"

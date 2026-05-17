@@ -55,10 +55,7 @@ export default function FeaturedAppsPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -97,7 +94,7 @@ export default function FeaturedAppsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Hand-picked applications representing the best of the Ethereum Classic ecosystem. Quality-vetted DeFi, infrastructure, and governance tools.
+            Hand-picked applications representing the best of the Ethereum Classic ecosystem — quality-vetted DeFi protocols, infrastructure tools, and governance systems. Each featured app has been reviewed for security, activity, and usefulness to ETC participants.
           </p>
         </div>
       </section>

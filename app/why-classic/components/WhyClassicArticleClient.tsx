@@ -33,9 +33,7 @@ export default function WhyClassicArticleClient({ article, content }: Props) {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -86,7 +84,7 @@ export default function WhyClassicArticleClient({ article, content }: Props) {
 
       {/* Related Articles */}
       {relatedArticles.length > 0 && (
-        <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
+        <section className="border-t border-[var(--border)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">Continue Reading</h2>
             <p className="mt-1 text-[var(--color-text-muted)]">More on the philosophy of Ethereum Classic</p>

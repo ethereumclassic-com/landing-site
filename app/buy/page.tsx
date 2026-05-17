@@ -164,11 +164,7 @@ export default function BuyPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 text-center md:px-10 md:py-28 lg:px-12">
-        {/* Background gradient effects */}
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
-        </div>
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
 
         <div
           className="relative mx-auto max-w-4xl"
@@ -194,7 +190,7 @@ export default function BuyPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Get ETC on major centralized exchanges or trade directly on ETCswap DEX. Multiple payment methods available worldwide.
+            Acquire Ethereum Classic through major centralized exchanges, DEX trading on ETCswap, or peer-to-peer markets. Payment options range from card and bank transfer to crypto-to-crypto swaps, with coverage in most countries worldwide.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -392,7 +388,7 @@ export default function BuyPage() {
       </section>
 
       {/* Major Exchanges */}
-      <section id="exchanges" className="px-6 py-20 md:px-10 lg:px-12">
+      <section id="exchanges" className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -431,7 +427,7 @@ export default function BuyPage() {
       </section>
 
       {/* All Exchanges */}
-      <section className="bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+      <section className="bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -456,7 +452,7 @@ export default function BuyPage() {
       </section>
 
       {/* How to Buy */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
+      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <div
             className="mb-12 text-center"

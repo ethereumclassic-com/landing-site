@@ -49,7 +49,7 @@ const frameworks = [
 
 export function RegulationHeroSection() {
   return (
-    <section className="hero-gradient noise-overlay relative pb-20 pt-32">
+    <section className="hero-gradient noise-overlay grid-overlay relative pb-20 pt-32">
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <FadeIn>
           <p className="font-mono text-sm uppercase tracking-widest text-[var(--brand-green)]">

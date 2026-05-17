@@ -73,7 +73,7 @@ export default function GettingStartedPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16">
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden border-b border-[var(--border)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl text-center">
           <div
           >
@@ -163,7 +163,7 @@ export default function GettingStartedPage() {
       </section>
 
       {/* Step by Step Guide */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl">
           <h2
             className="mb-12 text-center text-3xl font-bold text-[var(--text-primary)]"
@@ -353,7 +353,7 @@ export default function GettingStartedPage() {
       </section>
 
       {/* Recommended Tools */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl">
           <div
           >
@@ -438,7 +438,7 @@ export default function GettingStartedPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] px-6 py-16">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-4xl text-center">
           <div
           >

@@ -49,10 +49,7 @@ export default function PaymentsPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -90,7 +87,7 @@ export default function PaymentsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Bridge between traditional finance and the ETC ecosystem. Buy, sell, spend, and accept payments with ClassicUSD and ETC.
+            The payment layer connecting Ethereum Classic to everyday commerce — buy, sell, spend, and accept payments using ETC and Classic USD. Classic USD is the first MiCA and GENIUS Act-compliant stablecoin on a Proof-of-Work network, enabling regulatory-grade stablecoin payments on immutable infrastructure.
           </p>
         </div>
       </section>

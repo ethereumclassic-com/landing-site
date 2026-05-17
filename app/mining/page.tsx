@@ -51,7 +51,10 @@ export default async function MiningPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--text-secondary)]">
-            ETC is the largest Proof of Work smart contract platform. Start mining with GPUs or ASICs using the ETChash algorithm.
+            Ethereum Classic is the world&apos;s largest Proof-of-Work smart contract platform, secured by
+            GPU and ASIC miners using the ETChash algorithm. Whether you are setting up your first rig or
+            optimizing an existing operation, this section covers hardware selection, pool options, software
+            configuration, and profitability analysis.
           </p>
 
           {/* Quick Actions */}

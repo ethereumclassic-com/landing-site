@@ -40,7 +40,7 @@ export default function StakingExchangesPage() {
               Staking on Exchanges
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-              Understanding yield opportunities for Ethereum Classic holders.
+              Yield opportunities for Ethereum Classic holders — exchange staking programs, DeFi lending protocols, and liquidity provision on ETCswap. ETC is a Proof-of-Work network with no native staking, so exchange-based yield and DeFi are the primary paths to earning returns on your holdings.
             </p>
           </div>
 

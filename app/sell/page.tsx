@@ -245,7 +245,7 @@ export default function SellPage() {
   return (
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
+      <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl">
           <div

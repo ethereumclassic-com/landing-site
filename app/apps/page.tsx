@@ -82,10 +82,7 @@ export default function AppsPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -110,7 +107,9 @@ export default function AppsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Explore DeFi protocols, developer tools, governance systems, and infrastructure built on Ethereum Classic
+            Explore the growing ecosystem of DeFi protocols, developer tools, governance systems, and infrastructure
+            built on Ethereum Classic. From Classic USD — the first MiCA-compliant stablecoin on a Proof-of-Work
+            network — to AMM exchanges and launchpads, ETC&apos;s application layer is live and expanding.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -153,7 +152,7 @@ export default function AppsPage() {
       </section>
 
       {/* Featured Apps Section */}
-      <section id="featured" className="px-6 py-20 md:px-10 lg:px-12">
+      <section id="featured" className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -240,7 +239,7 @@ export default function AppsPage() {
       })}
 
       {/* Submit App CTA */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-20 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >

@@ -98,10 +98,7 @@ export default function NewsPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -128,8 +125,9 @@ export default function NewsPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Stay updated with the latest developments, security updates, and community news from the Ethereum Classic
-            ecosystem
+            Protocol upgrades, security advisories, ecosystem developments, and EVM industry analysis — all in one
+            place. Coverage spans the full ETC ecosystem including the Olympia upgrade roadmap, client releases, and
+            regulatory developments affecting Proof-of-Work networks.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -180,7 +178,7 @@ export default function NewsPage() {
       </section>
 
       {/* Featured Articles Section */}
-      <section id="featured" className="px-6 py-20 md:px-10 lg:px-12">
+      <section id="featured" className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -277,7 +275,7 @@ export default function NewsPage() {
       })}
 
       {/* Subscribe CTA */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-20 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >

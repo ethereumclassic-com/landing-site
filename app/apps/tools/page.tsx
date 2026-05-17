@@ -49,10 +49,7 @@ export default function ToolsPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -90,7 +87,7 @@ export default function ToolsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Essential utilities for managing your ETC experience. Portfolio tracking, mining dashboards, RPC endpoints, and automation tools.
+            Essential utilities for working with Ethereum Classic — portfolio trackers, mining dashboards, RPC endpoints, block explorers, and developer automation tools. These utilities support both everyday ETC users and infrastructure operators who need reliable, real-time network data.
           </p>
         </div>
       </section>

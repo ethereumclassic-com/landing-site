@@ -11,9 +11,7 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-4xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
             About
@@ -27,8 +25,9 @@ export default function AboutPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            EthereumClassic.com is the comprehensive resource for everything Ethereum Classic, from breaking news and
-            educational content to developer tools and ecosystem applications.
+            EthereumClassic.com is the comprehensive resource for Ethereum Classic — the world&apos;s largest
+            Proof-of-Work smart contract platform, running continuously since July 2015. Covering news, education,
+            developer tools, mining resources, and ecosystem applications for users, developers, miners, and institutions.
           </p>
         </div>
       </section>

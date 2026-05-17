@@ -92,8 +92,7 @@ export default function DirectoryCommunityPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Community Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Connect with the Ethereum Classic community across social platforms,
-                forums, and developer channels.
+                Connect with the Ethereum Classic community across social platforms, forums, and developer channels. ETC has a global, decentralized community of miners, developers, and long-term holders active across Discord, Reddit, Telegram, and GitHub.
               </p>
             </div>
           </div>

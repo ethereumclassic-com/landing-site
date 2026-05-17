@@ -216,7 +216,7 @@ export default function PartnersPage() {
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Explore the ecosystem of wallets, exchanges, mining pools, and service providers supporting Ethereum Classic.
+              The wallets, exchanges, mining pools, infrastructure providers, and service companies that make up the Ethereum Classic ecosystem. These partners have verified ETC support and represent the operational backbone of the network for users, miners, and developers worldwide.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link

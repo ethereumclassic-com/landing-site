@@ -7,8 +7,7 @@ export default function WhyClassicPage() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
 
         <div
           className="relative mx-auto max-w-4xl text-center"
@@ -29,8 +28,9 @@ export default function WhyClassicPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            The principles and philosophy that define Ethereum Classic, from its origin story to the protocol design
-            decisions that set it apart.
+            Ethereum Classic emerged from the 2016 DAO fork as a commitment to one principle: code is law. When the
+            broader Ethereum community reversed a transaction by changing the protocol, ETC held the original chain
+            and the original rules. Understanding why matters as much as understanding what ETC is.
           </p>
         </div>
       </section>

@@ -5,11 +5,7 @@ import { FadeIn } from '@/app/components/ui'
 
 export default function FinalCTA() {
   return (
-    <section className="relative overflow-hidden px-6 py-24 md:px-10 md:py-32 lg:px-12">
-      {/* CSS-only gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--panel)] via-[var(--background)] to-[var(--panel)]" />
-      <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--brand-green)]/10 blur-3xl" />
-      <div className="absolute bottom-0 right-0 h-[300px] w-[400px] translate-x-1/2 translate-y-1/2 rounded-full bg-[var(--brand-green)]/5 blur-3xl" />
+    <section className="bg-[var(--panel)] px-6 py-24 md:px-10 md:py-32 lg:px-12">
 
       <div className="relative mx-auto max-w-4xl text-center">
         <FadeIn>

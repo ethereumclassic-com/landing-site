@@ -92,9 +92,7 @@ export default function LearnPage() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-primary)]/10 via-transparent to-transparent" />
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
 
         <div
           className="relative mx-auto max-w-4xl text-center"
@@ -120,7 +118,9 @@ export default function LearnPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Your comprehensive guide to Ethereum Classic. From blockchain basics to advanced DeFi strategies, mining, and security best practices.
+            Your comprehensive guide to Ethereum Classic — from what ETC is and how to buy it, to running nodes,
+            writing smart contracts, and participating in DeFi. Whether you are a first-time user or an experienced
+            developer, every topic is covered with accurate, up-to-date detail.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -170,7 +170,7 @@ export default function LearnPage() {
       </section>
 
       {/* Featured Articles */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
+      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="mb-12 text-center"
@@ -301,7 +301,7 @@ export default function LearnPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 py-20 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/5 to-transparent px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >

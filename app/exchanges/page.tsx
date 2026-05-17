@@ -154,11 +154,7 @@ export default function ExchangeDirectoryPage() {
   return (
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-16 md:px-10 md:py-20">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-primary)]/10 blur-[100px]" />
-        </div>
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden hero-gradient-light noise-overlay grid-overlay border-b border-[var(--border)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >

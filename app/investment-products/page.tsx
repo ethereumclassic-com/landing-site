@@ -61,11 +61,7 @@ export default function InvestmentProductsPage() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:px-12">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-0 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--color-warning)]/8 blur-[100px]" />
-        </div>
-
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
           className="relative mx-auto max-w-4xl text-center"
         >
@@ -91,7 +87,7 @@ export default function InvestmentProductsPage() {
       </section>
 
       {/* ETCG Trust */}
-      <section className="border-t border-[var(--border)] px-6 py-20 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
           >
@@ -167,7 +163,7 @@ export default function InvestmentProductsPage() {
       </section>
 
       {/* TradFi Access */}
-      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 py-20 md:px-10 lg:px-12">
+      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
           >
@@ -229,7 +225,7 @@ export default function InvestmentProductsPage() {
       </section>
 
       {/* Investment Thesis */}
-      <section className="px-6 py-20 md:px-10 lg:px-12">
+      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
           >

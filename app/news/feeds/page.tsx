@@ -51,7 +51,7 @@ const readers = [
 
 export default function FeedsPage() {
   return (
-    <main className="min-h-screen px-6 py-20 md:px-10 lg:px-12">
+    <main className="min-h-screen px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
       <div className="mx-auto max-w-3xl">
         {/* Header */}
         <div className="mb-4">

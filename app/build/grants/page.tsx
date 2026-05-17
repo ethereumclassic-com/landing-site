@@ -164,7 +164,7 @@ export default function BuildGrantsPage() {
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Get funding to build on Ethereum Classic. Grants, bounties, and community support for developers and projects.
+              Funding opportunities for builders on Ethereum Classic — grants, bounties, and community-backed support for open-source development, tooling, and ecosystem infrastructure. With the Olympia upgrade introducing a protocol-native treasury, ETC&apos;s capacity to fund development is expanding for the first time in the network&apos;s history.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a

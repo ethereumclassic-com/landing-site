@@ -157,7 +157,7 @@ export default function ApiDocsPage() {
   return (
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-20">
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden border-b border-[var(--border)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm text-[var(--color-primary)]">
@@ -170,7 +170,7 @@ export default function ApiDocsPage() {
               API Documentation
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-[var(--color-text-secondary)]">
-              Access ETC price data, network statistics, and blockchain information through our REST API endpoints.
+              Access ETC price data, network statistics, and on-chain information through the EthereumClassic.com REST API. Endpoints cover real-time price feeds, block data, transaction history, and network health — designed for developers building ETC-integrated applications and dashboards.
             </p>
           </div>
         </div>

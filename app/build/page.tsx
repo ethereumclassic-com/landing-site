@@ -61,7 +61,7 @@ export default function BuildPage() {
   return (
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--color-primary)]/10 via-[var(--bg)] to-[var(--bg)] px-6 py-20">
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden border-b border-[var(--border)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-7xl">
           <div
             className="text-center"
@@ -73,11 +73,13 @@ export default function BuildPage() {
             <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
               Build on Ethereum Classic
             </h1>
-            <p className="mx-auto mt-6 max-w-3xl text-lg text-[var(--color-text-muted)] md:text-xl">
-              Full EVM compatibility means you can use familiar Ethereum tools like Hardhat, Foundry,
-              and Remix. Deploy your Solidity contracts to a network that values
-              <span className="text-[var(--text-primary)]"> immutability</span> and
-              <span className="text-[var(--text-primary)]"> code is law</span>.
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)] md:text-xl">
+              The Olympia upgrade closes the final EVM gaps — Hardhat, Foundry, wagmi, viem, and ethers.js work on
+              Ethereum Classic without modification, just like on Ethereum mainnet. Deploy your contracts to a network
+              with
+              <span className="text-[var(--text-primary)]"> immutability</span>,
+              <span className="text-[var(--text-primary)]"> code is law</span>, and a continuous production record
+              since July 2015.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
