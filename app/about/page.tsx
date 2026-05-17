@@ -5,7 +5,7 @@ import { Cpu, Code2, Shield, Building2, Scale } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'About | Ethereum Classic',
   description:
-    'EthereumClassic.com is the primary website for Ethereum Classic. It covers news, learning resources, apps, mining, research, and development tools.',
+    'EthereumClassic.com is the comprehensive resource for Ethereum Classic — the only Proof-of-Work EVM. Institutional positioning: PoW Security, ETCG investment products, regulatory clarity across CLARITY Act, MiCA, and GENIUS Act. News, education, mining, and developer tools.',
 }
 
 export default function AboutPage() {

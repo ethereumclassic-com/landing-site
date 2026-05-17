@@ -23,6 +23,8 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 
 ## Sections
 
+- [About](https://ethereumclassic.com/about) — Site overview, institutional positioning (PoW Security, Institutional Infrastructure, Regulatory Clarity), PoW/EVM intersection, community
+- [Investment Products](https://ethereumclassic.com/investment-products) — Grayscale Ethereum Classic Trust (ETCG): fund facts, Grayscale product lifecycle (3-stage trust-to-ETF path, GBTC Jan 2024 → ETHE Jul 2024 precedent), brokerage access, investment thesis
 - [Wallet](https://ethereumclassic.com/wallet) — Download wallets and manage ETC
 - [Buy ETC](https://ethereumclassic.com/buy) — Purchase ETC on exchanges
 - [Exchanges](https://ethereumclassic.com/exchanges) — Compare and filter exchanges by fees, KYC, and region
@@ -89,7 +91,7 @@ Activation block: TBD (announced after CDC-23 community call).
 
 ## Regulatory Positioning
 
-- United States: digital commodity classification under the CLARITY Act (CFTC jurisdiction)
+- United States: digital commodity candidate under the CLARITY Act — Senate Banking Committee passed 15-9 (May 2026), Senate floor vote pending (CFTC spot jurisdiction upon enactment)
 - United States: Proof-of-Work EVM platform for regulated stablecoin deployment under the GENIUS Act
 - European Union: decentralized asset under MiCA (Markets in Crypto-Assets Regulation), exempt from issuer obligations as a fully decentralized protocol
 - Japan: recognized crypto-asset on the FSA Green List (JVCEA), fast-track listing across all Japanese regulated exchanges
