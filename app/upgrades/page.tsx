@@ -36,7 +36,7 @@ export default function UpgradesPage() {
       {/* Timeline */}
       <section className="px-6 pb-20 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
-          <UpgradeTimeline forks={forks} />
+          <UpgradeTimeline forks={[...forks].reverse()} />
         </div>
       </section>
     </main>

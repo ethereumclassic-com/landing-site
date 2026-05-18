@@ -463,6 +463,18 @@ export default function OlympiaHubPage() {
                   description: 'The legal wrapper for the Olympia DAO under Wyoming\'s DAO LLC framework. Ensures regulatory compliance, proper reporting, and alignment with digital asset legislation.',
                   href: olympiaLinks.ethereumClassicDAO,
                 },
+                {
+                  name: 'ETC Cooperative',
+                  role: 'Protocol Steward',
+                  description: 'US 501(c)(3) non-profit that has funded Ethereum Classic\'s core client development since 2017, backing every hard fork, every client release, and every cross-client coordination effort across a decade of ETC network upgrades.',
+                  href: olympiaLinks.etcCooperative,
+                },
+                {
+                  name: 'Grayscale ETCG',
+                  role: 'Institutional Access',
+                  description: 'The Grayscale Ethereum Classic Trust launched in 2018, years before Bitcoin ETFs existed as a product category, providing regulated institutional access to ETC and indirectly funding ETC Cooperative core development work.',
+                  href: olympiaLinks.grayscaleETCG,
+                },
               ].map((entity) => (
                 <a
                   key={entity.name}

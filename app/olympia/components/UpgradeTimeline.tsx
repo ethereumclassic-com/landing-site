@@ -28,7 +28,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
       className="relative"
     >
       {/* Vertical line */}
-      <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-[var(--border)] via-[var(--brand-green)]/30 to-[var(--brand-green)]" />
+      <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-[var(--brand-green)] via-[var(--brand-green)]/30 to-[var(--border)]" />
 
       <div className="space-y-8">
         {forks.map((fork) => (
@@ -59,9 +59,10 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                     Block {fork.block.toLocaleString()}
                   </span>
                 ) : (
-                  <span className="rounded-full bg-[var(--brand-green-subtle)] px-2 py-0.5 text-xs font-medium text-[var(--brand-green)]">
-                    TBD
-                  </span>
+                  <div className="flex items-center gap-1.5 font-mono text-xs text-[var(--brand-green)]">
+                    <span className="inline-block h-2 w-2 rounded-full bg-[var(--brand-green)] animate-pulse" />
+                    UPCOMING
+                  </div>
                 )}
                 {fork.date && (
                   <span className="text-xs text-[var(--color-text-muted)]">

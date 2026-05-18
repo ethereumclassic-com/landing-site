@@ -265,6 +265,8 @@ export const olympiaLinks = {
   treasuryDashboard: 'https://olympiatreasury.org',
   ethereumClassicDAO: 'https://ethereumclassicdao.org',
   olympiaDAO: 'https://olympiadao.org',
+  etcCooperative: 'https://etccooperative.org',
+  grayscaleETCG: 'https://grayscale.com/funds/ethereum-classic-trust/',
 } as const
 
 // ============================================================================
