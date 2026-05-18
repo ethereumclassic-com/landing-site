@@ -99,10 +99,10 @@ export default function OlympiaHistoryPage() {
             </Link>
             <span className="text-[var(--color-text-muted)]">·</span>
             <Link
-              href="/olympia/name"
+              href="/olympia/etymology"
               className="text-sm text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
             >
-              Why the name Olympia
+              Etymology & Lore
             </Link>
           </div>
 
@@ -239,10 +239,10 @@ export default function OlympiaHistoryPage() {
               Core Devs Call Agenda
             </Link>
             <Link
-              href="/olympia/name"
+              href="/olympia/etymology"
               className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
             >
-              Why the name Olympia
+              Etymology & Lore
             </Link>
           </div>
         </div>

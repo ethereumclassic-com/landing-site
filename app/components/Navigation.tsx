@@ -134,7 +134,7 @@ const navItems: {
       { type: 'separator', label: 'The Upgrade' },
       { href: '/olympia', label: 'Olympia Hub' },
       { href: '/olympia/upgrade', label: 'Upgrade Details' },
-      { href: '/olympia/name', label: 'Why the Name Olympia' },
+      { href: '/olympia/etymology', label: 'Etymology & Lore' },
       { href: '/olympia/history', label: 'A Decade of Conviction' },
       { type: 'separator', label: 'Governance' },
       { href: '/olympia/governance', label: 'Governance' },
@@ -234,7 +234,7 @@ const mobileNavGroups: {
     items: [
       { href: '/olympia', label: 'Olympia Hub' },
       { href: '/olympia/upgrade', label: 'Upgrade Details' },
-      { href: '/olympia/name', label: 'Why the Name Olympia' },
+      { href: '/olympia/etymology', label: 'Etymology & Lore' },
       { href: '/olympia/history', label: 'A Decade of Conviction' },
       { href: '/olympia/governance', label: 'Governance' },
       { href: '/olympia/miners', label: 'Miners & Fees' },

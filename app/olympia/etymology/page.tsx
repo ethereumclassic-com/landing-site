@@ -84,20 +84,22 @@ export default function OlympiaNamePage() {
 
           <div className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
-              The Name
+              Etymology & Lore
             </span>
           </div>
 
           <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
-            Why{' '}
+            Origin:{' '}
             <span className="bg-gradient-to-r from-[var(--brand-green)] to-[var(--color-success)] bg-clip-text text-transparent">
               Olympia
             </span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            From the proving ground to common ground — the name that carries ten years of Ethereum
-            Classic history into its second decade.
+            The ninth and final Ethereum testnet was named Olympic — Ethereum 0.9, a gauntlet
+            deliberately designed to break. Olympia is not the same name. It is where Olympic
+            pointed all along: the Panhellenic sanctuary sovereign to none, the home of
+            Marvel&apos;s Eternals, the ground that endures because no one owns it.
           </p>
         </div>
       </section>

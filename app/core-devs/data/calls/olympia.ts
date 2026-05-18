@@ -137,9 +137,9 @@ All three clients produce identical genesis hashes and have been verified throug
 
 ---
 
-## The Name: Olympia
+## Etymology & Lore
 
-See [Why the Name Olympia](/olympia/name) for the full naming context — the pre-genesis testnet, Marvel upgrade lineage, Greek mythology, and the competitive return to active development.
+See [Etymology & Lore](/olympia/etymology) for the full naming context — the pre-genesis testnet, Marvel upgrade lineage, Greek mythology, and the competitive return to active development.
 
 See [A Decade of Conviction](/olympia/history) for the full institutional history — the teams that came and went, two rejected treasury proposals that defined what the community would and wouldn't accept, the stewards who held the line, and how Olympia delivers what the community has sought since 2016.
 
