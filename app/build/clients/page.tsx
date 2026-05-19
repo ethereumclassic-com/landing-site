@@ -294,10 +294,6 @@ export default function ClientsPage() {
                     <code className="text-[var(--text-primary)]">--classic</code>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--color-text-muted)]">Besu Flag</span>
-                    <code className="text-[var(--text-primary)]">--network=classic</code>
-                  </div>
-                  <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Fukuii Flag</span>
                     <code className="text-[var(--text-primary)]">network=etc</code>
                   </div>
@@ -319,10 +315,6 @@ export default function ClientsPage() {
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Core-Geth Flag</span>
                     <code className="text-[var(--text-primary)]">--mordor</code>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[var(--color-text-muted)]">Besu Flag</span>
-                    <code className="text-[var(--text-primary)]">--network=mordor</code>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Fukuii Flag</span>

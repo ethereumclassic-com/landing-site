@@ -107,7 +107,7 @@ export default function OlympiaHubPage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               What Olympia Changes
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Three client-facing ECIPs that modernize the protocol in a single coordinated upgrade.
             </p>
 
@@ -165,7 +165,7 @@ export default function OlympiaHubPage() {
             <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Three Ethereum upgrade cycles delivered to ETC in a single fork: every execution-layer improvement independent of Proof-of-Stake and blob data availability.
             </p>
 
@@ -300,7 +300,7 @@ export default function OlympiaHubPage() {
             <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               Global Regulatory Recognition
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Ethereum Classic has received formal regulatory classification across four major jurisdictions.
             </p>
 
@@ -386,7 +386,7 @@ export default function OlympiaHubPage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               How It Works
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Funded by basefee revenue, not inflation. Block rewards and tips remain untouched.
             </p>
 
@@ -433,7 +433,7 @@ export default function OlympiaHubPage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Coordinating Organizations
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Coordinating organizations working together to govern and advance the Ethereum Classic network.
             </p>
 

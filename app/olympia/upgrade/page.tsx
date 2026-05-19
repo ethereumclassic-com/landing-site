@@ -297,7 +297,7 @@ export default function UpgradeGuidePage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               What Olympia Brings to Ethereum Classic
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Three protocol upgrades in a single activation (fee market, protocol treasury, and Fusaka EVM alignment), delivered to the only Proof-of-Work smart contract platform in the world.
             </p>
 
@@ -341,7 +341,7 @@ export default function UpgradeGuidePage() {
             <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Three Ethereum upgrade cycles delivered to ETC in a single fork. Every execution-layer improvement is independent of Proof-of-Stake and blob data availability.
             </p>
 
@@ -498,7 +498,7 @@ export default function UpgradeGuidePage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Olympia Roadmap
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Five stages from consensus upgrades to permanent protocol integration.
             </p>
 
@@ -550,7 +550,7 @@ export default function UpgradeGuidePage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Steps to Upgrade Your Client
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Node operators must upgrade before the activation block. All client releases are published well in advance.
             </p>
 
@@ -633,7 +633,7 @@ export default function UpgradeGuidePage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">
               Frequently Asked Questions
             </h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Common questions about the Olympia upgrade, treasury funding, governance, and node operations.
             </p>
 

@@ -184,7 +184,7 @@ export default function BuildPage() {
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Network Configuration</h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
               Add ETC to your wallet or configure your development environment
             </p>
           </div>
@@ -298,7 +298,7 @@ export default function BuildPage() {
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Recommended Tools</h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
               Industry-standard development tools that work seamlessly with ETC
             </p>
           </div>
@@ -359,7 +359,7 @@ export default function BuildPage() {
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Node Clients</h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
               Run your own Ethereum Classic node for maximum decentralization
             </p>
           </div>
@@ -441,7 +441,7 @@ export default function BuildPage() {
             className="mb-8 text-center"
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Learning Resources</h2>
-            <p className="mt-2 text-[var(--color-text-muted)]">
+            <p className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
               Tutorials, documentation, and guides to help you get started
             </p>
           </div>
