@@ -22,8 +22,8 @@ const secondaryClients = [
     name: 'ETC Plugins',
     language: '',
     description:
-      'ETC compatibility layers for Besu, Erigon, Go-Ethereum, and Nethermind bring Ethereum Classic support to the broader Ethereum client ecosystem without maintaining full forks.',
-    github: '/clients',
+      'ETC compatibility layers for Besu, Erigon, Go-Ethereum, Nethermind, and Reth bring Ethereum Classic support to the broader Ethereum client ecosystem without maintaining full forks.',
+    github: '/olympia/clients',
     status: 'Plugins',
   },
 ]
@@ -43,8 +43,8 @@ export function ClientImplementationsSection() {
             Multi-client architecture eliminates single points of failure at the protocol layer.
             Independent implementations in distinct languages, maintained by separate teams, ensure
             the network can withstand the discontinuation or compromise of any single codebase.
-            Fukuii, Core-Geth, and ETC compatibility plugins for Besu, Erigon, Go-Ethereum, and
-            Nethermind provide implementation diversity without fragmenting the ecosystem.
+            Fukuii, Core-Geth, and ETC compatibility plugins for Besu, Erigon, Go-Ethereum,
+            Nethermind, and Reth provide implementation diversity without fragmenting the ecosystem.
           </p>
         </FadeIn>
 

@@ -74,7 +74,7 @@ export default function UpgradeHubPage() {
               on any preferred execution environment.
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
               {[
                 {
                   name: 'Hyperledger Besu',
@@ -117,6 +117,16 @@ export default function UpgradeHubPage() {
                   links: [
                     { label: 'GitHub', href: 'https://github.com/NethermindEth/nethermind' },
                     { label: 'Docs', href: 'https://docs.nethermind.io' },
+                  ],
+                },
+                {
+                  name: 'Reth',
+                  language: 'Rust',
+                  langColor: '#CE4117',
+                  description:
+                    'ETC execution plugin for Reth. Brings Ethereum Classic support to the modular, performance-focused Rust client.',
+                  links: [
+                    { label: 'GitHub', href: 'https://github.com/ethereumclassic/reth' },
                   ],
                 },
               ].map((plugin) => (

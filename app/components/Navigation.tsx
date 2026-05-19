@@ -98,6 +98,7 @@ const navItems: {
       { href: '/mining/hardware', label: 'Hardware Guide' },
       { href: '/mining/hardware/buy', label: 'Buy Hardware' },
       { href: '/mining/software', label: 'Mining Software' },
+      { href: '/olympia/clients', label: 'Node Clients' },
       { type: 'separator', label: 'Tools & Strategy' },
       { href: '/mining/profitability', label: 'Profitability Calculator' },
       { href: '/mining/os', label: 'Mining OS' },
@@ -139,9 +140,10 @@ const navItems: {
       { type: 'separator', label: 'Governance' },
       { href: '/olympia/governance', label: 'Governance' },
       { href: '/olympia/miners', label: 'Miners & Fees' },
-      { href: '/olympia/security', label: 'Security' },
-      { href: '/upgrades', label: 'Network Upgrades' },
+      { type: 'separator', label: 'Infrastructure' },
       { href: '/olympia/clients', label: 'Clients' },
+      { href: '/upgrades', label: 'Network Upgrades' },
+      { href: '/olympia/security', label: 'Security' },
     ],
   },
 ]
@@ -190,6 +192,7 @@ const mobileNavGroups: {
     items: [
       { href: '/mining', label: 'Mining Hub' },
       { href: '/mining/getting-started', label: 'Getting Started' },
+      { href: '/olympia/clients', label: 'Node Clients' },
       { href: '/mining/pools', label: 'Mining Pools' },
       { href: '/mining/hardware', label: 'Hardware Guide' },
       { href: '/mining/profitability', label: 'Profitability Calculator' },
