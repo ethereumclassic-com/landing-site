@@ -126,7 +126,7 @@ export default function UpgradeHubPage() {
                   description:
                     'ETC execution plugin for Reth. Brings Ethereum Classic support to the modular, performance-focused Rust client.',
                   links: [
-                    { label: 'GitHub', href: 'https://github.com/ethereumclassic/reth' },
+                    { label: 'GitHub', href: 'https://github.com/paradigmxyz/reth' },
                   ],
                 },
               ].map((plugin) => (
