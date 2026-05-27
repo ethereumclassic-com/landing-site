@@ -50,10 +50,10 @@ Brings ETC's EVM to parity with Ethereum through Fusaka, excluding PoS and blob 
 
 | Category | EIPs |
 |----------|------|
-| Gas & State Access | EIP-7702, EIP-7623, EIP-7825, EIP-7883, EIP-7935 |
-| EVM Safety | EIP-6780, EIP-7934, EIP-7910 |
+| Gas & State Access | EIP-7623, EIP-7702, EIP-7823, EIP-7825, EIP-7883, EIP-7935 |
+| EVM Safety | EIP-6780, EIP-7642 (eth/69), EIP-7910, EIP-7934 |
 | Cryptographic | EIP-2537 (BLS12-381), EIP-7951 (secp256r1) |
-| Execution | EIP-5656 (MCOPY), EIP-2935, EIP-1153 (transient storage) |
+| Execution | EIP-1153 (transient storage), EIP-2935, EIP-5656 (MCOPY), EIP-7939 (CLZ) |
 
 Explicitly deferred: all blob-dependent EIPs, all PoS/beacon chain EIPs.
 

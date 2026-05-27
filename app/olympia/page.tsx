@@ -141,7 +141,7 @@ export default function OlympiaHubPage() {
                 >
                   <div className="mb-3 flex items-center gap-3">
                     <div className="h-1 w-12 rounded-full" style={{ backgroundColor: item.color }} />
-                    <a href={`https://ecips.ethereumclassic.org/ECIPs/${item.ecip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-[var(--color-text-muted)] transition-opacity hover:opacity-70">{item.ecip}</a>
+                    <a href={`https://ecips.ethereumclassic.org/ECIPs/${item.ecip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-2.5 py-0.5 font-mono text-[10px] text-[var(--brand-green)] transition-opacity hover:opacity-80">{item.ecip}</a>
                   </div>
                   <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -160,7 +160,7 @@ export default function OlympiaHubPage() {
           <div
           >
             <div>
-              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase tracking-widest text-[var(--color-info)] transition-opacity hover:opacity-80">ECIP-1121</a>
+              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-2.5 py-0.5 font-mono text-[10px] text-[var(--brand-green)] transition-opacity hover:opacity-80">ECIP-1121</a>
             </div>
             <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
               EVM Compatibility in Detail
@@ -174,9 +174,9 @@ export default function OlympiaHubPage() {
               <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[var(--brand-green)]/30" />
               <div className="flex flex-col md:flex-row gap-6 md:gap-0 md:justify-between">
                 {[
-                  { name: 'Dencun', fullName: 'Cancun-Deneb', year: '2024', eips: ['EIP-1153', 'EIP-5656', 'EIP-2935'] },
-                  { name: 'Pectra', fullName: 'Prague-Electra', year: '2025', eips: ['EIP-7702', 'EIP-2537', 'EIP-6780'] },
-                  { name: 'Fusaka', fullName: 'Fulu-Osaka', year: '2025', eips: ['EIP-7623', 'EIP-7951', 'EIP-7825'] },
+                  { name: 'Dencun', fullName: 'Cancun-Deneb', year: '2024', eips: ['EIP-1153', 'EIP-2935', 'EIP-5656'] },
+                  { name: 'Pectra', fullName: 'Prague-Electra', year: '2025', eips: ['EIP-2537', 'EIP-6780', 'EIP-7702'] },
+                  { name: 'Fusaka', fullName: 'Fulu-Osaka', year: '2025', eips: ['EIP-7623', 'EIP-7642', 'EIP-7823', 'EIP-7825', 'EIP-7939', 'EIP-7951'] },
                 ].map((fork, i, arr) => (
                   <div key={fork.name} className="relative flex md:flex-col md:items-center md:w-1/3 gap-4 md:gap-0">
                     {i < arr.length - 1 && (
@@ -190,9 +190,9 @@ export default function OlympiaHubPage() {
                       <p className="text-xs text-[var(--color-text-muted)]">{fork.fullName} · {fork.year}</p>
                       <div className="mt-2 flex flex-wrap gap-1 md:justify-center">
                         {fork.eips.map((eip) => (
-                          <span key={eip} className="rounded-sm border border-[var(--border)] bg-[var(--background)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-text-muted)]">
+                          <a key={eip} href={`https://eips.ethereum.org/EIPS/${eip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="rounded bg-[var(--color-violet-bg)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-violet)] transition-colors hover:bg-[var(--color-violet)]/15 hover:text-[var(--color-violet)]/80">
                             {eip}
-                          </span>
+                          </a>
                         ))}
                       </div>
                     </div>
@@ -217,14 +217,14 @@ export default function OlympiaHubPage() {
                 {
                   title: 'Gas & State Access',
                   color: 'var(--color-info)',
-                  eips: ['EIP-7702', 'EIP-7623', 'EIP-7825', 'EIP-7883', 'EIP-7935'],
-                  description: 'Account delegation, cheaper calldata, gas limit enforcement, opcode repricing, and jumpdest removal. Reduces transaction costs and enables smart account patterns without protocol changes.',
+                  eips: ['EIP-7623', 'EIP-7702', 'EIP-7823', 'EIP-7825', 'EIP-7883', 'EIP-7935'],
+                  description: 'Account delegation, cheaper calldata, gas limit enforcement, MODEXP input bounds, opcode repricing, and jumpdest removal. Reduces transaction costs and enables smart account patterns without protocol changes.',
                 },
                 {
                   title: 'EVM Safety',
                   color: 'var(--color-warning)',
-                  eips: ['EIP-6780', 'EIP-7934', 'EIP-7910'],
-                  description: 'SELFDESTRUCT restricted to deployment context, stack size enforcement, and call target constraints. Makes contract behavior more predictable and reduces attack surface.',
+                  eips: ['EIP-6780', 'EIP-7642', 'EIP-7910', 'EIP-7934'],
+                  description: 'SELFDESTRUCT restricted to deployment context, eth/69 wire protocol with simplified receipts and history serving, block size limits, and RPC config method. Makes contract behavior more predictable and reduces attack surface.',
                 },
                 {
                   title: 'Cryptographic Precompiles',
@@ -235,8 +235,8 @@ export default function OlympiaHubPage() {
                 {
                   title: 'Execution Context',
                   color: 'var(--brand-green)',
-                  eips: ['EIP-5656', 'EIP-2935', 'EIP-1153'],
-                  description: 'MCOPY for efficient memory operations, historical block hashes in state, transient storage TSTORE/TLOAD. Unlocks reentrancy guards, flash loans, and cross-contract patterns without persistent storage.',
+                  eips: ['EIP-1153', 'EIP-2935', 'EIP-5656', 'EIP-7939'],
+                  description: 'MCOPY for efficient memory operations, CLZ opcode for leading-zero counting, historical block hashes in state, and transient storage TSTORE/TLOAD. Unlocks reentrancy guards, flash loans, and cross-contract patterns without persistent storage.',
                 },
               ].map((cat) => (
                 <div
@@ -249,9 +249,9 @@ export default function OlympiaHubPage() {
                   </div>
                   <div className="mb-3 flex flex-wrap gap-1">
                     {cat.eips.map((eip) => (
-                      <span key={eip} className="rounded-sm border border-[var(--border)] bg-[var(--background)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-text-muted)]">
+                      <a key={eip} href={`https://eips.ethereum.org/EIPS/${eip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="rounded bg-[var(--color-violet-bg)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-violet)] transition-colors hover:bg-[var(--color-violet)]/15 hover:text-[var(--color-violet)]/80">
                         {eip}
-                      </span>
+                      </a>
                     ))}
                   </div>
                   <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{cat.description}</p>

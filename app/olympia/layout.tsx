@@ -41,6 +41,12 @@ export const metadata: Metadata = {
     'MCOPY',
     'EIP-5656',
     'London hard fork ETC',
+    'EIP-7823',
+    'EIP-7642',
+    'eth/69',
+    'EIP-7939',
+    'CLZ opcode',
+    'Fusaka',
   ],
   openGraph: {
     title:
