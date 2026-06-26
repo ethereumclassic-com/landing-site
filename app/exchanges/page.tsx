@@ -205,7 +205,7 @@ export default function ExchangeDirectoryPage() {
               <Link
                 key={filter.href}
                 href={filter.href}
-                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm text-[var(--background)] transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 <span>{filter.icon}</span>
                 {filter.label}
@@ -542,7 +542,7 @@ export default function ExchangeDirectoryPage() {
                             className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                               isDEX
                                 ? 'bg-[var(--color-primary)] text-[var(--background)] hover:bg-[var(--color-primary-hover)]'
-                                : 'border border-[var(--border)] bg-[var(--bg)] text-[var(--background)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
+                                : 'border border-[var(--border)] bg-[var(--bg)] text-[var(--text-primary)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
                             }`}
                           >
                             Trade
@@ -675,7 +675,7 @@ export default function ExchangeDirectoryPage() {
               </a>
               <Link
                 href="/buy"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 Buy ETC Guide
                 <ChevronRightIcon />

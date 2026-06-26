@@ -233,7 +233,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
           className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
             isHardware
               ? 'bg-[var(--color-success)] text-[var(--text-primary)] hover:bg-green-600'
-              : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--background)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
+              : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
           }`}
         >
           <span className="hidden sm:inline">Visit</span>

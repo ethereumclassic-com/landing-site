@@ -173,7 +173,7 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
         href={wallet.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--color-bg-primary)] py-2 text-sm font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--color-bg-primary)] py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
       >
         Visit Website
         <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -285,7 +285,7 @@ export default function ComparePage() {
                 className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                   filterType === type
                     ? 'bg-[var(--color-primary)] text-[var(--background)]'
-                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--background)]'
+                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--text-primary)]'
                 }`}
               >
                 {type === 'all' ? 'All' : type}
@@ -469,7 +469,7 @@ export default function ComparePage() {
               </Link>
               <Link
                 href="/wallet/metamask"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
                 MetaMask Setup
               </Link>
