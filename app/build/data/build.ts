@@ -107,6 +107,7 @@ export interface NodeClient {
   installCommand?: string
   configNotes?: string
   securityAdvisories?: SecurityAdvisory[]
+  securityAuditUrl?: string
 }
 
 // Execution Client Plugins (Post-Olympia Roadmap)
@@ -149,7 +150,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://github.com/ethereumclassic/core-geth',
     github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'Maintained — Established go-ethereum fork with all known security patches applied for the Olympia transition. Maintained through the upgrade period as the network transitions to Fukuii as the primary client.',
+      'Sunset after Olympia — Entered maintenance mode December 2024. Six CVEs patched in v1.13.0 (the final release series) by White B0x. The network is carried forward through the Olympia upgrade for continuity, after which this client is sunset. Migrate to Fukuii.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
@@ -159,7 +160,7 @@ export const nodeClients: NodeClient[] = [
       'Built-in mining support',
       'MEV-free transaction ordering',
     ],
-    status: 'active',
+    status: 'maintained',
     role: 'maintained',
     recommended: false,
     installCommand: 'docker pull ghcr.io/ethereumclassic/core-geth:latest',
@@ -167,36 +168,49 @@ export const nodeClients: NodeClient[] = [
       'Use --classic flag for ETC mainnet, --mordor for testnet',
     securityAdvisories: [
       {
-        cve: 'CVE-2026-26314',
+        cve: 'CVE-2026-26313',
         severity: 'High',
-        description: 'secp256k1 coordinate validation — invalid curve points accepted in P2P handshake.',
-        commit: '21f515da2',
+        description: 'P2P RLP item count memory exhaustion — crafted message header crashes node via OOM. Remote, no auth required.',
+        commit: '5d0cb8b34',
       },
       {
         cve: 'CVE-2026-22862',
         severity: 'High',
-        description: 'ECIES decrypt length overflow — crafted messages can cause out-of-bounds reads.',
-        commit: '9dc4fadf3',
+        description: 'ECIES decrypt length undercheck (off-by-15) — undersized RLPx auth payload causes out-of-bounds read and remote crash.',
+        commit: 'dc73f2e4f',
       },
       {
         cve: 'CVE-2026-26315',
-        severity: 'Moderate',
-        description: 'ECIES GenerateShared invalid-curve attack — missing validation allows key recovery.',
-        commit: 'c9fc287b8',
+        severity: 'High',
+        description: 'ECIES GenerateShared missing public key validation — MAC-oracle attack can leak P2P node key bits via repeated unauthenticated handshakes.',
+        commit: '2d3528803',
+      },
+      {
+        cve: 'CVE-2026-26314',
+        severity: 'High',
+        description: 'secp256k1 IsOnCurve field boundary bypass — out-of-field coordinates satisfy the naive curve equation and pass the validity gate.',
+        commit: '2d3528803',
       },
       {
         cve: 'CVE-2025-24883',
-        severity: 'Moderate',
-        description: 'UnmarshalPubkey missing curve check — unvalidated public keys accepted.',
-        commit: 'c62b31054',
+        severity: 'High',
+        description: 'UnmarshalPubkey missing IsOnCurve check — off-curve secp256k1 points pass deserialization and corrupt downstream crypto operations.',
+        commit: '8e40b7e41',
       },
       {
-        cve: 'DEPS',
-        severity: 'High',
-        description: 'golang.org/x/crypto and x/net dependency updates for known vulnerabilities.',
-        commit: 'ac56a1cc9',
+        cve: 'CVE-2026-22868',
+        severity: 'Moderate',
+        description: 'KZG blob proof DoS — invalid proofs trigger full expensive verification without peer disconnect, enabling sustained CPU exhaustion.',
+        commit: '1419c5310',
+      },
+      {
+        cve: 'GraphQL Depth DoS',
+        severity: 'Moderate',
+        description: 'No query depth limit on the --graphql endpoint; graphql-go v1.3.0 MaxDepth bug made the limit non-functional even when set.',
+        commit: '6c2d383fa',
       },
     ],
+    securityAuditUrl: '/build/clients/core-geth-security-audit',
   },
   {
     id: 'hyperledger-besu',

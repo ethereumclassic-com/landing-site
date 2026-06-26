@@ -83,7 +83,7 @@ function BackLink() {
   )
 }
 
-function SecuritySection({ advisories }: { advisories: SecurityAdvisory[] }) {
+function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisory[]; auditUrl?: string }) {
   return (
     <section className="px-6 pb-12 md:px-10 lg:px-12">
       <div className="mx-auto max-w-6xl space-y-4">
@@ -155,6 +155,19 @@ function SecuritySection({ advisories }: { advisories: SecurityAdvisory[] }) {
             <code className="text-[var(--color-primary)]">rm {'<datadir>'}/geth/nodekey</code>
           </div>
         </div>
+
+        {/* Full audit link */}
+        {auditUrl && (
+          <div className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-3">
+            <span className="text-sm text-[var(--color-text-muted)]">Full security audit — CVE details, risk assessment, methodology</span>
+            <Link
+              href={auditUrl}
+              className="ml-4 shrink-0 text-sm font-medium text-[var(--color-primary)] transition hover:text-[var(--color-primary)]/80"
+            >
+              View audit →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
@@ -341,6 +354,20 @@ function NodeClientPage({ client }: { client: NodeClient }) {
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
                 {client.description}
               </p>
+              {client.id === 'core-geth' && (
+                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3 text-sm">
+                  <span className="text-[var(--color-warning)] font-medium">⚠ Sunset after Olympia</span>
+                  <span className="text-[var(--color-text-muted)]">Maintenance mode since December 2024 · v1.13.x final series</span>
+                  <Link
+                    href="https://fukuii.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-[var(--color-primary)] hover:underline"
+                  >
+                    Migrate to Fukuii →
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -420,7 +447,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
 
       {/* Security advisories — Core-Geth only */}
       {client.securityAdvisories && client.securityAdvisories.length > 0 && (
-        <SecuritySection advisories={client.securityAdvisories} />
+        <SecuritySection advisories={client.securityAdvisories} auditUrl={client.securityAuditUrl} />
       )}
 
       {/* Installation */}

@@ -186,6 +186,29 @@ export default function ClientsPage() {
                     </div>
                     <p className="mb-4 text-[var(--color-text-muted)]">{client.description}</p>
 
+                    {/* Sunset / security notice */}
+                    {client.securityAuditUrl && (
+                      <div className="mb-4 flex items-center justify-between rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3">
+                        <span className="text-sm text-[var(--color-text-muted)]">
+                          Maintenance mode since Dec 2024 · 6 CVEs patched in v1.13.0 · Migrate to{' '}
+                          <a
+                            href="https://fukuii.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-[var(--color-primary)] hover:underline"
+                          >
+                            Fukuii
+                          </a>
+                        </span>
+                        <Link
+                          href={client.securityAuditUrl}
+                          className="ml-4 shrink-0 text-sm font-medium text-[var(--color-warning)] transition hover:underline"
+                        >
+                          Security audit →
+                        </Link>
+                      </div>
+                    )}
+
                     {/* Features */}
                     <div className="mb-4">
                       <h4 className="mb-2 text-sm font-semibold text-[var(--text-primary)]">Features</h4>

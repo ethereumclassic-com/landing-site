@@ -164,6 +164,7 @@ const staticRoutes = [
   { path: '/build/docs', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/tools', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/clients', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/build/clients/core-geth-security-audit', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/build/networks', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/faucets', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/build/grants', priority: 0.6, changeFrequency: 'weekly' as const },

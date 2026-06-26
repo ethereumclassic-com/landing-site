@@ -5,6 +5,7 @@ const primaryClient = {
   language: 'Scala',
   description:
     'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. One binary, four networks. The primary ETC client for the Olympia era.',
+  website: 'https://fukuii.com',
   github: 'https://github.com/chippr-robotics/fukuii',
   status: 'Primary',
 }
@@ -68,14 +69,24 @@ export function ClientImplementationsSection() {
             <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
               {primaryClient.description}
             </p>
-            <a
-              href={primaryClient.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center text-sm font-medium text-[var(--brand-green)] transition-colors hover:underline"
-            >
-              View on GitHub →
-            </a>
+            <div className="mt-5 flex items-center gap-4">
+              <a
+                href={primaryClient.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-medium text-[var(--brand-green)] transition-colors hover:underline"
+              >
+                fukuii.com →
+              </a>
+              <a
+                href={primaryClient.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-medium text-[var(--text-muted)] transition-colors hover:underline"
+              >
+                GitHub →
+              </a>
+            </div>
           </div>
         </FadeIn>
 
