@@ -143,7 +143,7 @@ const navItems: {
       { type: 'separator', label: 'Infrastructure' },
       { href: '/olympia/clients', label: 'Clients' },
       { href: '/upgrades', label: 'Network Upgrades' },
-      { href: '/olympia/security', label: 'Security' },
+      { href: '/olympia/security', label: 'Core-Geth Security' },
     ],
   },
 ]
@@ -241,7 +241,7 @@ const mobileNavGroups: {
       { href: '/olympia/history', label: 'A Decade of Conviction' },
       { href: '/olympia/governance', label: 'Governance' },
       { href: '/olympia/miners', label: 'Miners & Fees' },
-      { href: '/olympia/security', label: 'Security' },
+      { href: '/olympia/security', label: 'Core-Geth Security' },
       { href: '/upgrades', label: 'Network Upgrades' },
       { href: '/olympia/clients', label: 'Clients' },
     ],
