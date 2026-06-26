@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import Script from 'next/script'
 
@@ -156,22 +157,36 @@ const riskColors: Record<RiskItem['risk'], string> = {
   Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
 }
 
-const missedSignals = [
+interface MissedSignal {
+  ref: string
+  date: string
+  url: string
+  state: string
+  title: string
+  significance: ReactNode
+}
+
+interface StructuralFailure {
+  title: string
+  detail: ReactNode
+}
+
+const missedSignals: MissedSignal[] = [
   { ref: '#292', date: 'Jan 2021', url: 'https://github.com/etclabscore/core-geth/issues/292', state: 'OPEN — never implemented', title: 'geth version-check to surface CVE advisories', significance: 'Filed by one of the core maintainers five years before the attack: add CVE tracking to version-check. Had it been implemented, the 2025–2026 advisories would have surfaced in every node operator\'s log.' },
   { ref: '#649', date: 'Nov 2024', url: 'https://github.com/etclabscore/core-geth/pull/649', state: 'OPEN — never merged', title: 'Merge go-ethereum v1.14', significance: 'Community maintainer prepared a full v1.14 merge, noted it was "ready for merge." Remained open through the March 2026 emergency.' },
   { ref: '#662', date: 'Jan 2025', url: 'https://github.com/etclabscore/core-geth/pull/662', state: 'CLOSED without merge', title: 'Dependabot: bump golang.org/x/crypto 0.17→0.31', significance: 'Automated tooling upgraded the exact dependency affected by CVE-2026-22862 — later exploited in production. Auto-closed when a newer version superseded it. No human reviewed it.' },
   { ref: '#683', date: 'Jun 2025', url: 'https://github.com/etclabscore/core-geth/pull/683', state: 'CLOSED without merge', title: 'Support go 1.24 — includes CVE-2025-24883 fix', significance: 'Community member @tornadocontrib explicitly referenced CVE-2025-24883 with a link to the advisory. Available for 9 months before the attack. Closed when contributor deleted their fork. No review, no response.' },
   { ref: '#685', date: 'Aug 2025', url: 'https://github.com/etclabscore/core-geth/pull/685', state: 'OPEN — never merged', title: 'Automated: remove unresponsive bootnodes', significance: 'Bootnode health check flagged deployed ETC bootnodes as unresponsive — some already experiencing intermittent crash-loops from early exploit probing.' },
   { ref: '#692', date: 'Feb 2026', url: 'https://github.com/etclabscore/core-geth/issues/692', state: 'CLOSED — no response for 42 days', title: 'Security vulnerabilities in go-ethereum affecting core-geth', significance: 'Ledger security researcher publicly disclosed CVE-2025-24883, CVE-2026-22862, and CVE-2026-22868 on 4 February 2026. First maintainer response: 18 March 2026 — the day the attack began.' },
-  { ref: '#694', date: '18 Mar 2026', url: 'https://github.com/etclabscore/core-geth/pull/694', state: 'MERGED — 5 hours after opening', title: 'Release v1.12.21 ("Aegis") — emergency ECIES patch', significance: 'Forced by active attack on bootnodes ams3 and sfo3. First code activity from @diega in 14 months. Three additional CVEs remained unaddressed.' },
+  { ref: '#694', date: '18 Mar 2026', url: 'https://github.com/etclabscore/core-geth/pull/694', state: 'MERGED — 5 hours after opening', title: 'Release v1.12.21 ("Aegis") — emergency ECIES patch', significance: <>Forced by active attack on bootnodes ams3 and sfo3. First code activity from <a href="https://github.com/diega" target="_blank" rel="noopener noreferrer">@diega</a> in 14 months. Three additional CVEs remained unaddressed.</> },
   { ref: '#696', date: '28 Mar 2026', url: 'https://github.com/etclabscore/core-geth/pull/696', state: 'MERGED — 1 minute after opening', title: 'Release v1.12.22 ("Hermes") — remaining CVE backports', significance: 'Merged in 60 seconds with no pre-merge review. Drawn from White B0x work publicly available since 20–21 March without attribution. Go 1.21 EOL toolchain left unchanged.' },
   { ref: '#697', date: 'Apr 2026', url: 'https://github.com/etclabscore/core-geth/issues/697', state: 'OPEN — unresolved', title: 'Incorrect RPC eth_syncing response with v1.12.22', significance: 'Regression introduced by the rushed v1.12.22: highestBlock reported incorrectly. Services relying on eth_syncing for sync status receive wrong data.' },
 ]
 
-const structuralFailures = [
+const structuralFailures: StructuralFailure[] = [
   { title: 'No CVE Tracking Infrastructure', detail: 'Issue #292 (2021) requested built-in CVE tracking in version-check. Never implemented. Operators had no automated signal that their client was exposed — they had to independently monitor the go-ethereum advisory database.' },
   { title: 'Automated Security PRs Unreviewed', detail: 'Dependabot filed security bump PRs for golang.org/x/crypto and golang.org/x/net across January–April 2025, all unreviewed or auto-closed. PR #683 explicitly cited CVE-2025-24883 by name and was ignored for 9 months.' },
-  { title: 'Single Point of Human Authority', detail: '@diega was the only person with merge access willing to cut releases. One community maintainer had a ready-to-merge PR (#649) but no merge rights. No governance path for security-critical changes without a non-reviewing approver.' },
+  { title: 'Single Point of Human Authority', detail: <><a href="https://github.com/diega" target="_blank" rel="noopener noreferrer">@diega</a> was the only person with merge access willing to cut releases. One community maintainer had a ready-to-merge PR (#649) but no merge rights. No governance path for security-critical changes without a non-reviewing approver.</> },
   { title: 'Go Toolchain Lock-in', detail: 'The fjl/memsize dependency was incompatible with Go 1.22+, locking the client to Go 1.21 (EOL August 2024). Three community PRs attempted partial fixes. The lock-in was known; it was not prioritised until it became a crisis.' },
   { title: 'Emergency Releases without Pre-release Testing', detail: 'v1.12.21 was cut 5 hours after the PR opened; v1.12.22 was merged in 60 seconds. The rushed process introduced the eth_syncing regression (issue #697, still open).' },
 ]
@@ -593,8 +608,8 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
               <ul>
                 <li><strong>ETC-native from inception</strong> — Not a fork of go-ethereum. Does not share the Go toolchain, the go-ethereum P2P stack, or any of the code paths that were vulnerable in Core-Geth.</li>
                 <li><strong>Built on Scala 3 / Apache Pekko</strong> — a modern, type-safe stack with actor-based concurrency designed for long-term maintainability.</li>
-                <li><strong>Primary maintainer: <a href="https://chippr-robotics.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">Chippr Robotics</a></strong> — the core development team responsible for Fukuii&apos;s ongoing protocol implementation, security maintenance, and Olympia readiness.</li>
-                <li><strong>Security work by <a href="https://whiteb0x.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">White B0x</a></strong> — one of the active teams building Fukuii. White B0x authored the Core-Geth v1.13.0 security patches (all CVEs, Go 1.26 upgrade, Olympia alignment) as part of the cross-client validation that Fukuii&apos;s development requires. The same team that found and fixed the vulnerabilities is building the client that replaces Core-Geth.</li>
+                <li><strong>Primary maintainer: <a href="https://chipprbots.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">Chippr Robotics</a></strong> — the core development team responsible for Fukuii&apos;s ongoing protocol implementation, security maintenance, and Olympia readiness.</li>
+                <li><strong>Security work by <a href="https://whiteb0x.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">White B0x</a></strong> (<a href="https://github.com/white-b0x" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">github.com/white-b0x</a>) — one of the active teams building Fukuii. White B0x authored the Core-Geth v1.13.0 security patches (all CVEs, Go 1.26 upgrade, Olympia alignment) as part of the cross-client validation that Fukuii&apos;s development requires. The same team that found and fixed the vulnerabilities is building the client that replaces Core-Geth.</li>
                 <li><strong>Olympia-ready</strong> — Fukuii is the lead implementation for the Olympia hard fork (ECIP-1111/1112/1121/1122). Core-Geth v1.13.0 and Besu (ETC overlay) serve as cross-client validation references; Fukuii is the production target.</li>
                 <li><strong>Protocol-funded maintenance</strong> — ECIP-1112 establishes a protocol treasury funded by Olympia&apos;s EIP-1559 basefee revenue, providing Fukuii&apos;s ongoing development with a maintenance path that is not dependent on any single corporate entity.</li>
               </ul>
@@ -762,7 +777,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
                     href="https://github.com/etclabscore/core-geth"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--color-error)]"
+                    className="!text-[var(--color-error)]"
                   >
                     etclabscore/core-geth — upstream (unmaintained since June 2024)
                   </a>

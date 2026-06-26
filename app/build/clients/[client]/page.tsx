@@ -88,15 +88,15 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
     <section className="px-6 pb-12 md:px-10 lg:px-12">
       <div className="mx-auto max-w-6xl space-y-4">
         {/* Warning banner */}
-        <div className="rounded-xl border border-red-500/30 bg-red-500/5 p-5">
+        <div className="rounded-xl border border-[var(--color-error)]/30 bg-[var(--color-error)]/5 p-5">
           <div className="flex items-start gap-3">
-            <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
             </svg>
             <div className="flex-1">
-              <h3 className="font-semibold text-red-400">Security Notice — etclabscore Fork</h3>
+              <h3 className="font-semibold text-[var(--color-error)]">Security Notice — etclabscore Fork</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                The <code className="rounded bg-red-500/10 px-1 font-mono text-red-300">etclabscore/core-geth</code> fork is unmaintained and does not include the security patches listed below. If you are running that version,{' '}
+                The <code className="rounded bg-[var(--color-error)]/10 px-1 font-mono text-[var(--color-error)]">etclabscore/core-geth</code> fork is unmaintained and does not include the security patches listed below. If you are running that version,{' '}
                 <strong className="text-[var(--text-primary)]">upgrade immediately</strong> to{' '}
                 <a
                   href="https://github.com/ethereumclassic/core-geth"
@@ -112,7 +112,7 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
                 href="https://github.com/ethereumclassic/core-geth/releases"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-2 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
+                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 px-4 py-2 text-sm font-medium text-[var(--color-error)] transition hover:bg-[var(--color-error)]/20"
               >
                 Get Patched Version →
               </a>
