@@ -177,8 +177,8 @@ export default function CoreGethSecurityAuditPage() {
           </h1>
 
           <p className="mt-3 text-[var(--color-text-secondary)]">
-            Six unpatched CVEs and a 21-month maintenance gap discovered during Fukuii cross-client
-            testing for the Olympia upgrade. The upstream client at{' '}
+            Six unpatched CVEs and a 21-month maintenance gap discovered during Olympia upgrade
+            preparation. The upstream client at{' '}
             <a
               href="https://github.com/etclabscore/core-geth"
               target="_blank"
@@ -238,10 +238,11 @@ export default function CoreGethSecurityAuditPage() {
             <div>
               <h2>How This Was Found</h2>
               <p>
-                While building Fukuii and conducting cross-client interoperability testing for the
-                Olympia upgrade, core developers ran compatibility tests against the upstream
-                Core-Geth release available to node operators. The testing process confirmed what
-                the commit history showed: the{' '}
+                During Olympia upgrade preparation, the ETC core team needed Core-Geth as a
+                reference client alongside Besu and Nethermind — both carrying ETC overlays for
+                cross-client testing but not recommended for production. Core-Geth was the only
+                existing ETC client at the time. That work confirmed what the commit history showed:
+                the{' '}
                 <a
                   href="https://github.com/etclabscore/core-geth"
                   target="_blank"
@@ -572,15 +573,17 @@ export default function CoreGethSecurityAuditPage() {
             <div>
               <h2>Methodology</h2>
               <p>
-                These findings emerged from cross-client interoperability testing conducted during
-                Fukuii development and Olympia upgrade preparation. The etclabscore/core-geth
-                codebase at v1.12.20 was assessed against the go-ethereum GitHub Security
-                Advisory database and the Go vulnerability database (vuln.go.dev). Each advisory
-                was verified for applicability to core-geth&apos;s shared codebase and manually
-                ported or cherry-picked where upstream structural differences prevented a clean
-                merge. All patches were validated through Mordor testnet deployment and automated
-                test suites across all three Olympia client implementations (Fukuii, Core-Geth,
-                Besu).
+                These findings emerged from Olympia upgrade preparation. Core-Geth was required as
+                a reference client alongside Besu and Nethermind, both of which carry ETC overlays
+                for cross-client testing and are not recommended for production use. Fukuii is the
+                only ETC-native production client and is built on Scala 3 / Pekko — it does not
+                share the Go toolchain. The etclabscore/core-geth codebase at v1.12.20 was assessed
+                against the go-ethereum GitHub Security Advisory database and the Go vulnerability
+                database (vuln.go.dev). Each advisory was verified for applicability to core-geth's
+                shared codebase and manually ported or cherry-picked where upstream structural
+                differences prevented a clean merge. All patches were validated through Mordor
+                testnet deployment and automated test suites across the Olympia reference client set
+                (Core-Geth, Besu, Nethermind).
               </p>
             </div>
 

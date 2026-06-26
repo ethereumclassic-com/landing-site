@@ -149,8 +149,7 @@ export default function SecurityPage() {
           </h1>
 
           <p className="mt-3 text-[var(--color-text-secondary)]">
-            Security vulnerabilities discovered during Fukuii development and Olympia cross-client
-            testing. Core developers found a 21-month maintenance gap in upstream Core-Geth — the
+            Security vulnerabilities discovered during Olympia upgrade preparation. Core developers found a 21-month maintenance gap in upstream Core-Geth — the
             longest in the network&apos;s history — and brought the client forward under{' '}
             <a
               href="https://github.com/ethereumclassic/core-geth"
@@ -183,9 +182,10 @@ export default function SecurityPage() {
             <div>
               <h2>How This Was Found</h2>
               <p>
-                While building Fukuii and conducting cross-client interoperability testing for the
-                Olympia upgrade, core developers ran compatibility tests against the upstream Core-Geth
-                release available to node operators. The testing process confirmed what the commit history
+                During Olympia upgrade preparation, the ETC core team needed to validate Core-Geth
+                as a reference client alongside Besu and Nethermind — both carrying ETC overlays
+                for cross-client testing but not recommended for production. Core-Geth was the only
+                existing ETC client at the time. That process confirmed what the commit history
                 showed: upstream Core-Geth at{' '}
                 <a href="https://github.com/etclabscore/core-geth" target="_blank" rel="noopener noreferrer">
                   etclabscore/core-geth
@@ -279,9 +279,8 @@ export default function SecurityPage() {
                 for this period.
               </p>
               <p>
-                Cross-client testing for Olympia surfaced this directly: Fukuii required Go 1.26 for
-                build compatibility, which made the toolchain gap between the two clients immediately
-                visible. Core-Geth v1.13.0 at{' '}
+                The toolchain gap was surfaced during Olympia reference client alignment work.
+                Core-Geth v1.13.0 at{' '}
                 <a
                   href="https://github.com/ethereumclassic/core-geth"
                   target="_blank"
@@ -453,15 +452,19 @@ export default function SecurityPage() {
             <div>
               <h2>Methodology</h2>
               <p>
-                These findings emerged from cross-client compatibility work conducted during Fukuii
-                development and Olympia upgrade preparation. Validation included reviewing the upstream
-                go-ethereum security advisories (GitHub Advisory Database), the Go vulnerability database
-                (vuln.go.dev), and the Core-Geth commit history from June 2024 through March 2026. Each
-                CVE was verified against the etclabscore/core-geth v1.12.20 codebase to confirm applicability to Ethereum Classic.
+                These findings emerged from Olympia upgrade preparation work. Core-Geth was required
+                as a reference client alongside Besu and Nethermind (both running ETC overlays for
+                cross-client testing). Validation included reviewing the upstream go-ethereum security
+                advisories (GitHub Advisory Database), the Go vulnerability database (vuln.go.dev),
+                and the Core-Geth commit history from June 2024 through March 2026. Each CVE was
+                verified against the etclabscore/core-geth v1.12.20 codebase to confirm applicability
+                to Ethereum Classic.
               </p>
               <p>
                 Core-Geth v1.13.0 was validated through Mordor testnet deployment, cross-client genesis
-                hash verification, and automated test suites across all three Olympia client implementations.
+                hash verification, and automated test suites across the Olympia reference client set
+                (Core-Geth, Besu, Nethermind). Fukuii is the only ETC-native production client and is
+                built on Scala 3 / Pekko — it does not share the Go toolchain.
               </p>
             </div>
 
