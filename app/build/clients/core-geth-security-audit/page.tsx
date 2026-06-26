@@ -1,4 +1,21 @@
 import Link from 'next/link'
+import Script from 'next/script'
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'Core-Geth v1.12.2x Security Audit — Migrate to Fukuii',
+  description:
+    'Six unpatched CVEs in etclabscore/core-geth v1.12.x, a 21-month maintenance gap, and an active network attack on ETC mainnet bootnodes in March 2026.',
+  datePublished: '2026-03-01',
+  dateModified: '2026-06-26',
+  author: { '@type': 'Organization', name: 'White B0x', url: 'https://whiteb0x.com' },
+  publisher: { '@type': 'Organization', name: 'Ethereum Classic', url: 'https://ethereumclassic.com' },
+  about: [
+    { '@type': 'SoftwareApplication', name: 'Core-Geth', url: 'https://github.com/ethereumclassic/core-geth' },
+    { '@type': 'SoftwareApplication', name: 'Fukuii', url: 'https://fukuii.com' },
+  ],
+}
 
 interface CVE {
   id: string
@@ -139,8 +156,34 @@ const riskColors: Record<RiskItem['risk'], string> = {
   Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
 }
 
+const missedSignals = [
+  { ref: '#292', date: 'Jan 2021', url: 'https://github.com/etclabscore/core-geth/issues/292', state: 'OPEN — never implemented', title: 'geth version-check to surface CVE advisories', significance: 'Filed by one of the core maintainers five years before the attack: add CVE tracking to version-check. Had it been implemented, the 2025–2026 advisories would have surfaced in every node operator\'s log.' },
+  { ref: '#649', date: 'Nov 2024', url: 'https://github.com/etclabscore/core-geth/pull/649', state: 'OPEN — never merged', title: 'Merge go-ethereum v1.14', significance: 'Community maintainer prepared a full v1.14 merge, noted it was "ready for merge." Remained open through the March 2026 emergency.' },
+  { ref: '#662', date: 'Jan 2025', url: 'https://github.com/etclabscore/core-geth/pull/662', state: 'CLOSED without merge', title: 'Dependabot: bump golang.org/x/crypto 0.17→0.31', significance: 'Automated tooling upgraded the exact dependency affected by CVE-2026-22862 — later exploited in production. Auto-closed when a newer version superseded it. No human reviewed it.' },
+  { ref: '#683', date: 'Jun 2025', url: 'https://github.com/etclabscore/core-geth/pull/683', state: 'CLOSED without merge', title: 'Support go 1.24 — includes CVE-2025-24883 fix', significance: 'Community member @tornadocontrib explicitly referenced CVE-2025-24883 with a link to the advisory. Available for 9 months before the attack. Closed when contributor deleted their fork. No review, no response.' },
+  { ref: '#685', date: 'Aug 2025', url: 'https://github.com/etclabscore/core-geth/pull/685', state: 'OPEN — never merged', title: 'Automated: remove unresponsive bootnodes', significance: 'Bootnode health check flagged deployed ETC bootnodes as unresponsive — some already experiencing intermittent crash-loops from early exploit probing.' },
+  { ref: '#692', date: 'Feb 2026', url: 'https://github.com/etclabscore/core-geth/issues/692', state: 'CLOSED — no response for 42 days', title: 'Security vulnerabilities in go-ethereum affecting core-geth', significance: 'Ledger security researcher publicly disclosed CVE-2025-24883, CVE-2026-22862, and CVE-2026-22868 on 4 February 2026. First maintainer response: 18 March 2026 — the day the attack began.' },
+  { ref: '#694', date: '18 Mar 2026', url: 'https://github.com/etclabscore/core-geth/pull/694', state: 'MERGED — 5 hours after opening', title: 'Release v1.12.21 ("Aegis") — emergency ECIES patch', significance: 'Forced by active attack on bootnodes ams3 and sfo3. First code activity from @diega in 14 months. Three additional CVEs remained unaddressed.' },
+  { ref: '#696', date: '28 Mar 2026', url: 'https://github.com/etclabscore/core-geth/pull/696', state: 'MERGED — 1 minute after opening', title: 'Release v1.12.22 ("Hermes") — remaining CVE backports', significance: 'Merged in 60 seconds with no pre-merge review. Drawn from White B0x work publicly available since 20–21 March without attribution. Go 1.21 EOL toolchain left unchanged.' },
+  { ref: '#697', date: 'Apr 2026', url: 'https://github.com/etclabscore/core-geth/issues/697', state: 'OPEN — unresolved', title: 'Incorrect RPC eth_syncing response with v1.12.22', significance: 'Regression introduced by the rushed v1.12.22: highestBlock reported incorrectly. Services relying on eth_syncing for sync status receive wrong data.' },
+]
+
+const structuralFailures = [
+  { title: 'No CVE Tracking Infrastructure', detail: 'Issue #292 (2021) requested built-in CVE tracking in version-check. Never implemented. Operators had no automated signal that their client was exposed — they had to independently monitor the go-ethereum advisory database.' },
+  { title: 'Automated Security PRs Unreviewed', detail: 'Dependabot filed security bump PRs for golang.org/x/crypto and golang.org/x/net across January–April 2025, all unreviewed or auto-closed. PR #683 explicitly cited CVE-2025-24883 by name and was ignored for 9 months.' },
+  { title: 'Single Point of Human Authority', detail: '@diega was the only person with merge access willing to cut releases. One community maintainer had a ready-to-merge PR (#649) but no merge rights. No governance path for security-critical changes without a non-reviewing approver.' },
+  { title: 'Go Toolchain Lock-in', detail: 'The fjl/memsize dependency was incompatible with Go 1.22+, locking the client to Go 1.21 (EOL August 2024). Three community PRs attempted partial fixes. The lock-in was known; it was not prioritised until it became a crisis.' },
+  { title: 'Emergency Releases without Pre-release Testing', detail: 'v1.12.21 was cut 5 hours after the PR opened; v1.12.22 was merged in 60 seconds. The rushed process introduced the eth_syncing regression (issue #697, still open).' },
+]
+
 export default function CoreGethSecurityAuditPage() {
   return (
+    <>
+      <Script
+        id="core-geth-security-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <main className="min-h-screen">
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
@@ -173,7 +216,7 @@ export default function CoreGethSecurityAuditPage() {
           </div>
 
           <h1 className="mt-3 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl lg:text-4xl">
-            Core-Geth Security Audit
+            Core-Geth v1.12.2x Security Audit
           </h1>
 
           <p className="mt-3 text-[var(--color-text-secondary)]">
@@ -448,6 +491,119 @@ export default function CoreGethSecurityAuditPage() {
               </div>
             </div>
 
+            {/* March 2026 Attack */}
+            <div>
+              <h2>The March 2026 Attack</h2>
+              <p>
+                On 18 March 2026, CVE-2026-22862 was actively exploited against the ETC mainnet
+                classic bootnodes <strong>ams3</strong> and <strong>sfo3</strong>. Malicious P2P
+                traffic sent crafted <code>auth</code> messages with undersized ECIES payloads,
+                crashing each node on inbound handshake attempts. Because the crash occurred in{' '}
+                <code>listenLoop</code>, the node process exited and restarted under the service
+                manager — only to crash again on the next malicious connection, producing an
+                automated crash-loop. Bootnode <strong>sfo3</strong> accumulated{' '}
+                <strong>805+ restart cycles</strong> on v1.12.20 before the patch was deployed.
+              </p>
+              <div className="rounded-lg bg-[var(--panel)] border border-[var(--border)] p-4 font-mono text-xs text-[var(--color-text-secondary)] overflow-x-auto">
+                <pre>{`panic: runtime error: makeslice: len out of range
+
+goroutine 42797 [running]:
+github.com/ethereum/go-ethereum/crypto/ecies.symDecrypt(...)
+        crypto/ecies/ecies.go:224
+github.com/ethereum/go-ethereum/crypto/ecies.(*PrivateKey).Decrypt(...)
+        crypto/ecies/ecies.go:322
+github.com/ethereum/go-ethereum/p2p/rlpx.(*handshakeState).readMsg(...)
+        p2p/rlpx/rlpx.go:612
+github.com/ethereum/go-ethereum/p2p/rlpx.(*handshakeState).runRecipient(...)
+        p2p/rlpx/rlpx.go:415
+github.com/ethereum/go-ethereum/p2p/rlpx.(*Conn).Handshake(...)
+        p2p/rlpx/rlpx.go:308
+github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
+        p2p/server.go:921`}</pre>
+              </div>
+              <p className="mt-3 text-sm text-[var(--color-text-muted)]">
+                Stack trace from{' '}
+                <a href="https://github.com/etclabscore/core-geth/issues/692" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">
+                  issue #692
+                </a>
+                . PR{' '}
+                <a href="https://github.com/etclabscore/core-geth/pull/694" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">
+                  #694
+                </a>{' '}
+                (v1.12.21) was opened and merged in 5 hours — the first code activity from the upstream
+                maintainer in 14 months.
+              </p>
+            </div>
+
+            {/* Postmortem PR trail */}
+            <div>
+              <h2>Postmortem: Public Evidence Trail</h2>
+              <p>
+                The following issues and PRs at{' '}
+                <a href="https://github.com/etclabscore/core-geth" target="_blank" rel="noopener noreferrer">etclabscore/core-geth</a>{' '}
+                form a linkable evidence trail. Each was a missed opportunity to prevent the March 2026 attack.
+              </p>
+              <div className="mt-4 space-y-3">
+                {missedSignals.map((s) => (
+                  <div key={s.ref} className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+                    <div className="flex flex-wrap items-start justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <a href={s.url} target="_blank" rel="noopener noreferrer" className="font-mono text-sm font-semibold text-[var(--color-primary)] hover:opacity-80">{s.ref}</a>
+                        <span className="font-mono text-xs text-[var(--color-text-muted)]">{s.date}</span>
+                      </div>
+                      <span className={`rounded-sm px-2 py-0.5 font-mono text-[10px] font-medium ${
+                        s.state.startsWith('OPEN') || s.state.includes('never')
+                          ? 'bg-[var(--color-error)]/10 text-[var(--color-error)]'
+                          : s.state.startsWith('MERGED')
+                          ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
+                          : 'bg-[var(--color-warning)]/10 text-[var(--color-warning)]'
+                      }`}>{s.state}</span>
+                    </div>
+                    <p className="mt-1 text-sm font-medium text-[var(--text-primary)]">{s.title}</p>
+                    <p className="mt-1 text-sm text-[var(--color-text-secondary)]">{s.significance}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Structural failures */}
+            <div>
+              <h2>Structural Failures</h2>
+              <p>Five independent structural failures — any one of which, if addressed, would have been sufficient to prevent the March 2026 attack.</p>
+              <div className="mt-4 space-y-3">
+                {structuralFailures.map((f, i) => (
+                  <div key={i} className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+                    <p className="font-semibold text-[var(--text-primary)]">{i + 1}. {f.title}</p>
+                    <p className="mt-2 text-sm text-[var(--color-text-secondary)]">{f.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Why Fukuii */}
+            <div>
+              <h2>Why Fukuii Is the ETC Client</h2>
+              <p>
+                The Core-Geth security failure was not a one-off — it was the predictable outcome of a
+                Go-based client built outside the Ethereum Classic ecosystem, maintained under a corporate
+                structure that has since wound down.{' '}
+                <a href="https://fukuii.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--color-primary)]">Fukuii</a>{' '}
+                is the ETC-native execution client built from the ground up for Ethereum Classic:
+              </p>
+              <ul>
+                <li><strong>ETC-native from inception</strong> — Not a fork of go-ethereum. Does not share the Go toolchain, the go-ethereum P2P stack, or any of the code paths that were vulnerable in Core-Geth.</li>
+                <li><strong>Built on Scala 3 / Apache Pekko</strong> — a modern, type-safe stack with actor-based concurrency designed for long-term maintainability.</li>
+                <li><strong>Primary maintainer: <a href="https://chippr-robotics.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">Chippr Robotics</a></strong> — the core development team responsible for Fukuii&apos;s ongoing protocol implementation, security maintenance, and Olympia readiness.</li>
+                <li><strong>Security work by <a href="https://whiteb0x.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)]">White B0x</a></strong> — one of the active teams building Fukuii. White B0x authored the Core-Geth v1.13.0 security patches (all CVEs, Go 1.26 upgrade, Olympia alignment) as part of the cross-client validation that Fukuii&apos;s development requires. The same team that found and fixed the vulnerabilities is building the client that replaces Core-Geth.</li>
+                <li><strong>Olympia-ready</strong> — Fukuii is the lead implementation for the Olympia hard fork (ECIP-1111/1112/1121/1122). Core-Geth v1.13.0 and Besu (ETC overlay) serve as cross-client validation references; Fukuii is the production target.</li>
+                <li><strong>Protocol-funded maintenance</strong> — ECIP-1112 establishes a protocol treasury funded by Olympia&apos;s EIP-1559 basefee revenue, providing Fukuii&apos;s ongoing development with a maintenance path that is not dependent on any single corporate entity.</li>
+              </ul>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a href="https://fukuii.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]">Get Fukuii — ETC Native Client</a>
+                <Link href="/build/clients/fukuii" className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]">Fukuii Client Details →</Link>
+              </div>
+            </div>
+
             {/* Attribution */}
             <div>
               <h2>Prior Maintainers</h2>
@@ -668,5 +824,6 @@ export default function CoreGethSecurityAuditPage() {
         </div>
       </section>
     </main>
+    </>
   )
 }

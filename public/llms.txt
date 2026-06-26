@@ -46,7 +46,7 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 - [Olympia Upgrade](https://ethereumclassic.com/olympia) — Olympia network upgrade hub
 - [Upgrade Your Node](https://ethereumclassic.com/olympia/upgrade) — Client upgrade guides
 - [Miners & Fee Market](https://ethereumclassic.com/olympia/miners) — How EIP-1559 affects miners under Olympia
-- [Olympia Security](https://ethereumclassic.com/olympia/security) — Network security analysis and 51% attack history
+- [Core-Geth v1.12.2x Security Audit](https://ethereumclassic.com/build/clients/core-geth-security-audit) — Six unpatched CVEs in etclabscore/core-geth v1.12.x (21-month maintenance gap, Go 1.21 EOL), actively exploited against ETC mainnet bootnodes March 2026. Full CVE detail, postmortem PR trail, and migration guide. All issues patched in ethereumclassic/core-geth v1.13.0 by White B0x. Migrate to Fukuii — the canonical ETC-native execution client (Scala 3/Pekko, Chippr Robotics).
 - [Olympia Governance](https://ethereumclassic.com/olympia/governance) — Treasury and governance contracts
 - [Fork History](https://ethereumclassic.com/upgrades) — Network upgrade history (Atlantis → Olympia)
 

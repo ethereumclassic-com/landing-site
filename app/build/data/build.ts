@@ -150,7 +150,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://github.com/ethereumclassic/core-geth',
     github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'Sunset after Olympia — Entered maintenance mode December 2024. Six CVEs patched in v1.13.0 (the final release series) by White B0x. The network is carried forward through the Olympia upgrade for continuity, after which this client is sunset. Migrate to Fukuii.',
+      'Bridge release — sunset after Olympia. etclabscore/core-geth v1.12.x was unmaintained June 2024–March 2026 (21 months), accumulating six unpatched CVEs that were actively exploited against ETC mainnet bootnodes. All patched in v1.13.0 by White B0x (ethereumclassic/core-geth). v1.13.x is the final series — migrate to Fukuii before Olympia activation.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [

@@ -467,21 +467,39 @@ function NodeClientPage({ client }: { client: NodeClient }) {
       {/* Status Badge */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <div className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success-bg)]">
-                <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-medium text-[var(--text-primary)]">Actively Maintained</p>
-                <p className="text-sm text-[var(--color-text-muted)]">
-                  This client is actively developed and receives regular updates.
-                </p>
+          {client.role === 'maintained' ? (
+            <div className="rounded-xl border border-[var(--color-warning)]/30 bg-[var(--color-warning-bg)] p-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-warning)]/20">
+                  <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium text-[var(--text-primary)]">Bridge Release — Maintenance Mode</p>
+                  <p className="text-sm text-[var(--color-text-muted)]">
+                    v1.13.x is the final release series for this client. Maintained through the Olympia upgrade for network continuity only.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success-bg)]">
+                  <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium text-[var(--text-primary)]">Actively Maintained</p>
+                  <p className="text-sm text-[var(--color-text-muted)]">
+                    This client is actively developed and receives regular updates.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

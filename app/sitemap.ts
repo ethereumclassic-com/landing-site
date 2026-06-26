@@ -164,7 +164,7 @@ const staticRoutes = [
   { path: '/build/docs', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/tools', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/clients', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/build/clients/core-geth-security-audit', priority: 0.8, changeFrequency: 'monthly' as const },
+  { path: '/build/clients/core-geth-security-audit', priority: 0.9, changeFrequency: 'monthly' as const },
   { path: '/build/networks', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/faucets', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/build/grants', priority: 0.6, changeFrequency: 'weekly' as const },
@@ -220,7 +220,7 @@ const staticRoutes = [
   { path: '/olympia/etymology', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/cdc', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/olympia/security', priority: 0.7, changeFrequency: 'weekly' as const },
+  // /olympia/security redirects to /build/node/core-geth-security (301)
   { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const },
 
   // Core Devs Calls
