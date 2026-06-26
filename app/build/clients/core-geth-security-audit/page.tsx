@@ -276,7 +276,7 @@ export default function CoreGethSecurityAuditPage() {
               Get Core-Geth v1.13.0
             </a>
             <a
-              href="https://github.com/ethereumclassic/core-geth/blob/main/docs/audits/2026-03-security-audit.md"
+              href="https://github.com/white-b0x/core-geth/blob/main/docs/audits/2026-03-security-audit.md"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
@@ -784,7 +784,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
                 </li>
                 <li>
                   <a
-                    href="https://github.com/ethereumclassic/core-geth/blob/main/docs/audits/2026-03-security-audit.md"
+                    href="https://github.com/white-b0x/core-geth/blob/main/docs/audits/2026-03-security-audit.md"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--color-primary)]"
