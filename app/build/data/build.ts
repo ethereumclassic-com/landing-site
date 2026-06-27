@@ -133,7 +133,7 @@ export const nodeClients: NodeClient[] = [
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
       'SNAP, fast, and regular sync for ETC and Mordor',
-      'Engine API V1–V4 — Sepolia validated, ETH mainnet ready',
+      'ETC mainnet, Mordor testnet, ETH mainnet, and Sepolia testnet',
       'Compatible with all major consensus clients',
       'Signed Docker images on GHCR',
       'JSON-RPC, Engine API, and MCP support',
