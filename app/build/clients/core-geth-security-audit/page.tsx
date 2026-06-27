@@ -152,7 +152,7 @@ const riskAssessment: RiskItem[] = [
   {
     area: '21-month release gap',
     risk: 'Medium',
-    description: 'The gap between v1.12.20 (June 2024) and v1.13.0 (March 2026) is the longest maintenance gap in ETC network history.',
+    description: 'The 21-month gap between v1.12.20 (June 2024) and the forthcoming v1.13.0 is the longest maintenance gap in ETC network history.',
     mitigation: 'Protocol-funded maintenance path established via ECIP-1112 treasury.',
   },
 ]
@@ -264,7 +264,8 @@ export default function CoreGethSecurityAuditPage() {
               >
                 etclabscore/core-geth
               </a>{' '}
-              received no security maintenance from June 2024 onward. All issues are patched in{' '}
+              received no security maintenance from June 2024 onward. All issues are patched in
+              the{' '}
               <a
                 href="https://github.com/ethereumclassic/core-geth"
                 target="_blank"
@@ -273,16 +274,7 @@ export default function CoreGethSecurityAuditPage() {
               >
                 ethereumclassic/core-geth
               </a>{' '}
-              v1.13.0 by{' '}
-              <a
-                href="https://whiteb0x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--color-primary)] transition hover:text-[var(--color-primary)]/80"
-              >
-                White B0x
-              </a>
-              .
+              codebase and will ship as v1.13.0, pending Olympia network upgrade activation.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -292,7 +284,7 @@ export default function CoreGethSecurityAuditPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
-                Get Core-Geth v1.13.0
+                Track v1.13.0 Release
               </a>
               <a
                 href="https://github.com/white-b0x/core-geth/blob/main/docs/audits/2026-03-security-audit.md"
@@ -361,7 +353,7 @@ export default function CoreGethSecurityAuditPage() {
                 ethereumclassic
               </a>{' '}
               organization, applied all known patches, upgraded the Go toolchain to 1.26, and
-              released Core-Geth v1.13.0.
+              is preparing Core-Geth v1.13.0 for release ahead of the Olympia upgrade.
             </p>
           </div>
         </div>
@@ -381,7 +373,7 @@ export default function CoreGethSecurityAuditPage() {
               >
                 etclabscore/core-geth
               </a>{' '}
-              at v1.12.20. All are patched in{' '}
+              at v1.12.20. All are patched in the{' '}
               <a
                 href="https://github.com/ethereumclassic/core-geth"
                 target="_blank"
@@ -390,7 +382,7 @@ export default function CoreGethSecurityAuditPage() {
               >
                 ethereumclassic/core-geth
               </a>{' '}
-              v1.13.0.
+              codebase, pending release as v1.13.0.
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -506,7 +498,7 @@ export default function CoreGethSecurityAuditPage() {
                 { date: 'February 2025', event: 'Security disclosures sent to upstream maintainer', note: 'No response received' },
                 { date: 'Feb – Mar 2026', event: 'All six CVEs patched at ethereumclassic/core-geth', note: 'CVE-2025-24883, CVE-2026-22862, CVE-2026-26315, CVE-2026-26314, CVE-2026-22868, CVE-2026-26313' },
                 { date: '4 March 2026', event: 'Go toolchain upgraded 1.21 → 1.26', note: 'Commit 8385cf8e8; blst v0.3.11 → v0.3.16' },
-                { date: 'March 2026', event: 'Core-Geth v1.13.0 released at ethereumclassic/core-geth', note: 'All CVEs patched; Go 1.26; Olympia-ready' },
+                { date: 'Pending', event: 'Core-Geth v1.13.0 at ethereumclassic/core-geth (upcoming)', note: 'Pending Olympia network upgrade activation — Go 1.26, all CVEs patched, Olympia-ready' },
               ].map((item, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="w-36 shrink-0 pt-0.5 font-mono text-xs text-[var(--color-text-muted)]">
@@ -833,10 +825,15 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
             </p>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
               <strong className="text-[var(--text-primary)]">
-                If you are running any v1.12.x release, upgrade to v1.13.0 immediately.
+                If you are running etclabscore/core-geth v1.12.20 or earlier, upgrade to
+                v1.12.22 immediately.
               </strong>{' '}
-              The v1.12 series is affected by all six vulnerabilities documented in this audit
-              and is not supported for the Olympia network upgrade.
+              Track{' '}
+              <a href="https://github.com/ethereumclassic/core-geth" target="_blank" rel="noopener noreferrer"
+                className="text-[var(--color-primary)] hover:opacity-80">
+                ethereumclassic/core-geth
+              </a>{' '}
+              for v1.13.0, which includes the Go 1.26 toolchain upgrade and full Olympia support.
             </p>
           </div>
         </div>
@@ -854,14 +851,20 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
                   Node Operators (v1.12.x)
                 </span>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                  Update to Core-Geth v1.13.0 from{' '}
+                  Upgrade to{' '}
+                  <a href="https://github.com/etclabscore/core-geth/releases/tag/v1.12.22" target="_blank" rel="noopener noreferrer"
+                    className="text-[var(--color-primary)]">
+                    v1.12.22
+                  </a>{' '}
+                  at etclabscore/core-geth immediately — it backports the critical CVEs. Then
+                  track{' '}
                   <a href="https://github.com/ethereumclassic/core-geth" target="_blank" rel="noopener noreferrer"
                     className="text-[var(--color-primary)]">
-                    github.com/ethereumclassic/core-geth
-                  </a>
-                  . Nodes running etclabscore/core-geth v1.12.20 or earlier are exposed to remote
-                  crash (CVE-2026-26313, CVE-2026-22862) and potential key-oracle attacks
-                  (CVE-2026-26315), and will not be compatible with the Olympia hard fork.
+                    ethereumclassic/core-geth
+                  </a>{' '}
+                  for v1.13.0, which adds Go 1.26 and Olympia support. Nodes on v1.12.20 or
+                  earlier are exposed to remote crash (CVE-2026-26313, CVE-2026-22862) and
+                  potential key-oracle attacks (CVE-2026-26315).
                 </p>
               </div>
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
@@ -880,8 +883,9 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
                   Infrastructure providers &amp; exchanges
                 </span>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                  Treat the upgrade to v1.13.0 as a security-critical patch, not a routine version
-                  bump. Begin planning migration to Fukuii for post-Olympia operation.
+                  Treat the upgrade to v1.12.22 as a security-critical patch, not a routine version
+                  bump. Track ethereumclassic/core-geth for v1.13.0, the full remediation with
+                  Go 1.26 and Olympia support. Begin planning migration to Fukuii.
                 </p>
               </div>
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
@@ -898,7 +902,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
                   GraphQL endpoints
                 </span>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                  Verify v1.13.0 is deployed before re-opening the{' '}
+                  Upgrade to v1.12.22 before re-opening the{' '}
                   <code className="rounded bg-[var(--bg)] px-1.5 py-0.5 text-xs text-[var(--text-primary)]">--graphql</code>{' '}
                   port on public-facing nodes.
                 </p>
