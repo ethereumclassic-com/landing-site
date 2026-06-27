@@ -66,7 +66,7 @@ export const clients: ClientUpgrade[] = [
       'The legacy ETC client, actively maintained and carried forward through the Olympia upgrade for network continuity. Scheduled to phase out as Fukuii assumes the primary client role. The upstream go-ethereum plugin architecture is the long-term path.',
     role: 'maintenance',
     roleLabel: 'Maintained',
-    currentVersion: 'v1.13.0',
+    currentVersion: 'v1.12.22',
     olympiaVersion: 'TBD',
     githubUrl: 'https://github.com/ethereumclassic/core-geth',
     docsUrl: 'https://github.com/ethereumclassic/core-geth#readme',

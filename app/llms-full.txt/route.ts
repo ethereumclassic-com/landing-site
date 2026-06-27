@@ -142,7 +142,7 @@ ETC's most significant upgrade to date:
 - /olympia/clients/besu — Besu upgrade guide
 - /olympia/governance — Treasury and on-chain governance contracts
 - /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
-- /build/clients/core-geth-security-audit — Core-Geth v1.12.2x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and migration to Fukuii. All patched in ethereumclassic/core-geth v1.13.0 by White B0x. (/olympia/security redirects here)
+- /build/clients/core-geth-security-audit — Core-Geth v1.12.2x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and migration to Fukuii. All patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0. (/olympia/security redirects here)
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap

@@ -98,7 +98,7 @@ const riskAssessment: RiskItem[] = [
   {
     area: '21-Month Release Gap',
     risk: 'Medium',
-    description: 'The gap between v1.12.20 (June 2024) and v1.13.0 (March 2026) is the longest maintenance gap in ETC network history.',
+    description: 'The 21-month gap between v1.12.20 (June 2024) and the forthcoming v1.13.0 is the longest maintenance gap in ETC network history.',
     mitigation: 'Olympia establishes protocol-funded maintenance through the Treasury (ECIP-1112).',
   },
 ]
@@ -213,8 +213,8 @@ export default function SecurityPage() {
                 >
                   White B0x
                 </a>{' '}
-                applied all known patches, upgraded the Go toolchain to 1.26, and released
-                Core-Geth v1.13.0. We recommend all node operators update to this release.
+                applied all known patches, upgraded the Go toolchain to 1.26, and is preparing
+                Core-Geth v1.13.0 for release, pending Olympia network upgrade activation.
               </p>
             </div>
 
@@ -302,7 +302,7 @@ export default function SecurityPage() {
                   { date: '23 January 2025', event: 'Last upstream commit — GitHub Actions CI update', note: 'No substantive code changes; repository frozen' },
                   { date: 'February 2025', event: 'Security disclosures sent to upstream maintainer', note: 'No response received' },
                   { date: 'Feb – Mar 2026', event: 'Six CVEs patched at ethereumclassic/core-geth', note: 'CVE-2025-24883, CVE-2026-22862, CVE-2026-26315, CVE-2026-26314, CVE-2026-22868, CVE-2026-26313' },
-                  { date: 'March 2026', event: 'Core-Geth v1.13.0 released at github.com/ethereumclassic/core-geth', note: 'All CVEs patched, Go 1.26, Olympia-ready' },
+                  { date: 'Pending', event: 'Core-Geth v1.13.0 at ethereumclassic/core-geth (upcoming)', note: 'Pending Olympia network upgrade activation — Go 1.26, all CVEs patched, Olympia-ready' },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4">
                     <div className="w-32 shrink-0 font-mono text-xs text-[var(--color-text-muted)]">
@@ -404,10 +404,11 @@ export default function SecurityPage() {
                 maintained through the Olympia upgrade cycle, but operators should plan their
                 migration to Fukuii beyond that point.{' '}
                 <strong>
-                  If you are running any v1.12.x release, upgrade to v1.13.0 immediately.
+                  If you are running any v1.12.x release, upgrade to v1.12.22 at etclabscore/core-geth
+                  immediately, and track ethereumclassic/core-geth for v1.13.0.
                 </strong>{' '}
-                The v1.12 series is affected by all six vulnerabilities documented here and is not
-                supported for the Olympia network upgrade.
+                Nodes on v1.12.20 or earlier are affected by all six vulnerabilities documented here
+                and are not supported for the Olympia network upgrade.
               </p>
             </div>
 
@@ -416,20 +417,28 @@ export default function SecurityPage() {
               <h2>Recommendations</h2>
               <ul>
                 <li>
-                  <strong>Node operators (v1.12.x):</strong> Update to Core-Geth v1.13.0 from{' '}
+                  <strong>Node operators (v1.12.x):</strong> Upgrade to v1.12.22 at{' '}
+                  <a
+                    href="https://github.com/etclabscore/core-geth/releases"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    etclabscore/core-geth
+                  </a>
+                  {' '}immediately — it backports all critical CVEs. Track{' '}
                   <a
                     href="https://github.com/ethereumclassic/core-geth"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    github.com/ethereumclassic/core-geth
+                    ethereumclassic/core-geth
                   </a>
-                  . This release includes all known security patches, is built on Go 1.26, and is
-                  required for Olympia hard fork compatibility.
+                  {' '}for v1.13.0, which adds Go 1.26 and full Olympia support.
                 </li>
                 <li>
                   <strong>Infrastructure providers and exchanges:</strong> Treat the upgrade to
-                  v1.13.0 as a security-critical patch before Olympia activation. Begin planning
+                  v1.12.22 as a security-critical patch. Track ethereumclassic/core-geth for v1.13.0,
+                  the full remediation with Go 1.26 and Olympia support. Begin planning
                   migration to{' '}
                   <a
                     href="https://fukuii.com"
