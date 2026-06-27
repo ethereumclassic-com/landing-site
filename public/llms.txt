@@ -78,7 +78,7 @@ Included EIP categories:
 Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain.
 
 Two active clients at Olympia launch:
-- Fukuii (fukuii.com) — Ethereum execution layer client in Scala 3. Native PoW for ETC mainnet and Mordor; Engine API V1–V4 for Sepolia and ETH mainnet. Pairs with any consensus client. The primary ETC client for the Olympia era. By Chippr Robotics LLC.
+- Fukuii (fukuii.com) — Ethereum execution layer client in Scala 3. Native PoW for ETC mainnet and Mordor; Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.
 - Core-Geth — Legacy ETC client, maintained through Olympia.
 
 Activation block: TBD (announced after CDC-23 community call).

@@ -41,7 +41,7 @@ export const clients: ClientUpgrade[] = [
     language: 'Scala',
     languageColor: '#DC322F',
     description:
-      'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. One binary, four networks. The primary ETC client for the Olympia era.',
+      'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for ETC mainnet and Mordor, Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.',
     role: 'primary',
     roleLabel: 'Recommended',
     currentVersion: 'v0.1.240',
@@ -63,7 +63,7 @@ export const clients: ClientUpgrade[] = [
     language: 'Go',
     languageColor: '#00ADD8',
     description:
-      'The legacy ETC client, actively maintained and carried forward through the Olympia upgrade for network continuity. Scheduled to phase out as Fukuii assumes the primary client role. The upstream go-ethereum plugin architecture is the long-term path.',
+      'The legacy ETC client, maintained through Olympia for network continuity. Six CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0 — the final series. Migrate to Fukuii after Olympia activation.',
     role: 'maintenance',
     roleLabel: 'Maintained',
     currentVersion: 'v1.12.22',

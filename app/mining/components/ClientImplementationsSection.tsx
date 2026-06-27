@@ -4,7 +4,7 @@ const primaryClient = {
   name: 'Fukuii',
   language: 'Scala',
   description:
-    'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. One binary, four networks. The primary ETC client for the Olympia era.',
+    'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for ETC mainnet and Mordor, Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.',
   website: 'https://fukuii.com',
   github: 'https://github.com/chippr-robotics/fukuii',
   status: 'Primary',
@@ -15,7 +15,7 @@ const secondaryClients = [
     name: 'Core-Geth',
     language: 'Go',
     description:
-      'The established ETC mainnet client, continuing in a maintenance role through the Olympia upgrade and beyond. Go-based implementation with broad infrastructure support.',
+      'The legacy ETC client, maintained through Olympia for network continuity. Migrate to Fukuii after Olympia activation.',
     github: 'https://github.com/ethereumclassic/core-geth',
     status: 'Maintained',
   },

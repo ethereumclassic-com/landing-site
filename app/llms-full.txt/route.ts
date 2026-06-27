@@ -207,13 +207,14 @@ Explicitly excluded from ECIP-1121:
 ### Client Support
 
 Fukuii — Primary Olympia client
-Ethereum execution layer client in Scala 3 by Chippr Robotics LLC. Native PoW for ETC mainnet and Mordor; Engine API V1–V4 for Sepolia and ETH mainnet. One binary, four networks. The primary ETC client for the Olympia era.
+Ethereum execution layer client in Scala 3 by Chippr Robotics LLC. Native PoW for ETC mainnet and Mordor; Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.
 Website: https://fukuii.com
 Repo: https://github.com/chippr-robotics/fukuii
 
 Core-Geth — Legacy ETC client
-Go-based fork of go-ethereum. Actively maintained through Olympia.
-Scheduled for phased retirement as Fukuii matures.
+Go-based fork of go-ethereum. Maintained through Olympia — six CVEs patched at
+ethereumclassic/core-geth by White B0x, pending release as v1.13.0.
+Migrate to Fukuii after Olympia activation.
 Repo: https://github.com/ethereumclassic/core-geth
 
 Besu (ETC plugin) — Enterprise Java client

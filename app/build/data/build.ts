@@ -128,7 +128,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://fukuii.com',
     github: 'https://github.com/chippr-robotics/fukuii',
     description:
-      'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. Pairs with Lighthouse, Prysm, Teku, Lodestar, or Nimbus to run Sepolia and ETH mainnet. One binary, four networks. The primary ETC client for the Olympia era.',
+      'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for ETC mainnet and Mordor, Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.',
     language: 'Scala',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
