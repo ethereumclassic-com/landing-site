@@ -324,7 +324,7 @@ export default function CoreGethSecurityAuditPage() {
 
         {/* Discovery Context */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">Background</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">How This Was Found</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
@@ -463,7 +463,7 @@ export default function CoreGethSecurityAuditPage() {
 
         {/* Go Runtime EOL */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">Go Toolchain</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">Go Runtime End-of-Life</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
@@ -495,7 +495,7 @@ export default function CoreGethSecurityAuditPage() {
 
         {/* Release Timeline */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">Timeline</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">Release Timeline</h2>
             <div className="mt-6 space-y-3">
@@ -550,7 +550,7 @@ export default function CoreGethSecurityAuditPage() {
 
         {/* March 2026 Attack */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">March 2026</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">The March 2026 Attack</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
@@ -760,7 +760,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
 
         {/* Prior Maintainers */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">Attribution</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">Prior Maintainers</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
@@ -812,7 +812,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
 
         {/* Network Migration Path */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">Migration</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">Network Migration Path</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
@@ -845,7 +845,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
 
         {/* Recommendations */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">Recommendations</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">Recommendations</h2>
             <div className="mt-6 space-y-3">
@@ -909,7 +909,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
 
         {/* Methodology */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">Methodology</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">Methodology</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
@@ -930,7 +930,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
 
         {/* References */}
         <div className="border-t border-[var(--border)] px-6 py-10 md:px-10 lg:px-12">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <p className="font-mono text-xs uppercase tracking-widest text-[var(--color-primary)]">References</p>
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">References</h2>
             <ul className="mt-4 space-y-2">
