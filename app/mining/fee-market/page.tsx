@@ -123,7 +123,7 @@ export default function FeeMarketPage() {
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">Block Reward</p>
               <p className="mt-2 text-3xl font-bold text-[var(--color-primary)]">{stats.blockReward} ETC</p>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">Era 4 — fifthened next in ~5M blocks</p>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">Era 5 — next fifthing ~Jul 2026</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">Fee Share of Revenue</p>
@@ -149,7 +149,7 @@ export default function FeeMarketPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Why This Matters for Miners</h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
             <p>
-              Miner revenue has two components: block rewards and transaction fees. Block rewards are the dominant source today, but they fifthened every 5 million blocks under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Era 4 (current) pays 2.048 ETC per block. Era 5 will pay 1.6384 ETC. Era 10 pays under 0.5 ETC. The schedule continues until issuance approaches zero.
+              Miner revenue has two components: block rewards and transaction fees. Block rewards are the dominant source today, but they fifthened every 5 million blocks under <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>. Era 5 (current) pays 2.048 ETC per block. Era 6 begins ~Jul 2026 at 1.6384 ETC. Era 10 pays under 0.5 ETC. The schedule continues until issuance approaches zero.
             </p>
             <p>
               In a healthy fee market, rising fee income offsets declining block rewards as the network grows. This is how Bitcoin is designed to work. Fees take over as the block subsidy falls.

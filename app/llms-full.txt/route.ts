@@ -15,7 +15,7 @@ export function GET() {
 - Supply cap: ~210.7 million ETC
 - Current block reward: 2.048 ETC (Era 5, blocks 20M–25M)
 - Block reward reduction: 20% every 5 million blocks ("fifthing", defined by ECIP-1017)
-- Hashrate: 170+ TH/s
+- Hashrate: 200+ TH/s
 - Smart contracts: EVM-compatible (Solidity, Vyper, Yul)
 - EVM opcodes: London baseline + Spiral (partial Shanghai) as of 2024
 

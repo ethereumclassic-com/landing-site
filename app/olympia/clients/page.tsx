@@ -61,10 +61,9 @@ export default function UpgradeHubPage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Fukuii is the primary client for the Olympia era. Core-Geth is actively maintained
-            and carried through the upgrade for network continuity, then scheduled to phase out
-            as Fukuii assumes the primary role. ETC compatibility plugins for major upstream
-            clients are planned for future release.
+            Fukuii is the primary client for the Olympia era. Core-Geth is maintained through
+            Olympia for network continuity, then phases out as Fukuii assumes the primary role.
+            ETC compatibility plugins for major upstream clients are planned for future release.
           </p>
         </div>
       </section>
