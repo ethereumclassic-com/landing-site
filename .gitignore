@@ -1,7 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
+# ---------------------------------------------------------------------------
+# Dependencies and build output
+# ---------------------------------------------------------------------------
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -9,56 +11,66 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
-# testing
 /coverage
-
-# next.js
-/.next/
+.next/
 /out/
-
-# production
 /build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
 *.tsbuildinfo
 next-env.d.ts
+.vercel
 
-# Next.js build output
-.next/
-out/
-
-# Dependencies
-node_modules/
-
-# Env
+# ---------------------------------------------------------------------------
+# Secrets and credentials
+# ---------------------------------------------------------------------------
 .env
 .env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account.json
+secrets/
 
-# Internal docs
-ARCHITECTURE.md
+# SSH keys are extensionless, so *.key never matches them.
+id_rsa
+id_ecdsa
+id_ed25519
 
-# Claude Code working directory (local only)
-.claude/
-CLAUDE.md
+# Package-registry auth. These carry registry tokens, and pnpm honors
+# kebab-case keys here — a `minimum-release-age=0` line silently disables the
+# machine-wide release-age gate for this project.
+.npmrc
+.yarnrc
+.yarnrc.yml
 
-# Internal development directory
+# Blockchain key material
+keystore/
+*.keystore
+wallet.json
+mnemonic.txt
+
+# ---------------------------------------------------------------------------
+# Claude Code — this directory is TRACKED so repo-local agents, skills and rules
+# travel with the repo. Only machine-local and agent-written state is held back.
+# Do not invert this into a blanket ignore: an agent inside an ignored directory
+# never reaches a clone.
+# ---------------------------------------------------------------------------
+.claude/settings.local.json
+.claude/worktrees/
+.claude/agent-memory-local/
+.claude/launch.json
+.claude/scheduled_tasks.json
+CLAUDE.local.md
+.claude/**/*.local.*
+.claude/**/*-local/
+
+# ---------------------------------------------------------------------------
+# Internal development directory — session notes, design briefs, dev logs,
+# delivery tracking, QA reports. Private material belongs here, never in
+# .claude/ or CLAUDE.md.
+# ---------------------------------------------------------------------------
 .local/
 
 SESSION_NOTES.md
@@ -66,3 +78,19 @@ PLANNING.md
 SCRATCH.md
 *.scratch.*
 *.draft.*
+
+# ---------------------------------------------------------------------------
+# IDE and OS
+# ---------------------------------------------------------------------------
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*

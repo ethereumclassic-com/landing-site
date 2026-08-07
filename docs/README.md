@@ -10,13 +10,10 @@ Commercial/consumer gateway for the Ethereum Classic ecosystem.
 
 | Document | Description |
 |----------|-------------|
-| [MILESTONES.md](MILESTONES.md) | Development roadmap - 94 milestones across 8 phases |
 | [URL-STRUCTURE.md](URL-STRUCTURE.md) | Complete URL mapping - 137 pages |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Technical architecture |
 | [COMPONENTS.md](COMPONENTS.md) | Component specifications |
 | [ETC-KNOWLEDGE.md](ETC-KNOWLEDGE.md) | Ethereum Classic reference data |
-| [RESEARCH.md](RESEARCH.md) | Bitcoin.com analysis findings |
-| [STALE-DATA-AUDIT-REPORT.md](STALE-DATA-AUDIT-REPORT.md) | Data freshness audit results |
 
 ---
 
@@ -43,7 +40,7 @@ Commercial/consumer gateway for the Ethereum Classic ecosystem.
 EthereumClassic.com is the **commercial gateway** for Ethereum Classic:
 
 ```
-EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org
+EthereumClassic.com (THIS SITE) → FukuiiGui.org → github.com/fukuii-project/fukuii-gui
    (awareness + products)         (consideration)    (conversion)
 ```
 
@@ -65,7 +62,7 @@ EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org
 | TypeScript | 5.x | Type safety |
 | Tailwind CSS | 4.x | Styling |
 | Framer Motion | 12.x | Animations |
-| Node.js | 22.x | Runtime |
+| Node.js | 24.x | Runtime |
 
 ### Data Integrations
 
@@ -86,7 +83,7 @@ EthereumClassic.com (THIS SITE) → ClassicOS.org → app.classicos.org
 | Section | Pages | Description |
 |---------|-------|-------------|
 | Homepage | 1 | Hero, stats, ecosystem overview |
-| Wallet | 7 | Classic OS, hardware, compare, reviews |
+| Wallet | 7 | Fukuii GUI, hardware, compare, reviews |
 | Buy/Sell | 11 | Exchanges, methods, reviews |
 | Exchanges | 14 | Directory, compare, feature filters |
 | Apps | 11 | DeFi, NFT, games, tools, governance |
@@ -122,7 +119,7 @@ Ethereum Classic is:
 
 | Product | Description | URL |
 |---------|-------------|-----|
-| Classic OS | Complete economic operating system | app.classicos.org |
+| Fukuii GUI | Complete economic operating system | github.com/fukuii-project/fukuii-gui |
 | ETCswap | DEX protocol V2/V3 | etcswap.org |
 | ClassicUSD (USC) | ETC-native stablecoin | - |
 | Olympia DAO | Governance protocol | - |
@@ -137,9 +134,9 @@ See the root [README.md](../README.md) and [CONTRIBUTING.md](../CONTRIBUTING.md)
 
 ```bash
 npm install
-npm run dev
-npm run build
-npm run lint
+pnpm dev
+pnpm build
+pnpm lint
 ```
 
 ---
