@@ -115,7 +115,7 @@ export default function SubmitAppPage() {
             Requirements for Listing
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {requirements.map((req, index) => (
+            {requirements.map((req) => (
               <div
                 key={req.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
@@ -144,7 +144,7 @@ export default function SubmitAppPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <div
                 key={category.name}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"

@@ -177,7 +177,7 @@ export default function ReferralPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">How It Works</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {howItWorks.map((item, index) => (
+              {howItWorks.map((item) => (
                 <div
                   key={item.step}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -204,7 +204,7 @@ export default function ReferralPage() {
               Earn higher commission rates as you bring more users to the ETC ecosystem.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {referralTiers.map((tier, index) => (
+              {referralTiers.map((tier) => (
                 <div
                   key={tier.name}
                   className={`rounded-xl border ${tier.borderColor} ${tier.bgColor} p-6 text-center`}
@@ -234,7 +234,7 @@ export default function ReferralPage() {
               Earn commission by referring users to these ETC products and services.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {referralProducts.map((product, index) => (
+              {referralProducts.map((product) => (
                 <div
                   key={product.id}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"

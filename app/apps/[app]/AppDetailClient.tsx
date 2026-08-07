@@ -141,7 +141,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
         <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-8 md:px-10 lg:px-12">
           <div className="mx-auto max-w-4xl">
             <div className="grid grid-cols-3 gap-8">
-              {app.stats.map((stat, index) => (
+              {app.stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="text-center"
@@ -173,7 +173,7 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
             >
               <h3 className="text-xl font-bold text-[var(--text-primary)]">Key Features</h3>
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {app.features.map((feature, index) => (
+                {app.features.map((feature) => (
                   <div
                     key={feature}
                     className="flex items-start gap-3"

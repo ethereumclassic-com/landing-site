@@ -172,7 +172,7 @@ export default function PoolPage() {
           </h2>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
+            {features.map((feature) => (
               <div
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"

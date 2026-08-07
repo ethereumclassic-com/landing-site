@@ -118,7 +118,7 @@ export default function StakingPage() {
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {yieldFeatures.map((feature, index) => (
+            {yieldFeatures.map((feature) => (
               <div
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
@@ -162,7 +162,7 @@ export default function StakingPage() {
                   title: 'Earn Trading Fees',
                   description: 'Collect a portion of fees from every swap through your pool',
                 },
-              ].map((item, index) => (
+              ].map((item) => (
                 <div
                   key={item.step}
                   className="relative rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-center"

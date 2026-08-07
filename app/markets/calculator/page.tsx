@@ -273,7 +273,7 @@ export default function CalculatorPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {priceScenarios.map((scenario, index) => {
+            {priceScenarios.map((scenario) => {
               const investment = parseFloat(investmentAmount) || 1000
               const buyPrice = parseFloat(etcPrice) || CURRENT_PRICE
               const etcAmount = investment / buyPrice

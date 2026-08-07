@@ -76,7 +76,7 @@ function LiveMarketStatsGrid() {
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {stats.map((stat, index) => (
+      {stats.map((stat) => (
         <div
           key={stat.label}
         >
@@ -209,7 +209,7 @@ export default function MarketsPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {marketPairs.map((pair, index) => (
+            {marketPairs.map((pair) => (
               <div
                 key={pair.id}
                 className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
@@ -244,7 +244,7 @@ export default function MarketsPage() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {priceSources.map((source, index) => (
+            {priceSources.map((source) => (
               <a
                 key={source.id}
                 href={source.website}
@@ -337,7 +337,7 @@ export default function MarketsPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {marketResources.map((resource, index) => (
+            {marketResources.map((resource) => (
               <a
                 key={resource.id}
                 href={resource.url}

@@ -140,7 +140,7 @@ export default function AdvertisePage() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {audienceTypes.map((audience, index) => (
+            {audienceTypes.map((audience) => (
               <div
                 key={audience.type}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -177,7 +177,7 @@ export default function AdvertisePage() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {adPlacements.map((placement, index) => (
+            {adPlacements.map((placement) => (
               <div
                 key={placement.name}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6"
@@ -309,7 +309,7 @@ export default function AdvertisePage() {
                   </svg>
                 ),
               },
-            ].map((benefit, index) => (
+            ].map((benefit) => (
               <div
                 key={benefit.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6 text-center"

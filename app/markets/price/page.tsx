@@ -121,7 +121,7 @@ export default function ETCPricePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {sampleMarketStats.map((stat, index) => (
+            {sampleMarketStats.map((stat) => (
               <div
                 key={stat.label}
               >
@@ -210,7 +210,7 @@ export default function ETCPricePage() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {aggregators.map((source, index) => (
+            {aggregators.map((source) => (
               <a
                 key={source.id}
                 href={source.website}

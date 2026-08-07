@@ -98,7 +98,7 @@ export default function CommunityContributePage() {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-6 md:grid-cols-2">
-            {contributionAreas.map((area, idx) => (
+            {contributionAreas.map((area) => (
               <div
                 key={area.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"

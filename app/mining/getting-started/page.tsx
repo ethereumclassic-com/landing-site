@@ -215,7 +215,7 @@ export default function MiningGettingStartedPage() {
           </div>
 
           <div className="space-y-4">
-            {recommendedPools.map((pool, index) => (
+            {recommendedPools.map((pool) => (
               <a
                 key={pool.id}
                 href={pool.website}

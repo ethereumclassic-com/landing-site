@@ -96,7 +96,7 @@ export default function InfrastructurePage() {
       <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {infraFeatures.map((feature, index) => (
+            {infraFeatures.map((feature) => (
               <div
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"

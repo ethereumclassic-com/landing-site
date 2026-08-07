@@ -458,7 +458,7 @@ export default function ExchangeDirectoryPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredExchanges.map((exchange, index) => {
+                  {filteredExchanges.map((exchange) => {
                     const isDEX = exchange.type === 'DEX'
                     return (
                       <tr
@@ -557,7 +557,7 @@ export default function ExchangeDirectoryPage() {
             </div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {filteredExchanges.map((exchange, index) => {
+              {filteredExchanges.map((exchange) => {
                 const isDEX = exchange.type === 'DEX'
                 return (
                   <a

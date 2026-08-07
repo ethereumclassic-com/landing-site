@@ -219,7 +219,7 @@ export default function BuildGrantsPage() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {fundingSources.map((source, index) => (
+            {fundingSources.map((source) => (
               <div
                 key={source.name}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -289,7 +289,7 @@ export default function BuildGrantsPage() {
           </div>
 
           <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {projectIdeas.map((idea, index) => (
+            {projectIdeas.map((idea) => (
               <div
                 key={idea.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
@@ -323,7 +323,7 @@ export default function BuildGrantsPage() {
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {applicationSteps.map((step, index) => (
+            {applicationSteps.map((step) => (
               <div
                 key={step.step}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
