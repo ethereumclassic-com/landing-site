@@ -47,9 +47,10 @@ export function Button({
         );
     }
 
-    // avoid forwarding external-only props to Link (destructure to exclude them)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { target, rel, ...internalRest } = rest;
+    // Destructured only to keep external-only props off Link. Underscore-
+    // prefixed because that is what this repo's no-unused-vars config treats as
+    // deliberate (/^_/u) — the rule is satisfied rather than suppressed.
+    const { target: _target, rel: _rel, ...internalRest } = rest;
 
     return (
         <Link href={href} className={cls} {...internalRest}>

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from 'react'
 import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearch, getTypeLabel, getTypeIcon, type SearchResult, type SearchResultType } from '@/hooks/useSearch'
@@ -103,6 +103,8 @@ const navItems: {
       { href: '/mining/profitability', label: 'Profitability Calculator' },
       { href: '/mining/os', label: 'Mining OS' },
       { href: '/mining/stats', label: 'Network Stats' },
+      { href: '/mining/hashrate', label: 'Network Hashrate' },
+      { href: '/mining/difficulty', label: 'Network Difficulty' },
       { href: '/mining/approaches', label: 'GPU vs ASIC' },
       { href: '/mining/regulation', label: 'Mining Policy' },
       { href: '/mining/fee-market', label: 'Olympia & Fee Market' },
@@ -119,6 +121,7 @@ const navItems: {
       { href: '/build/docs', label: 'Documentation' },
       { href: '/build/tools', label: 'Developer Tools' },
       { href: '/build/clients', label: 'Node Clients' },
+      { href: '/build/clients/core-geth-security-audit', label: 'Core-Geth Security Disclosure' },
       { type: 'separator', label: 'Resources' },
       { href: '/core-devs', label: 'Core Dev Calls' },
       { href: '/build/faucets', label: 'Testnet Faucets' },
@@ -224,6 +227,7 @@ const mobileNavGroups: {
       { href: '/build/docs', label: 'Documentation' },
       { href: '/build/tools', label: 'Developer Tools' },
       { href: '/build/clients', label: 'Node Clients' },
+      { href: '/build/clients/core-geth-security-audit', label: 'Core-Geth Security Disclosure' },
       { href: '/core-devs', label: 'Core Dev Calls' },
       { href: '/build/faucets', label: 'Testnet Faucets' },
       { href: '/build/grants', label: 'Grants' },
@@ -248,12 +252,22 @@ const mobileNavGroups: {
   },
 ]
 
+// Hydration guard. useSyncExternalStore is built for exactly this: it returns
+// the server snapshot during SSR and the client snapshot after hydration, with
+// no subscription and no effect. The older setMounted-in-an-effect idiom needed
+// a render pass to correct itself on every mount.
+const NO_OP_SUBSCRIBE = () => () => {}
+function useHydrated(): boolean {
+  return useSyncExternalStore(
+    NO_OP_SUBSCRIBE,
+    () => true,
+    () => false,
+  )
+}
+
 function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => setMounted(true), [])
+  const mounted = useHydrated()
 
   if (!mounted) {
     return <div className="h-10 w-10 rounded-lg" />
@@ -341,7 +355,14 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
     }
   }, [selectedIndex])
 
-  useEffect(() => { setSelectedIndex(-1) }, [results])
+  // Reset the keyboard cursor when the result set changes. Adjusted during
+  // render rather than in an effect: an effect here schedules a second render
+  // pass every time results change (react-hooks/set-state-in-effect).
+  const [prevResults, setPrevResults] = useState(results)
+  if (prevResults !== results) {
+    setPrevResults(results)
+    setSelectedIndex(-1)
+  }
 
   const handleResultClick = useCallback(
     (result: SearchResult) => {
@@ -577,10 +598,8 @@ export default function Navigation() {
   const prevPathname = useRef(pathname)
   useEffect(() => {
     if (prevPathname.current !== pathname) {
-      /* eslint-disable react-hooks/set-state-in-effect */
       setMobileMenuOpen(false)
       setSearchOpen(false)
-      /* eslint-enable react-hooks/set-state-in-effect */
       prevPathname.current = pathname
     }
   }, [pathname])

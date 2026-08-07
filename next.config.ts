@@ -16,11 +16,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/olympia/security',
-        destination: '/build/clients/core-geth-security-audit',
-        permanent: true,
-      },
-      {
         source: '/olympia/clients/besu',
         destination: '/olympia/clients',
         permanent: true,
