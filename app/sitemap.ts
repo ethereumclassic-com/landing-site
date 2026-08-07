@@ -84,7 +84,6 @@ const staticRoutes = [
 
   // Exchanges section
   { path: '/exchanges', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/exchanges/reviews', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/exchanges/compare', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/exchanges/beginners', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/exchanges/lowest-fees', priority: 0.6, changeFrequency: 'weekly' as const },
@@ -106,8 +105,8 @@ const staticRoutes = [
 
   // Learn section
   { path: '/learn', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/learn/basics/what-is-ethereum-classic', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/learn/basics', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/learn/ethereum-classic', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/learn/wallets', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/learn/trading', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/learn/defi', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -138,10 +137,6 @@ const staticRoutes = [
   // Markets section
   { path: '/markets', priority: 0.8, changeFrequency: 'hourly' as const },
   { path: '/price', priority: 0.9, changeFrequency: 'hourly' as const },
-  { path: '/price/etc-usd', priority: 0.8, changeFrequency: 'hourly' as const },
-  { path: '/price/etc-btc', priority: 0.7, changeFrequency: 'hourly' as const },
-  { path: '/converter', priority: 0.8, changeFrequency: 'daily' as const },
-  { path: '/calculator', priority: 0.7, changeFrequency: 'daily' as const },
 
   // Mining section
   { path: '/mining', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -219,7 +214,6 @@ const staticRoutes = [
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/history', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/etymology', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/olympia/cdc', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const },
 

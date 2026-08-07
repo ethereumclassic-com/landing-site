@@ -186,6 +186,39 @@ re-enabled at the Olympia block. Chain configuration, not consensus rules.
 ECIP-1114 — OFP (Olympia Funding Proposal Process)
 Structured grant process for ecosystem funding requests from the treasury.
 
+ECIP-1119 — Treasury Sanctions Compliance Oracle
+Sanctions screening bound to Treasury disbursement. Applies to Stage 2 governance
+spending and again at Stage 3, because funds move there too.
+
+ECIP-1117 — Futarchy Child-DAO Governance
+An open signal layer. Prediction markets let anyone stake on proposal outcomes without
+DAO membership, producing financially-backed public signals alongside member votes.
+A Child-DAO under ECIP-1113 section 6. It informs decisions and is never binding —
+binding allocation stays with the Olympia DAO.
+
+ECIP-1118 — Futarchy Funding and Streaming Disbursements
+Funding and streaming disbursements for the futarchy Child-DAO, seeded by an executed
+funding proposal rather than a direct basefee share.
+
+ECIP-1115 — Olympia L-Curve Smoothing for Long-Term Network Security
+A smoothing curve that supplements miner security budgets as fixed-emission block
+subsidies decline. Runs at the contract layer, where allocation fraction, window and
+curve shape are adjustable through governance without a hard fork. Supersedes
+ECIP-1120, which is excluded.
+
+ECIP-1116 — Consensus-Layer L-Curve Hardening for Base Fee Miner Distribution
+Embeds the curve ECIP-1115 demonstrated into block finalization, paid by the protocol
+rather than disbursed from the treasury. This is the second hard fork of the roadmap,
+sequenced after ECIP-1115 — not part of the Olympia activation block.
+
+Olympia deploys in five stages. Stages 1 and 5 are hard forks; Stages 2, 3 and 4 are
+contract deployments and governance actions on already-settled consensus rules.
+- Stage 1, Consensus Upgrades (HARD FORK): ECIP-1111, 1112, 1121, 1122
+- Stage 2, Core Governance: ECIP-1113, 1114, 1119
+- Stage 3, Prediction Markets: ECIP-1117, 1118 (+1119)
+- Stage 4, Treasury Distribution: ECIP-1115
+- Stage 5, Protocol Integration (HARD FORK): ECIP-1116
+
 ECIP-1121 — EVM Compatibility
 Advances ETC's execution layer through Dencun, Pectra and Fusaka, and carries that work into
 Glamsterdam (Gloas-Amsterdam). Includes the EIPs from those cycles that do not require
