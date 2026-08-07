@@ -231,7 +231,7 @@ export default function SellExchangesPage() {
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-error)]/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl">
           <div
             className="text-center"
@@ -395,7 +395,7 @@ export default function SellExchangesPage() {
           <div
             className="rounded-3xl border border-[var(--border)] bg-gradient-to-br from-[var(--panel)] to-[var(--bg)] p-8 text-center md:p-12"
           >
-            <span className="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
+            <span className="inline-block rounded-full bg-[var(--color-success-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-success)]">
               Alternative
             </span>
             <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">

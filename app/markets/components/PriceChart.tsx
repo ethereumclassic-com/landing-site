@@ -119,7 +119,7 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
               onClick={() => setTimeRange(range.value)}
               className={`rounded px-3 py-1.5 text-sm font-medium transition ${
                 timeRange === range.value
-                  ? 'bg-[var(--color-primary)] text-[var(--text-primary)]'
+                  ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
@@ -190,7 +190,7 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
           <span className="text-[var(--color-text-muted)]">
             Range: <span className="text-[var(--text-primary)]">${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}</span>
           </span>
-          <span className={`flex items-center gap-1 ${isUp ? 'text-emerald-400' : 'text-[var(--color-error)]'}`}>
+          <span className={`flex items-center gap-1 ${isUp ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
             {isUp ? (
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />

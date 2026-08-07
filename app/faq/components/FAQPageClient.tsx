@@ -56,7 +56,7 @@ export default function FAQPageClient({ section }: { section: FAQSection }) {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             {section.audience}{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               FAQ
             </span>
           </motion.h1>
@@ -85,7 +85,7 @@ export default function FAQPageClient({ section }: { section: FAQSection }) {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/faq"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-8 py-4 text-base font-medium text-[var(--brand-green-foreground)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
               All FAQs
             </Link>

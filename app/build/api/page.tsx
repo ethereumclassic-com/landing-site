@@ -217,7 +217,7 @@ export default function ApiDocsPage() {
               >
                 <div className="border-b border-[var(--border)] bg-[var(--bg)] px-6 py-4">
                   <div className="flex items-center gap-3">
-                    <span className="rounded bg-emerald-500/20 px-2 py-1 text-xs font-bold text-emerald-400">
+                    <span className="rounded bg-[var(--color-success)]/20 px-2 py-1 text-xs font-bold text-[var(--color-success)]">
                       {endpoint.method}
                     </span>
                     <code className="text-lg font-mono text-[var(--text-primary)]">{endpoint.path}</code>
@@ -326,15 +326,15 @@ export default function ApiDocsPage() {
               <h3 className="mb-4 font-semibold text-[var(--text-primary)]">Best Practices</h3>
               <ul className="space-y-3 text-sm text-[var(--color-text-secondary)]">
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400" />
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-success)]" />
                   <span>Cache responses when possible (prices update every 60s)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400" />
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-success)]" />
                   <span>Use batch requests for multiple data points</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400" />
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-success)]" />
                   <span>Implement exponential backoff for retries</span>
                 </li>
               </ul>

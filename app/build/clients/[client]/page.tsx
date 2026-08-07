@@ -36,25 +36,25 @@ const PlatformIcons: Record<string, React.ReactNode> = {
 }
 
 const platformColors: Record<string, { bg: string; text: string }> = {
-  Windows: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
+  Windows: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
   Linux: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
-  macOS: { bg: 'bg-gray-500/10', text: 'text-gray-400' },
+  macOS: { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]' },
   Docker: { bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
 }
 
 const languageColors: Record<string, { bg: string; text: string; label: string }> = {
   Go: { bg: 'bg-cyan-500/10', text: 'text-cyan-400', label: 'Go' },
-  Java: { bg: 'bg-orange-500/10', text: 'text-orange-400', label: 'Java' },
+  Java: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]', label: 'Java' },
   Scala: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]', label: 'Scala 3' },
   Rust: { bg: 'bg-[#DEA584]/10', text: 'text-[#DEA584]', label: 'Rust' },
-  'C#': { bg: 'bg-purple-500/10', text: 'text-purple-400', label: 'C#' },
+  'C#': { bg: 'bg-[var(--color-violet-bg)]', text: 'text-[var(--color-violet)]', label: 'C#' },
 }
 
 const severityColors: Record<SecurityAdvisory['severity'], { bg: string; text: string; border: string }> = {
-  Critical: { bg: 'bg-red-500/10', text: 'text-red-400', border: 'border-red-500/30' },
-  High: { bg: 'bg-red-500/10', text: 'text-red-400', border: 'border-red-500/30' },
+  Critical: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]', border: 'border-[var(--color-error-border)]' },
+  High: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]', border: 'border-[var(--color-error-border)]' },
   Moderate: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]', border: 'border-[var(--color-warning)]/30' },
-  Low: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/30' },
+  Low: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]', border: 'border-[var(--color-info-border)]' },
 }
 
 interface Props {
@@ -286,7 +286,7 @@ function ConfigurationSection({ client }: { client: NodeClient }) {
 }
 
 function NodeClientPage({ client }: { client: NodeClient }) {
-  const langInfo = languageColors[client.language] || { bg: 'bg-gray-500/10', text: 'text-gray-400', label: client.language }
+  const langInfo = languageColors[client.language] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]', label: client.language }
 
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
@@ -319,7 +319,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                   </span>
                 )}
                 {client.role === 'reference' && (
-                  <span className="rounded-full bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-400">
+                  <span className="rounded-full bg-[var(--color-info-bg)] px-3 py-1 text-sm font-medium text-[var(--color-info)]">
                     Reference
                   </span>
                 )}
@@ -386,7 +386,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Platform Support</h2>
             <div className="flex flex-wrap gap-2">
               {client.platforms.map((platform) => {
-                const colors = platformColors[platform] || { bg: 'bg-gray-500/10', text: 'text-gray-400' }
+                const colors = platformColors[platform] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]' }
                 return (
                   <span
                     key={platform}
@@ -513,7 +513,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
 }
 
 function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
-  const langInfo = languageColors[plugin.language] || { bg: 'bg-gray-500/10', text: 'text-gray-400', label: plugin.language }
+  const langInfo = languageColors[plugin.language] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]', label: plugin.language }
 
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">

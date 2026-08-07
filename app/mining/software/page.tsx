@@ -4,15 +4,15 @@ import Link from 'next/link'
 import { miningSoftware, type MiningSoftware } from '../data/mining'
 
 const platformColors: Record<string, { bg: string; text: string }> = {
-  Windows: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
+  Windows: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
   Linux: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
-  macOS: { bg: 'bg-gray-500/10', text: 'text-gray-400' },
+  macOS: { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]' },
 }
 
 const gpuColors: Record<string, { bg: string; text: string }> = {
   NVIDIA: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
   AMD: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]' },
-  ASIC: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
+  ASIC: { bg: 'bg-[var(--color-violet-bg)]', text: 'text-[var(--color-violet)]' },
 }
 
 function SoftwareCard({ software }: { software: MiningSoftware }) {
@@ -142,7 +142,7 @@ export default function MiningSoftwarePage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   <strong className="text-[var(--color-success)]">NVIDIA GPU:</strong> T-Rex Miner offers the best performance and stability.{' '}
                   <strong className="text-[var(--color-error)]">AMD GPU:</strong> TeamRedMiner provides optimal hashrates for AMD cards.{' '}
-                  <strong className="text-blue-400">Mixed rig:</strong> lolMiner supports both with good performance.
+                  <strong className="text-[var(--color-info)]">Mixed rig:</strong> lolMiner supports both with good performance.
                 </p>
               </div>
             </div>

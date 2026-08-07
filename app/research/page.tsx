@@ -28,9 +28,9 @@ const categoryIcons: Record<string, React.ReactNode> = {
 }
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
-  network: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
+  network: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
   ecosystem: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
-  market: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
+  market: { bg: 'bg-[var(--color-violet-bg)]', text: 'text-[var(--color-violet)]' },
   technical: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
 }
 
@@ -100,7 +100,7 @@ function MetricCard({ metric }: { metric: LiveMetric }) {
         {metric.change && (
           <span className={`text-sm font-medium ${
             metric.changeType === 'positive' ? 'text-[var(--color-success)]' :
-            metric.changeType === 'negative' ? 'text-[var(--color-error)]' : 'text-gray-400'
+            metric.changeType === 'negative' ? 'text-[var(--color-error)]' : 'text-[var(--text-muted)]'
           }`}>
             {metric.change}
           </span>
@@ -252,7 +252,7 @@ export default function ResearchPage() {
               href="/research/network"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-info-bg)] text-[var(--color-info)]">
                 {categoryIcons.network}
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Network Analysis</h3>
@@ -296,7 +296,7 @@ export default function ResearchPage() {
               href="/research/reports"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-colors hover:border-[var(--color-primary)]/30"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-violet-bg)] text-[var(--color-violet)]">
                 {categoryIcons.market}
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Reports</h3>

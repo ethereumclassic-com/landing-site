@@ -7,12 +7,12 @@ const categoryLabels: Record<DevTool['category'], { label: string; description: 
   framework: {
     label: 'Development Frameworks',
     description: 'Complete toolkits for building, testing, and deploying smart contracts',
-    color: 'text-purple-400',
+    color: 'text-[var(--color-violet)]',
   },
   library: {
     label: 'Libraries & SDKs',
     description: 'Libraries for interacting with Ethereum Classic from your applications',
-    color: 'text-blue-400',
+    color: 'text-[var(--color-info)]',
   },
   ide: {
     label: 'IDEs & Editors',
@@ -38,10 +38,10 @@ const categoryLabels: Record<DevTool['category'], { label: string; description: 
 
 const languageColors: Record<string, { bg: string; text: string }> = {
   JavaScript: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
-  TypeScript: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
-  Solidity: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
+  TypeScript: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
+  Solidity: { bg: 'bg-[var(--color-violet-bg)]', text: 'text-[var(--color-violet)]' },
   Vyper: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
-  Python: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
+  Python: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
   React: { bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
 }
 
@@ -68,7 +68,7 @@ function ToolCard({ tool }: { tool: DevTool }) {
         <div className="mb-4">
           <div className="flex flex-wrap gap-1">
             {tool.languages.map((lang) => {
-              const colors = languageColors[lang] || { bg: 'bg-gray-500/10', text: 'text-gray-400' }
+              const colors = languageColors[lang] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]' }
               return (
                 <span
                   key={lang}
@@ -169,8 +169,8 @@ export default function BuildToolsPage() {
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">Quick Start Recommendation</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  <strong className="text-purple-400">New to Solidity?</strong> Start with Remix IDE for browser-based development.{' '}
-                  <strong className="text-blue-400">Production projects:</strong> Use Hardhat or Foundry for full development workflow.{' '}
+                  <strong className="text-[var(--color-violet)]">New to Solidity?</strong> Start with Remix IDE for browser-based development.{' '}
+                  <strong className="text-[var(--color-info)]">Production projects:</strong> Use Hardhat or Foundry for full development workflow.{' '}
                   <strong className="text-cyan-400">Frontend apps:</strong> Viem and ethers.js are the recommended libraries.
                 </p>
               </div>

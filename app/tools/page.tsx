@@ -12,7 +12,7 @@ const tools = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
       </svg>
     ),
-    color: 'bg-blue-500/10 text-blue-400',
+    color: 'bg-[var(--color-info-bg)] text-[var(--color-info)]',
     featured: true,
   },
   {
@@ -47,7 +47,7 @@ const tools = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
       </svg>
     ),
-    color: 'bg-purple-500/10 text-purple-400',
+    color: 'bg-[var(--color-violet-bg)] text-[var(--color-violet)]',
   },
   {
     name: 'Contract Verifier',

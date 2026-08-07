@@ -184,7 +184,7 @@ export default function ClientsPage() {
                         </span>
                       )}
                       {client.role === 'reference' && (
-                        <span className="rounded-full bg-blue-500/20 px-3 py-1 text-sm font-medium text-blue-400">
+                        <span className="rounded-full bg-[var(--color-info)]/20 px-3 py-1 text-sm font-medium text-[var(--color-info)]">
                           Reference
                         </span>
                       )}

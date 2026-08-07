@@ -193,7 +193,7 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
               className={`rounded-full px-2 py-0.5 text-xs font-medium ${
                 hw === 'NVIDIA' ? 'bg-[var(--color-success-bg)] text-[var(--color-success)]' :
                 hw === 'AMD' ? 'bg-[var(--color-error-bg)] text-[var(--color-error)]' :
-                'bg-purple-500/10 text-purple-400'
+                'bg-[var(--color-violet-bg)] text-[var(--color-violet)]'
               }`}
             >
               {hw}
@@ -414,9 +414,9 @@ export default function MiningOSPage() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-6">
+            <div className="rounded-xl border border-[var(--color-info-border)] bg-[var(--color-info)]/5 p-6">
               <div className="mb-3 text-2xl">💼</div>
-              <h3 className="font-semibold text-blue-400">Professional Use</h3>
+              <h3 className="font-semibold text-[var(--color-info)]">Professional Use</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
                 <strong className="text-[var(--text-primary)]">minerstat</strong> - Advanced analytics, enterprise features,
                 and sophisticated profit switching for larger operations.

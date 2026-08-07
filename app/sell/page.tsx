@@ -100,7 +100,7 @@ function EcosystemProductCard({ name, description, useCase, website, badge }: Ec
     >
       <div className="mb-3 flex items-center justify-between">
         <h3 className="text-lg font-bold text-[var(--text-primary)]">{name}</h3>
-        <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">
+        <span className="rounded-full bg-[var(--color-success-bg)] px-3 py-1 text-xs font-medium text-[var(--color-success)]">
           {badge}
         </span>
       </div>
@@ -246,7 +246,7 @@ export default function SellPage() {
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-error)]/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl">
           <div
             className="text-center"
@@ -301,7 +301,7 @@ export default function SellPage() {
           <div
             className="mb-8 text-center"
           >
-            <span className="inline-block rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
+            <span className="inline-block rounded-full bg-[var(--color-success-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-success)]">
               ETC Native
             </span>
             <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">

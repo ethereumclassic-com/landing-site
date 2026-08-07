@@ -269,7 +269,7 @@ export default function DocsPage() {
                     className={`rounded-full px-2 py-0.5 text-xs ${
                       explorer.network === 'mainnet'
                         ? 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]'
-                        : 'bg-gray-500/20 text-gray-400'
+                        : 'bg-[var(--bg-elevated)]/20 text-[var(--text-muted)]'
                     }`}
                   >
                     {explorer.network}

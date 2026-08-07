@@ -217,7 +217,7 @@ export default function OnRampGuidePage() {
 
   const getColorClass = (color: string) => {
     switch (color) {
-      case 'blue': return 'bg-blue-500/10 text-blue-400'
+      case 'blue': return 'bg-[var(--color-info-bg)] text-[var(--color-info)]'
       case 'amber': return 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]'
       case 'green': return 'bg-[var(--color-success-bg)] text-[var(--color-success)]'
       case 'primary': return 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
@@ -273,7 +273,7 @@ export default function OnRampGuidePage() {
                 }`}
               >
                 <div className="font-medium">{journeys[key].title}</div>
-                <div className={`text-xs ${activeJourney === key ? 'text-black/70' : 'text-[var(--color-text-muted)]'}`}>
+                <div className={`text-xs ${activeJourney === key ? 'text-[var(--brand-green-foreground)]/70' : 'text-[var(--color-text-muted)]'}`}>
                   {journeys[key].subtitle}
                 </div>
               </button>

@@ -192,7 +192,7 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                     rel="noopener noreferrer"
                     className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                       isDEX
-                        ? 'bg-[var(--color-primary)] text-[var(--text-primary)] hover:bg-[var(--color-primary-hover)]'
+                        ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)] hover:bg-[var(--color-primary-hover)]'
                         : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
                     }`}
                   >

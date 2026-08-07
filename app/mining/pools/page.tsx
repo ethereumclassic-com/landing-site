@@ -52,7 +52,7 @@ export default function MiningPoolsPage() {
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Mining{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Pools
             </span>
           </h1>
@@ -290,7 +290,7 @@ export default function MiningPoolsPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
-                <span className="rounded-lg bg-emerald-500/10 px-2 py-1 text-xs font-bold text-emerald-400">PPS</span>
+                <span className="rounded-lg bg-[var(--color-success-bg)] px-2 py-1 text-xs font-bold text-[var(--color-success)]">PPS</span>
                 <div>
                   <h4 className="font-semibold text-[var(--text-primary)]">Pay Per Share</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -304,7 +304,7 @@ export default function MiningPoolsPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
-                <span className="rounded-lg bg-blue-500/10 px-2 py-1 text-xs font-bold text-blue-400">PPLNS</span>
+                <span className="rounded-lg bg-[var(--color-info-bg)] px-2 py-1 text-xs font-bold text-[var(--color-info)]">PPLNS</span>
                 <div>
                   <h4 className="font-semibold text-[var(--text-primary)]">Pay Per Last N Shares</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
@@ -318,7 +318,7 @@ export default function MiningPoolsPage() {
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
             >
               <div className="flex items-start gap-4">
-                <span className="rounded-lg bg-purple-500/10 px-2 py-1 text-xs font-bold text-purple-400">SOLO</span>
+                <span className="rounded-lg bg-[var(--color-violet-bg)] px-2 py-1 text-xs font-bold text-[var(--color-violet)]">SOLO</span>
                 <div>
                   <h4 className="font-semibold text-[var(--text-primary)]">Solo Mining</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">

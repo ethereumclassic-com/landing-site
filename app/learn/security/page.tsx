@@ -61,7 +61,7 @@ export default function SecurityPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-red-500/10 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-error)]/10 via-transparent to-transparent" />
 
         <div
           className="relative mx-auto max-w-4xl text-center"
@@ -92,7 +92,7 @@ export default function SecurityPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Security{' '}
-            <span className="bg-gradient-to-r from-red-400 to-[var(--color-primary)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-error)] to-[var(--color-primary)] bg-clip-text text-transparent">
               Best Practices
             </span>
           </h1>
@@ -211,7 +211,7 @@ export default function SecurityPage() {
             </div>
             <Link
               href="/wallet/compare"
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-red-600 md:mt-0"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-error)] md:mt-0"
             >
               Compare Wallets
             </Link>
@@ -220,7 +220,7 @@ export default function SecurityPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-red-500/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-error)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >
@@ -233,7 +233,7 @@ export default function SecurityPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/learn/wallets"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-red-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-error)]"
             >
               Wallet Guides
             </Link>

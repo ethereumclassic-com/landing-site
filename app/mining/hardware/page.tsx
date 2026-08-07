@@ -18,9 +18,9 @@ const availabilityColors: Record<string, { bg: string; text: string }> = {
 const brandColors: Record<string, { bg: string; text: string }> = {
   NVIDIA: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
   AMD: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]' },
-  Bitmain: { bg: 'bg-orange-500/10', text: 'text-orange-400' },
-  Jasminer: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
-  iPollo: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
+  Bitmain: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
+  Jasminer: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
+  iPollo: { bg: 'bg-[var(--color-violet-bg)]', text: 'text-[var(--color-violet)]' },
   Innosilicon: { bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
 }
 
@@ -60,7 +60,7 @@ function HardwareRow({
   )
 
   const availabilityColor = availabilityColors[hardware.availability] || availabilityColors.available
-  const brandColor = brandColors[hardware.brand] || { bg: 'bg-gray-500/10', text: 'text-gray-400' }
+  const brandColor = brandColors[hardware.brand] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]' }
 
   return (
     <tr className="border-b border-[var(--border)]/50 transition-colors hover:bg-[var(--panel)]/50">
@@ -121,7 +121,7 @@ function HardwareCard({
   )
 
   const availabilityColor = availabilityColors[hardware.availability] || availabilityColors.available
-  const brandColor = brandColors[hardware.brand] || { bg: 'bg-gray-500/10', text: 'text-gray-400' }
+  const brandColor = brandColors[hardware.brand] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]' }
 
   return (
     <div

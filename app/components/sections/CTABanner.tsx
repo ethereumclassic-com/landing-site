@@ -25,7 +25,7 @@ export interface CTABannerProps extends HTMLAttributes<HTMLElement> {
 const variantStyles: Record<CTABannerVariant, string> = {
   primary: 'bg-[var(--brand-green)]',
   secondary: 'bg-[var(--bg-elevated)] border border-[var(--border-default)]',
-  gradient: 'bg-gradient-to-r from-[var(--brand-green)] to-emerald-600',
+  gradient: 'bg-gradient-to-r from-[var(--brand-green)] to-[var(--color-success)]',
 }
 
 const textStyles: Record<CTABannerVariant, { title: string; description: string }> = {

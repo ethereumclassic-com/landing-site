@@ -104,10 +104,10 @@ export default function MostSecureExchangesPage() {
 
           {/* Security Notice */}
           <div
-            className="mb-12 rounded-xl border border-blue-500/30 bg-blue-500/10 p-5"
+            className="mb-12 rounded-xl border border-[var(--color-info-border)] bg-[var(--color-info-bg)] p-5"
           >
             <div className="flex items-start gap-3">
-              <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
               <div>
@@ -135,15 +135,15 @@ export default function MostSecureExchangesPage() {
                     href={exchange.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group rounded-xl border border-blue-500/20 bg-[var(--panel)] p-5 transition-all hover:border-blue-500/40"
+                    className="group rounded-xl border border-[var(--color-info)]/20 bg-[var(--panel)] p-5 transition-all hover:border-[var(--color-info)]/40"
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-blue-400">
+                        <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-info)]">
                           {exchange.name}
                         </h3>
                         <div className="mt-1 flex flex-wrap gap-1">
-                          <span className="inline-block rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-400">
+                          <span className="inline-block rounded bg-[var(--color-info-bg)] px-2 py-0.5 text-xs text-[var(--color-info)]">
                             US Regulated
                           </span>
                           {exchange.featured && (

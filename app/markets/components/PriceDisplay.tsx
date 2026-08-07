@@ -30,13 +30,13 @@ const sizeClasses = {
 }
 
 const changeColors = {
-  up: 'text-emerald-400',
+  up: 'text-[var(--color-success)]',
   down: 'text-[var(--color-error)]',
   neutral: 'text-[var(--color-text-muted)]',
 }
 
 const changeBgColors = {
-  up: 'bg-emerald-500/10',
+  up: 'bg-[var(--color-success-bg)]',
   down: 'bg-[var(--color-error-bg)]',
   neutral: 'bg-[var(--panel)]',
 }
@@ -121,7 +121,7 @@ interface PriceCompactProps {
 
 export function PriceCompact({ price, changePercent, changeDirection = 'neutral' }: PriceCompactProps) {
   const changeColors = {
-    up: 'text-emerald-400',
+    up: 'text-[var(--color-success)]',
     down: 'text-[var(--color-error)]',
     neutral: 'text-[var(--color-text-muted)]',
   }
@@ -150,7 +150,7 @@ interface PriceStatProps {
 
 export function PriceStat({ label, value, change, changeDirection = 'neutral', tooltip }: PriceStatProps) {
   const changeColors = {
-    up: 'text-emerald-400',
+    up: 'text-[var(--color-success)]',
     down: 'text-[var(--color-error)]',
     neutral: 'text-[var(--color-text-muted)]',
   }

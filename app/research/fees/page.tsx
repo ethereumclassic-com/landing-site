@@ -127,9 +127,9 @@ function GasPriceCards({ gasPrices, isLoading }: { gasPrices: FeeStats['gasPrice
       name: 'Slow',
       price: gasPrices.slow,
       time: '~5 min',
-      color: 'text-blue-400',
-      bgColor: 'bg-blue-500/10',
-      borderColor: 'border-blue-500/30',
+      color: 'text-[var(--color-info)]',
+      bgColor: 'bg-[var(--color-info-bg)]',
+      borderColor: 'border-[var(--color-info-border)]',
     },
     {
       name: 'Average',
@@ -180,7 +180,7 @@ function GasPriceCards({ gasPrices, isLoading }: { gasPrices: FeeStats['gasPrice
 function NetworkUtilization({ utilization, isLoading }: { utilization: number; isLoading: boolean }) {
   // Determine health status based on utilization
   const getHealthStatus = (util: number) => {
-    if (util < 25) return { label: 'Low', color: 'text-blue-400', bgColor: 'bg-blue-500' }
+    if (util < 25) return { label: 'Low', color: 'text-[var(--color-info)]', bgColor: 'bg-[var(--color-info)]' }
     if (util < 50) return { label: 'Moderate', color: 'text-[var(--color-success)]', bgColor: 'bg-[var(--color-success)]' }
     if (util < 75) return { label: 'High', color: 'text-[var(--color-warning)]', bgColor: 'bg-[var(--color-warning)]' }
     return { label: 'Very High', color: 'text-[var(--color-error)]', bgColor: 'bg-[var(--color-error)]' }
@@ -342,7 +342,7 @@ function FeeMarketHealth({ stats, isLoading }: { stats: FeeStats; isLoading: boo
                     ? 'bg-[var(--color-success)]'
                     : indicator.status === 'moderate'
                     ? 'bg-[var(--color-warning)]'
-                    : 'bg-blue-400'
+                    : 'bg-[var(--color-info)]'
                 }`}
               />
             </div>
@@ -527,7 +527,7 @@ export default function FeeMarketPage() {
                   <span><strong className="text-[var(--text-primary)]">Era 6 (~2027):</strong> ~1.64 ETC block reward, 20% reduction in block rewards</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-blue-400">•</span>
+                  <span className="text-[var(--color-info)]">•</span>
                   <span><strong className="text-[var(--text-primary)]">Long-term:</strong> Fee market will need to grow to maintain miner incentives as block rewards approach zero</span>
                 </li>
               </ul>

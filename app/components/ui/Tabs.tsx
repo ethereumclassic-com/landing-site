@@ -27,7 +27,7 @@ const variantStyles: Record<TabsVariant, { container: string; tab: string; activ
   pills: {
     container: 'gap-2',
     tab: 'px-4 py-2 rounded-full text-[var(--color-text-secondary)] border border-transparent hover:text-[var(--color-text-primary)] hover:bg-[var(--panel)]',
-    active: 'bg-[var(--color-primary)] text-[var(--text-primary)] border-[var(--color-primary)]',
+    active: 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)] border-[var(--color-primary)]',
   },
   underline: {
     container: 'border-b border-[var(--border)]',

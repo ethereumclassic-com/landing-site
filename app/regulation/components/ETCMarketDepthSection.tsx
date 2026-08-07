@@ -175,7 +175,7 @@ export function ETCMarketDepthSection() {
                 href="https://www.coingecko.com/en/coins/ethereum-classic"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-white"
+                className="text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 CoinGecko
               </a>
@@ -183,7 +183,7 @@ export function ETCMarketDepthSection() {
                 href="https://coinmarketcap.com/currencies/ethereum-classic/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-white"
+                className="text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
                 CoinMarketCap
               </a>

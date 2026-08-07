@@ -104,8 +104,8 @@ function ResourceCard({
   const isExternal = url.startsWith('http')
   const typeColors: Record<string, { bg: string; text: string }> = {
     calculator: { bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
-    stats: { bg: 'bg-blue-500/10', text: 'text-blue-400' },
-    guide: { bg: 'bg-purple-500/10', text: 'text-purple-400' },
+    stats: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
+    guide: { bg: 'bg-[var(--color-violet-bg)]', text: 'text-[var(--color-violet)]' },
     tool: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
   }
   const colors = typeColors[type] || typeColors.tool
@@ -223,7 +223,7 @@ export default function MiningStatsPage() {
               value={miningStats?.blockTimeFormatted || `~${liveStats.blockTimeSeconds.toFixed(1)}s`}
               description="Average time between blocks"
               icon={
-                <svg aria-hidden="true" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               }
@@ -233,7 +233,7 @@ export default function MiningStatsPage() {
               value={`~${liveStats.blockReward.toFixed(3)} ETC`}
               description="Average reward per block"
               icon={
-                <svg aria-hidden="true" className="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1012 10.125M12 4.875a2.625 2.625 0 00-2.625 2.625M12 4.875v5.25m0-5.25a2.625 2.625 0 012.625 2.625M12 10.125v5.25m0 0a2.625 2.625 0 012.625 2.625M12 15.375a2.625 2.625 0 00-2.625 2.625m5.25 0h3.375a.375.375 0 00.375-.375v-3a.375.375 0 00-.375-.375H17.25m-5.25 3.75v3.75m0-3.75a2.625 2.625 0 00-2.625-2.625H6.375a.375.375 0 01-.375-.375v-3a.375.375 0 01.375-.375h3.375" />
                 </svg>
               }

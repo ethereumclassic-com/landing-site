@@ -79,7 +79,7 @@ export default function EraHistoryTable({
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-[var(--text-primary)]">Era {era.number}</span>
-                      <span className="rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-xs text-emerald-400">Complete</span>
+                      <span className="rounded-full bg-[var(--color-success-bg)] px-1.5 py-0.5 text-xs text-[var(--color-success)]">Complete</span>
                     </div>
                     {era.event && <p className="mt-0.5 text-xs text-[var(--text-muted)]">{era.event}</p>}
                   </td>

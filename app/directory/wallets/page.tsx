@@ -77,7 +77,7 @@ function getSecurityBadge(level: 'high' | 'medium' | 'standard' | undefined) {
     case 'medium':
       return <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-warning)]">Medium</span>
     case 'standard':
-      return <span className="rounded-full bg-gray-500/10 px-2 py-0.5 text-xs font-medium text-gray-400">Standard</span>
+      return <span className="rounded-full bg-[var(--bg-elevated)] px-2 py-0.5 text-xs font-medium text-[var(--text-muted)]">Standard</span>
     default:
       return null
   }
@@ -232,7 +232,7 @@ function WalletTableRow({ wallet }: { wallet: Wallet }) {
           rel="noopener noreferrer"
           className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
             isHardware
-              ? 'bg-[var(--color-success)] text-[var(--text-primary)] hover:bg-green-600'
+              ? 'bg-[var(--color-success)] text-[var(--text-primary)] hover:bg-[var(--color-success)]'
               : 'border border-[var(--border)] bg-[var(--panel)] text-[var(--text-primary)] hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10'
           }`}
         >

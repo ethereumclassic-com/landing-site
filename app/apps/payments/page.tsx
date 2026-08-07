@@ -67,7 +67,7 @@ export default function PaymentsPage() {
           </div>
 
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-success-border)] bg-[var(--color-success-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-success)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
               </svg>
@@ -79,7 +79,7 @@ export default function PaymentsPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             ETC{' '}
-            <span className="bg-gradient-to-r from-emerald-400 to-[var(--color-primary)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-success)] to-[var(--color-primary)] bg-clip-text text-transparent">
               Payments
             </span>
           </h1>
@@ -101,7 +101,7 @@ export default function PaymentsPage() {
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-success-bg)] text-[var(--color-success)]">
                   {feature.icon}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
@@ -135,7 +135,7 @@ export default function PaymentsPage() {
                 key={item.step}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-center"
               >
-                <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-[var(--text-primary)]">
+                <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)] text-sm font-bold text-[var(--text-primary)]">
                   {item.step}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
@@ -175,8 +175,8 @@ export default function PaymentsPage() {
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-success-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
               </div>
@@ -189,7 +189,7 @@ export default function PaymentsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-emerald-500/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-success)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >
@@ -202,7 +202,7 @@ export default function PaymentsPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/buy"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-success)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
             >
               Buy ETC
             </Link>
@@ -210,7 +210,7 @@ export default function PaymentsPage() {
               href="https://brale.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-success-border)] hover:bg-[var(--color-success-bg)]"
             >
               Get ClassicUSD
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -4,16 +4,16 @@ import Link from 'next/link'
 import { hardwareManufacturers, miningHardware } from '../../data/mining'
 
 const brandColors: Record<string, { bg: string; border: string; text: string }> = {
-  Bitmain: { bg: 'bg-orange-500/10', border: 'border-orange-500/30', text: 'text-orange-400' },
-  Jasminer: { bg: 'bg-blue-500/10', border: 'border-blue-500/30', text: 'text-blue-400' },
-  iPollo: { bg: 'bg-purple-500/10', border: 'border-purple-500/30', text: 'text-purple-400' },
+  Bitmain: { bg: 'bg-[var(--color-warning-bg)]', border: 'border-[var(--color-warning-border)]', text: 'text-[var(--color-warning)]' },
+  Jasminer: { bg: 'bg-[var(--color-info-bg)]', border: 'border-[var(--color-info-border)]', text: 'text-[var(--color-info)]' },
+  iPollo: { bg: 'bg-[var(--color-violet-bg)]', border: 'border-[var(--color-violet-border)]', text: 'text-[var(--color-violet)]' },
   Innosilicon: { bg: 'bg-cyan-500/10', border: 'border-cyan-500/30', text: 'text-cyan-400' },
   NVIDIA: { bg: 'bg-[var(--color-success-bg)]', border: 'border-[var(--color-success-border)]', text: 'text-[var(--color-success)]' },
   AMD: { bg: 'bg-[var(--color-error-bg)]', border: 'border-[var(--color-error-border)]', text: 'text-[var(--color-error)]' },
 }
 
 function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManufacturers[0] }) {
-  const colors = brandColors[manufacturer.name] || { bg: 'bg-gray-500/10', border: 'border-gray-500/30', text: 'text-gray-400' }
+  const colors = brandColors[manufacturer.name] || { bg: 'bg-[var(--bg-elevated)]', border: 'border-[var(--border-default)]/30', text: 'text-[var(--text-muted)]' }
   const relatedHardware = miningHardware.filter(hw => hw.brand === manufacturer.name)
 
   return (

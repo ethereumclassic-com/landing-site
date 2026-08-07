@@ -224,7 +224,7 @@ function BannerNewsletter({
     >
       <Container size="xl">
         <FadeIn>
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[var(--brand-green)] to-emerald-600 p-8 md:p-12">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[var(--brand-green)] to-[var(--color-success)] p-8 md:p-12">
             {/* Decorative orbs (intentional white overlays on green bg) */}
             <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white opacity-10 blur-3xl" />
             <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-white opacity-10 blur-3xl" />

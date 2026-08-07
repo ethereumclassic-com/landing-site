@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { reports, type Report } from '../data/research'
 
 const categoryLabels: Record<Report['category'], { label: string; bg: string; text: string }> = {
-  network: { label: 'Network', bg: 'bg-blue-500/10', text: 'text-blue-400' },
+  network: { label: 'Network', bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]' },
   ecosystem: { label: 'Ecosystem', bg: 'bg-[var(--color-success-bg)]', text: 'text-[var(--color-success)]' },
-  market: { label: 'Market', bg: 'bg-purple-500/10', text: 'text-purple-400' },
+  market: { label: 'Market', bg: 'bg-[var(--color-violet-bg)]', text: 'text-[var(--color-violet)]' },
   technical: { label: 'Technical', bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]' },
 }
 

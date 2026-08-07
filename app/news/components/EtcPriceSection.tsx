@@ -98,7 +98,7 @@ export default function EtcPriceSection() {
                 </span>
                 <span
                   className={`flex items-center gap-0.5 text-sm font-semibold ${
-                    isPositive ? 'text-emerald-400' : 'text-red-400'
+                    isPositive ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'
                   }`}
                 >
                   <svg

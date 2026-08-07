@@ -205,8 +205,8 @@ export default function CompareExchangesPage() {
                       <span
                         className={`rounded px-2 py-0.5 text-xs ${
                           exchange.type === 'DEX'
-                            ? 'bg-purple-500/10 text-purple-400'
-                            : 'bg-blue-500/10 text-blue-400'
+                            ? 'bg-[var(--color-violet-bg)] text-[var(--color-violet)]'
+                            : 'bg-[var(--color-info-bg)] text-[var(--color-info)]'
                         }`}
                       >
                         {exchange.type}
@@ -312,11 +312,11 @@ export default function CompareExchangesPage() {
               <span>Medium fees (0.1-0.2%)</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="rounded bg-purple-500/10 px-2 py-0.5 text-xs text-purple-400">DEX</span>
+              <span className="rounded bg-[var(--color-violet-bg)] px-2 py-0.5 text-xs text-[var(--color-violet)]">DEX</span>
               <span>Decentralized</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-400">CEX</span>
+              <span className="rounded bg-[var(--color-info-bg)] px-2 py-0.5 text-xs text-[var(--color-info)]">CEX</span>
               <span>Centralized</span>
             </div>
           </div>

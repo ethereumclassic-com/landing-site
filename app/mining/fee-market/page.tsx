@@ -83,7 +83,7 @@ export default function FeeMarketPage() {
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
             The Fee Market{' '}
-            <span className="bg-gradient-to-r from-red-400 to-[var(--color-primary)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-error)] to-[var(--color-primary)] bg-clip-text text-transparent">
               Imperative
             </span>
           </h1>

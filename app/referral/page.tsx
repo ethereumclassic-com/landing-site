@@ -17,9 +17,9 @@ const referralTiers = [
     minReferrals: 5,
     maxReferrals: 19,
     commissionRate: 15,
-    color: 'text-slate-400',
-    bgColor: 'bg-slate-400/10',
-    borderColor: 'border-slate-400/30',
+    color: 'text-[var(--text-muted)]',
+    bgColor: 'bg-[var(--bg-elevated)]/10',
+    borderColor: 'border-[var(--border-default)]/30',
   },
   {
     name: 'Gold',

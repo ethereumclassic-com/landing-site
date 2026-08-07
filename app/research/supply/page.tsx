@@ -41,7 +41,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
       value: formatSupply(EMISSION_CONSTANTS.GENESIS_SUPPLY) + ' ETC',
       description: 'From Ethereum fork',
       icon: (
-        <svg aria-hidden="true" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
         </svg>
       ),

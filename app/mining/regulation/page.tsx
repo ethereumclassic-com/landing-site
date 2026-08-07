@@ -74,7 +74,7 @@ export default function MiningRegulationPage() {
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
             Mining in the{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Regulated Era
             </span>
           </h1>

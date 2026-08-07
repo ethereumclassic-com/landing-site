@@ -73,7 +73,7 @@ export default function DeFiPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-purple-500/10 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-violet)]/10 via-transparent to-transparent" />
 
         <div
           className="relative mx-auto max-w-4xl text-center"
@@ -92,7 +92,7 @@ export default function DeFiPage() {
           </div>
 
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm font-medium text-purple-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-violet-border)] bg-[var(--color-violet-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-violet)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -104,7 +104,7 @@ export default function DeFiPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             DeFi on{' '}
-            <span className="bg-gradient-to-r from-purple-400 to-[var(--color-primary)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-violet)] to-[var(--color-primary)] bg-clip-text text-transparent">
               Ethereum Classic
             </span>
           </h1>
@@ -126,7 +126,7 @@ export default function DeFiPage() {
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-violet-bg)] text-[var(--color-violet)]">
                   {feature.icon}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
@@ -155,17 +155,17 @@ export default function DeFiPage() {
                   href={protocol.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-all hover:border-purple-500/30 hover:bg-purple-500/5"
+                  className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-all hover:border-[var(--color-violet-border)] hover:bg-[var(--color-violet)]/5"
                 >
                   <div className="mb-2 flex items-center justify-between">
-                    <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-xs font-medium text-purple-400">
+                    <span className="rounded-full bg-[var(--color-violet-bg)] px-2 py-0.5 text-xs font-medium text-[var(--color-violet)]">
                       {protocol.badge}
                     </span>
                     <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-text-muted)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-purple-400">{protocol.name}</h3>
+                  <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-violet)]">{protocol.name}</h3>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{protocol.description}</p>
                 </a>
               ))}
@@ -196,8 +196,8 @@ export default function DeFiPage() {
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-violet-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
               </div>
@@ -233,7 +233,7 @@ export default function DeFiPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-purple-500/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-violet)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >
@@ -248,7 +248,7 @@ export default function DeFiPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-purple-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-violet)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-violet)]"
             >
               Launch ETCswap
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -257,7 +257,7 @@ export default function DeFiPage() {
             </a>
             <Link
               href="/apps/defi"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-purple-500/30 hover:bg-purple-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-violet-border)] hover:bg-[var(--color-violet-bg)]"
             >
               Browse DeFi Apps
             </Link>

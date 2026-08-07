@@ -28,8 +28,8 @@ export default function GasTrackerPage() {
       gwei: slow?.toFixed(2) ?? '1',
       time: '~5 min',
       description: 'Low priority, cheaper',
-      color: 'text-blue-400',
-      bgColor: 'bg-blue-500/10',
+      color: 'text-[var(--color-info)]',
+      bgColor: 'bg-[var(--color-info-bg)]',
     },
     {
       name: 'Standard',
@@ -241,7 +241,7 @@ export default function GasTrackerPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-info-bg)] text-[var(--color-info)]">
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -254,7 +254,7 @@ export default function GasTrackerPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-violet-bg)] text-[var(--color-violet)]">
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                   </svg>

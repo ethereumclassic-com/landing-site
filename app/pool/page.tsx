@@ -109,7 +109,7 @@ export default function PoolPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <button
                 disabled
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)]/50 px-6 py-3 font-medium text-black/50 cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)]/50 px-6 py-3 font-medium text-[var(--text-muted)] cursor-not-allowed"
               >
                 Start Mining
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -326,7 +326,7 @@ export default function PoolPage() {
               />
               <button
                 disabled
-                className="w-full rounded-lg bg-[var(--color-warning)]/50 px-6 py-3 font-medium text-black/50 cursor-not-allowed sm:w-auto"
+                className="w-full rounded-lg bg-[var(--color-warning)]/50 px-6 py-3 font-medium text-[var(--text-muted)] cursor-not-allowed sm:w-auto"
               >
                 Join Waitlist
               </button>

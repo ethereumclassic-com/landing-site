@@ -34,7 +34,7 @@ function BankMethod({
         </div>
         <div>
           <span className="text-[var(--color-text-muted)]">Fees</span>
-          <p className="font-medium text-emerald-400">{fees}</p>
+          <p className="font-medium text-[var(--color-success)]">{fees}</p>
         </div>
         <div className="col-span-2">
           <span className="text-[var(--color-text-muted)]">Limits</span>
@@ -93,7 +93,7 @@ function ExchangeProvider({
         </div>
         <div>
           <span className="text-[var(--color-text-muted)]">Deposit Fees</span>
-          <p className="font-medium text-emerald-400">{fees}</p>
+          <p className="font-medium text-[var(--color-success)]">{fees}</p>
         </div>
       </div>
 
@@ -288,7 +288,7 @@ export default function BankPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy ETC with{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Bank Transfer
             </span>
           </h1>

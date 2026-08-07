@@ -30,7 +30,7 @@ export default function MiningGettingStartedPage() {
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Getting Started with{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               ETC Mining
             </span>
           </h1>
@@ -134,8 +134,8 @@ export default function MiningGettingStartedPage() {
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10">
-                <svg aria-hidden="true" className="h-5 w-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-violet-bg)]">
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" />
                 </svg>
               </div>
@@ -152,8 +152,8 @@ export default function MiningGettingStartedPage() {
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10">
-                <svg aria-hidden="true" className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-info-bg)]">
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
                 </svg>
               </div>
@@ -188,8 +188,8 @@ export default function MiningGettingStartedPage() {
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10">
-                <svg aria-hidden="true" className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-success-bg)]">
+                <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
                 </svg>
               </div>
@@ -293,14 +293,14 @@ export default function MiningGettingStartedPage() {
             </div>
 
             <div
-              className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-4"
+              className="rounded-xl border border-[var(--color-info-border)] bg-[var(--color-info)]/5 p-4"
             >
               <div className="flex items-start gap-3">
-                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                 </svg>
                 <div>
-                  <h4 className="font-semibold text-blue-400">Electricity Costs</h4>
+                  <h4 className="font-semibold text-[var(--color-info)]">Electricity Costs</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Calculate profitability with your local electricity rates. Mining may not be profitable in high-cost areas.
                   </p>
@@ -309,14 +309,14 @@ export default function MiningGettingStartedPage() {
             </div>
 
             <div
-              className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4"
+              className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-4"
             >
               <div className="flex items-start gap-3">
-                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
                 <div>
-                  <h4 className="font-semibold text-emerald-400">Secure Your Wallet</h4>
+                  <h4 className="font-semibold text-[var(--color-success)]">Secure Your Wallet</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Use a hardware wallet for storing mined ETC. Never share your private keys or seed phrase.
                   </p>
@@ -325,14 +325,14 @@ export default function MiningGettingStartedPage() {
             </div>
 
             <div
-              className="rounded-xl border border-purple-500/30 bg-purple-500/5 p-4"
+              className="rounded-xl border border-[var(--color-violet-border)] bg-[var(--color-violet)]/5 p-4"
             >
               <div className="flex items-start gap-3">
-                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg aria-hidden="true" className="h-5 w-5 flex-shrink-0 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
                 <div>
-                  <h4 className="font-semibold text-purple-400">Track Your Stats</h4>
+                  <h4 className="font-semibold text-[var(--color-violet)]">Track Your Stats</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                     Monitor your hashrate, shares, and earnings on your pool dashboard. Investigate sudden drops.
                   </p>

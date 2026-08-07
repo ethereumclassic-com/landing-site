@@ -52,7 +52,7 @@ export default function TradingPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-info)]/10 via-transparent to-transparent" />
 
         <div
           className="relative mx-auto max-w-4xl text-center"
@@ -71,7 +71,7 @@ export default function TradingPage() {
           </div>
 
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-info-border)] bg-[var(--color-info-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-info)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
               </svg>
@@ -83,7 +83,7 @@ export default function TradingPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Trading{' '}
-            <span className="bg-gradient-to-r from-blue-400 to-[var(--color-primary)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-info)] to-[var(--color-primary)] bg-clip-text text-transparent">
               Guides
             </span>
           </h1>
@@ -105,7 +105,7 @@ export default function TradingPage() {
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-info-bg)] text-[var(--color-info)]">
                   {feature.icon}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
@@ -130,14 +130,14 @@ export default function TradingPage() {
             <div className="mt-6 grid gap-4 md:grid-cols-3">
               <Link
                 href="/exchanges"
-                className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-all hover:border-blue-500/30 hover:bg-blue-500/5"
+                className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-all hover:border-[var(--color-info-border)] hover:bg-[var(--color-info)]/5"
               >
-                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-info-bg)] text-[var(--color-info)]">
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-blue-400">Exchanges</h3>
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-info)]">Exchanges</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   30+ platforms to buy and sell ETC
                 </p>
@@ -162,14 +162,14 @@ export default function TradingPage() {
 
               <Link
                 href="/buy/p2p"
-                className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/5"
+                className="group rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-all hover:border-[var(--color-success-border)] hover:bg-[var(--color-success)]/5"
               >
-                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-success-bg)] text-[var(--color-success)]">
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-emerald-400">P2P Trading</h3>
+                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-success)]">P2P Trading</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Trade directly with others
                 </p>
@@ -201,8 +201,8 @@ export default function TradingPage() {
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-info-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
               </div>
@@ -215,7 +215,7 @@ export default function TradingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-blue-500/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-info)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >
@@ -228,13 +228,13 @@ export default function TradingPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/buy"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-blue-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-info)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-info)]"
             >
               Buy ETC
             </Link>
             <Link
               href="/exchanges"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-blue-500/30 hover:bg-blue-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-info-border)] hover:bg-[var(--color-info-bg)]"
             >
               Browse Exchanges
             </Link>

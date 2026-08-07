@@ -376,8 +376,8 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                 <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Rating Breakdown</h3>
                 <div className="space-y-4">
                   <RatingBar label="Security" rating={review.rating.security} color="bg-[var(--color-success)]" />
-                  <RatingBar label="Usability" rating={review.rating.usability} color="bg-blue-500" />
-                  <RatingBar label="Features" rating={review.rating.features} color="bg-purple-500" />
+                  <RatingBar label="Usability" rating={review.rating.usability} color="bg-[var(--color-info)]" />
+                  <RatingBar label="Features" rating={review.rating.features} color="bg-[var(--color-violet)]" />
                   <RatingBar label="Support" rating={review.rating.support} color="bg-[var(--color-warning)]" />
                 </div>
 

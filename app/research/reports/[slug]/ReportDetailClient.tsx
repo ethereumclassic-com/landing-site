@@ -4,10 +4,10 @@ import Link from 'next/link'
 import type { Report } from '../../data/research'
 
 const categoryColors: Record<string, string> = {
-  network: 'bg-blue-500/10 text-blue-400',
+  network: 'bg-[var(--color-info-bg)] text-[var(--color-info)]',
   ecosystem: 'bg-[var(--color-success-bg)] text-[var(--color-success)]',
   market: 'bg-[var(--color-warning-bg)] text-[var(--color-warning)]',
-  technical: 'bg-purple-500/10 text-purple-400',
+  technical: 'bg-[var(--color-violet-bg)] text-[var(--color-violet)]',
 }
 
 export default function ReportDetailClient({ report }: { report: Report }) {
@@ -30,7 +30,7 @@ export default function ReportDetailClient({ report }: { report: Report }) {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <span className={`rounded px-2.5 py-1 text-xs font-medium ${categoryColors[report.category] || 'bg-gray-500/10 text-gray-400'}`}>
+              <span className={`rounded px-2.5 py-1 text-xs font-medium ${categoryColors[report.category] || 'bg-[var(--bg-elevated)] text-[var(--text-muted)]'}`}>
                 {report.category}
               </span>
               <span className="text-sm text-[var(--color-text-muted)]">{report.date}</span>

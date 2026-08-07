@@ -106,9 +106,9 @@ const cves: CVE[] = [
 
 const severityColors: Record<CVE['severity'], string> = {
   Critical: 'text-[var(--color-error)] bg-[var(--color-error-bg)]',
-  High: 'text-orange-400 bg-orange-500/10',
+  High: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
   Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
-  Low: 'text-blue-400 bg-blue-500/10',
+  Low: 'text-[var(--color-info)] bg-[var(--color-info-bg)]',
 }
 
 interface RiskItem {
@@ -159,13 +159,13 @@ const riskAssessment: RiskItem[] = [
 
 const riskColors: Record<RiskItem['risk'], string> = {
   Critical: 'text-[var(--color-error)] bg-[var(--color-error-bg)]',
-  High: 'text-orange-400 bg-orange-500/10',
+  High: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
   Medium: 'text-[var(--color-warning)] bg-[var(--color-warning-bg)]',
 }
 
 const riskAccentColors: Record<RiskItem['risk'], string> = {
   Critical: 'bg-[var(--color-error)]',
-  High: 'bg-orange-400',
+  High: 'bg-[var(--color-warning)]',
   Medium: 'bg-[var(--color-warning)]',
 }
 
@@ -300,7 +300,7 @@ export default function CoreGethSecurityAuditPage() {
             <div className="mt-6 flex flex-wrap gap-2">
               {[
                 { label: '6 CVEs', color: 'text-[var(--color-error)]' },
-                { label: '5 HIGH severity', color: 'text-orange-400' },
+                { label: '5 HIGH severity', color: 'text-[var(--color-warning)]' },
                 { label: '21-month gap', color: 'text-[var(--color-warning)]' },
                 { label: 'Go 1.21 EOL', color: 'text-[var(--color-text-muted)]' },
               ].map((chip) => (

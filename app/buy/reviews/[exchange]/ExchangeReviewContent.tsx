@@ -64,8 +64,8 @@ function RelatedReviewCard({ review }: { review: ExchangeReview }) {
         <span
           className={`rounded-full px-2 py-0.5 text-xs font-medium ${
             review.type === 'DEX'
-              ? 'bg-purple-500/20 text-purple-400'
-              : 'bg-blue-500/20 text-blue-400'
+              ? 'bg-[var(--color-violet)]/20 text-[var(--color-violet)]'
+              : 'bg-[var(--color-info)]/20 text-[var(--color-info)]'
           }`}
         >
           {review.type}
@@ -119,8 +119,8 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
                   <span
                     className={`rounded-full px-3 py-1 text-sm font-medium ${
                       review.type === 'DEX'
-                        ? 'bg-purple-500/20 text-purple-400'
-                        : 'bg-blue-500/20 text-blue-400'
+                        ? 'bg-[var(--color-violet)]/20 text-[var(--color-violet)]'
+                        : 'bg-[var(--color-info)]/20 text-[var(--color-info)]'
                     }`}
                   >
                     {review.type}

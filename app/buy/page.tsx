@@ -181,7 +181,7 @@ export default function BuyPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Ethereum Classic
             </span>
           </h1>
@@ -303,7 +303,7 @@ export default function BuyPage() {
           <div
             className="mb-8 text-center"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-success-border)] bg-[var(--color-success-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-success)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -339,7 +339,7 @@ export default function BuyPage() {
                 key={item.step}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
               >
-                <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-xs font-bold text-[var(--text-primary)]">
+                <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-success)] text-xs font-bold text-[var(--text-primary)]">
                   {item.step}
                 </div>
                 <h3 className="mt-2 font-semibold text-[var(--text-primary)]">{item.title}</h3>
@@ -355,7 +355,7 @@ export default function BuyPage() {
               href="https://brale.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-success)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
             >
               Get USC on Brale
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -47,7 +47,7 @@ export default function MiningApproachesPage() {
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
             Choose Your{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Mining Approach
             </span>
           </h1>
@@ -83,8 +83,8 @@ export default function MiningApproachesPage() {
             {/* GPU */}
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-8">
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10">
-                  <svg aria-hidden="true" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-violet-bg)]">
+                  <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" />
                   </svg>
                 </div>
@@ -96,7 +96,7 @@ export default function MiningApproachesPage() {
               <ul className="space-y-4">
                 {gpuFeatures.map((f) => (
                   <li key={f.title} className="flex gap-3">
-                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-purple-400" />
+                    <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--color-violet)]" />
                     <div>
                       <p className="text-sm font-medium text-[var(--text-primary)]">{f.title}</p>
                       <p className="mt-0.5 text-sm text-[var(--color-text-muted)]">{f.desc}</p>
@@ -104,8 +104,8 @@ export default function MiningApproachesPage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 rounded-lg border border-purple-500/20 bg-purple-500/5 p-4">
-                <p className="text-xs font-medium text-purple-400">Best for</p>
+              <div className="mt-6 rounded-lg border border-[var(--color-violet)]/20 bg-[var(--color-violet)]/5 p-4">
+                <p className="text-xs font-medium text-[var(--color-violet)]">Best for</p>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Home miners, hobbyists, operators who want optionality, and those in markets with consumer GPU access.</p>
               </div>
             </div>

@@ -612,7 +612,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
           </span>
         )}
         {isAffiliate && !hasBadge && (
-          <span className="absolute top-2 right-2 rounded-full bg-blue-500/20 px-2 py-0.5 text-xs font-medium text-blue-400">
+          <span className="absolute top-2 right-2 rounded-full bg-[var(--color-info)]/20 px-2 py-0.5 text-xs font-medium text-[var(--color-info)]">
             Partner
           </span>
         )}
@@ -633,7 +633,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
               {product.power}
             </span>
             {'efficiency' in product && (
-              <span className="rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-400">
+              <span className="rounded bg-[var(--color-info-bg)] px-2 py-0.5 text-xs text-[var(--color-info)]">
                 {product.efficiency}
               </span>
             )}
@@ -669,7 +669,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
               href={product.affiliateLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg bg-blue-500/20 px-4 py-2 text-sm font-medium text-blue-400 transition-colors hover:bg-blue-500/30"
+              className="rounded-lg bg-[var(--color-info)]/20 px-4 py-2 text-sm font-medium text-[var(--color-info)] transition-colors hover:bg-[var(--color-info)]/30"
             >
               Shop Now
             </a>
@@ -784,7 +784,7 @@ export default function StorePage() {
                 }`}
               >
                 {category.label}
-                <span className={`ml-2 ${activeCategory === category.id ? 'text-black/60' : 'text-[var(--color-text-muted)]'}`}>
+                <span className={`ml-2 ${activeCategory === category.id ? 'text-[var(--brand-green-foreground)]/60' : 'text-[var(--color-text-muted)]'}`}>
                   ({category.count})
                 </span>
               </button>

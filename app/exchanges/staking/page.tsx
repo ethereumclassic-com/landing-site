@@ -161,14 +161,14 @@ export default function StakingExchangesPage() {
               {/* DeFi Liquidity */}
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10">
-                    <svg aria-hidden="true" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-violet-bg)]">
+                    <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
                     </svg>
                   </div>
                   <div>
                     <h3 className="font-semibold text-[var(--text-primary)]">DeFi Liquidity</h3>
-                    <span className="text-sm text-purple-400">Passive earning</span>
+                    <span className="text-sm text-[var(--color-violet)]">Passive earning</span>
                   </div>
                 </div>
                 <p className="mb-4 text-sm text-[var(--color-text-muted)]">
@@ -198,7 +198,7 @@ export default function StakingExchangesPage() {
                   href="https://etcswap.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-purple-500/30"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--color-violet-border)]"
                 >
                   Visit ETCswap
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -63,11 +63,11 @@ export default function NoKYCExchangesPage() {
 
           {/* Privacy Notice */}
           <div
-            className="mb-12 rounded-xl border border-blue-500/20 bg-blue-500/5 p-6"
+            className="mb-12 rounded-xl border border-[var(--color-info)]/20 bg-[var(--color-info)]/5 p-6"
           >
             <div className="flex gap-4">
               <div className="flex-shrink-0">
-                <svg aria-hidden="true" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                 </svg>
               </div>
@@ -155,7 +155,7 @@ export default function NoKYCExchangesPage() {
                         <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">
                           {exchange.name}
                         </h3>
-                        <span className="mt-1 inline-block rounded bg-blue-500/10 px-2 py-0.5 text-xs text-blue-400">
+                        <span className="mt-1 inline-block rounded bg-[var(--color-info-bg)] px-2 py-0.5 text-xs text-[var(--color-info)]">
                           CEX
                         </span>
                       </div>

@@ -68,7 +68,7 @@ export default function StakingPage() {
           </div>
 
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-success-border)] bg-[var(--color-success-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-success)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
               </svg>
@@ -80,7 +80,7 @@ export default function StakingPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Yield &{' '}
-            <span className="bg-gradient-to-r from-emerald-400 to-[var(--color-primary)] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-success)] to-[var(--color-primary)] bg-clip-text text-transparent">
               Liquidity
             </span>
           </h1>
@@ -97,15 +97,15 @@ export default function StakingPage() {
       <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
-            className="flex items-start gap-4 rounded-xl border border-blue-500/30 bg-blue-500/5 p-4"
+            className="flex items-start gap-4 rounded-xl border border-[var(--color-info-border)] bg-[var(--color-info)]/5 p-4"
           >
-            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-info-bg)] text-[var(--color-info)]">
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-blue-400">ETC is Proof-of-Work</h3>
+              <h3 className="font-semibold text-[var(--color-info)]">ETC is Proof-of-Work</h3>
               <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
                 Ethereum Classic uses Proof-of-Work consensus, not Proof-of-Stake. You cannot &quot;stake&quot; ETC directly. However, you can earn yield by providing liquidity to decentralized exchanges like ETCswap.
               </p>
@@ -123,7 +123,7 @@ export default function StakingPage() {
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-success-bg)] text-[var(--color-success)]">
                   {feature.icon}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{feature.title}</h3>
@@ -167,7 +167,7 @@ export default function StakingPage() {
                   key={item.step}
                   className="relative rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-center"
                 >
-                  <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-[var(--text-primary)]">
+                  <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)] text-sm font-bold text-[var(--text-primary)]">
                     {item.step}
                   </div>
                   <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
@@ -181,7 +181,7 @@ export default function StakingPage() {
                 href="https://etcswap.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-success)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
               >
                 Provide Liquidity on ETCswap
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -215,8 +215,8 @@ export default function StakingPage() {
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-12 text-center"
             >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-success-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
               </div>
@@ -252,7 +252,7 @@ export default function StakingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-[var(--border)] bg-gradient-to-b from-emerald-500/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
+      <section className="border-t border-[var(--border)] bg-gradient-to-b from-[var(--color-success)]/5 to-transparent px-6 py-16 md:px-10 lg:px-12">
         <div
           className="mx-auto max-w-3xl text-center"
         >
@@ -267,7 +267,7 @@ export default function StakingPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-emerald-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-success)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
             >
               Launch ETCswap
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -276,7 +276,7 @@ export default function StakingPage() {
             </a>
             <Link
               href="/learn/defi"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-success-border)] hover:bg-[var(--color-success-bg)]"
             >
               Learn DeFi Basics
             </Link>

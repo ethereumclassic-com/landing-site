@@ -93,7 +93,7 @@ export default function CalculatorPage() {
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Investment{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Calculator
             </span>
           </h1>
@@ -235,13 +235,13 @@ export default function CalculatorPage() {
               <div className="mb-6 grid grid-cols-2 gap-4">
                 <div className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-4">
                   <p className="text-sm text-[var(--color-text-muted)]">Profit/Loss</p>
-                  <p className={`mt-1 text-xl font-bold ${calculations.profit >= 0 ? 'text-emerald-400' : 'text-[var(--color-error)]'}`}>
+                  <p className={`mt-1 text-xl font-bold ${calculations.profit >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                     {calculations.profit >= 0 ? '+' : ''}{formatUSD(calculations.profit)}
                   </p>
                 </div>
                 <div className="rounded-xl border border-[var(--border)] bg-[var(--background)] p-4">
                   <p className="text-sm text-[var(--color-text-muted)]">Return %</p>
-                  <p className={`mt-1 text-xl font-bold ${calculations.profitPercent >= 0 ? 'text-emerald-400' : 'text-[var(--color-error)]'}`}>
+                  <p className={`mt-1 text-xl font-bold ${calculations.profitPercent >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                     {calculations.profitPercent >= 0 ? '+' : ''}{calculations.profitPercent.toFixed(2)}%
                   </p>
                 </div>
@@ -303,13 +303,13 @@ export default function CalculatorPage() {
                 >
                   <div className="mb-2 flex items-center justify-between">
                     <span className="text-sm font-medium text-[var(--color-text-muted)]">{scenario.label}</span>
-                    <span className="text-sm text-emerald-400">{scenario.change}</span>
+                    <span className="text-sm text-[var(--color-success)]">{scenario.change}</span>
                   </div>
                   <p className="text-lg font-bold text-[var(--text-primary)]">${scenario.price}</p>
                   <div className="mt-3 border-t border-[var(--border)] pt-3">
                     <p className="text-sm text-[var(--color-text-muted)]">Value</p>
                     <p className="font-semibold text-[var(--color-primary)]">{formatUSD(futureValue)}</p>
-                    <p className="text-sm text-emerald-400">+{formatUSD(profit)}</p>
+                    <p className="text-sm text-[var(--color-success)]">+{formatUSD(profit)}</p>
                   </div>
                 </div>
               )

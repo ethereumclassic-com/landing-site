@@ -47,7 +47,7 @@ export function CDCCard({ entry, isUpcoming }: { entry: CDCEntry; isUpcoming?: b
               <ECIPChip key={id} id={id} linked={false} />
             ))}
             {overflowCount > 0 && (
-              <span className="inline-flex items-center rounded-md bg-slate-500/10 px-1.5 py-0.5 text-[10px] text-slate-400">
+              <span className="inline-flex items-center rounded-md bg-[var(--bg-elevated)] px-1.5 py-0.5 text-[10px] text-[var(--text-muted)]">
                 +{overflowCount}
               </span>
             )}
@@ -108,7 +108,7 @@ export function CDCCard({ entry, isUpcoming }: { entry: CDCEntry; isUpcoming?: b
             <ECIPChip key={id} id={id} linked={false} />
           ))}
           {overflowCount > 0 && (
-            <span className="inline-flex items-center rounded-md bg-slate-500/10 px-1.5 py-0.5 text-[10px] text-slate-400">
+            <span className="inline-flex items-center rounded-md bg-[var(--bg-elevated)] px-1.5 py-0.5 text-[10px] text-[var(--text-muted)]">
               +{overflowCount}
             </span>
           )}

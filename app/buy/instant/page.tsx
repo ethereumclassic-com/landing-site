@@ -32,7 +32,7 @@ function InstantBuyProvider({
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">{description}</p>
         </div>
         {!kycRequired && (
-          <span className="rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-400">
+          <span className="rounded-full bg-[var(--color-success-bg)] px-2.5 py-1 text-xs font-medium text-[var(--color-success)]">
             No KYC
           </span>
         )}
@@ -239,7 +239,7 @@ export default function InstantBuyPage() {
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
             Buy ETC{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Instantly
             </span>
           </h1>
@@ -350,25 +350,25 @@ export default function InstantBuyPage() {
               <tbody className="text-sm">
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 text-[var(--color-text-muted)]">Speed</td>
-                  <td className="py-4 text-center text-emerald-400">Instant</td>
+                  <td className="py-4 text-center text-[var(--color-success)]">Instant</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">1-5 days</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">Minutes-Hours</td>
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 text-[var(--color-text-muted)]">Fees</td>
                   <td className="py-4 text-center text-[var(--color-warning)]">2-5%</td>
-                  <td className="py-4 text-center text-emerald-400">0-1%</td>
+                  <td className="py-4 text-center text-[var(--color-success)]">0-1%</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">1-3%</td>
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 text-[var(--color-text-muted)]">Limits</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">Low-Medium</td>
-                  <td className="py-4 text-center text-emerald-400">High</td>
+                  <td className="py-4 text-center text-[var(--color-success)]">High</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">Varies</td>
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 text-[var(--color-text-muted)]">Convenience</td>
-                  <td className="py-4 text-center text-emerald-400">Excellent</td>
+                  <td className="py-4 text-center text-[var(--color-success)]">Excellent</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">Moderate</td>
                   <td className="py-4 text-center text-[var(--color-text-muted)]">Moderate</td>
                 </tr>

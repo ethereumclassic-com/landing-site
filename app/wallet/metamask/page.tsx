@@ -139,7 +139,7 @@ export default function MetaMaskPage() {
 
           {/* Badge */}
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-sm font-medium text-orange-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-warning-border)] bg-[var(--color-warning-bg)] px-4 py-1.5 text-sm font-medium text-[var(--color-warning)]">
               <svg aria-hidden="true" className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M21.83 6.33L12.6 1.5c-.33-.2-.87-.2-1.2 0L2.17 6.33c-.2.13-.2.47 0 .6l9.23 5.17c.33.2.87.2 1.2 0l9.23-5.17c.2-.13.2-.47 0-.6zM12 13.17L3.6 8.33v7.84c0 .27.13.53.4.67l7.6 4.33c.13.07.27.1.4.1s.27-.03.4-.1l7.6-4.33c.27-.13.4-.4.4-.67V8.33L12 13.17z"/>
               </svg>
@@ -152,7 +152,7 @@ export default function MetaMaskPage() {
             className="mt-4 text-3xl font-bold tracking-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl"
           >
             MetaMask Setup Guide for{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Ethereum Classic
             </span>
           </h1>
@@ -414,7 +414,7 @@ export default function MetaMaskPage() {
               href="/wallet/compare"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-400">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-info-bg)] text-[var(--color-info)]">
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
