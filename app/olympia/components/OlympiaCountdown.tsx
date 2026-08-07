@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FadeIn } from '@/app/components/ui/FadeIn'
 import { useOlympiaBlock } from '../hooks/useOlympiaBlock'
-
-const OLYMPIA_PLACEHOLDER_DATE = new Date('2027-03-31T00:00:00Z')
+import {
+  OLYMPIA_PLACEHOLDER_DATE,
+  OLYMPIA_PLACEHOLDER_DATE_LABEL,
+} from '../data/olympia'
 
 function getCountdownTo(target: Date) {
   const diff = Math.max(0, target.getTime() - Date.now())
@@ -85,7 +87,7 @@ function TBDState({ variant, placeholderCd }: { variant: 'hero' | 'banner'; plac
         <span className="text-sm font-medium text-[var(--brand-green)]">Activation Block: TBD</span>
       </div>
       <p className="mt-2 text-xs italic text-[var(--color-text-muted)] opacity-70">
-        Countdown to March 31, 2027 — Olympia targets mainnet activation in 2027.
+        Countdown to {OLYMPIA_PLACEHOLDER_DATE_LABEL} — Olympia targets mainnet activation in 2027.
         Block number announced after successful Mordor testnet run.
       </p>
     </div>

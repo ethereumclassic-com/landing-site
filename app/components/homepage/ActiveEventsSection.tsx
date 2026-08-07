@@ -6,8 +6,10 @@ import { FadeIn } from '@/app/components/ui'
 import { useOlympiaBlock } from '@/app/olympia/hooks/useOlympiaBlock'
 import { useFifthing } from '@/app/hooks/useFifthing'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
-
-const OLYMPIA_PLACEHOLDER_DATE = new Date('2027-01-01T00:00:00Z')
+import {
+  OLYMPIA_PLACEHOLDER_DATE,
+  OLYMPIA_PLACEHOLDER_DATE_LABEL,
+} from '@/app/olympia/data/olympia'
 
 function getCountdownTo(target: Date) {
   const diff = Math.max(0, target.getTime() - Date.now())
@@ -255,7 +257,7 @@ export default function ActiveEventsSection() {
                     {olympiaStatus === 'tbd' && (
                       <div className="mt-2.5 space-y-2">
                         <p className="text-[10px] italic text-[var(--text-muted)] opacity-60">
-                          * Countdown is set to March 31, 2027 until the ETC mainnet activation block is set
+                          * Countdown is set to {OLYMPIA_PLACEHOLDER_DATE_LABEL} until the ETC mainnet activation block is set
                         </p>
                         <div className="flex items-center gap-2">
                           <span aria-hidden="true" className="h-2 w-2 animate-pulse rounded-full bg-[var(--brand-green)]" />

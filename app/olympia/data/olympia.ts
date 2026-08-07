@@ -11,6 +11,17 @@ export const OLYMPIA_ACTIVATION_BLOCK: number | null = null
 
 export const OLYMPIA_AVG_BLOCK_TIME_SECONDS = 13
 
+/**
+ * Placeholder countdown target, used until OLYMPIA_ACTIVATION_BLOCK is set.
+ * Every countdown on the site reads this one value — do not redeclare it in a
+ * component. Two copies drifted once already, leaving the homepage counting to
+ * a different date than its own footnote stated.
+ */
+export const OLYMPIA_PLACEHOLDER_DATE = new Date('2027-03-31T00:00:00Z')
+
+/** Human-readable form of OLYMPIA_PLACEHOLDER_DATE, for the countdown footnotes. */
+export const OLYMPIA_PLACEHOLDER_DATE_LABEL = 'March 31, 2027'
+
 // ============================================================================
 // Client Upgrade Data
 // ============================================================================
