@@ -134,9 +134,10 @@ export const roadmapStages: RoadmapStage[] = [
     description:
       'On-chain governance with membership-based voting and a full proposal lifecycle: submit, vote, queue, execute. Core development funding moves to an open, transparent, on-chain process.',
     deliverables: [
-      'Governance and treasury contracts with timelock execution',
-      'Membership-based voting with sanctions compliance',
-      'Open proposal process with competitive bidding',
+      'Governance and treasury contracts with timelock execution (ECIP-1113)',
+      'Open proposal process with competitive bidding (ECIP-1114)',
+      'Membership-based voting with sanctions compliance (ECIP-1119)',
+      'Contract deployment on settled consensus rules — not a hard fork',
     ],
   },
   {
@@ -145,20 +146,21 @@ export const roadmapStages: RoadmapStage[] = [
     description:
       'An open signal layer. Futarchy prediction markets (ECIP-1117/1118) let anyone stake on proposal outcomes without DAO membership, producing financially-backed public signals alongside member votes. They are a Child-DAO under ECIP-1113 §6, funded by executed funding proposals rather than a direct basefee share, and they inform decisions rather than making them: binding allocation stays with the Olympia DAO.',
     deliverables: [
-      'Conditional outcome tokens',
-      'Market signals published alongside member votes',
-      'Open participation for any stakeholder, no membership required',
+      'Conditional outcome tokens (ECIP-1117)',
+      'Funding and streaming disbursements (ECIP-1118)',
+      'Sanctions compliance applies here too, because funds move (ECIP-1119)',
+      'Seeded by a funding proposal from the governance layer — not a hard fork',
     ],
   },
   {
     title: 'Treasury Distribution',
     status: 'future',
     description:
-      'A smoothing curve supplements miner security budgets as fixed-emission block subsidies decline. It arrives in two stages, deliberately. ECIP-1115 runs it at the contract layer, where the allocation fraction, window, and curve shape are adjustable through governance without a hard fork — so the network can find the right curve empirically while ECIP-1017 block rewards are still securing it. Once a curve is proven, ECIP-1116 graduates it: a hard fork embeds that curve into block finalization, paid by the protocol rather than disbursed from the treasury.',
+      'A smoothing curve supplements miner security budgets as fixed-emission block subsidies decline. ECIP-1115 runs it at the contract layer, where the allocation fraction, window, and curve shape are adjustable through governance without a hard fork — so the network can find the right curve empirically while ECIP-1017 block rewards are still securing it. This is a governance activation on Treasury-held revenue, not a deployment and not a fork. Hardening a proven curve into consensus is the separate stage that follows.',
     deliverables: [
       'Treasury smoothing algorithm at the contract layer (ECIP-1115)',
-      'Parameters adjustable through governance without a hard fork during the experimental stage',
-      'Consensus-layer hardening of the proven curve (ECIP-1116) — a later, separate hard fork',
+      'Parameters adjustable through governance without a hard fork',
+      'Runs as a configured experiment on Treasury-held revenue',
       'Complements ECIP-1017\'s 5M20 emission schedule — the treasury responds as subsidies decline',
     ],
   },
@@ -166,10 +168,11 @@ export const roadmapStages: RoadmapStage[] = [
     title: 'Protocol Integration',
     status: 'future',
     description:
-      'Proven governance mechanisms elevated from the contract layer to consensus, making treasury rules immutable at the protocol level.',
+      'The curve proven in the previous stage is embedded into block finalization and leaves governance control. ECIP-1116 is the second and final hard fork of the Olympia roadmap: the distribution is paid by the protocol rather than disbursed from the treasury, making it immutable at the consensus layer.',
     deliverables: [
-      'Consensus-level governance encoding',
-      'Immutable treasury rules',
+      'Consensus-layer L-curve hardening for base fee miner distribution (ECIP-1116)',
+      'Paid by the protocol, not disbursed from the treasury',
+      'Second hard fork — sequenced after ECIP-1115 has demonstrated the curve',
     ],
   },
 ]

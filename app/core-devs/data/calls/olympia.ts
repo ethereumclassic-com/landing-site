@@ -17,7 +17,7 @@ const entry: CDCEntry = {
 
 Olympia is composed of four ECIPs that require a coordinated hard fork across all clients: ECIP-1111, ECIP-1112, ECIP-1121 and [ECIP-1122](https://ecips.ethereumclassic.org/ECIPs/ecip-1122) (Olympia ETC Network Security Client Configuration), which ECIP-1111 requires every Olympia-compatible client to implement.
 
-### ECIP-1111 — Add Type-2 Transactions and Basefee Redirect
+### ECIP-1111 — Execution Client Basefee Specification Alignment
 
 Activates **EIP-1559** and **EIP-3198** on Ethereum Classic.
 
@@ -32,7 +32,7 @@ Activates **EIP-1559** and **EIP-3198** on Ethereum Classic.
 - Faster transaction inclusion — explicit tip mechanism lets users signal urgency without overpaying the basefee
 - Improved infrastructure UX — RPC providers, block explorers, and indexers benefit from a canonical fee field rather than reverse-engineering effective gas prices from legacy transactions
 
-### ECIP-1112 — Treasury Contract
+### ECIP-1112 — Long-term Sustainability Basefee Treasury Contract Specification
 
 Deterministic, immutable smart contract that receives all basefee revenue.
 
@@ -66,11 +66,11 @@ The broader Olympia framework includes governance and funding ECIPs that operate
 | ECIP | Title | Stage |
 |------|-------|-------|
 | [ECIP-1113](https://ecips.ethereumclassic.org/ECIPs/ecip-1113) | Olympia DAO Governance Framework | Core Governance |
-| [ECIP-1114](https://ecips.ethereumclassic.org/ECIPs/ecip-1114) | Olympia Funding Proposal Process (OFP) | Core Governance |
+| [ECIP-1114](https://ecips.ethereumclassic.org/ECIPs/ecip-1114) | Olympia Funding Proposal Process | Core Governance |
 | [ECIP-1119](https://ecips.ethereumclassic.org/ECIPs/ecip-1119) | Treasury Sanctions Compliance Oracle | Core Governance |
 | [ECIP-1117](https://ecips.ethereumclassic.org/ECIPs/ecip-1117) | Futarchy Child-DAO Governance | Prediction Markets |
 | [ECIP-1115](https://ecips.ethereumclassic.org/ECIPs/ecip-1115) | Olympia L-Curve Smoothing for Long-Term Network Security | Treasury Distribution — supersedes ECIP-1120 |
-| [ECIP-1116](https://ecips.ethereumclassic.org/ECIPs/ecip-1116) | Consensus-Layer L-Curve Hardening for Base Fee Miner Distribution | Treasury Distribution — sequenced after ECIP-1115 |
+| [ECIP-1116](https://ecips.ethereumclassic.org/ECIPs/ecip-1116) | Consensus-Layer L-Curve Hardening for Base Fee Miner Distribution | Protocol Integration — second hard fork, sequenced after ECIP-1115 |
 | [ECIP-1118](https://ecips.ethereumclassic.org/ECIPs/ecip-1118) | Futarchy Funding and Streaming Disbursements | Prediction Markets |
 
 
@@ -171,9 +171,9 @@ See [A Decade of Conviction](/olympia/history) for the full institutional histor
 
 ## Related
 
-- [ECIP-1111: Olympia EVM and Protocol Upgrades](https://ecips.ethereumclassic.org/ECIPs/ecip-1111)
-- [ECIP-1112: Olympia Treasury Contract](https://ecips.ethereumclassic.org/ECIPs/ecip-1112)
-- [ECIP-1121: Execution Client Specification Alignment](https://ecips.ethereumclassic.org/ECIPs/ecip-1121)
+- [ECIP-1111: Execution Client Basefee Specification Alignment (Olympia Hardfork)](https://ecips.ethereumclassic.org/ECIPs/ecip-1111)
+- [ECIP-1112: Long-term Sustainability Basefee Treasury Contract Specification (Olympia Hardfork)](https://ecips.ethereumclassic.org/ECIPs/ecip-1112)
+- [ECIP-1121: Execution Client Specification Alignment (Olympia Hardfork)](https://ecips.ethereumclassic.org/ECIPs/ecip-1121)
 - [ECIP-1122: Olympia ETC Network Security Client Configuration](https://ecips.ethereumclassic.org/ECIPs/ecip-1122)
 - [Core-Geth Security Gap Analysis (Feb 2024 – April 2026)](/build/clients/core-geth-security-audit)
 
