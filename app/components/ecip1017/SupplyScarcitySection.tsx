@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { s2fData, currentEraKey, lastFifthingLabel } from '@/app/research/data/fifthingChartData'
+import { getBlockRewardForEra, formatBlockReward } from '@/app/research/data/emission'
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 
 const BRAND_GREEN = 'var(--brand-green)'
@@ -159,15 +160,18 @@ export default function SupplyScarcitySection() {
                   )}
                 </td>
                 <td className="px-4 py-3 text-right font-mono text-[var(--text-primary)]">
-                  {row.isPast || row.isCurrent ? `${s2fData.find(d => d.eraNumber === row.eraNumber) ? (5 * Math.pow(0.8, row.eraNumber - 1)).toFixed(4).replace(/\.?0+$/, '') : ''} ETC` : '—'}
+                  {/* Known for every era: ECIP-1017 fixes the whole schedule in
+                      advance, so a projected row has a reward, not a blank. */}
+                  {formatBlockReward(getBlockRewardForEra(row.eraNumber))} ETC
                 </td>
                 <td className="px-4 py-3 text-right font-mono text-[var(--text-muted)]">
                   {(row.annualFlow / 1_000_000).toFixed(2)}M ETC
                 </td>
                 <td className="px-4 py-3 text-right font-mono text-[var(--text-primary)]">{row.s2f.toFixed(1)}</td>
                 <td className="px-4 py-3 text-right font-mono text-[var(--text-muted)]">
-                  {/* annualFlow / totalSupply — derived */}
-                  {row.isPast || row.isCurrent ? `~${(row.annualFlow / (row.annualFlow * row.s2f) * 100).toFixed(1)}%` : '—'}
+                  {/* Inverse of stock-to-flow: flow / (flow x s2f) reduces to
+                      1 / s2f. Defined for projected eras too. */}
+                  ~{(100 / row.s2f).toFixed(1)}%
                 </td>
               </tr>
             ))}
