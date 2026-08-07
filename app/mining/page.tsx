@@ -83,6 +83,20 @@ export default async function MiningPage() {
             </Link>
           </div>
 
+          {/* Hashrate chart sits above the stat row so it is not adjacent to the */}
+          {/* difficulty chart below: the two series share a shape and read as */}
+          {/* duplicates when stacked together. */}
+          <HashrateChart initial={{ currentTHs: hashrateTHs, histories }} />
+
+          <div className="mt-3">
+            <Link
+              href="/mining/hashrate"
+              className="inline-block rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm text-[var(--text-primary)] transition-colors hover:border-[var(--brand-green)]"
+            >
+              How hashrate is measured →
+            </Link>
+          </div>
+
           {/* Live network stat cards */}
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {[
@@ -110,9 +124,6 @@ export default async function MiningPage() {
             ))}
           </div>
 
-          {/* Hashrate chart */}
-          <HashrateChart initial={{ currentTHs: hashrateTHs, histories }} />
-
           {/* Difficulty rides on the same series — no extra upstream fetch. */}
           <div className="mt-3">
             <MetricAreaChart
@@ -126,16 +137,10 @@ export default async function MiningPage() {
             />
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Link
-              href="/mining/hashrate"
-              className="rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm text-[var(--text-primary)] transition-colors hover:border-[var(--brand-green)]"
-            >
-              How hashrate is measured →
-            </Link>
+          <div className="mt-3">
             <Link
               href="/mining/difficulty"
-              className="rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm text-[var(--text-primary)] transition-colors hover:border-[var(--brand-green)]"
+              className="inline-block rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm text-[var(--text-primary)] transition-colors hover:border-[var(--brand-green)]"
             >
               How difficulty adjusts →
             </Link>
@@ -223,14 +228,14 @@ export default async function MiningPage() {
 
             <Link
               href="/mining/hardware"
-              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-purple-500/30"
+              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-[var(--color-violet-border)]"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-violet-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-purple-400">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-violet)]">
                 Hardware Guide
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
@@ -240,14 +245,14 @@ export default async function MiningPage() {
 
             <Link
               href="/mining/pools"
-              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-blue-500/30"
+              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-[var(--color-info-border)]"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-info-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-blue-400">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-info)]">
                 Mining Pools
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
@@ -308,14 +313,14 @@ export default async function MiningPage() {
 
             <Link
               href="/mining/stats"
-              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-emerald-500/30"
+              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-[var(--color-success-border)]"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-success-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-emerald-400">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-success)]">
                 Network Stats
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
@@ -325,14 +330,14 @@ export default async function MiningPage() {
 
             <Link
               href="/mining/approaches"
-              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-purple-500/30"
+              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-[var(--color-violet-border)]"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-violet-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-violet)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-purple-400">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-violet)]">
                 GPU vs ASIC
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
@@ -342,14 +347,14 @@ export default async function MiningPage() {
 
             <Link
               href="/mining/regulation"
-              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-blue-500/30"
+              className="group block rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6 transition-all hover:border-[var(--color-info-border)]"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10">
-                <svg aria-hidden="true" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-info-bg)]">
+                <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-blue-400">
+              <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-info)]">
                 Mining Policy
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
