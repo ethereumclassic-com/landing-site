@@ -37,6 +37,12 @@ export interface UsePriceOptions {
   autoRefresh?: boolean
   /** Initial fetch on mount (default: true) */
   fetchOnMount?: boolean
+  /**
+   * Server-fetched price to render immediately. Lets a server component put
+   * real figures in the initial HTML while this hook still refreshes them on
+   * its interval — without it, every consumer paints a skeleton first.
+   */
+  initialData?: PriceData | null
 }
 
 export interface UsePriceReturn {
@@ -90,12 +96,12 @@ export function usePrice(
   currency: string = 'usd',
   options: UsePriceOptions = {}
 ): UsePriceReturn {
-  const { refreshInterval, autoRefresh, fetchOnMount } = { ...defaultOptions, ...options }
+  const { refreshInterval, autoRefresh, fetchOnMount, initialData } = { ...defaultOptions, ...options }
 
-  const [data, setData] = useState<PriceData | null>(null)
+  const [data, setData] = useState<PriceData | null>(initialData ?? null)
   // Tracks whether a mount fetch is actually going to happen, so the first
   // render tells the truth instead of being corrected by the effect below.
-  const [loading, setLoading] = useState(fetchOnMount ?? true)
+  const [loading, setLoading] = useState((fetchOnMount ?? true) && !initialData)
   const [error, setError] = useState<string | null>(null)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
 

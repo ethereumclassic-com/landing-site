@@ -1,169 +1,23 @@
-'use client'
-
 import Link from 'next/link'
+import LiveKeyMetrics from './LiveKeyMetrics'
+import LivePricePairs from './LivePricePairs'
+import { fetchPricePayload } from '@/lib/price-payload'
 import PriceChart from '../markets/components/PriceChart'
 import {
   priceSources,
   priceMilestones,
-  getPopularPairs,
 } from '../markets/data/markets'
-import { usePrice, useAllPrices } from '@/app/hooks/usePrice'
 import LivePriceDisplay from '../markets/components/LivePriceDisplay'
 
 // Live multi-currency price display component
-function LivePricePairs() {
-  const popularPairs = getPopularPairs()
-  const { prices, loading } = useAllPrices()
-
-  const formatPairPrice = (quote: string): string => {
-    if (loading || !prices) return '...'
-    const currency = quote.toLowerCase()
-    const price = prices[currency]
-    if (!price) return '...'
-
-    switch (quote) {
-      case 'USD':
-      case 'USDT':
-      case 'USDC':
-        return `$${price.toFixed(2)}`
-      case 'BTC':
-        return `${price.toFixed(6)} BTC`
-      case 'ETH':
-        return `${price.toFixed(4)} ETH`
-      default:
-        return `${price.toFixed(2)} ${quote}`
-    }
-  }
-
-  return (
-    <div className="flex flex-wrap justify-center gap-4">
-      {popularPairs.map((pair) => (
-        <Link
-          key={pair.id}
-          href={`/price/${pair.id}`}
-          className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 transition-all hover:border-[var(--color-primary)]/30"
-        >
-          <p className="text-xs text-[var(--color-text-muted)]">{pair.displayName}</p>
-          <p className="font-semibold text-[var(--text-primary)]">
-            {formatPairPrice(pair.quote)}
-          </p>
-        </Link>
-      ))}
-    </div>
-  )
-}
 
 // Live market stats grid
-function LiveKeyMetrics() {
-  const { data, loading, source } = usePrice('usd')
 
-  if (loading && !data) {
-    return (
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="animate-pulse rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
-            <div className="h-4 w-20 bg-[var(--bg)] rounded mb-2" />
-            <div className="h-8 w-24 bg-[var(--bg)] rounded" />
-          </div>
-        ))}
-      </div>
-    )
-  }
 
-  const stats: Array<{
-    label: string
-    value: string
-    change?: string
-    changeDirection?: 'up' | 'down' | 'neutral'
-    tooltip?: string
-  }> = data
-    ? [
-        {
-          label: 'Price',
-          value: `$${data.price.toFixed(2)}`,
-          change: `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}%`,
-          changeDirection: data.change24h >= 0 ? 'up' : 'down',
-        },
-        {
-          label: 'Market Cap',
-          value: formatMarketCap(data.marketCap),
-          change: `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}%`,
-          changeDirection: data.change24h >= 0 ? 'up' : 'down',
-          tooltip: 'Circulating supply × current price',
-        },
-        {
-          label: '24h Volume',
-          value: formatMarketCap(data.volume24h),
-          tooltip: 'Trading volume in the last 24 hours',
-        },
-        {
-          label: '24h High',
-          value: `$${data.high24h.toFixed(2)}`,
-        },
-        {
-          label: '24h Low',
-          value: `$${data.low24h.toFixed(2)}`,
-        },
-        {
-          label: 'Circulating Supply',
-          value: '148.3M ETC',
-          tooltip: 'Total ETC in circulation',
-        },
-      ]
-    : []
+export const revalidate = 3600
 
-  return (
-    <>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
-          >
-            <p className="text-xs text-[var(--color-text-muted)]">{stat.label}</p>
-            <div className="mt-1 flex items-baseline gap-2">
-              <p className="text-2xl font-bold text-[var(--text-primary)]">{stat.value}</p>
-              {stat.change && (
-                <span className={`text-sm font-medium ${
-                  stat.changeDirection === 'up' ? 'text-emerald-400' :
-                  stat.changeDirection === 'down' ? 'text-[var(--color-error)]' : 'text-gray-400'
-                }`}>
-                  {stat.change}
-                </span>
-              )}
-            </div>
-            {stat.tooltip && (
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">{stat.tooltip}</p>
-            )}
-          </div>
-        ))}
-      </div>
-      {source && (
-        <p className="mt-4 text-center text-xs text-[var(--color-text-muted)]">
-          Live data from{' '}
-          <a
-            href="https://www.coingecko.com/en/coins/ethereum-classic"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--color-primary)] hover:underline"
-          >
-            CoinGecko
-          </a>
-        </p>
-      )}
-    </>
-  )
-}
-
-function formatMarketCap(num: number): string {
-  if (num >= 1e12) return `$${(num / 1e12).toFixed(2)}T`
-  if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`
-  if (num >= 1e6) return `$${(num / 1e6).toFixed(1)}M`
-  if (num >= 1e3) return `$${(num / 1e3).toFixed(1)}K`
-  return `$${num.toFixed(2)}`
-}
-
-export default function ETCPricePage() {
+export default async function ETCPricePage() {
+  const initialPrice = await fetchPricePayload('usd')
   const aggregators = priceSources.filter((s) => s.type === 'aggregator')
 
   return (
@@ -187,7 +41,7 @@ export default function ETCPricePage() {
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             Ethereum Classic{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Price
             </span>
           </h1>
@@ -247,7 +101,7 @@ export default function ETCPricePage() {
             </p>
           </div>
 
-          <LiveKeyMetrics />
+          <LiveKeyMetrics initialPrice={initialPrice} />
         </div>
       </section>
 

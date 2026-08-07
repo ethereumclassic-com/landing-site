@@ -1,8 +1,7 @@
 'use client'
 
 import { useNetworkStatsContext } from '@/app/context/NetworkStatsContext'
-import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
-import { getBlockRewardForEra, CURRENT_ERA } from '@/app/research/data/emission'
+import { formatNetworkStatsForDisplay } from '@/lib/format-network-stats'
 
 export interface NetworkStats {
   price: number
@@ -66,31 +65,12 @@ export interface UseNetworkStatsReturn {
   } | null
 }
 
-function formatLargeNumber(num: number, prefix = ''): string {
-  if (num >= 1e12) return `${prefix}${(num / 1e12).toFixed(2)}T`
-  if (num >= 1e9) return `${prefix}${(num / 1e9).toFixed(2)}B`
-  if (num >= 1e6) return `${prefix}${(num / 1e6).toFixed(1)}M`
-  if (num >= 1e3) return `${prefix}${(num / 1e3).toFixed(1)}K`
-  return `${prefix}${num.toLocaleString()}`
-}
 
 // All callers read from the single global NetworkStatsProvider — one fetch, zero drift.
 export function useNetworkStats(_options?: UseNetworkStatsOptions): UseNetworkStatsReturn {
   const { stats, blocks, loading, error, lastUpdated, refresh } = useNetworkStatsContext()
 
-  const formatted = stats
-    ? {
-        price: `$${(stats.price ?? 0).toFixed(2)}`,
-        priceChange: `${(stats.priceChange24h ?? 0) >= 0 ? '+' : ''}${(stats.priceChange24h ?? 0).toFixed(2)}%`,
-        marketCap: formatLargeNumber(stats.marketCap ?? 0, '$'),
-        blockHeight: (stats.totalBlocks ?? 0).toLocaleString(),
-        transactions: formatLargeNumber(stats.totalTransactions ?? 0),
-        addresses: formatLargeNumber(stats.totalAddresses ?? 0),
-        blockTime: `${(stats.avgBlockTime ?? NOMINAL_BLOCK_TIME_SECONDS).toFixed(1)}s`,
-        blockReward: `${(stats.avgBlockReward ?? getBlockRewardForEra(CURRENT_ERA)).toFixed(2)} ETC`,
-        gasPrice: `${(stats.gasPrice?.average ?? 2).toFixed(2)} Gwei`,
-      }
-    : null
+  const formatted = formatNetworkStatsForDisplay(stats)
 
   return { stats, blocks, loading, error, lastUpdated, refresh, formatted }
 }

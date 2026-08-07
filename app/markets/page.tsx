@@ -1,10 +1,8 @@
-'use client'
-
 import Link from 'next/link'
-import { PriceStat } from './components/PriceDisplay'
 import PriceChart from './components/PriceChart'
+import LiveMarketStatsGrid from './LiveMarketStatsGrid'
+import { fetchPricePayload } from '@/lib/price-payload'
 import LivePriceDisplay, { LiveMarketStats } from './components/LivePriceDisplay'
-import { usePrice } from '@/app/hooks/usePrice'
 import {
   priceSources,
   marketPairs,
@@ -13,93 +11,6 @@ import {
 } from './data/markets'
 
 // Live market stats grid component
-function LiveMarketStatsGrid() {
-  const { data, loading } = usePrice('usd')
-
-  const changeStr = data ? `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}%` : undefined
-  const changeDir: 'up' | 'down' | 'neutral' = data ? (data.change24h >= 0 ? 'up' : 'down') : 'neutral'
-
-  const stats: Array<{
-    label: string
-    value: string
-    change?: string
-    changeDirection?: 'up' | 'down' | 'neutral'
-    tooltip?: string
-  }> = [
-    {
-      label: 'Price',
-      value: data ? `$${data.price.toFixed(2)}` : '...',
-      change: changeStr,
-      changeDirection: changeDir,
-    },
-    {
-      label: 'Market Cap',
-      value: data ? formatLargeNumber(data.marketCap) : '...',
-      change: changeStr,
-      changeDirection: changeDir,
-      tooltip: 'Circulating supply × current price',
-    },
-    {
-      label: '24h Volume',
-      value: data ? formatLargeNumber(data.volume24h) : '...',
-      tooltip: 'Trading volume in last 24 hours',
-    },
-    {
-      label: 'Circulating Supply',
-      value: '148.3M ETC',
-      tooltip: 'Total ETC in circulation',
-    },
-    {
-      label: 'All-Time High',
-      value: '$176.16',
-      tooltip: 'May 6, 2021',
-    },
-    {
-      label: 'All-Time Low',
-      value: '$0.45',
-      tooltip: 'July 25, 2016',
-    },
-  ]
-
-  if (loading && !data) {
-    return (
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 animate-pulse">
-            <div className="h-4 w-16 bg-[var(--border)] rounded mb-2" />
-            <div className="h-6 w-24 bg-[var(--border)] rounded" />
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {stats.map((stat) => (
-        <div
-          key={stat.label}
-        >
-          <PriceStat
-            label={stat.label}
-            value={stat.value}
-            change={stat.change}
-            changeDirection={stat.changeDirection}
-            tooltip={stat.tooltip}
-          />
-        </div>
-      ))}
-    </div>
-  )
-}
-
-function formatLargeNumber(num: number): string {
-  if (num >= 1e12) return `$${(num / 1e12).toFixed(2)}T`
-  if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`
-  if (num >= 1e6) return `$${(num / 1e6).toFixed(1)}M`
-  if (num >= 1e3) return `$${(num / 1e3).toFixed(1)}K`
-  return `$${num.toFixed(2)}`
-}
 
 const sourceTypeIcons = {
   aggregator: (
@@ -119,7 +30,14 @@ const sourceTypeIcons = {
   ),
 }
 
-export default function MarketsPage() {
+// Server shell: the interactive pieces are client islands below.
+export const revalidate = 3600
+
+export default async function MarketsPage() {
+  // One upstream read per ISR window, shared by all three live components
+  // below, instead of three client fetches per visitor.
+  const initialPrice = await fetchPricePayload('usd')
+
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -141,7 +59,7 @@ export default function MarketsPage() {
             className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
           >
             ETC{' '}
-            <span className="bg-gradient-to-r from-[var(--color-primary)] to-emerald-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Markets
             </span>
           </h1>
@@ -156,6 +74,7 @@ export default function MarketsPage() {
           <div className="mt-8 flex justify-center">
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] px-8 py-6">
               <LivePriceDisplay
+              initialPrice={initialPrice}
                 currency="usd"
                 size="xl"
                 showLabel
@@ -168,7 +87,7 @@ export default function MarketsPage() {
 
           {/* Quick Stats */}
           <div className="mt-8">
-            <LiveMarketStats showVolume showRank showSupply />
+            <LiveMarketStats showVolume showRank showSupply initialPrice={initialPrice} />
           </div>
         </div>
       </section>
@@ -192,7 +111,7 @@ export default function MarketsPage() {
             </p>
           </div>
 
-          <LiveMarketStatsGrid />
+          <LiveMarketStatsGrid initialPrice={initialPrice} />
         </div>
       </section>
 

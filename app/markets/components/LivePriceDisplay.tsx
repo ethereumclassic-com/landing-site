@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { usePrice } from '@/app/hooks/usePrice'
+import { usePrice, type PriceData } from '@/app/hooks/usePrice'
 
 const sizeClasses = {
   sm: {
@@ -31,13 +31,13 @@ const sizeClasses = {
 }
 
 const changeColors = {
-  up: 'text-emerald-400',
+  up: 'text-[var(--color-success)]',
   down: 'text-[var(--color-error)]',
   neutral: 'text-[var(--color-text-muted)]',
 }
 
 const changeBgColors = {
-  up: 'bg-emerald-500/10',
+  up: 'bg-[var(--color-success-bg)]',
   down: 'bg-[var(--color-error-bg)]',
   neutral: 'bg-[var(--panel)]',
 }
@@ -80,8 +80,10 @@ export default function LivePriceDisplay({
   animated = true,
   showSource = true,
   refreshInterval = 60000,
-}: LivePriceDisplayProps) {
+  initialPrice,
+}: LivePriceDisplayProps & { initialPrice?: PriceData | null }) {
   const { priceFormatted, changeFormatted, change24h, loading, source, lastUpdated } = usePrice(currency, {
+    initialData: initialPrice,
     refreshInterval,
   })
 
@@ -171,8 +173,9 @@ export function LiveMarketStats({
   showRank = false,
   showSupply = true,
   className = '',
-}: LiveMarketStatsProps) {
-  const { marketCapFormatted, volumeFormatted, loading } = usePrice('usd')
+  initialPrice,
+}: LiveMarketStatsProps & { initialPrice?: PriceData | null }) {
+  const { marketCapFormatted, volumeFormatted, loading } = usePrice('usd', { initialData: initialPrice })
 
   if (loading) {
     return (
