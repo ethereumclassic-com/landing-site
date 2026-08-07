@@ -166,7 +166,7 @@ export default function PoolVsSolo() {
         <li>Expected blocks per day: Your % × (86400 / 15.6)</li>
       </ol>
       <p>
-        Example: With 500 MH/s on a 185 TH/s network:
+        Example: With 500 MH/s on a 150 TH/s network:
       </p>
       <ul>
         <li>Your share: 0.00027%</li>

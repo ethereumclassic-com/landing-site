@@ -4,7 +4,7 @@ import { FadeIn } from '@/app/components/ui'
 import { SectionDivider } from '@/app/components/ui/SectionDivider'
 
 const stats = [
-  { value: '200+ TH/s', label: 'Network Hashrate', detail: 'ETChash algorithm' },
+  { value: '~150 TH/s', label: 'Network Hashrate', detail: 'ETChash algorithm' },
   { value: 'July 2015', label: 'Network Origin', detail: 'Continuous PoW operation' },
   { value: 'GPU + ASIC', label: 'Hardware Access', detail: 'Permissionless entry at any scale' },
   { value: 'Largest PoW EVM', label: 'Post-Merge Position', detail: 'Absorbed Ethereum mining infrastructure' },

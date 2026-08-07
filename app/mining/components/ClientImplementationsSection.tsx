@@ -4,9 +4,9 @@ const primaryClient = {
   name: 'Fukuii',
   language: 'Scala',
   description:
-    'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for ETC mainnet and Mordor, Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.',
-  website: 'https://fukuii.com',
-  github: 'https://github.com/chippr-robotics/fukuii',
+    "Ethereum Classic's first native client, built ground-up for ETC rather than derived from an Ethereum client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
+  website: 'https://fukuii.org',
+  github: 'https://github.com/fukuii-project/fukuii-cli',
   status: 'Primary',
 }
 
@@ -15,7 +15,7 @@ const secondaryClients = [
     name: 'Core-Geth',
     language: 'Go',
     description:
-      'The legacy ETC client, maintained through Olympia for network continuity. Migrate to Fukuii after Olympia activation.',
+      'A go-ethereum derivative maintained for Ethereum Classic, carried through Olympia for network continuity. Not native, and not a plugin.',
     github: 'https://github.com/ethereumclassic/core-geth',
     status: 'Maintained',
   },
@@ -23,7 +23,7 @@ const secondaryClients = [
     name: 'ETC Plugins',
     language: '',
     description:
-      'ETC compatibility layers for Besu, Erigon, Go-Ethereum, Nethermind, and Reth bring Ethereum Classic support to the broader Ethereum client ecosystem without maintaining full forks.',
+      'ETC support added into existing Ethereum clients — Besu, Erigon, Ethrex, Go-Ethereum, Nethermind, and Reth. A plugin adds Ethereum Classic chain support to an upstream client’s execution layer rather than maintaining a fork, and carries no mining or Proof-of-Work consensus.',
     github: '/olympia/clients',
     status: 'Plugins',
   },
@@ -44,8 +44,9 @@ export function ClientImplementationsSection() {
             Multi-client architecture eliminates single points of failure at the protocol layer.
             Independent implementations in distinct languages, maintained by separate teams, ensure
             the network can withstand the discontinuation or compromise of any single codebase.
-            Fukuii, Core-Geth, and ETC compatibility plugins for Besu, Erigon, Go-Ethereum,
-            Nethermind, and Reth provide implementation diversity without fragmenting the ecosystem.
+            Fukuii and Core-Geth provide implementation diversity, and ETC plugins for Besu, Erigon,
+            Ethrex, Go-Ethereum, Nethermind, and Reth widen execution-layer reach without
+            fragmenting the ecosystem.
           </p>
         </FadeIn>
 
@@ -76,7 +77,7 @@ export function ClientImplementationsSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-sm font-medium text-[var(--brand-green)] transition-colors hover:underline"
               >
-                fukuii.com →
+                fukuii.org →
               </a>
               <a
                 href={primaryClient.github}

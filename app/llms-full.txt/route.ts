@@ -13,9 +13,9 @@ export function GET() {
 - Consensus: Proof-of-Work, ETCHash algorithm
 - Block time: ~13 seconds
 - Supply cap: ~210.7 million ETC
-- Current block reward: 2.048 ETC (Era 5, blocks 20M–25M)
+- Current block reward: 1.6384 ETC (Era 6, blocks 25M–30M)
 - Block reward reduction: 20% every 5 million blocks ("fifthing", defined by ECIP-1017)
-- Hashrate: 200+ TH/s
+- Hashrate: ~150 TH/s (Blockscout difficulty over its reported average block time)
 - Smart contracts: EVM-compatible (Solidity, Vyper, Yul)
 - EVM opcodes: London baseline + Spiral (partial Shanghai) as of 2024
 
@@ -23,7 +23,7 @@ export function GET() {
 
 ### /wallet — Wallets
 Get wallets and manage ETC. Sub-pages:
-- /wallet/classic-os — Classic OS flagship (mining OS + DeFi control plane)
+- /wallet/fukuii-gui — Fukuii GUI flagship (mining OS + DeFi control plane)
 - /wallet/metamask — MetaMask setup guide for ETC
 - /wallet/hardware — Hardware wallet options (Ledger, Trezor)
 - /wallet/compare — Comparison of all ETC-compatible wallets
@@ -103,7 +103,7 @@ ETC's ideological foundation:
 ### /build — Developer Docs
 - /build (overview) — Getting started for developers
 - /build/getting-started — First dApp on ETC
-- /build/clients — Node client options (Fukuii, Core-Geth, Besu)
+- /build/clients — Node client options (Fukuii, Core-Geth) and the ETC execution plugins
 - /build/networks — Mainnet, Mordor testnet, local devnet
 - /build/api — JSON-RPC API reference
 - /build/docs — ETC Improvement Proposals (ECIPs)
@@ -124,7 +124,7 @@ ETC's ideological foundation:
 - /research/network — Network health metrics (hashrate, difficulty, uncle rate)
 - /research/supply — ETC supply breakdown and circulating supply
 - /research/emission-schedule — Live countdown to next fifthing, S2F ratio charts, era history table, ECIP-1017 explainer
-- /research/fifthing — Fifthing countdown, emission curve chart, inflation rate, era history, ECIP-1017 explainer
+- /block-reward-countdown — Fifthing countdown, emission curve chart, inflation rate, era history, ECIP-1017 explainer (/research/fifthing redirects here)
 - /research/ethereum-ico — Ethereum 2014 presale data: $18.5M raised, 72,009,991 ETH issued at $0.308; ROI history; tokenomics split; the original genesis supply ETC carries today
 - /research/dao-fork — How the Ethereum Foundation forked the original Ethereum chain in 2016 and applied the ETH name and ticker to the new chain; leaked internal communications confirming coordinated ETC sell campaign; Poloniex ETC listing; Grayscale ETCG; ETC Cooperative; DAO hacker identification; TheDAO Security Fund (2026)
 - /research/fees — Gas fee trends and basefee analytics
@@ -136,10 +136,9 @@ ETC's ideological foundation:
 ETC's most significant upgrade to date:
 - /olympia (hub) — Upgrade overview and timeline
 - /olympia/upgrade — Node operator upgrade guide
-- /olympia/clients — Client comparison (Fukuii, Core-Geth, Besu)
+- /olympia/clients — Client comparison (Fukuii, Core-Geth) and the ETC execution plugins
 - /olympia/clients/fukuii — Fukuii upgrade guide
 - /olympia/clients/core-geth — Core-Geth upgrade guide
-- /olympia/clients/besu — Besu upgrade guide
 - /olympia/governance — Treasury and on-chain governance contracts
 - /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
 - /build/clients/core-geth-security-audit — Core-Geth v1.12.2x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and migration to Fukuii. All patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0. (/olympia/security redirects here)
@@ -177,12 +176,21 @@ On-chain governance for treasury allocation. Voting weight via soulbound partici
 Proposal → Discussion → Snapshot vote → On-chain execution.
 Contract addresses (Mordor testnet): see https://app.olympiadao.org
 
-ECIP-1114 — ECFP (Ethereum Classic Funding Process)
+ECIP-1122 — Olympia ETC Network Security Client Configuration
+MIN_MINER_TIP 1 gwei (2 gwei minimum gas price with ECIP-1111's basefee floor), a
+network-authoritative gas target overriding operator --miner.gaslimit, and MESS
+re-enabled at the Olympia block. Chain configuration, not consensus rules.
+
+ECIP-1114 — OFP (Olympia Funding Proposal Process)
 Structured grant process for ecosystem funding requests from the treasury.
 
 ECIP-1121 — EVM Compatibility
-Brings ETC's execution layer to parity with Ethereum's Fusaka hard fork.
-Includes EIPs from Dencun, Pectra, and Fusaka that do not require Proof-of-Stake or blob data.
+Advances ETC's execution layer through Dencun, Pectra and Fusaka, and carries that work into
+Glamsterdam (Gloas-Amsterdam). Includes the EIPs from those cycles that do not require
+Proof-of-Stake or blob data. Of Glamsterdam's execution-layer set, ECIP-1121 takes EIP-7975
+(eth/70) and EIP-7997 (deterministic CREATE2 factory); the rest resolve to EIP-7928 Block-Level
+Access Lists, a consensus-rule change needing its own ECIP, or to the beacon-chain-dependent
+EIP-4788 that ETC excludes.
 
 Included EIPs in ECIP-1121:
 - EIP-7702: Account delegation (EOA can delegate to contract for one tx)
@@ -207,18 +215,45 @@ Explicitly excluded from ECIP-1121:
 ### Client Support
 
 Fukuii — Primary Olympia client
-Ethereum execution layer client in Scala 3 by Chippr Robotics LLC. Native PoW for ETC mainnet and Mordor; Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.
-Website: https://fukuii.com
-Repo: https://github.com/chippr-robotics/fukuii
+Ethereum Classic's first native client, built ground-up for ETC rather than derived from an
+Ethereum client. An EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM.
+One binary runs several networks at once in one JVM process, each isolated with its own state, its
+own metrics registry, and its own configuration; a further network is configuration, not a new
+client. Consensus is selected per deployment behind one interface: native Proof-of-Work for ETC
+mainnet and Mordor, or Proof-of-Stake with a built-in consensus layer, so one process is a complete
+Proof-of-Stake node — an external consensus client over the Engine API V1–V4 is the alternative.
+Ships an MCP server exposing node state to AI agents. Requires a current JDK LTS (25); the Docker
+image bundles one.
 
-Core-Geth — Legacy ETC client
-Go-based fork of go-ethereum. Maintained through Olympia — six CVEs patched at
-ethereumclassic/core-geth by White B0x, pending release as v1.13.0.
-Migrate to Fukuii after Olympia activation.
+Enterprise-grade by way of the JVM rather than a separate edition: JVM-native infrastructure end to
+end for institutions already running on the JVM, with no foreign-language bridge, so JFR,
+async-profiler, JMX and heap dumps work exactly as on any other JVM process. Prometheus metrics,
+Grafana dashboards, and liveness and readiness endpoints ship in the binary, alongside concurrent
+multi-instance execution and external-signer/HSM custody integration. Separate Pekko dispatchers for
+sync, RPC and general work keep sync pressure from starving the RPC.
+
+Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release
+artifacts. Maintained by The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.).
+Website: https://fukuii.org
+Docs: https://docs.fukuii.org
+Repo: https://github.com/fukuii-project/fukuii-cli
+Docker: ghcr.io/fukuii-project/fukuii-cli
+
+Core-Geth — A go-ethereum derivative maintained for Ethereum Classic
+Not a native ETC client, and not a plugin. Carried through Olympia for network continuity — six
+CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.
 Repo: https://github.com/ethereumclassic/core-geth
 
-Besu (ETC plugin) — Enterprise Java client
-Hyperledger Besu with ETC consensus plugin. Production-grade, formally maintained.
+ETC execution client plugins — ETC support added into existing Ethereum clients
+A plugin adds Ethereum Classic chain support to an upstream Ethereum client's execution layer. It
+is not a client implementation and carries no mining or Proof-of-Work consensus, so plugins serve
+non-mining infrastructure: exchanges, RPC providers, block explorers, and indexers.
+- Besu (Java) — https://github.com/besu-eth/besu
+- Erigon (Go) — https://github.com/erigontech/erigon
+- Ethrex (Rust) — https://github.com/lambdaclass/ethrex
+- Go-Ethereum (Go) — https://github.com/ethereum/go-ethereum
+- Nethermind (C#) — https://github.com/NethermindEth/nethermind
+- Reth (Rust) — https://github.com/paradigmxyz/reth
 
 ### Developer Impact After Olympia
 
@@ -241,8 +276,9 @@ Era table:
 - Era 2 (blocks 5,000,001–10,000,000): 4 ETC/block
 - Era 3 (blocks 10,000,001–15,000,000): 3.2 ETC/block
 - Era 4 (blocks 15,000,001–20,000,000): 2.56 ETC/block
-- Era 5 (blocks 20,000,001–25,000,000): 2.048 ETC/block ← CURRENT ERA
-- Era 6 (blocks 25,000,001–30,000,000): 1.6384 ETC/block ← next fifthing
+- Era 5 (blocks 20,000,001–25,000,000): 2.048 ETC/block
+- Era 6 (blocks 25,000,001–30,000,000): 1.6384 ETC/block ← CURRENT ERA
+- Era 7 (blocks 30,000,001–35,000,000): 1.31072 ETC/block ← next fifthing
 - Era 7: 1.31072 ETC/block
 - Era 8: 1.048576 ETC/block
 
@@ -258,7 +294,7 @@ The /research/emission-schedule page provides a live countdown to the next fifth
 
 - Genesis block: 1920000 (block at which ETC diverged from ETH)
 - Algorithm: ETCHash (ASIC-resistant variant of Ethash)
-- Current block reward: 2.048 ETC (Era 5)
+- Current block reward: 1.6384 ETC (Era 6)
 - Uncle reward: included
 - Emission schedule: 20% reduction every 5 million blocks ("fifthing", ECIP-1017)
 - Total supply: ~210.7 million ETC (mathematical limit)
@@ -286,7 +322,7 @@ Japan:
 
 ## Ecosystem Products
 
-- Classic OS (https://app.classicos.org) — Mining OS + ETC portfolio control plane
+- Fukuii GUI (https://github.com/fukuii-project/fukuii-gui) — Mining OS + ETC portfolio control plane
 - ETCswap V3 (https://etcswap.org) — Concentrated liquidity DEX
 - ETCswap Launchpad (https://etcswap.org/launchpad) — Token launch platform with bonding curves
 - ClassicUSD (https://classicusd.com) — USD-backed stablecoin native to ETC

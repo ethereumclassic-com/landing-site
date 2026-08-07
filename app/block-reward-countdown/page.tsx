@@ -7,10 +7,10 @@ import {
   getAnnualInflationRate,
   getNextEraInflationRate,
   getDaysSinceLastFifthing,
-} from '@/app/research/fifthing/data/fifthingChartData'
+} from '@/app/research/data/fifthingChartData'
 import BlockRewardCountdownClient, { type InitialFifthingData } from './BlockRewardCountdownClient'
-import ECIP1017Explainer from '@/app/research/fifthing/components/ECIP1017Explainer'
-import RelatedLinks from '@/app/research/fifthing/components/RelatedLinks'
+import ECIP1017Explainer from '@/app/components/ecip1017/ECIP1017Explainer'
+import RelatedLinks from '@/app/components/ecip1017/RelatedLinks'
 
 export const revalidate = 600
 

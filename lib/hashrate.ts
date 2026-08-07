@@ -5,8 +5,11 @@
 //   History:  same formula, sampled across NUM_POINTS evenly-spaced blocks
 
 const BLOCKSCOUT = 'https://etc.blockscout.com/api/v2'
-const ETC_AVG_BLOCK_TIME_S = 13
-const FALLBACK_THS = 210
+// Only used to convert a lookback WINDOW into a block count. The hashrate
+// figure itself divides by Blockscout's own reported average_block_time, so
+// what the site shows matches what Blockscout reports.
+const ETC_NOMINAL_BLOCK_TIME_S = 13
+const FALLBACK_THS = 150
 const NUM_POINTS = 14
 
 export type TimePeriod = 'week' | 'month' | 'year' | 'all'
@@ -26,13 +29,25 @@ interface BlockscoutBlock {
 
 interface BlockscoutStats {
   total_blocks: string
+  /** Milliseconds. Blockscout's own rolling average. */
+  average_block_time?: number
 }
 
 const TIMEFRAME_BLOCKS: Record<TimePeriod, (h: number) => number> = {
-  week:  () => Math.round((7 * 24 * 3600) / ETC_AVG_BLOCK_TIME_S),
-  month: () => Math.round((30 * 24 * 3600) / ETC_AVG_BLOCK_TIME_S),
-  year:  () => Math.round((365 * 24 * 3600) / ETC_AVG_BLOCK_TIME_S),
+  week:  () => Math.round((7 * 24 * 3600) / ETC_NOMINAL_BLOCK_TIME_S),
+  month: () => Math.round((30 * 24 * 3600) / ETC_NOMINAL_BLOCK_TIME_S),
+  year:  () => Math.round((365 * 24 * 3600) / ETC_NOMINAL_BLOCK_TIME_S),
   all:   (h) => h,
+}
+
+/** Blockscout reports average_block_time in ms; fall back to nominal. */
+function blockTimeSeconds(stats: BlockscoutStats | null): number {
+  const ms = stats?.average_block_time
+  return ms && ms > 0 ? ms / 1000 : ETC_NOMINAL_BLOCK_TIME_S
+}
+
+function toTHs(difficulty: number, blockTimeS: number): number {
+  return Math.round((difficulty / blockTimeS / 1e12) * 10) / 10
 }
 
 function formatLabel(isoTimestamp: string, period: TimePeriod): string {
@@ -57,7 +72,7 @@ export async function fetchHashrateTHs(): Promise<number> {
     if (!block) throw new Error('no block')
     const difficulty = parseFloat(block.difficulty)
     if (!difficulty) throw new Error('no difficulty')
-    return Math.round((difficulty / ETC_AVG_BLOCK_TIME_S / 1e12) * 10) / 10
+    return toTHs(difficulty, blockTimeSeconds(stats))
   } catch {
     return FALLBACK_THS
   }
@@ -72,7 +87,11 @@ async function fetchBlock(height: number): Promise<BlockscoutBlock | null> {
   }
 }
 
-async function fetchHistoryFor(period: TimePeriod, currentHeight: number): Promise<HashratePoint[]> {
+async function fetchHistoryFor(
+  period: TimePeriod,
+  currentHeight: number,
+  blockTimeS: number,
+): Promise<HashratePoint[]> {
   const totalBlocks = TIMEFRAME_BLOCKS[period](currentHeight)
   const intervalBlocks = Math.floor(totalBlocks / (NUM_POINTS - 1))
   const blocks = await Promise.all(
@@ -88,7 +107,7 @@ async function fetchHistoryFor(period: TimePeriod, currentHeight: number): Promi
     if (!difficulty) continue
     points.push({
       label: formatLabel(block.timestamp, period),
-      hashrateTHs: Math.round((difficulty / ETC_AVG_BLOCK_TIME_S / 1e12) * 10) / 10,
+      hashrateTHs: toTHs(difficulty, blockTimeS),
     })
   }
   return points
@@ -96,21 +115,23 @@ async function fetchHistoryFor(period: TimePeriod, currentHeight: number): Promi
 
 export async function fetchAllHashrateHistories(): Promise<HashrateHistories> {
   let currentHeight = 0
+  let blockTimeS = ETC_NOMINAL_BLOCK_TIME_S
   try {
     const res = await fetch(`${BLOCKSCOUT}/stats`, { next: { revalidate: 3600 } })
     if (res.ok) {
       const data: BlockscoutStats = await res.json()
       currentHeight = parseInt(data.total_blocks, 10)
+      blockTimeS = blockTimeSeconds(data)
     }
   } catch { /* fall through */ }
 
   if (!currentHeight) return { week: [], month: [], year: [], all: [] }
 
   const [week, month, year, all] = await Promise.all([
-    fetchHistoryFor('week', currentHeight),
-    fetchHistoryFor('month', currentHeight),
-    fetchHistoryFor('year', currentHeight),
-    fetchHistoryFor('all', currentHeight),
+    fetchHistoryFor('week', currentHeight, blockTimeS),
+    fetchHistoryFor('month', currentHeight, blockTimeS),
+    fetchHistoryFor('year', currentHeight, blockTimeS),
+    fetchHistoryFor('all', currentHeight, blockTimeS),
   ])
   return { week, month, year, all }
 }

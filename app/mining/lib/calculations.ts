@@ -5,14 +5,14 @@
 import { networkStats } from '../data/mining'
 
 // Network constants - fallback values when live API unavailable
-// These are updated from Blockscout API data (Jan 2026)
+// These are updated from Blockscout API data
 // For live calculations, use /api/network endpoint
 export const NETWORK_CONSTANTS = {
-  // Network hashrate in MH/s (210 TH/s = 210,000,000 MH/s)
-  networkHashrateMH: 210000000,
-  // Average block reward including uncle rewards (~2.048 ETC typical)
-  // Base reward is 2.048 ETC, varies with uncle rewards
-  blockReward: 2.048,
+  // Network hashrate in MH/s (150 TH/s = 150,000,000 MH/s)
+  networkHashrateMH: 150000000,
+  // Average block reward including uncle rewards (~1.6384 ETC typical)
+  // Base reward is 1.6384 ETC (ECIP-1017 Era 6), varies with uncle rewards
+  blockReward: 1.6384,
   // Average block time from Blockscout (~13 seconds)
   blockTimeSeconds: 13.0,
   // Calculated: 86400 / 13.0 ≈ 6646 blocks per day
@@ -225,7 +225,7 @@ export function formatPower(watts: number): string {
  * Parse network stats for calculations
  */
 export function parseNetworkHashrate(): number {
-  // Parse from networkStats.hashrate (e.g., "185 TH/s")
+  // Parse from networkStats.hashrate (e.g., "150 TH/s")
   const match = networkStats.hashrate.match(/(\d+(?:\.\d+)?)\s*(TH|GH|MH)/i)
   if (!match) return NETWORK_CONSTANTS.networkHashrateMH
 

@@ -10,7 +10,7 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from 'recharts'
-import { s2fData } from '../data/fifthingChartData'
+import { s2fData, currentEraKey, lastFifthingLabel } from '@/app/research/data/fifthingChartData'
 
 const BRAND_GREEN = 'var(--brand-green)'
 
@@ -70,11 +70,11 @@ export default function SupplyScarcitySection() {
             />
             <Tooltip content={<CustomTooltip />} />
             <ReferenceLine
-              x="Era 5"
+              x={currentEraKey}
               stroke={BRAND_GREEN}
               strokeDasharray="4 2"
               label={{
-                value: '5th Fifthing',
+                value: lastFifthingLabel,
                 position: 'insideTopRight',
                 fontSize: 9,
                 fill: BRAND_GREEN,

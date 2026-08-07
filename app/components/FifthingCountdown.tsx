@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FadeIn } from './ui/FadeIn'
 import { useFifthing, type UseFifthingReturn } from '@/app/hooks/useFifthing'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
-import { getAnnualInflationRate, getNextEraInflationRate } from '@/app/research/fifthing/data/fifthingChartData'
+import { getAnnualInflationRate, getNextEraInflationRate } from '@/app/research/data/fifthingChartData'
 import { formatBlockReward } from '@/app/research/data/emission'
 
 function fmt(reward: number | null): string {

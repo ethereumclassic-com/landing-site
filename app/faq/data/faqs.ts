@@ -51,7 +51,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What dApps are available on ETC?',
         answer:
-          'The ETC ecosystem includes ETCswap (V2 and V3 decentralized exchanges), ETCswap Launchpad (token launch platform), Classic USD (USC stablecoin), WrappedEther.org (WETC), and Classic OS (economic dashboard). All approved dApps are listed on the Apps page at ethereumclassic.com/apps.',
+          'The ETC ecosystem includes ETCswap (V2 and V3 decentralized exchanges), ETCswap Launchpad (token launch platform), Classic USD (USC stablecoin), WrappedEther.org (WETC), and Fukuii GUI (economic dashboard). All approved dApps are listed on the Apps page at ethereumclassic.com/apps.',
       },
       {
         question: 'Is there DeFi on Ethereum Classic?',
@@ -99,7 +99,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What is the ETC monetary policy?',
         answer:
-          'ECIP-1017, adopted in March 2017, established a Bitcoin-like fixed monetary policy. Block rewards reduce by 20% every 5 million blocks (~2.5 years). The emission schedule produces a hard cap of approximately 210.7 million ETC. Current era (Era 5, starting block 20,000,001) rewards miners 2.048 ETC per block. This fixed, predictable supply schedule cannot be altered by governance.',
+          'ECIP-1017, adopted in March 2017, established a Bitcoin-like fixed monetary policy. Block rewards reduce by 20% every 5 million blocks (~2.5 years). The emission schedule produces a hard cap of approximately 210.7 million ETC. Current era (Era 6, starting block 25,000,001) rewards miners 1.6384 ETC per block. This fixed, predictable supply schedule cannot be altered by governance.',
       },
       {
         question: 'What is the elevator pitch for ETC?',
@@ -167,7 +167,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What is the current block reward?',
         answer:
-          'As of Era 5 (starting block 20,000,001 in May 2024), the block reward is 2.048 ETC per block. Rewards decrease by 20% every 5 million blocks under ECIP-1017. The next reduction to 1.6384 ETC will occur at block 25,000,001. Visit our Supply page for the full emission schedule and countdown to the next reduction.',
+          'As of Era 6 (starting block 25,000,001), the block reward is 1.6384 ETC per block. Rewards decrease by 20% every 5 million blocks under ECIP-1017. The next reduction to 1.6384 ETC will occur at block 25,000,001. Visit our Supply page for the full emission schedule and countdown to the next reduction.',
       },
       {
         question: 'Should I use ASICs or GPUs for ETC mining?',

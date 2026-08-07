@@ -55,11 +55,11 @@ const apiEndpoints: ApiEndpoint[] = [
     path: '/api/network',
     description: 'Get current Ethereum Classic network statistics.',
     response: `{
-  "hashrate": "185.2 TH/s",
+  "hashrate": "150.4 TH/s",
   "difficulty": "2.5 PH",
   "blockHeight": 19250000,
   "blockTime": 13.5,
-  "blockReward": 2.048,
+  "blockReward": 1.6384,
   "totalSupply": 147500000,
   "timestamp": "2024-02-04T12:00:00Z"
 }`,
@@ -80,7 +80,7 @@ const apiEndpoints: ApiEndpoint[] = [
       "timestamp": "2024-02-04T11:59:45Z",
       "transactions": 45,
       "miner": "0x...",
-      "reward": 2.048,
+      "reward": 1.6384,
       "gasUsed": 12500000
     },
     ...
@@ -210,7 +210,7 @@ export default function ApiDocsPage() {
         >
           <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">REST API Endpoints</h2>
           <div className="space-y-6">
-            {apiEndpoints.map((endpoint, index) => (
+            {apiEndpoints.map((endpoint) => (
               <div
                 key={endpoint.path}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"

@@ -42,7 +42,7 @@
 | Next.js | 16.x | App Router, SSG/SSR, API routes |
 | React | 19.x | UI components |
 | TypeScript | 5.x | Type safety |
-| Node.js | 22.x | Runtime |
+| Node.js | 24.x | Runtime |
 
 ### Styling
 | Technology | Version | Purpose |
@@ -164,7 +164,7 @@ const navigation = {
     { label: 'Mining', href: '/mining' },
     { label: 'Build', href: '/build' },
   ],
-  cta: { label: 'Launch App', href: 'https://app.classicos.org' },
+  cta: { label: 'Launch App', href: 'https://github.com/fukuii-project/fukuii-gui' },
   secondary: [
     { label: 'Markets', href: '/markets' },
     { label: 'Exchanges', href: '/exchanges' },
@@ -526,7 +526,7 @@ Reserved for in-house mining pool integrated with Fukuii client development.
 - ETChash mining hub
 - Integration with FairWins, ClearPath, TokenMint
 - Prediction DAO research applications
-- GitHub: chippr-robotics/fukuii, prediction-dao-research
+- GitHub: fukuii-project/fukuii-cli, prediction-dao-research
 
 ---
 
@@ -782,11 +782,11 @@ function trackEvent(event: AnalyticsEvent) {
 
 ### Local Development
 ```bash
-npm run dev          # Start dev server
-npm run build        # Production build
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run type-check   # TypeScript check
+pnpm dev                # Start dev server
+pnpm build              # Production build
+pnpm start              # Start production server
+pnpm lint               # Run ESLint
+pnpm exec tsc --noEmit  # TypeScript check (no type-check script exists)
 ```
 
 ### Build Process
@@ -810,7 +810,7 @@ npm run type-check   # TypeScript check
 
 ## Security Considerations
 
-1. **No Wallet Connections** - Route to Classic OS
+1. **No Wallet Connections** - Route to Fukuii GUI
 2. **No User Data Storage** - Phase 1 has no accounts
 3. **CSP Headers** - Strict content security policy
 4. **External Links** - `rel="noopener noreferrer"`

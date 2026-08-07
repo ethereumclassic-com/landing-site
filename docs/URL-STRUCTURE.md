@@ -46,8 +46,8 @@
 
 | URL | Page | Status | Priority |
 |-----|------|--------|----------|
-| `/wallet` | Wallet hub (Classic OS featured) | Complete | P0 |
-| `/wallet/classic-os` | Classic OS dedicated page | Complete | P0 |
+| `/wallet` | Wallet hub (Fukuii GUI featured) | Complete | P0 |
+| `/wallet/fukuii-gui` | Fukuii GUI dedicated page | Complete | P0 |
 | `/wallet/metamask` | MetaMask setup guide | Complete | P1 |
 | `/wallet/hardware` | Hardware wallet guide | Complete | P1 |
 | `/wallet/compare` | Wallet comparison table | Complete | P1 |
@@ -518,7 +518,7 @@ app/
 ├── sitemap/page.tsx            # /sitemap
 ├── wallet/
 │   ├── page.tsx                # /wallet
-│   ├── classic-os/page.tsx     # /wallet/classic-os
+│   ├── fukuii-gui/page.tsx     # /wallet/fukuii-gui
 │   ├── compare/page.tsx        # /wallet/compare
 │   └── reviews/
 │       ├── page.tsx            # /wallet/reviews

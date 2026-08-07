@@ -2,6 +2,7 @@ import { FadeIn } from '@/app/components/ui'
 import { fetchPoolHashrates, type PoolHashrates } from '@/lib/pool-hashrate'
 import { fetchHashrateTHs } from '@/lib/hashrate'
 import { PoolsTable, type PoolRow } from './PoolsTable'
+import { HashrateDistributionNote } from '@/app/components/HashrateDistributionNote'
 
 interface Pool {
   name: string
@@ -90,6 +91,12 @@ export async function MiningPoolsSection() {
             infrastructure dependence. Hashrate is estimated from recent block attribution.
             Larger pools appear at the top.
           </p>
+        </FadeIn>
+
+        <FadeIn delay={60}>
+          <div className="mt-6">
+            <HashrateDistributionNote />
+          </div>
         </FadeIn>
 
         <FadeIn delay={80}>

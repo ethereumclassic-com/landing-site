@@ -130,10 +130,11 @@ const partners: Partner[] = [
     partnerSince: '2017',
   },
   {
-    name: 'Chippr Robotics',
-    description: 'Developers of Fukuii, the primary Ethereum Classic execution layer client for the Olympia era.',
+    name: 'The Fukuii Authors',
+    description:
+      "Chippr Robotics LLC and White B0x Inc., who maintain Fukuii — Ethereum Classic's first native client.",
     category: 'development',
-    url: 'https://github.com/chippr-robotics',
+    url: 'https://github.com/fukuii-project',
     partnerSince: '2024',
   },
 
@@ -172,10 +173,10 @@ const partners: Partner[] = [
     partnerSince: '2022',
   },
   {
-    name: 'Classic OS',
+    name: 'Fukuii GUI',
     description: 'DeFi portfolio management dashboard for ETC.',
     category: 'defi',
-    url: '/wallet/classic-os',
+    url: '/wallet/fukuii-gui',
     partnerSince: '2024',
   },
 ]
@@ -285,7 +286,7 @@ export default function PartnersPage() {
           <div
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
-            {filteredPartners.map((partner, index) => (
+            {filteredPartners.map((partner) => (
               <div
                 key={partner.name}
                 className={`group rounded-xl border bg-[var(--panel)] p-6 transition hover:border-[var(--color-primary)]/50 ${
@@ -380,7 +381,7 @@ export default function PartnersPage() {
                     <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    Integration with Classic OS and ecosystem products
+                    Integration with Fukuii GUI and ecosystem products
                   </li>
                   <li className="flex items-start gap-2">
                     <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -97,7 +97,7 @@ export default function WalletsPage() {
       <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {walletFeatures.map((feature, index) => (
+            {walletFeatures.map((feature) => (
               <div
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
@@ -157,7 +157,7 @@ export default function WalletsPage() {
             Ready to Get Started?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Get a wallet and start using Ethereum Classic today. We recommend Classic OS for the best ETC experience.
+            Get a wallet and start using Ethereum Classic today. We recommend Fukuii GUI for the best ETC experience.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

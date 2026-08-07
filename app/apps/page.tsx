@@ -47,7 +47,7 @@ const categories = [
   },
 ]
 
-function CategoryCard({ category, index }: { category: typeof categories[0]; index: number }) {
+function CategoryCard({ category }: { category: typeof categories[0] }) {
   const categoryApps = getAppsByCategory(category.name as 'DeFi' | 'Infrastructure' | 'Governance' | 'Tools' | 'Payments')
 
   return (
@@ -144,8 +144,8 @@ export default function AppsPage() {
             Browse by Category
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {categories.map((category, index) => (
-              <CategoryCard key={category.slug} category={category} index={index} />
+            {categories.map((category) => (
+              <CategoryCard key={category.slug} category={category} />
             ))}
           </div>
         </div>

@@ -87,7 +87,7 @@ export default function MiningProfitability() {
       <ul>
         <li><strong>Block Reward:</strong> ~2.05 ETC average (base reward plus uncle rewards; decreases 20% every 5 million blocks)</li>
         <li><strong>Block Time:</strong> ~15.6 seconds average</li>
-        <li><strong>Network Hashrate:</strong> ~185 TH/s (fluctuates with miner activity)</li>
+        <li><strong>Network Hashrate:</strong> ~150 TH/s (fluctuates with miner activity)</li>
         <li><strong>Algorithm:</strong> ETCHash (memory-intensive)</li>
       </ul>
       <p className="mt-4 text-sm text-[var(--color-text-muted)]">

@@ -57,7 +57,7 @@ function CategoryIcon({ id }: { id: ArticleCategory }) {
   }
 }
 
-function CategoryCard({ category, index }: { category: typeof categories[0]; index: number }) {
+function CategoryCard({ category }: { category: typeof categories[0] }) {
   const categoryArticles = getArticlesByCategory(category.id)
 
   return (
@@ -134,7 +134,7 @@ export default function LearnPage() {
               Start Learning
             </Link>
             <a
-              href="https://docs.classicos.org"
+              href="https://fukuii.org"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 text-base font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
@@ -157,13 +157,13 @@ export default function LearnPage() {
             Browse by Topic
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {categories.slice(0, 4).map((category, index) => (
-              <CategoryCard key={category.id} category={category} index={index} />
+            {categories.slice(0, 4).map((category) => (
+              <CategoryCard key={category.id} category={category} />
             ))}
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            {categories.slice(4).map((category, index) => (
-              <CategoryCard key={category.id} category={category} index={index + 4} />
+            {categories.slice(4).map((category) => (
+              <CategoryCard key={category.id} category={category} />
             ))}
           </div>
         </div>

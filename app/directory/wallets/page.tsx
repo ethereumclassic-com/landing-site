@@ -131,9 +131,9 @@ function WalletCard({ wallet }: { wallet: Wallet }) {
             {wallet.ease.charAt(0).toUpperCase() + wallet.ease.slice(1)}
           </span>
         )}
-        {wallet.supportsClassicOS && (
+        {wallet.supportsFukuiiGui && (
           <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
-            Classic OS
+            Fukuii GUI
           </span>
         )}
       </div>

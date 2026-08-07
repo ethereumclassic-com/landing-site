@@ -12,7 +12,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts'
-import { emissionRateData } from '../data/fifthingChartData'
+import { emissionRateData } from '@/app/research/data/fifthingChartData'
 
 const BRAND_GREEN = 'var(--brand-green)'
 const AMBER = 'var(--color-warning)'

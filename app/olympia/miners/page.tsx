@@ -5,7 +5,7 @@ import Link from 'next/link'
 const revenueCards = [
   {
     label: 'Block Reward',
-    value: '2.048 ETC',
+    value: '1.6384 ETC',
     note: 'Era 4, unchanged by Olympia',
     color: 'var(--brand-green)',
   },
@@ -114,7 +114,7 @@ export default function MinersPage() {
               <div className="mt-4 space-y-3 text-sm text-[var(--color-text-muted)]">
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-[var(--brand-green)]" />
-                  <span>Block reward (2.048 ETC) → Miner</span>
+                  <span>Block reward (1.6384 ETC) → Miner</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-[var(--brand-green)]" />

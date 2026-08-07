@@ -5,21 +5,21 @@ import dynamic from 'next/dynamic'
 import { FadeIn } from '@/app/components/ui/FadeIn'
 import { useFifthing } from '@/app/hooks/useFifthing'
 import FifthingCountdown from '@/app/components/FifthingCountdown'
-import EraHistoryTable from '../fifthing/components/EraHistoryTable'
-import ECIP1017Explainer from '../fifthing/components/ECIP1017Explainer'
-import RelatedLinks from '../fifthing/components/RelatedLinks'
-import { getExpectedFifthingDate } from '../fifthing/data/fifthingChartData'
+import EraHistoryTable from '@/app/components/ecip1017/EraHistoryTable'
+import ECIP1017Explainer from '@/app/components/ecip1017/ECIP1017Explainer'
+import RelatedLinks from '@/app/components/ecip1017/RelatedLinks'
+import { getExpectedFifthingDate } from '../data/fifthingChartData'
 
-const EmissionCurveChart = dynamic(() => import('../fifthing/components/EmissionCurveChart'), {
+const EmissionCurveChart = dynamic(() => import('@/app/components/ecip1017/EmissionCurveChart'), {
   ssr: false,
   loading: () => <ChartSkeleton />,
 })
-const EmissionRateChart = dynamic(() => import('../fifthing/components/EmissionRateChart'), {
+const EmissionRateChart = dynamic(() => import('@/app/components/ecip1017/EmissionRateChart'), {
   ssr: false,
   loading: () => <ChartSkeleton />,
 })
 const SupplyScarcitySection = dynamic(
-  () => import('../fifthing/components/SupplyScarcitySection'),
+  () => import('@/app/components/ecip1017/SupplyScarcitySection'),
   {
     ssr: false,
     loading: () => <ChartSkeleton height={420} />,

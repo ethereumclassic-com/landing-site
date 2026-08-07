@@ -17,7 +17,7 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 - Consensus: Proof-of-Work (ETCHash)
 - Block time: ~13 seconds
 - Supply cap: ~210.7 million ETC
-- Current block reward: 2.048 ETC (Era 5, blocks 20M–25M)
+- Current block reward: 1.6384 ETC (Era 6, blocks 25M–30M)
 - Block reward reduction: 20% every 5 million blocks ("fifthing")
 - Smart contracts: EVM-compatible (Solidity, Vyper)
 
@@ -37,49 +37,54 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 - [News](https://ethereumclassic.com/news) — Latest Ethereum Classic news and updates
 - [Research](https://ethereumclassic.com/research) — Network analytics, supply data, and reports
 - [Emission Schedule](https://ethereumclassic.com/research/emission-schedule) — Supply reduction countdown, S2F charts, and era history
-- [Fifthing](https://ethereumclassic.com/research/fifthing) — Live countdown to the next block reward reduction, emission curve, and ECIP-1017 explainer
 - [Ethereum 2014 ICO](https://ethereumclassic.com/research/ethereum-ico) — Original Ethereum presale data: $18.5M raised, 72M ETH issued — the genesis supply ETC carries today
 - [2016 DAO Fork](https://ethereumclassic.com/research/dao-fork) — How the Ethereum Foundation forked the original chain and applied the ETH name to the new chain; how Ethereum Classic got its name
-- [Block Reward Countdown](https://ethereumclassic.com/block-reward-countdown) — Live countdown to next block reward reduction
+- [Block Reward Countdown](https://ethereumclassic.com/block-reward-countdown) — Live countdown to the next fifthing, emission curve, inflation rate, era history table, and the ECIP-1017 explainer
 - [Price](https://ethereumclassic.com/price) — Live ETC price and market data
 - [Community](https://ethereumclassic.com/community) — Social channels and events
 - [Olympia Upgrade](https://ethereumclassic.com/olympia) — Olympia network upgrade hub
 - [Upgrade Your Node](https://ethereumclassic.com/olympia/upgrade) — Client upgrade guides
 - [Miners & Fee Market](https://ethereumclassic.com/olympia/miners) — How EIP-1559 affects miners under Olympia
-- [Core-Geth v1.12.2x Security Audit](https://ethereumclassic.com/build/clients/core-geth-security-audit) — Six unpatched CVEs in etclabscore/core-geth v1.12.x (21-month maintenance gap, Go 1.21 EOL), actively exploited against ETC mainnet bootnodes March 2026. Full CVE detail, postmortem PR trail, and migration guide. All issues patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0. Migrate to Fukuii — the canonical ETC-native execution client (Scala 3/Pekko, Chippr Robotics).
+- [Core-Geth v1.12.2x Security Audit](https://ethereumclassic.com/build/clients/core-geth-security-audit) — Six unpatched CVEs in etclabscore/core-geth v1.12.x (21-month maintenance gap, Go 1.21 EOL), actively exploited against ETC mainnet bootnodes March 2026. Full CVE detail, postmortem PR trail, and migration guide. All issues patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0. Migrate to Fukuii — Ethereum Classic's first native client (Scala 3 LTS on Pekko Typed Actors, by The Fukuii Authors).
 - [Olympia Governance](https://ethereumclassic.com/olympia/governance) — Treasury and governance contracts
 - [Fork History](https://ethereumclassic.com/upgrades) — Network upgrade history (Atlantis → Olympia)
 
 ## Emission Schedule ("Fifthing")
 
-ETC reduces its block reward by 20% every 5 million blocks under ECIP-1017. This event is called a "fifthing" (not "halving"). The 5th fifthing will reduce the reward from 2.048 ETC to 1.6384 ETC per block.
+ETC reduces its block reward by 20% every 5 million blocks under ECIP-1017. This event is called a "fifthing" (not "halving"). The 5th fifthing reduced the reward from 2.048 ETC to 1.6384 ETC per block at block 25,000,000. The 6th will reduce it to 1.31072 ETC at block 30,000,000.
 
 - Era 1 (0–5M): 5 ETC
 - Era 2 (5M–10M): 4 ETC
 - Era 3 (10M–15M): 3.2 ETC
 - Era 4 (15M–20M): 2.56 ETC
-- Era 5 (20M–25M): 2.048 ETC ← current
-- Era 6 (25M–30M): 1.6384 ETC ← next fifthing
+- Era 5 (20M–25M): 2.048 ETC
+- Era 6 (25M–30M): 1.6384 ETC ← current
+- Era 7 (30M–35M): 1.31072 ETC ← next fifthing
 
 ## Olympia Network Upgrade
 
-Olympia is Ethereum Classic's next hard fork: the most significant upgrade in the network's history. It introduces EIP-1559 dynamic fee market, a protocol-controlled treasury funded by basefee revenue (block rewards remain untouched), on-chain governance with soulbound NFT voting, and full EVM alignment with Ethereum's Fusaka execution layer.
+Olympia is Ethereum Classic's next hard fork: the most significant upgrade in the network's history. It introduces EIP-1559 dynamic fee market, a protocol-controlled treasury funded by basefee revenue (block rewards remain untouched), on-chain governance with soulbound NFT voting, and EVM alignment that advances the execution layer through Glamsterdam.
 
-Three client-facing ECIPs: ECIP-1111 (EIP-1559 Fee Market), ECIP-1112 (Protocol Treasury), ECIP-1121 (EVM Compatibility). Contract layer ECIPs: ECIP-1113 (DAO Governance), ECIP-1114 (ECFP Funding Process).
+Four client-facing ECIPs, all activating at the same block: ECIP-1111 (EIP-1559 Fee Market), ECIP-1112 (Protocol Treasury), ECIP-1121 (EVM Compatibility), ECIP-1122 (Network Security Client Configuration). Contract layer ECIPs: ECIP-1113 (DAO Governance), ECIP-1114 (OFP Funding Process).
 
-**ECIP-1121 — EVM Compatibility:** Advances the ETC execution layer through Dencun (Cancun-Deneb), Pectra (Prague-Electra), and Fusaka (Fulu-Osaka). ETC implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deferring the EIP-1559 fee market for independent governance design. ECIP-1111 delivers those deferred London fee market EIPs (EIP-1559 + EIP-3198). ECIP-1121 delivers the remaining execution-layer EIPs from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability.
+**ECIP-1121 — EVM Compatibility:** Advances the ETC execution layer through Dencun (Cancun-Deneb), Pectra (Prague-Electra), Fusaka (Fulu-Osaka), and Glamsterdam (Gloas-Amsterdam). ETC implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deferring the EIP-1559 fee market for independent governance design. ECIP-1111 delivers those deferred London fee market EIPs (EIP-1559 + EIP-3198). ECIP-1121 delivers the remaining execution-layer EIPs from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability, and carries that work into Glamsterdam.
 
-Included EIP categories:
-- Gas & State Access: EIP-7702 (account delegation), EIP-7623 (calldata cost), EIP-7825 (gas limit cap), EIP-7883 (MCOPY price fix), EIP-7935 (jumpdest removal)
-- EVM Safety: EIP-6780 (SELFDESTRUCT restriction), EIP-7934 (stack size enforcement), EIP-7910 (call target constraint)
-- Cryptographic Precompiles: EIP-2537 (BLS12-381 for ZK-friendly proofs), EIP-7951 (P256VERIFY for WebAuthn / passkeys)
-- Execution Context: EIP-5656 (MCOPY memory copy), EIP-2935 (historical block hashes in state), EIP-1153 (transient storage TSTORE/TLOAD)
+From Glamsterdam, ECIP-1121 specifies two EIPs: EIP-7975 (eth/70) and EIP-7997 (deterministic CREATE2 factory). Glamsterdam's other execution-layer EIPs depend on EIP-7928 (Block-Level Access Lists) or EIP-4788 (beacon block root), neither of which is in scope for ECIP-1121. The accurate description is therefore "Dencun, Pectra and Fusaka complete, Glamsterdam opened" rather than parity with all of Glamsterdam.
+
+Included EIPs (18, per ECIP-1121's Specification section):
+- Gas Accounting and State Access: EIP-7702 (set EOA account code, chainId 61/63 replay protection), EIP-7623 (increase calldata cost), EIP-7825 (transaction gas limit cap, 2^24), EIP-7823 (MODEXP input bounds, 8192 bits), EIP-7883 (MODEXP gas cost increase), EIP-7935 (default gas limit 60M, network-authoritative on ETC per ECIP-1122)
+- EVM Safety and Forward Compatibility: EIP-7934 (RLP block size limit, 8 MiB on ETC — no beacon-block margin), EIP-6780 (SELFDESTRUCT only in same tx), EIP-7910 (eth_config JSON-RPC method), EIP-7997 (deterministic CREATE2 factory at 0x4e59b44847b379578588920cA78FbF26c0B4956C, same address as every other EVM chain)
+- Cryptographic and Precompile Enhancements: EIP-2537 (BLS12-381 precompile), EIP-7951 (secp256r1 / P256VERIFY for WebAuthn and passkeys)
+- Execution Context Optimizations: EIP-5656 (MCOPY), EIP-2935 (historical block hashes in state), EIP-1153 (transient storage TSTORE/TLOAD), EIP-7939 (CLZ opcode, 0x1e)
+- Networking (activates via devp2p capability negotiation, NOT a hard fork): EIP-7642 (eth/69 — retains total difficulty for PoW chain selection, drops receipt bloom filters), EIP-7975 (eth/70 — paginated receipts for blocks above the 10 MiB p2p limit)
 
 Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain.
 
-Two active clients at Olympia launch:
-- Fukuii (fukuii.com) — Ethereum execution layer client in Scala 3. Native PoW for ETC mainnet and Mordor; Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.
-- Core-Geth — Legacy ETC client, maintained through Olympia.
+Two client implementations at Olympia launch:
+- Fukuii (fukuii.org) — Ethereum Classic's first native client, built ground-up for ETC rather than derived from an Ethereum client. An EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration; a further network is configuration, not a new client. Consensus is selected per deployment behind one interface: native Proof-of-Work for ETC mainnet and Mordor, or Proof-of-Stake with a built-in consensus layer, or an external client over the Engine API V1–V4. Ships an MCP server exposing node state to AI agents. Requires a current JDK LTS (25); the Docker image bundles one. Enterprise-grade by way of the JVM rather than a separate edition: JVM-native end to end with no foreign-language bridge, so JFR, async-profiler, JMX and heap dumps work as on any JVM process; Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints ship in the binary, alongside concurrent multi-instance execution and external-signer/HSM custody integration. Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on releases. By The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.). Repo: https://github.com/fukuii-project/fukuii-cli · Docs: https://docs.fukuii.org
+- Core-Geth — A go-ethereum derivative maintained for Ethereum Classic, carried through Olympia for network continuity. Not native, and not a plugin.
+
+ETC execution client plugins add Ethereum Classic support into existing Ethereum clients. A plugin is not a client implementation and carries no mining or Proof-of-Work consensus: Besu (https://github.com/besu-eth/besu), Erigon (https://github.com/erigontech/erigon), Ethrex (https://github.com/lambdaclass/ethrex), Go-Ethereum (https://github.com/ethereum/go-ethereum), Nethermind (https://github.com/NethermindEth/nethermind), Reth (https://github.com/paradigmxyz/reth).
 
 Activation block: TBD (announced after CDC-23 community call).
 

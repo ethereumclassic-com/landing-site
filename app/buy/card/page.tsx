@@ -21,7 +21,6 @@ function CardProvider({
   fees,
   limits,
   link,
-  index,
 }: CardProviderProps) {
   return (
     <div
@@ -259,7 +258,7 @@ export default function CardPage() {
               { name: 'Mastercard', description: 'Credit & Debit', icon: '💳' },
               { name: 'Apple Pay', description: 'Mobile Wallet', icon: '📱' },
               { name: 'Google Pay', description: 'Mobile Wallet', icon: '📱' },
-            ].map((card, index) => (
+            ].map((card) => (
               <div
                 key={card.name}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center"
@@ -294,7 +293,7 @@ export default function CardPage() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <div
                 key={step.number}
                 className="flex gap-4 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"

@@ -367,7 +367,7 @@ export default function BuildPage() {
           <div
             className="grid gap-6 lg:grid-cols-2"
           >
-            {nodeClients.filter((c) => c.id !== 'hyperledger-besu').map((client) => (
+            {nodeClients.map((client) => (
               <div
                 key={client.id}
                 className={`rounded-2xl border p-6 ${

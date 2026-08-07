@@ -53,7 +53,7 @@ function ProductFeatureCard({ name, description, features, link, badge, index }:
 export default function ProductSuite() {
   const products = [
     {
-      name: 'Classic OS',
+      name: 'Fukuii GUI',
       description: 'Economic control center for managing ETC capital flows',
       features: [
         'Mining OS integration',
@@ -61,7 +61,7 @@ export default function ProductSuite() {
         'DeFi automation',
         'Market access',
       ],
-      link: 'https://app.classicos.org',
+      link: 'https://github.com/fukuii-project/fukuii-gui',
       badge: 'Flagship',
     },
     {

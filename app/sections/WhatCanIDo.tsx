@@ -4,14 +4,13 @@ import { FadeIn, HoverLift } from "../components/Motion";
 import { Button } from "../components/Button";
 
 // NOTE: Long-form copy retained intentionally for SEO / AI summaries.
-// This section should be compressed in Phase 1 polish pass.
 
 const cards = [
     {
         title: "Use ETC",
         body: "Use ETC across decentralized applications on Ethereum Classic. ETC can be transferred, traded, collateralized, and programmed in smart contracts powering exchanges, stablecoins, payments, lending, liquidity provision, automation, and other on-chain services. ETC is the native asset for fees and settlement.",
         cta: "Explore applications",
-        href: "https://classicos.org",
+        href: "https://github.com/fukuii-project/fukuii-gui",
         variant: "primary" as const,
         external: true,
         image: "/what/use-etc.png",

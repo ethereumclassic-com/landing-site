@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Network Upgrade History : Ethereum Classic',
   description:
-    'Complete history of Ethereum Classic network upgrades from Frontier through Olympia : every hard fork from genesis to EVM alignment with Fusaka.',
+    'Complete history of Ethereum Classic network upgrades from Frontier through Olympia : every hard fork from genesis to EVM alignment with Glamsterdam. Fusaka.',
   openGraph: {
     title: 'Network Upgrade History : Ethereum Classic',
     description:

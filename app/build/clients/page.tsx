@@ -151,7 +151,7 @@ export default function ClientsPage() {
           <div
             className="space-y-8"
           >
-            {activeClients.filter((c) => c.id !== 'hyperledger-besu').map((client) => (
+            {activeClients.map((client) => (
               <div
                 key={client.id}
                 className={`rounded-2xl border p-8 ${
@@ -190,9 +190,11 @@ export default function ClientsPage() {
                     {client.securityAuditUrl && (
                       <div className="mb-4 flex items-center justify-between rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3">
                         <span className="text-sm text-[var(--color-text-muted)]">
-                          Maintenance mode since Dec 2024 · 6 CVEs patched in v1.13.0 · Migrate to{' '}
+                          Maintenance mode since Dec 2024 · 6 CVEs patched at
+                          ethereumclassic/core-geth, v1.13.0 pending · Upgrade to v1.12.22 now ·
+                          Migrate to{' '}
                           <a
-                            href="https://fukuii.com"
+                            href="https://fukuii.org"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium text-[var(--color-primary)] hover:underline"
@@ -463,7 +465,7 @@ export default function ClientsPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://github.com/chippr-robotics/fukuii"
+                href="https://github.com/fukuii-project/fukuii-cli"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"

@@ -37,17 +37,6 @@ function formatBtcPrice(val: number | null | undefined): string | null {
   return `${val.toFixed(8)} BTC`
 }
 
-function formatEthPrice(val: number | null | undefined): string | null {
-  if (val == null || val === 0) return null
-  return `${val.toFixed(8)} ETH`
-}
-
-function formatEtcPerEth(val: number | null | undefined): string | null {
-  if (val == null || val === 0) return null
-  if (val >= 1000) return `${val.toLocaleString('en-US', { maximumFractionDigits: 2 })} ETC`
-  if (val >= 10) return `${val.toFixed(2)} ETC`
-  return `${val.toFixed(4)} ETC`
-}
 
 function formatFiatPrice(val: number | null | undefined, symbol: string): string | null {
   if (val == null || val === 0) return null
@@ -100,25 +89,6 @@ function computeRoi(currency: string, rates: ExchangeRates): RoiData {
   }
 }
 
-interface EthRoiData {
-  etcEthMultiplier: number
-  etcEthNow: number
-  etcEthValue: number   // 200 ETC × etcEthNow
-  ethEtcMultiplier: number
-  ethEtcNow: number     // 1 / etcEthNow
-}
-
-function computeEthRoi(rates: ExchangeRates): EthRoiData {
-  const etcEthNow = rates.etc.eth ?? 0
-  const ethEtcNow = etcEthNow > 0 ? 1 / etcEthNow : 0
-  return {
-    etcEthMultiplier: etcEthNow,     // ÷ 1.0 genesis parity
-    etcEthNow,
-    etcEthValue: 200 * etcEthNow,
-    ethEtcMultiplier: ethEtcNow,     // ÷ 1.0 genesis parity
-    ethEtcNow,
-  }
-}
 
 interface BtcRoiData {
   etcMultiplier: number
@@ -176,9 +146,6 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
   const symbol = CURRENCY_SYMBOLS[currency] ?? currency.toUpperCase()
   const costBasisCaption = `${symbol}${(ETH_ICO_PRICE_USD * (rates.fiat_to_usd[currency] ?? 1)).toFixed(3)}/ETH ICO price`
 
-  // ETC/ETH cross-pair ROI (ICO genesis parity was 1:1)
-  const ethRoi = computeEthRoi(rates)
-
   // ETC since 2016 fork — multiplier vs $0.615 first close (Jul 24, 2016)
   const etcForkMultiplier = ETC_FORK_PRICE_USD > 0 ? (rates.etc.usd ?? 0) / ETC_FORK_PRICE_USD : 0
   const etcForkRows: PriceTableRow[] = [
@@ -198,11 +165,6 @@ export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
   ]
 
   // ETH/ETC is the inverse: ETH's ATH in ETC = 1 / ETC/ETH ATL, and vice versa
-  const ethEtcRows: PriceTableRow[] = [
-    { label: 'Now', price: formatEtcPerEth(ethRoi.ethEtcNow),                                                                              date: null },
-    { label: 'ATL', price: formatEtcPerEth(rates.history.etc.ath_eth != null ? 1 / rates.history.etc.ath_eth : null), date: formatHistoryDate(rates.history.etc.ath_date_eth) },
-    { label: 'ATH', price: formatEtcPerEth(rates.history.etc.atl_eth != null ? 1 / rates.history.etc.atl_eth : null), date: formatHistoryDate(rates.history.etc.atl_date_eth) },
-  ]
 
   // Price table rows for BTC cards
   const ethBtcNow = rates.btc_usd > 0 ? rates.eth_usd / rates.btc_usd : null

@@ -1,7 +1,9 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
+import { HashrateDistributionNote } from '@/app/components/HashrateDistributionNote'
 
 // Format time ago helper
 function formatTimeAgo(date: Date): string {
@@ -14,21 +16,16 @@ function formatTimeAgo(date: Date): string {
   return `${Math.floor(hours / 24)}d ago`
 }
 
-// Pool Distribution - REFERENCE DATA
-// TODO: Phase 7.11 - Need live API for pool hashrate distribution
-// Potential sources: MiningPoolStats API, individual pool APIs
-// Last updated: Jan 2026 estimates based on MiningPoolStats.com
-const poolDistribution = [
-  { name: 'F2Pool', hashrate: '~45 TH/s', share: 24 },
-  { name: '2Miners', hashrate: '~38 TH/s', share: 21 },
-  { name: 'K1Pool', hashrate: '~30 TH/s', share: 16 },
-  { name: 'Poolin', hashrate: '~22 TH/s', share: 12 },
-  { name: 'ViaBTC', hashrate: '~19 TH/s', share: 10 },
-  { name: 'Others', hashrate: '~31 TH/s', share: 17 },
-]
+// Pool distribution is fetched live from /api/pools, which derives it from
+// recent Blockscout block miners weighted against the current network hashrate.
+interface PoolShare {
+  name: string
+  hashrateTHs: number
+  share: number
+}
 
 // Node Distribution - REFERENCE DATA
-// TODO: Phase 7.11 - Need live API for node geographic distribution
+// Reference data. No public API for ETC node geographic distribution is consumed here.
 // Potential sources: Ethernodes.org, node crawler services
 // Estimates based on community reports - verification needed
 const nodeDistribution = [
@@ -70,15 +67,36 @@ const StatusIcon = ({ status }: { status: 'healthy' | 'warning' | 'critical' }) 
 export default function NetworkHealthPage() {
   // Use live network stats from Blockscout
   const { stats, formatted, loading, error, lastUpdated } = useNetworkStats()
+  const [poolDistribution, setPoolDistribution] = useState<PoolShare[]>([])
+  const [poolsLoading, setPoolsLoading] = useState(true)
+  const [networkTHs, setNetworkTHs] = useState<number | null>(null)
+  const topTwoShare =
+    poolDistribution.length >= 2
+      ? poolDistribution.slice(0, 2).reduce((sum, p) => sum + p.share, 0)
+      : null
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/pools')
+      .then((r) => r.json())
+      .then((d: { pools?: PoolShare[]; networkTHs?: number }) => {
+        if (cancelled) return
+        if (d?.pools) setPoolDistribution(d.pools)
+        if (typeof d?.networkTHs === 'number') setNetworkTHs(d.networkTHs)
+      })
+      .catch(() => { /* leave empty; UI shows the unavailable state */ })
+      .finally(() => { if (!cancelled) setPoolsLoading(false) })
+    return () => { cancelled = true }
+  }, [])
 
   // Derive health checks from live data where available
-  // Note: Some metrics require Phase 7.11 data sources (hashrate, node count, pool distribution)
+  // Hashrate and pool distribution are live from /api/pools; node count is a reference estimate.
   const healthChecks = [
     {
       name: 'Network Hashrate',
       status: 'healthy' as const,
-      description: 'Hashrate estimated from difficulty (Phase 7.11 for live)',
-      metric: '~185 TH/s', // TODO: Phase 7.11 - need live hashrate API
+      description: 'Blockscout difficulty over its reported average block time',
+      metric: networkTHs !== null ? `${networkTHs.toFixed(1)} TH/s` : '—',
     },
     {
       name: 'Block Time',
@@ -90,13 +108,13 @@ export default function NetworkHealthPage() {
       name: 'Node Distribution',
       status: 'healthy' as const,
       description: 'Nodes distributed across multiple regions (estimate)',
-      metric: '~840 nodes', // TODO: Phase 7.11 - need live node count API
+      metric: '~840 nodes', // Estimate. No public ETC node-count API is currently consumed here.
     },
     {
       name: 'Pool Decentralization',
-      status: 'warning' as const,
-      description: 'Top 2 pools control ~45% of hashrate (estimate)',
-      metric: '~45% top 2', // TODO: Phase 7.11 - need pool API
+      status: topTwoShare !== null && topTwoShare >= 50 ? ('warning' as const) : ('healthy' as const),
+      description: 'Share of network hashrate held by the two largest pools',
+      metric: topTwoShare !== null ? `${topTwoShare.toFixed(1)}% top 2` : '—',
     },
     {
       name: 'Block Height',
@@ -251,7 +269,7 @@ export default function NetworkHealthPage() {
               Automated checks monitoring network security and performance
             </p>
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {healthChecks.map((check, index) => (
+              {healthChecks.map((check) => (
                 <div
                   key={check.name}
                   className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
@@ -319,16 +337,20 @@ export default function NetworkHealthPage() {
               <div className="p-4 border-b border-[var(--border)]">
                 <div className="flex items-center justify-between">
                   <h2 className="font-bold text-[var(--text-primary)]">Mining Pool Distribution</h2>
-                  <span className="text-xs text-[var(--color-warning)]">Estimate</span>
+                  <span className="text-xs text-[var(--color-warning)]">{poolsLoading ? 'Loading' : 'Live'}</span>
                 </div>
-                <p className="mt-1 text-xs text-[var(--color-text-muted)]">Based on MiningPoolStats data</p>
+                <p className="mt-1 text-xs text-[var(--color-text-muted)]">Derived from recent block miners on Blockscout</p>
               </div>
               <div className="p-4 space-y-4">
+                {!poolsLoading && poolDistribution.length === 0 && (
+                  <p className="text-sm text-[var(--color-text-muted)]">Pool distribution is temporarily unavailable.</p>
+                )}
+                <HashrateDistributionNote compact />
                 {poolDistribution.map((pool) => (
                   <div key={pool.name}>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-[var(--text-primary)]">{pool.name}</span>
-                      <span className="text-[var(--color-text-muted)]">{pool.hashrate} ({pool.share}%)</span>
+                      <span className="text-[var(--color-text-muted)]">{pool.hashrateTHs.toFixed(2)} TH/s ({pool.share}%)</span>
                     </div>
                     <div className="mt-1 h-2 rounded-full bg-[var(--bg)]">
                       <div
@@ -365,7 +387,7 @@ export default function NetworkHealthPage() {
                   <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs text-[var(--color-warning)]">Estimate</span>
                 </div>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  Geographic distribution of ETC full nodes (Phase 7.11 for live data)
+                  Geographic distribution of ETC full nodes (reference estimate)
                 </p>
               </div>
               <div className="text-right">

@@ -150,8 +150,8 @@ export default function HistoricalDataPage() {
               <div>
                 <p className="font-medium text-[var(--color-warning)]">Sample Data</p>
                 <p className="mt-1 text-sm text-[var(--color-warning)]/80">
-                  Charts display sample data for demonstration. Live historical data integration requires
-                  node infrastructure deployment in Phase 7/8.
+                  Charts display sample data for demonstration. Live historical data requires
+                  dedicated node infrastructure, which this site does not yet run.
                 </p>
               </div>
             </div>
@@ -366,7 +366,7 @@ export default function HistoricalDataPage() {
               { label: 'The DAO Fork', value: 'July 20, 2016', note: 'ETC preserves original chain' },
               { label: 'All-Time High', value: '$176.16', note: 'May 6, 2021' },
               { label: 'Post-Merge Peak', value: '263 TH/s', note: 'September 2022' },
-            ].map((stat, index) => (
+            ].map((stat) => (
               <div
                 key={stat.label}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"

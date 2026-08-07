@@ -21,7 +21,6 @@ function InstantBuyProvider({
   fees,
   kycRequired,
   link,
-  index,
 }: InstantBuyProviderProps) {
   return (
     <div
@@ -84,10 +83,9 @@ interface StepCardProps {
   title: string
   description: string
   icon: React.ReactNode
-  index: number
 }
 
-function StepCard({ number, title, description, icon, index }: StepCardProps) {
+function StepCard({ number, title, description, icon }: StepCardProps) {
   return (
     <div
       className="relative flex flex-col items-center text-center"
@@ -293,8 +291,8 @@ export default function InstantBuyPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-4">
-            {steps.map((step, index) => (
-              <StepCard key={step.number} {...step} index={index} />
+            {steps.map((step) => (
+              <StepCard key={step.number} {...step} />
             ))}
           </div>
         </div>

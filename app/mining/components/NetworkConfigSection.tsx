@@ -33,6 +33,7 @@ const networks: NetworkConfig[] = [
     nextUpgrade: [
       { name: 'Olympia', ethOrigin: false },
       { name: 'Fusaka', ethOrigin: true },
+      { name: 'Glamsterdam', ethOrigin: true },
     ],
   },
   {
@@ -50,6 +51,7 @@ const networks: NetworkConfig[] = [
     nextUpgrade: [
       { name: 'Olympia', ethOrigin: false },
       { name: 'Fusaka', ethOrigin: true },
+      { name: 'Glamsterdam', ethOrigin: true },
     ],
   },
 ]

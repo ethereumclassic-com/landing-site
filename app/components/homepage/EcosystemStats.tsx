@@ -79,7 +79,7 @@ const defaultStats = {
 export default function EcosystemStats() {
   const [networkStats, setNetworkStats] = useState<NetworkStats>(defaultStats)
   const [isLive, setIsLive] = useState(false)
-  const [hashrateTHs, setHashrateTHs] = useState<string>('200+ TH/s')
+  const [hashrateTHs, setHashrateTHs] = useState<string>('~150 TH/s')
 
   useEffect(() => {
     async function fetchStats() {

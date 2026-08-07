@@ -137,7 +137,7 @@ export default function NetworkOverviewSection() {
   // 10-minute refresh matches the server-side ISR cache and lib/blockscout 10-min TTL
   const { stats, loading } = useNetworkStats({ refreshInterval: 600_000 })
   const [volume24h, setVolume24h] = useState<number | null>(null)
-  const [hashrateTHs, setHashrateTHs] = useState<string>('200+ TH/s')
+  const [hashrateTHs, setHashrateTHs] = useState<string>('~150 TH/s')
 
   useEffect(() => {
     fetch('/api/price')

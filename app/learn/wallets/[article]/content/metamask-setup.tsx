@@ -202,7 +202,7 @@ export default function MetaMaskSetup() {
       <ul>
         <li>Swap tokens on ETCswap</li>
         <li>Explore ETC dApps</li>
-        <li>Connect to Classic OS</li>
+        <li>Connect to Fukuii GUI</li>
         <li>Manage your DeFi positions</li>
       </ul>
     </>

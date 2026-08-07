@@ -9,7 +9,6 @@ import { exchangeReviews } from './buy/data/reviews'
 import { reports } from './research/data/research'
 import { cdcEntries } from './core-devs/data/index'
 import { philosophyArticles } from './why-classic/data/philosophy'
-import { getAllFAQSections } from './faq/data/faqs'
 
 const baseUrl = 'https://ethereumclassic.com'
 
@@ -65,7 +64,7 @@ const staticRoutes = [
 
   // Wallet section
   { path: '/wallet', priority: 0.9, changeFrequency: 'weekly' as const },
-  { path: '/wallet/classic-os', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/wallet/fukuii-gui', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/wallet/metamask', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/wallet/hardware', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/wallet/compare', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -176,7 +175,8 @@ const staticRoutes = [
   // Research section
   { path: '/research', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/research/emission-schedule', priority: 0.8, changeFrequency: 'daily' as const },
-  { path: '/research/fifthing', priority: 0.8, changeFrequency: 'weekly' as const },
+  // /research/fifthing is a redirect to /block-reward-countdown, which is
+  // listed above. A redirect does not belong in the sitemap.
   { path: '/research/ethereum-ico', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/research/dao-fork', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/research/reports', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -213,7 +213,6 @@ const staticRoutes = [
   { path: '/olympia/upgrade', priority: 0.9, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients/core-geth', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/olympia/clients/besu', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/history', priority: 0.8, changeFrequency: 'weekly' as const },

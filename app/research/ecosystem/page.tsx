@@ -31,7 +31,7 @@ const ecosystemSections = [
   {
     title: 'Mining',
     description: 'Etchash proof-of-work mining ecosystem with GPU and ASIC support.',
-    items: ['~185 TH/s network hashrate', '6 active mining pools', 'GPU + ASIC compatible'],
+    items: ['~150 TH/s network hashrate', '6 active mining pools', 'GPU + ASIC compatible'],
     href: '/mining',
   },
 ]

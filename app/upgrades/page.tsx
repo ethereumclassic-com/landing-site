@@ -28,7 +28,7 @@ export default function UpgradesPage() {
           >
             Every ETC network upgrade follows the same process: ECIP specification, independent client
             implementation, testnet validation, and mainnet activation. Olympia brings EVM alignment
-            to Fusaka with EIPs spanning London, Dencun, Pectra, and Fusaka.
+            through Glamsterdam with EIPs spanning London, Dencun, Pectra, Fusaka, and Glamsterdam.
           </p>
         </div>
       </section>

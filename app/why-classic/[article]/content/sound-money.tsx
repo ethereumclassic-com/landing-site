@@ -50,7 +50,7 @@ export default function SoundMoney() {
           block
         </li>
         <li>
-          <strong>Era 5</strong> (blocks 20,000,001 &ndash; 25,000,000): 2.048 ETC per
+          <strong>Era 6</strong> (blocks 25,000,001 &ndash; 30,000,000): 1.6384 ETC per
           block
         </li>
       </ul>

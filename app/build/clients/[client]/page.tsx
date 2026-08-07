@@ -57,14 +57,6 @@ const severityColors: Record<SecurityAdvisory['severity'], { bg: string; text: s
   Low: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/30' },
 }
 
-const pluginBaseClientLinks: Record<string, string> = {
-  'go-ethereum': 'https://github.com/ethereum/go-ethereum',
-  Nethermind: 'https://github.com/NethermindEth/nethermind',
-  Erigon: 'https://github.com/ledgerwatch/erigon',
-  'Hyperledger Besu': 'https://github.com/hyperledger/besu',
-  Reth: 'https://github.com/paradigmxyz/reth',
-}
-
 interface Props {
   params: Promise<{ client: string }>
 }
@@ -213,38 +205,20 @@ function InstallationSection({ client }: { client: NodeClient }) {
           </div>
         )}
 
-        {client.id === 'hyperledger-besu' && (
-          <div className="space-y-4">
-            <div>
-              <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
-              <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull ghcr.io/ethereumclassic/besu:latest</code>
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Package Managers</h3>
-              <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
-                <code className="block text-[var(--color-text-muted)]"># Requires Java 17+</code>
-                <code className="block text-[var(--color-text-muted)]">brew install ethereumclassic/besu/besu</code>
-              </div>
-            </div>
-          </div>
-        )}
-
         {client.id === 'fukuii' && (
           <div className="space-y-4">
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull ghcr.io/chippr-robotics/fukuii:latest</code>
+                <code className="text-[var(--color-primary)]">docker pull ghcr.io/fukuii-project/fukuii-cli:latest</code>
               </div>
             </div>
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
                 <code className="block text-[var(--color-text-muted)]"># Requires JDK 25+ and sbt</code>
-                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/chippr-robotics/fukuii.git</code>
-                <code className="block text-[var(--color-text-muted)]">cd fukuii && sbt assembly</code>
+                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/fukuii-project/fukuii-cli.git</code>
+                <code className="block text-[var(--color-text-muted)]">cd fukuii-cli && sbt assembly</code>
               </div>
             </div>
           </div>
@@ -275,9 +249,6 @@ function ConfigurationSection({ client }: { client: NodeClient }) {
               {client.id === 'core-geth' && (
                 <code className="text-[var(--color-primary)]">geth --classic</code>
               )}
-              {client.id === 'hyperledger-besu' && (
-                <code className="text-[var(--color-primary)]">besu --network=classic</code>
-              )}
               {client.id === 'fukuii' && (
                 <code className="text-[var(--color-primary)]">fukuii --network=etc</code>
               )}
@@ -288,9 +259,6 @@ function ConfigurationSection({ client }: { client: NodeClient }) {
             <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs">
               {client.id === 'core-geth' && (
                 <code className="text-[var(--color-primary)]">geth --mordor</code>
-              )}
-              {client.id === 'hyperledger-besu' && (
-                <code className="text-[var(--color-primary)]">besu --network=mordor</code>
               )}
               {client.id === 'fukuii' && (
                 <code className="text-[var(--color-primary)]">fukuii --network=mordor</code>
@@ -359,7 +327,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                   <span className="text-[var(--color-warning)] font-medium">⚠ Sunset after Olympia</span>
                   <span className="text-[var(--color-text-muted)]">Maintenance mode since December 2024 · v1.13.x final series</span>
                   <Link
-                    href="https://fukuii.com"
+                    href="https://fukuii.org"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium text-[var(--color-primary)] hover:underline"
@@ -538,7 +506,6 @@ function NodeClientPage({ client }: { client: NodeClient }) {
 
 function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
   const langInfo = languageColors[plugin.language] || { bg: 'bg-gray-500/10', text: 'text-gray-400', label: plugin.language }
-  const upstreamUrl = pluginBaseClientLinks[plugin.baseClient]
 
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
@@ -579,21 +546,8 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
               <svg aria-hidden="true" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                 <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
               </svg>
-              ETC Repository
+              {plugin.baseClient} (upstream)
             </a>
-            {upstreamUrl && (
-              <a
-                href={upstreamUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
-              >
-                {plugin.baseClient} (upstream)
-                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                </svg>
-              </a>
-            )}
           </div>
         </div>
       </section>
@@ -631,36 +585,6 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Status */}
-      <section className="px-6 pb-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div className="rounded-xl border border-[var(--color-warning)]/30 bg-[var(--color-warning-bg)] p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-warning)]/20">
-                <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-medium text-[var(--text-primary)]">Planned — Post-Olympia Roadmap</p>
-                <p className="text-sm text-[var(--color-text-muted)]">
-                  This plugin is on the development roadmap following the Olympia hard fork. Follow{' '}
-                  <a
-                    href={plugin.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--color-primary)] hover:underline"
-                  >
-                    the repository
-                  </a>{' '}
-                  for progress updates.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

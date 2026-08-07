@@ -4,16 +4,18 @@ export const metadata: Metadata = {
   title: {
     template: '%s | Olympia — Ethereum Classic',
     default:
-      'Olympia Network Upgrade — Fusaka EVM Alignment, EIP-1559 Fee Market, Protocol Treasury — Ethereum Classic',
+      'Olympia Network Upgrade — Glamsterdam EVM Alignment, EIP-1559 Fee Market, Protocol Treasury — Ethereum Classic',
   },
   description:
-    "Olympia is Ethereum Classic's most significant protocol upgrade. Full Fusaka EVM alignment closes years of tooling divergence — Foundry, Hardhat, wagmi, viem, and ethers.js work on ETC without modification. EIP-1559 fee market redirects the basefee to a protocol-managed treasury, funding open-source core development without foundation dependency.",
+    "Olympia is Ethereum Classic's most significant protocol upgrade. EVM alignment through Dencun, Pectra and Fusaka, carried into Glamsterdam, closes years of tooling divergence — Foundry, Hardhat, wagmi, viem, and ethers.js work on ETC without modification. EIP-1559 fee market redirects the basefee to a protocol-managed treasury, funding open-source core development without foundation dependency.",
   keywords: [
     'Olympia upgrade',
     'Ethereum Classic upgrade',
+    'Glamsterdam EVM',
     'Fusaka EVM',
     'EVM alignment',
     'ECIP-1121',
+    'ECIP-1122',
     'EIP-1559',
     'ECIP-1111',
     'ECIP-1112',
@@ -46,13 +48,14 @@ export const metadata: Metadata = {
     'eth/69',
     'EIP-7939',
     'CLZ opcode',
+    'Glamsterdam',
     'Fusaka',
   ],
   openGraph: {
     title:
-      'Olympia Network Upgrade — Fusaka EVM Alignment, EIP-1559 Fee Market, Protocol Treasury — Ethereum Classic',
+      'Olympia Network Upgrade — Glamsterdam EVM Alignment, EIP-1559 Fee Market, Protocol Treasury — Ethereum Classic',
     description:
-      "Olympia is Ethereum Classic's most significant protocol upgrade. Full Fusaka EVM alignment, EIP-1559 basefee directed to protocol treasury, and independent client implementations.",
+      "Olympia is Ethereum Classic's most significant protocol upgrade. Glamsterdam-era EVM alignment, EIP-1559 basefee directed to protocol treasury, and independent client implementations.",
     type: 'website',
   },
 }

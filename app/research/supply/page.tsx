@@ -11,7 +11,6 @@ import {
   formatSupply,
   formatBlockReward,
   formatBlockNumber,
-  getOrdinalSuffix,
   type SupplyStats,
 } from '../data/emission'
 

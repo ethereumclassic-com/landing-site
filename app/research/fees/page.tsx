@@ -41,7 +41,7 @@ function useFeeStats() {
         setStats({
           gasPrices: data.gasPrice || { slow: 1.56, average: 1.89, fast: 5.21 },
           networkUtilization: data.networkUtilization || 0.42,
-          avgBlockReward: data.blockReward || 2.048,
+          avgBlockReward: data.blockReward || 1.6384,
           currentBlockHeight: data.blockHeight || 23816658,
           avgBlockTime: data.avgBlockTime || 13,
           estimatedDailyFees: 0,
@@ -86,7 +86,7 @@ function FeeMarketContext() {
           <h3 className="font-semibold text-[var(--text-primary)]">Why Fee Markets Matter for ETC</h3>
           <p className="mt-2 text-sm text-[var(--color-text-muted)]">
             As block rewards continue to decrease through <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>&apos;s Fifthing schedule
-            (currently {formatBlockReward(2.048)} ETC per block), transaction fees become increasingly
+            (currently {formatBlockReward(1.6384)} ETC per block), transaction fees become increasingly
             important for miner revenue and long-term network security. A healthy fee market
             indicates sustainable demand for block space.
           </p>
@@ -510,7 +510,7 @@ export default function FeeMarketPage() {
               <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                 <li className="flex items-start gap-2">
                   <span className="text-[var(--color-primary)]">•</span>
-                  <span><strong className="text-[var(--text-primary)]">Current Era (5):</strong> ~2.05 ETC block reward, fees are ~0.01% of miner revenue</span>
+                  <span><strong className="text-[var(--text-primary)]">Current Era (6):</strong> ~1.64 ETC block reward, fees are ~0.01% of miner revenue</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[var(--color-warning)]">•</span>

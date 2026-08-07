@@ -4,7 +4,7 @@ import { fetchHashrateTHs } from '@/lib/hashrate'
 
 const staticStats = [
   { value: 'July 2015', label: 'In Production Since', detail: 'Longest-running EVM' },
-  { value: 'Fusaka', label: 'EVM Parity', detail: 'Full Ethereum execution layer' },
+  { value: 'Glamsterdam', label: 'EVM Parity', detail: 'Ethereum execution layer' },
   { value: 'GPU + ASIC', label: 'Hardware Access', detail: 'Retail to institutional' },
 ]
 

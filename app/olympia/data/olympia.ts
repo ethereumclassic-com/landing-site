@@ -1,7 +1,7 @@
 // Olympia Network Upgrade — Core Data
 //
 // COPY SAFETY: Treasury is funded by EIP-1559 basefee, NOT block rewards.
-// Block rewards (2.048 ETC/block, Era 4) remain untouched.
+// Block rewards (1.6384 ETC/block, Era 6) remain untouched.
 
 // ============================================================================
 // Activation Block — Change this ONE value when the block number is set.
@@ -41,21 +41,21 @@ export const clients: ClientUpgrade[] = [
     language: 'Scala',
     languageColor: '#DC322F',
     description:
-      'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for ETC mainnet and Mordor, Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.',
+      "Ethereum Classic's first native client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
     role: 'primary',
     roleLabel: 'Recommended',
     currentVersion: 'v0.1.240',
     olympiaVersion: 'TBD',
-    githubUrl: 'https://github.com/chippr-robotics/fukuii',
-    docsUrl: 'https://chippr-robotics.github.io/fukuii',
-    dockerImage: 'ghcr.io/chippr-robotics/fukuii:latest',
+    githubUrl: 'https://github.com/fukuii-project/fukuii-cli',
+    docsUrl: 'https://docs.fukuii.org',
+    dockerImage: 'ghcr.io/fukuii-project/fukuii-cli:latest',
     platforms: ['Linux', 'macOS', 'Docker'],
     installCommands: [
-      { platform: 'Docker', command: 'docker pull ghcr.io/chippr-robotics/fukuii:latest' },
+      { platform: 'Docker', command: 'docker pull ghcr.io/fukuii-project/fukuii-cli:latest' },
       { platform: 'Source', command: 'sbt stage' },
     ],
     verifyCommand: 'fukuii --version',
-    prerequisites: ['JDK 25+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
+    prerequisites: ['Current JDK LTS (25) — bundled in the Docker image', '8 GB RAM minimum', '500 GB SSD (full sync)'],
   },
   {
     id: 'core-geth',
@@ -63,7 +63,7 @@ export const clients: ClientUpgrade[] = [
     language: 'Go',
     languageColor: '#00ADD8',
     description:
-      'The legacy ETC client, maintained through Olympia for network continuity. Six CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0 — the final series. Migrate to Fukuii after Olympia activation.',
+      'A go-ethereum derivative maintained for Ethereum Classic, carried through Olympia for network continuity. Six CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.',
     role: 'maintenance',
     roleLabel: 'Maintained',
     currentVersion: 'v1.12.22',
@@ -78,28 +78,6 @@ export const clients: ClientUpgrade[] = [
     ],
     verifyCommand: 'geth version',
     prerequisites: ['Go 1.26+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
-  },
-  {
-    id: 'besu',
-    name: 'Hyperledger Besu',
-    language: 'Java',
-    languageColor: '#B07219',
-    description:
-      'Enterprise-grade client from the Hyperledger Foundation. Serves as a reference implementation for cross-client testing and validation.',
-    role: 'enterprise',
-    roleLabel: 'Reference',
-    currentVersion: 'v26.3',
-    olympiaVersion: 'TBD',
-    githubUrl: 'https://github.com/ethereumclassic/besu',
-    docsUrl: 'https://github.com/ethereumclassic/besu#readme',
-    dockerImage: 'ghcr.io/ethereumclassic/besu:latest',
-    platforms: ['Linux', 'macOS', 'Windows', 'Docker'],
-    installCommands: [
-      { platform: 'Docker', command: 'docker pull ghcr.io/ethereumclassic/besu:latest' },
-      { platform: 'Binary', command: 'Download from GitHub releases' },
-    ],
-    verifyCommand: 'besu --version',
-    prerequisites: ['JDK 21+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
   },
 ]
 
@@ -119,11 +97,11 @@ export const roadmapStages: RoadmapStage[] = [
     title: 'Consensus Upgrades',
     status: 'complete',
     description:
-      'EIP-1559 fee market, protocol treasury funded by basefee revenue, and full Fusaka EVM parity in a single upgrade. Every Ethereum tool and framework works on ETC without modification.',
+      'EIP-1559 fee market, protocol treasury funded by basefee revenue, and Glamsterdam-era EVM parity in a single upgrade. Every Ethereum tool and framework works on ETC without modification.',
     deliverables: [
       'EIP-1559 fee market (ECIP-1111)',
       'Protocol treasury funded by basefee (ECIP-1112)',
-      'Fusaka EVM parity: Dencun, Pectra, Fusaka EIPs (ECIP-1121)',
+      'Glamsterdam-era EVM parity: Dencun, Pectra, Fusaka, and Glamsterdam EIPs (ECIP-1121)',
     ],
   },
   {
@@ -141,22 +119,23 @@ export const roadmapStages: RoadmapStage[] = [
     title: 'Prediction Markets',
     status: 'research',
     description:
-      'Futarchy-assisted governance uses prediction markets to inform treasury allocation, providing financially-backed public signals alongside on-chain member votes.',
+      'An open signal layer. Futarchy prediction markets (ECIP-1117/1118) let anyone stake on proposal outcomes without DAO membership, producing financially-backed public signals alongside member votes. They are a Child-DAO under ECIP-1113 §6, funded by executed funding proposals rather than a direct basefee share, and they inform decisions rather than making them: binding allocation stays with the Olympia DAO.',
     deliverables: [
       'Conditional outcome tokens',
-      'Market-informed proposal ranking',
-      'Open participation for any stakeholder',
+      'Market signals published alongside member votes',
+      'Open participation for any stakeholder, no membership required',
     ],
   },
   {
     title: 'Treasury Distribution',
     status: 'future',
     description:
-      'Governance-controlled smoothing curve (ECIP-1115) optionally supplements miner security budgets as fixed-emission block subsidies decline, without touching consensus-layer rewards.',
+      'A smoothing curve supplements miner security budgets as fixed-emission block subsidies decline. It arrives in two stages, deliberately. ECIP-1115 runs it at the contract layer, where the allocation fraction, window, and curve shape are adjustable through governance without a hard fork — so the network can find the right curve empirically while ECIP-1017 block rewards are still securing it. Once a curve is proven, ECIP-1116 graduates it: a hard fork embeds that curve into block finalization, paid by the protocol rather than disbursed from the treasury.',
     deliverables: [
-      'Treasury smoothing algorithm (ECIP-1115)',
-      'Modeling through ECIP-1017 emission events',
-      'Parameters adjustable without a hard fork',
+      'Treasury smoothing algorithm at the contract layer (ECIP-1115)',
+      'Parameters adjustable through governance without a hard fork during the experimental stage',
+      'Consensus-layer hardening of the proven curve (ECIP-1116) — a later, separate hard fork',
+      'Complements ECIP-1017\'s 5M20 emission schedule — the treasury responds as subsidies decline',
     ],
   },
   {
@@ -197,9 +176,9 @@ export const faqs: OlympiaFAQ[] = [
       "Grayscale launched the Grayscale Ethereum Classic Trust (ETCG) in 2018, years before Bitcoin ETFs existed as a product category, and became a major institutional donor to the ETC Cooperative, indirectly funding the network's core client development at a time when no other investment product issuer was doing anything comparable. What Grayscale was practicing on Ethereum Classic in 2018 is now a recognized trend: ETF issuers funding protocol development, corporate treasury strategies reinvesting in network ecosystems. Taking that model on-chain is only possible on Ethereum Classic because ETC is the only Proof-of-Work blockchain with native smart contracts. Olympia DAO makes it permissionless, opening a direct on-chain contribution path to every holder, whether through ETCG, a direct wallet, or any future investment product.",
   },
   {
-    question: 'What does EVM alignment to Fusaka actually mean for builders?',
+    question: 'What does EVM alignment to Glamsterdam actually mean for builders?',
     answer:
-      'ECIP-1121 closes years of EVM divergence in a single upgrade, delivering every execution-layer improvement from Dencun, Pectra, and Fusaka that is independent of Proof-of-Stake and blob data availability. Before Olympia, ETC lagged behind on these EIPs, creating real friction for developers deploying across EVM chains. After Olympia, Solidity 0.8.x, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim full tooling compatibility before Olympia. After Olympia, it can.',
+      'ECIP-1121 closes years of EVM divergence in a single upgrade, delivering the execution-layer improvements from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability, and carrying that work into Glamsterdam with eth/70 and the deterministic CREATE2 factory. Before Olympia, ETC lagged behind on these EIPs, creating real friction for developers deploying across EVM chains. After Olympia, Solidity 0.8.x, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim full tooling compatibility before Olympia. After Olympia, it can.',
   },
   {
     question: 'How is the Treasury funded?',
@@ -219,12 +198,12 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'When is the mainnet activation block?',
     answer:
-      'Olympia is targeted for mainnet activation before 2027. Olympia activates on Mordor testnet first. The mainnet activation block is announced after a successful Mordor run and a coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers. All client implementations publish Olympia-compatible releases well before activation.',
+      'Olympia is targeted for mainnet activation in 2027. Olympia activates on Mordor testnet first. The mainnet activation block is announced after a successful Mordor run and a coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers. All client implementations publish Olympia-compatible releases well before activation.',
   },
   {
     question: 'How does voting work?',
     answer:
-      'Governance operates on two layers. The Olympia DAO uses non-transferable membership NFTs for critical protocol decisions — security maintenance, EVM parity, and client funding. Members cast on-chain votes during a defined voting period via the OpenZeppelin Governor 5.x contract suite. Public participation is enabled through futarchy prediction markets, where anyone can stake on proposal outcomes to signal community sentiment and inform treasury allocation.',
+      'Governance operates on two layers, and only one of them is binding. The Olympia DAO makes the binding decisions — security maintenance, EVM parity, client funding, and treasury allocation — using non-transferable membership NFTs, with members casting on-chain votes during a defined voting period via the OpenZeppelin Governor 5.x contract suite. Futarchy prediction markets (ECIP-1117/1118) are an open signal layer on top: anyone can stake on proposal outcomes without membership, producing a financially-backed public signal that informs the vote rather than determining it or executing anything. They run as a Child-DAO under ECIP-1113 §6, funded by executed funding proposals rather than a direct basefee share.',
   },
   {
     question: 'What happens if I don\'t upgrade my node?',

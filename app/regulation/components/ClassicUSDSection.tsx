@@ -58,7 +58,7 @@ const attributes = [
     ),
     title: 'Smart Contract Security',
     description:
-      'ERC-20 standard with transparent proxy pattern (EIP-1967). Role-based access control, pause mechanism, multi-signature requirements, and timelock delays for all significant protocol changes.',
+      'ERC-20 standard with transparent proxy pattern (ERC-1967). Role-based access control, pause mechanism, multi-signature requirements, and timelock delays for all significant protocol changes.',
     link: undefined as { label: string; href: string } | undefined,
   },
 ]
@@ -122,7 +122,7 @@ export function ClassicUSDSection() {
                       { label: 'Network', value: 'Ethereum Classic · Chain 61' },
                       { label: 'Backing', value: '1:1 USD · Segregated' },
                       { label: 'Issuer', value: 'Brale Inc. · NMLS #2376957' },
-                      { label: 'Standard', value: 'ERC-20 · EIP-1967 Proxy' },
+                      { label: 'Standard', value: 'ERC-20 · ERC-1967 Proxy' },
                     ].map((item) => (
                       <div key={item.label}>
                         <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-subtle)]">

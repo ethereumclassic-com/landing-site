@@ -199,7 +199,7 @@ export default function MiningStatsPage() {
           >
             <StatCard
               label="Network Hashrate"
-              value={miningStats?.hashrateFormatted || '~200 TH/s'}
+              value={miningStats?.hashrateFormatted || '~150 TH/s'}
               description="Total mining power on the network"
               highlight
               icon={

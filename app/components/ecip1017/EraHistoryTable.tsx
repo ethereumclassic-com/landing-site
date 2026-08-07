@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { eraTableData } from '../data/fifthingChartData'
+import { getEraTableData } from '@/app/research/data/fifthingChartData'
 
 interface EraHistoryTableProps {
   blocksRemaining: number | null
@@ -22,9 +22,11 @@ export default function EraHistoryTable({
 }: EraHistoryTableProps) {
   const [activeTab, setActiveTab] = useState<Tab>('history')
 
-  const pastEras = eraTableData.filter((e) => e.isPast)
-  const currentEra = eraTableData.find((e) => e.isCurrent)
-  const futureEras = eraTableData.filter((e) => !e.isPast && !e.isCurrent)
+  const eras = getEraTableData(currentBlock)
+  const nextEraReward = eras.find((e) => e.number === (eras.find((x) => x.isCurrent)?.number ?? 0) + 1)?.blockReward ?? ''
+  const pastEras = eras.filter((e) => e.isPast)
+  const currentEra = eras.find((e) => e.isCurrent)
+  const futureEras = eras.filter((e) => !e.isPast && !e.isCurrent)
 
   const tabs: { id: Tab; label: string; badge?: string }[] = [
     { id: 'history', label: 'History', badge: `${pastEras.length} eras` },
@@ -101,7 +103,7 @@ export default function EraHistoryTable({
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <div className="flex items-center gap-3">
-                <h3 className="text-lg font-semibold text-[var(--text-primary)]">Era 5</h3>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)]">Era {currentEra.number}</h3>
                 <span className="flex items-center gap-1.5 rounded-full bg-[var(--brand-green)]/15 px-2 py-0.5 text-xs font-medium text-[var(--brand-green)]">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
@@ -116,14 +118,14 @@ export default function EraHistoryTable({
             </div>
             <div className="text-right text-sm">
               <p className="text-[var(--text-muted)]">Block reward</p>
-              <p className="font-mono text-lg font-semibold text-[var(--text-primary)]">2.048 ETC</p>
+              <p className="font-mono text-lg font-semibold text-[var(--text-primary)]">{currentEra.blockReward} ETC</p>
             </div>
           </div>
 
           {/* Progress bar */}
           <div className="mt-6">
             <div className="mb-2 flex items-center justify-between text-xs text-[var(--text-muted)]">
-              <span>Era 5 progress</span>
+              <span>Era {currentEra.number} progress</span>
               <span className="font-mono text-[var(--text-primary)]">{progress.toFixed(2)}%</span>
             </div>
             <div className="h-3 overflow-hidden rounded-full bg-[var(--border-subtle)]">
@@ -154,7 +156,7 @@ export default function EraHistoryTable({
               },
               {
                 label: 'Next Reward',
-                value: '1.6384 ETC',
+                value: `${nextEraReward} ETC`,
                 mono: true,
               },
             ].map((stat) => (

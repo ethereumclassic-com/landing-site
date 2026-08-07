@@ -10,7 +10,13 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from 'recharts'
-import { emissionCurveData } from '../data/fifthingChartData'
+import {
+  emissionCurveData,
+  eraLabels,
+  completedEras,
+  currentEraCurveKey,
+  lastFifthingLabel,
+} from '@/app/research/data/fifthingChartData'
 
 const BRAND_GREEN = 'var(--brand-green)'
 
@@ -46,7 +52,6 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
 }
 
 // Reference lines for past fivenings (eras 1-4)
-const pastFivtheningEras = [1, 2, 3, 4]
 
 export default function EmissionCurveChart() {
   return (
@@ -80,19 +85,19 @@ export default function EmissionCurveChart() {
             width={45}
           />
           <Tooltip content={<CustomTooltip />} />
-          {pastFivtheningEras.map((era) => (
+          {completedEras.map((era) => (
             <ReferenceLine
               key={era}
-              x={`Era ${era}\n${['2017', '2020', '2022', '2024'][era - 1]}`}
+              x={`Era ${era}\n${eraLabels[era] ?? ''}`}
               stroke="var(--border-default)"
               strokeDasharray="3 3"
             />
           ))}
           <ReferenceLine
-            x="Era 5\n~2026"
+            x={currentEraCurveKey}
             stroke={BRAND_GREEN}
             strokeDasharray="4 2"
-            label={{ value: '5th Fifthing', position: 'insideTopRight', fontSize: 9, fill: BRAND_GREEN }}
+            label={{ value: lastFifthingLabel, position: 'insideTopRight', fontSize: 9, fill: BRAND_GREEN }}
           />
           <Area
             type="monotone"

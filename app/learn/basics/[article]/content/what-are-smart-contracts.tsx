@@ -109,7 +109,7 @@ export default function WhatAreSmartContracts() {
 
       <h2>Getting Started</h2>
       <p>
-        To interact with smart contracts on ETC, you&apos;ll need a wallet like MetaMask or Classic OS connected to the Ethereum Classic network. From there, you can explore dApps, swap tokens on <ETCswapLink />, or even deploy your own contracts.
+        To interact with smart contracts on ETC, you&apos;ll need a wallet like MetaMask or Fukuii GUI connected to the Ethereum Classic network. From there, you can explore dApps, swap tokens on <ETCswapLink />, or even deploy your own contracts.
       </p>
     </>
   )

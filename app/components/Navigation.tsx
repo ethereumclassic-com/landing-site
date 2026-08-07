@@ -29,7 +29,7 @@ const navItems: {
       { href: '/wallet/compare', label: 'Compare Wallets' },
       { href: '/wallet/hardware', label: 'Hardware Wallets' },
       { href: '/wallet/metamask', label: 'MetaMask Setup' },
-      { href: '/wallet/classic-os', label: 'Classic OS' },
+      { href: '/wallet/fukuii-gui', label: 'Fukuii GUI' },
       { type: 'separator', label: 'Apps' },
       { href: '/apps', label: 'Apps Directory' },
       { href: '/apps/featured', label: 'Featured Apps' },
@@ -249,7 +249,7 @@ const mobileNavGroups: {
 ]
 
 function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -709,7 +709,7 @@ export default function Navigation() {
 
             {/* Run Fukuii Button (Desktop) */}
             <a
-              href="https://github.com/chippr-robotics/fukuii/releases"
+              href="https://github.com/fukuii-project/fukuii-cli/releases"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden items-center justify-center rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-2 text-sm font-medium text-[var(--brand-green)] transition hover:bg-[var(--brand-green-subtle)] hover:opacity-80 md:inline-flex"
@@ -748,7 +748,7 @@ export default function Navigation() {
               <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-4">
                 {/* Mobile Run Fukuii Button */}
                 <a
-                  href="https://github.com/chippr-robotics/fukuii/releases"
+                  href="https://github.com/fukuii-project/fukuii-cli/releases"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mb-4 flex w-full items-center justify-center rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-3 text-sm font-medium text-[var(--brand-green)] transition hover:opacity-80"

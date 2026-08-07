@@ -125,24 +125,27 @@ export const nodeClients: NodeClient[] = [
   {
     id: 'fukuii',
     name: 'Fukuii',
-    website: 'https://fukuii.com',
-    github: 'https://github.com/chippr-robotics/fukuii',
+    website: 'https://fukuii.org',
+    github: 'https://github.com/fukuii-project/fukuii-cli',
     description:
-      'Ethereum execution layer client in Scala 3 — native Proof-of-Work consensus for ETC mainnet and Mordor, Engine API for ETH mainnet and Sepolia. One binary, four networks. The primary ETC client for the Olympia era.',
+      "Ethereum Classic's first native client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration; a further network is configuration, not a new client.",
     language: 'Scala',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
-      'SNAP, fast, and regular sync for ETC and Mordor',
-      'ETC mainnet, Mordor testnet, ETH mainnet, and Sepolia testnet',
-      'Compatible with all major consensus clients',
-      'Signed Docker images on GHCR',
-      'JSON-RPC, Engine API, and MCP support',
+      'Several networks at once in one JVM process, each fully isolated',
+      'Consensus selected per deployment: native Proof-of-Work for ETC mainnet and Mordor',
+      'Proof-of-Stake with a built-in consensus layer, or an external client over the Engine API V1–V4',
+      'SNAP, fast, and regular sync; JSON-RPC, GraphQL, and an MCP server exposing node state to AI agents',
+      'JVM-native end to end for institutions already on the JVM: JFR, async-profiler, JMX and heap dumps work as on any JVM process, with no foreign-language bridge',
+      'Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints in the binary',
+      'Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts',
     ],
     status: 'active',
     role: 'recommended',
     recommended: true,
-    installCommand: 'docker pull ghcr.io/chippr-robotics/fukuii:latest',
-    configNotes: 'Use network=etc for mainnet, network=mordor for testnet, network=sepolia for Engine API.',
+    installCommand: 'docker pull ghcr.io/fukuii-project/fukuii-cli:latest',
+    configNotes:
+      'Select the network with --network=etc for ETC mainnet or --network=mordor for the ETC testnet. Requires a current JDK LTS (25); the Docker image bundles one.',
   },
   {
     id: 'core-geth',
@@ -150,7 +153,7 @@ export const nodeClients: NodeClient[] = [
     website: 'https://github.com/ethereumclassic/core-geth',
     github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'Bridge release — sunset after Olympia. etclabscore/core-geth v1.12.x was unmaintained June 2024–March 2026 (21 months), accumulating six unpatched CVEs that were actively exploited against ETC mainnet bootnodes. All CVEs patched by White B0x at ethereumclassic/core-geth, pending release as v1.13.0. v1.13.x is the final series — migrate to Fukuii before Olympia activation.',
+      'A go-ethereum derivative maintained for Ethereum Classic, carried through the Olympia upgrade for network continuity. etclabscore/core-geth v1.12.x was unmaintained June 2024–March 2026 (21 months), accumulating six unpatched CVEs that were actively exploited against ETC mainnet bootnodes. All CVEs patched by White B0x at ethereumclassic/core-geth, pending release as v1.13.0.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
@@ -212,56 +215,24 @@ export const nodeClients: NodeClient[] = [
     ],
     securityAuditUrl: '/build/clients/core-geth-security-audit',
   },
-  {
-    id: 'hyperledger-besu',
-    name: 'Hyperledger Besu',
-    website: 'https://github.com/ethereumclassic/besu',
-    github: 'https://github.com/ethereumclassic/besu',
-    description:
-      'Reference — Enterprise-grade Hyperledger client used for cross-client testing and validation. Ensures protocol correctness through independent implementation verification across all three Olympia clients.',
-    language: 'Java',
-    platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
-    features: [
-      'Enterprise features',
-      'Comprehensive APIs',
-      'Cross-client validation',
-      'SNAP sync serving',
-      'Monitoring with Prometheus/Grafana',
-    ],
-    status: 'active',
-    role: 'reference',
-    recommended: false,
-    installCommand: 'docker pull ghcr.io/ethereumclassic/besu:latest',
-    configNotes:
-      'Use --network=classic for ETC mainnet, --network=mordor for testnet.',
-  },
 ]
 
-// Execution Client Plugins (Post-Olympia Roadmap)
-// Upstream Ethereum clients separated consensus from execution for PoS.
-// ETC plugins leverage this separation — adding ETC chain support to the
-// execution layer only. No mining, no PoW consensus. These serve non-mining
-// infrastructure: exchanges, RPC providers, block explorers, and indexers.
-// Fukuii anchors the PoW consensus layer as the primary and LTS client.
+// ETC Execution Client Plugins
+// Upstream Ethereum clients separate the consensus engine from the execution
+// engine. An ETC plugin uses that seam to add Ethereum Classic chain
+// support onto an existing Ethereum client's execution layer — it is not a
+// separate client, and it carries no mining or PoW consensus. Plugins serve
+// non-mining infrastructure: exchanges, RPC providers, explorers, indexers.
+// `github` links the upstream project each plugin targets.
 export const executionPlugins: ExecutionPlugin[] = [
   {
-    id: 'geth-etc',
-    name: 'Go-Ethereum',
-    baseClient: 'go-ethereum',
-    language: 'Go',
-    github: 'https://github.com/ethereumclassic/geth-etc',
+    id: 'besu-etc',
+    name: 'Besu',
+    baseClient: 'Besu',
+    language: 'Java',
+    github: 'https://github.com/besu-eth/besu',
     description:
-      'ETC execution plugin for go-ethereum. Adds Ethereum Classic chain support to the most widely deployed EVM client.',
-    status: 'planned',
-  },
-  {
-    id: 'nethermind-etc',
-    name: 'Nethermind',
-    baseClient: 'Nethermind',
-    language: 'C#',
-    github: 'https://github.com/ethereumclassic/nethermind-etc',
-    description:
-      'ETC execution plugin for Nethermind. Extends the high-performance .NET client with Ethereum Classic support.',
+      'A plugin that adds Ethereum Classic chain support to the Besu codebase, an enterprise-grade Java client.',
     status: 'planned',
   },
   {
@@ -269,19 +240,39 @@ export const executionPlugins: ExecutionPlugin[] = [
     name: 'Erigon',
     baseClient: 'Erigon',
     language: 'Go',
-    github: 'https://github.com/ethereumclassic/erigon-etc',
+    github: 'https://github.com/erigontech/erigon',
     description:
-      'ETC execution plugin for Erigon. Brings Ethereum Classic support to the storage-optimized archival client.',
+      'A plugin that adds Ethereum Classic chain support to the Erigon codebase, a storage-optimized archival client.',
     status: 'planned',
   },
   {
-    id: 'besu-etc',
-    name: 'Besu',
-    baseClient: 'Hyperledger Besu',
-    language: 'Java',
-    github: 'https://github.com/ethereumclassic/besu-etc',
+    id: 'ethrex-etc',
+    name: 'Ethrex',
+    baseClient: 'Ethrex',
+    language: 'Rust',
+    github: 'https://github.com/lambdaclass/ethrex',
     description:
-      'ETC execution plugin for Hyperledger Besu. Adds Ethereum Classic chain support to the enterprise-grade Java client.',
+      'A plugin that adds Ethereum Classic chain support to the Ethrex codebase, a minimalist Rust client.',
+    status: 'planned',
+  },
+  {
+    id: 'geth-etc',
+    name: 'Go-Ethereum',
+    baseClient: 'Go-Ethereum',
+    language: 'Go',
+    github: 'https://github.com/ethereum/go-ethereum',
+    description:
+      'A plugin that adds Ethereum Classic chain support to the Go-Ethereum codebase, the most widely deployed EVM client.',
+    status: 'planned',
+  },
+  {
+    id: 'nethermind-etc',
+    name: 'Nethermind',
+    baseClient: 'Nethermind',
+    language: 'C#',
+    github: 'https://github.com/NethermindEth/nethermind',
+    description:
+      'A plugin that adds Ethereum Classic chain support to the Nethermind codebase, a high-performance .NET client.',
     status: 'planned',
   },
   {
@@ -289,9 +280,9 @@ export const executionPlugins: ExecutionPlugin[] = [
     name: 'Reth',
     baseClient: 'Reth',
     language: 'Rust',
-    github: 'https://github.com/ethereumclassic/reth',
+    github: 'https://github.com/paradigmxyz/reth',
     description:
-      'ETC execution plugin for Reth. Brings Ethereum Classic support to the modular, performance-focused Rust client.',
+      'A plugin that adds Ethereum Classic chain support to the Reth codebase, a modular, performance-focused Rust client.',
     status: 'planned',
   },
 ]

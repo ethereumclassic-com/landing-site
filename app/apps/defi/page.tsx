@@ -96,7 +96,7 @@ export default function DeFiPage() {
       <section className="border-y border-[var(--border)] bg-[var(--panel)]/50 px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {defiFeatures.map((feature, index) => (
+            {defiFeatures.map((feature) => (
               <div
                 key={feature.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
@@ -141,7 +141,7 @@ export default function DeFiPage() {
             New to DeFi on ETC?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Start your DeFi journey with a wallet and some ETC. Use Classic OS to manage your positions and track your portfolio.
+            Start your DeFi journey with a wallet and some ETC. Use Fukuii GUI to manage your positions and track your portfolio.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

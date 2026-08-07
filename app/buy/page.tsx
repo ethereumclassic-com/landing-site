@@ -9,10 +9,9 @@ interface StepProps {
   title: string
   description: string
   icon: React.ReactNode
-  index: number
 }
 
-function Step({ number, title, description, icon, index }: StepProps) {
+function Step({ number, title, description, icon }: StepProps) {
   return (
     <div
       className="group relative flex gap-4"
@@ -149,7 +148,7 @@ export default function BuyPage() {
     {
       number: 5,
       title: 'Withdraw to Wallet',
-      description: 'Transfer ETC to your personal wallet or use Classic OS to manage capital flows.',
+      description: 'Transfer ETC to your personal wallet or use Fukuii GUI to manage capital flows.',
       icon: <WalletIcon />,
     },
   ]
@@ -233,7 +232,7 @@ export default function BuyPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {paymentMethods.map((method, index) => (
+            {paymentMethods.map((method) => (
               <div
                 key={method.name}
                 className="flex flex-col items-center rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center transition-all hover:border-[var(--color-primary)]/30"
@@ -335,7 +334,7 @@ export default function BuyPage() {
                 title: 'Hold in Wallet',
                 description: 'Your ETC is now in your wallet - no exchange custody needed.',
               },
-            ].map((item, index) => (
+            ].map((item) => (
               <div
                 key={item.step}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
@@ -469,8 +468,8 @@ export default function BuyPage() {
           </div>
 
           <div className="space-y-2">
-            {steps.map((step, index) => (
-              <Step key={step.number} {...step} index={index} />
+            {steps.map((step) => (
+              <Step key={step.number} {...step} />
             ))}
           </div>
 
@@ -487,7 +486,7 @@ export default function BuyPage() {
               Get a Wallet
             </Link>
             <a
-              href="https://app.classicos.org"
+              href="https://github.com/fukuii-project/fukuii-gui"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
@@ -495,7 +494,7 @@ export default function BuyPage() {
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
-              Launch Classic OS
+              Launch Fukuii GUI
             </a>
           </div>
         </div>

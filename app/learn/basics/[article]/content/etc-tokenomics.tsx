@@ -63,7 +63,7 @@ export default function ETCTokenomics() {
         </table>
       </div>
       <p className="mt-4 text-sm text-[var(--color-text-muted)]">
-        Current era (as of 2025): Era 5 (blocks 20M–25M) with 2.048 ETC block reward. Era 6 begins at block 25,000,000.
+        Current era: Era 6 (blocks 25M–30M) with a 1.6384 ETC block reward. Era 7 begins at block 25,000,000.
       </p>
 
       <h2>Sound Money Properties</h2>

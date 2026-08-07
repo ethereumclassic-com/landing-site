@@ -25,7 +25,7 @@ export const reports: Report[] = [
     author: 'ETC Research Team',
     readTime: '12 min',
     highlights: [
-      'Network hashrate averaged 185 TH/s',
+      'Network hashrate averaged ~150 TH/s',
       'Daily transactions increased 15% YoY',
       'Active addresses grew to 125,000+',
       'Block time stability at 13.5 seconds',
@@ -108,7 +108,7 @@ export interface NetworkMetric {
 export const networkMetrics: NetworkMetric[] = [
   {
     label: 'Network Hashrate',
-    value: '185 TH/s',
+    value: '~150 TH/s',
     change: '+5.2%',
     changeType: 'positive',
     description: 'Total computational power securing the network',

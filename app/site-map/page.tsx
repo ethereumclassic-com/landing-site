@@ -22,7 +22,7 @@ const siteStructure = [
     title: 'Wallet',
     links: [
       { label: 'Wallet Hub', href: '/wallet' },
-      { label: 'Classic OS', href: '/wallet/classic-os' },
+      { label: 'Fukuii GUI', href: '/wallet/fukuii-gui' },
       { label: 'MetaMask Setup', href: '/wallet/metamask' },
       { label: 'Hardware Wallets', href: '/wallet/hardware' },
       { label: 'Compare Wallets', href: '/wallet/compare' },

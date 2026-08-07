@@ -52,7 +52,7 @@ export default function WhatIsEthereumClassic() {
       <ul>
         <li><strong><ETCswapLink />:</strong> Decentralized exchange for token swaps and liquidity provision</li>
         <li><strong><ClassicUSDLink /> (USC):</strong> Native stablecoin backed 1:1 by USD</li>
-        <li><strong>Classic OS:</strong> Economic control center for DeFi and portfolio management</li>
+        <li><strong>Fukuii GUI:</strong> Economic control center for DeFi and portfolio management</li>
         <li><strong>Olympia DAO:</strong> Decentralized governance for the ecosystem</li>
       </ul>
 
@@ -61,7 +61,7 @@ export default function WhatIsEthereumClassic() {
         Ready to start using Ethereum Classic? Here&apos;s what you need to do:
       </p>
       <ol>
-        <li><strong>Get a Wallet:</strong> Set up a non-custodial wallet like Classic OS or MetaMask</li>
+        <li><strong>Get a Wallet:</strong> Set up a non-custodial wallet like Fukuii GUI or MetaMask</li>
         <li><strong>Acquire ETC:</strong> Purchase ETC from an exchange or receive it from others</li>
         <li><strong>Explore dApps:</strong> Try decentralized applications built on ETC</li>
         <li><strong>Join the Community:</strong> Connect with other ETC users and developers</li>

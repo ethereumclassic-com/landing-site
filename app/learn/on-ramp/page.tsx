@@ -20,10 +20,10 @@ const fiatSteps = [
   },
   {
     number: 2,
-    title: 'Connect to Classic OS',
-    description: 'Use Classic OS, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
-    action: 'Launch Classic OS',
-    actionLink: 'https://app.classicos.org',
+    title: 'Connect to Fukuii GUI',
+    description: 'Use Fukuii GUI, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
+    action: 'Launch Fukuii GUI',
+    actionLink: 'https://github.com/fukuii-project/fukuii-gui',
     details: [
       'Connect MetaMask or hardware wallet',
       'Ensure wallet is on ETC network',
@@ -63,10 +63,10 @@ const usdcSteps = [
   },
   {
     number: 2,
-    title: 'Connect to Classic OS',
-    description: 'Use Classic OS, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
-    action: 'Launch Classic OS',
-    actionLink: 'https://app.classicos.org',
+    title: 'Connect to Fukuii GUI',
+    description: 'Use Fukuii GUI, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
+    action: 'Launch Fukuii GUI',
+    actionLink: 'https://github.com/fukuii-project/fukuii-gui',
     details: [
       'Connect MetaMask or hardware wallet',
       'Ensure wallet is on ETC network',
@@ -106,10 +106,10 @@ const usdpSteps = [
   },
   {
     number: 2,
-    title: 'Connect to Classic OS',
-    description: 'Use Classic OS, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
-    action: 'Launch Classic OS',
-    actionLink: 'https://app.classicos.org',
+    title: 'Connect to Fukuii GUI',
+    description: 'Use Fukuii GUI, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
+    action: 'Launch Fukuii GUI',
+    actionLink: 'https://github.com/fukuii-project/fukuii-gui',
     details: [
       'Connect MetaMask or hardware wallet',
       'Ensure wallet is on ETC network',
@@ -320,7 +320,7 @@ export default function OnRampGuidePage() {
           </h2>
 
           <div className="space-y-6">
-            {currentJourney.steps.map((step, index) => (
+            {currentJourney.steps.map((step) => (
               <div
                 key={step.number}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -375,7 +375,7 @@ export default function OnRampGuidePage() {
           </h2>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {benefits.map((benefit, index) => (
+            {benefits.map((benefit) => (
               <div
                 key={benefit.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
@@ -519,12 +519,12 @@ export default function OnRampGuidePage() {
                 </svg>
               </a>
               <a
-                href="https://app.classicos.org"
+                href="https://github.com/fukuii-project/fukuii-gui"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
               >
-                Launch Classic OS
+                Launch Fukuii GUI
               </a>
             </div>
           </div>

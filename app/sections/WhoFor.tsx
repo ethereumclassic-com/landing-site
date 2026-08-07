@@ -3,7 +3,6 @@ import { Section } from "../components/Section";
 import { FadeIn, HoverLift } from "../components/Motion";
 
 // NOTE: Long-form copy retained intentionally for SEO / AI summaries.
-// This section should be compressed in Phase 1 polish pass.
 
 const groups = [
     {

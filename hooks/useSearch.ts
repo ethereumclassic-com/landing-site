@@ -117,7 +117,7 @@ const staticPages: SearchResult[] = [
   {
     id: 'page-build-clients',
     title: 'Node Clients',
-    description: 'Run an Ethereum Classic node with Core-Geth, Fukuii, or Hyperledger Besu.',
+    description: 'Run an Ethereum Classic node with Fukuii or Core-Geth, or add ETC support to an existing Ethereum client with a plugin.',
     url: '/build/clients',
     type: 'page',
     category: 'Build',

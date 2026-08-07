@@ -48,7 +48,7 @@ const ChartIcon = () => (
 )
 
 export default function StatsStrip() {
-  const [hashrateTHs, setHashrateTHs] = useState<string>('200+ TH/s')
+  const [hashrateTHs, setHashrateTHs] = useState<string>('~150 TH/s')
 
   useEffect(() => {
     fetch('/api/hashrate')

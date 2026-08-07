@@ -223,10 +223,10 @@ export const miningPools: MiningPool[] = [
 // For live data, use /api/network endpoint or lib/blockscout.ts
 // Updated: Jan 2026
 export const networkStats: NetworkStats = {
-  hashrate: '210 TH/s',
+  hashrate: '~150 TH/s',
   difficulty: '2.47 PH',
   blockTime: '~13 seconds',
-  blockReward: '~2.048 ETC',
+  blockReward: '~1.6384 ETC',
   dailyBlocks: 6646,
   lastUpdated: 'Live from Blockscout',
 }

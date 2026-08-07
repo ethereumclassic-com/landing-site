@@ -20,7 +20,7 @@ const jsonLd = {
   publisher: { '@type': 'Organization', name: 'Ethereum Classic', url: 'https://ethereumclassic.com' },
   about: [
     { '@type': 'SoftwareApplication', name: 'Core-Geth', url: 'https://github.com/ethereumclassic/core-geth' },
-    { '@type': 'SoftwareApplication', name: 'Fukuii', url: 'https://fukuii.com' },
+    { '@type': 'SoftwareApplication', name: 'Fukuii', url: 'https://fukuii.org' },
   ],
 }
 
@@ -322,7 +322,7 @@ export default function CoreGethSecurityAuditPage() {
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">How This Was Found</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
               During Olympia upgrade preparation, the ETC core team needed Core-Geth as a
-              reference client alongside Besu and Nethermind — both carrying ETC overlays for
+              reference client alongside Besu and Nethermind — both carrying ETC plugins for
               cross-client testing but not recommended for production. Core-Geth was the only
               existing ETC client at the time. That work confirmed what the commit history showed:
               the{' '}
@@ -663,7 +663,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
               The Core-Geth security failure was not a one-off — it was the predictable outcome of a
               Go-based client built outside the Ethereum Classic ecosystem, maintained under a corporate
               structure that has since wound down.{' '}
-              <a href="https://fukuii.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://fukuii.org" target="_blank" rel="noopener noreferrer"
                 className="font-semibold text-[var(--color-primary)]">
                 Fukuii
               </a>{' '}
@@ -811,12 +811,12 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
               Core-Geth v1.13.x is the final stable release series of this client. The ETC
               network is migrating to{' '}
-              <a href="https://fukuii.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://fukuii.org" target="_blank" rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:opacity-80">
                 Fukuii
               </a>{' '}
               (
-              <a href="https://github.com/chippr-robotics/fukuii" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/fukuii-project/fukuii-cli" target="_blank" rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:opacity-80">
                 github
               </a>
@@ -919,7 +919,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
             <h2 className="mt-1 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">Methodology</h2>
             <p className="mt-4 leading-relaxed text-[var(--color-text-secondary)]">
               These findings emerged from Olympia upgrade preparation. Core-Geth was required as
-              a reference client alongside Besu and Nethermind, both of which carry ETC overlays
+              a reference client alongside Besu and Nethermind, both of which carry ETC plugins
               for cross-client testing and are not recommended for production use. Fukuii is the
               only ETC-native production client and is built on Scala 3 / Pekko — it does not
               share the Go toolchain. The etclabscore/core-geth codebase at v1.12.20 was assessed

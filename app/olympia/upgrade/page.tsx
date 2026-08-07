@@ -45,6 +45,11 @@ const Code2 = ({ size = 20, className = '', style, ...rest }: IconProps) => (
     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
   </svg>
 )
+const Network = ({ size = 20, className = '', style, ...rest }: IconProps) => (
+  <svg aria-hidden="true" width={size} height={size} className={className} style={style} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} {...rest}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3 7.5 7.03 7.5 12s2.015 9 4.5 9zM3.6 9h16.8M3.6 15h16.8" />
+  </svg>
+)
 import OlympiaCountdown from '../components/OlympiaCountdown'
 import { faqs } from '../data/olympia'
 
@@ -74,11 +79,19 @@ const ecips = [
   },
   {
     ecip: 'ECIP-1121',
-    title: 'Fusaka EVM Alignment',
+    title: 'Glamsterdam EVM Alignment',
     icon: Cpu,
     color: 'var(--color-info)',
     description:
-      'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka, covering every improvement that is independent of Proof-of-Stake and blob data availability. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework. One codebase, every EVM chain.',
+      'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka — every improvement independent of Proof-of-Stake and blob data availability — and carries that work into Glamsterdam. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework. One codebase, every EVM chain.',
+  },
+  {
+    ecip: 'ECIP-1122',
+    title: 'Network Security Client Configuration',
+    icon: ShieldCheck,
+    color: 'var(--color-purple)',
+    description:
+      'Chain configuration rather than consensus rules: a MIN_MINER_TIP of 1 gwei, which with the ECIP-1111 basefee floor of 1 gwei sets a 2 gwei minimum gas price so miner revenue cannot reach zero once the basefee is redirected; a network-authoritative gas target that overrides operator --miner.gaslimit; and MESS re-enabled at the Olympia block. A client omitting these gives weaker guarantees but does not fork.',
   },
 ]
 
@@ -86,6 +99,7 @@ const forkTimeline = [
   { name: 'Dencun', fullName: 'Cancun-Deneb', year: '2024', eips: ['EIP-1153', 'EIP-2935', 'EIP-5656'] },
   { name: 'Pectra', fullName: 'Prague-Electra', year: '2025', eips: ['EIP-2537', 'EIP-6780', 'EIP-7702'] },
   { name: 'Fusaka', fullName: 'Fulu-Osaka', year: '2025', eips: ['EIP-7623', 'EIP-7642', 'EIP-7823', 'EIP-7825', 'EIP-7939', 'EIP-7951'] },
+  { name: 'Glamsterdam', fullName: 'Gloas-Amsterdam', year: '2026', eips: ['EIP-7975', 'EIP-7997'] },
 ]
 
 const evmCategories = [
@@ -94,14 +108,14 @@ const evmCategories = [
     icon: Layers,
     eips: ['EIP-7623', 'EIP-7702', 'EIP-7823', 'EIP-7825', 'EIP-7883', 'EIP-7935'],
     description:
-      'Account delegation, cheaper calldata, gas limit enforcement, MODEXP input bounds, opcode repricing, and jumpdest removal. Reduces transaction costs and enables smart account patterns without protocol changes.',
+      'Account delegation for EOAs, higher calldata cost, a per-transaction gas cap, MODEXP input bounds and repricing, and a 60M network-authoritative gas target. Prices data and computation closer to their real cost, and enables smart account patterns without protocol changes.',
   },
   {
     title: 'EVM Safety',
     icon: ShieldCheck,
-    eips: ['EIP-6780', 'EIP-7642', 'EIP-7910', 'EIP-7934'],
+    eips: ['EIP-6780', 'EIP-7910', 'EIP-7934', 'EIP-7997'],
     description:
-      'SELFDESTRUCT restricted to deployment context, eth/69 wire protocol with simplified receipts and history serving, block size limits, and RPC config method. Makes contract behavior more predictable and reduces attack surface.',
+      'SELFDESTRUCT restricted to deployment context, an RLP block size limit, the eth_config RPC method, and the deterministic CREATE2 factory predeploy at the same address as every other EVM chain. Makes contract behavior more predictable and reduces attack surface.',
   },
   {
     title: 'Cryptographic Precompiles',
@@ -117,6 +131,13 @@ const evmCategories = [
     description:
       'MCOPY for efficient memory operations, CLZ opcode for leading-zero counting, historical block hashes in state, and transient storage TSTORE/TLOAD. Unlocks reentrancy guards, flash loans, and cross-contract patterns without persistent storage.',
   },
+  {
+    title: 'Networking',
+    icon: Network,
+    eips: ['EIP-7642', 'EIP-7975'],
+    description:
+      'eth/69 retains total difficulty for Proof-of-Work chain selection and drops receipt bloom filters; eth/70 adds paginated receipts for blocks above the p2p size limit. Both activate through devp2p capability negotiation rather than a hard fork.',
+  },
 ]
 
 const roadmapStages = [
@@ -124,11 +145,11 @@ const roadmapStages = [
     title: 'Consensus Upgrades',
     status: 'complete' as const,
     description:
-      'EIP-1559 fee market, protocol treasury funded by basefee revenue, and full Fusaka EVM parity in a single upgrade. Every Ethereum tool and framework works on ETC without modification.',
+      'EIP-1559 fee market, protocol treasury funded by basefee revenue, and Glamsterdam-era EVM parity in a single upgrade. Every Ethereum tool and framework works on ETC without modification.',
     deliverables: [
       'EIP-1559 fee market (ECIP-1111)',
       'Protocol treasury funded by basefee (ECIP-1112)',
-      'Fusaka EVM parity: Dencun, Pectra, Fusaka EIPs (ECIP-1121)',
+      'Glamsterdam-era EVM parity: Dencun, Pectra, Fusaka, and Glamsterdam EIPs (ECIP-1121)',
     ],
   },
   {
@@ -146,20 +167,21 @@ const roadmapStages = [
     title: 'Prediction Markets',
     status: 'research' as const,
     description:
-      'Futarchy-assisted governance uses prediction markets to inform treasury allocation, providing financially-backed public signals alongside on-chain member votes.',
+      'An open signal layer. Futarchy prediction markets (ECIP-1117/1118) let anyone stake on proposal outcomes without DAO membership, producing financially-backed public signals alongside member votes. They are a Child-DAO under ECIP-1113 §6, funded by executed funding proposals rather than a direct basefee share, and they inform decisions rather than making them: binding allocation stays with the Olympia DAO.',
     deliverables: [
       'Conditional outcome tokens',
-      'Market-informed proposal ranking',
-      'Open participation for any stakeholder',
+      'Market signals published alongside member votes',
+      'Open participation for any stakeholder, no membership required',
     ],
   },
   {
     title: 'Treasury Distribution',
     status: 'future' as const,
     description:
-      'Governance-controlled smoothing curve (ECIP-1115) optionally supplements miner security budgets as fixed-emission block subsidies decline, without touching consensus-layer rewards.',
+      'A smoothing curve supplements miner security budgets as fixed-emission block subsidies decline. It arrives in two stages, deliberately. ECIP-1115 runs it at the contract layer, where the allocation fraction, window, and curve shape are adjustable through governance without a hard fork — so the network can find the right curve empirically while ECIP-1017 block rewards are still securing it. Once a curve is proven, ECIP-1116 graduates it: a hard fork embeds that curve into block finalization, paid by the protocol rather than disbursed from the treasury.',
     deliverables: [
-      'Treasury smoothing algorithm (ECIP-1115)',
+      'Treasury smoothing algorithm at the contract layer (ECIP-1115)',
+      'Consensus-layer hardening of the proven curve (ECIP-1116) — a later, separate hard fork',
       'Modeling through ECIP-1017 emission events',
       'Parameters adjustable without a hard fork',
     ],
@@ -191,14 +213,14 @@ const clientData = [
       'Replace the existing binary',
       'Restart your node. Fukuii automatically follows the Olympia fork.',
     ],
-    githubUrl: 'https://github.com/chippr-robotics/fukuii/releases',
-    docsUrl: 'https://chippr-robotics.github.io/fukuii',
+    githubUrl: 'https://github.com/fukuii-project/fukuii-cli/releases',
+    docsUrl: 'https://docs.fukuii.org',
   },
   {
     name: 'Core-Geth',
     language: 'Go',
     languageColor: '#00ADD8',
-    role: 'Legacy Client · Maintenance Mode',
+    role: 'Go-Ethereum Derivative · Maintained',
     runtime: 'Go 1.26+',
     disk: '500 GB+ (full sync)',
     ram: '8 GB minimum',
@@ -253,7 +275,7 @@ export default function UpgradeGuidePage() {
             <li className="flex gap-3">
               <span className="mt-0.5 shrink-0 text-[var(--brand-green)]">—</span>
               <span>
-                <span className="font-semibold text-[var(--text-primary)]">Fusaka EVM alignment:</span> the headline change that closes years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
+                <span className="font-semibold text-[var(--text-primary)]">Glamsterdam-era EVM alignment:</span> the headline change that closes years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
               </span>
             </li>
             <li className="flex gap-3">
@@ -298,7 +320,7 @@ export default function UpgradeGuidePage() {
               What Olympia Brings to Ethereum Classic
             </h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Three protocol upgrades in a single activation (fee market, protocol treasury, and Fusaka EVM alignment), delivered to the only Proof-of-Work smart contract platform in the world.
+              Three protocol upgrades in a single activation (fee market, protocol treasury, and Glamsterdam-era EVM alignment), delivered to the only Proof-of-Work smart contract platform in the world.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -342,15 +364,15 @@ export default function UpgradeGuidePage() {
               EVM Compatibility in Detail
             </h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Three Ethereum upgrade cycles delivered to ETC in a single fork. Every execution-layer improvement is independent of Proof-of-Stake and blob data availability.
+              Four Ethereum upgrade cycles reach ETC in a single fork. Dencun, Pectra and Fusaka arrive complete &mdash; everything in them that is independent of Proof-of-Stake and blob data availability &mdash; and Glamsterdam opens with eth/70 and the deterministic CREATE2 factory.
             </p>
 
             {/* Fork Timeline */}
             <div className="mt-8 mb-6 relative">
-              <div className="hidden md:block absolute top-[22px] left-[calc(16.67%-1px)] right-[calc(16.67%-1px)] h-px bg-[var(--brand-green)]/30" />
+              <div className="hidden md:block absolute top-[22px] left-[calc(12.5%-1px)] right-[calc(12.5%-1px)] h-px bg-[var(--brand-green)]/30" />
               <div className="flex flex-col md:flex-row gap-6 md:gap-0 md:justify-between">
                 {forkTimeline.map((fork, i, arr) => (
-                  <div key={fork.name} className="relative flex md:flex-col md:items-center md:w-1/3 gap-4 md:gap-0">
+                  <div key={fork.name} className="relative flex md:flex-col md:items-center md:w-1/4 gap-4 md:gap-0">
                     {i < arr.length - 1 && (
                       <div className="md:hidden absolute left-[17px] top-[38px] bottom-[-22px] w-px bg-[var(--brand-green)]/30" />
                     )}
@@ -386,7 +408,7 @@ export default function UpgradeGuidePage() {
               now delivers those deferred London EIPs.{' '}
               <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1121</a>{' '}
               advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
-              Together, Olympia brings ETC to full Fusaka execution-layer parity.
+              It opens Glamsterdam with eth/70 and the deterministic CREATE2 factory, so contracts deploy to the same address on ETC as on every other EVM chain.
             </div>
 
             {/* EVM Categories */}
@@ -477,10 +499,10 @@ export default function UpgradeGuidePage() {
               className="mt-4 space-y-4 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
             >
               <p>
-                Olympia is Ethereum Classic&rsquo;s most significant protocol upgrade. Three changes arrive in a single activation: Fusaka EVM alignment, EIP-1559 fee market, and a protocol-managed treasury.
+                Olympia is Ethereum Classic&rsquo;s most significant protocol upgrade. Three changes arrive in a single activation: Glamsterdam-era EVM alignment, EIP-1559 fee market, and a protocol-managed treasury.
               </p>
               <p>
-                The headline change is full Fusaka EVM parity &mdash; closing years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim this before Olympia. After Olympia, it can.
+                The headline change is Glamsterdam-era EVM parity &mdash; closing years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim this before Olympia. After Olympia, it can.
               </p>
               <p>
                 The EIP-1559 fee market redirects the basefee &mdash; value that would otherwise be destroyed &mdash; to a protocol-managed treasury. Block rewards and tips remain completely untouched and go entirely to miners. Anyone can submit proposals on-chain. Members vote on resource allocation and execute decisions. Every step is transparent and verifiable on-chain.

@@ -21,7 +21,6 @@ function P2PPlatform({
   kycRequired,
   escrowType,
   link,
-  index,
 }: P2PPlatformProps) {
   return (
     <div
@@ -83,10 +82,9 @@ interface BenefitCardProps {
   title: string
   description: string
   icon: React.ReactNode
-  index: number
 }
 
-function BenefitCard({ title, description, icon, index }: BenefitCardProps) {
+function BenefitCard({ title, description, icon }: BenefitCardProps) {
   return (
     <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -330,8 +328,8 @@ export default function P2PPage() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {benefits.map((benefit, index) => (
-              <BenefitCard key={benefit.title} {...benefit} index={index} />
+            {benefits.map((benefit) => (
+              <BenefitCard key={benefit.title} {...benefit} />
             ))}
           </div>
         </div>
@@ -352,7 +350,7 @@ export default function P2PPage() {
           </div>
 
           <div className="space-y-4">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <div
                 key={step.number}
                 className="flex gap-4 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"

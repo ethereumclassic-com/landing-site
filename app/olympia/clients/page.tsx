@@ -40,7 +40,7 @@ const ClipboardIcon = () => (
 )
 
 export default function UpgradeHubPage() {
-  const activeClients = getActiveClients().filter((c) => c.id !== 'hyperledger-besu')
+  const activeClients = getActiveClients()
 
   return (
     <main className="min-h-screen">
@@ -63,7 +63,8 @@ export default function UpgradeHubPage() {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Fukuii is the primary client for the Olympia era. Core-Geth is maintained through
             Olympia for network continuity, then phases out as Fukuii assumes the primary role.
-            ETC compatibility plugins for major upstream clients are planned for future release.
+            ETC plugins add Ethereum Classic support into existing Ethereum clients, widening
+            execution-layer reach without adding another codebase to maintain.
           </p>
         </div>
       </section>
@@ -113,9 +114,11 @@ export default function UpgradeHubPage() {
                     {client.securityAuditUrl && (
                       <div className="mb-4 flex items-center justify-between rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3">
                         <span className="text-sm text-[var(--color-text-muted)]">
-                          Maintenance mode since Dec 2024 · 6 CVEs patched in v1.13.0 · Migrate to{' '}
+                          Maintenance mode since Dec 2024 · 6 CVEs patched at
+                          ethereumclassic/core-geth, v1.13.0 pending · Upgrade to v1.12.22 now ·
+                          Migrate to{' '}
                           <a
-                            href="https://fukuii.com"
+                            href="https://fukuii.org"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium text-[var(--color-primary)] hover:underline"
@@ -224,23 +227,24 @@ export default function UpgradeHubPage() {
             ETC Compatibility Plugins
           </h2>
           <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-            Planned for release after Olympia activation. These compatibility layers bring
-            Ethereum Classic support to major upstream EVM clients without maintaining full
-            forks. Enables enterprise deployments, archive nodes, and cross-chain infrastructure
-            on any preferred execution environment.
+            A plugin adds Ethereum Classic chain support into an existing Ethereum client&rsquo;s
+            execution layer rather than maintaining a full fork. It is not a client implementation
+            and carries no mining or Proof-of-Work consensus, so plugins serve non-mining
+            infrastructure: exchanges, RPC providers, block explorers, indexers, and archive nodes
+            on whichever execution environment an operator already runs.
           </p>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
             {[
               {
-                name: 'Hyperledger Besu',
+                name: 'Besu',
                 language: 'Java',
                 langColor: '#e76f00',
                 description:
-                  'Enterprise-grade EVM client from the Hyperledger Foundation. Apache 2.0 licensed. Planned ETC compatibility plugin for enterprise deployments and institutional infrastructure.',
+                  'A plugin that adds ETC support into the Besu codebase, an enterprise-grade Java client for institutional infrastructure.',
                 links: [
-                  { label: 'GitHub', href: 'https://github.com/hyperledger/besu' },
-                  { label: 'Docs', href: 'https://besu.hyperledger.org' },
+                  { label: 'GitHub', href: 'https://github.com/besu-eth/besu' },
+                  { label: 'Docs', href: 'https://docs.besu-eth.org' },
                 ],
               },
               {
@@ -248,17 +252,28 @@ export default function UpgradeHubPage() {
                 language: 'Go',
                 langColor: '#00acd7',
                 description:
-                  'Archive-optimized EVM client designed for minimal disk usage and fast historical queries. Preferred for analytics infrastructure and full-history nodes.',
+                  'A plugin that adds ETC support into the Erigon codebase, an archive-optimized client built for minimal disk usage and fast historical queries.',
                 links: [
                   { label: 'GitHub', href: 'https://github.com/erigontech/erigon' },
+                  { label: 'Docs', href: 'https://docs.erigon.tech' },
                 ],
               },
               {
-                name: 'Go Ethereum',
+                name: 'Ethrex',
+                language: 'Rust',
+                langColor: '#DEA584',
+                description:
+                  'A plugin that adds ETC support into the Ethrex codebase, a minimalist Rust client.',
+                links: [
+                  { label: 'GitHub', href: 'https://github.com/lambdaclass/ethrex' },
+                ],
+              },
+              {
+                name: 'Go-Ethereum',
                 language: 'Go',
                 langColor: '#00acd7',
                 description:
-                  'The upstream geth client. ETC compatibility layer maintains parity with the canonical Go Ethereum codebase for maximum tooling compatibility.',
+                  'A plugin that adds ETC support into the Go-Ethereum codebase, the most widely deployed EVM client.',
                 links: [
                   { label: 'GitHub', href: 'https://github.com/ethereum/go-ethereum' },
                   { label: 'Docs', href: 'https://geth.ethereum.org' },
@@ -269,7 +284,7 @@ export default function UpgradeHubPage() {
                 language: 'C#',
                 langColor: '#9b4993',
                 description:
-                  'High-performance .NET EVM client. Enables ETC integration for the Microsoft and enterprise .NET ecosystem, with native Windows deployment support.',
+                  'A plugin that adds ETC support into the Nethermind codebase, a high-performance .NET client with native Windows deployment.',
                 links: [
                   { label: 'GitHub', href: 'https://github.com/NethermindEth/nethermind' },
                   { label: 'Docs', href: 'https://docs.nethermind.io' },
@@ -280,7 +295,7 @@ export default function UpgradeHubPage() {
                 language: 'Rust',
                 langColor: '#CE4117',
                 description:
-                  'ETC execution plugin for Reth. Brings Ethereum Classic support to the modular, performance-focused Rust client.',
+                  'A plugin that adds ETC support into the Reth codebase, a modular, performance-focused Rust client.',
                 links: [
                   { label: 'GitHub', href: 'https://github.com/paradigmxyz/reth' },
                   { label: 'Docs', href: 'https://reth.rs' },
@@ -301,7 +316,7 @@ export default function UpgradeHubPage() {
                       {plugin.language}
                     </span>
                     <span className="rounded bg-[var(--color-warning-bg)] px-1.5 py-0.5 text-xs font-medium text-[var(--color-warning)]">
-                      Future
+                      Plugin
                     </span>
                   </div>
                 </div>

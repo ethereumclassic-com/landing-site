@@ -183,7 +183,7 @@ export default function SecurityPage() {
               <h2>How This Was Found</h2>
               <p>
                 During Olympia upgrade preparation, the ETC core team needed to validate Core-Geth
-                as a reference client alongside Besu and Nethermind — both carrying ETC overlays
+                as a reference client alongside Besu and Nethermind — both carrying ETC plugins
                 for cross-client testing but not recommended for production. Core-Geth was the only
                 existing ETC client at the time. That process confirmed what the commit history
                 showed: upstream Core-Geth at{' '}
@@ -386,7 +386,7 @@ export default function SecurityPage() {
                 Core-Geth v1.13.x is the final stable release series of this client. The ETC
                 network is migrating to{' '}
                 <a
-                  href="https://fukuii.com"
+                  href="https://fukuii.org"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -394,7 +394,7 @@ export default function SecurityPage() {
                 </a>{' '}
                 (
                 <a
-                  href="https://github.com/chippr-robotics/fukuii"
+                  href="https://github.com/fukuii-project/fukuii-cli"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -441,7 +441,7 @@ export default function SecurityPage() {
                   the full remediation with Go 1.26 and Olympia support. Begin planning
                   migration to{' '}
                   <a
-                    href="https://fukuii.com"
+                    href="https://fukuii.org"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -462,7 +462,7 @@ export default function SecurityPage() {
               <h2>Methodology</h2>
               <p>
                 These findings emerged from Olympia upgrade preparation work. Core-Geth was required
-                as a reference client alongside Besu and Nethermind (both running ETC overlays for
+                as a reference client alongside Besu and Nethermind (both carrying ETC plugins for
                 cross-client testing). Validation included reviewing the upstream go-ethereum security
                 advisories (GitHub Advisory Database), the Go vulnerability database (vuln.go.dev),
                 and the Core-Geth commit history from June 2024 through March 2026. Each CVE was

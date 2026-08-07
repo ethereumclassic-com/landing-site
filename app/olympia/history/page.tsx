@@ -60,7 +60,7 @@ const threads: Array<{
         >
           Fundonomy
         </a>
-        {' — a platform for launching project funding contracts directly on the ETC blockchain — had been specified across a four-phase roadmap: smart contract escrows with milestone-based release, a decentralized reputation utility, regulated investment frameworks, and a final phase of full-stack decentralization. The architecture is recognizable today. Smart contract escrows. On-chain reputation. Milestone-triggered fund release. The vocabulary of Olympia\'s treasury and ECFP funding mechanics is the vocabulary of 2016.'}
+        {' — a platform for launching project funding contracts directly on the ETC blockchain — had been specified across a four-phase roadmap: smart contract escrows with milestone-based release, a decentralized reputation utility, regulated investment frameworks, and a final phase of full-stack decentralization. The architecture is recognizable today. Smart contract escrows. On-chain reputation. Milestone-triggered fund release. The vocabulary of Olympia\'s treasury and OFP funding mechanics is the vocabulary of 2016.'}
       </>,
       <>
         {'The monetary policy work moved in parallel. At the '}
@@ -129,7 +129,7 @@ const threads: Array<{
         <em>(July 4, 2025 — Cody Burns, Chris Mercer)</em>
         {': The third attempt learned from both. No miner tax. No block reward capture. No pre-selected beneficiaries. Instead: redirect the basefee — the portion of every transaction fee that EIP-1559 sends to be burned on Ethereum — to a protocol treasury on ETC. '}
         <em>What Ethereum incinerates, ETC accumulates.</em>
-        {' Miners are untouched. Block rewards are untouched. Any contributor can propose funding via ECFP. Any ETC account can participate. The treasury contract is immutable — no admin keys, no upgrade mechanisms, custody separated from governance by design.'}
+        {' Miners are untouched. Block rewards are untouched. Any contributor can propose funding via OFP. Any ETC account can participate. The treasury contract is immutable — no admin keys, no upgrade mechanisms, custody separated from governance by design.'}
       </>,
       "The third attempt is also the first to arrive with institutional alignment. ETC Cooperative — the 501(c)(3) steward that has backed every hard fork since Atlantis — and Grayscale, whose ETCG trust has held ETC in regulated institutional custody since May 2018, are aligned with the treasury and governance design. The proposal that finally satisfies the community's funding question is the same proposal the chain's longest-standing institutional partners support. The bridge from a decade of nonprofit and regulated-custody stewardship to permanent on-chain infrastructure is built in.",
       'Every principle ECIP-1051 and ECIP-1098 violated became a design constraint Olympia satisfies. The community said no twice, and meant it.',
@@ -177,7 +177,7 @@ const threads: Array<{
       "For a decade, a consistent thread ran through Ethereum Classic community dialogue: ETC would not only survive — it would be vindicated by the adoption of the EVM stack. While Ethereum moved to proof-of-stake, ETC held its ground. The bet was that the EVM would become the dominant execution environment for global smart contracts, and that the only proof-of-work chain on that stack would eventually be recognized for what it is.",
       "That bet is settled. The EVM stack won. Wallets, tooling, libraries, compiler toolchains, developer knowledge — all converged on the EVM as the universal interface for programmable money. Every major L2, every alternative L1 that achieved real adoption, every institutional deployment ultimately spoke EVM. ETC's position — PoW consensus, EVM execution, no pre-mine, no ICO, decentralized governance — became more compelling with every passing year, not less.",
       'The implication is structural. There is exactly one proof-of-work chain with full EVM execution and a credible decade of operational history. No new chain can manufacture that profile. The combination is not reproducible by capital or by launch — it can only be preserved by a network that already has it.',
-      'Olympia is the moment that ten-year thesis is realized in protocol infrastructure. ECIP-1121 delivers full Fusaka EVM alignment. ECIP-1111 captures basefee revenue. ECIP-1112 puts that revenue under on-chain governance. The EVM bet paid off. Olympia is the payout.',
+      'Olympia is the moment that ten-year thesis is realized in protocol infrastructure. ECIP-1121 delivers EVM alignment through Fusaka and carries it into Glamsterdam. ECIP-1111 captures basefee revenue. ECIP-1112 puts that revenue under on-chain governance. The EVM bet paid off. Olympia is the payout.',
       <>
         {'The administrative problems the founding contributors listed as "in discussion" at the '}
         <a
@@ -227,7 +227,7 @@ const timeline = [
   { year: '2022', events: 'Mystique — EIP-1559 deliberately deferred · Ethereum Merge · ETC absorbs Ethash hashrate' },
   { year: '2024', events: 'Spiral — Shanghai partial parity · ETC Coop reserves near exhausted' },
   { year: '2025', events: 'Olympia ECIPs published (July 4) · GENIUS Act signed (July 18) · Classic USD live as compliant stablecoin' },
-  { year: '2026', events: 'Olympia upgrade activation — Fusaka EVM + EIP-1559 + DAO governance' },
+  { year: '2026', events: 'Olympia upgrade activation — Glamsterdam-era EVM + EIP-1559 + DAO governance' },
 ]
 
 export default function OlympiaHistoryPage() {

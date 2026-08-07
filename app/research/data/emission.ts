@@ -78,6 +78,18 @@ export function getEraForBlock(block: number): number {
 }
 
 /**
+ * Fallback reference height, used only where no live block height is available
+ * (module-scope chart data evaluated at import time). Anything holding a live
+ * height should call getEraForBlock with it instead of reading CURRENT_ERA.
+ *
+ * This is the single value to bump when a fifthing lands.
+ */
+export const CURRENT_ERA_REFERENCE_BLOCK = 25_097_921
+
+/** Era containing CURRENT_ERA_REFERENCE_BLOCK. Era 6 as of block 25,000,000. */
+export const CURRENT_ERA = getEraForBlock(CURRENT_ERA_REFERENCE_BLOCK)
+
+/**
  * Calculate total supply emitted during an era (block rewards only)
  */
 export function getEraEmission(era: number): number {

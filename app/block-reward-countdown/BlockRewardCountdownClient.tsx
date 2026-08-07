@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { FadeIn } from '@/app/components/ui/FadeIn'
 import FifthingCountdown from '@/app/components/FifthingCountdown'
-import EraHistoryTable from '@/app/research/fifthing/components/EraHistoryTable'
+import EraHistoryTable from '@/app/components/ecip1017/EraHistoryTable'
 import { useFifthing } from '@/app/hooks/useFifthing'
 
 function ChartSkeleton() {
@@ -11,7 +11,7 @@ function ChartSkeleton() {
 }
 
 const EmissionRateChart = dynamic(
-  () => import('@/app/research/fifthing/components/EmissionRateChart'),
+  () => import('@/app/components/ecip1017/EmissionRateChart'),
   { ssr: false, loading: () => <ChartSkeleton /> }
 )
 import {
@@ -19,7 +19,7 @@ import {
   getAnnualInflationRate,
   getNextEraInflationRate,
   getDaysSinceLastFifthing,
-} from '@/app/research/fifthing/data/fifthingChartData'
+} from '@/app/research/data/fifthingChartData'
 
 export interface InitialFifthingData {
   currentBlock: number

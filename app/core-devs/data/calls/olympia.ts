@@ -5,7 +5,7 @@ const entry: CDCEntry = {
   title: 'Olympia',
   date: '2026-TBD',
   summary:
-    'Olympia hard fork activation — ECIP-1111, ECIP-1112, ECIP-1121. EVM alignment through Fusaka, foundations for long-term development sustainability, and network security through a robust fee market. Exiting maintenance mode into active development — a modernized, maintained, and secure EVM and the long-standing home of Proof-of-Work smart contracts.',
+    'Olympia hard fork activation — ECIP-1111, ECIP-1112, ECIP-1121. EVM alignment through Glamsterdam, foundations for long-term development sustainability, and network security through a robust fee market. Exiting maintenance mode into active development — a modernized, maintained, and secure EVM and the long-standing home of Proof-of-Work smart contracts.',
   content: `## Olympia Hard Fork — Core Devs Call
 
 **When:** TBD · **Duration:** 120 min max
@@ -15,7 +15,7 @@ const entry: CDCEntry = {
 
 ## Phase 1: The Olympia Upgrade
 
-Olympia is composed of three ECIPs that require a coordinated hard fork across all clients.
+Olympia is composed of four ECIPs that require a coordinated hard fork across all clients: ECIP-1111, ECIP-1112, ECIP-1121 and [ECIP-1122](https://ecips.ethereumclassic.org/ECIPs/ecip-1122) (Olympia ETC Network Security Client Configuration), which ECIP-1111 requires every Olympia-compatible client to implement.
 
 ### ECIP-1111 — Add Type-2 Transactions and Basefee Redirect
 
@@ -46,7 +46,7 @@ Deterministic, immutable smart contract that receives all basefee revenue.
 
 ### ECIP-1121 — Execution Client Specification Alignment
 
-Brings ETC's EVM to parity with Ethereum through Fusaka, excluding PoS and blob mechanics.
+Brings ETC's EVM to parity with Ethereum through Fusaka and carries that work into Glamsterdam, excluding PoS and blob mechanics.
 
 | Category | EIPs |
 |----------|------|
@@ -65,14 +65,14 @@ The broader Olympia framework includes governance and funding ECIPs that operate
 
 | ECIP | Title | Stage |
 |------|-------|-------|
-| [ECIP-1113](https://ecips.ethereumclassic.org/ECIPs/ecip-1113) | Olympia DAO Governance | Core Governance |
-| [ECIP-1114](https://ecips.ethereumclassic.org/ECIPs/ecip-1114) | Funding Proposal Process (ECFP) | Core Governance |
-| [ECIP-1119](https://ecips.ethereumclassic.org/ECIPs/ecip-1119) | Sanctions Compliance Oracle | Core Governance |
-| [ECIP-1117](https://ecips.ethereumclassic.org/ECIPs/ecip-1117) | Futarchy DAO | Prediction Markets |
-| [ECIP-1115](https://ecips.ethereumclassic.org/ECIPs/ecip-1115) | Miner Distribution | Treasury Distribution |
-| [ECIP-1116](https://ecips.ethereumclassic.org/ECIPs/ecip-1116) | Fee Handling | Treasury Distribution |
-| [ECIP-1118](https://ecips.ethereumclassic.org/ECIPs/ecip-1118) | Fee Handling | Treasury Distribution |
-| [ECIP-1122](https://ecips.ethereumclassic.org/ECIPs/ecip-1122) | Basefee Smoothing | Treasury Distribution — Supersedes ECIP-1120 |
+| [ECIP-1113](https://ecips.ethereumclassic.org/ECIPs/ecip-1113) | Olympia DAO Governance Framework | Core Governance |
+| [ECIP-1114](https://ecips.ethereumclassic.org/ECIPs/ecip-1114) | Olympia Funding Proposal Process (OFP) | Core Governance |
+| [ECIP-1119](https://ecips.ethereumclassic.org/ECIPs/ecip-1119) | Treasury Sanctions Compliance Oracle | Core Governance |
+| [ECIP-1117](https://ecips.ethereumclassic.org/ECIPs/ecip-1117) | Futarchy Child-DAO Governance | Prediction Markets |
+| [ECIP-1115](https://ecips.ethereumclassic.org/ECIPs/ecip-1115) | Olympia L-Curve Smoothing for Long-Term Network Security | Treasury Distribution — supersedes ECIP-1120 |
+| [ECIP-1116](https://ecips.ethereumclassic.org/ECIPs/ecip-1116) | Consensus-Layer L-Curve Hardening for Base Fee Miner Distribution | Treasury Distribution — sequenced after ECIP-1115 |
+| [ECIP-1118](https://ecips.ethereumclassic.org/ECIPs/ecip-1118) | Futarchy Funding and Streaming Disbursements | Prediction Markets |
+
 
 None of these need to be solved now with a $0 treasury. The governance layer can evolve from the base Olympia DAO once there are funds to govern.
 
@@ -106,9 +106,9 @@ Sustainable development funding was identified as a top priority by the Ethereum
 
 ### Fukuii — The 2018 Orbita Client Vision Realized
 
-The 2018 Orbita Client initiative established a long-term vision for an ETC-native execution client independent of Ethereum's development upstream. Fukuii delivers on that vision. Built in Scala 3 and forked from IOHK's abandoned Mantis client, Fukuii is an Ethereum execution layer client — native Proof-of-Work consensus for Ethereum Classic and Mordor, plus Engine API V1–V4 for post-Merge Ethereum. One binary, four networks.
+The 2018 Orbita Client initiative established a long-term vision for an ETC-native execution client independent of Ethereum's development upstream. Fukuii delivers on that vision. Fukuii is Ethereum Classic's first native client — an EVM execution client built ground-up for ETC rather than derived from an Ethereum client, written in Scala 3 LTS on Pekko Typed Actors and running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration; a further network is configuration, not a new client.
 
-Its three-layer architecture separates a chain-agnostic EVM core (\`fukuii-core\`) from networking and runtime (\`fukuii-env\`), with a pluggable consensus module that accepts Engine API V1–V4. This positions Fukuii not only as ETC's primary PoW consensus client, but as the execution layer foundation for ETC-based sidechains, L2 constructions, and multi-EVM deployments — native Ethash on ETC and Mordor, Engine API on Ethereum mainnet and Sepolia. One client, built for ETC's long-term future.
+Its three-layer architecture separates a chain-agnostic EVM core (\`fukuii-core\`) from networking and runtime (\`fukuii-env\`). Consensus is selected per deployment behind one interface: native Proof-of-Work for ETC mainnet and Mordor, or Proof-of-Stake with a built-in consensus layer, so one process is a complete Proof-of-Stake node. An external consensus client driving Fukuii over the Engine API V1–V4 is the alternative. This positions Fukuii not only as ETC's primary PoW consensus client, but as the execution layer foundation for ETC-based sidechains, L2 constructions, and multi-EVM deployments. Fukuii ships an MCP server exposing node state to AI agents, and is Apache 2.0 with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts. Maintained by The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.).
 
 ---
 
@@ -123,17 +123,16 @@ Its three-layer architecture separates a chain-agnostic EVM core (\`fukuii-core\
 
 ## Multi-Client Implementation
 
-Three independent client implementations are ready for the Olympia hard fork and progressing to Mordor activation.
+Two independent client implementations are ready for the Olympia hard fork and progressing to Mordor activation.
 
 | Client | Language | Release | Role |
 |--------|----------|---------|------|
-| [Fukuii](https://github.com/chippr-robotics/fukuii) | Scala | TBD | **Recommended** — Primary ETC client for the Olympia era, native PoW for ETC and Mordor, Engine API V1–V4 |
-| [Core-Geth](https://github.com/ethereumclassic/core-geth) | Go | TBD | **Maintained** — Established go-ethereum fork, maintained through the Olympia transition |
-| [Hyperledger Besu](https://github.com/ethereumclassic/besu) | Java | TBD | **Reference** — Enterprise-grade Hyperledger client for cross-client testing and validation |
+| [Fukuii](https://github.com/fukuii-project/fukuii-cli) | Scala | TBD | **Recommended** — Ethereum Classic's first native client, built ground-up for ETC; native PoW for ETC and Mordor |
+| [Core-Geth](https://github.com/ethereumclassic/core-geth) | Go | TBD | **Maintained** — A go-ethereum derivative maintained for ETC, carried through the Olympia transition |
 
-All three clients produce identical genesis hashes and have been verified through Mordor testnet with matching chain state. See [client details](/olympia/clients) for upgrade instructions.
+Both clients produce identical genesis hashes and have been verified through Mordor testnet with matching chain state. See [client details](/olympia/clients) for upgrade instructions.
 
-**Post-Olympia client architecture** — Upstream Ethereum clients have separated the consensus engine from the execution engine to support Proof-of-Stake. This separation creates an opportunity for ETC: Fukuii, as the only ETC-native client, is positioned as the primary Proof-of-Work consensus and execution client moving forward. Core-Geth and other Ethereum-derived clients transition from full consensus-capable clients to execution-layer implementations via ETC plugins — expanding execution client diversity while Fukuii anchors the PoW consensus layer.
+**Client plugin architecture** — Upstream Ethereum clients separate the consensus engine from the execution engine to support Proof-of-Stake. An ETC plugin uses that seam to add Ethereum Classic chain support into an existing Ethereum client's execution layer: [Besu](https://github.com/besu-eth/besu), [Erigon](https://github.com/erigontech/erigon), [Ethrex](https://github.com/lambdaclass/ethrex), [Go-Ethereum](https://github.com/ethereum/go-ethereum), [Nethermind](https://github.com/NethermindEth/nethermind), and [Reth](https://github.com/paradigmxyz/reth). A plugin is not a client implementation and carries no mining or PoW consensus — it widens execution-layer reach for exchanges, RPC providers, explorers, and indexers, while Fukuii anchors the PoW consensus layer.
 
 ---
 

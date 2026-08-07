@@ -35,11 +35,11 @@ interface AdBannerProps {
 // Sample ads - in production, these would come from a CMS or API
 const sampleAds: Ad[] = [
   {
-    id: 'classic-os',
-    title: 'Classic OS',
+    id: 'fukuii-gui',
+    title: 'Fukuii GUI',
     description: 'Your complete ETC portfolio dashboard. Track, trade, and manage your assets.',
-    url: '/wallet/classic-os',
-    cta: 'Try Classic OS',
+    url: '/wallet/fukuii-gui',
+    cta: 'Try Fukuii GUI',
     placement: ['banner', 'sidebar'],
     priority: 100,
     internal: true,

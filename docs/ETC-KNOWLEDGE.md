@@ -22,34 +22,57 @@
 
 ## Node Clients
 
-### Current Client Landscape (January 2026)
+### Client taxonomy — get this right, most copy gets it wrong
 
-| Client | Status | Language | Production Ready | Notes |
-|--------|--------|----------|------------------|-------|
-| **Core-Geth** | Active (Transitioning) | Go | Yes | Current primary client, maintained by ETC Cooperative |
-| **Fukuii** | Alpha Testing | Scala 3 | No (Testing) | Future primary client, native ETC-first design |
-| **Hyperledger Besu** | Active (Limited) | Java | No | Development/testing only, no PoW mining support |
-| **Erigon** | NOT SUPPORTED | Go | N/A | Does NOT support Ethereum Classic |
+Three distinct categories. They are not interchangeable:
+
+- **Fukuii** — Ethereum Classic's **first native client**, built ground-up for ETC rather than
+  derived from an Ethereum client.
+- **Core-Geth** — a **go-ethereum derivative** maintained for ETC. Not native, and **not a plugin**.
+  Do not describe it as "the legacy client" or "the established client".
+- **Plugins** — ETC support **added into existing Ethereum clients**. Six, alphabetical: Besu,
+  Erigon, Ethrex, Go-Ethereum, Nethermind, Reth. A plugin is **not a client implementation** and
+  carries no mining or PoW consensus. Never count plugins as built or shipped client
+  implementations in a milestone, timeline, or test-coverage claim.
+
+### Client landscape
+
+| Client | Category | Language | Notes |
+|--------|----------|----------|-------|
+| **Fukuii** | Native client | Scala 3 LTS | ETC's first native client; primary for the Olympia era |
+| **Core-Geth** | go-ethereum derivative | Go | Maintained for ETC, carried through Olympia |
+| **Besu** | Plugin target | Java | ETC support via plugin; no PoW mining |
+| **Erigon** | Plugin target | Go | ETC support via plugin; archive-optimized |
+| **Ethrex** | Plugin target | Rust | ETC support via plugin |
+| **Go-Ethereum** | Plugin target | Go | ETC support via plugin |
+| **Nethermind** | Plugin target | C# | ETC support via plugin |
+| **Reth** | Plugin target | Rust | ETC support via plugin |
+
+Plugin upstream repositories (link these; every `github.com/ethereumclassic/<plugin-name>` URL 404s):
+
+| Plugin | Upstream |
+|---|---|
+| Besu | https://github.com/besu-eth/besu (**not** hyperledger/besu — the org moved) |
+| Erigon | https://github.com/erigontech/erigon |
+| Ethrex | https://github.com/lambdaclass/ethrex |
+| Go-Ethereum | https://github.com/ethereum/go-ethereum |
+| Nethermind | https://github.com/NethermindEth/nethermind |
+| Reth | https://github.com/paradigmxyz/reth |
 
 ### Core-Geth
 
 **Repository**: https://github.com/etclabscore/core-geth
 **Maintainer**: ETC Cooperative
 
-**Status**: Current primary production client for Ethereum Classic.
+**Category**: A go-ethereum derivative maintained for Ethereum Classic. Not native, and not a plugin.
 
 **Technical Details**:
-- Fork of go-ethereum (Geth)
-- Originally forked from deprecated Multi-Geth client
+- Derived from go-ethereum (Geth); originally forked from the deprecated Multi-Geth client
 - Full PoW mining support
 - Supports ETC mainnet, Mordor testnet, and private networks
+- Carried through the Olympia upgrade for network continuity
 
-**Future Outlook**:
-- Likely to be sunset after Olympia network upgrade (2026)
-- Technical debt from upstream ETH changes (PoS direction)
-- ETC Cooperative transitioning maintenance efforts to Fukuii
-
-**Why Transition?**:
+**Why the primary role moves to Fukuii**:
 - Upstream Geth deprecated PoW support in favor of PoS
 - Core-Geth has not separated execution layer (EVM) from consensus (PoW)
 - Major refactoring would be required to maintain compatibility
@@ -57,66 +80,93 @@
 
 ### Fukuii
 
-**Repository**: https://github.com/chippr-robotics/fukuii
-**Maintainer**: [PLACEHOLDER: Who maintains Fukuii? Chippr Robotics? ETC Cooperative?]
+**Website**: https://fukuii.org
+**Repository**: https://github.com/fukuii-project/fukuii-cli
+**Docs**: https://docs.fukuii.org
+**Container**: ghcr.io/fukuii-project/fukuii-cli
+**Maintainer**: The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.)
+**License**: Apache 2.0
 
-**Status**: Alpha testing, preparing for Olympia network upgrade.
+**Category**: Ethereum Classic's **first native client** — built ground-up for ETC rather than
+derived from an Ethereum client.
 
 **Technical Details**:
-- Revived fork of Mantis client (originally developed by IOHK)
-- Built on Scala 3.3.4 LTS and JDK 21
-- Native ETC-first design (treats ETC as primary network)
-- Supports ETC mainnet, Mordor testnet, and private test networks
+- An EVM execution client in **Scala 3 LTS on Pekko Typed Actors**, running on the JVM
+- **One binary runs several networks at once in one JVM process**, each isolated with its own
+  state, its own metrics registry, and its own configuration
+- **A further network is configuration, not a new client**
+- Requires a current JDK LTS (25); the Docker image bundles one
+
+**Consensus** — selected per deployment behind one interface:
+- **Native Proof-of-Work** for ETC mainnet and Mordor
+- **Proof-of-Stake with a built-in consensus layer** — one process is a complete PoS node
+- An **external consensus client over the Engine API V1–V4** is the *alternative*, not the default
+
+> **Correction to watch for.** Older copy says Fukuii "pairs with" or requires Lighthouse / Prysm /
+> Teku / Lodestar / Nimbus to run Proof-of-Stake networks. That inverts it — Fukuii runs its own
+> consensus layer. Also avoid "with pluggable consensus"; say "consensus selected per deployment".
+
+**Key Features**:
+- Fast initial sync with checkpoints; SNAP, fast, and regular sync
+- Interactive TUI and CLI utilities
+- **MCP server** exposing node state, sync progress, peer counts, and block data to AI agents
+- **Cosign-signed build provenance** and a **CycloneDX SBOM** on release artifacts
+- Comprehensive test suites
+
+**Enterprise / institutional positioning — this is Fukuii's, not Besu's.** Fukuii is enterprise-grade
+by way of the JVM rather than through a separate edition, and the site should say so:
+- **JVM-native end to end** for institutions already running on the JVM, with **no foreign-language
+  bridge** — JFR, async-profiler, JMX and heap dumps work exactly as on any other JVM process
+- Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints ship in the binary
+- Concurrent multi-instance execution, and **external-signer/HSM custody integration**
+- Separate Pekko dispatchers for sync, RPC and general work, so sync pressure cannot starve the RPC
+- Signed container images with build provenance attestation and a CycloneDX SBOM
+
+> Older copy assigned "enterprise-grade" to Besu and left Fukuii described only as the primary
+> client. Besu is enterprise-grade as an *upstream Ethereum client*; for Ethereum Classic the
+> enterprise/institutional client is Fukuii, and ETC support only reaches Besu via a plugin.
 
 **Testing Networks**:
 - **Gorgoroth Trials**: Private test network for Alpha testing
 - **Mordor**: Public testnet support
 
-**Key Features**:
-- Fast initial sync with checkpoints
-- Interactive TUI and CLI utilities
-- AI integration via MCP support
-- Comprehensive test suites
+> **Fukuii is NOT a Mantis fork.** This document previously said it was, and that claim propagated
+> into site copy. Per the project's own `NOTICE`: *"Fukuii is an independent, ground-up client. It
+> contains no Mantis source code and is not a derivative work of Mantis."* Fukuii acknowledges two
+> projects for vision and tech stack while taking no code from either — ETCDEV's **Orbita** (2018),
+> an early multi-network client vision for ETC, and IOHK's **Mantis**, which chose Scala and the JVM
+> for the task. "Mantis" is a trademark of IOHK, referenced only for lineage and the name story.
 
-**Timeline**:
-- [PLACEHOLDER: When did Fukuii development restart?]
-- [PLACEHOLDER: Expected Alpha completion date?]
-- [PLACEHOLDER: Expected Beta/Production timeline?]
+### Besu
 
-**Historical Context - Mantis**:
-- Original Mantis client developed by IOHK (Input Output Hong Kong)
-- [PLACEHOLDER: When was Mantis active? When deprecated?]
-- [PLACEHOLDER: Why was Mantis deprecated?]
-- Fukuii revives and modernizes the Mantis codebase
+**Repository**: https://github.com/besu-eth/besu (the org moved from `hyperledger`)
+**Docs**: https://docs.besu-eth.org
 
-### Hyperledger Besu
-
-**Repository**: https://github.com/hyperledger/besu
-**Maintainer**: Hyperledger Foundation
-
-**Status**: Active but limited ETC support.
+**Category**: Plugin target — an enterprise-grade Ethereum client in Java. ETC support is delivered
+as a plugin that adds it into the upstream codebase, not as a separate ETC client.
 
 **Technical Details**:
 - Enterprise-grade Java client
-- Supports ETC network configuration
-- Does NOT support PoW mining
-- Upstream deprecated PoW path following ETH PoS transition
+- ETC chain support comes from the ETC execution plugin
+- Does NOT support PoW mining — plugins add execution-layer support only
 
 **Recommended Use Cases**:
-- Development and testing environments
-- EVM implementation testing
-- NOT recommended for production mining nodes
+- Non-mining infrastructure: exchanges, RPC providers, block explorers, indexers
+- Cross-client protocol validation
+- NOT for production mining nodes
 
-**Limitations for ETC**:
-- No mining support
-- PoW consensus code not actively maintained
-- May have compatibility issues with future ETC upgrades
+### Erigon
 
-### Erigon (NOT SUPPORTED)
+**Repository**: https://github.com/erigontech/erigon
 
-**CRITICAL**: Erigon does NOT support Ethereum Classic.
+**Category**: Plugin target — an archive-optimized Ethereum client in Go, built for minimal disk
+usage and fast historical queries. ETC support is delivered as a plugin that adds it into the upstream
+codebase.
 
-This is a common misconception. While Erigon is an efficient archive node implementation for Ethereum, it has never supported the ETC network.
+> Older copy in this document said "Erigon does NOT support Ethereum Classic" and called any other
+> claim a misconception. That predates the plugin architecture and is superseded: Erigon is one of
+> the six plugin targets. It remains true that Erigon is not an ETC *client implementation* — no
+> plugin target is.
 
 ---
 
@@ -206,13 +256,20 @@ This is a common misconception. While Erigon is an efficient archive node implem
 - [PLACEHOLDER: When did IOHK reduce ETC involvement?]
 - [PLACEHOLDER: Why?]
 
-### Chippr Robotics
+### The Fukuii Authors
 
-**Role**: [PLACEHOLDER: What is Chippr Robotics' role in ETC?]
+Fukuii is attributed to **The Fukuii Authors**, comprising **Chippr Robotics LLC** and
+**White B0x Inc.** Use that attribution in public copy rather than crediting either company alone.
+
+**Chippr Robotics LLC** — a Fukuii Author.
+
+**White B0x Inc.** — a Fukuii Author. https://whiteb0x.com. Also authored the six CVE patches and
+the Go toolchain modernization published to `ethereumclassic/core-geth`.
+
+Fukuii itself lives under the **fukuii-project** org: https://github.com/fukuii-project
 
 **Contributions**:
-- Fukuii client development
-- [PLACEHOLDER: Other contributions?]
+- Fukuii client development (https://github.com/fukuii-project)
 
 ---
 
@@ -361,7 +418,7 @@ This is a common misconception. While Erigon is an efficient archive node implem
 
 **[PLACEHOLDER: Issuer, backing mechanism, adoption status]**
 
-### Classic OS
+### Fukuii GUI
 
 **Type**: DeFi dashboard and economic control center
 
@@ -391,9 +448,19 @@ This is a common misconception. While Erigon is an efficient archive node implem
 
 **Reality**: While ETC experienced 51% attacks in 2019-2020, security measures have been implemented. Current hashrate provides significant security.
 
-### "Erigon supports ETC"
+### "Erigon is an ETC client"
 
-**Reality**: Erigon does NOT support Ethereum Classic. This is a persistent misconception.
+**Reality**: Erigon is one of the six **plugin targets** — ETC support reaches it as a plugin
+added into the upstream Erigon codebase, adding chain support to the execution layer only. That is
+not the same as being an ETC client implementation, and it carries no mining or PoW consensus. The
+same distinction applies to Besu, Ethrex, Go-Ethereum, Nethermind, and Reth.
+
+### "Fukuii is a fork of Mantis"
+
+**Reality**: Fukuii is an independent, ground-up client containing no Mantis source code, and is not
+a derivative work of Mantis. It is Ethereum Classic's first **native** client. Mantis is
+acknowledged for choosing Scala and the JVM for the task, and ETCDEV's Orbita (2018) for the
+multi-network vision — neither contributed code.
 
 ### "ETC will switch to PoS"
 
@@ -430,13 +497,13 @@ The following sections need input from ETC Core Contributors:
 4. **Organization personnel and current roles**
 5. **ETC Labs current status**
 6. **IOHK departure details**
-7. **Chippr Robotics role**
+7. **Fukuii Authors — individual company roles beyond Fukuii**
 8. **Treasury proposal history**
 9. **51% attack specific details**
 10. **ETH Merge hashrate impact numbers**
 11. **Mordor testnet launch date**
 12. **Network upgrade naming conventions**
-13. **Ecosystem project details (ETCswap, USC, Classic OS)**
+13. **Ecosystem project details (ETCswap, USC, Fukuii GUI)**
 14. **HebeSwap status**
 15. **POW Summit/Alliance involvement**
 16. **Official community links**

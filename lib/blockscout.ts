@@ -228,7 +228,7 @@ export async function fetchNetworkStats(): Promise<NetworkStats | null> {
         rewardCount++
       }
     }
-    const avgBlockReward = rewardCount > 0 ? totalReward / rewardCount : 2.048
+    const avgBlockReward = rewardCount > 0 ? totalReward / rewardCount : 1.6384
 
     const networkStats: NetworkStats = {
       price: parseFloat(stats.coin_price) || 0,
@@ -346,7 +346,7 @@ export function getFallbackStats(): NetworkStats {
       average: 1.89,
       fast: 5.21,
     },
-    avgBlockReward: 2.048,
+    avgBlockReward: 1.6384,
     lastUpdated: new Date().toISOString(),
   }
 }

@@ -42,7 +42,7 @@ function DigitBox({ value, label, loading }: { value: number; label: string; loa
 }
 
 const olympiaPoints = [
-  'Fusaka EVM alignment: full Ethereum tooling, library, and framework parity',
+  'Glamsterdam-era EVM alignment: Ethereum tooling, library, and framework parity',
   'EIP-1559 fee market: predictable gas pricing, basefee revenue directed to protocol treasury',
   'Protocol treasury: sustainable development funding without new token issuance or miner reward changes',
 ]
@@ -94,8 +94,8 @@ export default function ActiveEventsSection() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
 
-          {/* Fifthing card */}
-          <FadeIn delay={50} className="h-full">
+          {/* Block reward countdown — right column on desktop */}
+          <FadeIn delay={50} className="h-full lg:order-2">
             <div className="flex h-full flex-col rounded-2xl border border-[var(--brand-green)]/20 bg-gradient-to-br from-[var(--brand-green)]/5 to-transparent p-6">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
@@ -191,8 +191,8 @@ export default function ActiveEventsSection() {
             </div>
           </FadeIn>
 
-          {/* Olympia card */}
-          <FadeIn delay={100} className="h-full">
+          {/* Olympia countdown — left column on desktop */}
+          <FadeIn delay={100} className="h-full lg:order-1">
             <div className="flex h-full flex-col rounded-2xl border border-[var(--brand-green)]/20 bg-gradient-to-br from-[var(--brand-green)]/5 to-transparent p-6">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
@@ -255,7 +255,7 @@ export default function ActiveEventsSection() {
                     {olympiaStatus === 'tbd' && (
                       <div className="mt-2.5 space-y-2">
                         <p className="text-[10px] italic text-[var(--text-muted)] opacity-60">
-                          * Countdown is set to January 1, 2027 until the ETC mainnet activation block is set
+                          * Countdown is set to March 31, 2027 until the ETC mainnet activation block is set
                         </p>
                         <div className="flex items-center gap-2">
                           <span aria-hidden="true" className="h-2 w-2 animate-pulse rounded-full bg-[var(--brand-green)]" />

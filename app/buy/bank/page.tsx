@@ -19,7 +19,6 @@ function BankMethod({
   fees,
   limits,
   regions,
-  index,
 }: BankMethodProps) {
   return (
     <div
@@ -77,7 +76,6 @@ function ExchangeProvider({
   fees,
   processingTime,
   link,
-  index,
 }: ExchangeProviderProps) {
   return (
     <div
@@ -367,7 +365,7 @@ export default function BankPage() {
                   </svg>
                 ),
               },
-            ].map((benefit, index) => (
+            ].map((benefit) => (
               <div
                 key={benefit.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6"
@@ -423,7 +421,7 @@ export default function BankPage() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <div
                 key={step.number}
                 className="flex gap-4 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4"
