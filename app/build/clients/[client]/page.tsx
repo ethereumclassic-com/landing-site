@@ -300,12 +300,20 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                 <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">
                   {client.name}
                 </h1>
-                {client.role === 'recommended' && (
+                {client.badges?.map((badge) => (
+                  <span
+                    key={badge}
+                    className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]"
+                  >
+                    {badge}
+                  </span>
+                ))}
+                {!client.badges && client.role === 'recommended' && (
                   <span className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                     Recommended
                   </span>
                 )}
-                {client.role === 'maintained' && (
+                {!client.badges && client.role === 'maintained' && (
                   <span className="rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
                     Maintained
                   </span>

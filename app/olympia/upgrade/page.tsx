@@ -203,7 +203,7 @@ const clientData = [
     name: 'Fukuii',
     language: 'Scala',
     languageColor: '#DC322F',
-    role: 'Primary Client · Enterprise Grade',
+    role: 'Primary · Enterprise · ETC-native',
     runtime: 'JDK 25+',
     disk: '500 GB+ (SNAP sync)',
     ram: '8 GB minimum',

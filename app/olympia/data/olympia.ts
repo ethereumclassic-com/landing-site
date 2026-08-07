@@ -1,3 +1,4 @@
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 // Olympia Network Upgrade — Core Data
 //
 // COPY SAFETY: Treasury is funded by EIP-1559 basefee, NOT block rewards.
@@ -9,7 +10,7 @@
 // ============================================================================
 export const OLYMPIA_ACTIVATION_BLOCK: number | null = null
 
-export const OLYMPIA_AVG_BLOCK_TIME_SECONDS = 13
+export const OLYMPIA_AVG_BLOCK_TIME_SECONDS = NOMINAL_BLOCK_TIME_SECONDS
 
 /**
  * Placeholder countdown target, used until OLYMPIA_ACTIVATION_BLOCK is set.
@@ -32,8 +33,15 @@ export interface ClientUpgrade {
   language: string
   languageColor: string
   description: string
+  /** Drives the badge color only. */
   role: 'primary' | 'enterprise' | 'maintenance'
-  roleLabel: string
+  /**
+   * What renders on the card, in order. An array rather than one label because
+   * a client is several things at once, and because these must describe what a
+   * client IS — not which upgrade happens to be next. A badge naming a specific
+   * hard fork goes stale the moment the network forks past it.
+   */
+  badges: string[]
   currentVersion: string
   olympiaVersion: string
   githubUrl: string
@@ -54,7 +62,7 @@ export const clients: ClientUpgrade[] = [
     description:
       "Ethereum Classic's first native client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
     role: 'primary',
-    roleLabel: 'Recommended',
+    badges: ['Primary', 'Enterprise', 'ETC-native'],
     currentVersion: 'v0.1.240',
     olympiaVersion: 'TBD',
     githubUrl: 'https://github.com/fukuii-project/fukuii-cli',
@@ -74,9 +82,9 @@ export const clients: ClientUpgrade[] = [
     language: 'Go',
     languageColor: '#00ADD8',
     description:
-      'A go-ethereum derivative maintained for Ethereum Classic, carried through Olympia for network continuity. Six CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.',
+      'A go-ethereum derivative maintained for Ethereum Classic, providing client diversity alongside Fukuii. Six CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.',
     role: 'maintenance',
-    roleLabel: 'Maintained',
+    badges: ['Maintained', 'Go-Ethereum derivative'],
     currentVersion: 'v1.12.22',
     olympiaVersion: 'TBD',
     githubUrl: 'https://github.com/ethereumclassic/core-geth',
@@ -106,13 +114,18 @@ export interface RoadmapStage {
 export const roadmapStages: RoadmapStage[] = [
   {
     title: 'Consensus Upgrades',
-    status: 'complete',
+    // Active, not complete: ECIP-1121 targets Glamsterdam-era parity and
+    // Glamsterdam has not shipped on Ethereum yet, so the target it aligns to
+    // is still moving. Matches the Core Governance stage, which is also in
+    // flight rather than delivered.
+    status: 'active',
     description:
       'EIP-1559 fee market, protocol treasury funded by basefee revenue, and Glamsterdam-era EVM parity in a single upgrade. Every Ethereum tool and framework works on ETC without modification.',
     deliverables: [
       'EIP-1559 fee market (ECIP-1111)',
       'Protocol treasury funded by basefee (ECIP-1112)',
       'Glamsterdam-era EVM parity: Dencun, Pectra, Fusaka, and Glamsterdam EIPs (ECIP-1121)',
+      'Network security client configuration required of every client (ECIP-1122)',
     ],
   },
   {

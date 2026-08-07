@@ -61,8 +61,9 @@ export default function UpgradeHubPage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Fukuii is the primary client for the Olympia era. Core-Geth is maintained through
-            Olympia for network continuity, then phases out as Fukuii assumes the primary role.
+            Fukuii is Ethereum Classic&apos;s primary client, built natively for ETC. Core-Geth,
+            a go-ethereum derivative, is maintained alongside it so the network never depends on a
+            single codebase.
             ETC plugins add Ethereum Classic support into existing Ethereum clients, widening
             execution-layer reach without adding another codebase to maintain.
           </p>
@@ -94,12 +95,20 @@ export default function UpgradeHubPage() {
                   <div className="flex-1">
                     <div className="mb-4 flex items-center gap-3">
                       <h3 className="text-2xl font-bold text-[var(--text-primary)]">{client.name}</h3>
-                      {client.role === 'recommended' && (
+                      {client.badges?.map((badge) => (
+                        <span
+                          key={badge}
+                          className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                      {!client.badges && client.role === 'recommended' && (
                         <span className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                           Recommended
                         </span>
                       )}
-                      {client.role === 'maintained' && (
+                      {!client.badges && client.role === 'maintained' && (
                         <span className="rounded-full bg-[var(--color-warning)]/20 px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
                           Maintained
                         </span>

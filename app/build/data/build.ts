@@ -102,7 +102,14 @@ export interface NodeClient {
   platforms: ('Windows' | 'macOS' | 'Linux' | 'Docker')[]
   features: string[]
   status: 'active' | 'maintained' | 'deprecated'
+  /** Drives the badge color only. */
   role?: 'recommended' | 'maintained' | 'reference'
+  /**
+   * Badges to render, in order. Describe what the client IS — never which hard
+   * fork is next, which stops being true once the network forks past it. Falls
+   * back to a single role-derived badge when unset.
+   */
+  badges?: string[]
   recommended?: boolean
   installCommand?: string
   configNotes?: string
@@ -142,6 +149,7 @@ export const nodeClients: NodeClient[] = [
     ],
     status: 'active',
     role: 'recommended',
+    badges: ['Primary', 'Enterprise', 'ETC-native'],
     recommended: true,
     installCommand: 'docker pull ghcr.io/fukuii-project/fukuii-cli:latest',
     configNotes:

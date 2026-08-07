@@ -7,7 +7,9 @@ const primaryClient = {
     "Ethereum Classic's first native client, built ground-up for ETC rather than derived from an Ethereum client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
   website: 'https://fukuii.org',
   github: 'https://github.com/fukuii-project/fukuii-cli',
-  status: 'Primary',
+  // Describes what the client is, not which fork is next. A badge naming a
+  // specific hard fork stops being true the moment the network forks past it.
+  badges: ['Primary', 'Enterprise', 'ETC-native'],
 }
 
 const secondaryClients = [
@@ -15,7 +17,7 @@ const secondaryClients = [
     name: 'Core-Geth',
     language: 'Go',
     description:
-      'A go-ethereum derivative maintained for Ethereum Classic, carried through Olympia for network continuity. Not native, and not a plugin.',
+      'A go-ethereum derivative maintained for Ethereum Classic, providing client diversity alongside Fukuii. Not native, and not a plugin.',
     github: 'https://github.com/ethereumclassic/core-geth',
     status: 'Maintained',
   },
@@ -59,10 +61,14 @@ export function ClientImplementationsSection() {
                   <p className="font-mono text-xl font-bold text-[var(--text-primary)]">
                     {primaryClient.name}
                   </p>
-                  <span className="badge-available">{primaryClient.status}</span>
-                  <span className="inline-flex items-center rounded-full bg-[var(--brand-green-subtle)] px-2.5 py-0.5 text-xs font-semibold text-[var(--brand-green)]">
-                    Olympia Client
-                  </span>
+                  {primaryClient.badges.map((badge) => (
+                    <span
+                      key={badge}
+                      className="inline-flex items-center rounded-full bg-[var(--brand-green-subtle)] px-2.5 py-0.5 text-xs font-semibold text-[var(--brand-green)]"
+                    >
+                      {badge}
+                    </span>
+                  ))}
                 </div>
                 <p className="mt-1 text-sm text-[var(--text-subtle)]">{primaryClient.language}</p>
               </div>

@@ -165,12 +165,20 @@ export default function ClientsPage() {
                   <div className="flex-1">
                     <div className="mb-4 flex items-center gap-3">
                       <h3 className="text-2xl font-bold text-[var(--text-primary)]">{client.name}</h3>
-                      {client.role === 'recommended' && (
+                      {client.badges?.map((badge) => (
+                        <span
+                          key={badge}
+                          className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                      {!client.badges && client.role === 'recommended' && (
                         <span className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
                           Recommended
                         </span>
                       )}
-                      {client.role === 'maintained' && (
+                      {!client.badges && client.role === 'maintained' && (
                         <span className="rounded-full bg-[var(--color-warning)]/20 px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
                           Maintained
                         </span>
@@ -461,7 +469,7 @@ export default function ClientsPage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
               Fukuii is the recommended client for Ethereum Classic — native PoW consensus for ETC and Mordor,
-              Engine API V1–V4 for post-Merge Ethereum. For upgrade-specific guidance, see the Olympia client details.
+              Engine API V1–V4 for post-Merge Ethereum. For upgrade-specific guidance, see the client upgrade guides.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
@@ -477,7 +485,7 @@ export default function ClientsPage() {
                 href="/olympia/clients"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
-                Olympia Client Details
+                Client Upgrade Guides
               </Link>
             </div>
           </div>

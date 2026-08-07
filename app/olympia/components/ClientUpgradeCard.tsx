@@ -42,12 +42,15 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
             <div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">{client.name}</h3>
               <div className="flex items-center gap-2">
-                <span
-                  className="rounded-full px-2 py-0.5 text-xs font-medium"
-                  style={{ backgroundColor: `${roleColor}15`, color: roleColor }}
-                >
-                  {client.roleLabel}
-                </span>
+                {client.badges.map((badge) => (
+                  <span
+                    key={badge}
+                    className="rounded-full px-2 py-0.5 text-xs font-medium"
+                    style={{ backgroundColor: `${roleColor}15`, color: roleColor }}
+                  >
+                    {badge}
+                  </span>
+                ))}
                 <span className="text-xs text-[var(--color-text-muted)]">{client.language}</span>
               </div>
             </div>
@@ -84,12 +87,15 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
         <div>
           <h1 className="text-3xl font-bold text-[var(--text-primary)]">{client.name}</h1>
           <div className="mt-1 flex items-center gap-2">
-            <span
-              className="rounded-full px-3 py-0.5 text-sm font-medium"
-              style={{ backgroundColor: `${roleColor}15`, color: roleColor }}
-            >
-              {client.roleLabel}
-            </span>
+            {client.badges.map((badge) => (
+              <span
+                key={badge}
+                className="rounded-full px-3 py-0.5 text-sm font-medium"
+                style={{ backgroundColor: `${roleColor}15`, color: roleColor }}
+              >
+                {badge}
+              </span>
+            ))}
             <span className="text-sm text-[var(--color-text-muted)]">{client.language}</span>
           </div>
         </div>

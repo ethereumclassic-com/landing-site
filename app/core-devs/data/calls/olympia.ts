@@ -5,7 +5,7 @@ const entry: CDCEntry = {
   title: 'Olympia',
   date: '2026-TBD',
   summary:
-    'Olympia hard fork activation — ECIP-1111, ECIP-1112, ECIP-1121. EVM alignment through Glamsterdam, foundations for long-term development sustainability, and network security through a robust fee market. Exiting maintenance mode into active development — a modernized, maintained, and secure EVM and the long-standing home of Proof-of-Work smart contracts.',
+    'Olympia hard fork activation — ECIP-1111, ECIP-1112, ECIP-1121, ECIP-1122. EVM alignment through Glamsterdam, foundations for long-term development sustainability, and network security through a robust fee market. Exiting maintenance mode into active development — a modernized, maintained, and secure EVM and the long-standing home of Proof-of-Work smart contracts.',
   content: `## Olympia Hard Fork — Core Devs Call
 
 **When:** TBD · **Duration:** 120 min max
@@ -156,7 +156,7 @@ See [A Decade of Conviction](/olympia/history) for the full institutional histor
 ## Agenda
 
 1. Network security context and maintenance gap
-2. Olympia Phase 1 review — ECIP-1111, ECIP-1112, ECIP-1121
+2. Olympia Phase 1 review — ECIP-1111, ECIP-1112, ECIP-1121, ECIP-1122
 3. Multi-client implementation status (Fukuii, Core-Geth, Besu)
 4. Sustainable funding milestone — a decade of community priority, from ETCG-backed donations to protocol treasury
 5. Fukuii client launch — realizing the 2018 Orbita Client vision, native ETC execution client, no upstream dependencies
@@ -174,7 +174,8 @@ See [A Decade of Conviction](/olympia/history) for the full institutional histor
 - [ECIP-1111: Olympia EVM and Protocol Upgrades](https://ecips.ethereumclassic.org/ECIPs/ecip-1111)
 - [ECIP-1112: Olympia Treasury Contract](https://ecips.ethereumclassic.org/ECIPs/ecip-1112)
 - [ECIP-1121: Execution Client Specification Alignment](https://ecips.ethereumclassic.org/ECIPs/ecip-1121)
-- [Core-Geth Security Gap Analysis (Feb 2024 – April 2026)](/olympia/security)
+- [ECIP-1122: Olympia ETC Network Security Client Configuration](https://ecips.ethereumclassic.org/ECIPs/ecip-1122)
+- [Core-Geth Security Gap Analysis (Feb 2024 – April 2026)](/build/clients/core-geth-security-audit)
 
 ---
 

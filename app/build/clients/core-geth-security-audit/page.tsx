@@ -976,7 +976,7 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
               </li>
               <li>
                 <Link href="/olympia/clients" className="text-[var(--color-primary)] hover:opacity-80">
-                  Olympia Client Implementations
+                  Client Implementations
                 </Link>
               </li>
               <li>
