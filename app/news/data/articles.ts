@@ -2200,7 +2200,7 @@ Defines an immutable, non-custodial smart contract that receives redirected base
 **ECIP-1113: Olympia DAO Governance Framework**
 Establishes a modular on-chain governance system for managing treasury funds. The framework defines proposal submission, voting mechanisms, and execution processes. Governance decisions are enforced by smart contracts, not by social consensus among off-chain parties.
 
-**ECIP-1114: ETC Funding Proposal Process (ECFP)**
+**ECIP-1114: Olympia Funding Proposal Process (OFP)**
 Standardizes the lifecycle for funding proposals — from submission through review, voting, and disbursement. This creates a transparent, repeatable process for allocating treasury resources to development, infrastructure, and ecosystem growth.
 
 ## Non-Inflationary Design
@@ -2269,6 +2269,106 @@ The Gorgoroth Trials represent the first phase of a multi-stage testing process.
     tags: ['Gorgoroth', 'Olympia', 'Multi-Client', 'Testing', 'Fukuii', 'Core-Geth', 'Besu'],
     author: 'ETC Community',
     readTime: 5,
+  },
+
+  {
+    slug: 'olympia-upgrade-overview',
+    title: 'The Olympia Upgrade: A Complete Overview',
+    excerpt:
+      "Olympia is the most significant protocol upgrade in Ethereum Classic's history — delivering EIP-1559, Fusaka EVM parity, a protocol-native treasury, on-chain DAO governance, futarchy prediction markets, and miner distribution improvements in a single coordinated activation. This is a complete overview of what Olympia is, how it works, and why it matters.",
+    date: '2026-03-08',
+    category: 'Updates',
+    featured: true,
+    tags: ['Olympia', 'ECIP', 'EIP-1559', 'Treasury', 'Governance', 'Futarchy', 'EVM', 'Network Upgrade', 'DAO'],
+    author: 'ETC Community',
+    readTime: 12,
+    content: `Olympia is the most significant protocol upgrade Ethereum Classic has proposed since its founding. In a single coordinated activation, it delivers three things ETC has lacked: a protocol-native fee market, a self-sustaining on-chain treasury, and full EVM parity with the current Ethereum execution layer. Backed by ten coordinated ECIPs across five architectural layers, Olympia is not an experiment — it is a decade of principled stewardship translated into code.
+
+No new tokens are minted. The ECIP-1017 supply cap of 210.7 million ETC is unchanged. Block rewards and priority fees go entirely to miners. The only value redirected is the BASEFEE — which EIP-1559 would otherwise destroy.
+
+## The Five Layers
+
+Olympia is organized across five complementary layers. The consensus layer establishes the protocol primitives that everything else depends on. The contract layer builds the governance and compliance infrastructure on top. Prediction markets extend participation beyond the DAO membership tier. Miner distribution and protocol hardening mechanisms ensure long-term economic alignment.
+
+---
+
+## Consensus Layer — ECIP-1111, ECIP-1112, ECIP-1121
+
+These three ECIPs form the bedrock. Everything above them is built on what they establish.
+
+**ECIP-1111: EIP-1559 Fee Market**
+
+ECIP-1111 activates EIP-1559 dynamic base fee pricing and EIP-3198 (the BASEFEE opcode) on Ethereum Classic. Unlike Ethereum mainnet, where the BASEFEE is burned, ETC redirects it to the Olympia Treasury — the mechanism that funds open-source core development without any foundation or donor dependency. Legacy Type 0 transactions remain valid indefinitely; no changes are required for users, applications, or miners not interacting with the treasury. Miners retain 100% of block rewards and priority fees. The deferred London fee market, finally delivered.
+
+**ECIP-1112: Olympia Treasury Contract**
+
+ECIP-1112 defines the immutable, non-custodial smart contract that receives BASEFEE revenue redirected under ECIP-1111. The contract is deployed at a deterministic CREATE2 address — verifiable, predictable, and permanent. There are no admin keys, no upgrade mechanism, and no human signers. A single restricted withdrawal entry point is the only way funds leave the vault, and access is controlled exclusively by the governance executor defined in ECIP-1113. Voluntary on-chain donations from any stakeholder flow to the same address. The treasury model first identified during the Mystique upgrade (2022) — when EIP-1559 was deferred pending a decision on where the basefee should flow — is realized here.
+
+**ECIP-1121: Fusaka EVM Alignment**
+
+ECIP-1121 closes years of EVM divergence in a single fork, consolidating execution-layer improvements from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability. Key EIPs included: EIP-7702 (EOA code delegation), EIP-2537 (BLS12-381 cryptographic precompiles), EIP-6780 (SELFDESTRUCT restriction to deployment transaction), EIP-7951 (secp256r1 curve support for WebAuthn and passkeys), EIP-1153 (transient storage TSTORE/TLOAD), EIP-5656 (MCOPY memory copy), and EIP-2935 (historical block hashes in state). Blob-dependent EIPs (EIP-4844, EIP-7516) are explicitly deferred — Ethereum Classic is a pure execution layer and does not require blob-based data availability. After ECIP-1121, Solidity 0.8.x, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
+
+---
+
+## Contract Layer — ECIP-1113, ECIP-1114, ECIP-1119
+
+The contract layer makes the treasury usable — defining who can propose, how decisions are made, how funds flow, and how compliance is enforced.
+
+**ECIP-1113: Olympia DAO Governance Framework**
+
+ECIP-1113 establishes the on-chain governance system that acts as the sole authorized executor for treasury actions. The architecture follows OpenZeppelin Governor 5.x: proposals enter the Governor, pass through a configurable Timelock, and are executed by the Executor — no single party can bypass this pipeline. Voting uses non-transferable membership NFTs in a Sybil-resistant one-address-one-vote model. Any EVM developer worldwide can submit a proposal — no employment relationship, no preferred vendor status, no hiring manager required. Optional Emergency Pause and Execution Guard modules are available. No admin keys, no upgradeable patterns.
+
+**ECIP-1114: Olympia Funding Proposal Process (OFP)**
+
+ECIP-1114 defines the exclusive, standardized, permissionless process for requesting funds from the Olympia Treasury. The OFP lifecycle runs: Draft → Active → Approved → Executed. Each proposal is bound to a hash-verified execution tuple (ofpId, recipient, amount, metadataCID, chainid) — preventing substitution attacks and ensuring proposals execute exactly as written. Metadata is content-addressed on IPFS, creating an immutable proposal record. The process is open to all contributors; there is no gatekeeping and no preferred vendor list.
+
+**ECIP-1119: Treasury Sanctions Compliance Oracle**
+
+ECIP-1119 introduces a multi-oracle sanctions compliance layer for all treasury disbursements. Rather than relying on a single centralized oracle — which creates both censorship risk and a single point of failure — ECIP-1119 establishes a competitive marketplace where oracle providers bid for DAO funding. A minimum of three providers participate, with stake-weighted consensus determining sanctions status. The Withdrawal Turnstile applies a checks-effects-interactions pattern: if a recipient is sanctioned, the transaction reverts atomically — funds never leave the vault. Data sources include OFAC SDN, the EU consolidated sanctions list, UN Security Council lists, and commercial providers updated every 15-60 minutes. Privacy is preserved through zkKYC attestation: non-sanctioned status is provable without identity disclosure. Compliance is verified only at withdrawal, not during market participation.
+
+---
+
+## Futarchy Markets — ECIP-1117, ECIP-1118
+
+Prediction markets extend governance participation beyond the DAO membership tier — opening financial participation to anyone without requiring membership, and generating basefee revenue that flows back to the treasury.
+
+**ECIP-1117: Futarchy DAO Governance**
+
+ECIP-1117 establishes a futarchy-based governance system where prediction markets determine funding allocation decisions. The design separates two distinct questions: "what do we want?" is answered by democratic token voting on measurable welfare metrics (Treasury Value, Network Activity, Hash Rate Security, Developer Activity); "what achieves it?" is answered by prediction markets. Traders profit from accurate predictions, creating financial incentives for information aggregation that token voting alone cannot produce. The proposal lifecycle runs: 7-day review → 10-day trading period → oracle resolution → decision at a >3% welfare improvement threshold. A Ragequit mechanism allows minority token holders a 7-day exit window before controversial proposals execute. Privacy is enforced through MACI-style encrypted position submission with zkSNARK proofs. MetaDAO's 18-month track record across nine DAOs validates the model at production scale.
+
+**ECIP-1118: Futarchy Funding and Streaming Disbursements**
+
+ECIP-1118 defines the economic infrastructure that makes futarchy governance self-sustaining. Rather than extracting trading fees — which measurably reduce market quality by 30-40% per percentage point — all market operations are funded through the basefee flywheel: prediction market activity generates transactions, transactions produce basefee revenue, basefee revenue flows to the treasury, and the treasury funds market infrastructure. Treasury capital is deployed across four channels: AMM liquidity provision (40-60%), market maker incentive programs (20-30%), infrastructure operations (15-25%), and strategic reserves (10-20%). Approved proposals receive streaming disbursements via Sablier v2 with milestone gating and clawback provisions — funds flow as work progresses, and governance can recover remaining funds from underperforming proposals.
+
+---
+
+## Miner Distribution — ECIP-1115
+
+**ECIP-1115: L-Curve Smoothing for Long-Term Network Security**
+
+ECIP-1115 provides an optional governance-layer mechanism to smooth Treasury BASEFEE allocations over a future window — stabilizing miner revenue as ECIP-1017 block subsidies decline across eras. The mechanism applies a deterministic L-curve weighting function to a governance-selected fraction of BASEFEE held in the Treasury, distributing intended allocations across a governance-defined window length. All parameters — fraction, window length, weighting function — are exclusively governance-controlled through the OIP process. Smoothing defines intended allocations only; actual payouts still require explicit governance approval and execution through the ECIP-1113/1114 pipeline. The DAO may activate, adjust, suspend, or disable ECIP-1115 without a hard fork. No automatic entitlements are created; consensus-layer EIP-1559 behavior is unchanged.
+
+---
+
+## Protocol Hardening — ECIP-1116
+
+**ECIP-1116: Base Fee Miner Distribution**
+
+ECIP-1116 applies a consensus-layer split to the BASEFEE at block finalization: 95% goes directly to the block producer (coinbase), 5% goes to the Olympia Treasury. Integer arithmetic is used to prevent rounding loss: treasury_basefee = basefee_revenue − (basefee_revenue × 95 / 100). Complete miner revenue becomes: Block_Reward(era) + (BaseFee × 0.95) + Priority_Fees. This replaces ECIP-1111's 100% treasury accumulation with an immediate, deterministic miner payment — eliminating any governance dependency for the miner's share. The 5% treasury portion is what ECIP-1115 smoothing applies to, independently of the 95% direct coinbase payment. ECIP-1116 is a hard fork modification: clients implementing ECIP-1111 without ECIP-1116 semantics will diverge at activation.
+
+---
+
+## Non-Inflationary by Design
+
+No new tokens are minted. Block rewards and priority fees go entirely to miners, unchanged. The only value redirected is the BASEFEE — a fee that EIP-1559 would otherwise destroy. ECIP-1017's 210.7 million ETC supply cap remains intact. Olympia is funded by activity, not issuance.
+
+---
+
+## Rollout
+
+Three client implementations are preparing Olympia support: Core-Geth, Besu, and Fukuii. Mordor testnet activation is scheduled for Q4 2025, followed by multi-client cross-validation through the Hive integration testing framework. Mainnet activation is targeted before 2027, announced after a successful Mordor run and coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers.
+
+All ten ECIPs are in Draft status and open for community review. Join the discussion at github.com/orgs/ethereumclassic/discussions/530, or read the full specifications at ecips.ethereumclassic.org.`,
   },
 
   // ===========================================
@@ -2524,11 +2624,15 @@ export function getArticleBySlug(slug: string): Article | undefined {
 }
 
 export function getArticlesByCategory(category: ArticleCategory): Article[] {
-  return articles.filter((article) => article.category === category)
+  return articles
+    .filter((article) => article.category === category)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
 export function getFeaturedArticles(): Article[] {
-  return articles.filter((article) => article.featured)
+  return articles
+    .filter((article) => article.featured)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
 export function getArticlesByTag(tag: string): Article[] {
