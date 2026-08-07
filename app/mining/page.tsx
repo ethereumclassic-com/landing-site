@@ -16,11 +16,10 @@ import {
   getRecommendedPools,
   miningResources,
 } from './data/mining'
+import { getEraForBlock, getBlockRewardForEra } from '@/app/research/data/emission'
 
 function getBlockReward(blockHeight: number): string {
-  const era = Math.floor(blockHeight / 5_000_000)
-  const reward = 5 * Math.pow(0.8, era)
-  return `${reward.toFixed(3)} ETC`
+  return `${getBlockRewardForEra(getEraForBlock(blockHeight)).toFixed(4)} ETC`
 }
 
 export default async function MiningPage() {

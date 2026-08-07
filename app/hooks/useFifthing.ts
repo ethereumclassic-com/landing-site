@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { useNetworkStats } from './useNetworkStats'
-import { calculateSupplyStats, EMISSION_CONSTANTS } from '@/app/research/data/emission'
+import { calculateSupplyStats, getEraEndBlock } from '@/app/research/data/emission'
 
 export interface FifthingCountdown {
   days: number
@@ -57,8 +57,7 @@ export function useFifthing(): UseFifthingReturn {
     const supplyStats = calculateSupplyStats(currentBlock)
     const currentEra = supplyStats.currentEra
     const nextEra = currentEra + 1
-    // Era N ends at block N * ERA_LENGTH (not nextEra * ERA_LENGTH)
-    const targetBlock = currentEra * EMISSION_CONSTANTS.ERA_LENGTH
+    const targetBlock = getEraEndBlock(currentEra)
 
     // Era is complete when we've passed the boundary (shouldn't happen mid-poll, but safe guard)
     if (currentBlock >= targetBlock) {

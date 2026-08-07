@@ -78,6 +78,15 @@ export function getEraForBlock(block: number): number {
 }
 
 /**
+ * Block at which the given era ends and the next fifthing lands.
+ * Era N ends at N * ERA_LENGTH — do not reimplement this as
+ * nextEra * ERA_LENGTH, and do not mix it with a 0-indexed era.
+ */
+export function getEraEndBlock(era: number): number {
+  return era * EMISSION_CONSTANTS.ERA_LENGTH
+}
+
+/**
  * Fallback reference height, used only where no live block height is available
  * (module-scope chart data evaluated at import time). Anything holding a live
  * height should call getEraForBlock with it instead of reading CURRENT_ERA.

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui/FadeIn'
 import { fetchNetworkStats } from '@/lib/blockscout'
-import { calculateSupplyStats, EMISSION_CONSTANTS } from '@/app/research/data/emission'
+import { calculateSupplyStats, getEraEndBlock } from '@/app/research/data/emission'
 import {
   getExpectedFifthingDate,
   getAnnualInflationRate,
@@ -21,7 +21,7 @@ export default async function BlockRewardCountdownPage() {
   const supply = calculateSupplyStats(currentBlock)
   const currentEra = supply.currentEra
   const nextEra = currentEra + 1
-  const targetBlock = currentEra * EMISSION_CONSTANTS.ERA_LENGTH
+  const targetBlock = getEraEndBlock(currentEra)
   const blocksRemaining = supply.blocksUntilNextEra
 
   const initial: InitialFifthingData = {
