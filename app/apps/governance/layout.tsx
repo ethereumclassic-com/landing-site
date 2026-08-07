@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Governance & DAO Apps',
@@ -8,11 +9,11 @@ export const metadata: Metadata = {
     canonical: 'https://ethereumclassic.com/apps/governance',
   },
   openGraph: {
+    ...OG_BASE,
     title: 'Governance & DAO Apps — Ethereum Classic',
     description:
       'Decentralized governance tools on ETC — on-chain voting, treasury management, and proposal systems.',
     url: 'https://ethereumclassic.com/apps/governance',
-    type: 'website',
   },
 }
 

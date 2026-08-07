@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { apps, getAppBySlug } from '../data/apps'
 import { SoftwareJsonLd } from '@/app/components/JsonLd'
 import AppDetailClient from './AppDetailClient'
+import { OG_BASE } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ app: string }>
@@ -31,10 +32,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `https://ethereumclassic.com/apps/${app.slug}`,
     },
     openGraph: {
+      ...OG_BASE,
       title: `${app.name} — ${app.category} on Ethereum Classic`,
       description: app.description,
       url: `https://ethereumclassic.com/apps/${app.slug}`,
-      type: 'website',
     },
   }
 }

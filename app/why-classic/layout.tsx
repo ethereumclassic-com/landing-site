@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: {
@@ -8,10 +9,10 @@ export const metadata: Metadata = {
   description:
     'The principles behind Ethereum Classic — genesis, code is law, decentralism, proof of work, and sound money.',
   openGraph: {
+    ...OG_BASE,
     title: 'Why Classic — Ethereum Classic Philosophy',
     description:
       'The principles that define Ethereum Classic: genesis, code is law, decentralism, proof of work, and sound money.',
-    type: 'website',
   },
 }
 

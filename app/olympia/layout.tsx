@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: {
@@ -52,11 +53,11 @@ export const metadata: Metadata = {
     'Fusaka',
   ],
   openGraph: {
+    ...OG_BASE,
     title:
       'Olympia Network Upgrade — Glamsterdam EVM Alignment, EIP-1559 Fee Market, Protocol Treasury — Ethereum Classic',
     description:
       "Olympia is Ethereum Classic's most significant protocol upgrade. Glamsterdam-era EVM alignment, EIP-1559 basefee directed to protocol treasury, and independent client implementations.",
-    type: 'website',
   },
 }
 

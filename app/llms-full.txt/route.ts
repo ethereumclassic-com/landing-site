@@ -98,6 +98,8 @@ ETC's ideological foundation:
 - /mining/getting-started — Beginner guide
 - /mining/profitability — Real-time profitability calculator
 - /mining/stats — Network hash rate and difficulty
+- /mining/hashrate — Live hashrate charts and how the figure is derived
+- /mining/difficulty — Live difficulty charts and how ETC difficulty adjustment works
 - /mining/os — Mining OS options
 
 ### /build — Developer Docs
@@ -141,7 +143,7 @@ ETC's most significant upgrade to date:
 - /olympia/clients/core-geth — Core-Geth upgrade guide
 - /olympia/governance — Treasury and on-chain governance contracts
 - /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
-- /build/clients/core-geth-security-audit — Core-Geth v1.12.2x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and migration to Fukuii. All patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0. (/olympia/security redirects here)
+- /build/clients/core-geth-security-audit — Core-Geth v1.12.2x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and migration to Fukuii. All patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0.
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap
@@ -214,7 +216,7 @@ Explicitly excluded from ECIP-1121:
 
 ### Client Support
 
-Fukuii — Primary Olympia client
+Fukuii — Primary ETC-native client
 Ethereum Classic's first native client, built ground-up for ETC rather than derived from an
 Ethereum client. An EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM.
 One binary runs several networks at once in one JVM process, each isolated with its own state, its
@@ -240,7 +242,7 @@ Repo: https://github.com/fukuii-project/fukuii-cli
 Docker: ghcr.io/fukuii-project/fukuii-cli
 
 Core-Geth — A go-ethereum derivative maintained for Ethereum Classic
-Not a native ETC client, and not a plugin. Carried through Olympia for network continuity — six
+Not a native ETC client, and not a plugin. Maintained for client diversity alongside Fukuii — six
 CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.
 Repo: https://github.com/ethereumclassic/core-geth
 

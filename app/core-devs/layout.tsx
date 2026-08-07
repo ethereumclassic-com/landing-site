@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: {
@@ -8,10 +9,10 @@ export const metadata: Metadata = {
   description:
     'Where Ethereum Classic protocol decisions are made. Core Developer Calls bring together client teams to reach consensus on network upgrades, ECIP proposals, and protocol changes.',
   openGraph: {
+    ...OG_BASE,
     title: 'Core Developer Calls — Ethereum Classic',
     description:
       'The decision-making forum for ETC protocol upgrades. Full archive of consensus calls with agendas, recordings, and ECIP references since 2019.',
-    type: 'website',
   },
   keywords: [
     'Ethereum Classic',

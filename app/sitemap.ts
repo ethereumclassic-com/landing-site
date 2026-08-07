@@ -152,6 +152,8 @@ const staticRoutes = [
   { path: '/mining/software', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/mining/profitability', priority: 0.8, changeFrequency: 'daily' as const },
   { path: '/mining/stats', priority: 0.7, changeFrequency: 'daily' as const },
+  { path: '/mining/hashrate', priority: 0.7, changeFrequency: 'daily' as const },
+  { path: '/mining/difficulty', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/mining/os', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/mining/approaches', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/mining/regulation', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -219,7 +221,6 @@ const staticRoutes = [
   { path: '/olympia/etymology', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/cdc', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
-  // /olympia/security redirects to /build/node/core-geth-security (301)
   { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const },
 
   // Core Devs Calls

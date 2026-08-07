@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { cdcEntries } from '../data/index'
 import CDCPostContent from './CDCPostContent'
+import { OG_BASE } from '@/lib/seo'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description: entry.summary,
     openGraph: {
+      ...OG_BASE,
       title: `${title} | Core Devs — Ethereum Classic`,
       description: entry.summary,
       type: 'article',

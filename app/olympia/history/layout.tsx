@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'A Decade of Conviction — The Foundations of Olympia',
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     'August 2016 ETC meetup',
   ],
   openGraph: {
+    ...OG_BASE,
     title: 'A Decade of Conviction — The Foundations of Olympia',
     description:
       "Two rejected treasury proposals, four development teams, and the decade-long chain of decisions that seeded Ethereum Classic's Olympia upgrade.",

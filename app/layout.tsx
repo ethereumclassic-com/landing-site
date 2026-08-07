@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     "ECIP-1111",
     "ECIP-1112",
     "ECIP-1121",
+    "ECIP-1122",
     "Fusaka",
     "EVM upgrade",
     "EVM compatibility",

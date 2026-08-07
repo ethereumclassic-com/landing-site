@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { articles, getArticleBySlug } from '../data/articles'
 import NewsArticleContent from './NewsArticleContent'
+import { OG_BASE } from '@/lib/seo'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: article.title,
     description: article.excerpt,
     openGraph: {
+      ...OG_BASE,
       title: `${article.title} | ETC News — Ethereum Classic`,
       description: article.excerpt,
       type: 'article',

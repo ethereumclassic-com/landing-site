@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Core-Geth v1.12.2x Security Audit — Migrate to Fukuii',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     'ETC client migration', 'Go 1.21 EOL', 'core-geth security audit',
   ],
   openGraph: {
+    ...OG_BASE,
     title: 'Core-Geth v1.12.2x Security Audit — Migrate to Fukuii',
     description:
       'Six unpatched CVEs, 21 months unmaintained, and an active network attack in March 2026. Complete audit and postmortem with full GitHub evidence trail.',

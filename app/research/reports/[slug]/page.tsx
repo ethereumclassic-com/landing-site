@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { reports } from '../../data/research'
 import ReportDetailClient from './ReportDetailClient'
+import { OG_BASE } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `https://ethereumclassic.com/research/reports/${report.slug}`,
     },
     openGraph: {
+      ...OG_BASE,
       title: report.title,
       description: report.description,
       url: `https://ethereumclassic.com/research/reports/${report.slug}`,

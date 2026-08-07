@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: "Olympia: Etymology of Ethereum Classic's 2026 Network Upgrade",
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     'ekecheiria',
   ],
   openGraph: {
+    ...OG_BASE,
     title: "Olympia: The Name Behind Ethereum Classic's 2026 Network Upgrade",
     description:
       "From the Olympic testnet that stress-tested Ethereum in 2015, to the ancient Panhellenic sanctuary sovereign to none, to Marvel's Eternals — the etymology behind ETC's most significant upgrade.",
