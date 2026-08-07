@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { dataSources } from '../data/research'
+import { cachedFetchJson } from '@/lib/client-fetch'
 
 // Types for API response
 interface NetworkStats {
@@ -47,7 +48,7 @@ const chainMetrics = [
     category: 'Economics',
     metrics: [
       { label: 'Emission Schedule', value: '20% reduction / 5M blocks' },
-      { label: 'Next Reduction', value: 'Block 25,000,000' },
+      { label: 'Next Reduction', value: 'Block 30,000,000' },
       { label: 'Maximum Supply', value: '~210.7M ETC' },
       { label: 'Current Supply', value: '~147M ETC' },
     ],
@@ -72,7 +73,8 @@ const historicalMilestones = [
   { date: 'Nov 2020', event: 'Thanos hard fork (ETChash algorithm)' },
   { date: 'Apr 2022', event: 'Block reward reduced to 2.56 ETC' },
   { date: 'Sep 2022', event: 'ETH merge - GPU miners migrate to ETC' },
-  { date: 'Dec 2024', event: 'Block reward reduced to ~2.05 ETC' },
+  { date: 'May 2024', event: 'Block reward reduced to 2.048 ETC' },
+  { date: 'Jul 2026', event: 'Fifth fifthing — block reward reduced to 1.6384 ETC' },
 ]
 
 // Simple bar chart component
@@ -147,8 +149,7 @@ export default function NetworkAnalysisPage() {
       }
     }
     fetchStats()
-    fetch('/api/hashrate')
-      .then((r) => r.json())
+    cachedFetchJson<{ currentTHs?: number }>('/api/hashrate')
       .then((d: { currentTHs?: number }) => { if (d?.currentTHs) setHashrateDisplay(d.currentTHs.toFixed(1) + ' TH/s') })
       .catch(() => setHashrateDisplay('210+ TH/s'))
   }, [])

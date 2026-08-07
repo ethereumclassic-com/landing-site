@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FadeIn } from '@/app/components/ui'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
+import { cachedFetchJson } from '@/lib/client-fetch'
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 
@@ -133,22 +135,23 @@ function SectionStat({
 
 // ── Main Export ───────────────────────────────────────────────────────────────
 
-export default function NetworkOverviewSection() {
+export default function NetworkOverviewSection({ initialHashrateTHs }: { initialHashrateTHs?: number }) {
   // 10-minute refresh matches the server-side ISR cache and lib/blockscout 10-min TTL
   const { stats, loading } = useNetworkStats({ refreshInterval: 600_000 })
   const [volume24h, setVolume24h] = useState<number | null>(null)
-  const [hashrateTHs, setHashrateTHs] = useState<string>('~150 TH/s')
+  const [hashrateTHs, setHashrateTHs] = useState<string>(
+    initialHashrateTHs ? `${initialHashrateTHs.toFixed(1)} TH/s` : '~150 TH/s',
+  )
 
   useEffect(() => {
-    fetch('/api/price')
-      .then((r) => (r.ok ? r.json() : null))
+    cachedFetchJson<{ volume24h?: number }>('/api/price', 10 * 60 * 1000)
       .then((d) => { if (d?.volume24h) setVolume24h(d.volume24h) })
       .catch(() => {})
-    fetch('/api/hashrate')
-      .then((r) => (r.ok ? r.json() : null))
+    if (initialHashrateTHs) return
+    cachedFetchJson<{ currentTHs?: number }>('/api/hashrate')
       .then((d) => { if (d?.currentTHs) setHashrateTHs(d.currentTHs.toFixed(1) + ' TH/s') })
       .catch(() => {})
-  }, [])
+  }, [initialHashrateTHs])
 
   const price = stats?.price ?? 0
   const priceChange = stats?.priceChange24h ?? 0
@@ -156,7 +159,7 @@ export default function NetworkOverviewSection() {
   const totalTxns = stats?.totalTransactions ?? 0
   const totalBlocks = stats?.totalBlocks ?? 0
   const totalAddresses = stats?.totalAddresses ?? 0
-  const blockTime = stats?.avgBlockTime ?? 13
+  const blockTime = stats?.avgBlockTime ?? NOMINAL_BLOCK_TIME_SECONDS
   const isLive = stats?.source === 'blockscout'
   const priceChangeColor: 'green' | 'red' = priceChange >= 0 ? 'green' : 'red'
 

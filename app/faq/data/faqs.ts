@@ -167,7 +167,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What is the current block reward?',
         answer:
-          'As of Era 6 (starting block 25,000,001), the block reward is 1.6384 ETC per block. Rewards decrease by 20% every 5 million blocks under ECIP-1017. The next reduction to 1.6384 ETC will occur at block 25,000,001. Visit our Supply page for the full emission schedule and countdown to the next reduction.',
+          'As of Era 6 (starting block 25,000,001), the block reward is 1.6384 ETC per block. Rewards decrease by 20% every 5 million blocks under ECIP-1017. The next reduction, to 1.31072 ETC, occurs at block 30,000,000. Visit our Supply page for the full emission schedule and countdown to the next reduction.',
       },
       {
         question: 'Should I use ASICs or GPUs for ETC mining?',

@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui'
-import HashrateChart from './HashrateChart'
+import HashrateChart, { type HashrateChartData } from './HashrateChart'
 
-export default function Hero() {
+export default function Hero({ hashrate }: { hashrate?: HashrateChartData }) {
   return (
     <section className="hero-gradient noise-overlay grid-overlay relative overflow-hidden px-6 pb-24 pt-6 md:px-10 md:pb-32 md:pt-8 lg:px-12 lg:pb-40 lg:pt-10">
       <FadeIn className="relative mx-auto max-w-4xl text-center">
@@ -55,7 +55,7 @@ export default function Hero() {
         </p>
 
         {/* Hashrate chart */}
-        <HashrateChart />
+        <HashrateChart initial={hashrate} />
 
         {/* CTA buttons */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

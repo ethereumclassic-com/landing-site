@@ -2,7 +2,13 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { formatBlockReward } from '../data/emission'
+import {
+  formatBlockReward,
+  getBlockRewardForEra,
+  CURRENT_ERA,
+  CURRENT_ERA_REFERENCE_BLOCK,
+} from '../data/emission'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 
 interface FeeStats {
   gasPrices: {
@@ -23,9 +29,9 @@ function useFeeStats() {
   const [stats, setStats] = useState<FeeStats>({
     gasPrices: { slow: 1.56, average: 1.89, fast: 5.21 },
     networkUtilization: 0.42,
-    avgBlockReward: 2.048,
-    currentBlockHeight: 23816658,
-    avgBlockTime: 13,
+    avgBlockReward: getBlockRewardForEra(CURRENT_ERA),
+    currentBlockHeight: CURRENT_ERA_REFERENCE_BLOCK,
+    avgBlockTime: NOMINAL_BLOCK_TIME_SECONDS,
     estimatedDailyFees: 0,
     feeRewardRatio: 0,
   })
@@ -93,11 +99,15 @@ function FeeMarketContext() {
           <div className="mt-4 flex flex-wrap gap-4">
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Current Block Reward</p>
-              <p className="text-lg font-bold text-[var(--text-primary)]">~2.05 ETC</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">
+                {getBlockRewardForEra(CURRENT_ERA)} ETC
+              </p>
             </div>
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Next Era Reward</p>
-              <p className="text-lg font-bold text-[var(--color-warning)]">~1.64 ETC</p>
+              <p className="text-lg font-bold text-[var(--color-warning)]">
+                {getBlockRewardForEra(CURRENT_ERA + 1)} ETC
+              </p>
             </div>
             <div className="rounded-lg bg-[var(--panel)] px-3 py-2">
               <p className="text-xs text-[var(--color-text-muted)]">Reduction</p>

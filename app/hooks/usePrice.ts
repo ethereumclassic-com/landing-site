@@ -93,7 +93,9 @@ export function usePrice(
   const { refreshInterval, autoRefresh, fetchOnMount } = { ...defaultOptions, ...options }
 
   const [data, setData] = useState<PriceData | null>(null)
-  const [loading, setLoading] = useState(false)
+  // Tracks whether a mount fetch is actually going to happen, so the first
+  // render tells the truth instead of being corrected by the effect below.
+  const [loading, setLoading] = useState(fetchOnMount ?? true)
   const [error, setError] = useState<string | null>(null)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
 
@@ -132,7 +134,8 @@ export function usePrice(
   // Initial fetch
   useEffect(() => {
     if (fetchOnMount) {
-      fetchPrice()
+      // Scheduled, not inline — see NetworkStatsContext for the reasoning.
+      queueMicrotask(fetchPrice)
     }
 
     return () => {

@@ -146,6 +146,10 @@ export default function EtcPriceSection() {
       <div className="h-36">
         {chartLoading ? (
           <div className="h-full animate-pulse rounded-lg bg-[var(--border)]/50" />
+        ) : chartData.length === 0 ? (
+          <div className="flex h-full items-center justify-center rounded-lg border border-[var(--border)] text-xs text-[var(--color-text-muted)]">
+            Price history is temporarily unavailable.
+          </div>
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>

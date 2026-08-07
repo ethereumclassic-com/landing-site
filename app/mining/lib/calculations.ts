@@ -3,6 +3,7 @@
 // Network data sourced from Blockscout API: https://etc.blockscout.com/api/v2/stats
 
 import { networkStats } from '../data/mining'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 
 // Network constants - fallback values when live API unavailable
 // These are updated from Blockscout API data
@@ -14,9 +15,9 @@ export const NETWORK_CONSTANTS = {
   // Base reward is 1.6384 ETC (ECIP-1017 Era 6), varies with uncle rewards
   blockReward: 1.6384,
   // Average block time from Blockscout (~13 seconds)
-  blockTimeSeconds: 13.0,
-  // Calculated: 86400 / 13.0 ≈ 6646 blocks per day
-  blocksPerDay: 6646,
+  blockTimeSeconds: NOMINAL_BLOCK_TIME_SECONDS,
+  // Derived, not written down twice: this must follow blockTimeSeconds.
+  blocksPerDay: Math.round(86400 / NOMINAL_BLOCK_TIME_SECONDS),
   // Reference ETC price (fallback, should use live price from API)
   etcPriceUSD: 12.75,
 }

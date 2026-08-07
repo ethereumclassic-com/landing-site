@@ -47,7 +47,7 @@ function StatCell({ label, value, sub }: { label: string; value: string; sub?: s
 }
 
 export default function BlockRewardCountdownClient({ initial }: { initial: InitialFifthingData }) {
-  const { currentBlock, currentEra, blocksRemaining, currentReward, nextReward, progress, loading } = useFifthing()
+  const { currentBlock, currentEra, blocksRemaining, currentReward, nextReward, progress, avgBlockTime, loading } = useFifthing()
 
   const block = loading ? initial.currentBlock : (currentBlock ?? initial.currentBlock)
   const era = loading ? initial.currentEra : (currentEra ?? initial.currentEra)
@@ -56,10 +56,10 @@ export default function BlockRewardCountdownClient({ initial }: { initial: Initi
   const remaining = loading ? initial.blocksRemaining : (blocksRemaining ?? initial.blocksRemaining)
   const prog = loading ? initial.progress : (progress ?? initial.progress)
 
-  const expectedDate = loading ? initial.expectedDate : getExpectedFifthingDate(remaining)
-  const daysSince = loading ? initial.daysSinceLastFifthing : getDaysSinceLastFifthing(block)
-  const inflationRate = loading ? initial.inflationRate : getAnnualInflationRate(block)
-  const nextInflationRate = loading ? initial.nextInflationRate : getNextEraInflationRate(block)
+  const expectedDate = loading ? initial.expectedDate : getExpectedFifthingDate(remaining, avgBlockTime ?? undefined)
+  const daysSince = loading ? initial.daysSinceLastFifthing : getDaysSinceLastFifthing(block, avgBlockTime ?? undefined)
+  const inflationRate = loading ? initial.inflationRate : getAnnualInflationRate(block, avgBlockTime ?? undefined)
+  const nextInflationRate = loading ? initial.nextInflationRate : getNextEraInflationRate(block, avgBlockTime ?? undefined)
 
   return (
     <>

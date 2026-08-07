@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
 import { HashrateDistributionNote } from '@/app/components/HashrateDistributionNote'
+import { cachedFetchJson } from '@/lib/client-fetch'
 
 // Format time ago helper
 function formatTimeAgo(date: Date): string {
@@ -77,8 +78,7 @@ export default function NetworkHealthPage() {
 
   useEffect(() => {
     let cancelled = false
-    fetch('/api/pools')
-      .then((r) => r.json())
+    cachedFetchJson<{ pools?: PoolShare[]; networkTHs?: number }>('/api/pools')
       .then((d: { pools?: PoolShare[]; networkTHs?: number }) => {
         if (cancelled) return
         if (d?.pools) setPoolDistribution(d.pools)

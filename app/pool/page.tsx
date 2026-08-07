@@ -15,11 +15,11 @@ const poolStats = {
 
 // Sample data for pool statistics (would be live data in production)
 const recentBlocks = [
-  { height: 23856789, time: '2 min ago', reward: '2.05 ETC', finder: '0x1234...5678' },
-  { height: 23856756, time: '18 min ago', reward: '2.05 ETC', finder: '0xabcd...efgh' },
-  { height: 23856701, time: '45 min ago', reward: '2.05 ETC', finder: '0x9876...5432' },
-  { height: 23856654, time: '1 hr ago', reward: '2.05 ETC', finder: '0xfedc...ba98' },
-  { height: 23856598, time: '2 hr ago', reward: '2.05 ETC', finder: '0x1111...2222' },
+  { height: 23856789, time: '2 min ago', reward: '1.64 ETC', finder: '0x1234...5678' },
+  { height: 23856756, time: '18 min ago', reward: '1.64 ETC', finder: '0xabcd...efgh' },
+  { height: 23856701, time: '45 min ago', reward: '1.64 ETC', finder: '0x9876...5432' },
+  { height: 23856654, time: '1 hr ago', reward: '1.64 ETC', finder: '0xfedc...ba98' },
+  { height: 23856598, time: '2 hr ago', reward: '1.64 ETC', finder: '0x1111...2222' },
 ]
 
 const features = [

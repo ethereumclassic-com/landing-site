@@ -22,6 +22,8 @@ export interface UseFifthingReturn {
   currentReward: number | null
   nextReward: number | null
   countdown: FifthingCountdown | null
+  /** Live seconds-per-block from Blockscout, or null before it loads. */
+  avgBlockTime: number | null
   loading: boolean
 }
 
@@ -38,6 +40,7 @@ export function useFifthing(): UseFifthingReturn {
   const { stats, loading: networkLoading } = useNetworkStats({ refreshInterval: 300_000 })
 
   const currentBlock = stats?.totalBlocks ?? null
+  const avgBlockTime = stats?.avgBlockTime ?? undefined
 
   const derived = useMemo(() => {
     if (currentBlock === null) {
@@ -54,14 +57,14 @@ export function useFifthing(): UseFifthingReturn {
       }
     }
 
-    const supplyStats = calculateSupplyStats(currentBlock)
+    const supplyStats = calculateSupplyStats(currentBlock, avgBlockTime)
     const currentEra = supplyStats.currentEra
     const nextEra = currentEra + 1
     const targetBlock = getEraEndBlock(currentEra)
 
     // Era is complete when we've passed the boundary (shouldn't happen mid-poll, but safe guard)
     if (currentBlock >= targetBlock) {
-      const completedSupplyStats = calculateSupplyStats(currentBlock)
+      const completedSupplyStats = calculateSupplyStats(currentBlock, avgBlockTime)
       return {
         status: 'complete' as const,
         currentEra,
@@ -86,33 +89,34 @@ export function useFifthing(): UseFifthingReturn {
       nextReward: supplyStats.nextEraReward,
       totalSeconds: supplyStats.timeUntilNextEra.totalSeconds,
     }
-  }, [currentBlock])
+  }, [currentBlock, avgBlockTime])
 
   const initialCountdown =
     derived.status === 'pending' && derived.totalSeconds > 0
       ? toCountdown(derived.totalSeconds)
       : null
 
-  const [countdown, setCountdown] = useState<FifthingCountdown | null>(initialCountdown)
+  const [tick, setTick] = useState<FifthingCountdown | null>(initialCountdown)
+
+  // Derived, not stored. Whether a countdown exists is a pure function of the
+  // era state, so an effect writing null was storing something already known at
+  // render — and paying a second render to do it.
+  const isCounting = derived.status === 'pending' && derived.totalSeconds > 0
+  const countdown = isCounting ? tick : null
 
   useEffect(() => {
-    if (derived.status !== 'pending' || derived.totalSeconds <= 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setCountdown(null)
-      return
-    }
+    if (derived.status !== 'pending' || derived.totalSeconds <= 0) return
 
     let remaining = derived.totalSeconds
-    setCountdown(toCountdown(remaining))
 
     const timer = setInterval(() => {
       remaining -= 1
       if (remaining <= 0) {
         clearInterval(timer)
-        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        setTick({ days: 0, hours: 0, minutes: 0, seconds: 0 })
         return
       }
-      setCountdown(toCountdown(remaining))
+      setTick(toCountdown(remaining))
     }, 1000)
 
     return () => clearInterval(timer)
@@ -121,6 +125,7 @@ export function useFifthing(): UseFifthingReturn {
   return {
     status: derived.status,
     currentBlock,
+    avgBlockTime: avgBlockTime ?? null,
     currentEra: derived.currentEra,
     nextEra: derived.nextEra,
     targetBlock: derived.targetBlock,

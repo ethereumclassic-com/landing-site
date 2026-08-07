@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import PoolCard from './components/PoolCard'
 import HashrateChart from '@/app/components/homepage/HashrateChart'
+import MetricAreaChart from '@/app/components/charts/MetricAreaChart'
 import { HashRateChart } from './components/HashRateChartClient'
 import FifthingCountdown from '@/app/components/FifthingCountdown'
 import { NetworkConfigSection } from './components/NetworkConfigSection'
@@ -10,7 +11,7 @@ import { MiningEquipmentSection } from './components/MiningEquipmentSection'
 import { MiningPoolsSection } from './components/MiningPoolsSection'
 import { FeeMarketCallout } from './components/FeeMarketCallout'
 import { fetchMiningNetworkStats } from '@/lib/etc-rpc'
-import { fetchHashrateTHs } from '@/lib/hashrate'
+import { fetchHashrateTHs, fetchAllHashrateHistories } from '@/lib/hashrate'
 import {
   miningPools,
   getRecommendedPools,
@@ -23,9 +24,10 @@ function getBlockReward(blockHeight: number): string {
 }
 
 export default async function MiningPage() {
-  const [stats, hashrateTHs, recommendedPools] = await Promise.all([
+  const [stats, hashrateTHs, histories, recommendedPools] = await Promise.all([
     fetchMiningNetworkStats(),
     fetchHashrateTHs(),
+    fetchAllHashrateHistories(),
     Promise.resolve(getRecommendedPools()),
   ])
 
@@ -109,7 +111,35 @@ export default async function MiningPage() {
           </div>
 
           {/* Hashrate chart */}
-          <HashrateChart />
+          <HashrateChart initial={{ currentTHs: hashrateTHs, histories }} />
+
+          {/* Difficulty rides on the same series — no extra upstream fetch. */}
+          <div className="mt-3">
+            <MetricAreaChart
+              histories={histories}
+              dataKey="difficultyPH"
+              title="Network Difficulty"
+              unit="PH"
+              seriesName="Difficulty"
+              precision={2}
+              gradientId="miningDiffGrad"
+            />
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link
+              href="/mining/hashrate"
+              className="rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm text-[var(--text-primary)] transition-colors hover:border-[var(--brand-green)]"
+            >
+              How hashrate is measured →
+            </Link>
+            <Link
+              href="/mining/difficulty"
+              className="rounded-lg border border-[var(--border-default)] px-4 py-2 text-sm text-[var(--text-primary)] transition-colors hover:border-[var(--brand-green)]"
+            >
+              How difficulty adjusts →
+            </Link>
+          </div>
         </div>
       </section>
 

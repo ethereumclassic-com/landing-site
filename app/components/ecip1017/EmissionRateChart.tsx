@@ -12,7 +12,8 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts'
-import { emissionRateData } from '@/app/research/data/fifthingChartData'
+import { emissionRateData, BLOCKS_PER_YEAR } from '@/app/research/data/fifthingChartData'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 
 const BRAND_GREEN = 'var(--brand-green)'
 const AMBER = 'var(--color-warning)'
@@ -112,7 +113,7 @@ export default function EmissionRateChart() {
         </ComposedChart>
       </ResponsiveContainer>
       <p className="mt-3 text-xs text-[var(--text-muted)]">
-        Annual issuance based on ~{(2_427_508).toLocaleString()} blocks/year at 13s avg block time. Current era highlighted.
+        Annual issuance based on ~{BLOCKS_PER_YEAR.toLocaleString()} blocks/year at {NOMINAL_BLOCK_TIME_SECONDS}s nominal block time. Current era highlighted.
       </p>
     </div>
   )

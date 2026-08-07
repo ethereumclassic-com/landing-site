@@ -7,7 +7,12 @@ import {
   CURRENT_ERA,
 } from './emission'
 
-const BLOCKS_PER_YEAR = Math.round((365.25 * 86400) / EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS)
+/** Blocks in a year at a given seconds-per-block rate. */
+function blocksPerYear(blockTimeSeconds: number): number {
+  return Math.round((365.25 * 86400) / blockTimeSeconds)
+}
+
+const BLOCKS_PER_YEAR = blocksPerYear(EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS)
 
 const schedule = generateEraSchedule(10)
 
@@ -169,31 +174,43 @@ export const eraTableData: EraRow[] = getEraTableData()
 
 // ----- Live helpers -----
 
-export function getDaysSinceLastFifthing(currentBlock: number): number {
+export function getDaysSinceLastFifthing(
+  currentBlock: number,
+  blockTimeSeconds: number = EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS,
+): number {
   // Anchor on the boundary of whatever era the chain is actually in, so this
   // does not need editing at each fifthing.
   const lastFifthingBlock =
     (getEraForBlock(currentBlock) - 1) * EMISSION_CONSTANTS.ERA_LENGTH
   const blocksSince = currentBlock - lastFifthingBlock
   if (blocksSince <= 0) return 0
-  return Math.floor((blocksSince * EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS) / 86400)
+  return Math.floor((blocksSince * blockTimeSeconds) / 86400)
 }
 
-export function getAnnualInflationRate(currentBlock: number): number {
-  const stats = calculateSupplyStats(currentBlock)
-  const annualNew = stats.currentBlockReward * BLOCKS_PER_YEAR
+export function getAnnualInflationRate(
+  currentBlock: number,
+  blockTimeSeconds: number = EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS,
+): number {
+  const stats = calculateSupplyStats(currentBlock, blockTimeSeconds)
+  const annualNew = stats.currentBlockReward * blocksPerYear(blockTimeSeconds)
   return parseFloat(((annualNew / stats.totalSupply) * 100).toFixed(2))
 }
 
-export function getNextEraInflationRate(currentBlock: number): number {
-  const stats = calculateSupplyStats(currentBlock)
-  const annualNew = stats.nextEraReward * BLOCKS_PER_YEAR
+export function getNextEraInflationRate(
+  currentBlock: number,
+  blockTimeSeconds: number = EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS,
+): number {
+  const stats = calculateSupplyStats(currentBlock, blockTimeSeconds)
+  const annualNew = stats.nextEraReward * blocksPerYear(blockTimeSeconds)
   return parseFloat(((annualNew / stats.totalSupply) * 100).toFixed(2))
 }
 
-export function getExpectedFifthingDate(blocksRemaining: number | null): string {
+export function getExpectedFifthingDate(
+  blocksRemaining: number | null,
+  blockTimeSeconds: number = EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS,
+): string {
   if (blocksRemaining === null || blocksRemaining <= 0) return 'Complete'
-  const secondsRemaining = blocksRemaining * EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS
+  const secondsRemaining = blocksRemaining * blockTimeSeconds
   const targetDate = new Date(Date.now() + secondsRemaining * 1000)
   return targetDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
 }

@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { s2fData, currentEraKey, lastFifthingLabel } from '@/app/research/data/fifthingChartData'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 
 const BRAND_GREEN = 'var(--brand-green)'
 
@@ -120,7 +121,7 @@ export default function SupplyScarcitySection() {
               <strong className="text-[var(--text-primary)]">not a price model or financial forecast</strong>.
               Future era values are projections based on{' '}
               <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] hover:underline">ECIP-1017</a>{' '}
-              schedule at 13s avg block time.
+              schedule at {NOMINAL_BLOCK_TIME_SECONDS}s nominal block time.
             </p>
           </div>
         </div>

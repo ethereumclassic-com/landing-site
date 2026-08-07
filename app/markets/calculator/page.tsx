@@ -3,10 +3,17 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { sampleRates } from '../data/markets'
+import { usePrice } from '@/app/hooks/usePrice'
 
 // Historical ATH for comparison
 const ATH_PRICE = 176.16
-const CURRENT_PRICE = sampleRates['ETC-USD']
+/**
+ * Last-resort price if the live fetch fails. Never rendered as "current" on its
+ * own — the UI reads livePrice below, which falls back to this only when there
+ * is nothing better. A hardcoded figure here read ~2x the real price for months
+ * while a button offered it as "current price".
+ */
+const FALLBACK_PRICE = sampleRates['ETC-USD']
 
 // Preset future prices for scenarios
 const priceScenarios = [
@@ -17,6 +24,10 @@ const priceScenarios = [
 ]
 
 export default function CalculatorPage() {
+  const { data: priceData } = usePrice('usd')
+  // Live where available, fallback only when the fetch has not landed or failed.
+  const CURRENT_PRICE = priceData?.price ?? FALLBACK_PRICE
+
   const [investmentAmount, setInvestmentAmount] = useState('1000')
   const [etcPrice, setEtcPrice] = useState(CURRENT_PRICE.toString())
   const [futurePrice, setFuturePrice] = useState('50')
@@ -38,7 +49,7 @@ export default function CalculatorPage() {
       profitPercent,
       breakEvenMultiple: investment > 0 ? buyPrice / sellPrice : 0,
     }
-  }, [investmentAmount, etcPrice, futurePrice])
+  }, [investmentAmount, etcPrice, futurePrice, CURRENT_PRICE])
 
   const formatUSD = (amount: number) => {
     return new Intl.NumberFormat('en-US', {

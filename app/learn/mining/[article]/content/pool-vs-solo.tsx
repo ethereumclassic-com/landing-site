@@ -162,7 +162,7 @@ export default function PoolVsSolo() {
       <ol>
         <li>Check current network hashrate (<a href="https://etc.blockscout.com/stats" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">Blockscout</a>)</li>
         <li>Calculate your percentage: (Your hashrate / Network hashrate) × 100</li>
-        <li>Average block time is ~15.6 seconds</li>
+        <li>Average block time is ~13 seconds</li>
         <li>Expected blocks per day: Your % × (86400 / 15.6)</li>
       </ol>
       <p>

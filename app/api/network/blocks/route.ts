@@ -53,7 +53,7 @@ export async function GET(request: Request) {
     { blocks },
     {
       headers: {
-        'Cache-Control': 'public, s-maxage=10, stale-while-revalidate=30',
+        'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=1200',
         'X-RateLimit-Limit': '100',
         'X-RateLimit-Remaining': '99',
       },

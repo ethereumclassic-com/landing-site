@@ -1,13 +1,20 @@
 /**
  * Ethereum Classic RPC Integration
- * Provides network metrics from public RPC endpoints
  *
- * Used for mining-specific data like difficulty and hashrate
- * that aren't available in Blockscout API
+ * Source for latest-block DETAIL — miner, hash, gas used/limit — which the
+ * Blockscout summary endpoints do not carry.
+ *
+ * It is deliberately NOT a source for difficulty, hashrate or block time.
+ * Those come from lib/hashrate.ts, which is the single implementation; this
+ * module computing its own put two pages of the site 3.6% apart on the same
+ * metric. Do not reintroduce a hashrate calculation here.
  */
 
 import * as fs from 'fs'
 import * as path from 'path'
+import { fetchNetworkNow, FALLBACK_HASHRATE_THS } from './hashrate'
+import { NOMINAL_BLOCK_TIME_SECONDS } from './chain'
+import { CURRENT_ERA_REFERENCE_BLOCK } from '@/app/research/data/emission'
 
 // Public ETC RPC endpoints (fallback chain)
 const RPC_ENDPOINTS = [
@@ -190,8 +197,8 @@ function formatDifficulty(difficulty: number): string {
 }
 
 /**
- * Fetch mining network stats from RPC
- * Calculates hashrate from difficulty and block time
+ * Latest-block detail from RPC, with the derived network figures taken from
+ * lib/hashrate.ts so they match every other surface on the site.
  */
 export async function fetchMiningNetworkStats(): Promise<MiningNetworkStats> {
   // Check cache first
@@ -219,24 +226,18 @@ export async function fetchMiningNetworkStats(): Promise<MiningNetworkStats> {
       return getFallbackMiningStats()
     }
 
-    // Fetch a block from ~100 blocks ago to calculate average block time
     const currentBlockNum = hexToNumber(latestBlock.number)
-    const oldBlockHex = `0x${(currentBlockNum - 100).toString(16)}`
-    const oldBlock = await rpcCall<BlockData>('eth_getBlockByNumber', [oldBlockHex, false])
 
-    // Calculate block time
-    let blockTime = 14.5 // default
-    if (oldBlock) {
-      const currentTimestamp = hexToNumber(latestBlock.timestamp)
-      const oldTimestamp = hexToNumber(oldBlock.timestamp)
-      const timeDiff = currentTimestamp - oldTimestamp
-      blockTime = timeDiff / 100 // average over 100 blocks
-    }
-
-    // Get difficulty and calculate hashrate
-    const difficulty = hexToNumber(latestBlock.difficulty)
-    // Hashrate = Difficulty / Block Time
-    const hashrate = difficulty / blockTime
+    // Difficulty, hashrate and block time come from lib/hashrate.ts, not from a
+    // second computation here. This module used to sample its own block time
+    // over 100 RPC blocks and divide difficulty by it, which put /mining/stats
+    // at 126.8 TH/s while /mining showed 131.4 TH/s for the same network at the
+    // same moment — same formula, different block-time input. RPC is still the
+    // source for the latest-block detail below, which is all it is needed for.
+    const now = await fetchNetworkNow()
+    const difficulty = now.difficultyPH * 1e15
+    const hashrate = now.hashrateTHs * 1e12
+    const blockTime = now.blockTimeSeconds
 
     const stats: MiningNetworkStats = {
       difficulty,
@@ -270,22 +271,26 @@ export async function fetchMiningNetworkStats(): Promise<MiningNetworkStats> {
   }
 }
 
-/**
- * Get fallback stats when RPC is unavailable
- * Fallback values based on Jan 2026 network data
- */
+/** Fallback stats when RPC is unavailable. Every figure is derived, not pinned. */
 export function getFallbackMiningStats(): MiningNetworkStats {
+  // Derived from one basis so the three figures agree. Written out by hand they
+  // did not: 2.47 PH over 13.5s is 183 TH/s, while the hashrate field beside it
+  // claimed 210 TH/s and the block time was a value used nowhere else.
+  const blockTime = NOMINAL_BLOCK_TIME_SECONDS
+  const hashrate = FALLBACK_HASHRATE_THS * 1e12
+  const difficulty = hashrate * blockTime
+
   return {
-    difficulty: 2470000000000000,
-    difficultyFormatted: '2.47 PH',
-    hashrate: 210000000000000,
-    hashrateFormatted: '210.00 TH/s',
-    blockHeight: 23820000,
-    blockTime: 13.5,
-    blockTimeFormatted: '13.5s',
+    difficulty,
+    difficultyFormatted: formatDifficulty(difficulty),
+    hashrate,
+    hashrateFormatted: formatHashrate(hashrate),
+    blockHeight: CURRENT_ERA_REFERENCE_BLOCK,
+    blockTime,
+    blockTimeFormatted: `${blockTime.toFixed(1)}s`,
 
     latestBlock: {
-      number: 23820000,
+      number: CURRENT_ERA_REFERENCE_BLOCK,
       hash: '0x...',
       miner: '0x...',
       timestamp: new Date().toISOString(),

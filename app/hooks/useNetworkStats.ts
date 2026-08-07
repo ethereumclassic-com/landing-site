@@ -1,6 +1,8 @@
 'use client'
 
 import { useNetworkStatsContext } from '@/app/context/NetworkStatsContext'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
+import { getBlockRewardForEra, CURRENT_ERA } from '@/app/research/data/emission'
 
 export interface NetworkStats {
   price: number
@@ -32,6 +34,11 @@ export interface RecentBlock {
   gasLimit: number
 }
 
+/**
+ * Retained for call-site compatibility. The refresh cadence is owned by
+ * NetworkStatsProvider (10 minutes) so every consumer shares one request —
+ * passing a different interval here does nothing.
+ */
 export interface UseNetworkStatsOptions {
   refreshInterval?: number
   autoRefresh?: boolean
@@ -79,8 +86,8 @@ export function useNetworkStats(_options?: UseNetworkStatsOptions): UseNetworkSt
         blockHeight: (stats.totalBlocks ?? 0).toLocaleString(),
         transactions: formatLargeNumber(stats.totalTransactions ?? 0),
         addresses: formatLargeNumber(stats.totalAddresses ?? 0),
-        blockTime: `${(stats.avgBlockTime ?? 13).toFixed(1)}s`,
-        blockReward: `${(stats.avgBlockReward ?? 2.05).toFixed(2)} ETC`,
+        blockTime: `${(stats.avgBlockTime ?? NOMINAL_BLOCK_TIME_SECONDS).toFixed(1)}s`,
+        blockReward: `${(stats.avgBlockReward ?? getBlockRewardForEra(CURRENT_ERA)).toFixed(2)} ETC`,
         gasPrice: `${(stats.gasPrice?.average ?? 2).toFixed(2)} Gwei`,
       }
     : null

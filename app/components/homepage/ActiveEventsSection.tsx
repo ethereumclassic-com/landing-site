@@ -6,6 +6,7 @@ import { FadeIn } from '@/app/components/ui'
 import { useOlympiaBlock } from '@/app/olympia/hooks/useOlympiaBlock'
 import { useFifthing } from '@/app/hooks/useFifthing'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 import {
   OLYMPIA_PLACEHOLDER_DATE,
   OLYMPIA_PLACEHOLDER_DATE_LABEL,
@@ -57,7 +58,7 @@ const fifthingPoints = [
 export default function ActiveEventsSection() {
   const placeholderCd = usePlaceholderCountdown()
   const { stats: networkStats } = useNetworkStats({ refreshInterval: 300_000 })
-  const avgBlockTime = networkStats?.avgBlockTime ?? 13
+  const avgBlockTime = networkStats?.avgBlockTime ?? NOMINAL_BLOCK_TIME_SECONDS
 
   const {
     status: olympiaStatus,

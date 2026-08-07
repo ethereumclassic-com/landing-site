@@ -1,3 +1,4 @@
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 // ETC Emission Schedule based on ECIP-1017
 // https://ecips.ethereumclassic.org/ECIPs/ecip-1017
 //
@@ -26,7 +27,7 @@ export const EMISSION_CONSTANTS = {
   GENESIS_SUPPLY: 72_009_990, // ETC at genesis (from ETH fork)
 
   // Block time for time estimates
-  AVG_BLOCK_TIME_SECONDS: 13,
+  AVG_BLOCK_TIME_SECONDS: NOMINAL_BLOCK_TIME_SECONDS,
 }
 
 export interface Era {
@@ -147,7 +148,16 @@ export function generateEraSchedule(numberOfEras: number = 20): Era[] {
 /**
  * Calculate current supply stats based on block height
  */
-export function calculateSupplyStats(currentBlock: number): SupplyStats {
+export function calculateSupplyStats(
+  currentBlock: number,
+  /**
+   * Seconds per block used for the time-to-next-era estimate. Pass the live
+   * figure (Blockscout's average_block_time) wherever one is available — the
+   * nominal 13 runs ~6% fast against the chain's actual rate, which is weeks
+   * of error over a full era.
+   */
+  blockTimeSeconds: number = EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS,
+): SupplyStats {
   const currentEra = getEraForBlock(currentBlock)
   const currentBlockReward = getBlockRewardForEra(currentEra)
   const nextEraReward = getBlockRewardForEra(currentEra + 1)
@@ -166,7 +176,7 @@ export function calculateSupplyStats(currentBlock: number): SupplyStats {
   const totalSupply = totalEmitted + EMISSION_CONSTANTS.GENESIS_SUPPLY
 
   // Time until next era
-  const secondsUntilNextEra = blocksUntilNextEra * EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS
+  const secondsUntilNextEra = blocksUntilNextEra * blockTimeSeconds
   const days = Math.floor(secondsUntilNextEra / 86400)
   const hours = Math.floor((secondsUntilNextEra % 86400) / 3600)
   const minutes = Math.floor((secondsUntilNextEra % 3600) / 60)

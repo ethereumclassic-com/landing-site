@@ -1,9 +1,12 @@
 import { FadeIn } from '@/app/components/ui'
 import HashrateChart from '@/app/components/homepage/HashrateChart'
-import { fetchHashrateTHs } from '@/lib/hashrate'
+import { fetchHashrateTHs, fetchAllHashrateHistories } from '@/lib/hashrate'
 
 export async function GlobalHashrateSection() {
-  const hashrateTHs = await fetchHashrateTHs()
+  const [hashrateTHs, histories] = await Promise.all([
+    fetchHashrateTHs(),
+    fetchAllHashrateHistories(),
+  ])
 
   return (
     <section className="section-gradient border-y border-[var(--border-default)] py-16 md:py-20">
@@ -55,7 +58,7 @@ export async function GlobalHashrateSection() {
 
         {/* Hashrate chart */}
         <FadeIn delay={180}>
-          <HashrateChart />
+          <HashrateChart initial={{ currentTHs: hashrateTHs, histories }} />
         </FadeIn>
 
         {/* Source note */}

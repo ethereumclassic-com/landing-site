@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui/FadeIn'
 import { fetchNetworkStats } from '@/lib/blockscout'
-import { calculateSupplyStats, getEraEndBlock } from '@/app/research/data/emission'
+import { calculateSupplyStats, getEraEndBlock, CURRENT_ERA_REFERENCE_BLOCK } from '@/app/research/data/emission'
 import {
   getExpectedFifthingDate,
   getAnnualInflationRate,
@@ -16,9 +16,9 @@ export const revalidate = 600
 
 export default async function BlockRewardCountdownPage() {
   const networkStats = await fetchNetworkStats()
-  const currentBlock = networkStats?.totalBlocks ?? 21_000_000
+  const currentBlock = networkStats?.totalBlocks ?? CURRENT_ERA_REFERENCE_BLOCK
 
-  const supply = calculateSupplyStats(currentBlock)
+  const supply = calculateSupplyStats(currentBlock, networkStats?.avgBlockTime)
   const currentEra = supply.currentEra
   const nextEra = currentEra + 1
   const targetBlock = getEraEndBlock(currentEra)
@@ -32,10 +32,10 @@ export default async function BlockRewardCountdownPage() {
     blocksRemaining,
     currentReward: supply.currentBlockReward,
     nextReward: supply.nextEraReward,
-    expectedDate: getExpectedFifthingDate(blocksRemaining),
-    daysSinceLastFifthing: getDaysSinceLastFifthing(currentBlock),
-    inflationRate: getAnnualInflationRate(currentBlock),
-    nextInflationRate: getNextEraInflationRate(currentBlock),
+    expectedDate: getExpectedFifthingDate(blocksRemaining, networkStats?.avgBlockTime),
+    daysSinceLastFifthing: getDaysSinceLastFifthing(currentBlock, networkStats?.avgBlockTime),
+    inflationRate: getAnnualInflationRate(currentBlock, networkStats?.avgBlockTime),
+    nextInflationRate: getNextEraInflationRate(currentBlock, networkStats?.avgBlockTime),
     progress: supply.percentThroughEra,
   }
 

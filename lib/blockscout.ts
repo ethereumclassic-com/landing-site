@@ -10,6 +10,7 @@
 
 import * as fs from 'fs'
 import * as path from 'path'
+import { NOMINAL_BLOCK_TIME_SECONDS } from './chain'
 
 const BLOCKSCOUT_API_BASE = 'https://etc.blockscout.com/api/v2'
 
@@ -238,7 +239,7 @@ export async function fetchNetworkStats(): Promise<NetworkStats | null> {
       totalBlocks: parseInt(stats.total_blocks) || 0,
       totalTransactions: parseInt(stats.total_transactions) || 0,
       totalAddresses: parseInt(stats.total_addresses) || 0,
-      avgBlockTime: (stats.average_block_time || 13500) / 1000, // Convert ms to seconds
+      avgBlockTime: (stats.average_block_time || NOMINAL_BLOCK_TIME_SECONDS * 1000) / 1000,
       networkUtilization: stats.network_utilization_percentage || 0,
 
       gasPrice: {
@@ -339,7 +340,7 @@ export function getFallbackStats(): NetworkStats {
     totalBlocks: 23820000,
     totalTransactions: 142000000,
     totalAddresses: 553500000,
-    avgBlockTime: 13.0, // Block time varies 11-14s, using reasonable middle
+    avgBlockTime: NOMINAL_BLOCK_TIME_SECONDS,
     networkUtilization: 0.42,
     gasPrice: {
       slow: 1.56,

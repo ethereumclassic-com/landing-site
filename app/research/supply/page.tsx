@@ -11,8 +11,7 @@ import {
   formatSupply,
   formatBlockReward,
   formatBlockNumber,
-  type SupplyStats,
-} from '../data/emission'
+  type SupplyStats, CURRENT_ERA_REFERENCE_BLOCK } from '../data/emission'
 
 // Supply Stats Cards
 function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
@@ -245,15 +244,15 @@ export default function SupplyTrackerPage() {
         const response = await fetch('/api/network')
         if (response.ok) {
           const data = await response.json()
-          const blockHeight = data.totalBlocks || 23816658 // Fallback
+          const blockHeight = data.totalBlocks || CURRENT_ERA_REFERENCE_BLOCK
           setStats(calculateSupplyStats(blockHeight))
         } else {
           // Use fallback block height
-          setStats(calculateSupplyStats(23816658))
+          setStats(calculateSupplyStats(CURRENT_ERA_REFERENCE_BLOCK))
         }
       } catch {
         // Use fallback
-        setStats(calculateSupplyStats(23816658))
+        setStats(calculateSupplyStats(CURRENT_ERA_REFERENCE_BLOCK))
       } finally {
         setIsLoading(false)
       }
