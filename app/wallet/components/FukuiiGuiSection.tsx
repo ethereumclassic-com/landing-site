@@ -69,7 +69,7 @@ const MarketIcon = () => (
   </svg>
 )
 
-export default function ClassicOSSection() {
+export default function FukuiiGuiSection() {
   const modules = [
     {
       module: 'Produce',
@@ -115,10 +115,10 @@ export default function ClassicOSSection() {
             Flagship Product
           </span>
           <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-            Classic OS: The Economic Control Center for ETC
+            Fukuii GUI: The Economic Control Center for ETC
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
-            Classic OS is not a wallet - it&apos;s an economic control center that works WITH your wallet.
+            Fukuii GUI is not a wallet - it&apos;s an economic control center that works WITH your wallet.
             Manage capital flows, track positions, and orchestrate automated strategies to earn.
           </p>
           <motion.div
@@ -129,18 +129,18 @@ export default function ClassicOSSection() {
             className="mt-6 flex flex-wrap justify-center gap-4"
           >
             <a
-              href="https://app.classicos.org"
+              href="https://github.com/fukuii-project/fukuii-gui"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
             >
-              Launch Classic OS
+              Launch Fukuii GUI
               <svg aria-hidden="true" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </a>
             <a
-              href="/wallet/classic-os"
+              href="/wallet/fukuii-gui"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
             >
               Learn More
@@ -170,7 +170,7 @@ export default function ClassicOSSection() {
             <div className="text-center md:text-left">
               <p className="font-medium text-[var(--text-primary)]">Works with any wallet</p>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                MetaMask, Ledger, Trezor, and more. Classic OS connects to your existing wallet for secure transaction signing.
+                MetaMask, Ledger, Trezor, and more. Fukuii GUI connects to your existing wallet for secure transaction signing.
               </p>
             </div>
             <div className="flex flex-wrap justify-center gap-2 md:ml-auto">

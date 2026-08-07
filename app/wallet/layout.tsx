@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: 'ETC Wallets — Download & Compare',
   },
   description:
-    'Download wallets for Ethereum Classic. Compare MetaMask, hardware wallets, and Classic OS for secure ETC storage.',
+    'Download wallets for Ethereum Classic. Compare MetaMask, hardware wallets, and Fukuii GUI for secure ETC storage.',
 }
 
 export default function WalletLayout({ children }: { children: React.ReactNode }) {

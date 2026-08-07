@@ -61,7 +61,7 @@ function WalletComparisonRow({ wallet }: { wallet: Wallet }) {
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <span className="font-medium text-[var(--text-primary)]">{wallet.name}</span>
-              {wallet.supportsClassicOS && (
+              {wallet.supportsFukuiiGui && (
                 <span className="rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
                   COS
                 </span>
@@ -122,9 +122,9 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
         <div>
           <div className="flex items-center gap-2">
             <h3 className="font-semibold text-[var(--text-primary)]">{wallet.name}</h3>
-            {wallet.supportsClassicOS && (
+            {wallet.supportsFukuiiGui && (
               <span className="rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
-                Classic OS
+                Fukuii GUI
               </span>
             )}
           </div>
@@ -187,7 +187,7 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
 export default function ComparePage() {
   const [filterType, setFilterType] = useState<FilterType>('all')
   const [sortBy, setSortBy] = useState<SortOption>('type')
-  const [showClassicOSOnly, setShowClassicOSOnly] = useState(false)
+  const [showFukuiiGuiOnly, setShowFukuiiGuiOnly] = useState(false)
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table')
 
   const filteredWallets = useMemo(() => {
@@ -198,9 +198,9 @@ export default function ComparePage() {
       result = result.filter((w) => w.type === filterType)
     }
 
-    // Filter by Classic OS support
-    if (showClassicOSOnly) {
-      result = result.filter((w) => w.supportsClassicOS)
+    // Filter by Fukuii GUI support
+    if (showFukuiiGuiOnly) {
+      result = result.filter((w) => w.supportsFukuiiGui)
     }
 
     // Sort
@@ -219,7 +219,7 @@ export default function ComparePage() {
     })
 
     return result
-  }, [filterType, sortBy, showClassicOSOnly])
+  }, [filterType, sortBy, showFukuiiGuiOnly])
 
   return (
     <main className="min-h-screen">
@@ -294,15 +294,15 @@ export default function ComparePage() {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Classic OS Filter */}
+            {/* Fukuii GUI Filter */}
             <label className="flex cursor-pointer items-center gap-2">
               <input
                 type="checkbox"
-                checked={showClassicOSOnly}
-                onChange={(e) => setShowClassicOSOnly(e.target.checked)}
+                checked={showFukuiiGuiOnly}
+                onChange={(e) => setShowFukuiiGuiOnly(e.target.checked)}
                 className="h-4 w-4 rounded border-[var(--border)] bg-[var(--panel)] text-[var(--color-primary)] focus:ring-[var(--color-primary)] focus:ring-offset-0"
               />
-              <span className="text-sm text-[var(--color-text-muted)]">Classic OS Compatible</span>
+              <span className="text-sm text-[var(--color-text-muted)]">Fukuii GUI Compatible</span>
             </label>
 
             {/* Sort */}
@@ -440,7 +440,7 @@ export default function ComparePage() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">COS</span>
-                  <span className="text-xs text-[var(--color-text-muted)]">Works with Classic OS</span>
+                  <span className="text-xs text-[var(--color-text-muted)]">Works with Fukuii GUI</span>
                 </div>
               </div>
             </div>

@@ -14,7 +14,7 @@ const hardwareWallets = [
       'Strong privacy - minimal data collection',
       'Supports 1,000+ assets including ETC',
       'Trezor Suite desktop app',
-      'Compatible with Classic OS via MetaMask',
+      'Compatible with Fukuii GUI via MetaMask',
     ],
     cons: [
       'No Bluetooth support',
@@ -26,7 +26,7 @@ const hardwareWallets = [
       bluetooth: 'No',
       screen: 'Yes (color on T, Safe 5)',
       openSource: true,
-      classicOSSupport: true,
+      fukuiiGuiSupport: true,
     },
     link: 'https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561',
     setupSteps: [
@@ -47,7 +47,7 @@ const hardwareWallets = [
       'Bluetooth support on Nano X and Stax',
       'Supports 5,500+ assets',
       'Ledger Live desktop and mobile app',
-      'Compatible with Classic OS via MetaMask',
+      'Compatible with Fukuii GUI via MetaMask',
     ],
     cons: [
       'Closed-source firmware - cannot be fully audited',
@@ -60,7 +60,7 @@ const hardwareWallets = [
       bluetooth: 'Nano X, Stax',
       screen: 'Yes (color on Stax)',
       openSource: false,
-      classicOSSupport: true,
+      fukuiiGuiSupport: true,
     },
     link: 'https://shop.ledger.com/?r=bbf4d7f32e72',
     setupSteps: [
@@ -114,7 +114,7 @@ const securityBenefits = [
 
 const comparisonFeatures = [
   { feature: 'ETC Support', trezor: true, ledger: true },
-  { feature: 'Classic OS Compatible', trezor: true, ledger: true },
+  { feature: 'Fukuii GUI Compatible', trezor: true, ledger: true },
   { feature: 'Open Source Firmware', trezor: true, ledger: false },
   { feature: 'No Data Breaches', trezor: true, ledger: false },
   { feature: 'Secure Element Chip', trezor: 'Some models', ledger: true },
@@ -213,7 +213,7 @@ export default function HardwarePage() {
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-sm text-[var(--color-text-secondary)]">Classic OS compatible</span>
+              <span className="text-sm text-[var(--color-text-secondary)]">Fukuii GUI compatible</span>
             </div>
             <div className="flex items-center gap-2">
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -238,7 +238,7 @@ export default function HardwarePage() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {securityBenefits.map((benefit, index) => (
+            {securityBenefits.map((benefit) => (
               <div
                 key={benefit.title}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
@@ -262,12 +262,12 @@ export default function HardwarePage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Trezor vs Ledger</h2>
             <p className="mt-3 text-[var(--color-text-secondary)]">
-              Both support Ethereum Classic and work with Classic OS. We recommend Trezor for its open-source firmware and strong privacy track record.
+              Both support Ethereum Classic and work with Fukuii GUI. We recommend Trezor for its open-source firmware and strong privacy track record.
             </p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
-            {hardwareWallets.map((wallet, index) => (
+            {hardwareWallets.map((wallet) => (
               <div
                 key={wallet.name}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -436,7 +436,7 @@ export default function HardwarePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {bestPractices.map((practice, index) => (
+            {bestPractices.map((practice) => (
               <div
                 key={practice.title}
                 className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4"
@@ -456,14 +456,14 @@ export default function HardwarePage() {
         </div>
       </section>
 
-      {/* Using with Classic OS */}
+      {/* Using with Fukuii GUI */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
           <div
           >
-            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">Using Hardware Wallets with Classic OS</h2>
+            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">Using Hardware Wallets with Fukuii GUI</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
-              Both Trezor and Ledger can be used with Classic OS through MetaMask, giving you the best of both worlds:
+              Both Trezor and Ledger can be used with Fukuii GUI through MetaMask, giving you the best of both worlds:
               hardware security with full DeFi access.
             </p>
 
@@ -494,8 +494,8 @@ export default function HardwarePage() {
                 <li className="flex gap-4">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">4</span>
                   <div>
-                    <p className="font-medium text-[var(--text-primary)]">Launch Classic OS</p>
-                    <p className="text-sm text-[var(--color-text-muted)]">Connect to Classic OS and sign transactions securely on your hardware wallet</p>
+                    <p className="font-medium text-[var(--text-primary)]">Launch Fukuii GUI</p>
+                    <p className="text-sm text-[var(--color-text-muted)]">Connect to Fukuii GUI and sign transactions securely on your hardware wallet</p>
                   </div>
                 </li>
               </ol>
@@ -574,7 +574,7 @@ export default function HardwarePage() {
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Find the best wallet for your needs</p>
             </Link>
             <Link
-              href="/wallet/classic-os"
+              href="/wallet/fukuii-gui"
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -582,7 +582,7 @@ export default function HardwarePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                 </svg>
               </div>
-              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Classic OS</h3>
+              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Fukuii GUI</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">DeFi interface for ETC</p>
             </Link>
           </div>

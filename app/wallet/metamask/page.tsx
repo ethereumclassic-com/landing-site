@@ -177,7 +177,7 @@ export default function MetaMaskPage() {
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-sm text-[var(--color-text-secondary)]">Classic OS compatible</span>
+              <span className="text-sm text-[var(--color-text-secondary)]">Fukuii GUI compatible</span>
             </div>
             <div className="flex items-center gap-2">
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -364,20 +364,20 @@ export default function MetaMaskPage() {
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-8 text-center"
           >
             <h2 className="text-xl font-bold text-[var(--text-primary)] md:text-2xl">
-              Ready to Use Classic OS?
+              Ready to Use Fukuii GUI?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-[var(--color-text-secondary)]">
-              Now that MetaMask is configured, connect to Classic OS to manage your ETC portfolio,
+              Now that MetaMask is configured, connect to Fukuii GUI to manage your ETC portfolio,
               swap tokens, and earn yields.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <a
-                href="https://app.classicos.org"
+                href="https://github.com/fukuii-project/fukuii-gui"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
               >
-                Launch Classic OS
+                Launch Fukuii GUI
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
