@@ -1,7 +1,6 @@
-'use client'
-
 import { FadeIn } from '@/app/components/ui'
 import { SectionDivider } from '@/app/components/ui/SectionDivider'
+import { FlagImg } from '@/app/components/ui'
 
 const fiatPairs = [
   { pair: 'ETC/USD', flag: '🇺🇸', currency: 'US Dollar' },
@@ -136,9 +135,7 @@ export function ETCMarketDepthSection() {
                     title={p.currency}
                     className="flex items-center gap-1.5 rounded-lg border border-[var(--divider)] bg-[var(--bg-elevated)] px-3 py-2"
                   >
-                    <span className="text-base leading-none" aria-hidden="true">
-                      {p.flag}
-                    </span>
+                    <FlagImg emoji={p.flag} size={16} />
                     <span className="font-mono text-xs font-medium">{p.pair}</span>
                   </div>
                 ))}

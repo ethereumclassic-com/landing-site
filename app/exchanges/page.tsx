@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { exchanges, sortExchangesByVolume, type PaymentMethod } from '../buy/data/exchanges'
+import { FlagImg, isFlagEmoji } from '@/app/components/ui'
 
 type ViewMode = 'table' | 'cards'
 type SortOption = 'volume' | 'name' | 'fee'
@@ -207,7 +208,11 @@ export default function ExchangeDirectoryPage() {
                 href={filter.href}
                 className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
               >
-                <span>{filter.icon}</span>
+                {isFlagEmoji(filter.icon) ? (
+                  <FlagImg emoji={filter.icon} size={16} />
+                ) : (
+                  <span>{filter.icon}</span>
+                )}
                 {filter.label}
               </Link>
             ))}

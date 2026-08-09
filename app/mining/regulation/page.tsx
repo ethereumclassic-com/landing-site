@@ -1,6 +1,5 @@
-'use client'
-
 import Link from 'next/link'
+import { FlagImg } from '@/app/components/ui'
 
 const jurisdictions = [
   {
@@ -125,7 +124,7 @@ export default function MiningRegulationPage() {
               >
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl leading-none" aria-hidden="true">{j.flag}</span>
+                    <FlagImg emoji={j.flag} size={24} />
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)]">{j.region}</p>
                       <h3 className="mt-0.5 text-lg font-bold text-[var(--text-primary)]">{j.headline}</h3>

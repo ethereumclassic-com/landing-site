@@ -83,4 +83,4 @@ export { OverviewTable } from './OverviewTable'
 export { ETCswapLink, ClassicUSDLink } from './BrandLinks'
 
 // Flag images (Twemoji SVG — cross-browser safe)
-export { FlagImg } from './FlagImg'
+export { FlagImg, isFlagEmoji } from './FlagImg'
