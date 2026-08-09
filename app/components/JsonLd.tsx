@@ -11,7 +11,13 @@ export function OrganizationJsonLd() {
     name: 'Ethereum Classic',
     alternateName: 'ETC',
     url: 'https://ethereumclassic.com',
-    logo: 'https://ethereumclassic.com/etc-logo.png',
+    // /etc-logo.png never existed in public/, so this was a 404 — and a 404 here
+    // is silent: Google just shows no logo in the knowledge panel and rich
+    // results rather than reporting an error. Pointed at the generated 512px
+    // mark, which is the same asset the favicons and PWA icons are cut from, so
+    // search results and the browser tab now agree. Regenerate with
+    // `pnpm brand:icons`.
+    logo: 'https://ethereumclassic.com/icons/icon-512.png',
     description:
       'Ethereum Classic is the original Ethereum blockchain, maintaining proof-of-work consensus and smart contract capabilities.',
     foundingDate: '2016-07-20',

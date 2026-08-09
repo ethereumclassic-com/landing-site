@@ -114,7 +114,7 @@ export default async function EthereumIcoPage() {
                 The {ETH_ICO.icoTokenSupply.toLocaleString()} tokens issued here are the{' '}
                 <span className="font-medium text-[var(--text-primary)]">original Ethereum genesis supply</span>.
                 In 2016, the Ethereum Foundation forked the chain and applied the ETH name and ticker to the new chain.
-                The original chain carried this supply unaltered and was recognised by the global community as Ethereum Classic.
+                The original chain carried this supply unaltered and was recognized by the global community as Ethereum Classic.
               </p>
               <IcoPriceChart />
             </div>

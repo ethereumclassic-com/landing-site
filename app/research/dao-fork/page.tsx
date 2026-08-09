@@ -206,7 +206,7 @@ export default function DaoForkPage() {
         <div className="mx-auto max-w-6xl">
           <FadeIn delay={60}>
             <p className="mb-6 text-sm text-[var(--text-muted)]">
-              The original Ethereum chain has operated continuously since the July 2015 genesis block. After the 2016 fork, the Ethereum Foundation applied the ETH name and ticker to the new chain. The global community recognised the original as Ethereum Classic. This is the sequence of events, and who fought to suppress it.
+              The original Ethereum chain has operated continuously since the July 2015 genesis block. After the 2016 fork, the Ethereum Foundation applied the ETH name and ticker to the new chain. The global community recognized the original as Ethereum Classic. This is the sequence of events, and who fought to suppress it.
             </p>
           </FadeIn>
           <div className="relative">

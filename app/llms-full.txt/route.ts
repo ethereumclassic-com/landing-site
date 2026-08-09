@@ -173,6 +173,19 @@ A smart contract treasury funded exclusively by basefee revenue from ECIP-1111.
 No inflation, no premine, no foundation. Self-funding via the fee market.
 Treasury disbursements controlled by on-chain governance (ECIP-1113).
 
+/olympia/treasury — Olympia Treasury (ECIP-1112)
+Funding: BASEFEE is the only protocol-directed source, credited to the Treasury
+address at block finalization under ECIP-1111. Voluntary contributions are also
+possible — sending ETC to the address, or a miner naming it as their coinbase
+recipient, which donates hashpower rather than currency. No ECIP directs miner
+block rewards to the Treasury; block rewards and priority tips are untouched.
+Invariants: cannot mint; code is immutable with no proxy or upgrade path;
+withdrawal restricted to a single authorized executor fixed at deployment;
+non-custodial with no admin key; holds no proposal accounting.
+Deployment: the Treasury deploys at Stage 1 via plain CREATE from a reserved
+deployer nonce — NOT CREATE2. Only CoreNFT, Executor and Governor use CREATE2.
+The governance suite that spends it follows at Stage 2.
+
 ECIP-1113 — DAO Governance
 On-chain governance for treasury allocation. Voting weight via soulbound participation NFTs.
 Proposal → Discussion → Snapshot vote → On-chain execution.
@@ -231,11 +244,11 @@ Included EIPs in ECIP-1121:
 - EIP-7702: Account delegation (EOA can delegate to contract for one tx)
 - EIP-7623: Calldata cost increase
 - EIP-7825: Gas limit cap
-- EIP-7883: MCOPY pricing fix
-- EIP-7935: JUMPDEST table removal
+- EIP-7883: MODEXP gas cost increase
+- EIP-7935: Default gas limit 60M (network-authoritative on ETC per ECIP-1122)
 - EIP-6780: SELFDESTRUCT restriction (only clears balance, not code)
-- EIP-7934: Stack size enforcement
-- EIP-7910: Call target constraint
+- EIP-7934: RLP block size limit (8 MiB on ETC)
+- EIP-7910: eth_config JSON-RPC method
 - EIP-2537: BLS12-381 precompile (ZK-friendly cryptography)
 - EIP-7951: P256VERIFY precompile (WebAuthn / passkeys)
 - EIP-5656: MCOPY memory copy opcode

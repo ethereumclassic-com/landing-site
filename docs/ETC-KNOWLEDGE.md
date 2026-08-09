@@ -172,11 +172,11 @@ codebase.
 
 ## Network Upgrades
 
-### Olympia Upgrade (2026)
+### Olympia Upgrade (2027 target)
 
 **ECIP**: ECIP-1121
 **Status**: In Development
-**Target**: 2026 (specific date TBD)
+**Target**: 2027 (activation block TBD)
 
 **Purpose**: Modernize ETC EVM stack to current ETH EVM version, excluding PoS and blob structures.
 

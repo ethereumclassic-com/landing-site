@@ -119,3 +119,5 @@ Activation block: TBD (announced after CDC-23 community call).
 
 - Website: https://ethereumclassic.com
 - GitHub: https://github.com/ethereumclassic-com
+
+- /olympia/treasury — Olympia Treasury (ECIP-1112): how it is funded, what it can never do, staged deployment

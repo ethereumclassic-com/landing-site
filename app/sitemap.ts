@@ -211,6 +211,7 @@ const staticRoutes = [
   { path: '/olympia/clients', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients/core-geth', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/olympia/treasury', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/history', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/etymology', priority: 0.8, changeFrequency: 'weekly' as const },

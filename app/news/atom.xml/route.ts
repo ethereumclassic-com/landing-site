@@ -27,7 +27,7 @@ export async function GET() {
   <link href="${baseUrl}/news" rel="alternate" type="text/html"/>
   <id>${baseUrl}/news</id>
   <updated>${updated}</updated>
-  <icon>${baseUrl}/favicon-32x32.png</icon>
+  <icon>${baseUrl}/icons/favicon-32x32.png</icon>
   <logo>${baseUrl}/etc-logo.png</logo>
   <rights>Copyright ${new Date().getFullYear()} EthereumClassic.com</rights>
   <author>

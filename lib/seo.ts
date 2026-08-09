@@ -34,7 +34,13 @@ export const TWITTER_IMAGE = ['/og.png']
  * between an 11-tag and an 8-tag card.
  */
 export const OG_BASE = {
-  url: 'https://ethereumclassic.com',
+  /**
+   * Relative on purpose. Next resolves it against metadataBase AND the current
+   * route, so each page's card links to that page. An absolute site URL here
+   * stamps the homepage onto every child route — sharing /olympia/upgrade then
+   * shows the homepage's URL, and Google is asked to treat them as one page.
+   */
+  url: './',
   siteName: 'Ethereum Classic',
   locale: 'en_US',
   type: 'website' as const,

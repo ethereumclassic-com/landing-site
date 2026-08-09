@@ -20,7 +20,7 @@ export default function TradingOrderTypes() {
 
       <h2>Limit Orders</h2>
       <p>
-        A limit order lets you set a specific price at which you want to buy or sell. The order only executes if the market reaches your target price. If it doesn&apos;t, the order remains open until filled or cancelled.
+        A limit order lets you set a specific price at which you want to buy or sell. The order only executes if the market reaches your target price. If it doesn&apos;t, the order remains open until filled or canceled.
       </p>
       <ul>
         <li><strong>Buy limit:</strong> Set below the current price &mdash; &ldquo;I want to buy ETC if it drops to $25&rdquo;</li>

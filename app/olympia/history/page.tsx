@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 
 const threads: Array<{
@@ -227,7 +225,7 @@ const timeline = [
   { year: '2022', events: 'Mystique — EIP-1559 deliberately deferred · Ethereum Merge · ETC absorbs Ethash hashrate' },
   { year: '2024', events: 'Spiral — Shanghai partial parity · ETC Coop reserves near exhausted' },
   { year: '2025', events: 'Olympia ECIPs published (July 4) · GENIUS Act signed (July 18) · Classic USD live as compliant stablecoin' },
-  { year: '2026', events: 'Olympia upgrade activation — Glamsterdam-era EVM + EIP-1559 + DAO governance' },
+  { year: '2027', events: 'Olympia upgrade activation (targeted) — Glamsterdam-era EVM + EIP-1559 + DAO governance' },
 ]
 
 export default function OlympiaHistoryPage() {
