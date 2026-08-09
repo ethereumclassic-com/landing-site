@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { Cpu, Code2 } from 'lucide-react'
 import { FadeIn, ETCswapLink, ClassicUSDLink } from '@/app/components/ui'

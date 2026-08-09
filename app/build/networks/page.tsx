@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { networks, rpcEndpoints, explorerAPIs, buildStats, getMainnetEndpoints, getTestnetEndpoints } from '../data/build'
 

@@ -1,5 +1,3 @@
-'use client'
-
 import { forwardRef, type ReactNode, type HTMLAttributes } from 'react'
 import Link from 'next/link'
 

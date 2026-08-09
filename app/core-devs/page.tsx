@@ -1,5 +1,3 @@
-'use client'
-
 import { cdcEntries } from './data/index'
 import { CDCCard } from './components/CDCCard'
 

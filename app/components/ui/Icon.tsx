@@ -1,5 +1,3 @@
-'use client'
-
 import { forwardRef, type SVGAttributes } from 'react'
 
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'

@@ -1,5 +1,3 @@
-'use client'
-
 import { forwardRef, type ReactNode, type HTMLAttributes } from 'react'
 
 export type SectionPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl'

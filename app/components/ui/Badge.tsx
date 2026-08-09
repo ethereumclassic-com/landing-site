@@ -1,5 +1,3 @@
-'use client'
-
 import { forwardRef, type ReactNode, type HTMLAttributes } from 'react'
 
 export type BadgeVariant = 'default' | 'success' | 'warning' | 'error' | 'info' | 'outline' | 'primary'

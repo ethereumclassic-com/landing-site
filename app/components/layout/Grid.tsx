@@ -1,5 +1,3 @@
-'use client'
-
 import { forwardRef, type ReactNode, type HTMLAttributes } from 'react'
 
 export type GridCols = 1 | 2 | 3 | 4 | 6 | 12

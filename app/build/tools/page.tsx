@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { getToolsByCategory, type DevTool } from '../data/build'
 

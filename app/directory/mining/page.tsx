@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { miningPools, miningHardware, miningSoftware } from '@/app/mining/data/mining'
 

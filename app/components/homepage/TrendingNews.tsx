@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui'
 import { articles as newsArticles } from '@/app/news/data/articles'

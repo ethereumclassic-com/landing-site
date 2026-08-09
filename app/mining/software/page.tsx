@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { miningSoftware, type MiningSoftware } from '../data/mining'
 

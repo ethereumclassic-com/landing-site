@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { wallets } from '../wallet/data/wallets'
 import { exchanges } from '../buy/data/exchanges'

@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { networks, rpcEndpoints, nodeClients, devTools } from '@/app/build/data/build'
 

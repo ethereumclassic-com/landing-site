@@ -1,5 +1,3 @@
-'use client'
-
 import { FadeIn } from '@/app/components/ui'
 import { SectionDivider } from '@/app/components/ui/SectionDivider'
 

@@ -1,5 +1,3 @@
-'use client'
-
 import { forwardRef, type HTMLAttributes } from 'react'
 
 export type SkeletonVariant = 'text' | 'circular' | 'rectangular'

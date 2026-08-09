@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 
 const heritage: Array<{ name: string; side: 'left' | 'right' }> = [
