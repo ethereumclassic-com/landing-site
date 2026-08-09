@@ -3,20 +3,14 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 import type { Article } from '../data/articles'
 import { CategoryIcon } from './CategoryIcon'
+import { categoryBannerSrc } from './categoryBanner'
 
 interface NewsCardHeroProps {
   article: Article
   index?: number
-}
-
-const categoryPlaceholders: Record<string, string> = {
-  Updates:     '/news/images/placeholder-updates.svg',
-  Security:    '/news/images/placeholder-security.svg',
-  Ecosystem:   '/news/images/placeholder-ecosystem.svg',
-  Community:   '/news/images/placeholder-community.svg',
-  Development: '/news/images/placeholder-development.svg',
 }
 
 const fadeInUp = {
@@ -41,8 +35,9 @@ function formatDate(dateString: string): string {
 }
 
 export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) {
-  const imageSrc = article.image ?? categoryPlaceholders[article.category] ?? '/news/images/placeholder-updates.svg'
+  const { resolvedTheme } = useTheme()
   const isPlaceholder = !article.image
+  const imageSrc = article.image ?? categoryBannerSrc(article.category, resolvedTheme)
 
   return (
     <motion.div
@@ -56,8 +51,14 @@ export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) 
         href={`/news/${article.slug}`}
         className="group flex flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--panel)] transition-all hover:border-[var(--color-primary)]/40 hover:shadow-lg hover:shadow-[var(--color-primary)]/10"
       >
-        {/* Image — real photo or category SVG placeholder */}
-        <div className="relative h-52 w-full overflow-hidden border-b border-[var(--border)]">
+        {/* Image — real photo or category SVG placeholder. A placeholder carries
+            no information, so it does not earn a photograph's height; the banner
+            art is composed to survive the shorter letterbox. */}
+        <div
+          className={`relative w-full overflow-hidden border-b border-[var(--border)] ${
+            isPlaceholder ? 'h-32' : 'h-52'
+          }`}
+        >
           <Image
             src={imageSrc}
             alt=""
