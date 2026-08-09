@@ -12,8 +12,9 @@ import {
 import NewsCard from './components/NewsCard'
 import NewsCardHero from './components/NewsCardHero'
 import NewsCardCompact from './components/NewsCardCompact'
+import NewsLead from './components/NewsLead'
 import { CategoryIcon } from './components/CategoryIcon'
-import EtcPriceSection from './components/EtcPriceSection'
+import EtcPriceTicker from './components/EtcPriceTicker'
 
 function SectionHeader({ category, count }: { category: ArticleCategory; count: number }) {
   return (
@@ -42,6 +43,22 @@ function SectionHeader({ category, count }: { category: ArticleCategory; count: 
 export default function NewsPage() {
   const recentArticles = getRecentArticles(12)
   const categories = getAllCategories()
+
+  // The lead is the newest featured story, falling back to the newest story if
+  // nothing is flagged. Everything below it is filtered against what is already
+  // shown, so the same headline never appears twice above the fold — the rail
+  // previously drew straight from getRecentArticles and repeated the top items.
+  const leadArticle = getFeaturedArticles()[0] ?? recentArticles[0]
+  const secondaryArticles = recentArticles.filter((a) => a.slug !== leadArticle?.slug).slice(0, 6)
+
+  const shownAbove = new Set([leadArticle?.slug, ...secondaryArticles.map((a) => a.slug)])
+  const railLatest = recentArticles.filter((a) => !shownAbove.has(a.slug)).slice(0, 6)
+  // Three, not four. The rail carries Latest + Most Read + Browse and ran ~1290px
+  // tall against an ~855px lead column; trimming here plus a taller lead banner
+  // brings the two columns to roughly the same depth.
+  const railMostRead = getFeaturedArticles()
+    .filter((a) => a.slug !== leadArticle?.slug)
+    .slice(0, 3)
 
   const currentMonthYear = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })
 
@@ -72,7 +89,16 @@ export default function NewsPage() {
         </div>
       </header>
 
-      {/* Top section: Price chart + Sidebar */}
+      {/* Market strip. A slim band, not a card: a news page leads with news, and
+          the full-height price card that used to sit here left ~950px of empty
+          column beside the sidebar. */}
+      <section className="px-6 pt-6 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <EtcPriceTicker />
+        </div>
+      </section>
+
+      {/* Above the fold: lead story + secondary row, beside the rail */}
       <section className="px-6 py-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
 
@@ -89,11 +115,47 @@ export default function NewsPage() {
             ))}
           </div>
 
-          {/* 2-col layout: price chart + sidebar */}
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px] lg:items-start">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_300px] lg:items-start">
 
-            {/* Price chart */}
-            <EtcPriceSection />
+            {/* Lead + secondary stories. This column is what fills the height the
+                sidebar sets, so the two now end at roughly the same place. */}
+            <div className="flex flex-col gap-8">
+              {leadArticle ? <NewsLead article={leadArticle} /> : null}
+
+              {/* Secondary row: text-first, no art. Three headlines under the lead
+                  is the standard newspaper move — the lead owns the image, and
+                  repeating category art three times beneath it would compete with
+                  it while saying nothing new. Written inline rather than as a
+                  variant of NewsCardCompact, which is a horizontal rail item and
+                  is used that way in the sidebar. */}
+              {secondaryArticles.length > 0 && (
+                <div className="grid gap-x-6 gap-y-6 border-t border-[var(--border)] pt-6 sm:grid-cols-3">
+                  {secondaryArticles.map((article) => (
+                    <Link
+                      key={article.slug}
+                      href={`/news/${article.slug}`}
+                      className="group flex flex-col gap-1.5"
+                    >
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-primary)]">
+                        <CategoryIcon category={article.category} size="sm" />
+                        {article.category}
+                      </span>
+                      <h3 className="text-[15px] font-semibold leading-snug text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]">
+                        {article.title}
+                      </h3>
+                      <span className="text-xs text-[var(--color-text-muted)]">
+                        {new Date(article.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                        {article.readTime ? ` · ${article.readTime} min read` : ''}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Sidebar */}
             <aside className="flex flex-col gap-6 lg:self-start lg:border-l lg:border-[var(--border)] lg:pl-6">
@@ -105,7 +167,7 @@ export default function NewsPage() {
                   <div className="h-px flex-1 bg-[var(--border)]" aria-hidden />
                 </div>
                 <div className="divide-y divide-[var(--border)]">
-                  {recentArticles.slice(0, 6).map((article, i) => (
+                  {railLatest.map((article, i) => (
                     <NewsCardCompact key={article.slug} article={article} index={i} showNumber />
                   ))}
                 </div>
@@ -118,7 +180,7 @@ export default function NewsPage() {
                   <div className="h-px flex-1 bg-[var(--border)]" aria-hidden />
                 </div>
                 <div className="divide-y divide-[var(--border)]">
-                  {getFeaturedArticles().slice(0, 4).map((article, i) => (
+                  {railMostRead.map((article, i) => (
                     <NewsCardCompact key={article.slug} article={article} index={i} />
                   ))}
                 </div>
