@@ -278,7 +278,8 @@
   <text x="80" y="336" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="62" font-weight="700" letter-spacing="-0.03em" fill="#007a53">Ethereum<tspan dx="17" fill="#0a0f10">Virtual</tspan></text>
   <text x="80" y="406" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="62" font-weight="700" letter-spacing="-0.03em" fill="#0a0f10">Machine</text>
 
-  <text x="80" y="452" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="18" font-weight="400" fill="#5f6673">The only mature Proof-of-Work blockchain with native smart contracts.</text>
+  <!-- Subline: second half of SiteFooter's line, the headline above being the first. -->
+  <text x="80" y="452" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="18" font-weight="400" fill="#5f6673">Immutable infrastructure for global finance.</text>
 
   <g transform="translate(80, 480)">
     <rect x="0" y="0" width="158" height="52" rx="12" fill="#ffffff" stroke="#007a53" stroke-opacity="0.32" stroke-width="1.3"/>
