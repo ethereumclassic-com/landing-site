@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { gettingStartedSteps, networks, faucets, getRecommendedTools, buildStats } from '../data/build'
+import { gettingStartedSteps, networks, getRecommendedTools, buildStats } from '../data/build'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -290,14 +290,12 @@ export default function GettingStartedPage() {
                     <code className="text-xs text-[var(--text-primary)]">rpc.mordor.etccooperative.org</code>
                   </div>
                 </div>
-                <a
-                  href={faucets[0].url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/build/faucets"
                   className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
                 >
-                  Get Testnet ETC <ExternalLinkIcon />
-                </a>
+                  Get Testnet ETC
+                </Link>
               </div>
             </div>
 

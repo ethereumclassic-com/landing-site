@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import {
   nodeClients,
@@ -7,7 +5,6 @@ import {
   buildStats,
   getRecommendedTools,
   docResources,
-  faucets,
 } from './data/build'
 
 // Icons
@@ -277,15 +274,12 @@ export default function BuildPage() {
                   </a>
                 </div>
               </div>
-              <a
-                href={faucets[0].url}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/build/faucets"
                 className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] py-3 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
-                Get Testnet ETC from Faucet
-                <ExternalLinkIcon />
-              </a>
+                Get Testnet ETC
+              </Link>
             </div>
           </div>
         </div>
@@ -372,7 +366,7 @@ export default function BuildPage() {
                 key={client.id}
                 className={`rounded-2xl border p-6 ${
                   client.recommended
-                    ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
+                    ? 'card-preferred bg-[var(--color-primary)]/5'
                     : 'border-[var(--border)] bg-[var(--bg)]'
                 }`}
               >

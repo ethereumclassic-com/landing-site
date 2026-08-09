@@ -36,6 +36,22 @@ export interface RPCEndpoint {
   network: 'mainnet' | 'testnet'
 }
 
+/**
+ * ONLY FUNDED, TRUSTED PUBLIC ENDPOINTS ARE LISTED. Operator rule, 2026-08-09.
+ *
+ * A community endpoint that works today can disappear tomorrow, and this list
+ * is what a developer wires into a product — so uptime accountability, not
+ * mere reachability, is the bar. Endpoints verified live but deliberately NOT
+ * listed under this rule: 0xrpc.io/etc, 0xrpc.io/mordor,
+ * geth-mordor.etc-network.info.
+ *
+ * Removed as dead, verified by DNS rather than a page timeout:
+ * ethercluster.com (offline since 2020), geth-de.etc-network.info,
+ * besu-at.etc-network.info (resolves, answers "invalid host specified").
+ *
+ * Blockscout earns both rows: it answered eth_blockNumber and eth_chainId on
+ * mainnet (61) and Mordor (63), at heights matching the primary RPCs.
+ */
 export const rpcEndpoints: RPCEndpoint[] = [
   // Mainnet
   {
@@ -50,18 +66,6 @@ export const rpcEndpoints: RPCEndpoint[] = [
     notes: 'Official explorer RPC',
     network: 'mainnet',
   },
-  {
-    provider: 'ETC Cooperative',
-    url: 'https://www.ethercluster.com/etc',
-    notes: 'Community maintained',
-    network: 'mainnet',
-  },
-  {
-    provider: 'GETH Classic',
-    url: 'https://geth-de.etc-network.info',
-    notes: 'Core-Geth node',
-    network: 'mainnet',
-  },
   // Testnet
   {
     provider: 'ETC Cooperative',
@@ -70,16 +74,9 @@ export const rpcEndpoints: RPCEndpoint[] = [
     network: 'testnet',
   },
   {
-    provider: 'GETH Mordor',
-    url: 'https://geth-mordor.etc-network.info',
-    notes: 'Core-Geth node',
-    network: 'testnet',
-  },
-  {
-    provider: '0xRPC',
-    url: 'https://0xrpc.io/mordor',
-    websocket: 'wss://0xrpc.io/mordor',
-    notes: 'No tracking',
+    provider: 'Blockscout',
+    url: 'https://etc-mordor.blockscout.com/api/eth-rpc',
+    notes: 'Mordor explorer RPC',
     network: 'testnet',
   },
 ]
@@ -548,22 +545,45 @@ export interface Faucet {
   notes?: string
 }
 
-export const faucets: Faucet[] = [
-  {
-    name: 'ETC Cooperative Mordor Faucet',
-    url: 'https://faucet.etccooperative.org/',
-    network: 'testnet',
-    amount: '1 METC',
-    notes: 'Official testnet faucet',
-  },
-  {
-    name: 'ETC Mordor Faucet',
-    url: 'https://mordor.canhaz.net/',
-    network: 'testnet',
-    amount: '0.1 METC',
-    notes: 'Community faucet',
-  },
-]
+/**
+ * EMPTY, and that is the accurate state rather than an oversight.
+ *
+ * Both entries that used to sit here are gone at the DNS level, verified with
+ * `getent hosts` rather than inferred from a page timeout:
+ *
+ *   faucet.etccooperative.org  NXDOMAIN
+ *   mordor.canhaz.net          NXDOMAIN
+ *
+ * A faucet link that resolves to nothing is worse than no link — a developer
+ * follows it mid-setup and cannot tell whether the faucet is down, the testnet
+ * is dead, or they mistyped it. Consumers must handle an empty list.
+ *
+ * WHERE THE REPLACEMENT COMES FROM, so this is not re-derived from scratch.
+ * Operator decision, 2026-08-08: DEFERRED. Do not wire a URL here ahead of it.
+ *
+ * Mordor testnet assets and network monitoring are being stood up as part of
+ * the Fukuii build and will live at **ethereumclassic.net**, the devnet site —
+ * a public RPC at rpc.ethereumclassic.net, a mining pool, and monitoring among
+ * them. Work in progress, so nothing there is linkable yet.
+ *
+ * That split matters beyond the faucet: devnet tooling belongs on that site,
+ * not this one. ethereumclassic.com is the consumer and institutional portal.
+ * When something there goes live, link out to it rather than reproducing it.
+ *
+ * The faucet itself comes from the `mordortestnet` GitHub org —
+ * `mordortestnet/mordor-public-faucet`, deployment config over
+ * `mordortestnet/faucet`, a modular EVM faucet with captcha / mining / IP /
+ * mainnet-balance protection. That org also carries client forks (erigon_etc,
+ * nethermind_etc, besu), open-ethereum-pool with etchash, and the `expedition`
+ * explorer, which is what the dead expedition.dev links in docs/timeline.yaml
+ * point at.
+ *
+ * Two constraints on whoever does add one: load it first, and note that
+ * AGENTS.md requires maintainer approval before listing anything touching funds.
+ * Keep the rendered empty state on /build/faucets timeless — describe what is,
+ * never "coming soon", per the same file's content rules.
+ */
+export const faucets: Faucet[] = []
 
 // Getting Started Steps
 export interface GettingStartedStep {
@@ -607,8 +627,8 @@ networks: {
     title: 'Get Testnet ETC',
     description:
       'Request Mordor testnet ETC from a faucet to deploy and test your contracts without spending real funds.',
-    link: 'https://faucet.etccooperative.org/',
-    linkText: 'Mordor Faucet',
+    link: '/build/faucets',
+    linkText: 'Testnet Faucets',
   },
   {
     step: 4,
@@ -677,6 +697,23 @@ export function getDocsByCategory(category: DocResource['category']): DocResourc
 
 export function getActiveClients(): NodeClient[] {
   return nodeClients.filter((c) => c.status === 'active')
+}
+
+/**
+ * Client implementations to list on the client pages: everything actually
+ * runnable today, recommended first.
+ *
+ * getActiveClients() filters to status 'active', and Core-Geth is 'maintained'
+ * — so the only maintained ETC client was filtered out of both pages whose job
+ * is listing clients, appearing on /build/clients only as a --classic flag in a
+ * config table. Ordering puts the recommended client first, and the card
+ * treatment (green border for `recommended`) plus the gray Maintained badge
+ * keep Fukuii unambiguously primary.
+ */
+export function getClientImplementations(): NodeClient[] {
+  return nodeClients
+    .filter((c) => c.status === 'active' || c.status === 'maintained')
+    .sort((a, b) => Number(b.recommended ?? false) - Number(a.recommended ?? false))
 }
 
 export function getClientById(id: string): NodeClient | undefined {

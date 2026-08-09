@@ -65,7 +65,7 @@ export default function HowToBuyEtc() {
         <li><strong>Chain ID:</strong> 61</li>
         <li><strong>RPC URL:</strong> https://etc.rivet.link</li>
         <li><strong>Currency Symbol:</strong> ETC</li>
-        <li><strong>Block Explorer:</strong> https://blockscout.com/etc/mainnet</li>
+        <li><strong>Block Explorer:</strong> https://etc.blockscout.com</li>
       </ul>
 
       <h2>After Your Purchase</h2>

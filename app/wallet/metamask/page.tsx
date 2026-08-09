@@ -279,12 +279,14 @@ export default function MetaMaskPage() {
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               {[
+                // Funded, accountable endpoints only. etc.etcdesktop.com, 0xrpc.io/etc
+                // and geth-at.etc-network.info all answer correctly today and are
+                // still not listed: this is the list a reader pastes into a wallet,
+                // so it needs an operator on the hook for uptime. Not hypothetical —
+                // of the three etc-network.info endpoints this repo referenced,
+                // geth-de is now NXDOMAIN and besu-at answers "invalid host specified".
                 { name: 'Rivet (Primary)', url: 'https://etc.rivet.link', note: 'Funded by ETC Cooperative' },
                 { name: 'Blockscout RPC', url: 'https://etc.blockscout.com/api/eth-rpc', note: 'Official explorer' },
-                { name: 'ETC Desktop', url: 'https://etc.etcdesktop.com', note: 'Community maintained' },
-                { name: '0xRPC', url: 'https://0xrpc.io/etc', note: 'No tracking' },
-                { name: 'GETH Austria', url: 'https://geth-at.etc-network.info', note: 'Core-Geth node' },
-                { name: 'Besu Austria', url: 'https://besu-at.etc-network.info', note: 'Besu node' },
               ].map((rpc) => (
                 <div
                   key={rpc.name}

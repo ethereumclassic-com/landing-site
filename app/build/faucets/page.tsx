@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { faucets, type Faucet } from '../data/build'
 
@@ -110,9 +108,27 @@ export default function BuildFaucetsPage() {
           <div
             className="grid gap-6 md:grid-cols-2"
           >
-            {faucets.map((faucet) => (
-              <FaucetCard key={faucet.name} faucet={faucet} />
-            ))}
+            {faucets.length > 0 ? (
+              faucets.map((faucet) => <FaucetCard key={faucet.name} faucet={faucet} />)
+            ) : (
+              <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:col-span-2">
+                <p className="font-semibold text-[var(--text-primary)]">
+                  No public Mordor faucet is currently listed.
+                </p>
+                <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
+                  The faucets previously listed here have gone offline. Rather than send you
+                  to a dead link, this stays empty until a working one is confirmed. Mordor
+                  test ETC has no monetary value — ask in the community channels, or run a
+                  Mordor node and mine it locally.
+                </p>
+                <Link
+                  href="/community"
+                  className="mt-4 inline-flex text-sm font-medium text-[var(--color-primary)] hover:underline"
+                >
+                  Community channels →
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </section>

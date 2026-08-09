@@ -629,7 +629,6 @@ items:
     __date: 2020-03-09
     __color: white
     __icon: codeBranch
-    __link: https://expedition.dev/?network=mordor
     text: Phoenix testing begins on the Mordor PoW testnet on block 999,983. Core development teams have signaled that this is a complex implementation. Testing may uncover issues that delay this network upgrade, but Ethereum Classic will never rush to upgrade the mainnet. Network security is priority over development speed and arbitrary timelines.
   era3:
     title: 5M20 Era 3
@@ -645,7 +644,6 @@ items:
     __date: 2020-04-15
     __color: white
     __icon: codeBranch
-    __link: https://expedition.dev/?network=kotti
     text: Phoenix testing begins on the Kotti PoA testnet on block 2,200,013. Core development teams have signaled that this is a complex implementation. Testing may uncover issues that delay this network upgrade, but Ethereum Classic will never rush to upgrade the mainnet.
   phoenixUpgrade:
     title: Phoenix Upgrade
@@ -700,7 +698,6 @@ items:
     __date: 2020-10-19
     __color: white
     __icon: codeBranch
-    __link: https://expedition.dev/?network=mordor
     text: Thanos testing begins on the Mordor PoW testnet on block 2,520,000.
   thanosUpgrade:
     title: Thanos Upgrade

@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 
 const mainExplorers = [
@@ -13,7 +11,7 @@ const mainExplorers = [
   {
     name: 'Blockscout (Mordor)',
     description: 'Block explorer for the Mordor testnet. Test your dApps and contracts before deploying to mainnet.',
-    url: 'https://mordor.blockscout.com',
+    url: 'https://etc-mordor.blockscout.com',
     features: ['Testnet explorer', 'Contract verification', 'Faucet integration', 'API access'],
     recommended: false,
   },

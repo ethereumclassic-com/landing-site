@@ -16,11 +16,19 @@ import { fetchNetworkNow, FALLBACK_HASHRATE_THS } from './hashrate'
 import { NOMINAL_BLOCK_TIME_SECONDS } from './chain'
 import { CURRENT_ERA_REFERENCE_BLOCK } from '@/app/research/data/emission'
 
-// Public ETC RPC endpoints (fallback chain)
+// Funded, accountable endpoints only — the same bar as the public lists in
+// app/build/data/build.ts, because this chain feeds figures the site presents
+// as fact. Verified 2026-08-09 by eth_chainId (both 0x3d) at matching heights.
+//
+// Two removals, neither for being unreachable:
+//   besu-at.etc-network.info  resolves, but answers every request with
+//                             "invalid host specified" — it consumed a retry
+//                             slot it could never satisfy.
+//   etc.etcdesktop.com        answers correctly, but is community-maintained
+//                             with no uptime accountability.
 const RPC_ENDPOINTS = [
   'https://etc.rivet.link',
-  'https://etc.etcdesktop.com',
-  'https://besu-at.etc-network.info',
+  'https://etc.blockscout.com/api/eth-rpc',
 ]
 
 // Cache duration: 1 hour — matches ISR revalidation interval
