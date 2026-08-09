@@ -93,16 +93,16 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
 
   useEffect(() => {
     if (initial.pools.length > 0) return   // already server-fetched
-    let cancelled = false
+    let canceled = false
     cachedFetchJson<{ pools?: PoolShare[]; networkTHs?: number }>('/api/pools')
       .then((d: { pools?: PoolShare[]; networkTHs?: number }) => {
-        if (cancelled) return
+        if (canceled) return
         if (d?.pools) setPoolDistribution(d.pools)
         if (typeof d?.networkTHs === 'number') setNetworkTHs(d.networkTHs)
       })
       .catch(() => { /* leave empty; UI shows the unavailable state */ })
-      .finally(() => { if (!cancelled) setPoolsLoading(false) })
-    return () => { cancelled = true }
+      .finally(() => { if (!canceled) setPoolsLoading(false) })
+    return () => { canceled = true }
   }, [initial.pools.length])
 
   // Derive health checks from live data where available

@@ -178,32 +178,6 @@ export const miningPools: MiningPool[] = [
     features: ['Very low fees', 'Simple interface', 'Fast payouts'],
   },
   {
-    id: 'poolin',
-    name: 'Poolin',
-    website: 'https://www.poolin.me/',
-    fee: 2.5,
-    minPayout: 0.1,
-    hashShare: 5,
-    payoutScheme: ['PPS+', 'PPLNS'],
-    servers: [
-      { region: 'Global', url: 'etc.ss.poolin.me', port: 1883 },
-    ],
-    features: ['Multi-coin support', 'Mobile app', 'Smart pool switching'],
-  },
-  {
-    id: 'emcd',
-    name: 'EMCD',
-    website: 'https://emcd.io/pool/etc/',
-    fee: 1.5,
-    minPayout: 0.01,
-    hashShare: 4,
-    payoutScheme: ['PPLNS'],
-    servers: [
-      { region: 'EU', url: 'etc.emcd.io', port: 3030 },
-    ],
-    features: ['Low minimum payout', 'Built-in wallet', 'Earning statistics'],
-  },
-  {
     id: 'gtpool',
     name: 'GTPool',
     website: 'https://gtpool.io/',

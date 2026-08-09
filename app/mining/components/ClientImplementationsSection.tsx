@@ -1,4 +1,5 @@
 import { FadeIn } from '@/app/components/ui'
+import Link from 'next/link'
 
 const primaryClient = {
   name: 'Fukuii',
@@ -12,7 +13,17 @@ const primaryClient = {
   badges: ['Primary', 'Enterprise', 'ETC-native'],
 }
 
-const secondaryClients = [
+interface SecondaryClient {
+  name: string
+  language: string
+  description: string
+  github: string
+  status: string
+  /** Published security review, surfaced as a CTA wherever this client appears. */
+  securityAuditUrl?: string
+}
+
+const secondaryClients: SecondaryClient[] = [
   {
     name: 'Core-Geth',
     language: 'Go',
@@ -20,6 +31,7 @@ const secondaryClients = [
       'A go-ethereum derivative maintained for Ethereum Classic, providing client diversity alongside Fukuii. Not native, and not a plugin.',
     github: 'https://github.com/ethereumclassic/core-geth',
     status: 'Maintained',
+      securityAuditUrl: '/build/clients/core-geth-security-audit',
   },
   {
     name: 'ETC Plugins',
@@ -125,6 +137,19 @@ export function ClientImplementationsSection() {
                   >
                     {isInternal ? 'View all clients →' : 'View on GitHub →'}
                   </a>
+                    {client.securityAuditUrl && (
+                      <Link
+                        href={client.securityAuditUrl}
+                        className="mt-2 inline-flex items-center rounded-lg px-3 py-1.5 text-xs font-medium transition-colors"
+                        style={{
+                          color: 'var(--color-warning)',
+                          background: 'var(--color-warning-bg)',
+                          border: '1px solid var(--color-warning-border)',
+                        }}
+                      >
+                        Read the security review
+                      </Link>
+                    )}
                 </div>
               </FadeIn>
             )

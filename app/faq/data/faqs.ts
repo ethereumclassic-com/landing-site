@@ -147,7 +147,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'Which pools support ETC mining?',
         answer:
-          'Major ETC mining pools include F2Pool, 2Miners, K1Pool, Poolin, EMCD, and GTPool. Choose a pool based on fee structure, payout method (PPS, PPLNS, PROP), minimum payout threshold, server locations, and current pool hashrate. Distributing across multiple pools helps network decentralization.',
+          'Major ETC mining pools include F2Pool, 2Miners, K1Pool, GTPool, AntPool, and Kryptex. Choose a pool based on fee structure, payout method (PPS, PPLNS, PROP), minimum payout threshold, server locations, and current pool hashrate. Distributing across multiple pools helps network decentralization.',
       },
       {
         question: 'How do I choose the best mining pool?',

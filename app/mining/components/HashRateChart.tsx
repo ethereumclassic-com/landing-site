@@ -6,15 +6,29 @@ import type { MiningPool } from '../data/mining'
 
 interface HashRateChartProps {
   pools: MiningPool[]
+  /**
+   * Live pool shares from Blockscout block attribution. When supplied these
+   * drive the chart; the static `pools` array only contributes ids for color
+   * stability. Without it the chart rendered a months-stale distribution —
+   * F2Pool at 41% against a live 68%, and two pools that had stopped mining.
+   */
+  livePools?: { name: string; share: number }[]
   className?: string
 }
 
 // Pool distribution pie chart
-export default function HashRateChart({ pools, className = '' }: HashRateChartProps) {
+export default function HashRateChart({ pools, livePools, className = '' }: HashRateChartProps) {
   const [hoveredPool, setHoveredPool] = useState<string | null>(null)
 
   // Calculate total hashrate percentage for "Other" pools
-  const listedHashrate = pools.reduce((sum, pool) => sum + pool.hashShare, 0)
+  const source = livePools?.length
+    ? livePools.filter((p) => p.name !== 'Others').map((p) => ({
+        id: p.name.toLowerCase().replace(/\s+/g, '-'),
+        name: p.name,
+        hashShare: p.share,
+      }))
+    : pools
+  const listedHashrate = source.reduce((sum, pool) => sum + pool.hashShare, 0)
   const otherHashrate = Math.max(0, 100 - listedHashrate)
 
   const colors = [
@@ -29,7 +43,7 @@ export default function HashRateChart({ pools, className = '' }: HashRateChartPr
   ]
 
   // Build segments for pie chart
-  const segments: { name: string; value: number; color: string; id: string }[] = pools.map((pool, i) => ({
+  const segments: { name: string; value: number; color: string; id: string }[] = source.map((pool, i) => ({
     name: pool.name,
     value: pool.hashShare,
     color: colors[i % colors.length],

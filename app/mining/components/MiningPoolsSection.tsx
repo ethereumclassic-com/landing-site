@@ -30,8 +30,6 @@ const pools: Pool[] = [
   { name: 'hiveon.net',       statsId: 'hiveon',       fee: '0%',    type: 'PPS+',  href: 'https://hiveon.net' },
   { name: 'pool.kryptex.com', statsId: 'kryptex',      fee: '1%',    type: 'PPS+',  href: 'https://pool.kryptex.com' },
   { name: 'l6pool.com',       statsId: 'l6pool',       fee: '0.3%',  type: '—',     href: 'https://l6pool.com' },
-  { name: 'poolin.com',       statsId: 'poolin',       fee: '0%',    type: 'PPS+',  href: 'https://poolin.com' },
-  { name: 'emcd.io',          statsId: 'emcd',         fee: '1.5%',  type: 'FPPS',  href: 'https://emcd.io' },
   { name: 'binance.com',      statsId: 'binance',      fee: '3%',    type: 'FPPS',  href: 'https://www.binance.com' },
   { name: 'k1pool.com',       statsId: 'k1pool',       fee: '1%',    type: 'RBPPS', href: 'https://k1pool.com' },
   { name: 'herominers.com',   statsId: 'herominers',   fee: '0.9%',  type: 'PROP',  href: 'https://herominers.com' },

@@ -12,6 +12,7 @@ import { MiningPoolsSection } from './components/MiningPoolsSection'
 import { FeeMarketCallout } from './components/FeeMarketCallout'
 import { fetchMiningNetworkStats } from '@/lib/etc-rpc'
 import { fetchHashrateTHs, fetchAllHashrateHistories } from '@/lib/hashrate'
+import { fetchPoolDistribution } from '@/lib/pool-distribution'
 import {
   miningPools,
   getRecommendedPools,
@@ -24,10 +25,11 @@ function getBlockReward(blockHeight: number): string {
 }
 
 export default async function MiningPage() {
-  const [stats, hashrateTHs, histories, recommendedPools] = await Promise.all([
+  const [stats, hashrateTHs, histories, distribution, recommendedPools] = await Promise.all([
     fetchMiningNetworkStats(),
     fetchHashrateTHs(),
     fetchAllHashrateHistories(),
+    fetchPoolDistribution(),
     Promise.resolve(getRecommendedPools()),
   ])
 
@@ -175,7 +177,7 @@ export default async function MiningPage() {
                 Choose a pool to join based on hashrate share and features
               </p>
               <div className="mt-6">
-                <HashRateChart pools={miningPools} />
+                <HashRateChart pools={miningPools} livePools={distribution.pools} />
               </div>
             </div>
 

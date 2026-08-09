@@ -131,6 +131,7 @@ function GasPriceCard({ gasPrice }: { gasPrice: { slow: number; average: number;
 export interface NetworkAnalysisInitial {
   stats: NetworkStats | null
   hashrateDisplay: string
+  pools: { name: string; share: number }[]
 }
 
 /**
@@ -165,14 +166,24 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
       .catch(() => setHashrateDisplay('210+ TH/s'))
   }, [])
 
-  // Mining pool distribution (approximate)
-  const miningPools = [
-    { label: 'F2Pool', value: 35, color: 'bg-[var(--color-info)]' },
-    { label: '2Miners', value: 25, color: 'bg-[var(--color-success)]' },
-    { label: 'Poolin', value: 15, color: 'bg-[var(--color-violet)]' },
-    { label: 'ViaBTC', value: 10, color: 'bg-[var(--color-warning)]' },
-    { label: 'Others', value: 15, color: 'bg-[var(--bg-elevated)]' },
+  /**
+   * Live pool distribution, derived from Blockscout block attribution and passed
+   * in by the server. This was a hardcoded list (F2Pool 35 / 2Miners 25 /
+   * Poolin 15 / ViaBTC 10) that had drifted ~30 points and named two pools no
+   * longer producing blocks.
+   */
+  const POOL_COLORS = [
+    'bg-[var(--color-info)]',
+    'bg-[var(--color-success)]',
+    'bg-[var(--color-violet)]',
+    'bg-[var(--color-warning)]',
+    'bg-[var(--brand-green)]',
   ]
+  const miningPools = initial.pools.map((p, i) => ({
+    label: p.name,
+    value: p.share,
+    color: p.name === 'Others' ? 'bg-[var(--bg-elevated)]' : POOL_COLORS[i % POOL_COLORS.length],
+  }))
 
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
