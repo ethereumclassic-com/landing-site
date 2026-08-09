@@ -232,6 +232,7 @@ const clientData = [
     ],
     githubUrl: 'https://github.com/ethereumclassic/core-geth/releases',
     docsUrl: 'https://github.com/ethereumclassic/core-geth#readme',
+      securityAuditUrl: '/build/clients/core-geth-security-audit',
   },
 ]
 
@@ -320,7 +321,7 @@ export default function UpgradeGuidePage() {
               What Olympia Brings to Ethereum Classic
             </h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Three protocol upgrades in a single activation (fee market, protocol treasury, and Glamsterdam-era EVM alignment), delivered to the only Proof-of-Work smart contract platform in the world.
+              Four protocol upgrades in a single activation (fee market, protocol treasury, Glamsterdam-era EVM alignment, and network security client configuration), delivered to the only Proof-of-Work smart contract platform in the world.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -639,6 +640,15 @@ export default function UpgradeGuidePage() {
                     >
                       Docs <ExternalLink size={12} />
                     </a>
+                    {client.securityAuditUrl && (
+                      <Link
+                        href={client.securityAuditUrl}
+                        className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
+                        style={{ color: 'var(--color-warning)', background: 'var(--color-warning-bg)', border: '1px solid var(--color-warning-border)' }}
+                      >
+                        Read the security review
+                      </Link>
+                    )}
                   </div>
                 </div>
               ))}

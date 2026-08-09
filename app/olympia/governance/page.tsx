@@ -90,9 +90,11 @@ export default function GovernancePage() {
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
                 Block rewards and tips remain completely untouched. Miners are unaffected.
-                The treasury receives basefee revenue, voluntary on-chain donations, and mining
-                rewards directed to the treasury address. This creates sustainable, transparent
-                funding without inflation or reduced miner compensation.
+                  The basefee reaches the treasury automatically, and anyone can add to it by
+                  choice — sending ETC to the address, or, for a miner, naming it as the
+                  recipient of their coinbase. Donating hashpower and donating currency are the
+                  same voluntary act by different means. This creates sustainable, transparent
+                  funding without inflation or reduced miner compensation.
               </p>
             </div>
 

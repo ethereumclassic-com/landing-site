@@ -176,8 +176,8 @@ export const forks: ForkData[] = [
       'Modified Exponential Subjective Scoring (ECBP-1100) enabled by default, giving operators a tool to reduce the risk of deep chain reorganizations after the 2020 51% attacks.',
     keyChanges: [
       'MESS enabled by default (ECBP-1100)',
-      'Penalises deep chain reorganizations',
-      'Client-side defence, not a consensus rule',
+      'Penalizes deep chain reorganizations',
+      'Client-side defense, not a consensus rule',
     ],
   },
   {

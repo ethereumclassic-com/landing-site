@@ -45,6 +45,8 @@ export interface ClientUpgrade {
   currentVersion: string
   olympiaVersion: string
   githubUrl: string
+  /** Published security review, surfaced as a CTA on every card for this client. */
+  securityAuditUrl?: string
   docsUrl: string
   dockerImage: string
   platforms: string[]
@@ -85,6 +87,7 @@ export const clients: ClientUpgrade[] = [
       'A go-ethereum derivative maintained for Ethereum Classic, providing client diversity alongside Fukuii. Six CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.',
     role: 'maintenance',
     badges: ['Maintained', 'Go-Ethereum derivative'],
+    securityAuditUrl: '/build/clients/core-geth-security-audit',
     currentVersion: 'v1.12.22',
     olympiaVersion: 'TBD',
     githubUrl: 'https://github.com/ethereumclassic/core-geth',
@@ -210,7 +213,7 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'How is the Treasury funded?',
     answer:
-      'The Olympia Treasury is funded by EIP-1559 basefee revenue, voluntary on-chain donations, and mining rewards directed to the treasury address. Block rewards and tips remain completely untouched and go entirely to miners. The basefee is a value that would otherwise be destroyed and has never been part of miner compensation. This creates sustainable, transparent funding without inflation or any impact on miner income.',
+      'The Olympia Treasury is funded by EIP-1559 basefee revenue, credited to it at block finalization. Contributions beyond that are voluntary and take two forms: sending ETC to the address, or mining to it — a miner naming the Treasury as their coinbase recipient is donating hashpower rather than currency. The protocol directs the basefee and nothing else; miner block rewards are never touched. The vault sits at the treasury address. Block rewards and tips remain completely untouched and go entirely to miners. The basefee is a value that would otherwise be destroyed and has never been part of miner compensation. This creates sustainable, transparent funding without inflation or any impact on miner income.',
   },
   {
     question: 'Will my miner rewards change?',

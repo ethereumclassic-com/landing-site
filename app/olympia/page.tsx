@@ -17,7 +17,7 @@ const howItWorks = [
   {
     title: 'Protocol Treasury',
     description:
-      'Protocol-managed vault accumulates basefee revenue, voluntary donations, and mining rewards directed to the treasury address. Real-time monitoring via public dashboard.',
+      'Protocol-managed vault. The basefee arrives automatically at block finalization; holders and miners can add to it voluntarily, by sending ETC or by pointing a coinbase at the address. Real-time monitoring via public dashboard.',
     color: 'var(--brand-green)',
   },
   {
