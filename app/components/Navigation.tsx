@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from 'react'
 import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearch, getTypeLabel, getTypeIcon, type SearchResult, type SearchResultType } from '@/hooks/useSearch'
+import { EtcMark } from './ui/EtcMark'
 
 // Navigation structure with dropdowns
 type NavDropdownItem =
@@ -142,6 +142,7 @@ const navItems: {
       { href: '/olympia/history', label: 'A Decade of Conviction' },
       { type: 'separator', label: 'Governance' },
       { href: '/olympia/governance', label: 'Governance' },
+      { href: '/olympia/treasury', label: 'Treasury' },
       { href: '/olympia/miners', label: 'Miners & Fees' },
       { type: 'separator', label: 'Infrastructure' },
       { href: '/olympia/clients', label: 'Clients' },
@@ -244,6 +245,7 @@ const mobileNavGroups: {
       { href: '/olympia/etymology', label: 'Etymology & Lore' },
       { href: '/olympia/history', label: 'A Decade of Conviction' },
       { href: '/olympia/governance', label: 'Governance' },
+      { href: '/olympia/treasury', label: 'Treasury' },
       { href: '/olympia/miners', label: 'Miners & Fees' },
       { href: '/build/clients/core-geth-security-audit', label: 'Core-Geth Security Disclosure' },
       { href: '/upgrades', label: 'Network Upgrades' },
@@ -637,13 +639,7 @@ export default function Navigation() {
             href="/"
             className="flex items-center gap-2.5 text-xl font-bold text-[var(--text-primary)] transition hover:opacity-80"
           >
-            <Image
-              src="/etc-prism.png"
-              alt="Ethereum Classic"
-              width={20}
-              height={32}
-              className="h-8 w-auto"
-            />
+            <EtcMark className="h-8 w-auto text-[var(--brand-green)]" />
             <span className="hidden sm:inline">Ethereum Classic</span>
           </Link>
 

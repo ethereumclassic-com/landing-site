@@ -1,0 +1,306 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    ethereumclassic.com Open Graph card, 1200x630 (1.91:1).
+
+    Background reproduces the homepage hero stack from globals.css, in order:
+    .hero-gradient (3 radial washes over a #f8faf9 -> #f1f5f3 -> #f8faf9 ramp),
+    .noise-overlay (feTurbulence grain, 3%), .grid-overlay (64px). The grid alpha is raised from the page's 0.03 to
+    0.10: at 0.03 a 1px line differs from the field by 4/255 here, which is
+    invisible in a feed that scales the card down. Same 64px pitch and colour,
+    enough contrast to survive the downscale.
+
+    Ornament is adapted from the sibling OG template, NOT copied: the circuit
+    traces and node graph there run #00ffae at 0.08-0.25 on a near-black field.
+    A dark line on a light field reads far stronger at the same alpha, so these
+    run #007a53 at 0.05-0.14. Same motif, retuned so it stays background.
+
+    No live figures: scrapers cache an OG image indefinitely, so a hashrate
+    baked in here would go stale with no signal.
+  -->
+  <defs>
+    <radialGradient id="wash1" gradientUnits="userSpaceOnUse" cx="600" cy="-189" r="1440"
+      gradientTransform="translate(600,-189) scale(1,0.2625) translate(-600,189)">
+      <stop offset="0%" stop-color="#007a53" stop-opacity="0.06"/><stop offset="60%" stop-color="#007a53" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="wash2" gradientUnits="userSpaceOnUse" cx="240" cy="126" r="960"
+      gradientTransform="translate(240,126) scale(1,0.2625) translate(-240,-126)">
+      <stop offset="0%" stop-color="#007a53" stop-opacity="0.03"/><stop offset="50%" stop-color="#007a53" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="wash3" gradientUnits="userSpaceOnUse" cx="960" cy="252" r="720"
+      gradientTransform="translate(960,252) scale(1,0.4375) translate(-960,-252)">
+      <stop offset="0%" stop-color="#00503c" stop-opacity="0.03"/><stop offset="50%" stop-color="#00503c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ramp" x1="0" y1="0" x2="0" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f8faf9"/><stop offset="40%" stop-color="#f1f5f3"/><stop offset="100%" stop-color="#f8faf9"/>
+    </linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0 H0 V64" fill="none" stroke="#000000" stroke-opacity="0.10" stroke-width="1"/>
+    </pattern>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <linearGradient id="markFade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#007a53" stop-opacity="1"/><stop offset="100%" stop-color="#007a53" stop-opacity="0.82"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#007a53" stop-opacity="0.07"/><stop offset="100%" stop-color="#007a53" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ctaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#007a53"/><stop offset="100%" stop-color="#00603f"/>
+    </linearGradient>
+    <radialGradient id="copyFade" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+      gradientTransform="translate(330 300) scale(360 210)">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="70%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </radialGradient>
+    <mask id="copyMask">
+      <rect width="1200" height="630" fill="#ffffff"/>
+      <rect width="1200" height="630" fill="url(#copyFade)"/>
+    </mask>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#ramp)"/>
+  <rect width="1200" height="630" fill="url(#wash1)"/>
+  <rect width="1200" height="630" fill="url(#wash2)"/>
+  <rect width="1200" height="630" fill="url(#wash3)"/>
+  <rect width="1200" height="630" filter="url(#grain)" opacity="0.03"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Holographic HUD layer: instrument chrome rather than decoration —
+       a tracking reticle on the mark, viewport corner brackets, an edge scale,
+       and registration crosses on grid intersections. Strokes run 0.75-1.4px at
+       0.08-0.22 alpha so they read as an overlay on the surface, not as drawn
+       objects. All strokes are the ETC brand green #007a53 — no hue drift, so the overlay
+       stays on-brand rather than reading as a generic sci-fi tint. -->
+  <!-- Holographic circuit substrate: PCB-style routing in three depth layers.
+       Axis runs with 45-degree corners and via-pad terminations, so it reads as
+       an etched board rather than abstract lines. Layered alpha (0.11 / 0.19 /
+       0.30) is what produces the floating parallax; a single flat layer reads
+       as a drawing. Sits beneath the HUD chrome and the type. -->
+  <g id="circuit" mask="url(#copyMask)">
+    <!-- Circuit layer 1 (back): long routes, faintest -->
+    <path d="M0 168 L96 168 L108 180 L168 180 L318 180 L330 168 L374 168 L494 168" fill="none" stroke="#007a53" stroke-opacity="0.11" stroke-width="1.1" stroke-linejoin="round"/>
+    <circle cx="494" cy="168" r="3.0" fill="none" stroke="#007a53" stroke-opacity="0.14" stroke-width="1.6"/><circle cx="494" cy="168" r="1.0" fill="#007a53" fill-opacity="0.11"/>
+    <path d="M0 466 L130 466 L142 454 L222 454 L402 454 L414 466 L474 466 L564 466" fill="none" stroke="#007a53" stroke-opacity="0.11" stroke-width="1.1" stroke-linejoin="round"/>
+    <circle cx="564" cy="466" r="3.0" fill="none" stroke="#007a53" stroke-opacity="0.14" stroke-width="1.6"/><circle cx="564" cy="466" r="1.0" fill="#007a53" fill-opacity="0.11"/>
+    <path d="M1200 214 L1090 214 L1078 226 L1008 226 L868 226 L856 214 L806 214 L726 214" fill="none" stroke="#007a53" stroke-opacity="0.11" stroke-width="1.1" stroke-linejoin="round"/>
+    <circle cx="726" cy="214" r="3.0" fill="none" stroke="#007a53" stroke-opacity="0.14" stroke-width="1.6"/><circle cx="726" cy="214" r="1.0" fill="#007a53" fill-opacity="0.11"/>
+    <path d="M1200 532 L1110 532 L1098 520 L1034 520 L874 520" fill="none" stroke="#007a53" stroke-opacity="0.11" stroke-width="1.1" stroke-linejoin="round"/>
+    <circle cx="874" cy="520" r="3.0" fill="none" stroke="#007a53" stroke-opacity="0.14" stroke-width="1.6"/><circle cx="874" cy="520" r="1.0" fill="#007a53" fill-opacity="0.11"/>
+    <path d="M296 630 L296 546 L308 534 L308 474 L308 404" fill="none" stroke="#007a53" stroke-opacity="0.11" stroke-width="1.1" stroke-linejoin="round"/>
+    <circle cx="308" cy="404" r="3.0" fill="none" stroke="#007a53" stroke-opacity="0.14" stroke-width="1.6"/><circle cx="308" cy="404" r="1.0" fill="#007a53" fill-opacity="0.11"/>
+    <path d="M860 0 L860 70 L848 82 L848 134 L848 182" fill="none" stroke="#007a53" stroke-opacity="0.11" stroke-width="1.1" stroke-linejoin="round"/>
+    <circle cx="848" cy="182" r="3.0" fill="none" stroke="#007a53" stroke-opacity="0.14" stroke-width="1.6"/><circle cx="848" cy="182" r="1.0" fill="#007a53" fill-opacity="0.11"/>
+
+    <!-- Circuit layer 2 (mid): parallel bundles -->
+    <path d="M0 96 L115 96 L127 108 L169 108 L221 108" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M0 107 L115 107 L127 95 L169 95 L221 95" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M0 118 L115 118 L127 130 L169 130 L221 130" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M0 129 L115 129 L127 117 L169 117 L221 117" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <circle cx="221" cy="117" r="3.4" fill="none" stroke="#007a53" stroke-opacity="0.24" stroke-width="1.6"/><circle cx="221" cy="117" r="1.2" fill="#007a53" fill-opacity="0.19"/>
+    <path d="M0 560 L92 560 L104 572 L137 572 L179 572" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M0 571 L92 571 L104 559 L137 559 L179 559" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M0 582 L92 582 L104 594 L137 594 L179 594" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <circle cx="179" cy="594" r="3.4" fill="none" stroke="#007a53" stroke-opacity="0.24" stroke-width="1.6"/><circle cx="179" cy="594" r="1.2" fill="#007a53" fill-opacity="0.19"/>
+    <path d="M1200 150 L1096 150 L1084 162 L1046 162 L999 162" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M1200 161 L1096 161 L1084 149 L1046 149 L999 149" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M1200 172 L1096 172 L1084 184 L1046 184 L999 184" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <circle cx="999" cy="184" r="3.4" fill="none" stroke="#007a53" stroke-opacity="0.24" stroke-width="1.6"/><circle cx="999" cy="184" r="1.2" fill="#007a53" fill-opacity="0.19"/>
+    <path d="M1200 600 L1118 600 L1106 612 L1076 612 L1039 612" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M1200 611 L1118 611 L1106 599 L1076 599 L1039 599" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M1200 622 L1118 622 L1106 634 L1076 634 L1039 634" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M1200 633 L1118 633 L1106 621 L1076 621 L1039 621" fill="none" stroke="#007a53" stroke-opacity="0.19" stroke-width="1.2" stroke-linejoin="round"/>
+    <circle cx="1039" cy="621" r="3.4" fill="none" stroke="#007a53" stroke-opacity="0.24" stroke-width="1.6"/><circle cx="1039" cy="621" r="1.2" fill="#007a53" fill-opacity="0.19"/>
+
+    <!-- Circuit layer 3 (front): stubs and pads -->
+    <path d="M80 630 L80 590 L92 578 L92 548" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.4" stroke-linejoin="round"/>
+    <circle cx="92" cy="548" r="3.8" fill="none" stroke="#007a53" stroke-opacity="0.36" stroke-width="1.6"/><circle cx="92" cy="548" r="1.3" fill="#007a53" fill-opacity="0.29"/>
+    <path d="M640 630 L640 574" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.4" stroke-linejoin="round"/>
+    <circle cx="640" cy="574" r="3.8" fill="none" stroke="#007a53" stroke-opacity="0.36" stroke-width="1.6"/><circle cx="640" cy="574" r="1.3" fill="#007a53" fill-opacity="0.29"/>
+    <path d="M1120 0 L1120 52 L1108 64 L1108 98" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.4" stroke-linejoin="round"/>
+    <circle cx="1108" cy="98" r="3.8" fill="none" stroke="#007a53" stroke-opacity="0.36" stroke-width="1.6"/><circle cx="1108" cy="98" r="1.3" fill="#007a53" fill-opacity="0.29"/>
+    <path d="M0 300 L54 300 L66 312 L104 312" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.4" stroke-linejoin="round"/>
+    <circle cx="104" cy="312" r="3.8" fill="none" stroke="#007a53" stroke-opacity="0.36" stroke-width="1.6"/><circle cx="104" cy="312" r="1.3" fill="#007a53" fill-opacity="0.29"/>
+    <path d="M1200 392 L1138 392 L1126 380 L1086 380" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.4" stroke-linejoin="round"/>
+    <circle cx="1086" cy="380" r="3.8" fill="none" stroke="#007a53" stroke-opacity="0.36" stroke-width="1.6"/><circle cx="1086" cy="380" r="1.3" fill="#007a53" fill-opacity="0.29"/>
+  </g>
+
+  <g id="hud">
+    <!-- Tracking reticle -->
+    <path d="M965.3 80.5 A195 195 0 0 1 1090.5 205.7" fill="none" stroke="#007a53" stroke-opacity="0.34" stroke-width="1.4"/>
+    <path d="M1090.5 326.3 A195 195 0 0 1 965.3 451.5" fill="none" stroke="#007a53" stroke-opacity="0.34" stroke-width="1.4"/>
+    <path d="M844.7 451.5 A195 195 0 0 1 719.5 326.3" fill="none" stroke="#007a53" stroke-opacity="0.34" stroke-width="1.4"/>
+    <path d="M719.5 205.7 A195 195 0 0 1 844.7 80.5" fill="none" stroke="#007a53" stroke-opacity="0.34" stroke-width="1.4"/>
+    <path d="M1071.2 126.5 A217 217 0 0 1 1118.7 303.7" fill="none" stroke="#007a53" stroke-opacity="0.24" stroke-width="1.0"/>
+    <path d="M738.8 405.5 A217 217 0 0 1 691.3 228.3" fill="none" stroke="#007a53" stroke-opacity="0.24" stroke-width="1.0"/>
+    <path d="M989.5 412.4 A169 169 0 0 1 820.5 412.4" fill="none" stroke="#007a53" stroke-opacity="0.22" stroke-width="1.0"/>
+    <path d="M820.5 119.6 A169 169 0 0 1 989.5 119.6" fill="none" stroke="#007a53" stroke-opacity="0.22" stroke-width="1.0"/>
+    <line x1="1090.0" y1="266.0" x2="1110.0" y2="266.0" stroke="#007a53" stroke-opacity="0.42" stroke-width="1.5"/>
+    <line x1="905.0" y1="451.0" x2="905.0" y2="471.0" stroke="#007a53" stroke-opacity="0.42" stroke-width="1.5"/>
+    <line x1="720.0" y1="266.0" x2="700.0" y2="266.0" stroke="#007a53" stroke-opacity="0.42" stroke-width="1.5"/>
+    <line x1="905.0" y1="81.0" x2="905.0" y2="61.0" stroke="#007a53" stroke-opacity="0.42" stroke-width="1.5"/>
+    <line x1="1088.5" y1="315.2" x2="1098.2" y2="317.8" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="1069.5" y1="361.0" x2="1078.2" y2="366.0" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="1039.4" y1="400.4" x2="1046.4" y2="407.4" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="1000.0" y1="430.5" x2="1005.0" y2="439.2" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="954.2" y1="449.5" x2="956.8" y2="459.2" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="855.8" y1="449.5" x2="853.2" y2="459.2" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="810.0" y1="430.5" x2="805.0" y2="439.2" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="770.6" y1="400.4" x2="763.6" y2="407.4" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="740.5" y1="361.0" x2="731.8" y2="366.0" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="721.5" y1="315.2" x2="711.8" y2="317.8" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="721.5" y1="216.8" x2="711.8" y2="214.2" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="740.5" y1="171.0" x2="731.8" y2="166.0" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="770.6" y1="131.6" x2="763.6" y2="124.6" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="810.0" y1="101.5" x2="805.0" y2="92.8" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="855.8" y1="82.5" x2="853.2" y2="72.8" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="954.2" y1="82.5" x2="956.8" y2="72.8" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="1000.0" y1="101.5" x2="1005.0" y2="92.8" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="1039.4" y1="131.6" x2="1046.4" y2="124.6" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="1069.5" y1="171.0" x2="1078.2" y2="166.0" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <line x1="1088.5" y1="216.8" x2="1098.2" y2="214.2" stroke="#007a53" stroke-opacity="0.20" stroke-width="0.9"/>
+    <!-- Viewport corner brackets -->
+    <path d="M40 74 L40 40 L74 40" fill="none" stroke="#007a53" stroke-opacity="0.45" stroke-width="1.8"/>
+    <path d="M86 40 L102 40" fill="none" stroke="#007a53" stroke-opacity="0.26" stroke-width="1.8"/>
+    <path d="M1160 74 L1160 40 L1126 40" fill="none" stroke="#007a53" stroke-opacity="0.45" stroke-width="1.8"/>
+    <path d="M1114 40 L1098 40" fill="none" stroke="#007a53" stroke-opacity="0.26" stroke-width="1.8"/>
+    <path d="M40 556 L40 590 L74 590" fill="none" stroke="#007a53" stroke-opacity="0.45" stroke-width="1.8"/>
+    <path d="M86 590 L102 590" fill="none" stroke="#007a53" stroke-opacity="0.26" stroke-width="1.8"/>
+    <path d="M1160 556 L1160 590 L1126 590" fill="none" stroke="#007a53" stroke-opacity="0.45" stroke-width="1.8"/>
+    <path d="M1114 590 L1098 590" fill="none" stroke="#007a53" stroke-opacity="0.26" stroke-width="1.8"/>
+    <!-- Edge scale -->
+    <line x1="1178" y1="96" x2="1191" y2="96" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="1178" y1="115" x2="1185" y2="115" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="134" x2="1185" y2="134" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="153" x2="1185" y2="153" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="172" x2="1185" y2="172" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="191" x2="1191" y2="191" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="1178" y1="210" x2="1185" y2="210" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="229" x2="1185" y2="229" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="248" x2="1185" y2="248" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="267" x2="1185" y2="267" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="286" x2="1191" y2="286" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="1178" y1="305" x2="1185" y2="305" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="324" x2="1185" y2="324" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="343" x2="1185" y2="343" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="362" x2="1185" y2="362" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="381" x2="1191" y2="381" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="1178" y1="400" x2="1185" y2="400" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="419" x2="1185" y2="419" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="438" x2="1185" y2="438" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="457" x2="1185" y2="457" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="476" x2="1191" y2="476" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="1178" y1="495" x2="1185" y2="495" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="514" x2="1185" y2="514" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="1178" y1="533" x2="1185" y2="533" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <!-- Left edge scale (mirrors the right) -->
+    <line x1="9" y1="96" x2="22" y2="96" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="15" y1="115" x2="22" y2="115" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="134" x2="22" y2="134" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="153" x2="22" y2="153" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="172" x2="22" y2="172" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="9" y1="191" x2="22" y2="191" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="15" y1="210" x2="22" y2="210" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="229" x2="22" y2="229" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="248" x2="22" y2="248" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="267" x2="22" y2="267" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="9" y1="286" x2="22" y2="286" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="15" y1="305" x2="22" y2="305" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="324" x2="22" y2="324" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="343" x2="22" y2="343" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="362" x2="22" y2="362" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="9" y1="381" x2="22" y2="381" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="15" y1="400" x2="22" y2="400" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="419" x2="22" y2="419" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="438" x2="22" y2="438" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="457" x2="22" y2="457" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="9" y1="476" x2="22" y2="476" stroke="#007a53" stroke-opacity="0.38" stroke-width="1.2"/>
+    <line x1="15" y1="495" x2="22" y2="495" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="514" x2="22" y2="514" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <line x1="15" y1="533" x2="22" y2="533" stroke="#007a53" stroke-opacity="0.2" stroke-width="0.9"/>
+    <!-- Copy-block framing brackets -->
+    <path d="M62 208 L62 186 L84 186" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.2"/>
+    <path d="M614 208 L614 186 L592 186" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.2"/>
+    <path d="M62 398 L62 420 L84 420" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.2"/>
+    <path d="M614 398 L614 420 L592 420" fill="none" stroke="#007a53" stroke-opacity="0.30" stroke-width="1.2"/>
+    <!-- Measure rule -->
+    <line x1="80" y1="466" x2="560" y2="466" stroke="#007a53" stroke-opacity="0.22" stroke-width="1"/>
+    <line x1="80" y1="466" x2="80" y2="460" stroke="#007a53" stroke-opacity="0.34" stroke-width="1"/>
+    <line x1="120" y1="466" x2="120" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="160" y1="466" x2="160" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="200" y1="466" x2="200" y2="460" stroke="#007a53" stroke-opacity="0.34" stroke-width="1"/>
+    <line x1="240" y1="466" x2="240" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="280" y1="466" x2="280" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="320" y1="466" x2="320" y2="460" stroke="#007a53" stroke-opacity="0.34" stroke-width="1"/>
+    <line x1="360" y1="466" x2="360" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="400" y1="466" x2="400" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="440" y1="466" x2="440" y2="460" stroke="#007a53" stroke-opacity="0.34" stroke-width="1"/>
+    <line x1="480" y1="466" x2="480" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="520" y1="466" x2="520" y2="463" stroke="#007a53" stroke-opacity="0.2" stroke-width="1"/>
+    <line x1="560" y1="466" x2="560" y2="460" stroke="#007a53" stroke-opacity="0.34" stroke-width="1"/>
+    <!-- Upper-left crosshair -->
+    <g stroke="#007a53" stroke-opacity="0.30" stroke-width="1.1"><line x1="617" y1="128" x2="631" y2="128"/><line x1="624" y1="121" x2="624" y2="135"/></g>
+    <circle cx="624" cy="128" r="11" fill="none" stroke="#007a53" stroke-opacity="0.18" stroke-width="1"/>
+    <!-- Additional registration marks (left-weighted) -->
+    <g stroke="#007a53" stroke-opacity="0.26" stroke-width="1"><line x1="122" y1="192" x2="134" y2="192"/><line x1="128" y1="186" x2="128" y2="198"/></g>
+    <g stroke="#007a53" stroke-opacity="0.26" stroke-width="1"><line x1="442" y1="64" x2="454" y2="64"/><line x1="448" y1="58" x2="448" y2="70"/></g>
+    <g stroke="#007a53" stroke-opacity="0.26" stroke-width="1"><line x1="250" y1="608" x2="262" y2="608"/><line x1="256" y1="602" x2="256" y2="614"/></g>
+    <g stroke="#007a53" stroke-opacity="0.26" stroke-width="1"><line x1="58" y1="320" x2="70" y2="320"/><line x1="64" y1="314" x2="64" y2="326"/></g>
+    <!-- Registration marks on grid intersections -->
+    <g stroke="#007a53" stroke-opacity="0.32" stroke-width="1.1"><line x1="185" y1="576" x2="199" y2="576"/><line x1="192" y1="569" x2="192" y2="583"/></g>
+    <g stroke="#007a53" stroke-opacity="0.32" stroke-width="1.1"><line x1="633" y1="64" x2="647" y2="64"/><line x1="640" y1="57" x2="640" y2="71"/></g>
+    <g stroke="#007a53" stroke-opacity="0.32" stroke-width="1.1"><line x1="1081" y1="128" x2="1095" y2="128"/><line x1="1088" y1="121" x2="1088" y2="135"/></g>
+    <g stroke="#007a53" stroke-opacity="0.32" stroke-width="1.1"><line x1="569" y1="544" x2="583" y2="544"/><line x1="576" y1="537" x2="576" y2="551"/></g>
+    <g stroke="#007a53" stroke-opacity="0.32" stroke-width="1.1"><line x1="313" y1="64" x2="327" y2="64"/><line x1="320" y1="57" x2="320" y2="71"/></g>
+  </g>
+
+  <!-- ETC mark: 75% of the previous size, centred in the right whitespace -->
+  <circle cx="905" cy="267" r="252" fill="url(#halo)"/>
+  <g transform="translate(751, 113) scale(0.6)">
+    <g transform="translate(0,512) scale(0.1,-0.1)" fill="url(#markFade)" stroke="none">
+          <path d="M2551 5071 c-6 -11 -125 -193 -263 -403 -138 -211 -340 -518 -448 -683 -108 -165 -321 -490 -474 -723 -153 -233 -276 -425 -274 -427 1 -1 154 61 338 139 884 374 1126 476 1137 476 7 0 330 -142 719 -316 388 -173 708 -314 710 -312 3 3 -1417 2253 -1430 2266 -3 2 -9 -6 -15 -17z"/>
+          <path d="M2485 3110 c-376 -157 -1450 -612 -1452 -614 -2 -2 99 -60 224 -130 126 -69 473 -263 773 -430 l545 -303 40 23 c22 12 357 200 745 418 387 217 706 399 708 405 2 6 -1 11 -7 11 -10 0 -175 73 -1036 457 -203 91 -388 173 -410 183 l-41 18 -89 -38z"/>
+          <path d="M1119 2083 c16 -21 308 -427 648 -903 341 -476 661 -923 712 -994 51 -70 95 -135 98 -143 4 -10 10 -6 23 15 10 16 145 206 301 423 155 217 378 527 494 689 116 162 316 441 444 619 206 287 253 359 209 324 -7 -6 -343 -198 -746 -427 l-732 -417 -128 74 c-1304 758 -1336 777 -1346 777 -4 0 6 -17 23 -37z"/>
+    </g>
+  </g>
+
+  <!-- Hairline rule under the eyebrow, echoing the sibling's accent lines -->
+
+  <g transform="translate(80, 110)">
+    <rect x="0" y="0" width="275" height="34" rx="17" fill="#ffffff" stroke="#007a53" stroke-opacity="0.32" stroke-width="1.3"/>
+    <circle cx="19" cy="17" r="4" fill="#007a53"/>
+    <text x="34" y="22" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="13" font-weight="500" fill="#007a53">Secured by Proof-of-Work since 2015</text>
+  </g>
+
+  <text x="80" y="266" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="62" font-weight="700" letter-spacing="-0.03em" fill="#0a0f10">The Original</text>
+  <text x="80" y="336" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="62" font-weight="700" letter-spacing="-0.03em" fill="#007a53">Ethereum<tspan dx="17" fill="#0a0f10">Virtual</tspan></text>
+  <text x="80" y="406" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="62" font-weight="700" letter-spacing="-0.03em" fill="#0a0f10">Machine</text>
+
+  <text x="80" y="452" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="18" font-weight="400" fill="#5f6673">The only mature Proof-of-Work blockchain with native smart contracts.</text>
+
+  <g transform="translate(80, 480)">
+    <rect x="0" y="0" width="158" height="52" rx="12" fill="#ffffff" stroke="#007a53" stroke-opacity="0.32" stroke-width="1.3"/>
+    <text x="79" y="23" text-anchor="middle" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#007a53">ETChash</text>
+    <text x="79" y="41" text-anchor="middle" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="10.5" font-weight="400" fill="#5f6673">Mining algorithm</text>
+    <rect x="172" y="0" width="158" height="52" rx="12" fill="#ffffff" stroke="#007a53" stroke-opacity="0.32" stroke-width="1.3"/>
+    <text x="251" y="23" text-anchor="middle" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#007a53">GPU + ASIC</text>
+    <text x="251" y="41" text-anchor="middle" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="10.5" font-weight="400" fill="#5f6673">Compatible hardware</text>
+    <rect x="344" y="0" width="158" height="52" rx="12" fill="#ffffff" stroke="#007a53" stroke-opacity="0.32" stroke-width="1.3"/>
+    <text x="423" y="23" text-anchor="middle" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#007a53">Chain ID 61</text>
+    <text x="423" y="41" text-anchor="middle" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="10.5" font-weight="400" fill="#5f6673">EVM-native</text>
+  </g>
+
+
+  <!-- CTA: aligned to the stat-chip row (y=480) and matching its 52px height,
+       centred under the mark. -->
+  <g transform="translate(817, 480)">
+    <rect x="0" y="0" width="176" height="52" rx="26" fill="url(#ctaGrad)"/>
+    <text x="88" y="33" text-anchor="middle" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#ffffff">Get Started</text>
+  </g>
+
+  <text x="1120" y="581" text-anchor="end" font-family="Inter Variable, Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#0a0f10" fill-opacity="0.75">ethereumclassic.com</text>
+
+  <rect x="0" y="627" width="1200" height="3" fill="#007a53"/>
+</svg>

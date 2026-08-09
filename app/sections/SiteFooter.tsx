@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import { EtcMark } from '@/app/components/ui/EtcMark'
 
 const footerLinks = {
   getEtc: {
@@ -92,13 +92,7 @@ export function SiteFooter() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
-              <Image
-                src="/etc-prism.png"
-                alt="Ethereum Classic"
-                width={20}
-                height={32}
-                className="h-8 w-auto"
-              />
+              <EtcMark className="h-8 w-auto text-[var(--brand-green)]" />
               <span className="text-lg font-bold text-[var(--text-primary)]">Ethereum Classic</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-[var(--text-muted)]">
