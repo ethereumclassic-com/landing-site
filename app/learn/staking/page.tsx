@@ -167,7 +167,7 @@ export default function StakingPage() {
                   key={item.step}
                   className="relative rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 text-center"
                 >
-                  <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)] text-sm font-bold text-[var(--text-primary)]">
+                  <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)] text-sm font-bold text-[var(--color-success-foreground)]">
                     {item.step}
                   </div>
                   <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
@@ -181,7 +181,7 @@ export default function StakingPage() {
                 href="https://etcswap.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-success)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-success)] px-5 py-2.5 font-medium text-[var(--color-success-foreground)] transition-all hover:bg-[var(--color-success)]"
               >
                 Provide Liquidity on ETCswap
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -267,7 +267,7 @@ export default function StakingPage() {
               href="https://etcswap.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-success)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-success)] px-6 py-3 font-medium text-[var(--color-success-foreground)] transition-all hover:bg-[var(--color-success)]"
             >
               Launch ETCswap
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

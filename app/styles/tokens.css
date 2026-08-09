@@ -28,8 +28,8 @@
   /* Text */
   --text-primary: #0a0f10;
   --text-secondary: #374151;
-  --text-muted: #6b7280;
-  --text-subtle: #9ca3af;
+  --text-muted: #5f6673;
+  --text-subtle: #646b78;
 
   /* Code — dark bg in both themes */
   --code-bg: #1e293b;
@@ -60,9 +60,13 @@
   --color-error: #b91c1c;
   --color-error-bg: rgba(185, 28, 28, 0.1);
   --color-error-border: rgba(185, 28, 28, 0.3);
-  --color-warning: #c2410c;
-  --color-warning-bg: rgba(194, 65, 12, 0.1);
-  --color-warning-border: rgba(194, 65, 12, 0.3);
+  /* Darkened so the color reaches 4.5 on its OWN tint: --color-warning on
+     --color-warning-bg is the .badge-research / warning-callout pattern and
+     appeared at 36 sites, all measuring 4.28. Measuring against the page
+     background alone (4.94) hid it. */
+  --color-warning: #a8380a;
+  --color-warning-bg: rgba(168, 56, 10, 0.1);
+  --color-warning-border: rgba(168, 56, 10, 0.3);
   --color-info: #0369a1;
   --color-info-bg: rgba(3, 105, 161, 0.1);
   --color-info-border: rgba(3, 105, 161, 0.3);
@@ -77,13 +81,24 @@
   --color-violet: #6d28d9;
   --color-violet-bg: rgba(109, 40, 217, 0.1);
   --color-violet-border: rgba(109, 40, 217, 0.3);
+
+  /* Foreground for text sitting ON a solid semantic fill. Mirrors
+     --brand-green-foreground: white in light, near-black in dark. Body text
+     (--text-primary) on these fills measures 2.7-3.5 in light and as low as
+     1.32 in dark, because it is the page's text color, not a fill's. */
+  --color-success-foreground: #ffffff;
+  --color-error-foreground: #ffffff;
+  --color-warning-foreground: #ffffff;
+  --color-info-foreground: #ffffff;
+  --color-violet-foreground: #ffffff;
   --color-green: #16a34a;
   --color-green-bg: rgba(22, 163, 74, 0.1);
   --color-green-border: rgba(22, 163, 74, 0.3);
   --color-yellow: #D97706;
   --color-yellow-bg: rgba(217, 119, 6, 0.1);
   --color-yellow-border: rgba(217, 119, 6, 0.3);
-  --color-orange: #F97316;
+  /* 2.67 on the page background as text; 9 consumers, all text. */
+  --color-orange: #a8380a;
   --color-orange-bg: rgba(249, 115, 22, 0.1);
   --color-orange-border: rgba(249, 115, 22, 0.3);
   --color-teal: #0D9488;
@@ -295,7 +310,7 @@
   --text-primary: #ffffff;
   --text-secondary: #c3c5cb;
   --text-muted: #9ca3af;
-  --text-subtle: #6b7280;
+  --text-subtle: #7c8493;
 
   /* Code */
   --code-bg: rgba(0, 0, 0, 0.4);
@@ -333,6 +348,12 @@
   --color-violet: #c4b5fd;
   --color-violet-bg: rgba(196, 181, 253, 0.1);
   --color-violet-border: rgba(196, 181, 253, 0.3);
+
+  --color-success-foreground: #0a0f10;
+  --color-error-foreground: #0a0f10;
+  --color-warning-foreground: #0a0f10;
+  --color-info-foreground: #0a0f10;
+  --color-violet-foreground: #0a0f10;
   --color-green: #4ade80;
   --color-green-bg: rgba(74, 222, 128, 0.1);
   --color-green-border: rgba(74, 222, 128, 0.3);

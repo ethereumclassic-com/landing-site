@@ -155,13 +155,6 @@ const partners: Partner[] = [
     featured: true,
     partnerSince: '2018',
   },
-  {
-    name: 'Poolin',
-    description: 'Multi-coin mining pool with ETC support.',
-    category: 'mining',
-    url: 'https://poolin.com',
-    partnerSince: '2019',
-  },
 
   // DeFi
   {

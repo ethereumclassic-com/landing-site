@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import type { ClientUpgrade } from '../data/olympia'
+import { badgeStyle } from '@/lib/badge-theme'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -15,14 +16,9 @@ interface ClientUpgradeCardProps {
   detail?: boolean
 }
 
-const roleColors: Record<string, string> = {
-  primary: 'var(--brand-green)',
-  enterprise: 'var(--color-info)',
-  maintenance: 'var(--color-purple)',
-}
 
 export default function ClientUpgradeCard({ client, detail = false }: ClientUpgradeCardProps) {
-  const roleColor = roleColors[client.role] ?? 'var(--text-muted)'
+  const tone = badgeStyle(client.role)
 
   if (!detail) {
     // Summary card for hub page
@@ -46,7 +42,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
                   <span
                     key={badge}
                     className="rounded-full px-2 py-0.5 text-xs font-medium"
-                    style={{ backgroundColor: `${roleColor}15`, color: roleColor }}
+                    style={{ backgroundColor: tone.background, color: tone.color, border: `1px solid ${tone.borderColor}` }}
                   >
                     {badge}
                   </span>
@@ -91,7 +87,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
               <span
                 key={badge}
                 className="rounded-full px-3 py-0.5 text-sm font-medium"
-                style={{ backgroundColor: `${roleColor}15`, color: roleColor }}
+                style={{ backgroundColor: tone.background, color: tone.color, border: `1px solid ${tone.borderColor}` }}
               >
                 {badge}
               </span>
@@ -167,6 +163,19 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
         >
           Documentation →
         </a>
+        {client.securityAuditUrl && (
+          <Link
+            href={client.securityAuditUrl}
+            className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
+            style={{
+              color: 'var(--color-warning)',
+              background: 'var(--color-warning-bg)',
+              border: '1px solid var(--color-warning-border)',
+            }}
+          >
+            Read the security review
+          </Link>
+        )}
       </div>
     </motion.div>
   )

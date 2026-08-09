@@ -3,11 +3,15 @@
 import Link from 'next/link'
 import { useAllPrices } from '@/app/hooks/usePrice'
 import { getPopularPairs } from '../markets/data/markets'
+import type { PriceData } from '@/app/hooks/usePrice'
 
-/** Popular pairs. Client-side: useAllPrices refreshes on an interval. */
-export default function LivePricePairs() {
+/**
+ * Popular pairs. Seeded from the server so the figures are in the initial HTML;
+ * useAllPrices still refreshes them on its interval.
+ */
+export default function LivePricePairs({ initialData }: { initialData?: PriceData | null }) {
   const popularPairs = getPopularPairs()
-  const { prices, loading } = useAllPrices()
+  const { prices, loading } = useAllPrices({ initialData })
 
   const formatPairPrice = (quote: string): string => {
     if (loading || !prices) return '...'

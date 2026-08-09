@@ -135,7 +135,7 @@ export default function PaymentsPage() {
                 key={item.step}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-center"
               >
-                <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)] text-sm font-bold text-[var(--text-primary)]">
+                <div className="mx-auto mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success)] text-sm font-bold text-[var(--color-success-foreground)]">
                   {item.step}
                 </div>
                 <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
@@ -202,7 +202,7 @@ export default function PaymentsPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/buy"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-success)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-success)] px-6 py-3 font-medium text-[var(--color-success-foreground)] transition-all hover:bg-[var(--color-success)]"
             >
               Buy ETC
             </Link>

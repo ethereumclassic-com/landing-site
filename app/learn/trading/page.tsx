@@ -228,7 +228,7 @@ export default function TradingPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/buy"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-info)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-info)]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-info)] px-6 py-3 font-medium text-[var(--color-info-foreground)] transition-all hover:bg-[var(--color-info)]"
             >
               Buy ETC
             </Link>

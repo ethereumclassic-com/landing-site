@@ -77,7 +77,7 @@ export default async function ETCPricePage() {
 
           {/* Multi-currency prices - Live Data */}
           <div className="mt-6">
-            <LivePricePairs />
+            <LivePricePairs initialData={initialPrice} />
           </div>
         </div>
       </section>

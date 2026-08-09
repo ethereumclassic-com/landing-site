@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { getActiveClients } from '../../build/data/build'
+import { getClientImplementations } from '../../build/data/build'
 import OlympiaCountdown from '../components/OlympiaCountdown'
+import { badgeStyle } from '@/lib/badge-theme'
 
 const CheckIcon = () => (
   <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -40,7 +41,7 @@ const ClipboardIcon = () => (
 )
 
 export default function UpgradeHubPage() {
-  const activeClients = getActiveClients()
+  const activeClients = getClientImplementations()
 
   return (
     <main className="min-h-screen">
@@ -86,7 +87,7 @@ export default function UpgradeHubPage() {
                 key={client.id}
                 className={`rounded-2xl border p-8 ${
                   client.recommended
-                    ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
+                    ? 'card-preferred bg-[var(--color-primary)]/5'
                     : 'border-[var(--border)] bg-[var(--bg)]'
                 }`}
               >
@@ -98,18 +99,18 @@ export default function UpgradeHubPage() {
                       {client.badges?.map((badge) => (
                         <span
                           key={badge}
-                          className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]"
+                          className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('recommended')}
                         >
                           {badge}
                         </span>
                       ))}
                       {!client.badges && client.role === 'recommended' && (
-                        <span className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
+                        <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('recommended')}>
                           Recommended
                         </span>
                       )}
                       {!client.badges && client.role === 'maintained' && (
-                        <span className="rounded-full bg-[var(--color-warning)]/20 px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
+                        <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('maintained')}>
                           Maintained
                         </span>
                       )}
@@ -137,7 +138,7 @@ export default function UpgradeHubPage() {
                         </span>
                         <Link
                           href={client.securityAuditUrl}
-                          className="ml-4 shrink-0 text-sm font-medium text-[var(--color-warning)] transition hover:underline"
+                          className="ml-4 shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors" style={{ color: 'var(--color-warning)', background: 'var(--color-warning-bg)', border: '1px solid var(--color-warning-border)' }}
                         >
                           Security audit →
                         </Link>

@@ -339,7 +339,7 @@ export default function BuyPage() {
                 key={item.step}
                 className="relative rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5"
               >
-                <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-success)] text-xs font-bold text-[var(--text-primary)]">
+                <div className="absolute -top-3 left-5 flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-success)] text-xs font-bold text-[var(--color-success-foreground)]">
                   {item.step}
                 </div>
                 <h3 className="mt-2 font-semibold text-[var(--text-primary)]">{item.title}</h3>
@@ -355,7 +355,7 @@ export default function BuyPage() {
               href="https://brale.xyz"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-success)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-success)]"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-success)] px-5 py-2.5 font-medium text-[var(--color-success-foreground)] transition-all hover:bg-[var(--color-success)]"
             >
               Get USC on Brale
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

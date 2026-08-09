@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { networks, getActiveClients, executionPlugins } from '../data/build'
+import { networks, getClientImplementations, executionPlugins } from '../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
+import { badgeStyle } from '@/lib/badge-theme'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -59,7 +60,7 @@ const ClipboardIcon = () => (
 )
 
 export default function ClientsPage() {
-  const activeClients = getActiveClients()
+  const activeClients = getClientImplementations()
   const mainnet = networks.find((n) => n.type === 'mainnet')!
   const testnet = networks.find((n) => n.type === 'testnet')!
 
@@ -156,7 +157,7 @@ export default function ClientsPage() {
                 key={client.id}
                 className={`rounded-2xl border p-8 ${
                   client.recommended
-                    ? 'border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5'
+                    ? 'card-preferred bg-[var(--color-primary)]/5'
                     : 'border-[var(--border)] bg-[var(--bg)]'
                 }`}
               >
@@ -168,23 +169,23 @@ export default function ClientsPage() {
                       {client.badges?.map((badge) => (
                         <span
                           key={badge}
-                          className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]"
+                          className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle(client.role)}
                         >
                           {badge}
                         </span>
                       ))}
                       {!client.badges && client.role === 'recommended' && (
-                        <span className="rounded-full bg-[var(--color-primary)]/20 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
+                        <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle(client.role)}>
                           Recommended
                         </span>
                       )}
                       {!client.badges && client.role === 'maintained' && (
-                        <span className="rounded-full bg-[var(--color-warning)]/20 px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
+                        <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('maintained')}>
                           Maintained
                         </span>
                       )}
                       {client.role === 'reference' && (
-                        <span className="rounded-full bg-[var(--color-info)]/20 px-3 py-1 text-sm font-medium text-[var(--color-info)]">
+                        <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('reference')}>
                           Reference
                         </span>
                       )}
@@ -212,7 +213,7 @@ export default function ClientsPage() {
                         </span>
                         <Link
                           href={client.securityAuditUrl}
-                          className="ml-4 shrink-0 text-sm font-medium text-[var(--color-warning)] transition hover:underline"
+                          className="ml-4 shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors" style={{ color: 'var(--color-warning)', background: 'var(--color-warning-bg)', border: '1px solid var(--color-warning-border)' }}
                         >
                           Security audit →
                         </Link>

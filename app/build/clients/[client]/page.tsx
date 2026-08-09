@@ -1,5 +1,3 @@
-'use client'
-
 import { use } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -11,6 +9,7 @@ import {
   type SecurityAdvisory,
 } from '../../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
+import { badgeStyle } from '@/lib/badge-theme'
 
 const PlatformIcons: Record<string, React.ReactNode> = {
   Windows: (
@@ -303,23 +302,23 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                 {client.badges?.map((badge) => (
                   <span
                     key={badge}
-                    className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]"
+                    className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle(client.role)}
                   >
                     {badge}
                   </span>
                 ))}
                 {!client.badges && client.role === 'recommended' && (
-                  <span className="rounded-full bg-[var(--color-primary)]/10 px-3 py-1 text-sm font-medium text-[var(--color-primary)]">
+                  <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle(client.role)}>
                     Recommended
                   </span>
                 )}
                 {!client.badges && client.role === 'maintained' && (
-                  <span className="rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
+                  <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('maintained')}>
                     Maintained
                   </span>
                 )}
                 {client.role === 'reference' && (
-                  <span className="rounded-full bg-[var(--color-info-bg)] px-3 py-1 text-sm font-medium text-[var(--color-info)]">
+                  <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('reference')}>
                     Reference
                   </span>
                 )}
@@ -528,7 +527,7 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
             <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-sm font-medium text-cyan-400">
               Plugin
             </span>
-            <span className="rounded-full bg-[var(--color-warning-bg)] px-3 py-1 text-sm font-medium text-[var(--color-warning)]">
+            <span className="rounded-full px-3 py-1 text-sm font-medium" style={badgeStyle('maintained')}>
               Planned
             </span>
             <span className={`rounded-full px-3 py-1 text-sm font-medium ${langInfo.bg} ${langInfo.text}`}>

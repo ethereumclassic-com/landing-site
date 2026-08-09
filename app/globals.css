@@ -361,6 +361,56 @@ p {
 }
 
 /* ============================================
+   PREFERRED OPTION
+   ============================================
+
+   The "Preferred Option" pattern: one card in a set is visually promoted so a
+   reader scanning several equivalent-looking choices knows which is intended.
+   Standard on pricing tables as the "Most Popular" column; here it marks
+   Fukuii as ETC's primary client among the implementations.
+
+   Two rules this follows deliberately:
+
+   1. ONLY ONE element per view may carry it. Several pulsing cards read as
+      noise and destroy the hierarchy the pulse exists to create.
+   2. It respects prefers-reduced-motion. A looping animation is a vestibular
+      trigger, so the reduced-motion branch keeps the glow and drops the
+      movement — the signal survives, the motion does not.
+
+   The pulse is slow (3.2s) and low-amplitude on purpose: it should register
+   peripherally, not compete with the content.
+
+   Sizing is aligned to ethereumclassicdao-org's highlighted card, which uses
+   border-[var(--border-brand)] + shadow-[0_0_24px_var(--border-glow)]. The
+   resting state here is identical to it, and the pulse breathes 24px -> 32px
+   around that value, so under prefers-reduced-motion this renders exactly as
+   the sibling does. Do not switch this to --brand-green-glow: that token is
+   ~2x the alpha (0.2/0.4 vs 0.12/0.15) and reads as a much heavier halo.
+   ============================================ */
+
+@keyframes preferred-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 24px var(--border-glow);
+  }
+  50% {
+    box-shadow: 0 0 32px var(--border-glow);
+  }
+}
+
+.card-preferred {
+  border-color: var(--border-brand);
+  box-shadow: 0 0 24px var(--border-glow);
+  animation: preferred-pulse 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-preferred {
+    animation: none;
+  }
+}
+
+/* ============================================
    ANIMATIONS
    ============================================ */
 

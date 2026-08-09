@@ -211,7 +211,7 @@ export default function SecurityPage() {
             </div>
             <Link
               href="/wallet/compare"
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-5 py-2.5 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-error)] md:mt-0"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-5 py-2.5 font-medium text-[var(--color-error-foreground)] transition-all hover:bg-[var(--color-error)] md:mt-0"
             >
               Compare Wallets
             </Link>
@@ -233,7 +233,7 @@ export default function SecurityPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/learn/wallets"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--color-error)]"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-error)] px-6 py-3 font-medium text-[var(--color-error-foreground)] transition-all hover:bg-[var(--color-error)]"
             >
               Wallet Guides
             </Link>
