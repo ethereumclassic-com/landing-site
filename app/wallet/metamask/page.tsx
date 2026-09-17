@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const networkConfig = {
   networkName: 'Ethereum Classic',
-  rpcUrl: 'https://etc.rivet.link',
+  rpcUrl: 'https://etc.blockscout.com/api/eth-rpc',
   chainId: '61',
   symbol: 'ETC',
   blockExplorer: 'https://etc.blockscout.com',
@@ -285,7 +285,6 @@ export default function MetaMaskPage() {
                 // so it needs an operator on the hook for uptime. Not hypothetical —
                 // of the three etc-network.info endpoints this repo referenced,
                 // geth-de is now NXDOMAIN and besu-at answers "invalid host specified".
-                { name: 'Rivet (Primary)', url: 'https://etc.rivet.link', note: 'Funded by ETC Cooperative' },
                 { name: 'Blockscout RPC', url: 'https://etc.blockscout.com/api/eth-rpc', note: 'Official explorer' },
               ].map((rpc) => (
                 <div
@@ -320,6 +319,14 @@ export default function MetaMaskPage() {
                 className="text-[var(--color-primary)] hover:underline"
               >
                 Chainlist
+              </a>. The endpoints the ETC Cooperative maintained are moving to the{' '}
+              <a
+                href="https://docs.coregeth.com/etc-cooperative-transition/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-primary)] hover:underline"
+              >
+                ethereumclassic organization
               </a>.
             </p>
           </div>

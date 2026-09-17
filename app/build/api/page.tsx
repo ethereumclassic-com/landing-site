@@ -47,14 +47,14 @@ const networks = [
     name: 'Mainnet',
     chainId: '61',
     currency: 'ETC',
-    rpc: 'https://etc.rivet.link',
+    rpc: 'https://etc.blockscout.com/api/eth-rpc',
     explorer: 'https://etc.blockscout.com',
   },
   {
     name: 'Mordor testnet',
     chainId: '63',
     currency: 'METC',
-    rpc: 'https://rpc.mordor.etccooperative.org',
+    rpc: 'https://etc-mordor.blockscout.com/api/eth-rpc',
     explorer: 'https://etc-mordor.blockscout.com',
   },
 ]
@@ -77,7 +77,7 @@ const dataSources = [
 const codeExamples: Record<'javascript' | 'python' | 'curl', string> = {
   javascript: `import { JsonRpcProvider, formatEther } from 'ethers'
 
-const provider = new JsonRpcProvider('https://etc.rivet.link')
+const provider = new JsonRpcProvider('https://etc.blockscout.com/api/eth-rpc')
 
 const blockNumber = await provider.getBlockNumber()
 const balance = await provider.getBalance('0x...')
@@ -85,11 +85,11 @@ const balance = await provider.getBalance('0x...')
 console.log(blockNumber, formatEther(balance))`,
   python: `from web3 import Web3
 
-w3 = Web3(Web3.HTTPProvider('https://etc.rivet.link'))
+w3 = Web3(Web3.HTTPProvider('https://etc.blockscout.com/api/eth-rpc'))
 
 print(w3.eth.block_number)
 print(w3.from_wei(w3.eth.get_balance('0x...'), 'ether'))`,
-  curl: `curl -X POST https://etc.rivet.link \\
+  curl: `curl -X POST https://etc.blockscout.com/api/eth-rpc \\
   -H 'Content-Type: application/json' \\
   --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'`,
 }

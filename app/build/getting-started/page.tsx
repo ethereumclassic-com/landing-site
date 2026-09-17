@@ -264,7 +264,7 @@ export default function GettingStartedPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                    <code className="text-xs text-[var(--text-primary)]">etc.rivet.link</code>
+                    <code className="text-xs text-[var(--text-primary)]">etc.blockscout.com/api/eth-rpc</code>
                   </div>
                 </div>
               </div>
@@ -287,7 +287,7 @@ export default function GettingStartedPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                    <code className="text-xs text-[var(--text-primary)]">rpc.mordor.etccooperative.org</code>
+                    <code className="text-xs text-[var(--text-primary)]">etc-mordor.blockscout.com/api/eth-rpc</code>
                   </div>
                 </div>
                 <Link
@@ -308,12 +308,12 @@ export default function GettingStartedPage() {
                     const config = `module.exports = {
   networks: {
     etc: {
-      url: "https://etc.rivet.link",
+      url: "https://etc.blockscout.com/api/eth-rpc",
       chainId: 61,
       accounts: [process.env.PRIVATE_KEY]
     },
     mordor: {
-      url: "https://rpc.mordor.etccooperative.org",
+      url: "https://etc-mordor.blockscout.com/api/eth-rpc",
       chainId: 63,
       accounts: [process.env.PRIVATE_KEY]
     }
@@ -332,12 +332,12 @@ export default function GettingStartedPage() {
 {`module.exports = {
   networks: {
     etc: {
-      url: `}<span className="text-[var(--color-primary)]">&quot;https://etc.rivet.link&quot;</span>{`,
+      url: `}<span className="text-[var(--color-primary)]">&quot;https://etc.blockscout.com/api/eth-rpc&quot;</span>{`,
       chainId: `}<span className="text-[var(--color-primary)]">61</span>{`,
       accounts: [process.env.PRIVATE_KEY]
     },
     mordor: {
-      url: `}<span className="text-[var(--color-primary)]">&quot;https://rpc.mordor.etccooperative.org&quot;</span>{`,
+      url: `}<span className="text-[var(--color-primary)]">&quot;https://etc-mordor.blockscout.com/api/eth-rpc&quot;</span>{`,
       chainId: `}<span className="text-[var(--color-primary)]">63</span>{`,
       accounts: [process.env.PRIVATE_KEY]
     }

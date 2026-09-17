@@ -45,7 +45,7 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 - [Olympia Upgrade](https://ethereumclassic.com/olympia) — Olympia network upgrade hub
 - [Upgrade Your Node](https://ethereumclassic.com/olympia/upgrade) — Client upgrade guides
 - [Miners & Fee Market](https://ethereumclassic.com/olympia/miners) — How EIP-1559 affects miners under Olympia
-- [Core-Geth v1.12.2x Security Audit](https://ethereumclassic.com/build/clients/core-geth-security-audit) — Six unpatched CVEs in etclabscore/core-geth v1.12.x (21-month maintenance gap, Go 1.21 EOL), actively exploited against ETC mainnet bootnodes March 2026. Full CVE detail, postmortem PR trail, and migration guide. All issues patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0. Migrate to Fukuii — Ethereum Classic's first native client (Scala 3 LTS on Pekko Typed Actors, by The Fukuii Authors).
+- [Core-Geth v1.12.x Security Audit](https://ethereumclassic.com/build/clients/core-geth-security-audit) — Six CVEs in etclabscore/core-geth v1.12.x (21-month maintenance gap, Go 1.21 and 1.22 EOL), one of them exploited against ETC mainnet bootnodes in March 2026. Full CVE detail, postmortem PR trail, and the upgrade path. All issues are fixed in Core-Geth v1.13.0 (https://github.com/ethereumclassic/core-geth/releases/tag/v1.13.0), prepared by White B0x. Fukuii, Ethereum Classic's first native client (Scala 3 LTS on Pekko Typed Actors, by The Fukuii Authors), is the preferred successor once it publishes a release.
 - [Olympia Governance](https://ethereumclassic.com/olympia/governance) — Treasury and governance contracts
 - [Fork History](https://ethereumclassic.com/upgrades) — Network upgrade history (Atlantis → Olympia)
 
@@ -96,8 +96,8 @@ Activation block: TBD (announced after CDC-23 community call).
 
 ## Networks
 
-- Mainnet RPC: https://etc.rivet.link
-- Mordor Testnet RPC: https://rpc.mordor.etccooperative.org
+- Mainnet RPC: https://etc.blockscout.com/api/eth-rpc
+- Mordor Testnet RPC: https://etc-mordor.blockscout.com/api/eth-rpc
 - Block Explorer: https://etc.blockscout.com
 
 ## Regulatory Positioning

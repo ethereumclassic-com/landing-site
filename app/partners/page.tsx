@@ -106,13 +106,6 @@ const partners: Partner[] = [
     partnerSince: '2019',
   },
   {
-    name: 'Rivet',
-    description: 'Public RPC endpoint provider for ETC developers.',
-    category: 'infrastructure',
-    url: 'https://rivet.cloud',
-    partnerSince: '2021',
-  },
-  {
     name: 'MiningPoolStats',
     description: 'Mining pool statistics and network data.',
     category: 'infrastructure',

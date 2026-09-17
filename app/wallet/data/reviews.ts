@@ -196,7 +196,7 @@ Adding ETC to MetaMask requires manual network configuration:
 1. Open Settings → Networks → Add Network
 2. Enter ETC mainnet details:
    - Network Name: Ethereum Classic
-   - RPC URL: https://etc.rivet.link
+   - RPC URL: https://etc.blockscout.com/api/eth-rpc
    - Chain ID: 61
    - Symbol: ETC
    - Explorer: https://etc.blockscout.com

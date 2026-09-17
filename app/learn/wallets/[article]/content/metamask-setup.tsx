@@ -73,7 +73,7 @@ export default function MetaMaskSetup() {
             </tr>
             <tr>
               <td className="font-semibold">New RPC URL</td>
-              <td>https://etc.rivet.link</td>
+              <td>https://etc.blockscout.com/api/eth-rpc</td>
             </tr>
             <tr>
               <td className="font-semibold">Chain ID</td>

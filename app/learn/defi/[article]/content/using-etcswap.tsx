@@ -11,7 +11,7 @@ export default function UsingEtcswap() {
       </p>
       <ul>
         <li><strong>Network Name:</strong> Ethereum Classic</li>
-        <li><strong>RPC URL:</strong> https://etc.rivet.link</li>
+        <li><strong>RPC URL:</strong> https://etc.blockscout.com/api/eth-rpc</li>
         <li><strong>Chain ID:</strong> 61</li>
         <li><strong>Currency Symbol:</strong> ETC</li>
         <li><strong>Block Explorer:</strong> https://etc.blockscout.com</li>

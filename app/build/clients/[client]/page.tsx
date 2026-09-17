@@ -10,6 +10,13 @@ import {
 } from '../../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
+import { ReleaseDownloads } from '@/app/components/ReleaseDownloads'
+import {
+  CORE_GETH_FUKUII_MIGRATION_URL,
+  CORE_GETH_MIGRATION_URL,
+  CORE_GETH_RELEASE_URL,
+  CORE_GETH_VERSION,
+} from '@/lib/core-geth'
 
 const PlatformIcons: Record<string, React.ReactNode> = {
   Windows: (
@@ -85,10 +92,13 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
             </svg>
             <div className="flex-1">
-              <h3 className="font-semibold text-[var(--color-error)]">Security Notice — etclabscore Fork</h3>
+              <h3 className="font-semibold text-[var(--color-error)]">Upgrade from v1.12.x</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                The <code className="rounded bg-[var(--color-error)]/10 px-1 font-mono text-[var(--color-error)]">etclabscore/core-geth</code> fork is unmaintained and does not include the security patches listed below. If you are running that version,{' '}
-                <strong className="text-[var(--text-primary)]">upgrade immediately</strong> to{' '}
+                Every v1.12.x release, including v1.12.23 from{' '}
+                <code className="rounded bg-[var(--color-error)]/10 px-1 font-mono text-[var(--color-error)]">etclabscore/core-geth</code>,
+                carries at least one of the vulnerabilities below and was built on Go 1.21 or Go 1.22, whose support
+                ended in August 2024 and February 2025.{' '}
+                <strong className="text-[var(--text-primary)]">Upgrade to Core-Geth v1.13.0 or later</strong> from{' '}
                 <a
                   href="https://github.com/ethereumclassic/core-geth"
                   target="_blank"
@@ -99,21 +109,31 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
                 </a>
                 .
               </p>
-              <a
-                href="https://github.com/ethereumclassic/core-geth/releases"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 px-4 py-2 text-sm font-medium text-[var(--color-error)] transition hover:bg-[var(--color-error)]/20"
-              >
-                Get Patched Version →
-              </a>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <a
+                  href={CORE_GETH_RELEASE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 px-4 py-2 text-sm font-medium text-[var(--color-error)] transition hover:bg-[var(--color-error)]/20"
+                >
+                  Download {CORE_GETH_VERSION} →
+                </a>
+                <a
+                  href={CORE_GETH_MIGRATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
+                >
+                  Migration guide →
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         {/* CVE table */}
         <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Patched Security Advisories</h2>
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Fixed in v1.13.0</h2>
           <div className="space-y-3">
             {advisories.map((adv) => {
               const colors = severityColors[adv.severity]
@@ -137,20 +157,49 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
           </div>
         </div>
 
-        {/* Post-upgrade note */}
+        {/* Upgrade notes */}
         <div className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-4">
-          <p className="text-sm text-[var(--color-text-muted)]">
-            <strong className="text-[var(--color-primary)]">After upgrading:</strong> Rotate your P2P node key to ensure fresh identity on the network.
-          </p>
-          <div className="mt-2 rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-            <code className="text-[var(--color-primary)]">rm {'<datadir>'}/geth/nodekey</code>
+          <p className="text-sm font-semibold text-[var(--color-primary)]">Upgrading to v1.13.0</p>
+          <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-[var(--color-text-muted)]">
+            <li>No resync: chain data carries over.</li>
+            <li>
+              <strong className="text-[var(--text-primary)]">Rotating the P2P node key is required</strong>, because
+              CVE-2026-26315 leaks bits of it. With the node stopped, rename the key rather than deleting it. The
+              node writes a new one on its next start, and its enode ID changes.
+            </li>
+            <li>
+              MESS (ECBP-1100) is on by default. Start with <code className="whitespace-nowrap">--mess=false</code> to keep the v1.12.x behavior.
+            </li>
+            <li>
+              With no network flag, the node runs Ethereum Classic. <code className="whitespace-nowrap">--ethereum</code>, <code className="whitespace-nowrap">--sepolia</code>{' '}
+              and <code className="whitespace-nowrap">--holesky</code> refuse to start.
+            </li>
+            <li>Ethereum Classic and Mordor nodes no longer open the Engine API port, 8551.</li>
+            <li>
+              An empty <code className="whitespace-nowrap">--http.api</code> or <code className="whitespace-nowrap">--ws.api</code> list stops the node at startup.
+            </li>
+          </ul>
+          <div className="mt-3 overflow-x-auto rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
+            <code className="whitespace-pre text-[var(--color-primary)]">
+              {'mv <datadir>/geth/nodekey <datadir>/geth/nodekey.old-rotated-$(date +%F)'}
+            </code>
           </div>
+          <p className="mt-3 text-sm">
+            <a
+              href={CORE_GETH_MIGRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-[var(--color-primary)] hover:underline"
+            >
+              Migration guide for Linux, macOS, Windows and Docker →
+            </a>
+          </p>
         </div>
 
         {/* Full audit link */}
         {auditUrl && (
           <div className="flex items-center justify-between rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-3">
-            <span className="text-sm text-[var(--color-text-muted)]">Full security audit — CVE details, risk assessment, methodology</span>
+            <span className="text-sm text-[var(--color-text-muted)]">v1.12.x security audit: status by release, CVE details, risk assessment, methodology</span>
             <Link
               href={auditUrl}
               className="ml-4 shrink-0 text-sm font-medium text-[var(--color-primary)] transition hover:text-[var(--color-primary)]/80"
@@ -170,7 +219,7 @@ function InstallationSection({ client }: { client: NodeClient }) {
       <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Installation</h2>
 
       <div className="space-y-4">
-        {client.installCommand && (
+        {client.installCommand && !client.installGuide && (
           <div>
             <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Quick Install</h3>
             <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
@@ -179,30 +228,39 @@ function InstallationSection({ client }: { client: NodeClient }) {
           </div>
         )}
 
-        {client.id === 'core-geth' && (
-          <div className="space-y-4">
-            <div>
-              <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">macOS (Homebrew)</h3>
-              <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">brew install core-geth</code>
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
-              <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull ghcr.io/ethereumclassic/core-geth:latest</code>
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
-              <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
-                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/ethereumclassic/core-geth.git</code>
-                <code className="block text-[var(--color-text-muted)]">cd core-geth</code>
-                <code className="block text-[var(--color-text-muted)]">make geth</code>
-              </div>
-            </div>
+        {client.release && (
+          <div>
+            <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">
+              Downloads for {client.release.version}
+            </h3>
+            <ReleaseDownloads release={client.release} />
           </div>
         )}
+
+        {client.installGuide?.map(({ platform, command, note, docsUrl }) => (
+          <div key={platform}>
+            <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">{platform}</h3>
+            <pre className="overflow-x-auto rounded-lg bg-[var(--bg)] p-3 font-mono text-xs text-[var(--color-primary)]">
+              <code>{command}</code>
+            </pre>
+            {(note || docsUrl) && (
+              <p className="mt-2 text-xs text-[var(--color-text-muted)]">
+                {note}
+                {note && docsUrl && ' '}
+                {docsUrl && (
+                  <a
+                    href={docsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-[var(--color-primary)] hover:underline"
+                  >
+                    Full steps →
+                  </a>
+                )}
+              </p>
+            )}
+          </div>
+        ))}
 
         {client.id === 'fukuii' && (
           <div className="space-y-4">
@@ -269,14 +327,39 @@ function ConfigurationSection({ client }: { client: NodeClient }) {
         {client.id === 'core-geth' && (
           <div>
             <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Common Options</h3>
-            <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
-              <code className="block text-[var(--color-text-muted)]">--http                  # Enable HTTP-RPC server</code>
-              <code className="block text-[var(--color-text-muted)]">--http.addr 0.0.0.0     # HTTP listen address</code>
-              <code className="block text-[var(--color-text-muted)]">--http.port 8545        # HTTP-RPC port</code>
-              <code className="block text-[var(--color-text-muted)]">--ws                    # Enable WebSocket server</code>
-              <code className="block text-[var(--color-text-muted)]">--syncmode full         # Full node sync</code>
-              <code className="block text-[var(--color-text-muted)]">--syncmode snap         # Snap sync (faster)</code>
-            </div>
+            <pre className="overflow-x-auto rounded-lg bg-[var(--bg)] p-3 font-mono text-xs text-[var(--color-text-muted)]">
+              <code>
+                {[
+                  '--http                     # JSON-RPC on 127.0.0.1:8545, this machine only',
+                  '--http.api eth,net,web3    # Serve only these namespaces',
+                  '--ws                       # WebSocket on 127.0.0.1:8546',
+                  '--syncmode full            # Execute every block from genesis; snap is the default',
+                  '--gcmode archive           # Keep the state of every block, for an archive node',
+                  '--mine --miner.etherbase <address>   # Solo mining with your own hardware',
+                ].join('\n')}
+              </code>
+            </pre>
+            <p className="mt-2 text-xs text-[var(--color-text-muted)]">
+              Keep <code className="whitespace-nowrap">--http.addr</code> on 127.0.0.1 unless a trusted proxy sits in front of the node, and keep{' '}
+              <code>admin</code>, <code>debug</code> and <code>personal</code> out of <code className="whitespace-nowrap">--http.api</code> on any
+              reachable interface.{' '}
+              <a
+                href="https://docs.coregeth.com/operate/security/#rpc-exposure"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[var(--color-primary)] hover:underline"
+              >
+                RPC exposure →
+              </a>{' '}
+              <a
+                href="https://docs.coregeth.com/getting-started/run-a-node/#choose-your-configuration"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[var(--color-primary)] hover:underline"
+              >
+                Flags for each kind of node →
+              </a>
+            </p>
           </div>
         )}
       </div>
@@ -331,16 +414,18 @@ function NodeClientPage({ client }: { client: NodeClient }) {
               </p>
               {client.id === 'core-geth' && (
                 <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3 text-sm">
-                  <span className="text-[var(--color-warning)] font-medium">⚠ Sunset after Olympia</span>
-                  <span className="text-[var(--color-text-muted)]">Maintenance mode since December 2024 · v1.13.x final series</span>
-                  <Link
-                    href="https://fukuii.org"
+                  <span className="text-[var(--color-warning)] font-medium">⚠ Last release line</span>
+                  <span className="text-[var(--color-text-muted)]">
+                    v1.13 is maintained through the transition · Fukuii is the preferred successor
+                  </span>
+                  <a
+                    href={CORE_GETH_FUKUII_MIGRATION_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium text-[var(--color-primary)] hover:underline"
                   >
-                    Migrate to Fukuii →
-                  </Link>
+                    When to move to Fukuii →
+                  </a>
                 </div>
               )}
             </div>
@@ -451,9 +536,10 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-medium text-[var(--text-primary)]">Bridge Release — Maintenance Mode</p>
+                  <p className="font-medium text-[var(--text-primary)]">Last Release Line</p>
                   <p className="text-sm text-[var(--color-text-muted)]">
-                    v1.13.x is the final release series for this client. Maintained through the Olympia upgrade for network continuity only.
+                    v1.13 is the last Core-Geth release line, maintained through the transition. Until Fukuii publishes a
+                    release, it is the client to run.
                   </p>
                 </div>
               </div>

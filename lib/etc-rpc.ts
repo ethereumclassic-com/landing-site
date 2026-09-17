@@ -15,21 +15,25 @@ import * as path from 'path'
 import { fetchNetworkNow, FALLBACK_HASHRATE_THS } from './hashrate'
 import { NOMINAL_BLOCK_TIME_SECONDS } from './chain'
 import { CURRENT_ERA_REFERENCE_BLOCK } from '@/app/research/data/emission'
+import { ETC_RPC_ENDPOINTS } from './rpc-endpoints'
 
-// Funded, accountable endpoints only — the same bar as the public lists in
-// app/build/data/build.ts, because this chain feeds figures the site presents
-// as fact. Verified 2026-08-09 by eth_chainId (both 0x3d) at matching heights.
+// The rotation for latest-block detail. The list itself lives in
+// lib/rpc-endpoints.ts, which records when each endpoint last answered
+// eth_chainId and how to refresh it from ChainList's data source. Order there is
+// accountability, not speed: Blockscout first, then endpoints other operators
+// publish. The organization's own endpoints join the head of that list once they
+// answer; they had no DNS record on 2026-09-17, so they are not in the rotation.
 //
-// Two removals, neither for being unreachable:
-//   besu-at.etc-network.info  resolves, but answers every request with
-//                             "invalid host specified" — it consumed a retry
-//                             slot it could never satisfy.
-//   etc.etcdesktop.com        answers correctly, but is community-maintained
-//                             with no uptime accountability.
-const RPC_ENDPOINTS = [
-  'https://etc.rivet.link',
-  'https://etc.blockscout.com/api/eth-rpc',
-]
+// This chain feeds figures the site presents as fact, so the community endpoints
+// at the end of the list are a last resort for block detail only. Difficulty,
+// hashrate and block time come from lib/hashrate.ts, never from here.
+//
+// Each request carries its own timeout. Without one, an endpoint that stops
+// resolving costs every render the platform's full connect timeout before the
+// next is tried, which is what etc.rivet.link did after it went offline in
+// August 2026 while it was still first in this list.
+const RPC_ENDPOINTS = ETC_RPC_ENDPOINTS.map((endpoint) => endpoint.url)
+const RPC_TIMEOUT_MS = 6000
 
 // Cache duration: 1 hour — matches ISR revalidation interval
 const CACHE_DURATION_MS = 60 * 60 * 1000
@@ -149,6 +153,7 @@ async function rpcCall<T>(method: string, params: unknown[] = []): Promise<T | n
           params,
           id: 1,
         }),
+        signal: AbortSignal.timeout(RPC_TIMEOUT_MS),
       })
 
       if (!response.ok) continue

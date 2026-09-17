@@ -36,7 +36,7 @@ export default function HowToBuyEtc() {
 
       <h3>Using ETCswap</h3>
       <ul>
-        <li>Set up MetaMask and add the Ethereum Classic network (Chain ID 61, RPC: https://etc.rivet.link)</li>
+        <li>Set up MetaMask and add the Ethereum Classic network (Chain ID 61, RPC: https://etc.blockscout.com/api/eth-rpc)</li>
         <li>Connect your wallet to ETCswap</li>
         <li>Select the token you want to swap from (e.g., ClassicUSD or WETC)</li>
         <li>Enter the amount and review the swap details including price impact and slippage</li>
@@ -63,7 +63,7 @@ export default function HowToBuyEtc() {
       <ul>
         <li><strong>Network Name:</strong> Ethereum Classic</li>
         <li><strong>Chain ID:</strong> 61</li>
-        <li><strong>RPC URL:</strong> https://etc.rivet.link</li>
+        <li><strong>RPC URL:</strong> https://etc.blockscout.com/api/eth-rpc</li>
         <li><strong>Currency Symbol:</strong> ETC</li>
         <li><strong>Block Explorer:</strong> https://etc.blockscout.com</li>
       </ul>

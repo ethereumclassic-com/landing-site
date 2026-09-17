@@ -211,7 +211,7 @@ export default function BuildPage() {
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="font-mono text-[var(--text-primary)]">https://etc.rivet.link</code>
+                  <code className="font-mono text-[var(--text-primary)]">https://etc.blockscout.com/api/eth-rpc</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Explorer</span>
@@ -260,7 +260,7 @@ export default function BuildPage() {
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="font-mono text-xs text-[var(--text-primary)]">rpc.mordor.etccooperative.org</code>
+                  <code className="font-mono text-xs text-[var(--text-primary)]">etc-mordor.blockscout.com/api/eth-rpc</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Explorer</span>

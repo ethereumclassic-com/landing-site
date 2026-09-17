@@ -26,7 +26,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'How do I add ETC to MetaMask?',
         answer:
-          'Open MetaMask, click the network dropdown, then "Add Network." Enter: Network Name: Ethereum Classic, RPC URL: https://etc.rivet.link, Chain ID: 61, Currency Symbol: ETC, Block Explorer: https://etc.blockscout.com. Alternatively, visit chainlist.org/chain/61 and click "Add to MetaMask" for automatic configuration.',
+          'Open MetaMask, click the network dropdown, then "Add Network." Enter: Network Name: Ethereum Classic, RPC URL: https://etc.blockscout.com/api/eth-rpc, Chain ID: 61, Currency Symbol: ETC, Block Explorer: https://etc.blockscout.com. Alternatively, visit chainlist.org/chain/61 and click "Add to MetaMask" for automatic configuration.',
       },
       {
         question: 'My transaction is stuck. What do I do?',
@@ -46,7 +46,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'Which wallets support Ethereum Classic?',
         answer:
-          'Hardware wallets (Trezor, Ledger, SafePal), browser extensions (MetaMask), and mobile wallets (Trust Wallet, Exodus, Coinomi) all support ETC. MetaMask requires manual network configuration with Chain ID 61 and RPC URL https://etc.rivet.link. Hardware wallets provide the strongest security for long-term storage.',
+          'Hardware wallets (Trezor, Ledger, SafePal), browser extensions (MetaMask), and mobile wallets (Trust Wallet, Exodus, Coinomi) all support ETC. MetaMask requires manual network configuration with Chain ID 61 and RPC URL https://etc.blockscout.com/api/eth-rpc. Hardware wallets provide the strongest security for long-term storage.',
       },
       {
         question: 'What dApps are available on ETC?',
@@ -195,17 +195,17 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What are the differences between developing for ETH vs ETC?',
         answer:
-          'Minimal. Both use the same EVM, same smart contract languages, same development tools, and same ABI encoding. Key differences: ETC uses Chain ID 61 (vs ETH\'s 1), the RPC endpoint is different (etc.rivet.link), and ETC does not include some PoS-specific EIPs. Your existing Solidity contracts can be deployed on ETC by simply changing the network configuration.',
+          'Minimal. Both use the same EVM, same smart contract languages, same development tools, and same ABI encoding. Key differences: ETC uses Chain ID 61 (vs ETH\'s 1), the RPC endpoint is different (etc.blockscout.com/api/eth-rpc), and ETC does not include some PoS-specific EIPs. Your existing Solidity contracts can be deployed on ETC by simply changing the network configuration.',
       },
       {
         question: 'How do I deploy a smart contract to ETC?',
         answer:
-          'Configure your development framework (Hardhat, Foundry, or Remix) with Chain ID 61 and RPC URL https://etc.rivet.link. Deploy using the same workflow as any EVM chain. For testing, use the Mordor testnet (Chain ID 63, RPC: https://rpc.mordor.etccooperative.org). Get test ETC from the Mordor faucet. Verify your contract on etc.blockscout.com after deployment.',
+          'Configure your development framework (Hardhat, Foundry, or Remix) with Chain ID 61 and RPC URL https://etc.blockscout.com/api/eth-rpc. Deploy using the same workflow as any EVM chain. For testing, use the Mordor testnet (Chain ID 63, RPC: https://etc-mordor.blockscout.com/api/eth-rpc). Get test ETC from the Mordor faucet. Verify your contract on etc.blockscout.com after deployment.',
       },
       {
         question: 'What public RPC endpoints are available?',
         answer:
-          'The primary public endpoint is https://etc.rivet.link (mainnet). For Mordor testnet: https://rpc.mordor.etccooperative.org. For a comprehensive, performance-monitored list of RPC endpoints, visit chainlist.org/chain/61 (mainnet) or chainlist.org/chain/63 (Mordor). These endpoints support the standard Ethereum JSON-RPC API.',
+          'The primary public endpoint is https://etc.blockscout.com/api/eth-rpc (mainnet). For Mordor testnet: https://etc-mordor.blockscout.com/api/eth-rpc. For a comprehensive, performance-monitored list of RPC endpoints, visit chainlist.org/chain/61 (mainnet) or chainlist.org/chain/63 (Mordor). These endpoints support the standard Ethereum JSON-RPC API.',
       },
       {
         question: 'Are there grants or funding available for ETC development?',
@@ -243,7 +243,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What tasks can I help with?',
         answer:
-          'Current community needs include: running ETC nodes (Core-Geth, Besu, or Fukuii) to strengthen network decentralization, testing protocol upgrades on the Mordor testnet, creating educational content, translating documentation, building dApps, providing liquidity on ETCswap, and participating in governance discussions through the ECIP process.',
+          'Current community needs include: running ETC nodes (Core-Geth or Fukuii) to strengthen network decentralization, testing protocol upgrades on the Mordor testnet, creating educational content, translating documentation, building dApps, providing liquidity on ETCswap, and participating in governance discussions through the ECIP process.',
       },
       {
         question: 'Where does the ETC community hang out?',

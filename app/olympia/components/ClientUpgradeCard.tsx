@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import type { ClientUpgrade } from '../data/olympia'
 import { badgeStyle } from '@/lib/badge-theme'
+import { ReleaseDownloads } from '@/app/components/ReleaseDownloads'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -124,6 +125,16 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
         </ul>
       </div>
 
+      {/* Downloads */}
+      {client.release && (
+        <div>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)]">Downloads for {client.release.version}</h2>
+          <div className="mt-3">
+            <ReleaseDownloads release={client.release} />
+          </div>
+        </div>
+      )}
+
       {/* Install commands */}
       <div>
         <h2 className="text-xl font-semibold text-[var(--text-primary)]">Installation</h2>
@@ -131,7 +142,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
           {client.installCommands.map(({ platform, command }) => (
             <div key={platform} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
               <p className="text-xs font-medium text-[var(--color-text-muted)]">{platform}</p>
-              <code className="mt-2 block font-mono text-sm text-[var(--brand-green)]">{command}</code>
+              <pre className="mt-2 overflow-x-auto font-mono text-sm text-[var(--brand-green)]"><code>{command}</code></pre>
             </div>
           ))}
         </div>
@@ -173,7 +184,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
               border: '1px solid var(--color-warning-border)',
             }}
           >
-            Read the security review
+            Read the v1.12.x security audit
           </Link>
         )}
       </div>

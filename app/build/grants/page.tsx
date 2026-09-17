@@ -30,15 +30,6 @@ const fundingSources: FundingSource[] = [
     focus: ['Community Events', 'Content Creation', 'Translations', 'Small Tools'],
   },
   {
-    name: 'Bug Bounties',
-    description: 'Security-focused bounties for finding and responsibly disclosing vulnerabilities in ETC protocol clients and critical infrastructure.',
-    type: 'bounties',
-    url: 'https://github.com/ethereumclassic/core-geth/security',
-    fundingRange: '$100 - $50K+',
-    status: 'active',
-    focus: ['Security', 'Core Clients', 'Critical Infrastructure'],
-  },
-  {
     name: 'Gitcoin Grants',
     description: 'Quadratic funding rounds where community donations are matched. Great for public goods and open-source projects.',
     type: 'grants',
@@ -162,7 +153,7 @@ export default function BuildGrantsPage() {
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Funding opportunities for builders on Ethereum Classic — grants, bounties, and community-backed support for open-source development, tooling, and ecosystem infrastructure. With the Olympia upgrade introducing a protocol-native treasury, ETC&apos;s capacity to fund development is expanding for the first time in the network&apos;s history.
+              Funding opportunities for builders on Ethereum Classic — grants and community-backed support for open-source development, tooling, and ecosystem infrastructure. With the Olympia upgrade introducing a protocol-native treasury, ETC&apos;s capacity to fund development is expanding for the first time in the network&apos;s history.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
@@ -189,7 +180,7 @@ export default function BuildGrantsPage() {
             {[
               { value: '$1M+', label: 'Grants Distributed' },
               { value: '50+', label: 'Projects Funded' },
-              { value: '4', label: 'Active Programs' },
+              { value: '3', label: 'Active Programs' },
               { value: '24/7', label: 'Community Support' },
             ].map((stat) => (
               <div

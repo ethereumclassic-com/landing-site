@@ -582,7 +582,7 @@ items:
     __date: 2020-02-03
     __color: blue
     __icon: codeBranch
-    __link: https://github.com/etclabscore/core-geth/releases
+    __link: https://github.com/ethereumclassic/core-geth
     text: The ETC Core team forks away from the Multi-Geth client project. The project is named Core-Geth, an ethereum/go-ethereum downstream effort to make the Ethereum Protocol accessible and extensible for a diverse ecosystem.
   phoenixFixConsensus:
     title: Phoenix Fix Rough Consensus

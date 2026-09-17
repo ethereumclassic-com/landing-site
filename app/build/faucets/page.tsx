@@ -161,7 +161,7 @@ export default function BuildFaucetsPage() {
               <div className="space-y-3">
                 <div className="rounded-lg bg-[var(--bg)] p-3">
                   <span className="mb-1 block text-sm text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="text-xs text-[var(--color-primary)]">https://rpc.mordor.etccooperative.org</code>
+                  <code className="text-xs text-[var(--color-primary)]">https://etc-mordor.blockscout.com/api/eth-rpc</code>
                 </div>
                 <div className="rounded-lg bg-[var(--bg)] p-3">
                   <span className="mb-1 block text-sm text-[var(--color-text-muted)]">Block Explorer</span>

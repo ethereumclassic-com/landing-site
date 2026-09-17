@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { networks, getClientImplementations, executionPlugins } from '../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
+import { CORE_GETH_FUKUII_MIGRATION_URL, CORE_GETH_MIGRATION_URL } from '@/lib/core-geth'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -199,23 +200,30 @@ export default function ClientsPage() {
                     {client.securityAuditUrl && (
                       <div className="mb-4 flex items-center justify-between rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3">
                         <span className="text-sm text-[var(--color-text-muted)]">
-                          Maintenance mode since Dec 2024 · 6 CVEs patched at
-                          ethereumclassic/core-geth, v1.13.0 pending · Upgrade to v1.12.22 now ·
-                          Migrate to{' '}
+                          v1.13.0 fixes 6 CVEs ·{' '}
                           <a
-                            href="https://fukuii.org"
+                            href={CORE_GETH_MIGRATION_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium text-[var(--color-primary)] hover:underline"
                           >
-                            Fukuii
+                            Upgrade from v1.12.x
+                          </a>{' '}
+                          ·{' '}
+                          <a
+                            href={CORE_GETH_FUKUII_MIGRATION_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-medium text-[var(--color-primary)] hover:underline"
+                          >
+                            When to move to Fukuii
                           </a>
                         </span>
                         <Link
                           href={client.securityAuditUrl}
                           className="ml-4 shrink-0 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors" style={{ color: 'var(--color-warning)', background: 'var(--color-warning-bg)', border: '1px solid var(--color-warning-border)' }}
                         >
-                          Security audit →
+                          v1.12.x audit →
                         </Link>
                       </div>
                     )}

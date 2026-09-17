@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { CORE_GETH_DOCS_URL } from '@/lib/core-geth'
 // Inline SVG icons (etc-com does not use lucide-react)
 type IconProps = { size?: number; className?: string; style?: React.CSSProperties; 'aria-hidden'?: boolean | 'true' | 'false' }
 const CheckCircle2 = ({ size = 16, className = '', style, ...rest }: IconProps) => (
@@ -221,17 +222,17 @@ const clientData = [
     language: 'Go',
     languageColor: '#00ADD8',
     role: 'Go-Ethereum Derivative · Maintained',
-    runtime: 'Go 1.26+',
-    disk: '500 GB+ (full sync)',
-    ram: '8 GB minimum',
+    runtime: 'Native binary',
+    disk: '~51 GiB (snap sync)',
+    ram: '~2.3 GiB peak',
     steps: [
       'Stop your running Core-Geth node',
       'Download the Olympia-compatible release from GitHub',
-      'Replace the existing binary or update via package manager',
+      'Replace the existing geth binary',
       'Restart your node. It will automatically follow the Olympia fork.',
     ],
     githubUrl: 'https://github.com/ethereumclassic/core-geth/releases',
-    docsUrl: 'https://github.com/ethereumclassic/core-geth#readme',
+    docsUrl: CORE_GETH_DOCS_URL,
       securityAuditUrl: '/build/clients/core-geth-security-audit',
   },
 ]
@@ -646,7 +647,7 @@ export default function UpgradeGuidePage() {
                         className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
                         style={{ color: 'var(--color-warning)', background: 'var(--color-warning-bg)', border: '1px solid var(--color-warning-border)' }}
                       >
-                        Read the security review
+                        Read the v1.12.x security audit
                       </Link>
                     )}
                   </div>

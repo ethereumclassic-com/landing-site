@@ -143,7 +143,7 @@ ETC's most significant upgrade to date:
 - /olympia/clients/core-geth — Core-Geth upgrade guide
 - /olympia/governance — Treasury and on-chain governance contracts
 - /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
-- /build/clients/core-geth-security-audit — Core-Geth v1.12.2x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and migration to Fukuii. All patched in ethereumclassic/core-geth by White B0x, pending release as v1.13.0.
+- /build/clients/core-geth-security-audit — Core-Geth v1.12.x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 and 1.22 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and the upgrade path. All fixed in Core-Geth v1.13.0, prepared by White B0x.
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap
@@ -288,8 +288,11 @@ Repo: https://github.com/fukuii-project/fukuii-cli
 Docker: ghcr.io/fukuii-project/fukuii-cli
 
 Core-Geth — A go-ethereum derivative maintained for Ethereum Classic
-Not a native ETC client, and not a plugin. Maintained for client diversity alongside Fukuii — six
-CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.
+Not a native ETC client, and not a plugin. v1.13 is its last release line, maintained through the
+transition; Fukuii is the preferred successor once it publishes a release. Core-Geth v1.13.0,
+prepared by White B0x, fixes six CVEs and moves the client to Go 1.26.
+Docs: https://docs.coregeth.com
+Releases: https://github.com/ethereumclassic/core-geth/releases/latest
 Repo: https://github.com/ethereumclassic/core-geth
 
 ETC execution client plugins — ETC support added into existing Ethereum clients
@@ -350,9 +353,9 @@ The /research/emission-schedule page provides a live countdown to the next fifth
 
 ## Network Endpoints
 
-- Mainnet RPC HTTP: https://etc.rivet.link
-- Mainnet RPC WS: wss://etc.rivet.link
-- Mordor Testnet RPC: https://rpc.mordor.etccooperative.org
+- Mainnet RPC HTTP: https://etc.blockscout.com/api/eth-rpc
+- Mainnet RPC WS: wss://etc.blockscout.com/api/eth-rpc
+- Mordor Testnet RPC: https://etc-mordor.blockscout.com/api/eth-rpc
 - Block Explorer (mainnet): https://etc.blockscout.com
 - Block Explorer (Mordor): https://etc-mordor.blockscout.com
 

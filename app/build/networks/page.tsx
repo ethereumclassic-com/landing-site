@@ -260,7 +260,7 @@ export default function BuildNetworksPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL:</span>
-                    <span className="font-mono text-[var(--text-primary)]">https://etc.rivet.link</span>
+                    <span className="font-mono text-[var(--text-primary)]">https://etc.blockscout.com/api/eth-rpc</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Chain ID:</span>
@@ -285,7 +285,7 @@ export default function BuildNetworksPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL:</span>
-                    <span className="font-mono text-[var(--text-primary)]">https://rpc.mordor.etccooperative.org</span>
+                    <span className="font-mono text-[var(--text-primary)]">https://etc-mordor.blockscout.com/api/eth-rpc</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Chain ID:</span>

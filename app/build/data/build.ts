@@ -1,6 +1,14 @@
 // Developer resources for Ethereum Classic
 // Data for build section pages
 
+import {
+  CORE_GETH_DOCS_URL,
+  CORE_GETH_INSTALL,
+  CORE_GETH_RELEASE,
+  type ClientRelease,
+  type InstallStep,
+} from '@/lib/core-geth'
+
 // Network configuration
 export interface Network {
   name: string
@@ -50,16 +58,18 @@ export interface RPCEndpoint {
  * besu-at.etc-network.info (resolves, answers "invalid host specified").
  *
  * Blockscout earns both rows: it answered eth_blockNumber and eth_chainId on
- * mainnet (61) and Mordor (63), at heights matching the primary RPCs.
+ * mainnet (61) and Mordor (63), at heights matching the primary RPCs, and it
+ * accepts eth_sendRawTransaction rather than rejecting the method.
+ *
+ * etc.rivet.link was dropped on 2026-09-17: it has no DNS record and went offline
+ * in late August 2026. rpc.ethereumclassic.net and rpc-mordor.ethereumclassic.net
+ * are being stood up to replace it and are not listed until they answer, which is
+ * what core-geth's transition page recommends:
+ * https://docs.coregeth.com/etc-cooperative-transition/#public-json-rpc
+ * ChainList carries the wider list, chain 61 and chain 63.
  */
 export const rpcEndpoints: RPCEndpoint[] = [
   // Mainnet
-  {
-    provider: 'Rivet',
-    url: 'https://etc.rivet.link',
-    notes: 'Primary recommended',
-    network: 'mainnet',
-  },
   {
     provider: 'Blockscout',
     url: 'https://etc.blockscout.com/api/eth-rpc',
@@ -67,12 +77,6 @@ export const rpcEndpoints: RPCEndpoint[] = [
     network: 'mainnet',
   },
   // Testnet
-  {
-    provider: 'ETC Cooperative',
-    url: 'https://rpc.mordor.etccooperative.org',
-    notes: 'Primary testnet RPC',
-    network: 'testnet',
-  },
   {
     provider: 'Blockscout',
     url: 'https://etc-mordor.blockscout.com/api/eth-rpc',
@@ -109,6 +113,10 @@ export interface NodeClient {
   badges?: string[]
   recommended?: boolean
   installCommand?: string
+  /** Per-platform install steps. The client page shows these in place of installCommand. */
+  installGuide?: InstallStep[]
+  /** The current release and its download files. */
+  release?: ClientRelease
   configNotes?: string
   securityAdvisories?: SecurityAdvisory[]
   securityAuditUrl?: string
@@ -155,67 +163,70 @@ export const nodeClients: NodeClient[] = [
   {
     id: 'core-geth',
     name: 'Core-Geth',
-    website: 'https://github.com/ethereumclassic/core-geth',
+    website: CORE_GETH_DOCS_URL,
     github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'A go-ethereum derivative maintained for Ethereum Classic, carried through the Olympia upgrade for network continuity. etclabscore/core-geth v1.12.x was unmaintained June 2024–March 2026 (21 months), accumulating six unpatched CVEs that were actively exploited against ETC mainnet bootnodes. All CVEs patched by White B0x at ethereumclassic/core-geth, pending release as v1.13.0.',
+      'A go-ethereum derivative maintained for Ethereum Classic through the transition to Fukuii. The v1.12.x line went 21 months without security maintenance; Core-Geth v1.13, prepared by White B0x, fixes six CVEs, one of them exploited against ETC mainnet bootnodes in March 2026, and moves the client to Go 1.26.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
-      'Full and light sync modes',
-      'JSON-RPC and WebSocket APIs',
+      'Snap and full sync, with archive mode',
+      'JSON-RPC, WebSocket and GraphQL APIs',
       'EVM tracing and debugging',
-      'Built-in mining support',
-      'MEV-free transaction ordering',
+      'Built-in Etchash mining support',
+      'MESS (ECBP-1100) chain-selection defense, on by default',
+      'Build attestation on every release file',
     ],
     status: 'maintained',
     role: 'maintained',
     recommended: false,
     installCommand: 'docker pull ghcr.io/ethereumclassic/core-geth:latest',
+    installGuide: CORE_GETH_INSTALL,
+    release: CORE_GETH_RELEASE,
     configNotes:
-      'Use --classic flag for ETC mainnet, --mordor for testnet',
+      'Run with --classic, or no network flag, for Ethereum Classic mainnet, and --mordor for the Mordor testnet.',
     securityAdvisories: [
       {
         cve: 'CVE-2026-26313',
         severity: 'High',
         description: 'P2P RLP item count memory exhaustion — crafted message header crashes node via OOM. Remote, no auth required.',
-        commit: '5d0cb8b34',
+        commit: '7a4988919',
       },
       {
         cve: 'CVE-2026-22862',
         severity: 'High',
         description: 'ECIES decrypt length undercheck (off-by-15) — undersized RLPx auth payload causes out-of-bounds read and remote crash.',
-        commit: 'dc73f2e4f',
+        commit: 'c46834dd8',
       },
       {
         cve: 'CVE-2026-26315',
         severity: 'High',
         description: 'ECIES GenerateShared missing public key validation — MAC-oracle attack can leak P2P node key bits via repeated unauthenticated handshakes.',
-        commit: '2d3528803',
+        commit: 'c19892395',
       },
       {
         cve: 'CVE-2026-26314',
         severity: 'High',
         description: 'secp256k1 IsOnCurve field boundary bypass — out-of-field coordinates satisfy the naive curve equation and pass the validity gate.',
-        commit: '2d3528803',
+        commit: 'c19892395',
       },
       {
         cve: 'CVE-2025-24883',
         severity: 'High',
         description: 'UnmarshalPubkey missing IsOnCurve check — off-curve secp256k1 points pass deserialization and corrupt downstream crypto operations.',
-        commit: '8e40b7e41',
+        commit: '681c915f0',
       },
       {
         cve: 'CVE-2026-22868',
         severity: 'Moderate',
         description: 'KZG blob proof DoS — invalid proofs trigger full expensive verification without peer disconnect, enabling sustained CPU exhaustion.',
-        commit: '1419c5310',
+        commit: '9985c33fb',
       },
       {
         cve: 'GraphQL Depth DoS',
         severity: 'Moderate',
-        description: 'No query depth limit on the --graphql endpoint; graphql-go v1.3.0 MaxDepth bug made the limit non-functional even when set.',
-        commit: '6c2d383fa',
+        description: 'No query depth limit on the --graphql endpoint, so one deeply nested query exhausts CPU and memory. v1.13.0 caps query depth at 20.',
+        commit: '6a046ee910',
       },
     ],
     securityAuditUrl: '/build/clients/core-geth-security-audit',
@@ -442,8 +453,8 @@ export const docResources: DocResource[] = [
   {
     id: 'core-geth-docs',
     name: 'Core-Geth Documentation',
-    url: 'https://github.com/ethereumclassic/core-geth',
-    description: 'Documentation for the official ETC node client.',
+    url: CORE_GETH_DOCS_URL,
+    description: 'Installing Core-Geth, running and operating a node, and the JSON-RPC API reference.',
     category: 'official',
   },
   {
@@ -613,11 +624,11 @@ export const gettingStartedSteps: GettingStartedStep[] = [
     code: `// hardhat.config.js
 networks: {
   etc: {
-    url: "https://etc.rivet.link",
+    url: "https://etc.blockscout.com/api/eth-rpc",
     chainId: 61
   },
   mordor: {
-    url: "https://rpc.mordor.etccooperative.org",
+    url: "https://etc-mordor.blockscout.com/api/eth-rpc",
     chainId: 63
   }
 }`,

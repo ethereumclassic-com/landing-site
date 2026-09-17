@@ -17,7 +17,7 @@ const ecosystemSections = [
   {
     title: 'Infrastructure',
     description: 'Node clients, RPC providers, block explorers, and developer tools powering the ETC network.',
-    items: ['3 node clients: core-geth, Besu, Fukuii', 'Blockscout explorer', 'Rivet RPC service'],
+    items: ['2 node clients: Fukuii and Core-Geth', 'Blockscout explorer', 'Rivet RPC service'],
     href: '/build',
   },
   {

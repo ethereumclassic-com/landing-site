@@ -61,8 +61,13 @@ Plugin upstream repositories (link these; every `github.com/ethereumclassic/<plu
 
 ### Core-Geth
 
-**Repository**: https://github.com/etclabscore/core-geth
-**Maintainer**: ETC Cooperative
+**Repository**: https://github.com/ethereumclassic/core-geth
+**Docs**: https://docs.coregeth.com
+**Releases**: https://github.com/ethereumclassic/core-geth/releases
+**Maintainer**: Ethereum Classic core developers (The core-geth Authors). White B0x carried out the v1.13
+modernization. The ETC Cooperative stopped developing Core-Geth in 2025, and the previous repository,
+`etclabscore/core-geth`, carries only the v1.12.x releases.
+**Security contact**: security@ethereumclassic.com, or private vulnerability reporting on the repository
 
 **Category**: A go-ethereum derivative maintained for Ethereum Classic. Not native, and not a plugin.
 
@@ -225,7 +230,6 @@ codebase.
 **Role**: Primary funding and development organization for ETC
 
 **Responsibilities**:
-- Core-Geth maintenance (transitioning to Fukuii)
 - Network infrastructure
 - Developer grants
 - Community coordination
@@ -264,7 +268,7 @@ Fukuii is attributed to **The Fukuii Authors**, comprising **Chippr Robotics LLC
 **Chippr Robotics LLC** — a Fukuii Author.
 
 **White B0x Inc.** — a Fukuii Author. https://whiteb0x.com. Also authored the six CVE patches and
-the Go toolchain modernization published to `ethereumclassic/core-geth`.
+the Go toolchain modernization released in Core-Geth v1.13.0 from `ethereumclassic/core-geth`.
 
 Fukuii itself lives under the **fukuii-project** org: https://github.com/fukuii-project
 

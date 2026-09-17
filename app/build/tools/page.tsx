@@ -206,8 +206,8 @@ export default function BuildToolsPage() {
                 <ul className="space-y-1 text-sm text-[var(--color-text-muted)]">
                   <li><strong>Mainnet Chain ID:</strong> 61</li>
                   <li><strong>Mordor Testnet ID:</strong> 63</li>
-                  <li><strong>RPC:</strong> https://etc.rivet.link</li>
-                  <li><strong>Testnet RPC:</strong> https://rpc.mordor.etccooperative.org</li>
+                  <li><strong>RPC:</strong> https://etc.blockscout.com/api/eth-rpc</li>
+                  <li><strong>Testnet RPC:</strong> https://etc-mordor.blockscout.com/api/eth-rpc</li>
                 </ul>
               </div>
             </div>
@@ -230,12 +230,12 @@ export default function BuildToolsPage() {
 module.exports = {
   networks: {
     etc: {
-      url: "https://etc.rivet.link",
+      url: "https://etc.blockscout.com/api/eth-rpc",
       chainId: 61,
       accounts: [PRIVATE_KEY]
     },
     mordor: {
-      url: "https://rpc.mordor.etccooperative.org",
+      url: "https://etc-mordor.blockscout.com/api/eth-rpc",
       chainId: 63,
       accounts: [PRIVATE_KEY]
     }
@@ -255,8 +255,8 @@ out = "out"
 libs = ["lib"]
 
 [rpc_endpoints]
-etc = "https://etc.rivet.link"
-mordor = "https://rpc.mordor.etccooperative.org"
+etc = "https://etc.blockscout.com/api/eth-rpc"
+mordor = "https://etc-mordor.blockscout.com/api/eth-rpc"
 
 # Deploy: forge script Deploy --rpc-url etc`}
                   </pre>

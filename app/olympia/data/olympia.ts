@@ -1,4 +1,11 @@
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
+import {
+  CORE_GETH_DOCS_URL,
+  CORE_GETH_INSTALL,
+  CORE_GETH_RELEASE,
+  CORE_GETH_VERSION,
+  type ClientRelease,
+} from '@/lib/core-geth'
 // Olympia Network Upgrade — Core Data
 //
 // COPY SAFETY: Treasury is funded by EIP-1559 basefee, NOT block rewards.
@@ -51,6 +58,8 @@ export interface ClientUpgrade {
   dockerImage: string
   platforms: string[]
   installCommands: { platform: string; command: string }[]
+  /** The current release and its download files, where the client publishes them. */
+  release?: ClientRelease
   verifyCommand: string
   prerequisites: string[]
 }
@@ -84,22 +93,24 @@ export const clients: ClientUpgrade[] = [
     language: 'Go',
     languageColor: '#00ADD8',
     description:
-      'A go-ethereum derivative maintained for Ethereum Classic, providing client diversity alongside Fukuii. Six CVEs patched at ethereumclassic/core-geth by White B0x, pending release as v1.13.0.',
+      'A go-ethereum derivative maintained for Ethereum Classic, providing client diversity alongside Fukuii. Core-Geth v1.13, prepared by White B0x, fixes six CVEs and moves the client to Go 1.26.',
     role: 'maintenance',
     badges: ['Maintained', 'Go-Ethereum derivative'],
     securityAuditUrl: '/build/clients/core-geth-security-audit',
-    currentVersion: 'v1.12.22',
+    currentVersion: CORE_GETH_VERSION,
     olympiaVersion: 'TBD',
     githubUrl: 'https://github.com/ethereumclassic/core-geth',
-    docsUrl: 'https://github.com/ethereumclassic/core-geth#readme',
+    docsUrl: CORE_GETH_DOCS_URL,
     dockerImage: 'ghcr.io/ethereumclassic/core-geth:latest',
     platforms: ['Linux', 'macOS', 'Windows', 'Docker'],
-    installCommands: [
-      { platform: 'Docker', command: 'docker pull ghcr.io/ethereumclassic/core-geth:latest' },
-      { platform: 'Linux/macOS', command: 'make geth' },
-    ],
+    installCommands: CORE_GETH_INSTALL,
+    release: CORE_GETH_RELEASE,
     verifyCommand: 'geth version',
-    prerequisites: ['Go 1.26+', '8 GB RAM minimum', '500 GB SSD (full sync)'],
+    prerequisites: [
+      'A release archive for Linux (x86_64 or ARM), macOS 12 or newer, or Windows x86_64',
+      'Go 1.26 and a C compiler, only to build from source',
+      'Disk and memory for the network you sync: see Hardware requirements in the Core-Geth documentation',
+    ],
   },
 ]
 

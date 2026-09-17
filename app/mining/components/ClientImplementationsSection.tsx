@@ -147,7 +147,7 @@ export function ClientImplementationsSection() {
                           border: '1px solid var(--color-warning-border)',
                         }}
                       >
-                        Read the security review
+                        Read the v1.12.x security audit
                       </Link>
                     )}
                 </div>
