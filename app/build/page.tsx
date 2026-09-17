@@ -6,6 +6,7 @@ import {
   getRecommendedTools,
   docResources,
 } from './data/build'
+import { DISCORD_INVITE_URL } from '@/lib/social'
 
 // Icons
 const CodeIcon = () => (
@@ -488,7 +489,7 @@ export default function BuildPage() {
                 Start Building
               </Link>
               <a
-                href="https://discord.com/invite/Tq57jxSwsa"
+                href={DISCORD_INVITE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-8 py-4 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"

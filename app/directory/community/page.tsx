@@ -1,10 +1,11 @@
 import Link from 'next/link'
+import { DISCORD_INVITE_URL } from '@/lib/social'
 
 const socialPlatforms = [
   {
     name: 'Discord',
     description: 'Main community server for real-time discussions, support, and announcements',
-    url: 'https://discord.com/invite/Tq57jxSwsa',
+    url: DISCORD_INVITE_URL,
     members: '20K+',
     category: 'Chat',
   },

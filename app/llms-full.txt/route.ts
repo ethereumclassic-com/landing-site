@@ -1,3 +1,5 @@
+import { DISCORD_INVITE_URL } from '@/lib/social'
+
 export function GET() {
   const body = `# Ethereum Classic — Extended AI Context
 
@@ -393,7 +395,7 @@ Japan:
 - Website: https://ethereumclassic.com
 - GitHub: https://github.com/ethereumclassic-com
 - Twitter/X: https://x.com/ETC_Network
-- Discord: https://discord.com/invite/Tq57jxSwsa
+- Discord: ${DISCORD_INVITE_URL}
 - Reddit: https://reddit.com/r/EthereumClassic
 - News RSS: https://ethereumclassic.com/news/feed.xml
 - Summary context: https://ethereumclassic.com/llms.txt

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { DISCORD_INVITE_URL } from '@/lib/social'
 
 const contributionAreas = [
   {
@@ -161,7 +162,7 @@ export default function CommunityContributePage() {
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://discord.com/invite/Tq57jxSwsa"
+              href={DISCORD_INVITE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"

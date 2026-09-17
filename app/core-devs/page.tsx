@@ -1,5 +1,6 @@
 import { cdcEntries } from './data/index'
 import { CDCCard } from './components/CDCCard'
+import { DISCORD_INVITE_URL } from '@/lib/social'
 
 export default function CoreDevsPage() {
   const recordingCount = cdcEntries.filter((e) => e.recordingUrl).length
@@ -122,7 +123,7 @@ export default function CoreDevsPage() {
             <p className="mt-2 text-[var(--color-text-muted)] leading-relaxed">
               Join the{' '}
               <a
-                href="https://discord.com/invite/Tq57jxSwsa"
+                href={DISCORD_INVITE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:text-[var(--color-primary)]/80"

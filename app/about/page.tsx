@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Cpu, Code2, Shield, Building2, Scale } from 'lucide-react'
+import { DISCORD_INVITE_URL } from '@/lib/social'
 
 export const metadata: Metadata = {
   title: 'About | Ethereum Classic',
@@ -205,7 +206,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             {[
-              { label: 'Discord', href: 'https://discord.com/invite/Tq57jxSwsa' },
+              { label: 'Discord', href: DISCORD_INVITE_URL },
               { label: 'GitHub', href: 'https://github.com/ethereumclassic' },
               { label: 'Reddit', href: 'https://reddit.com/r/EthereumClassic' },
               { label: 'Telegram', href: 'https://t.me/ethclassic' },

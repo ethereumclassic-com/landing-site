@@ -13,6 +13,7 @@ import {
   CORE_GETH_SECURITY_POLICY_URL,
   CORE_GETH_VERSION,
 } from '@/lib/core-geth'
+import { SECURITY_CONTACT_EMAIL } from '@/lib/social'
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -1182,6 +1183,12 @@ github.com/ethereum/go-ethereum/p2p.(*Server).listenLoop.func2()
                 <a href={CORE_GETH_SECURITY_POLICY_URL} target="_blank" rel="noopener noreferrer"
                   className="text-[var(--color-primary)] hover:opacity-80">
                   Reporting a vulnerability: SECURITY.md
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${SECURITY_CONTACT_EMAIL}`}
+                  className="text-[var(--color-primary)] hover:opacity-80">
+                  Security contact for pools, exchanges and service providers: {SECURITY_CONTACT_EMAIL}
                 </a>
               </li>
               <li>

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { DISCORD_INVITE_URL } from '@/lib/social'
 
 const upcomingEvents = [
   {
@@ -10,7 +11,7 @@ const upcomingEvents = [
     time: '3:00 PM UTC',
     location: 'Discord Voice Channel',
     type: 'online',
-    link: 'https://discord.com/invite/Tq57jxSwsa',
+    link: DISCORD_INVITE_URL,
   },
   {
     title: 'ETC Developer Sync',
@@ -19,7 +20,7 @@ const upcomingEvents = [
     time: '2:00 PM UTC',
     location: 'Discord Voice Channel',
     type: 'online',
-    link: 'https://discord.com/invite/Tq57jxSwsa',
+    link: DISCORD_INVITE_URL,
   },
   {
     title: 'Mining Community Q&A',
@@ -270,7 +271,7 @@ export default function EventsPage() {
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a
-                href="https://discord.com/invite/Tq57jxSwsa"
+                href={DISCORD_INVITE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"

@@ -2,6 +2,7 @@
  * JSON-LD Structured Data Components
  * Provides rich snippets for search engines and LLM crawlers
  */
+import { DISCORD_INVITE_URL } from '@/lib/social'
 
 // Organization schema for the website
 export function OrganizationJsonLd() {
@@ -24,7 +25,7 @@ export function OrganizationJsonLd() {
     sameAs: [
       'https://x.com/ETC_Network',
       'https://github.com/ethereumclassic',
-      'https://discord.com/invite/Tq57jxSwsa',
+      DISCORD_INVITE_URL,
     ],
     contactPoint: {
       '@type': 'ContactPoint',
