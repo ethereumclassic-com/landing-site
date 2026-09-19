@@ -236,13 +236,9 @@ const staticRoutes = [
   { path: '/markets/calculator', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/markets/converter', priority: 0.7, changeFrequency: 'daily' as const },
 
-  // Account section (lower priority for crawling)
-  { path: '/account', priority: 0.3, changeFrequency: 'weekly' as const },
-  { path: '/account/login', priority: 0.2, changeFrequency: 'yearly' as const },
-  { path: '/account/register', priority: 0.2, changeFrequency: 'yearly' as const },
-  { path: '/account/settings', priority: 0.2, changeFrequency: 'weekly' as const },
-  { path: '/account/watchlist', priority: 0.3, changeFrequency: 'weekly' as const },
-  { path: '/account/portfolio', priority: 0.3, changeFrequency: 'weekly' as const },
+  // The /account section is deliberately absent: robots.txt disallows it and
+  // app/account/layout.tsx marks it noindex. Listing it here asked a crawler to
+  // index what the same site tells it to skip.
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -317,12 +313,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamic routes - Exchange reviews
   const exchangeDataDate = dataDate('app/buy/data/reviews.ts')
-  const exchangeReviewEntries = exchangeReviews.map((review) => ({
-    url: `${baseUrl}/exchanges/reviews/${review.slug}`,
-    lastModified: exchangeDataDate,
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }))
+  // /exchanges/reviews/<slug> redirects to /buy/reviews/<slug>, which is listed
+  // below, so listing both put a redirect and its destination in the same sitemap.
 
   const buyReviewEntries = exchangeReviews.map((review) => ({
     url: `${baseUrl}/buy/reviews/${review.slug}`,
@@ -367,7 +359,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...newsEntries,
     ...tagEntries,
     ...learnEntries,
-    ...exchangeReviewEntries,
     ...buyReviewEntries,
     ...reportEntries,
     ...cdcSitemapEntries,

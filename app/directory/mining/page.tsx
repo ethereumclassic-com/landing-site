@@ -1,5 +1,20 @@
 import Link from 'next/link'
 import { miningPools, miningHardware, miningSoftware } from '@/app/mining/data/mining'
+import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  title: 'Mining',
+  description:
+    'An index of Ethereum Classic mining: the pools that serve the network, GPU and ASIC hardware, and the mining software that supports ETCHash.',
+  alternates: { canonical: 'https://ethereumclassic.com/directory/mining' },
+  openGraph: {
+    ...OG_BASE,
+    title: 'Ethereum Classic Mining Directory',
+    description:
+      'An index of Ethereum Classic mining: the pools that serve the network, GPU and ASIC hardware, and the mining software that supports ETCHash.',
+  },
+}
 
 export default function DirectoryMiningPage() {
   const topGPUs = miningHardware.filter((h) => h.type === 'GPU').slice(0, 6)

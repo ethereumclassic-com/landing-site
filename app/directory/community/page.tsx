@@ -1,5 +1,20 @@
 import Link from 'next/link'
 import { DISCORD_INVITE_URL } from '@/lib/social'
+import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  title: 'Community',
+  description:
+    'Where the Ethereum Classic community gathers: social platforms, community-run resources, and the venues where governance proposals are discussed.',
+  alternates: { canonical: 'https://ethereumclassic.com/directory/community' },
+  openGraph: {
+    ...OG_BASE,
+    title: 'Ethereum Classic Community Directory',
+    description:
+      'Where the Ethereum Classic community gathers: social platforms, community-run resources, and the venues where governance proposals are discussed.',
+  },
+}
 
 const socialPlatforms = [
   {

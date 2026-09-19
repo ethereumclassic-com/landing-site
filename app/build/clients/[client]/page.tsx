@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { use } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -10,6 +11,7 @@ import {
 } from '../../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
+import { OG_BASE } from '@/lib/seo'
 import { ReleaseDownloads } from '@/app/components/ReleaseDownloads'
 import {
   CORE_GETH_FUKUII_MIGRATION_URL,
@@ -17,6 +19,33 @@ import {
   CORE_GETH_RELEASE_URL,
   CORE_GETH_VERSION,
 } from '@/lib/core-geth'
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { client: slug } = await params
+  const client = getClientById(slug)
+  const plugin = client ? undefined : getPluginById(slug)
+  const entry = client ?? plugin
+
+  if (!entry) {
+    return { title: 'Client Not Found' }
+  }
+
+  // Measured rather than assumed: the /build title template does not reach this
+  // segment, because app/build/clients/layout.tsx sets a plain string title. So
+  // this title carries its own context instead of relying on a suffix.
+  const label = `${entry.name} — Ethereum Classic ${client ? 'node client' : 'execution plugin'}`
+
+  return {
+    title: label,
+    description: entry.description,
+    alternates: { canonical: `https://ethereumclassic.com/build/clients/${slug}` },
+    openGraph: {
+      ...OG_BASE,
+      title: `${entry.name} — Ethereum Classic ${client ? 'node client' : 'execution plugin'}`,
+      description: entry.description,
+    },
+  }
+}
 
 const PlatformIcons: Record<string, React.ReactNode> = {
   Windows: (

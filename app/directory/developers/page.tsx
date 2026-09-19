@@ -1,5 +1,20 @@
 import Link from 'next/link'
 import { networks, rpcEndpoints, nodeClients, devTools } from '@/app/build/data/build'
+import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  title: 'Developers',
+  description:
+    "A developer's index of Ethereum Classic: network parameters, public RPC endpoints, the node clients that serve the chain, and the tooling for building on it.",
+  alternates: { canonical: 'https://ethereumclassic.com/directory/developers' },
+  openGraph: {
+    ...OG_BASE,
+    title: 'Ethereum Classic Developer Directory',
+    description:
+      "A developer's index of Ethereum Classic: network parameters, public RPC endpoints, the node clients that serve the chain, and the tooling for building on it.",
+  },
+}
 
 export default function DirectoryDevelopersPage() {
   return (

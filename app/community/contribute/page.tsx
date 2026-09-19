@@ -1,5 +1,20 @@
 import Link from 'next/link'
 import { DISCORD_INVITE_URL } from '@/lib/social'
+import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  title: 'Contribute',
+  description:
+    'Ways to contribute to Ethereum Classic: write code, run a node or mine, take part in governance through the ECIP process, or help other people learn the chain.',
+  alternates: { canonical: 'https://ethereumclassic.com/community/contribute' },
+  openGraph: {
+    ...OG_BASE,
+    title: 'How to Contribute to Ethereum Classic',
+    description:
+      'Ways to contribute to Ethereum Classic: write code, run a node or mine, take part in governance through the ECIP process, or help other people learn the chain.',
+  },
+}
 
 const contributionAreas = [
   {

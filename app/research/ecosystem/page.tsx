@@ -1,4 +1,19 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
+
+export const metadata: Metadata = {
+  title: 'Ecosystem',
+  description:
+    'An overview of the Ethereum Classic ecosystem: the applications, wallets and exchanges that support ETC, grouped by what each one does.',
+  alternates: { canonical: 'https://ethereumclassic.com/research/ecosystem' },
+  openGraph: {
+    ...OG_BASE,
+    title: 'Ethereum Classic Ecosystem Overview',
+    description:
+      'An overview of the Ethereum Classic ecosystem: the applications, wallets and exchanges that support ETC, grouped by what each one does.',
+  },
+}
 
 const ecosystemStats = [
   { label: 'dApps', value: '14+', description: 'Active applications', href: '/apps' },
