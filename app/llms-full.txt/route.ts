@@ -356,10 +356,26 @@ The /research/emission-schedule page provides a live countdown to the next fifth
 ## Network Endpoints
 
 - Mainnet RPC HTTP: https://etc.blockscout.com/api/eth-rpc
-- Mainnet RPC WS: wss://etc.blockscout.com/api/eth-rpc
 - Mordor Testnet RPC: https://etc-mordor.blockscout.com/api/eth-rpc
 - Block Explorer (mainnet): https://etc.blockscout.com
 - Block Explorer (Mordor): https://etc-mordor.blockscout.com
+
+## Node Client Exposure
+
+Core-Geth v1.13.0 is the recommended release, published from https://github.com/ethereumclassic/core-geth. A node tracking the previous repository, etclabscore/core-geth, will not see it. Upgrading requires rotating the P2P node key rather than merely suggesting it: CVE-2026-26315 is an oracle against that key, so a key used by an unpatched node should be treated as exposed. Rename the key file rather than deleting it, and expect the enode ID to change.
+
+Every v1.12.x archive, including the newest, was built on a Go release that is no longer supported. The toolchains are Go 1.21 and Go 1.22, whose support ended in August 2024 and February 2025, and each archive carries 55 to 61 Go standard library advisories that v1.13.0 does not.
+
+What the network was running on 2026-09-17, from the maintainers' census of etcnodes.org covering 524 Core-Geth nodes of 550. These figures move, and https://docs.coregeth.com/release-reports/v1.13.0-record/#what-the-network-is-running carries the current breakdown with the source for each row:
+
+- v1.12.20 and older — 158 nodes (30.2%): all six client CVEs unpatched, two of which were exploited against Ethereum Classic bootnodes in March 2026
+- v1.12.21 — 50 nodes (9.5%): the ECIES crash and the key oracle closed; two curve checks, the RLP work and the GraphQL limit still missing
+- v1.12.22 — 165 nodes (31.5%): the rest of the CVE backports, with CVE-2026-26313 only partly mitigated; introduces the eth_syncing regression that reports highestBlock incorrectly
+- v1.12.23 — 138 nodes (26.3%): the delayed-decoding hardening series, and nothing else above is fixed
+- v1.13.0 — 9 nodes (1.7%): recommended; six CVEs resolved, the GraphQL depth limit fixed, built with Go 1.26.8, zero Go advisories
+- Four further nodes report v1.12.24, which is not a release but a development build of the previous repository's master branch
+
+The measurements behind these claims: https://docs.coregeth.com/audits/2026-03-security-audit/ for the six CVEs and the disclosure timeline, https://docs.coregeth.com/audits/2026-09-go-toolchain/ for which toolchain built each published archive and the advisories each one carries, and https://docs.coregeth.com/etc-cooperative-transition/ for where the services the ETC Cooperative maintained now continue.
 
 ## Regulatory Summary
 

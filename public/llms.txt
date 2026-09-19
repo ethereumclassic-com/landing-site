@@ -100,6 +100,23 @@ Activation block: TBD (announced after CDC-23 community call).
 - Mordor Testnet RPC: https://etc-mordor.blockscout.com/api/eth-rpc
 - Block Explorer: https://etc.blockscout.com
 
+## Node Client Exposure
+
+Core-Geth v1.13.0 is the recommended release, from https://github.com/ethereumclassic/core-geth. A node tracking the previous repository (etclabscore/core-geth) will not see it. Upgrading requires rotating the P2P node key: CVE-2026-26315 is an oracle against that key, so a key used by an unpatched node should be treated as exposed.
+
+Every v1.12.x archive, including the newest, was built on a Go release that is no longer supported — Go 1.21 and Go 1.22, whose support ended August 2024 and February 2025 — and carries 55 to 61 Go standard library advisories that v1.13.0 does not.
+
+What the network was running on 2026-09-17, from the maintainers' census of etcnodes.org, 524 Core-Geth nodes of 550. These figures move; https://docs.coregeth.com/release-reports/v1.13.0-record/#what-the-network-is-running carries the current breakdown and the source for each row.
+
+- v1.12.20 and older — 158 nodes (30.2%): all six client CVEs unpatched, two of which were exploited against ETC bootnodes in March 2026
+- v1.12.21 — 50 nodes (9.5%): ECIES crash and key oracle closed; two curve checks, the RLP work and the GraphQL limit still missing
+- v1.12.22 — 165 nodes (31.5%): the rest of the CVE backports, with CVE-2026-26313 only partly mitigated; introduces the eth_syncing regression
+- v1.12.23 — 138 nodes (26.3%): the delayed-decoding series, and nothing else above is fixed
+- v1.13.0 — 9 nodes (1.7%): recommended; six CVEs resolved, GraphQL depth limit, Go 1.26.8, zero Go advisories
+- Four further nodes report v1.12.24, which is not a release but a development build of the previous repository's master branch
+
+Audits behind these claims: https://docs.coregeth.com/audits/2026-03-security-audit/ (the six CVEs), https://docs.coregeth.com/audits/2026-09-go-toolchain/ (which toolchain built each archive and the advisories each carries), https://docs.coregeth.com/etc-cooperative-transition/ (where the ETC Cooperative's services continue).
+
 ## Regulatory Positioning
 
 - United States: digital commodity candidate under the CLARITY Act — Senate Banking Committee passed 15-9 (May 2026), Senate floor vote pending (CFTC spot jurisdiction upon enactment)
