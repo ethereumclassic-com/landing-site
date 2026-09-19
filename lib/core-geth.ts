@@ -153,13 +153,13 @@ export const CORE_GETH_INSTALL: InstallStep[] = [
   {
     platform: 'Docker',
     command: [
-      'docker pull ghcr.io/ethereumclassic/core-geth:latest',
-      '',
-      '# If the pull returns unauthorized, load the image attached to the release:',
+      '# The registry copies are not public yet, so take the image from the release:',
       `curl -LO ${CORE_GETH_REPO_URL}/releases/download/${CORE_GETH_VERSION}/core-geth-docker-amd64-${CORE_GETH_VERSION}.tar.gz`,
       `docker load -i core-geth-docker-amd64-${CORE_GETH_VERSION}.tar.gz`,
+      '',
+      'docker pull ghcr.io/ethereumclassic/core-geth:latest   # for when the registry is public',
     ].join('\n'),
-    note: 'Images are built for linux/amd64 and linux/arm64; on ARM, use the arm64 file. Run the container as the guide shows, which keeps JSON-RPC reachable from this host only.',
+    note: 'It is the same image and it keeps its published name, so nothing in your setup changes when the registry copy opens. Images are built for linux/amd64 and linux/arm64; on ARM, use the arm64 file. Run the container as the guide shows, which keeps JSON-RPC reachable from this host only.',
     docsUrl: `${CORE_GETH_INSTALL_URL}#docker`,
   },
   {
