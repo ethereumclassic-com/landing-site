@@ -224,5 +224,5 @@ spec wins and the site is corrected.
 | ETC technical claims, clients, upgrades | `docs/ETC-KNOWLEDGE.md` |
 | Olympia ECIPs (1111–1122) | the ECIPs repository |
 | EIP contents and dependencies | `eips.ethereum.org` |
-| Fukuii positioning and URLs | fukuii.org and `fukuii-cli/NOTICE` |
+| Fukuii positioning and URLs | fukuii.com and `chippr-robotics/fukuii` |
 | Chain state — height, difficulty, block reward | Blockscout |

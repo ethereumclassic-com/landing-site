@@ -175,10 +175,10 @@ interface CardProps {
 
 **Usage:**
 ```tsx
-<Card variant="interactive" href="/wallet/fukuii-gui">
+<Card variant="interactive" href="/wallet/compare">
   <CardHeader>
     <CardIcon src="/icons/wallet.svg" />
-    <CardTitle>Fukuii GUI</CardTitle>
+    <CardTitle>Compare wallets</CardTitle>
   </CardHeader>
   <CardDescription>
     The complete economic operating system for Ethereum Classic.
@@ -511,7 +511,7 @@ interface ProductCardsProps {
 │   Wallet    │  │   Buy ETC   │  │    Apps     │  │   Learn     │
 │             │  │             │  │             │  │             │
 │  Get the    │  │  Purchase   │  │  Discover   │  │   Guides    │
-│  Fukuii GUI │  │  ETC easily │  │  dApps      │  │   & docs    │
+│  Wallets    │  │  ETC easily │  │  dApps      │  │   & docs    │
 │  wallet     │  │             │  │             │  │             │
 │             │  │             │  │             │  │             │
 │ [Get Now →] │  │ [Buy Now →] │  │[Explore →]  │  │[Start →]    │
@@ -624,7 +624,7 @@ interface WalletCardProps {
 **Layout:**
 ```
 ┌─────────────────────────────────────────────┐
-│  [Logo]  Fukuii GUI              [Featured] │
+│  [Logo]  ETCswap V3              [Featured] │
 │                                             │
 │  The complete economic operating system     │
 │  for Ethereum Classic.                      │

@@ -40,7 +40,7 @@ Commercial/consumer gateway for the Ethereum Classic ecosystem.
 EthereumClassic.com is the **commercial gateway** for Ethereum Classic:
 
 ```
-EthereumClassic.com (THIS SITE) → FukuiiGui.org → github.com/fukuii-project/fukuii-gui
+EthereumClassic.com (THIS SITE) → docs.coregeth.com → github.com/ethereumclassic/core-geth
    (awareness + products)         (consideration)    (conversion)
 ```
 
@@ -83,7 +83,7 @@ EthereumClassic.com (THIS SITE) → FukuiiGui.org → github.com/fukuii-project/
 | Section | Pages | Description |
 |---------|-------|-------------|
 | Homepage | 1 | Hero, stats, ecosystem overview |
-| Wallet | 7 | Fukuii GUI, hardware, compare, reviews |
+| Wallet | 6 | MetaMask, hardware, compare, reviews |
 | Buy/Sell | 11 | Exchanges, methods, reviews |
 | Exchanges | 14 | Directory, compare, feature filters |
 | Apps | 11 | DeFi, NFT, games, tools, governance |
@@ -119,7 +119,6 @@ Ethereum Classic is:
 
 | Product | Description | URL |
 |---------|-------------|-----|
-| Fukuii GUI | Complete economic operating system | github.com/fukuii-project/fukuii-gui |
 | ETCswap | DEX protocol V2/V3 | etcswap.org |
 | ClassicUSD (USC) | ETC-native stablecoin | - |
 | Olympia DAO | Governance protocol | - |

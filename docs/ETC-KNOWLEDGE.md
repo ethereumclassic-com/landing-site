@@ -39,8 +39,8 @@ Three distinct categories. They are not interchangeable:
 
 | Client | Category | Language | Notes |
 |--------|----------|----------|-------|
-| **Fukuii** | Native client | Scala 3 LTS | ETC's first native client; primary for the Olympia era |
-| **Core-Geth** | go-ethereum derivative | Go | Maintained for ETC, carried through Olympia |
+| **Fukuii** | Native client | Scala 3 LTS | ETC's first native client; pre-1.0, released from `chippr-robotics/fukuii` |
+| **Core-Geth** | go-ethereum derivative | Go | The recommended client, released and maintained in the `ethereumclassic` organization |
 | **Besu** | Plugin target | Java | ETC support via plugin; no PoW mining |
 | **Erigon** | Plugin target | Go | ETC support via plugin; archive-optimized |
 | **Ethrex** | Plugin target | Rust | ETC support via plugin |
@@ -75,20 +75,24 @@ modernization. The ETC Cooperative stopped developing Core-Geth in 2025, and the
 - Derived from go-ethereum (Geth); originally forked from the deprecated Multi-Geth client
 - Full PoW mining support
 - Supports ETC mainnet, Mordor testnet, and private networks
-- Carried through the Olympia upgrade for network continuity
+- Released and maintained in the `ethereumclassic` organization; supports the Olympia upgrade
 
-**Why the primary role moves to Fukuii**:
+**Why a native client was built alongside it**:
 - Upstream Geth deprecated PoW support in favor of PoS
 - Core-Geth has not separated execution layer (EVM) from consensus (PoW)
 - Major refactoring would be required to maintain compatibility
-- More efficient to invest in native ETC client (Fukuii)
+
+Do not write that either client replaces the other, or that Core-Geth is sunsetting. It is
+released and maintained in the community organization, and that is what the site recommends.
 
 ### Fukuii
 
-**Website**: https://fukuii.org
-**Repository**: https://github.com/fukuii-project/fukuii-cli
-**Docs**: https://docs.fukuii.org
-**Container**: ghcr.io/fukuii-project/fukuii-cli
+**Website**: https://fukuii.com
+**Repository**: https://github.com/chippr-robotics/fukuii
+**Docs**: https://docs.fukuii.com
+**Container**: ghcr.io/chippr-robotics/fukuii
+**Releases**: https://github.com/chippr-robotics/fukuii/releases/latest — pre-1.0; fukuii.org,
+docs.fukuii.org and the `fukuii-project` repositories no longer resolve or carry releases
 **Maintainer**: The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.)
 **License**: Apache 2.0
 
@@ -197,8 +201,8 @@ codebase.
 - Any ETH-specific PoS infrastructure
 
 **Client Readiness**:
-- Fukuii: Primary client for Olympia, Alpha testing in progress
-- Core-Geth: Will support Olympia, but expected to sunset afterward
+- Fukuii: pre-1.0 and in active development; not recommended for production on this site
+- Core-Geth: the recommended client, released and maintained in the `ethereumclassic` organization
 - Besu: [PLACEHOLDER: Will Besu support Olympia?]
 
 **Historical Context**:
@@ -270,10 +274,10 @@ Fukuii is attributed to **The Fukuii Authors**, comprising **Chippr Robotics LLC
 **White B0x Inc.** — a Fukuii Author. https://whiteb0x.com. Also authored the six CVE patches and
 the Go toolchain modernization released in Core-Geth v1.13.0 from `ethereumclassic/core-geth`.
 
-Fukuii itself lives under the **fukuii-project** org: https://github.com/fukuii-project
+Fukuii itself lives at https://github.com/chippr-robotics/fukuii
 
 **Contributions**:
-- Fukuii client development (https://github.com/fukuii-project)
+- Fukuii client development (https://github.com/chippr-robotics/fukuii)
 
 ---
 
@@ -422,12 +426,6 @@ Fukuii itself lives under the **fukuii-project** org: https://github.com/fukuii-
 
 **[PLACEHOLDER: Issuer, backing mechanism, adoption status]**
 
-### Fukuii GUI
-
-**Type**: DeFi dashboard and economic control center
-
-**[PLACEHOLDER: Features, launch date, relationship to other projects]**
-
 ### HebeSwap (Historical?)
 
 **[PLACEHOLDER: Status of HebeSwap - still active?]**
@@ -507,7 +505,7 @@ The following sections need input from ETC Core Contributors:
 10. **ETH Merge hashrate impact numbers**
 11. **Mordor testnet launch date**
 12. **Network upgrade naming conventions**
-13. **Ecosystem project details (ETCswap, USC, Fukuii GUI)**
+13. **Ecosystem project details (ETCswap, USC)**
 14. **HebeSwap status**
 15. **POW Summit/Alliance involvement**
 16. **Official community links**

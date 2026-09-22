@@ -164,7 +164,7 @@ const navigation = {
     { label: 'Mining', href: '/mining' },
     { label: 'Build', href: '/build' },
   ],
-  cta: { label: 'Launch App', href: 'https://github.com/fukuii-project/fukuii-gui' },
+  cta: { label: 'Read the docs', href: 'https://docs.coregeth.com/' },
   secondary: [
     { label: 'Markets', href: '/markets' },
     { label: 'Exchanges', href: '/exchanges' },
@@ -526,7 +526,7 @@ Reserved for in-house mining pool integrated with Fukuii client development.
 - ETChash mining hub
 - Integration with FairWins, ClearPath, TokenMint
 - Prediction DAO research applications
-- GitHub: fukuii-project/fukuii-cli, prediction-dao-research
+- GitHub: chippr-robotics/fukuii, prediction-dao-research
 
 ---
 
@@ -810,7 +810,7 @@ pnpm exec tsc --noEmit  # TypeScript check (no type-check script exists)
 
 ## Security Considerations
 
-1. **No Wallet Connections** - Route to Fukuii GUI
+1. **No Wallet Connections** - Route to the wallet pages
 2. **No User Data Storage** - Phase 1 has no accounts
 3. **CSP Headers** - Strict content security policy
 4. **External Links** - `rel="noopener noreferrer"`
