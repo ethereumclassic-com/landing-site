@@ -56,7 +56,7 @@ export default function YieldFarmingStrategies() {
       <ul>
         <li><strong>Don&apos;t LP your entire portfolio:</strong> Keep a portion of your ETC in a standard wallet for flexibility and security. A common allocation is 60-70% held, 30-40% in LP positions.</li>
         <li><strong>Diversify across pools:</strong> Spread liquidity across multiple pairs and fee tiers rather than concentrating in a single pool.</li>
-        <li><strong>Monitor regularly:</strong> Check positions at least weekly. Use Fukuii GUI or ETCswap&apos;s position dashboard to track performance, fees earned, and current IL.</li>
+        <li><strong>Monitor regularly:</strong> Check positions at least weekly. Use ETCswap&apos;s position dashboard to track performance, fees earned, and current IL.</li>
         <li><strong>Set exit criteria:</strong> Decide in advance when you&apos;ll withdraw&mdash;whether based on IL thresholds, time horizons, or target returns.</li>
       </ul>
 

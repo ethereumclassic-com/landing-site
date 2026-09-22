@@ -141,7 +141,7 @@ export default function DeFiPage() {
             New to DeFi on ETC?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Start your DeFi journey with a wallet and some ETC. Use Fukuii GUI to manage your positions and track your portfolio.
+            Start your DeFi journey with a wallet and some ETC. Track your positions from the applications you use.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

@@ -22,7 +22,6 @@ const siteStructure = [
     title: 'Wallet',
     links: [
       { label: 'Wallet Hub', href: '/wallet' },
-      { label: 'Fukuii GUI', href: '/wallet/fukuii-gui' },
       { label: 'MetaMask Setup', href: '/wallet/metamask' },
       { label: 'Hardware Wallets', href: '/wallet/hardware' },
       { label: 'Compare Wallets', href: '/wallet/compare' },

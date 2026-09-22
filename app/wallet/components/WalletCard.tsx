@@ -38,14 +38,6 @@ export default function WalletCard({ wallet, index }: WalletCardProps) {
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-xl font-bold text-[var(--color-primary)] transition-transform duration-300 group-hover:scale-110">
           {wallet.name[0]}
         </div>
-        {wallet.supportsFukuiiGui && (
-          <span className="flex items-center gap-1 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
-            <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Fukuii GUI
-          </span>
-        )}
       </div>
 
       <h3 className="text-lg font-semibold text-[var(--text-primary)] transition-colors group-hover:text-[var(--color-primary)]">

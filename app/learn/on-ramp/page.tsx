@@ -20,10 +20,10 @@ const fiatSteps = [
   },
   {
     number: 2,
-    title: 'Connect to Fukuii GUI',
-    description: 'Use Fukuii GUI, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
-    action: 'Launch Fukuii GUI',
-    actionLink: 'https://github.com/fukuii-project/fukuii-gui',
+    title: 'Connect to an ETC application',
+    description: 'Connect the wallet holding your USC to an Ethereum Classic application. The apps directory lists the exchanges and DeFi protocols running on ETC.',
+    action: 'Browse ETC apps',
+    actionLink: '/apps/defi',
     details: [
       'Connect MetaMask or hardware wallet',
       'Ensure wallet is on ETC network',
@@ -63,10 +63,10 @@ const usdcSteps = [
   },
   {
     number: 2,
-    title: 'Connect to Fukuii GUI',
-    description: 'Use Fukuii GUI, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
-    action: 'Launch Fukuii GUI',
-    actionLink: 'https://github.com/fukuii-project/fukuii-gui',
+    title: 'Connect to an ETC application',
+    description: 'Connect the wallet holding your USC to an Ethereum Classic application. The apps directory lists the exchanges and DeFi protocols running on ETC.',
+    action: 'Browse ETC apps',
+    actionLink: '/apps/defi',
     details: [
       'Connect MetaMask or hardware wallet',
       'Ensure wallet is on ETC network',
@@ -106,10 +106,10 @@ const usdpSteps = [
   },
   {
     number: 2,
-    title: 'Connect to Fukuii GUI',
-    description: 'Use Fukuii GUI, the native DeFi hub for Ethereum Classic. Connect your wallet containing USC to access the full ETC DeFi ecosystem.',
-    action: 'Launch Fukuii GUI',
-    actionLink: 'https://github.com/fukuii-project/fukuii-gui',
+    title: 'Connect to an ETC application',
+    description: 'Connect the wallet holding your USC to an Ethereum Classic application. The apps directory lists the exchanges and DeFi protocols running on ETC.',
+    action: 'Browse ETC apps',
+    actionLink: '/apps/defi',
     details: [
       'Connect MetaMask or hardware wallet',
       'Ensure wallet is on ETC network',
@@ -517,14 +517,6 @@ export default function OnRampGuidePage() {
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
-              </a>
-              <a
-                href="https://github.com/fukuii-project/fukuii-gui"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-colors hover:bg-[var(--bg)]"
-              >
-                Launch Fukuii GUI
               </a>
             </div>
           </div>

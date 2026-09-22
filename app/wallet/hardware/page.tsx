@@ -12,7 +12,7 @@ const hardwareWallets = [
       'Strong privacy - minimal data collection',
       'Supports 1,000+ assets including ETC',
       'Trezor Suite desktop app',
-      'Compatible with Fukuii GUI via MetaMask',
+      'Works with ETC applications via MetaMask',
     ],
     cons: [
       'No Bluetooth support',
@@ -45,7 +45,7 @@ const hardwareWallets = [
       'Bluetooth support on Nano X and Stax',
       'Supports 5,500+ assets',
       'Ledger Live desktop and mobile app',
-      'Compatible with Fukuii GUI via MetaMask',
+      'Works with ETC applications via MetaMask',
     ],
     cons: [
       'Closed-source firmware - cannot be fully audited',
@@ -112,7 +112,7 @@ const securityBenefits = [
 
 const comparisonFeatures = [
   { feature: 'ETC Support', trezor: true, ledger: true },
-  { feature: 'Fukuii GUI Compatible', trezor: true, ledger: true },
+  { feature: 'ETC application support', trezor: true, ledger: true },
   { feature: 'Open Source Firmware', trezor: true, ledger: false },
   { feature: 'No Data Breaches', trezor: true, ledger: false },
   { feature: 'Secure Element Chip', trezor: 'Some models', ledger: true },
@@ -211,7 +211,7 @@ export default function HardwarePage() {
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span className="text-sm text-[var(--color-text-secondary)]">Fukuii GUI compatible</span>
+              <span className="text-sm text-[var(--color-text-secondary)]">Works with ETC applications</span>
             </div>
             <div className="flex items-center gap-2">
               <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -260,7 +260,7 @@ export default function HardwarePage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Trezor vs Ledger</h2>
             <p className="mt-3 text-[var(--color-text-secondary)]">
-              Both support Ethereum Classic and work with Fukuii GUI. We recommend Trezor for its open-source firmware and strong privacy track record.
+              Both support Ethereum Classic. We recommend Trezor for its open-source firmware and strong privacy track record.
             </p>
           </div>
 
@@ -454,54 +454,6 @@ export default function HardwarePage() {
         </div>
       </section>
 
-      {/* Using with Fukuii GUI */}
-      <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-4xl">
-          <div
-          >
-            <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)] md:text-2xl">Using Hardware Wallets with Fukuii GUI</h2>
-            <p className="mb-6 text-[var(--color-text-secondary)]">
-              Both Trezor and Ledger can be used with Fukuii GUI through MetaMask, giving you the best of both worlds:
-              hardware security with full DeFi access.
-            </p>
-
-            <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-              <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Setup Steps</h3>
-              <ol className="space-y-4">
-                <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">1</span>
-                  <div>
-                    <p className="font-medium text-[var(--text-primary)]">Install MetaMask</p>
-                    <p className="text-sm text-[var(--color-text-muted)]">Follow our MetaMask setup guide to add the ETC network</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">2</span>
-                  <div>
-                    <p className="font-medium text-[var(--text-primary)]">Connect Hardware Wallet</p>
-                    <p className="text-sm text-[var(--color-text-muted)]">In MetaMask, click your account icon → Connect Hardware Wallet → Select Trezor or Ledger</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">3</span>
-                  <div>
-                    <p className="font-medium text-[var(--text-primary)]">Select Account</p>
-                    <p className="text-sm text-[var(--color-text-muted)]">Choose which address(es) to import into MetaMask</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 font-semibold text-[var(--color-primary)]">4</span>
-                  <div>
-                    <p className="font-medium text-[var(--text-primary)]">Launch Fukuii GUI</p>
-                    <p className="text-sm text-[var(--color-text-muted)]">Connect to Fukuii GUI and sign transactions securely on your hardware wallet</p>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="border-t border-[var(--border)] px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl">
@@ -570,18 +522,6 @@ export default function HardwarePage() {
               </div>
               <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Compare All Wallets</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Find the best wallet for your needs</p>
-            </Link>
-            <Link
-              href="/wallet/fukuii-gui"
-              className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
-            >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                </svg>
-              </div>
-              <h3 className="font-medium text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Fukuii GUI</h3>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">DeFi interface for ETC</p>
             </Link>
           </div>
         </div>

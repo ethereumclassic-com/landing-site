@@ -27,7 +27,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/wallet/classic-os',
-        destination: '/wallet/fukuii-gui',
+        destination: '/wallet',
+        permanent: true,
+      },
+      {
+        source: '/wallet/fukuii-gui',
+        destination: '/wallet',
+        permanent: true,
+      },
+      {
+        source: '/apps/fukuii-gui',
+        destination: '/apps',
         permanent: true,
       },
     ]

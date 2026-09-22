@@ -35,16 +35,6 @@ interface AdBannerProps {
 // Sample ads - in production, these would come from a CMS or API
 const sampleAds: Ad[] = [
   {
-    id: 'fukuii-gui',
-    title: 'Fukuii GUI',
-    description: 'Your complete ETC portfolio dashboard. Track, trade, and manage your assets.',
-    url: '/wallet/fukuii-gui',
-    cta: 'Try Fukuii GUI',
-    placement: ['banner', 'sidebar'],
-    priority: 100,
-    internal: true,
-  },
-  {
     id: 'etcswap',
     title: 'Trade on ETCswap',
     description: 'Native decentralized exchange for Ethereum Classic. No KYC, no limits.',

@@ -10,7 +10,7 @@ const cards = [
         title: "Use ETC",
         body: "Use ETC across decentralized applications on Ethereum Classic. ETC can be transferred, traded, collateralized, and programmed in smart contracts powering exchanges, stablecoins, payments, lending, liquidity provision, automation, and other on-chain services. ETC is the native asset for fees and settlement.",
         cta: "Explore applications",
-        href: "https://github.com/fukuii-project/fukuii-gui",
+        href: "/wallet",
         variant: "primary" as const,
         external: true,
         image: "/what/use-etc.png",

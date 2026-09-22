@@ -108,7 +108,6 @@ export default function ETCvsETH() {
       <ul>
         <li><strong><ETCswapLink />:</strong> Primary DEX with V2 and V3 pools</li>
         <li><strong><ClassicUSDLink /> (USC):</strong> USD-backed stablecoin</li>
-        <li><strong>Fukuii GUI:</strong> DeFi dashboard and economic control center</li>
         <li><strong>Blockscout:</strong> Block explorer at etc.blockscout.com</li>
       </ul>
 

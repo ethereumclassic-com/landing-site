@@ -63,7 +63,7 @@ export default function ProductCards() {
   const products = [
     {
       title: 'Wallet',
-      description: 'Secure wallets and Fukuii GUI control plane for managing your ETC assets',
+      description: 'Secure wallets for holding, sending and managing your ETC',
       link: '/wallet',
       icon: <WalletIcon />,
       cta: 'Get Wallet',

@@ -29,7 +29,6 @@ const navItems: {
       { href: '/wallet/compare', label: 'Compare Wallets' },
       { href: '/wallet/hardware', label: 'Hardware Wallets' },
       { href: '/wallet/metamask', label: 'MetaMask Setup' },
-      { href: '/wallet/fukuii-gui', label: 'Fukuii GUI' },
       { type: 'separator', label: 'Apps' },
       { href: '/apps', label: 'Apps Directory' },
       { href: '/apps/featured', label: 'Featured Apps' },

@@ -61,11 +61,6 @@ function WalletComparisonRow({ wallet }: { wallet: Wallet }) {
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
               <span className="font-medium text-[var(--text-primary)]">{wallet.name}</span>
-              {wallet.supportsFukuiiGui && (
-                <span className="rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
-                  COS
-                </span>
-              )}
             </div>
             <span className="text-xs text-[var(--color-text-muted)]">{wallet.description}</span>
           </div>
@@ -122,11 +117,6 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
         <div>
           <div className="flex items-center gap-2">
             <h3 className="font-semibold text-[var(--text-primary)]">{wallet.name}</h3>
-            {wallet.supportsFukuiiGui && (
-              <span className="rounded-full bg-[var(--color-primary)]/10 px-1.5 py-0.5 text-[10px] font-medium text-[var(--color-primary)]">
-                Fukuii GUI
-              </span>
-            )}
           </div>
           <p className="mt-1 text-sm text-[var(--color-text-muted)]">{wallet.description}</p>
         </div>
@@ -187,7 +177,6 @@ function WalletComparisonCard({ wallet }: { wallet: Wallet }) {
 export default function ComparePage() {
   const [filterType, setFilterType] = useState<FilterType>('all')
   const [sortBy, setSortBy] = useState<SortOption>('type')
-  const [showFukuiiGuiOnly, setShowFukuiiGuiOnly] = useState(false)
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table')
 
   const filteredWallets = useMemo(() => {
@@ -196,11 +185,6 @@ export default function ComparePage() {
     // Filter by type
     if (filterType !== 'all') {
       result = result.filter((w) => w.type === filterType)
-    }
-
-    // Filter by Fukuii GUI support
-    if (showFukuiiGuiOnly) {
-      result = result.filter((w) => w.supportsFukuiiGui)
     }
 
     // Sort
@@ -219,7 +203,7 @@ export default function ComparePage() {
     })
 
     return result
-  }, [filterType, sortBy, showFukuiiGuiOnly])
+  }, [filterType, sortBy])
 
   return (
     <main className="min-h-screen">
@@ -294,17 +278,6 @@ export default function ComparePage() {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Fukuii GUI Filter */}
-            <label className="flex cursor-pointer items-center gap-2">
-              <input
-                type="checkbox"
-                checked={showFukuiiGuiOnly}
-                onChange={(e) => setShowFukuiiGuiOnly(e.target.checked)}
-                className="h-4 w-4 rounded border-[var(--border)] bg-[var(--panel)] text-[var(--color-primary)] focus:ring-[var(--color-primary)] focus:ring-offset-0"
-              />
-              <span className="text-sm text-[var(--color-text-muted)]">Fukuii GUI Compatible</span>
-            </label>
-
             {/* Sort */}
             <div className="flex items-center gap-2">
               <span className="text-sm text-[var(--color-text-muted)]">Sort:</span>
@@ -440,7 +413,6 @@ export default function ComparePage() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">COS</span>
-                  <span className="text-xs text-[var(--color-text-muted)]">Works with Fukuii GUI</span>
                 </div>
               </div>
             </div>

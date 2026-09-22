@@ -51,7 +51,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What dApps are available on ETC?',
         answer:
-          'The ETC ecosystem includes ETCswap (V2 and V3 decentralized exchanges), ETCswap Launchpad (token launch platform), Classic USD (USC stablecoin), WrappedEther.org (WETC), and Fukuii GUI (economic dashboard). All approved dApps are listed on the Apps page at ethereumclassic.com/apps.',
+          'The ETC ecosystem includes ETCswap (V2 and V3 decentralized exchanges), ETCswap Launchpad (token launch platform), Classic USD (USC stablecoin), WrappedEther.org (WETC), and other economic dashboard). All approved dApps are listed on the Apps page at ethereumclassic.com/apps.',
       },
       {
         question: 'Is there DeFi on Ethereum Classic?',

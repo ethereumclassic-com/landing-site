@@ -157,7 +157,7 @@ export default function WalletsPage() {
             Ready to Get Started?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Get a wallet and start using Ethereum Classic today. We recommend Fukuii GUI for the best ETC experience.
+            Get a wallet and start using Ethereum Classic. Compare the options to find one that fits how you hold ETC.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

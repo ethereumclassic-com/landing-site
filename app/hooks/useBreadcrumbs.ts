@@ -31,7 +31,6 @@ const segmentLabels: Record<string, string> = {
   calculator: 'Calculator',
 
   // Wallet sub-sections
-  'fukuii-gui': 'Fukuii GUI',
   metamask: 'MetaMask',
   hardware: 'Hardware',
   compare: 'Compare',

@@ -51,18 +51,6 @@ function ProductFeatureCard({ name, description, features, link, badge, index }:
 export default function ProductSuite() {
   const products = [
     {
-      name: 'Fukuii GUI',
-      description: 'Economic control center for managing ETC capital flows',
-      features: [
-        'Mining OS integration',
-        'Portfolio tracking',
-        'DeFi automation',
-        'Market access',
-      ],
-      link: 'https://github.com/fukuii-project/fukuii-gui',
-      badge: 'Flagship',
-    },
-    {
       name: 'ETCswap V3',
       description: 'Concentrated liquidity DEX with capital-efficient trading',
       features: [

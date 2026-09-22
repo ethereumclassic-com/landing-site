@@ -16,7 +16,6 @@ export interface Wallet {
   type: WalletType
   description: string
   link: string
-  supportsFukuiiGui?: boolean
   platforms?: ('iOS' | 'Android' | 'Desktop' | 'Browser' | 'Hardware')[]
   features?: WalletFeatures
   securityLevel?: 'high' | 'medium' | 'standard'
@@ -30,7 +29,6 @@ export const wallets: Wallet[] = [
     type: 'Hardware',
     description: 'The original hardware wallet with fully open-source firmware',
     link: 'https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561',
-    supportsFukuiiGui: true,
     platforms: ['Hardware', 'Desktop', 'Browser'],
     features: {
       nonCustodial: true,
@@ -50,7 +48,6 @@ export const wallets: Wallet[] = [
     type: 'Hardware',
     description: 'Popular hardware wallet with secure element chip',
     link: 'https://shop.ledger.com/?r=bbf4d7f32e72',
-    supportsFukuiiGui: true,
     platforms: ['Hardware', 'Desktop', 'iOS', 'Android'],
     features: {
       nonCustodial: true,
@@ -148,7 +145,6 @@ export const wallets: Wallet[] = [
     type: 'Browser',
     description: 'Most popular browser extension wallet for Ethereum and ETC',
     link: 'https://metamask.io',
-    supportsFukuiiGui: true,
     platforms: ['Browser', 'iOS', 'Android'],
     features: {
       nonCustodial: true,
@@ -206,7 +202,6 @@ export const wallets: Wallet[] = [
     type: 'Browser',
     description: 'Built-in wallet in Brave browser',
     link: 'https://brave.com/wallet',
-    supportsFukuiiGui: true,
     platforms: ['Browser', 'iOS', 'Android', 'Desktop'],
     features: {
       nonCustodial: true,
@@ -245,7 +240,6 @@ export const wallets: Wallet[] = [
     type: 'Browser',
     description: 'Security-focused browser extension wallet',
     link: 'https://rabby.io',
-    supportsFukuiiGui: true,
     platforms: ['Browser', 'Desktop'],
     features: {
       nonCustodial: true,
@@ -516,10 +510,6 @@ export const wallets: Wallet[] = [
 // Helper functions
 export function getWalletsByType(type: WalletType): Wallet[] {
   return wallets.filter((w) => w.type === type)
-}
-
-export function getWalletsWithFukuiiGui(): Wallet[] {
-  return wallets.filter((w) => w.supportsFukuiiGui)
 }
 
 export function getWalletsBySecurityLevel(level: 'high' | 'medium' | 'standard'): Wallet[] {
