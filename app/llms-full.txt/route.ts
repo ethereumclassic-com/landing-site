@@ -25,7 +25,6 @@ export function GET() {
 
 ### /wallet — Wallets
 Get wallets and manage ETC. Sub-pages:
-- /wallet/fukuii-gui — Fukuii GUI flagship (mining OS + DeFi control plane)
 - /wallet/metamask — MetaMask setup guide for ETC
 - /wallet/hardware — Hardware wallet options (Ledger, Trezor)
 - /wallet/compare — Comparison of all ETC-compatible wallets
@@ -264,7 +263,7 @@ Explicitly excluded from ECIP-1121:
 
 ### Client Support
 
-Fukuii — Primary ETC-native client
+Fukuii — ETC-native client
 Ethereum Classic's first native client, built ground-up for ETC rather than derived from an
 Ethereum client. An EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM.
 One binary runs several networks at once in one JVM process, each isolated with its own state, its
@@ -284,15 +283,16 @@ sync, RPC and general work keep sync pressure from starving the RPC.
 
 Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release
 artifacts. Maintained by The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.).
-Website: https://fukuii.org
-Docs: https://docs.fukuii.org
-Repo: https://github.com/fukuii-project/fukuii-cli
-Docker: ghcr.io/fukuii-project/fukuii-cli
+Website: https://fukuii.com
+Docs: https://docs.fukuii.com
+Repo: https://github.com/chippr-robotics/fukuii
+Docker: ghcr.io/chippr-robotics/fukuii
 
-Core-Geth — A go-ethereum derivative maintained for Ethereum Classic
-Not a native ETC client, and not a plugin. v1.13 is its last release line, maintained through the
-transition; Fukuii is the preferred successor once it publishes a release. Core-Geth v1.13.0,
-prepared by White B0x, fixes six CVEs and moves the client to Go 1.26.
+Core-Geth — The recommended client for Ethereum Classic
+A go-ethereum derivative, released and maintained in the ethereumclassic organization. Not a native
+ETC client, and not a plugin. Core-Geth v1.13.0, prepared by White B0x, fixes six CVEs and moves the
+client to Go 1.26. A node tracking the previous repository, etclabscore/core-geth, will not see its
+releases.
 Docs: https://docs.coregeth.com
 Releases: https://github.com/ethereumclassic/core-geth/releases/latest
 Repo: https://github.com/ethereumclassic/core-geth
@@ -362,20 +362,24 @@ The /research/emission-schedule page provides a live countdown to the next fifth
 
 ## Node Client Exposure
 
-Core-Geth v1.13.0 is the recommended release, published from https://github.com/ethereumclassic/core-geth. A node tracking the previous repository, etclabscore/core-geth, will not see it. Upgrading requires rotating the P2P node key rather than merely suggesting it: CVE-2026-26315 is an oracle against that key, so a key used by an unpatched node should be treated as exposed. Rename the key file rather than deleting it, and expect the enode ID to change.
+Core-Geth v1.13.0 or later is the recommended release, published from https://github.com/ethereumclassic/core-geth/releases/latest. A node tracking the previous repository, etclabscore/core-geth, will not see it. Upgrading requires rotating the P2P node key rather than merely suggesting it: CVE-2026-26315 is an oracle against that key, so a key used by an unpatched node should be treated as exposed. Rename the key file rather than deleting it, and expect the enode ID to change.
 
 Every v1.12.x archive, including the newest, was built on a Go release that is no longer supported. The toolchains are Go 1.21 and Go 1.22, whose support ended in August 2024 and February 2025, and each archive carries 55 to 61 Go standard library advisories that v1.13.0 does not.
 
-What the network was running on 2026-09-17, from the maintainers' census of etcnodes.org covering 524 Core-Geth nodes of 550. These figures move, and https://docs.coregeth.com/release-reports/v1.13.0-record/#what-the-network-is-running carries the current breakdown with the source for each row:
+What the network was running on 2026-09-17, from the census of etcnodes.org covering 524 Core-Geth nodes of 550. These figures move, and https://etcnodes.org carries the current breakdown:
 
-- v1.12.20 and older — 158 nodes (30.2%): all six client CVEs unpatched, two of which were exploited against Ethereum Classic bootnodes in March 2026
+- v1.12.20 and earlier — 158 nodes (30.2%), spread across v1.12.17 to v1.12.20: all six client CVEs and the GraphQL denial of service unpatched, two of them (CVE-2026-22862 and CVE-2026-26315) exploited against Ethereum Classic bootnodes in March 2026
 - v1.12.21 — 50 nodes (9.5%): the ECIES crash and the key oracle closed; two curve checks, the RLP work and the GraphQL limit still missing
 - v1.12.22 — 165 nodes (31.5%): the rest of the CVE backports, with CVE-2026-26313 only partly mitigated; introduces the eth_syncing regression that reports highestBlock incorrectly
 - v1.12.23 — 138 nodes (26.3%): the delayed-decoding hardening series, and nothing else above is fixed
 - v1.13.0 — 9 nodes (1.7%): recommended; six CVEs resolved, the GraphQL depth limit fixed, built with Go 1.26.8, zero Go advisories
 - Four further nodes report v1.12.24, which is not a release but a development build of the previous repository's master branch
 
-The measurements behind these claims: https://docs.coregeth.com/audits/2026-03-security-audit/ for the six CVEs and the disclosure timeline, https://docs.coregeth.com/audits/2026-09-go-toolchain/ for which toolchain built each published archive and the advisories each one carries, and https://docs.coregeth.com/etc-cooperative-transition/ for where the services the ETC Cooperative maintained now continue.
+Two defaults changed in v1.13.0, for different reasons. MESS (ECBP-1100) applies again, reversing the deactivation v1.12.17 scheduled: it decides which of two competing chains a node prefers during a deep reorganization, never whether a block is valid, so it is a client default and not a consensus rule. --mess=false turns it off, and nodes in one fleet should agree on the setting. The second change does follow from the wind-down: the bootnodes and DNS discovery trees compiled into the release are published from the ethereumclassic organization on domains it holds, replacing lists set to be archived; --bootnodes and --discovery.dns accept any other list. https://docs.coregeth.com/operate/mess/ and https://docs.coregeth.com/guides/bootnodes-and-discovery/ carry both.
+
+Every v1.12.x archive from v1.12.21 also requires glibc 2.34, up from 2.17 in v1.12.20, so an operator on Ubuntu 20.04, Debian 11, RHEL 8 or Amazon Linux 2 could not run the security release they were told to install. From v1.13.1 a change reaches main only with an approving review from someone other than its author.
+
+The measurements behind these claims: https://docs.coregeth.com/audits/2026-03-security-audit/ for the six CVEs, the GraphQL denial of service and the disclosure timeline, https://docs.coregeth.com/audits/2026-08-security-followup/ for v1.12.23 measured at its tag, https://docs.coregeth.com/audits/2026-08-dependency-modernization/ for the module graph, https://docs.coregeth.com/audits/2026-09-go-toolchain/ for which toolchain built each published archive and the advisories each one carries, https://docs.coregeth.com/audits/2026-09-release-pipeline/ for what the published archives contain, and https://docs.coregeth.com/etc-cooperative-transition/ for where the services the ETC Cooperative maintained now continue.
 
 ## Regulatory Summary
 
@@ -391,7 +395,6 @@ Japan:
 
 ## Ecosystem Products
 
-- Fukuii GUI (https://github.com/fukuii-project/fukuii-gui) — Mining OS + ETC portfolio control plane
 - ETCswap V3 (https://etcswap.org) — Concentrated liquidity DEX
 - ETCswap Launchpad (https://etcswap.org/launchpad) — Token launch platform with bonding curves
 - ClassicUSD (https://classicusd.com) — USD-backed stablecoin native to ETC

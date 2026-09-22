@@ -64,7 +64,6 @@ const staticRoutes = [
 
   // Wallet section
   { path: '/wallet', priority: 0.9, changeFrequency: 'weekly' as const },
-  { path: '/wallet/fukuii-gui', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/wallet/metamask', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/wallet/hardware', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/wallet/compare', priority: 0.7, changeFrequency: 'weekly' as const },
