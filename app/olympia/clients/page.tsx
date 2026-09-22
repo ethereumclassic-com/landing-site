@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getClientImplementations } from '../../build/data/build'
 import OlympiaCountdown from '../components/OlympiaCountdown'
 import { badgeStyle } from '@/lib/badge-theme'
-import { CORE_GETH_FUKUII_MIGRATION_URL, CORE_GETH_MIGRATION_URL } from '@/lib/core-geth'
+import { CORE_GETH_MIGRATION_URL } from '@/lib/core-geth'
 
 const CheckIcon = () => (
   <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -63,9 +63,9 @@ export default function UpgradeHubPage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Fukuii is Ethereum Classic&apos;s primary client, built natively for ETC. Core-Geth,
-            a go-ethereum derivative, is maintained alongside it so the network never depends on a
-            single codebase.
+            Core-Geth, a go-ethereum derivative, is the client to run: it is released and
+            maintained in the ethereumclassic organization. Fukuii, built natively for ETC, is
+            developed alongside it so the network never depends on a single codebase.
             ETC plugins add Ethereum Classic support into existing Ethereum clients, widening
             execution-layer reach without adding another codebase to maintain.
           </p>
@@ -121,7 +121,7 @@ export default function UpgradeHubPage() {
                     </div>
                     <p className="mb-4 text-[var(--color-text-muted)]">{client.description}</p>
 
-                    {/* Sunset / security notice */}
+                    {/* Security notice */}
                     {client.securityAuditUrl && (
                       <div className="mb-4 flex items-center justify-between rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3">
                         <span className="text-sm text-[var(--color-text-muted)]">
@@ -133,15 +133,6 @@ export default function UpgradeHubPage() {
                             className="font-medium text-[var(--color-primary)] hover:underline"
                           >
                             Upgrade from v1.12.x
-                          </a>{' '}
-                          ·{' '}
-                          <a
-                            href={CORE_GETH_FUKUII_MIGRATION_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium text-[var(--color-primary)] hover:underline"
-                          >
-                            When to move to Fukuii
                           </a>
                         </span>
                         <Link

@@ -527,7 +527,8 @@ export default function OlympiaHubPage() {
             Ready to Upgrade?
           </h2>
           <p className="mt-3 text-[var(--color-text-muted)]">
-            Fukuii is the recommended client. Core-Geth is maintained through the transition.
+            Core-Geth is the recommended client, released and maintained in the ethereumclassic
+            organization.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

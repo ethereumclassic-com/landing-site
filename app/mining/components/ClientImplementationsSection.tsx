@@ -2,15 +2,17 @@ import { FadeIn } from '@/app/components/ui'
 import Link from 'next/link'
 
 const primaryClient = {
-  name: 'Fukuii',
-  language: 'Scala',
+  name: 'Core-Geth',
+  language: 'Go',
   description:
-    "Ethereum Classic's first native client, built ground-up for ETC rather than derived from an Ethereum client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
-  website: 'https://fukuii.org',
-  github: 'https://github.com/fukuii-project/fukuii-cli',
+    'A go-ethereum derivative released and maintained for Ethereum Classic in the ethereumclassic organization. Etchash mining is built in, and the MESS chain-selection defense is on by default. v1.13.0, prepared by White B0x, fixes six CVEs and moves the client to Go 1.26.',
+  website: 'https://docs.coregeth.com',
+  websiteLabel: 'docs.coregeth.com',
+  github: 'https://github.com/ethereumclassic/core-geth',
+  securityAuditUrl: '/build/clients/core-geth-security-audit',
   // Describes what the client is, not which fork is next. A badge naming a
   // specific hard fork stops being true the moment the network forks past it.
-  badges: ['Primary', 'Enterprise', 'ETC-native'],
+  badges: ['Recommended', 'Go-Ethereum derivative'],
 }
 
 interface SecondaryClient {
@@ -25,13 +27,12 @@ interface SecondaryClient {
 
 const secondaryClients: SecondaryClient[] = [
   {
-    name: 'Core-Geth',
-    language: 'Go',
+    name: 'Fukuii',
+    language: 'Scala',
     description:
-      'A go-ethereum derivative maintained for Ethereum Classic, providing client diversity alongside Fukuii. Not native, and not a plugin.',
-    github: 'https://github.com/ethereumclassic/core-geth',
-    status: 'Maintained',
-      securityAuditUrl: '/build/clients/core-geth-security-audit',
+      "Ethereum Classic's first native client, built ground-up for ETC rather than derived from an Ethereum client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
+    github: 'https://github.com/chippr-robotics/fukuii',
+    status: 'Pre-1.0',
   },
   {
     name: 'ETC Plugins',
@@ -95,7 +96,7 @@ export function ClientImplementationsSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-sm font-medium text-[var(--brand-green)] transition-colors hover:underline"
               >
-                fukuii.org →
+                {primaryClient.websiteLabel} →
               </a>
               <a
                 href={primaryClient.github}
@@ -105,6 +106,12 @@ export function ClientImplementationsSection() {
               >
                 GitHub →
               </a>
+              <Link
+                href={primaryClient.securityAuditUrl}
+                className="inline-flex items-center text-sm font-medium text-[var(--color-warning)] transition-colors hover:underline"
+              >
+                Security audit →
+              </Link>
             </div>
           </div>
         </FadeIn>

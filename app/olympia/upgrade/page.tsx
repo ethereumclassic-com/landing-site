@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { CORE_GETH_DOCS_URL } from '@/lib/core-geth'
+import { CORE_GETH_DOCS_URL, CORE_GETH_LATEST_RELEASE_URL } from '@/lib/core-geth'
 // Inline SVG icons (etc-com does not use lucide-react)
 type IconProps = { size?: number; className?: string; style?: React.CSSProperties; 'aria-hidden'?: boolean | 'true' | 'false' }
 const CheckCircle2 = ({ size = 16, className = '', style, ...rest }: IconProps) => (
@@ -214,8 +214,8 @@ const clientData = [
       'Replace the existing binary',
       'Restart your node. Fukuii automatically follows the Olympia fork.',
     ],
-    githubUrl: 'https://github.com/fukuii-project/fukuii-cli/releases',
-    docsUrl: 'https://docs.fukuii.org',
+    githubUrl: 'https://github.com/chippr-robotics/fukuii/releases',
+    docsUrl: 'https://docs.fukuii.com',
   },
   {
     name: 'Core-Geth',
@@ -231,7 +231,7 @@ const clientData = [
       'Replace the existing geth binary',
       'Restart your node. It will automatically follow the Olympia fork.',
     ],
-    githubUrl: 'https://github.com/ethereumclassic/core-geth/releases',
+    githubUrl: CORE_GETH_LATEST_RELEASE_URL,
     docsUrl: CORE_GETH_DOCS_URL,
       securityAuditUrl: '/build/clients/core-geth-security-audit',
   },
@@ -631,7 +631,7 @@ export default function UpgradeGuidePage() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-sm text-[var(--brand-green)] transition hover:opacity-80"
                     >
-                      Releases <ExternalLink size={12} />
+                      Latest release <ExternalLink size={12} />
                     </a>
                     <a
                       href={client.docsUrl}
@@ -689,7 +689,8 @@ export default function UpgradeGuidePage() {
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Ready to Upgrade?</h2>
           <p className="mt-3 text-[var(--color-text-muted)]">
-            Fukuii is the recommended client. Core-Geth is maintained through the transition.
+            Core-Geth is the recommended client, released and maintained in the ethereumclassic
+            organization.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link

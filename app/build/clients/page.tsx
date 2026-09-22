@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { networks, getClientImplementations, executionPlugins } from '../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
-import { CORE_GETH_FUKUII_MIGRATION_URL, CORE_GETH_MIGRATION_URL } from '@/lib/core-geth'
+import { CORE_GETH_LATEST_RELEASE_URL, CORE_GETH_MIGRATION_URL } from '@/lib/core-geth'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -196,7 +196,7 @@ export default function ClientsPage() {
                     </div>
                     <p className="mb-4 text-[var(--color-text-muted)]">{client.description}</p>
 
-                    {/* Sunset / security notice */}
+                    {/* Security notice */}
                     {client.securityAuditUrl && (
                       <div className="mb-4 flex items-center justify-between rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3">
                         <span className="text-sm text-[var(--color-text-muted)]">
@@ -208,15 +208,6 @@ export default function ClientsPage() {
                             className="font-medium text-[var(--color-primary)] hover:underline"
                           >
                             Upgrade from v1.12.x
-                          </a>{' '}
-                          ·{' '}
-                          <a
-                            href={CORE_GETH_FUKUII_MIGRATION_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-medium text-[var(--color-primary)] hover:underline"
-                          >
-                            When to move to Fukuii
                           </a>
                         </span>
                         <Link
@@ -441,8 +432,8 @@ export default function ClientsPage() {
               Proof-of-Stake. ETC plugins leverage this separation to add Ethereum Classic chain support
               to the execution layer only. No mining, no PoW consensus. Products and infrastructure built on
               Go-Ethereum, Nethermind, Erigon, Besu, or Reth can add ETC support via a lightweight plugin without running
-              a separate PoW consensus client. Fukuii remains the primary and long-term supported Proof-of-Work
-              client for the mining ecosystem.
+              a separate PoW consensus client. Core-Geth carries the Proof-of-Work consensus and mining path
+              for the ecosystem.
             </p>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
@@ -477,17 +468,17 @@ export default function ClientsPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
-              Fukuii is the recommended client for Ethereum Classic — native PoW consensus for ETC and Mordor,
-              Engine API V1–V4 for post-Merge Ethereum. For upgrade-specific guidance, see the client upgrade guides.
+              Core-Geth is the recommended client for Ethereum Classic, released and maintained in the
+              ethereumclassic organization. For upgrade-specific guidance, see the client upgrade guides.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="https://github.com/fukuii-project/fukuii-cli"
+                href={CORE_GETH_LATEST_RELEASE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
-                Get Fukuii
+                Get Core-Geth
                 <ExternalLinkIcon />
               </a>
               <Link

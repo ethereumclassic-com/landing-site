@@ -14,10 +14,8 @@ import { badgeStyle } from '@/lib/badge-theme'
 import { OG_BASE } from '@/lib/seo'
 import { ReleaseDownloads } from '@/app/components/ReleaseDownloads'
 import {
-  CORE_GETH_FUKUII_MIGRATION_URL,
+  CORE_GETH_LATEST_RELEASE_URL,
   CORE_GETH_MIGRATION_URL,
-  CORE_GETH_RELEASE_URL,
-  CORE_GETH_VERSION,
 } from '@/lib/core-geth'
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -140,12 +138,12 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a
-                  href={CORE_GETH_RELEASE_URL}
+                  href={CORE_GETH_LATEST_RELEASE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 px-4 py-2 text-sm font-medium text-[var(--color-error)] transition hover:bg-[var(--color-error)]/20"
                 >
-                  Download {CORE_GETH_VERSION} →
+                  Download the latest release →
                 </a>
                 <a
                   href={CORE_GETH_MIGRATION_URL}
@@ -296,15 +294,15 @@ function InstallationSection({ client }: { client: NodeClient }) {
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull ghcr.io/fukuii-project/fukuii-cli:latest</code>
+                <code className="text-[var(--color-primary)]">docker pull ghcr.io/chippr-robotics/fukuii:latest</code>
               </div>
             </div>
             <div>
               <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
               <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
                 <code className="block text-[var(--color-text-muted)]"># Requires JDK 25+ and sbt</code>
-                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/fukuii-project/fukuii-cli.git</code>
-                <code className="block text-[var(--color-text-muted)]">cd fukuii-cli && sbt assembly</code>
+                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/chippr-robotics/fukuii.git</code>
+                <code className="block text-[var(--color-text-muted)]">cd fukuii && sbt assembly</code>
               </div>
             </div>
           </div>
@@ -442,18 +440,18 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                 {client.description}
               </p>
               {client.id === 'core-geth' && (
-                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 px-4 py-3 text-sm">
-                  <span className="text-[var(--color-warning)] font-medium">⚠ Last release line</span>
+                <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 px-4 py-3 text-sm">
+                  <span className="font-medium text-[var(--color-primary)]">Maintained in the community organization</span>
                   <span className="text-[var(--color-text-muted)]">
-                    v1.13 is maintained through the transition · Fukuii is the preferred successor
+                    Releases are published at ethereumclassic/core-geth
                   </span>
                   <a
-                    href={CORE_GETH_FUKUII_MIGRATION_URL}
+                    href={CORE_GETH_LATEST_RELEASE_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium text-[var(--color-primary)] hover:underline"
                   >
-                    When to move to Fukuii →
+                    Latest release →
                   </a>
                 </div>
               )}
@@ -556,24 +554,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
       {/* Status Badge */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          {client.role === 'maintained' ? (
-            <div className="rounded-xl border border-[var(--color-warning)]/30 bg-[var(--color-warning-bg)] p-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-warning)]/20">
-                  <svg aria-hidden="true" className="h-4 w-4 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-medium text-[var(--text-primary)]">Last Release Line</p>
-                  <p className="text-sm text-[var(--color-text-muted)]">
-                    v1.13 is the last Core-Geth release line, maintained through the transition. Until Fukuii publishes a
-                    release, it is the client to run.
-                  </p>
-                </div>
-              </div>
-            </div>
-          ) : (
+          {(
             <div className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success-bg)]">
@@ -681,7 +662,7 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
             <h2 className="mb-3 text-lg font-semibold text-[var(--text-primary)]">What is an execution plugin?</h2>
             <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
               Ethereum clients separated consensus from execution for Ethereum&apos;s proof-of-stake transition. ETC leverages this same architecture — adding Ethereum Classic chain support to the execution layer only. Execution plugins have no PoW consensus or mining capability. They serve infrastructure that doesn&apos;t need to participate in consensus: exchanges, RPC providers, block explorers, and indexers.{' '}
-              <strong className="text-[var(--text-primary)]">Fukuii</strong> anchors the PoW consensus layer as the primary full-node client.
+              <strong className="text-[var(--text-primary)]">Core-Geth</strong> carries the Proof-of-Work consensus layer as a full node.
             </p>
           </div>
         </div>
@@ -717,14 +698,14 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
           <div className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center">
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Running a full node today?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
-              Fukuii is the recommended full node client for Ethereum Classic, with native PoW consensus and Olympia support.
+              Core-Geth is the recommended full node client for Ethereum Classic, released and maintained in the ethereumclassic organization.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
-                href="/build/clients/fukuii"
+                href="/build/clients/core-geth"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
-                View Fukuii →
+                View Core-Geth →
               </Link>
               <Link
                 href="/build/clients"

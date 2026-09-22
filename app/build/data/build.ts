@@ -3,6 +3,7 @@
 
 import {
   CORE_GETH_DOCS_URL,
+  CORE_GETH_HOMEPAGE_URL,
   CORE_GETH_INSTALL,
   CORE_GETH_RELEASE,
   type ClientRelease,
@@ -137,8 +138,8 @@ export const nodeClients: NodeClient[] = [
   {
     id: 'fukuii',
     name: 'Fukuii',
-    website: 'https://fukuii.org',
-    github: 'https://github.com/fukuii-project/fukuii-cli',
+    website: 'https://fukuii.com',
+    github: 'https://github.com/chippr-robotics/fukuii',
     description:
       "Ethereum Classic's first native client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration; a further network is configuration, not a new client.",
     language: 'Scala',
@@ -153,20 +154,18 @@ export const nodeClients: NodeClient[] = [
       'Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts',
     ],
     status: 'active',
-    role: 'recommended',
-    badges: ['Primary', 'Enterprise', 'ETC-native'],
-    recommended: true,
-    installCommand: 'docker pull ghcr.io/fukuii-project/fukuii-cli:latest',
+    badges: ['ETC-native', 'Enterprise'],
+    recommended: false,
     configNotes:
       'Select the network with --network=etc for ETC mainnet or --network=mordor for the ETC testnet. Requires a current JDK LTS (25); the Docker image bundles one.',
   },
   {
     id: 'core-geth',
     name: 'Core-Geth',
-    website: CORE_GETH_DOCS_URL,
+    website: CORE_GETH_HOMEPAGE_URL,
     github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'A go-ethereum derivative maintained for Ethereum Classic through the transition to Fukuii. The v1.12.x line went 21 months without security maintenance; Core-Geth v1.13, prepared by White B0x, fixes six CVEs, one of them exploited against ETC mainnet bootnodes in March 2026, and moves the client to Go 1.26.',
+      'A go-ethereum derivative maintained for Ethereum Classic, released from the ethereumclassic community organization. The v1.12.x line went 21 months without security maintenance; Core-Geth v1.13.0, prepared by White B0x, fixes six CVEs, one of them exploited against ETC mainnet bootnodes in March 2026, and moves the client to Go 1.26.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
@@ -177,9 +176,9 @@ export const nodeClients: NodeClient[] = [
       'MESS (ECBP-1100) chain-selection defense, on by default',
       'Build attestation on every release file',
     ],
-    status: 'maintained',
-    role: 'maintained',
-    recommended: false,
+    status: 'active',
+    role: 'recommended',
+    recommended: true,
     installCommand: 'docker pull ghcr.io/ethereumclassic/core-geth:latest',
     installGuide: CORE_GETH_INSTALL,
     release: CORE_GETH_RELEASE,

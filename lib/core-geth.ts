@@ -13,14 +13,18 @@ export const CORE_GETH_VERSION = 'v1.13.0'
 
 export const CORE_GETH_REPO_URL = 'https://github.com/ethereumclassic/core-geth'
 export const CORE_GETH_RELEASE_URL = `${CORE_GETH_REPO_URL}/releases/tag/${CORE_GETH_VERSION}`
+/** The current release, whatever it is. Prefer this to a pinned tag in copy that should not age. */
+export const CORE_GETH_LATEST_RELEASE_URL = `${CORE_GETH_REPO_URL}/releases/latest`
 export const CORE_GETH_SECURITY_POLICY_URL = `${CORE_GETH_REPO_URL}/blob/main/SECURITY.md`
+
+/** The project homepage, as distinct from the docs site below. */
+export const CORE_GETH_HOMEPAGE_URL = 'https://coregeth.com'
 
 export const CORE_GETH_DOCS_URL = 'https://docs.coregeth.com/'
 export const CORE_GETH_INSTALL_URL = `${CORE_GETH_DOCS_URL}getting-started/installation/`
 
 /** The upgrade from any v1.12.x release. Named for v1.13.0, and still the guide for later v1.13.x. */
 export const CORE_GETH_MIGRATION_URL = `${CORE_GETH_DOCS_URL}tutorials/v1.13.0-migration/`
-export const CORE_GETH_FUKUII_MIGRATION_URL = `${CORE_GETH_MIGRATION_URL}#migrating-to-fukuii`
 
 export interface ReleaseFile {
   name: string

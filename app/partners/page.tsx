@@ -127,7 +127,7 @@ const partners: Partner[] = [
     description:
       "Chippr Robotics LLC and White B0x Inc., who maintain Fukuii — Ethereum Classic's first native client.",
     category: 'development',
-    url: 'https://github.com/fukuii-project',
+    url: 'https://github.com/chippr-robotics/fukuii',
     partnerSince: '2024',
   },
 
@@ -157,13 +157,6 @@ const partners: Partner[] = [
     url: 'https://etcswap.org',
     featured: true,
     partnerSince: '2022',
-  },
-  {
-    name: 'Fukuii GUI',
-    description: 'DeFi portfolio management dashboard for ETC.',
-    category: 'defi',
-    url: '/wallet/fukuii-gui',
-    partnerSince: '2024',
   },
 ]
 
@@ -367,7 +360,7 @@ export default function PartnersPage() {
                     <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
-                    Integration with Fukuii GUI and ecosystem products
+                    Integration with Ethereum Classic ecosystem products
                   </li>
                   <li className="flex items-start gap-2">
                     <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -139,7 +139,7 @@ export const apps: App[] = [
     description: "Ethereum Classic's first native client — an EVM execution client in Scala 3 LTS on the JVM. Several networks at once in one JVM process, each fully isolated.",
     longDescription: "Fukuii is Ethereum Classic's first native client, built ground-up for ETC rather than derived from an Ethereum client. It is an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration — a further network is configuration, not a new client. Consensus is selected per deployment behind one interface: native Proof-of-Work for ETC mainnet and Mordor, or Proof-of-Stake with a built-in consensus layer, so one process is a complete Proof-of-Stake node; an external consensus client over the Engine API V1–V4 is the alternative. Fukuii ships an MCP server exposing node state to AI agents. It is enterprise-grade by way of the JVM rather than by a separate edition: JVM-native infrastructure end to end for institutions already running on the JVM, with no foreign-language bridge, so JFR, async-profiler, JMX and heap dumps work exactly as they do on any other JVM process. Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints ship in the binary, alongside concurrent multi-instance execution and external-signer/HSM custody integration. Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts. Maintained by The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.).",
     category: 'Infrastructure',
-    link: 'https://fukuii.org',
+    link: 'https://fukuii.com',
     featured: true,
     tags: ['Node', 'Client', 'Enterprise', 'Scala', 'Multi-Network'],
     features: [
@@ -161,10 +161,10 @@ export const apps: App[] = [
   {
     name: 'Core-Geth',
     slug: 'core-geth',
-    description: 'A go-ethereum derivative maintained for Ethereum Classic through the transition to Fukuii.',
-    longDescription: 'Core-Geth is a go-ethereum derivative maintained for Ethereum Classic — not a native ETC client, and not a plugin. It is the widely deployed Go client for the network. v1.13 is its last release line, maintained through the transition until Fukuii, the preferred successor, takes over the primary ETC client role. Upstream go-ethereum has deprecated Proof-of-Work support, so the upstream plugin architecture is the long-term path for Go-based ETC execution rather than a dedicated fork.',
+    description: 'A go-ethereum derivative released and maintained for Ethereum Classic in the ethereumclassic organization.',
+    longDescription: 'Core-Geth is a go-ethereum derivative released and maintained for Ethereum Classic in the ethereumclassic organization — not a native ETC client, and not a plugin. It is the widely deployed Go client for the network. The v1.12.x line went 21 months without security maintenance; v1.13.0, prepared by White B0x, fixes six CVEs, one of them exploited against ETC mainnet bootnodes in March 2026, and moves the client to Go 1.26.',
     category: 'Infrastructure',
-    link: 'https://github.com/ethereumclassic/core-geth',
+    link: 'https://coregeth.com',
     tags: ['Node', 'Client', 'Go', 'Derivative'],
     features: [
       'A go-ethereum derivative maintained for ETC',
@@ -226,28 +226,6 @@ export const apps: App[] = [
   },
 
   // Tools
-  {
-    name: 'Fukuii GUI',
-    slug: 'fukuii-gui',
-    description: 'Economic Control Center with Mining OS, Portfolio tracking, DeFi automation, and Markets access.',
-    longDescription: 'Fukuii GUI is not a wallet - it\'s an Economic Control Center that works with your existing wallet. Manage capital flows, track positions, and orchestrate automated strategies to earn. Modules include Produce (Mining OS), Portfolio, Deploy (DeFi automation), and Markets.',
-    category: 'Tools',
-    link: 'https://github.com/fukuii-project/fukuii-gui',
-    tags: ['Dashboard', 'Mining', 'DeFi', 'Portfolio'],
-    features: [
-      'Mining OS integration',
-      'Portfolio tracking',
-      'DeFi automation',
-      'Market access',
-      'Multi-wallet support',
-      'Strategy orchestration',
-    ],
-    stats: [
-      { label: 'Modules', value: '4' },
-      { label: 'Wallets', value: 'Any' },
-      { label: 'Type', value: 'Dashboard' },
-    ],
-  },
   {
     name: 'ETC Nodes',
     slug: 'etc-nodes',
