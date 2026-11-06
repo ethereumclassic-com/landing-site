@@ -7,6 +7,7 @@ import { HashrateDistributionNote } from '@/app/components/HashrateDistributionN
 import { cachedFetchJson } from '@/lib/client-fetch'
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 import type { FormattedNetworkStats } from '@/lib/format-network-stats'
+import { NODE_CENSUS_SOURCE, type NodeCensus } from '@/lib/etc-nodes'
 
 // Format time ago helper
 function formatTimeAgo(date: Date): string {
@@ -27,17 +28,6 @@ interface PoolShare {
   share: number
 }
 
-// Node Distribution - REFERENCE DATA
-// Reference data. No public API for ETC node geographic distribution is consumed here.
-// Potential sources: Ethernodes.org, node crawler services
-// Estimates based on community reports - verification needed
-const nodeDistribution = [
-  { region: 'North America', count: '~280', percentage: 33 },
-  { region: 'Europe', count: '~240', percentage: 29 },
-  { region: 'Asia', count: '~200', percentage: 24 },
-  { region: 'South America', count: '~65', percentage: 8 },
-  { region: 'Other', count: '~55', percentage: 6 },
-]
 
 const StatusIcon = ({ status }: { status: 'healthy' | 'warning' | 'critical' }) => {
   if (status === 'healthy') {
@@ -71,6 +61,8 @@ export interface NetworkHealthInitial {
   formatted: FormattedNetworkStats | null
   pools: PoolShare[]
   networkTHs: number | null
+  /** etcnodes.org's live census, read by the server; null when it could not be reached. */
+  nodes: NodeCensus | null
 }
 
 /**
@@ -106,7 +98,7 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
   }, [initial.pools.length])
 
   // Derive health checks from live data where available
-  // Hashrate and pool distribution are live from /api/pools; node count is a reference estimate.
+  // Hashrate and pool distribution are live from /api/pools; the node count is etcnodes.org's census.
   const healthChecks = [
     {
       name: 'Network Hashrate',
@@ -122,9 +114,11 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
     },
     {
       name: 'Node Distribution',
-      status: 'healthy' as const,
-      description: 'Nodes distributed across multiple regions (estimate)',
-      metric: '~840 nodes', // Estimate. No public ETC node-count API is currently consumed here.
+      status: initial.nodes ? ('healthy' as const) : ('warning' as const),
+      description: initial.nodes
+        ? `Reachable nodes seen by etcnodes.org, in ${initial.nodes.countryCount} countries`
+        : 'Node figures from etcnodes.org are unavailable',
+      metric: initial.nodes ? `${initial.nodes.total} nodes` : '—',
     },
     {
       name: 'Pool Decentralization',
@@ -346,7 +340,7 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
               </div>
             </div>
 
-            {/* Pool Distribution - Reference Estimates */}
+            {/* Pool Distribution - live, from Blockscout block attribution */}
             <div
               className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
             >
@@ -390,38 +384,57 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
         </div>
       </section>
 
-      {/* Node Distribution - Reference Estimates */}
-      <section className="px-6 pb-8 md:px-10 lg:px-12">
+      {/* Node Distribution - etcnodes.org's live census */}
+      <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <div className="flex items-center gap-2">
-                  <h2 className="font-bold text-[var(--text-primary)]">Node Distribution</h2>
-                  <span className="rounded-full bg-[var(--color-warning-bg)] px-2 py-0.5 text-xs text-[var(--color-warning)]">Estimate</span>
-                </div>
+                <h2 className="font-bold text-[var(--text-primary)]">Node Distribution</h2>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  Geographic distribution of ETC full nodes (reference estimate)
+                  Reachable nodes etcnodes.org&apos;s crawler is connected to, by the country each address locates to
                 </p>
               </div>
-              <div className="text-right">
-                <div className="text-2xl font-bold text-[var(--text-primary)]">~840</div>
-                <div className="text-sm text-[var(--color-text-muted)]">estimated nodes</div>
-              </div>
-            </div>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-              {nodeDistribution.map((region) => (
-                <div key={region.region} className="rounded-lg bg-[var(--bg)] p-4 text-center">
-                  <div className="text-2xl font-bold text-[var(--text-primary)]">{region.count}</div>
-                  <div className="mt-1 text-sm text-[var(--color-text-muted)]">{region.region}</div>
-                  <div className="mt-1 text-xs text-[var(--color-primary)]">~{region.percentage}%</div>
+              {initial.nodes && (
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-[var(--text-primary)]">{initial.nodes.total}</div>
+                  <div className="text-sm text-[var(--color-text-muted)]">nodes</div>
                 </div>
-              ))}
+              )}
             </div>
+            {initial.nodes ? (
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+                {[
+                  ...initial.nodes.countries,
+                  { name: `${initial.nodes.rest.countries} other countries`, count: initial.nodes.rest.count },
+                ].map((row) => (
+                  <div key={row.name} className="rounded-lg bg-[var(--bg)] p-4 text-center">
+                    <div className="text-2xl font-bold text-[var(--text-primary)]">{row.count}</div>
+                    <div className="mt-1 text-sm text-[var(--color-text-muted)]">{row.name}</div>
+                    <div className="mt-1 text-xs text-[var(--color-primary)]">
+                      {Math.round((row.count / initial.nodes!.total) * 100)}%
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-6 text-sm text-[var(--color-text-muted)]">
+                The node figures are unavailable right now.
+              </p>
+            )}
             <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-              Node counts are community estimates. Live data source needed for accurate reporting.
+              Source:{' '}
+              <a
+                href={NODE_CENSUS_SOURCE.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-primary)] hover:underline"
+              >
+                {NODE_CENSUS_SOURCE.label}
+              </a>
+              , refreshed hourly. One crawler&apos;s view, so the network has nodes it does not reach.
             </p>
           </div>
         </div>

@@ -2,6 +2,7 @@ import NetworkHealthClient from './NetworkHealthClient'
 import { fetchPoolDistribution } from '@/lib/pool-distribution'
 import { fetchNetworkStats, getFallbackStats } from '@/lib/blockscout'
 import { formatNetworkStatsForDisplay } from '@/lib/format-network-stats'
+import { fetchNodeCensus } from '@/lib/etc-nodes'
 
 // One upstream read per hour, shared by every visitor. Previously each visitor
 // fetched /api/network and /api/pools from the browser, so the figures on a
@@ -9,9 +10,10 @@ import { formatNetworkStatsForDisplay } from '@/lib/format-network-stats'
 export const revalidate = 3600
 
 export default async function NetworkPage() {
-  const [distribution, stats] = await Promise.all([
+  const [distribution, stats, nodes] = await Promise.all([
     fetchPoolDistribution(),
     fetchNetworkStats(),
+    fetchNodeCensus(),
   ])
 
   return (
@@ -20,6 +22,7 @@ export default async function NetworkPage() {
         formatted: formatNetworkStatsForDisplay(stats ?? getFallbackStats()),
         pools: distribution.pools,
         networkTHs: distribution.networkTHs,
+        nodes,
       }}
     />
   )
