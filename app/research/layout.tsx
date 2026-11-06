@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: 'ETC Research & Analytics',
   },
   description:
-    'Network analytics, supply data, fee analysis, and research reports for Ethereum Classic.',
+    'Network analytics, supply and emission data, fee analysis, and the history of Ethereum Classic.',
 }
 
 export default function ResearchLayout({ children }: { children: React.ReactNode }) {

@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
+import { apps } from '@/app/apps/data/apps'
+import { nodeClients } from '@/app/build/data/build'
+import { exchanges } from '@/app/buy/data/exchanges'
+import { miningPools } from '@/app/mining/data/mining'
+import { wallets } from '@/app/wallet/data/wallets'
 
 export const metadata: Metadata = {
   title: 'Ecosystem',
@@ -15,11 +20,12 @@ export const metadata: Metadata = {
   },
 }
 
+// Counted from the directory each card links to, so a figure cannot drift from the page that lists what it counts.
 const ecosystemStats = [
-  { label: 'dApps', value: '14+', description: 'Active applications', href: '/apps' },
-  { label: 'Wallets', value: '25+', description: 'Supporting ETC', href: '/wallet' },
-  { label: 'Exchanges', value: '31+', description: 'Trading venues', href: '/buy' },
-  { label: 'Mining Pools', value: '6', description: 'Active pools', href: '/mining/pools' },
+  { label: 'dApps', value: apps.length, description: 'Listed applications', href: '/apps' },
+  { label: 'Wallets', value: wallets.length, description: 'Supporting ETC', href: '/wallet' },
+  { label: 'Exchanges', value: exchanges.length, description: 'Trading venues', href: '/buy' },
+  { label: 'Mining Pools', value: miningPools.length, description: 'Listed pools', href: '/mining/pools' },
 ]
 
 const ecosystemSections = [
@@ -32,7 +38,11 @@ const ecosystemSections = [
   {
     title: 'Infrastructure',
     description: 'Node clients, RPC providers, block explorers, and developer tools powering the ETC network.',
-    items: ['2 node clients: Fukuii and Core-Geth', 'Blockscout explorer', 'Rivet RPC service'],
+    items: [
+      `${nodeClients.length} node clients: ${nodeClients.map((client) => client.name).join(' and ')}`,
+      'Blockscout explorer',
+      'Public RPC endpoints listed on ChainList',
+    ],
     href: '/build',
   },
   {
@@ -44,7 +54,7 @@ const ecosystemSections = [
   {
     title: 'Mining',
     description: 'Etchash proof-of-work mining ecosystem with GPU and ASIC support.',
-    items: ['~150 TH/s network hashrate', '6 active mining pools', 'GPU + ASIC compatible'],
+    items: ['Live network hashrate and pool shares', `${miningPools.length} mining pools listed`, 'GPU + ASIC compatible'],
     href: '/mining',
   },
 ]
@@ -135,10 +145,10 @@ export default function ResearchEcosystemPage() {
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/research/reports"
+              href="/research"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
             >
-              Research Reports
+              Research Hub
             </Link>
             <Link
               href="/apps"

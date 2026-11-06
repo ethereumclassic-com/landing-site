@@ -140,7 +140,6 @@ ETC's ideological foundation:
 - /research/fees — Gas fee trends and basefee analytics
 - /research/history — Historical price and chain data
 - /research/ecosystem — Ecosystem metrics
-- /research/reports — In-depth research reports
 
 ### /olympia — Olympia Network Upgrade
 ETC's most significant upgrade to date:

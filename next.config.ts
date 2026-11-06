@@ -40,6 +40,17 @@ const nextConfig: NextConfig = {
         destination: '/apps',
         permanent: true,
       },
+      // Research report pages that had no report behind them.
+      {
+        source: '/research/reports',
+        destination: '/research',
+        permanent: true,
+      },
+      {
+        source: '/research/reports/:slug',
+        destination: '/research',
+        permanent: true,
+      },
     ]
   },
 };

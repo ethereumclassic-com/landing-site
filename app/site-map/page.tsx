@@ -128,9 +128,8 @@ const siteStructure = [
     title: 'Research',
     links: [
       { label: 'Research Hub', href: '/research' },
-      { label: 'Reports', href: '/research/reports' },
       { label: 'Network Analysis', href: '/research/network' },
-      { label: 'Ecosystem Reports', href: '/research/ecosystem' },
+      { label: 'Ecosystem', href: '/research/ecosystem' },
     ],
   },
   {

@@ -7,7 +7,6 @@ import { articles as newsArticles } from './news/data/articles'
 import { apps } from './apps/data/apps'
 import { articles as learnArticles } from './learn/data/articles'
 import { exchangeReviews } from './buy/data/reviews'
-import { reports } from './research/data/research'
 import { cdcEntries } from './core-devs/data/index'
 import { philosophyArticles } from './why-classic/data/philosophy'
 import { nodeClients, executionPlugins } from './build/data/build'
@@ -211,7 +210,6 @@ const staticRoutes: StaticRoute[] = [
   // listed above. A redirect does not belong in the sitemap.
   { path: '/research/ethereum-ico', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/research/dao-fork', priority: 0.7, changeFrequency: 'yearly' as const },
-  { path: '/research/reports', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/research/network', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/supply', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/fees', priority: 0.6, changeFrequency: 'daily' as const },
@@ -381,14 +379,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     }))
 
-  // Dynamic routes - Research reports (already use report.date — correct)
-  const reportEntries = reports.map((report) => ({
-    url: `${baseUrl}/research/reports/${report.slug}`,
-    lastModified: new Date(report.date),
-    changeFrequency: 'weekly' as const,
-    priority: 0.5,
-  }))
-
   // Dynamic routes - Why Classic philosophy articles
   const philosophyDataDate = dataDate('app/why-classic/data/philosophy.ts')
   const philosophyEntries = philosophyArticles.map((article) => ({
@@ -409,7 +399,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tagEntries,
     ...learnEntries,
     ...buyReviewEntries,
-    ...reportEntries,
     ...cdcSitemapEntries,
     ...philosophyEntries,
   ]
