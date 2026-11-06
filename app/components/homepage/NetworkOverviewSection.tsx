@@ -139,8 +139,9 @@ export default function NetworkOverviewSection({ initialHashrateTHs }: { initial
   // 10-minute refresh matches the server-side ISR cache and lib/blockscout 10-min TTL
   const { stats, loading } = useNetworkStats({ refreshInterval: 600_000 })
   const [volume24h, setVolume24h] = useState<number | null>(null)
+  // A dash until the live figure arrives; never a typed-in one.
   const [hashrateTHs, setHashrateTHs] = useState<string>(
-    initialHashrateTHs ? `${initialHashrateTHs.toFixed(1)} TH/s` : '~150 TH/s',
+    initialHashrateTHs ? `${initialHashrateTHs.toFixed(1)} TH/s` : '—',
   )
 
   useEffect(() => {
@@ -148,8 +149,8 @@ export default function NetworkOverviewSection({ initialHashrateTHs }: { initial
       .then((d) => { if (d?.volume24h) setVolume24h(d.volume24h) })
       .catch(() => {})
     if (initialHashrateTHs) return
-    cachedFetchJson<{ currentTHs?: number }>('/api/hashrate')
-      .then((d) => { if (d?.currentTHs) setHashrateTHs(d.currentTHs.toFixed(1) + ' TH/s') })
+    cachedFetchJson<{ currentTHs?: number; live?: boolean }>('/api/hashrate')
+      .then((d) => { if (d?.live && d.currentTHs) setHashrateTHs(d.currentTHs.toFixed(1) + ' TH/s') })
       .catch(() => {})
   }, [initialHashrateTHs])
 

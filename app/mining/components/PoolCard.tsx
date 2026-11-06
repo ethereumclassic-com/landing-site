@@ -8,6 +8,8 @@ interface PoolCardProps {
   pool: MiningPool
   index: number
   variant?: 'default' | 'compact'
+  /** The pool's share of recent blocks, live from Blockscout. Omitted, no share is shown. */
+  liveShare?: number
 }
 
 const fadeInUp = {
@@ -23,7 +25,7 @@ const fadeInUp = {
   }),
 }
 
-export default function PoolCard({ pool, index, variant = 'default' }: PoolCardProps) {
+export default function PoolCard({ pool, index, variant = 'default', liveShare }: PoolCardProps) {
   if (variant === 'compact') {
     return (
       <motion.a
@@ -48,10 +50,12 @@ export default function PoolCard({ pool, index, variant = 'default' }: PoolCardP
             <p className="text-sm text-[var(--color-text-muted)]">{pool.fee}% fee</p>
           </div>
         </div>
-        <div className="text-right">
-          <span className="text-sm font-medium text-[var(--text-primary)]">{pool.hashShare}%</span>
-          <p className="text-xs text-[var(--color-text-muted)]">hashrate</p>
-        </div>
+        {liveShare !== undefined ? (
+          <div className="text-right">
+            <span className="text-sm font-medium text-[var(--text-primary)]">{liveShare.toFixed(1)}%</span>
+            <p className="text-xs text-[var(--color-text-muted)]">of blocks</p>
+          </div>
+        ) : null}
       </motion.a>
     )
   }
@@ -78,9 +82,11 @@ export default function PoolCard({ pool, index, variant = 'default' }: PoolCardP
               Recommended
             </span>
           )}
-          <span className="rounded-full bg-[var(--bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--text-primary)]">
-            {pool.hashShare}% hashrate
-          </span>
+          {liveShare !== undefined ? (
+            <span className="rounded-full bg-[var(--bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--text-primary)]">
+              {liveShare.toFixed(1)}% of blocks
+            </span>
+          ) : null}
         </div>
       </div>
 
@@ -155,7 +161,7 @@ export default function PoolCard({ pool, index, variant = 'default' }: PoolCardP
 }
 
 // Table row variant for pool comparison
-export function PoolTableRow({ pool, index }: { pool: MiningPool; index: number }) {
+export function PoolTableRow({ pool, index, liveShare }: { pool: MiningPool; index: number; liveShare?: number }) {
   return (
     <motion.tr
       custom={index}
@@ -188,7 +194,7 @@ export function PoolTableRow({ pool, index }: { pool: MiningPool; index: number 
         <span className="text-[var(--color-text-muted)]"> ETC</span>
       </td>
       <td className="py-4 px-4 text-center">
-        <span className="text-[var(--text-primary)]">{pool.hashShare}%</span>
+        <span className="text-[var(--text-primary)]">{liveShare !== undefined ? `${liveShare.toFixed(1)}%` : '—'}</span>
       </td>
       <td className="py-4 px-4 text-center">
         <span className="text-[var(--color-text-muted)]">{pool.payoutScheme.join(', ')}</span>

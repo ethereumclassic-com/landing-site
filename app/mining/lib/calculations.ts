@@ -2,18 +2,19 @@
 // Based on ETChash algorithm
 // Network data sourced from Blockscout API: https://etc.blockscout.com/api/v2/stats
 
-import { networkStats } from '../data/mining'
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
+import { FALLBACK_HASHRATE_THS } from '@/lib/hashrate'
+import { CURRENT_ERA, getBlockRewardForEra } from '@/app/research/data/emission'
 
 // Network constants - fallback values when live API unavailable
 // These are updated from Blockscout API data
 // For live calculations, use /api/network endpoint
 export const NETWORK_CONSTANTS = {
-  // Network hashrate in MH/s (150 TH/s = 150,000,000 MH/s)
-  networkHashrateMH: 150000000,
-  // Average block reward including uncle rewards (~1.6384 ETC typical)
-  // Base reward is 1.6384 ETC (ECIP-1017 Era 6), varies with uncle rewards
-  blockReward: 1.6384,
+  // Network hashrate in MH/s, from lib/hashrate's fallback. Pages pass the live figure
+  // through `network` on MiningInput; this is used only when none is available.
+  networkHashrateMH: FALLBACK_HASHRATE_THS * 1_000_000,
+  // The protocol block reward for the current era (ECIP-1017), derived rather than written down.
+  blockReward: getBlockRewardForEra(CURRENT_ERA),
   // Average block time from Blockscout (~13 seconds)
   blockTimeSeconds: NOMINAL_BLOCK_TIME_SECONDS,
   // Derived, not written down twice: this must follow blockTimeSeconds.
@@ -22,12 +23,21 @@ export const NETWORK_CONSTANTS = {
   etcPriceUSD: 12.75,
 }
 
+/** The network figures a profitability estimate depends on. */
+export interface NetworkFigures {
+  networkHashrateMH: number
+  blockReward: number
+  blocksPerDay: number
+}
+
 export interface MiningInput {
   hashrateMH: number // MH/s
   powerWatts: number // Watts
   electricityRate: number // $/kWh
   poolFeePercent: number // e.g., 1 for 1%
   etcPrice?: number // USD, optional override
+  /** Live network figures, such as useNetworkStats() returns. A missing one falls back to NETWORK_CONSTANTS. */
+  network?: Partial<NetworkFigures>
 }
 
 export interface ProfitabilityResult {
@@ -75,16 +85,19 @@ export function calculateProfitability(input: MiningInput): ProfitabilityResult 
     electricityRate,
     poolFeePercent,
     etcPrice = NETWORK_CONSTANTS.etcPriceUSD,
+    network,
   } = input
 
   const poolFeeDecimal = poolFeePercent / 100
-  const networkHashrate = NETWORK_CONSTANTS.networkHashrateMH
+  const networkHashrate = network?.networkHashrateMH || NETWORK_CONSTANTS.networkHashrateMH
+  const blocksPerDay = network?.blocksPerDay || NETWORK_CONSTANTS.blocksPerDay
+  const blockReward = network?.blockReward || NETWORK_CONSTANTS.blockReward
 
   // Calculate daily ETC earnings
   // hashShare = hashrateMH / networkHashrateMH
   // dailyETC = hashShare * blocksPerDay * blockReward * (1 - poolFee)
   const hashShare = hashrateMH / networkHashrate
-  const dailyETC = hashShare * NETWORK_CONSTANTS.blocksPerDay * NETWORK_CONSTANTS.blockReward * (1 - poolFeeDecimal)
+  const dailyETC = hashShare * blocksPerDay * blockReward * (1 - poolFeeDecimal)
 
   // Weekly, monthly, yearly ETC
   const weeklyETC = dailyETC * 7
@@ -164,7 +177,8 @@ export function calculateHardwareProfitability(
   powerWatts: number,
   electricityRate: number = 0.10, // Default $0.10/kWh
   poolFeePercent: number = 1,
-  etcPrice: number = NETWORK_CONSTANTS.etcPriceUSD
+  etcPrice: number = NETWORK_CONSTANTS.etcPriceUSD,
+  network?: Partial<NetworkFigures>
 ): HardwareProfitability {
   const result = calculateProfitability({
     hashrateMH,
@@ -172,6 +186,7 @@ export function calculateHardwareProfitability(
     electricityRate,
     poolFeePercent,
     etcPrice,
+    network,
   })
 
   return {
@@ -220,27 +235,4 @@ export function formatPower(watts: number): string {
     return (watts / 1000).toFixed(2) + ' kW'
   }
   return watts.toFixed(0) + ' W'
-}
-
-/**
- * Parse network stats for calculations
- */
-export function parseNetworkHashrate(): number {
-  // Parse from networkStats.hashrate (e.g., "150 TH/s")
-  const match = networkStats.hashrate.match(/(\d+(?:\.\d+)?)\s*(TH|GH|MH)/i)
-  if (!match) return NETWORK_CONSTANTS.networkHashrateMH
-
-  const value = parseFloat(match[1])
-  const unit = match[2].toUpperCase()
-
-  switch (unit) {
-    case 'TH':
-      return value * 1000000 // TH to MH
-    case 'GH':
-      return value * 1000 // GH to MH
-    case 'MH':
-      return value
-    default:
-      return NETWORK_CONSTANTS.networkHashrateMH
-  }
 }

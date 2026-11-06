@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { miningHardware, networkStats, type MiningHardware } from '../data/mining'
+import { miningHardware, type MiningHardware } from '../data/mining'
 import {
   calculateProfitability,
   formatETC,
@@ -107,8 +107,9 @@ export default function MiningProfitabilityPage() {
       electricityRate,
       poolFeePercent,
       etcPrice,
+      network: liveStats,
     })
-  }, [hashrateMH, powerWatts, electricityRate, poolFeePercent, etcPrice])
+  }, [hashrateMH, powerWatts, electricityRate, poolFeePercent, etcPrice, liveStats])
 
   // Handle hardware preset selection
   const handleHardwareSelect = (hardware: MiningHardware) => {
@@ -311,14 +312,14 @@ export default function MiningProfitabilityPage() {
                 ) : (
                   <span className="flex items-center gap-1.5 text-xs text-[var(--color-warning)]">
                     <span className="h-2 w-2 rounded-full bg-[var(--color-warning)]" />
-                    Cached data
+                    Reference figures
                   </span>
                 )}
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-[var(--color-text-muted)]">Network Hashrate</p>
-                  <p className="font-medium text-[var(--text-primary)]">{networkStats.hashrate}</p>
+                  <p className="font-medium text-[var(--text-primary)]">~{(liveStats.networkHashrateMH / 1_000_000).toFixed(1)} TH/s</p>
                 </div>
                 <div>
                   <p className="text-[var(--color-text-muted)]">Block Reward</p>

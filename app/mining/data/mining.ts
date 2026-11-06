@@ -1,3 +1,4 @@
+import { CURRENT_ERA, getBlockRewardForEra } from '@/app/research/data/emission'
 // Mining data for Ethereum Classic
 // Pool data sourced from miningpoolstats.stream
 // Hardware data from WhatToMine and manufacturer specs
@@ -19,8 +20,6 @@ export interface MiningPool {
 }
 
 export interface NetworkStats {
-  hashrate: string // TH/s
-  difficulty: string
   blockTime: string
   blockReward: string
   dailyBlocks: number
@@ -192,15 +191,12 @@ export const miningPools: MiningPool[] = [
   },
 ]
 
-// Network stats - fallback values when live API unavailable
-// Live data fetched from Blockscout API: https://etc.blockscout.com/api/v2/stats
-// For live data, use /api/network endpoint or lib/blockscout.ts
-// Updated: Jan 2026
+// Network stats - fallback values for when live data is unavailable. Pages display the live
+// figures (lib/hashrate, useNetworkStats); the block reward is the current era's, derived.
+// No hashrate or difficulty is kept here: a page with no live figure shows none.
 export const networkStats: NetworkStats = {
-  hashrate: '~150 TH/s',
-  difficulty: '2.47 PH',
   blockTime: '~13 seconds',
-  blockReward: '~1.6384 ETC',
+  blockReward: `${getBlockRewardForEra(CURRENT_ERA)} ETC`,
   dailyBlocks: 6646,
   lastUpdated: 'Live from Blockscout',
 }

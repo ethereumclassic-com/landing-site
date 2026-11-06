@@ -161,8 +161,8 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
       }
     }
     fetchStats()
-    cachedFetchJson<{ currentTHs?: number }>('/api/hashrate')
-      .then((d: { currentTHs?: number }) => { if (d?.currentTHs) setHashrateDisplay(d.currentTHs.toFixed(1) + ' TH/s') })
+    cachedFetchJson<{ currentTHs?: number; live?: boolean }>('/api/hashrate')
+      .then((d) => { if (d?.live && d.currentTHs) setHashrateDisplay(d.currentTHs.toFixed(1) + ' TH/s') })
       // A failed refresh keeps the server's figure rather than showing an invented one.
       .catch(() => {})
   }, [])

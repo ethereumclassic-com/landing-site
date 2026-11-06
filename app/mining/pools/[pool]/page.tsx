@@ -145,7 +145,7 @@ export default function PoolPage({ params }: Props) {
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <div
-            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
             <StatCard
               label="Pool Fee"
@@ -157,11 +157,6 @@ export default function PoolPage({ params }: Props) {
               label="Minimum Payout"
               value={`${pool.minPayout} ETC`}
               description="Threshold to receive payout"
-            />
-            <StatCard
-              label="Network Share"
-              value={`~${pool.hashShare}%`}
-              description="Approximate hashrate share"
             />
             <StatCard
               label="Servers"

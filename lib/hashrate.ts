@@ -127,8 +127,14 @@ export async function fetchNetworkNow(): Promise<NetworkNow> {
   }
 }
 
-export async function fetchHashrateTHs(): Promise<number> {
-  return (await fetchNetworkNow()).hashrateTHs
+/**
+ * The network hashrate for display: null when Blockscout could not be read, so a page shows that
+ * the figure is unavailable instead of presenting the fallback as a reading. Calculators that need
+ * a figure regardless take fetchNetworkNow(), whose `live` flag says which they got.
+ */
+export async function fetchHashrateTHs(): Promise<number | null> {
+  const now = await fetchNetworkNow()
+  return now.live ? now.hashrateTHs : null
 }
 
 async function fetchBlock(height: number): Promise<BlockscoutBlock | null> {

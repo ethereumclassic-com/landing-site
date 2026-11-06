@@ -19,7 +19,7 @@ export default async function ResearchNetworkPage() {
       initial={{
         stats: payload,
         pools: distribution.pools,
-        hashrateDisplay: `${hashrateTHs.toFixed(1)} TH/s`,
+        hashrateDisplay: hashrateTHs !== null ? `${hashrateTHs.toFixed(1)} TH/s` : '—',
       }}
     />
   )

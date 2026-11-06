@@ -43,8 +43,8 @@ export async function GlobalHashrateSection() {
           <div className="mt-10 flex items-end gap-4">
             <div>
               <p className="font-mono text-4xl font-bold text-[var(--brand-green)]">
-                {hashrateTHs.toFixed(1)}{' '}
-                <span className="text-lg font-normal">TH/s</span>
+                {hashrateTHs !== null ? hashrateTHs.toFixed(1) : '—'}{' '}
+                {hashrateTHs !== null && <span className="text-lg font-normal">TH/s</span>}
               </p>
               <p className="mt-1 text-sm font-medium text-[var(--text-primary)]">
                 Current Network Hashrate

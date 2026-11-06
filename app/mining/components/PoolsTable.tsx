@@ -11,7 +11,7 @@ export interface PoolRow {
   hashrate: string
 }
 
-function HashBar({ hashrateTHs, networkTHs }: { hashrateTHs: number; networkTHs: number }) {
+function HashBar({ hashrateTHs, networkTHs }: { hashrateTHs: number; networkTHs: number | null }) {
   const pct = hashrateTHs && networkTHs
     ? Math.min((hashrateTHs / networkTHs) * 100, 100)
     : 0
@@ -42,7 +42,7 @@ function PoolRows({
   isLast,
 }: {
   rows: PoolRow[]
-  networkTHs: number
+  networkTHs: number | null
   isLast: (i: number, total: number) => boolean
 }) {
   return (
@@ -85,7 +85,7 @@ const PAYOUT_TYPES = [
   { type: 'SOLO',  label: 'Solo Mining via Pool',      desc: 'Miner receives the full block reward if they find a block; nothing if they don\'t. Pool provides infrastructure only. High variance.' },
 ]
 
-export function PoolsTable({ pools, networkTHs }: { pools: PoolRow[]; networkTHs: number }) {
+export function PoolsTable({ pools, networkTHs }: { pools: PoolRow[]; networkTHs: number | null }) {
   const top = pools.slice(0, COLLAPSED_COUNT)
   const rest = pools.slice(COLLAPSED_COUNT)
   const hasMore = rest.length > 0

@@ -33,7 +33,8 @@ export interface PoolShare {
 }
 
 export interface PoolDistribution {
-  networkTHs: number
+  /** Null when the network hashrate could not be read; the pools are then empty too. */
+  networkTHs: number | null
   pools: PoolShare[]
 }
 
@@ -43,6 +44,7 @@ export async function fetchPoolDistribution(): Promise<PoolDistribution> {
     fetchPoolHashrates(),
     fetchHashrateTHs(),
   ])
+  if (networkTHs === null) return { networkTHs: null, pools: [] }
 
   const identified = Object.entries(hashrates)
     .filter(([, ths]) => ths > 0)

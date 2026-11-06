@@ -2,8 +2,9 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { miningHardware, networkStats, type MiningHardware } from '../data/mining'
-import { calculateHardwareProfitability, formatUSD, NETWORK_CONSTANTS } from '../lib/calculations'
+import { miningHardware, type MiningHardware } from '../data/mining'
+import { useNetworkStats } from '../hooks/useNetworkStats'
+import { calculateHardwareProfitability, formatUSD, NETWORK_CONSTANTS, type NetworkFigures } from '../lib/calculations'
 
 type HardwareTab = 'ASIC' | 'GPU'
 type SortOption = 'hashrate' | 'efficiency' | 'profit' | 'power'
@@ -46,17 +47,20 @@ function HardwareRow({
   hardware,
   electricityRate,
   etcPrice,
+  network,
 }: {
   hardware: MiningHardware
   electricityRate: number
   etcPrice: number
+  network: NetworkFigures
 }) {
   const profitability = calculateHardwareProfitability(
     hardware.hashrate,
     hardware.power,
     electricityRate,
     1, // 1% pool fee
-    etcPrice
+    etcPrice,
+    network
   )
 
   const availabilityColor = availabilityColors[hardware.availability] || availabilityColors.available
@@ -107,17 +111,20 @@ function HardwareCard({
   hardware,
   electricityRate,
   etcPrice,
+  network,
 }: {
   hardware: MiningHardware
   electricityRate: number
   etcPrice: number
+  network: NetworkFigures
 }) {
   const profitability = calculateHardwareProfitability(
     hardware.hashrate,
     hardware.power,
     electricityRate,
     1,
-    etcPrice
+    etcPrice,
+    network
   )
 
   const availabilityColor = availabilityColors[hardware.availability] || availabilityColors.available
@@ -175,7 +182,12 @@ export default function MiningHardwarePage() {
   const [sortBy, setSortBy] = useState<SortOption>('profit')
   const [sortDir, setSortDir] = useState<SortDirection>('desc')
   const [electricityRate, setElectricityRate] = useState(0.10)
-  const [etcPrice, setEtcPrice] = useState(NETWORK_CONSTANTS.etcPriceUSD)
+  // Network figures and price come live from Blockscout and the price route; the constants are
+  // only the fallback. A price the reader typed wins over both, as on the profitability page.
+  const { stats: liveStats } = useNetworkStats()
+  const [userEtcPrice, setUserEtcPrice] = useState<number | null>(null)
+  const etcPrice =
+    userEtcPrice ?? (liveStats.source === 'live' && liveStats.etcPriceUSD > 0 ? liveStats.etcPriceUSD : NETWORK_CONSTANTS.etcPriceUSD)
 
   const handleSort = (option: SortOption) => {
     if (sortBy === option) {
@@ -190,8 +202,8 @@ export default function MiningHardwarePage() {
     const filtered = miningHardware.filter((hw) => hw.type === activeTab)
 
     return filtered.sort((a, b) => {
-      const profitA = calculateHardwareProfitability(a.hashrate, a.power, electricityRate, 1, etcPrice)
-      const profitB = calculateHardwareProfitability(b.hashrate, b.power, electricityRate, 1, etcPrice)
+      const profitA = calculateHardwareProfitability(a.hashrate, a.power, electricityRate, 1, etcPrice, liveStats)
+      const profitB = calculateHardwareProfitability(b.hashrate, b.power, electricityRate, 1, etcPrice, liveStats)
 
       let comparison = 0
       switch (sortBy) {
@@ -211,7 +223,7 @@ export default function MiningHardwarePage() {
 
       return sortDir === 'asc' ? comparison : -comparison
     })
-  }, [activeTab, sortBy, sortDir, electricityRate, etcPrice])
+  }, [activeTab, sortBy, sortDir, electricityRate, etcPrice, liveStats])
 
   const asicCount = miningHardware.filter((hw) => hw.type === 'ASIC').length
   const gpuCount = miningHardware.filter((hw) => hw.type === 'GPU').length
@@ -287,7 +299,7 @@ export default function MiningHardwarePage() {
                   <input
                     type="number"
                     value={etcPrice}
-                    onChange={(e) => setEtcPrice(parseFloat(e.target.value) || 0)}
+                    onChange={(e) => setUserEtcPrice(parseFloat(e.target.value) || 0)}
                     step="0.01"
                     min="0"
                     className="w-20 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-1.5 text-sm text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
@@ -296,7 +308,7 @@ export default function MiningHardwarePage() {
               </div>
 
               <div className="ml-auto text-sm text-[var(--color-text-muted)]">
-                Network: {networkStats.hashrate} • {networkStats.blockReward}/block
+                Network: ~{(liveStats.networkHashrateMH / 1_000_000).toFixed(1)} TH/s • {liveStats.blockReward} ETC/block
               </div>
             </div>
           </div>
@@ -374,6 +386,7 @@ export default function MiningHardwarePage() {
                     hardware={hardware}
                     electricityRate={electricityRate}
                     etcPrice={etcPrice}
+                    network={liveStats}
                   />
                 ))}
               </tbody>
@@ -392,6 +405,7 @@ export default function MiningHardwarePage() {
                 hardware={hardware}
                 electricityRate={electricityRate}
                 etcPrice={etcPrice}
+                network={liveStats}
               />
             ))}
           </div>

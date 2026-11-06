@@ -72,7 +72,7 @@ export default function DirectoryMiningPage() {
                       </span>
                     )}
                   </div>
-                  <div className="mt-3 grid grid-cols-3 gap-3 text-center">
+                  <div className="mt-3 grid grid-cols-2 gap-3 text-center">
                     <div>
                       <div className="text-lg font-bold text-[var(--text-primary)]">{pool.fee}%</div>
                       <div className="text-xs text-[var(--color-text-muted)]">Fee</div>
@@ -80,10 +80,6 @@ export default function DirectoryMiningPage() {
                     <div>
                       <div className="text-lg font-bold text-[var(--text-primary)]">{pool.minPayout}</div>
                       <div className="text-xs text-[var(--color-text-muted)]">Min ETC</div>
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-[var(--text-primary)]">{pool.hashShare}%</div>
-                      <div className="text-xs text-[var(--color-text-muted)]">Share</div>
                     </div>
                   </div>
                   <div className="mt-3 flex flex-wrap gap-1">

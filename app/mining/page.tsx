@@ -102,9 +102,9 @@ export default async function MiningPage() {
           {/* Live network stat cards */}
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {[
-              { label: 'Hashrate', value: `${hashrateTHs.toFixed(2)} TH/s`, live: true },
-              { label: 'Difficulty', value: stats.difficultyFormatted, live: true },
-              { label: 'Block Time', value: stats.blockTimeFormatted, live: true },
+              { label: 'Hashrate', value: hashrateTHs !== null ? `${hashrateTHs.toFixed(2)} TH/s` : '—', live: hashrateTHs !== null },
+              { label: 'Difficulty', value: stats.source === 'rpc' ? stats.difficultyFormatted : '—', live: stats.source === 'rpc' },
+              { label: 'Block Time', value: stats.blockTimeFormatted, live: stats.source === 'rpc' },
               { label: 'Block Reward', value: getBlockReward(stats.blockHeight), live: true },
               { label: 'Daily Blocks', value: Math.round(86400 / stats.blockTime).toLocaleString(), live: true },
             ].map((stat) => (

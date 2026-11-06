@@ -170,6 +170,9 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
 
   const isLoading = statsLoading || miningLoading
   const isLive = liveStats.source === 'live' || miningStats?.source === 'rpc'
+  // /api/mining answers with reference figures when the node cannot be reached. They are for
+  // calculators, not for display as the network's state, so only a live answer is shown.
+  const rpc = miningStats?.source === 'rpc' ? miningStats : null
 
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
@@ -224,7 +227,7 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
           >
             <StatCard
               label="Network Hashrate"
-              value={miningStats?.hashrateFormatted || '~150 TH/s'}
+              value={rpc?.hashrateFormatted ?? '—'}
               description="Total mining power on the network"
               highlight
               icon={
@@ -235,7 +238,7 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
             />
             <StatCard
               label="Difficulty"
-              value={miningStats?.difficultyFormatted || '~2.45 PH'}
+              value={rpc?.difficultyFormatted ?? '—'}
               description="Current mining difficulty"
               icon={
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -245,7 +248,7 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
             />
             <StatCard
               label="Block Time"
-              value={miningStats?.blockTimeFormatted || `~${liveStats.blockTimeSeconds.toFixed(1)}s`}
+              value={rpc?.blockTimeFormatted ?? `~${liveStats.blockTimeSeconds.toFixed(1)}s`}
               description="Average time between blocks"
               icon={
                 <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -268,7 +271,7 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
       </section>
 
       {/* Latest Block Info */}
-      {miningStats && (
+      {rpc && (
         <section className="px-6 pb-12 md:px-10 lg:px-12">
           <div className="mx-auto max-w-6xl">
             <div
@@ -277,39 +280,39 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
               <div className="flex items-center gap-2 mb-4">
                 <h2 className="text-lg font-semibold text-[var(--text-primary)]">Latest Block</h2>
                 <span className="rounded-full bg-[var(--color-success-bg)] px-2 py-0.5 text-xs text-[var(--color-success)]">
-                  #{miningStats.latestBlock.number.toLocaleString()}
+                  #{rpc.latestBlock.number.toLocaleString()}
                 </span>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Block Height</p>
                   <p className="mt-1 font-mono text-lg font-bold text-[var(--text-primary)]">
-                    {miningStats.blockHeight.toLocaleString()}
+                    {rpc.blockHeight.toLocaleString()}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Miner</p>
                   <p className="mt-1 font-mono text-sm text-[var(--text-primary)] truncate">
-                    {miningStats.latestBlock.miner.slice(0, 10)}...{miningStats.latestBlock.miner.slice(-8)}
+                    {rpc.latestBlock.miner.slice(0, 10)}...{rpc.latestBlock.miner.slice(-8)}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Gas Used</p>
                   <p className="mt-1 text-lg font-bold text-[var(--text-primary)]">
-                    {((miningStats.latestBlock.gasUsed / miningStats.latestBlock.gasLimit) * 100).toFixed(1)}%
+                    {((rpc.latestBlock.gasUsed / rpc.latestBlock.gasLimit) * 100).toFixed(1)}%
                   </p>
                 </div>
                 <div>
                   <p className="text-xs text-[var(--color-text-muted)]">Transactions</p>
                   <p className="mt-1 text-lg font-bold text-[var(--text-primary)]">
-                    {miningStats.latestBlock.txCount}
+                    {rpc.latestBlock.txCount}
                   </p>
                 </div>
               </div>
               <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-                Data updated {miningStats.cacheAgeMinutes < 60
-                  ? `${miningStats.cacheAgeMinutes} minutes ago`
-                  : `${Math.round(miningStats.cacheAgeMinutes / 60)} hours ago`
+                Data updated {rpc.cacheAgeMinutes < 60
+                  ? `${rpc.cacheAgeMinutes} minutes ago`
+                  : `${Math.round(rpc.cacheAgeMinutes / 60)} hours ago`
                 } from ETC RPC
               </p>
             </div>

@@ -38,7 +38,7 @@ const columns = [
 export async function ETCUniquePositionSection() {
   const hashrateTHs = await fetchHashrateTHs()
   const stats = [
-    { value: `${hashrateTHs.toFixed(1)} TH/s`, label: 'Network Hashrate', detail: 'Globally distributed' },
+    { value: hashrateTHs !== null ? `${hashrateTHs.toFixed(1)} TH/s` : '—', label: 'Network Hashrate', detail: 'Globally distributed' },
     ...staticStats,
   ]
 

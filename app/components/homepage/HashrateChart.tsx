@@ -7,7 +7,8 @@ import MetricAreaChart, {
 } from '@/app/components/charts/MetricAreaChart'
 
 export interface HashrateData {
-  currentTHs: number
+  /** Null when there is no live reading; the card then shows a dash. */
+  currentTHs: number | null
   histories: MetricHistories
 }
 
@@ -21,8 +22,9 @@ export default function HashrateChart({ initial }: { initial?: HashrateData }) {
 
   useEffect(() => {
     if (initial) return
-    cachedFetchJson<HashrateData>('/api/hashrate')
-      .then(setData)
+    // /api/hashrate answers with its fallback figure when Blockscout is down; `live` says which.
+    cachedFetchJson<HashrateData & { live?: boolean }>('/api/hashrate')
+      .then((d) => setData({ ...d, currentTHs: d.live ? d.currentTHs : null }))
       .catch(() => {})
   }, [initial])
 
@@ -44,8 +46,8 @@ export default function HashrateChart({ initial }: { initial?: HashrateData }) {
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] px-4 py-4">
           <div className="text-2xl font-bold text-[var(--brand-green)]">
-            {data.currentTHs.toFixed(1)}
-            <span className="ml-1 text-base font-semibold">TH/s</span>
+            {data.currentTHs !== null ? data.currentTHs.toFixed(1) : '—'}
+            {data.currentTHs !== null && <span className="ml-1 text-base font-semibold">TH/s</span>}
           </div>
           <div className="mt-1 text-xs text-[var(--text-muted)]">Network Hashrate</div>
         </div>

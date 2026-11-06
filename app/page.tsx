@@ -27,7 +27,7 @@ export default async function Page() {
   return (
     <main>
       <Hero hashrate={hashrate} />
-      <NetworkOverviewSection initialHashrateTHs={currentTHs} />
+      <NetworkOverviewSection initialHashrateTHs={currentTHs ?? undefined} />
       <NetworkArchitectureSection />
       <SectionDivider />
       <RegulatoryOverviewSection />

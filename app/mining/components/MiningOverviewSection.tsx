@@ -1,12 +1,13 @@
 import { FadeIn } from '@/app/components/ui'
 
 interface MiningOverviewSectionProps {
-  hashrateTHs: number
+  /** Null when there is no live reading. */
+  hashrateTHs: number | null
 }
 
 export function MiningOverviewSection({ hashrateTHs }: MiningOverviewSectionProps) {
   const stats = [
-    { value: hashrateTHs.toFixed(1), unit: 'TH/s', label: 'Network Hashrate' },
+    { value: hashrateTHs !== null ? hashrateTHs.toFixed(1) : '—', unit: hashrateTHs !== null ? 'TH/s' : undefined, label: 'Network Hashrate' },
     { value: 'ETChash', label: 'Mining Algorithm' },
     { value: 'GPU + ASIC', label: 'Compatible Hardware' },
   ]

@@ -1,7 +1,12 @@
 import Link from 'next/link'
 import { gettingStartedSteps, networkStats, getRecommendedPools } from '../data/mining'
+import { fetchHashrateTHs } from '@/lib/hashrate'
 
-export default function MiningGettingStartedPage() {
+// The network hashrate is derived live from Blockscout on the server, read once per hour.
+export const revalidate = 3600
+
+export default async function MiningGettingStartedPage() {
+  const hashrateTHs = await fetchHashrateTHs()
   const recommendedPools = getRecommendedPools()
 
   return (
@@ -59,7 +64,7 @@ export default function MiningGettingStartedPage() {
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
               <p className="text-sm text-[var(--color-text-muted)]">Network Hashrate</p>
-              <p className="text-lg font-bold text-[var(--text-primary)]">{networkStats.hashrate}</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">{hashrateTHs !== null ? `${hashrateTHs.toFixed(1)} TH/s` : '—'}</p>
             </div>
           </div>
         </div>
@@ -240,7 +245,7 @@ export default function MiningGettingStartedPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                  <span>{pool.hashShare}% hashrate</span>
+                  <span>Visit pool</span>
                   <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                   </svg>

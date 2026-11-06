@@ -11,15 +11,25 @@ type SortKey = 'hashShare' | 'fee' | 'minPayout'
 
 export default function MiningPoolsClient({
   livePools,
+  hashrateTHs,
 }: {
   livePools: { name: string; share: number }[]
+  /** Network hashrate, derived live on the server by lib/hashrate. */
+  /** Null when there is no live reading. */
+  hashrateTHs: number | null
 }) {
   const [viewMode, setViewMode] = useState<ViewMode>('cards')
   const [sortBy, setSortBy] = useState<SortKey>('hashShare')
   const [sortAsc, setSortAsc] = useState(false)
 
+  // A pool's share is its live share of recent blocks, matched by name. A listed pool the live
+  // attribution does not name shows no share rather than a stale one.
+  const normalize = (name: string) => name.toLowerCase().replace(/[^a-z0-9]/g, '')
+  const liveShares = new Map(livePools.map((p) => [normalize(p.name), p.share]))
+  const shareOf = (name: string) => liveShares.get(normalize(name))
   const sortedPools = [...miningPools].sort((a, b) => {
     const multiplier = sortAsc ? 1 : -1
+    if (sortBy === 'hashShare') return ((shareOf(a.name) ?? -1) - (shareOf(b.name) ?? -1)) * multiplier
     return (a[sortBy] - b[sortBy]) * multiplier
   })
 
@@ -71,7 +81,7 @@ export default function MiningPoolsClient({
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">Network Hashrate</p>
-              <p className="font-semibold text-[var(--text-primary)]">{networkStats.hashrate}</p>
+              <p className="font-semibold text-[var(--text-primary)]">{hashrateTHs !== null ? `${hashrateTHs.toFixed(1)} TH/s` : '—'}</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-center">
               <p className="text-xs text-[var(--color-text-muted)]">Listed Pools</p>
@@ -153,7 +163,7 @@ export default function MiningPoolsClient({
           {viewMode === 'cards' && (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {sortedPools.map((pool, index) => (
-                <PoolCard key={pool.id} pool={pool} index={index} />
+                <PoolCard key={pool.id} pool={pool} index={index} liveShare={shareOf(pool.name)} />
               ))}
             </div>
           )}
@@ -216,7 +226,7 @@ export default function MiningPoolsClient({
                 </thead>
                 <tbody>
                   {sortedPools.map((pool, index) => (
-                    <PoolTableRow key={pool.id} pool={pool} index={index} />
+                    <PoolTableRow key={pool.id} pool={pool} index={index} liveShare={shareOf(pool.name)} />
                   ))}
                 </tbody>
               </table>

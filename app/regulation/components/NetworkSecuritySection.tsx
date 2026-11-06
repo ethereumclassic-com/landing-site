@@ -1,8 +1,8 @@
 import { FadeIn } from '@/app/components/ui'
 import { SectionDivider } from '@/app/components/ui/SectionDivider'
+import { fetchHashrateTHs } from '@/lib/hashrate'
 
-const stats = [
-  { value: '~150 TH/s', label: 'Network Hashrate', detail: 'ETChash algorithm' },
+const staticStats = [
   { value: 'July 2015', label: 'Network Origin', detail: 'Continuous PoW operation' },
   { value: 'GPU + ASIC', label: 'Hardware Access', detail: 'Permissionless entry at any scale' },
   { value: 'Largest PoW EVM', label: 'Post-Merge Position', detail: 'Absorbed Ethereum mining infrastructure' },
@@ -51,7 +51,17 @@ const securityProperties = [
   },
 ]
 
-export function NetworkSecuritySection() {
+export async function NetworkSecuritySection() {
+  const hashrateTHs = await fetchHashrateTHs()
+  const stats = [
+    {
+      value: hashrateTHs !== null ? `${hashrateTHs.toFixed(1)} TH/s` : '—',
+      label: 'Network Hashrate',
+      detail: 'ETChash algorithm, read live from Blockscout',
+    },
+    ...staticStats,
+  ]
+
   return (
     <>
       <SectionDivider />
