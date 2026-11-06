@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { networks, getClientImplementations, executionPlugins } from '../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
-import { CORE_GETH_LATEST_RELEASE_URL, CORE_GETH_MIGRATION_URL } from '@/lib/core-geth'
+import { CORE_GETH_INSTALL_STEPS_URL, CORE_GETH_UPGRADE_STEPS_URL } from '@/lib/core-geth'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -94,7 +94,7 @@ export default function ClientsPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
               Run your own Ethereum Classic node for maximum decentralization and independence.
-              Choose from multiple client implementations in Go, Java, and Scala.
+              Core-Geth (Go) is the recommended client; Fukuii (Scala) is a native alternative; and ETC execution plugins add Ethereum Classic support to other Ethereum clients.
             </p>
           </div>
         </div>
@@ -202,12 +202,12 @@ export default function ClientsPage() {
                         <span className="text-sm text-[var(--color-text-muted)]">
                           v1.13.0 fixes 6 CVEs ·{' '}
                           <a
-                            href={CORE_GETH_MIGRATION_URL}
+                            href={CORE_GETH_UPGRADE_STEPS_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium text-[var(--color-primary)] hover:underline"
                           >
-                            Upgrade from v1.12.x
+                            Move a v1.12 node
                           </a>
                         </span>
                         <Link
@@ -473,7 +473,7 @@ export default function ClientsPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href={CORE_GETH_LATEST_RELEASE_URL}
+                href={CORE_GETH_INSTALL_STEPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"

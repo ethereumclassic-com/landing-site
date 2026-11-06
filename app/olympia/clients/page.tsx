@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getClientImplementations } from '../../build/data/build'
 import OlympiaCountdown from '../components/OlympiaCountdown'
 import { badgeStyle } from '@/lib/badge-theme'
-import { CORE_GETH_MIGRATION_URL } from '@/lib/core-geth'
+import { CORE_GETH_UPGRADE_STEPS_URL } from '@/lib/core-geth'
 
 const CheckIcon = () => (
   <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -64,7 +64,7 @@ export default function UpgradeHubPage() {
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Core-Geth, a go-ethereum derivative, is the client to run: it is released and
-            maintained in the ethereumclassic organization. Fukuii, built natively for ETC, is
+            maintained in the ethereumclassic GitHub organization. Fukuii, built natively for ETC, is
             developed alongside it so the network never depends on a single codebase.
             ETC plugins add Ethereum Classic support into existing Ethereum clients, widening
             execution-layer reach without adding another codebase to maintain.
@@ -127,12 +127,12 @@ export default function UpgradeHubPage() {
                         <span className="text-sm text-[var(--color-text-muted)]">
                           v1.13.0 fixes 6 CVEs ·{' '}
                           <a
-                            href={CORE_GETH_MIGRATION_URL}
+                            href={CORE_GETH_UPGRADE_STEPS_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium text-[var(--color-primary)] hover:underline"
                           >
-                            Upgrade from v1.12.x
+                            Move a v1.12 node
                           </a>
                         </span>
                         <Link

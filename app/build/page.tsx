@@ -145,7 +145,7 @@ export default function BuildPage() {
               },
               {
                 title: 'Node Clients',
-                description: 'Run your own node with Fukuii or Core-Geth',
+                description: 'Run your own node with Core-Geth or Fukuii',
                 href: '/build/clients',
                 icon: <ServerIcon />,
               },

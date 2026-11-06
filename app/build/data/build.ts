@@ -4,10 +4,8 @@
 import {
   CORE_GETH_DOCS_URL,
   CORE_GETH_HOMEPAGE_URL,
-  CORE_GETH_INSTALL,
-  CORE_GETH_RELEASE,
-  type ClientRelease,
-  type InstallStep,
+  CORE_GETH_TASKS,
+  type CoreGethTask,
 } from '@/lib/core-geth'
 
 // Network configuration
@@ -98,8 +96,12 @@ export interface NodeClient {
   id: string
   name: string
   website: string
+  /** The client's documentation site, where it has one apart from its website. */
+  docs?: string
   github: string
   description: string
+  /** The page's meta description, where `description` runs past what a search result shows. */
+  metaDescription?: string
   language: string
   platforms: ('Windows' | 'macOS' | 'Linux' | 'Docker')[]
   features: string[]
@@ -114,10 +116,8 @@ export interface NodeClient {
   badges?: string[]
   recommended?: boolean
   installCommand?: string
-  /** Per-platform install steps. The client page shows these in place of installCommand. */
-  installGuide?: InstallStep[]
-  /** The current release and its download files. */
-  release?: ClientRelease
+  /** What an operator comes to do, each linking the page that carries the steps. Shown in place of installCommand. */
+  installTasks?: CoreGethTask[]
   configNotes?: string
   securityAdvisories?: SecurityAdvisory[]
   securityAuditUrl?: string
@@ -136,36 +136,15 @@ export interface ExecutionPlugin {
 
 export const nodeClients: NodeClient[] = [
   {
-    id: 'fukuii',
-    name: 'Fukuii',
-    website: 'https://fukuii.com',
-    github: 'https://github.com/chippr-robotics/fukuii',
-    description:
-      "Ethereum Classic's first native client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration; a further network is configuration, not a new client.",
-    language: 'Scala',
-    platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
-    features: [
-      'Several networks at once in one JVM process, each fully isolated',
-      'Consensus selected per deployment: native Proof-of-Work for ETC mainnet and Mordor',
-      'Proof-of-Stake with a built-in consensus layer, or an external client over the Engine API V1–V4',
-      'SNAP, fast, and regular sync; JSON-RPC, GraphQL, and an MCP server exposing node state to AI agents',
-      'JVM-native end to end for institutions already on the JVM: JFR, async-profiler, JMX and heap dumps work as on any JVM process, with no foreign-language bridge',
-      'Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints in the binary',
-      'Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts',
-    ],
-    status: 'active',
-    badges: ['ETC-native', 'Enterprise'],
-    recommended: false,
-    configNotes:
-      'Select the network with --network=etc for ETC mainnet or --network=mordor for the ETC testnet. Requires a current JDK LTS (25); the Docker image bundles one.',
-  },
-  {
     id: 'core-geth',
     name: 'Core-Geth',
     website: CORE_GETH_HOMEPAGE_URL,
+    docs: CORE_GETH_DOCS_URL,
     github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'A go-ethereum derivative maintained for Ethereum Classic, released from the ethereumclassic community organization. The v1.12.x line went 21 months without security maintenance; Core-Geth v1.13.0, prepared by White B0x, fixes six CVEs, one of them exploited against ETC mainnet bootnodes in March 2026, and moves the client to Go 1.26.',
+      'An Ethereum Classic execution client and public-good Go reference client: a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization, and the recommended client to run. The v1.12 line went 21 months without security maintenance. The v1.13 line closes every client CVE the audits found, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026, bounds GraphQL queries, and is built with a supported Go toolchain.',
+    metaDescription:
+      'Core-Geth, an Ethereum Classic execution client: run the v1.13 line, move a v1.12 node with its required key rotation, and read the v1.12 security audit.',
     language: 'Go',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
     features: [
@@ -173,15 +152,13 @@ export const nodeClients: NodeClient[] = [
       'JSON-RPC, WebSocket and GraphQL APIs',
       'EVM tracing and debugging',
       'Built-in Etchash mining support',
-      'MESS (ECBP-1100) chain-selection defense, on by default',
+      'MESS (ECBP-1100) deep-reorg defense, set with --mess or --mess=false',
       'Build attestation on every release file',
     ],
     status: 'active',
     role: 'recommended',
     recommended: true,
-    installCommand: 'docker pull ghcr.io/ethereumclassic/core-geth:latest',
-    installGuide: CORE_GETH_INSTALL,
-    release: CORE_GETH_RELEASE,
+    installTasks: CORE_GETH_TASKS,
     configNotes:
       'Run with --classic, or no network flag, for Ethereum Classic mainnet, and --mordor for the Mordor testnet.',
     securityAdvisories: [
@@ -199,7 +176,7 @@ export const nodeClients: NodeClient[] = [
       },
       {
         cve: 'CVE-2026-26315',
-        severity: 'High',
+        severity: 'Moderate',
         description: 'ECIES GenerateShared missing public key validation — MAC-oracle attack can leak P2P node key bits via repeated unauthenticated handshakes.',
         commit: 'c19892395',
       },
@@ -229,6 +206,33 @@ export const nodeClients: NodeClient[] = [
       },
     ],
     securityAuditUrl: '/build/clients/core-geth-security-audit',
+  },
+  {
+    id: 'fukuii',
+    name: 'Fukuii',
+    website: 'https://fukuii.com',
+    docs: 'https://docs.fukuii.com',
+    github: 'https://github.com/chippr-robotics/fukuii',
+    metaDescription:
+      'Fukuii, a native Ethereum Classic client in Scala 3 on the JVM: one binary runs several networks at once, each with its own state and configuration.',
+    description:
+      'A native Ethereum Classic client: an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration; a further network is configuration, not a new client.',
+    language: 'Scala',
+    platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
+    features: [
+      'Several networks at once in one JVM process, each fully isolated',
+      'Consensus selected per deployment: native Proof-of-Work for ETC mainnet and Mordor',
+      'Proof-of-Stake with a built-in consensus layer, or an external client over the Engine API V1–V4',
+      'SNAP, fast, and regular sync; JSON-RPC, GraphQL, and an MCP server exposing node state to AI agents',
+      'JVM-native end to end for institutions already on the JVM: JFR, async-profiler, JMX and heap dumps work as on any JVM process, with no foreign-language bridge',
+      'Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints in the binary',
+      'Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts',
+    ],
+    status: 'active',
+    badges: ['ETC-native', 'Enterprise'],
+    recommended: false,
+    configNotes:
+      'Select the network with --network=etc for ETC mainnet or --network=mordor for the ETC testnet. Requires a current JDK LTS (25); the Docker image bundles one.',
   },
 ]
 
@@ -713,12 +717,10 @@ export function getActiveClients(): NodeClient[] {
  * Client implementations to list on the client pages: everything actually
  * runnable today, recommended first.
  *
- * getActiveClients() filters to status 'active', and Core-Geth is 'maintained'
- * — so the only maintained ETC client was filtered out of both pages whose job
- * is listing clients, appearing on /build/clients only as a --classic flag in a
- * config table. Ordering puts the recommended client first, and the card
- * treatment (green border for `recommended`) plus the gray Maintained badge
- * keep Fukuii unambiguously primary.
+ * The sort puts the recommended client first, so Core-Geth leads and takes the
+ * preferred card treatment (green border for `recommended`). Core-Geth is the
+ * client to run today; Fukuii is the alternative native client and is not marked
+ * recommended.
  */
 export function getClientImplementations(): NodeClient[] {
   return nodeClients

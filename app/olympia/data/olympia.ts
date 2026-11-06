@@ -1,10 +1,9 @@
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 import {
   CORE_GETH_DOCS_URL,
-  CORE_GETH_INSTALL,
-  CORE_GETH_RELEASE,
-  CORE_GETH_VERSION,
-  type ClientRelease,
+  CORE_GETH_RECOMMENDED_LINE,
+  CORE_GETH_TASKS,
+  type CoreGethTask,
 } from '@/lib/core-geth'
 // Olympia Network Upgrade — Core Data
 //
@@ -58,22 +57,48 @@ export interface ClientUpgrade {
   dockerImage: string
   platforms: string[]
   installCommands: { platform: string; command: string }[]
-  /** The current release and its download files, where the client publishes them. */
-  release?: ClientRelease
+  /** What an operator comes to do, each linking the page that carries the steps. Shown in place of installCommands. */
+  tasks?: CoreGethTask[]
   verifyCommand: string
   prerequisites: string[]
 }
 
 export const clients: ClientUpgrade[] = [
   {
+    id: 'core-geth',
+    name: 'Core-Geth',
+    language: 'Go',
+    languageColor: '#00ADD8',
+    description:
+      'An Ethereum Classic execution client and public-good Go reference client: a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization, and the recommended client to run. The v1.12 line went 21 months without security maintenance. The v1.13 line closes every client CVE the audits found, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026, bounds GraphQL queries, and is built with a supported Go toolchain.',
+    role: 'primary',
+    badges: ['Recommended', 'Go-Ethereum derivative'],
+    securityAuditUrl: '/build/clients/core-geth-security-audit',
+    // The line, never a patch: a release inside it ships with no edit here.
+    currentVersion: `${CORE_GETH_RECOMMENDED_LINE} line`,
+    olympiaVersion: 'TBD',
+    githubUrl: 'https://github.com/ethereumclassic/core-geth',
+    docsUrl: CORE_GETH_DOCS_URL,
+    dockerImage: 'ghcr.io/ethereumclassic/core-geth:latest',
+    platforms: ['Linux', 'macOS', 'Windows', 'Docker'],
+    installCommands: [],
+    tasks: CORE_GETH_TASKS,
+    verifyCommand: 'geth version',
+    prerequisites: [
+      'A release archive for Linux (x86_64 or ARM), macOS 12 or newer, or Windows x86_64',
+      'A Go toolchain and a C compiler, only to build from source: Build from source in the Core-Geth documentation lists the versions',
+      'Disk and memory for the network you sync: see Hardware requirements in the Core-Geth documentation',
+    ],
+  },
+  {
     id: 'fukuii',
     name: 'Fukuii',
     language: 'Scala',
     languageColor: '#DC322F',
     description:
-      "Ethereum Classic's first native client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
-    role: 'primary',
-    badges: ['Primary', 'Enterprise', 'ETC-native'],
+      'A native Ethereum Classic client: an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.',
+    role: 'enterprise',
+    badges: ['ETC-native', 'Enterprise'],
     currentVersion: 'v0.1.240',
     olympiaVersion: 'TBD',
     githubUrl: 'https://github.com/chippr-robotics/fukuii',
@@ -85,32 +110,7 @@ export const clients: ClientUpgrade[] = [
       { platform: 'Source', command: 'sbt stage' },
     ],
     verifyCommand: 'fukuii --version',
-    prerequisites: ['Current JDK LTS (25) — bundled in the Docker image', '8 GB RAM minimum', '500 GB SSD (full sync)'],
-  },
-  {
-    id: 'core-geth',
-    name: 'Core-Geth',
-    language: 'Go',
-    languageColor: '#00ADD8',
-    description:
-      'A go-ethereum derivative released and maintained for Ethereum Classic in the ethereumclassic organization, providing client diversity alongside Fukuii. Core-Geth v1.13.0, prepared by White B0x, fixes six CVEs and moves the client to Go 1.26.',
-    role: 'maintenance',
-    badges: ['Maintained', 'Go-Ethereum derivative'],
-    securityAuditUrl: '/build/clients/core-geth-security-audit',
-    currentVersion: CORE_GETH_VERSION,
-    olympiaVersion: 'TBD',
-    githubUrl: 'https://github.com/ethereumclassic/core-geth',
-    docsUrl: CORE_GETH_DOCS_URL,
-    dockerImage: 'ghcr.io/ethereumclassic/core-geth:latest',
-    platforms: ['Linux', 'macOS', 'Windows', 'Docker'],
-    installCommands: CORE_GETH_INSTALL,
-    release: CORE_GETH_RELEASE,
-    verifyCommand: 'geth version',
-    prerequisites: [
-      'A release archive for Linux (x86_64 or ARM), macOS 12 or newer, or Windows x86_64',
-      'Go 1.26 and a C compiler, only to build from source',
-      'Disk and memory for the network you sync: see Hardware requirements in the Core-Geth documentation',
-    ],
+    prerequisites: ['Current JDK LTS (25), bundled in the Docker image', '8 GB RAM minimum', '500 GB SSD (full sync)'],
   },
 ]
 
@@ -204,12 +204,12 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'Who is coordinating the Olympia upgrade?',
     answer:
-      'Olympia is coordinated by the same developers, organizations, and community stewards who have delivered every Ethereum Classic network upgrade since 2016: Gotham, Die Hard, Defuse Difficulty Bomb, Thanos, and the full EVM compatibility series spanning Gas Reprice, Atlantis, Agharta, Phoenix, Magneto, Mystique, and Spiral. The ETC Cooperative, a US 501(c)(3) non-profit, funds Ethereum Classic\'s client development teams and has managed the hard fork coordination process throughout that history. Stakeholder outreach, client release sequencing, and cross-client testing are all established practice. Olympia is a significant upgrade carried forward by a team with a clean delivery record across a decade of ETC network upgrades.',
+      'Olympia is coordinated by the same developers, organizations, and community stewards who have delivered every Ethereum Classic network upgrade since 2016: Gotham, Die Hard, Defuse Difficulty Bomb, Thanos, and the full EVM compatibility series spanning Gas Reprice, Atlantis, Agharta, Phoenix, Magneto, Mystique, and Spiral. The ETC Cooperative, a US 501(c)(3) non-profit, funded Ethereum Classic\'s client development teams and managed the hard fork coordination process through Spiral in 2024, before entering maintenance mode at the end of that year. Stakeholder outreach, client release sequencing, and cross-client testing are all established practice. Olympia is a significant upgrade carried forward by a team with a clean delivery record across a decade of ETC network upgrades.',
   },
   {
     question: 'What role has the ETC Cooperative played, and what changes with Olympia?',
     answer:
-      'The ETC Cooperative is a US 501(c)(3) non-profit that has funded Ethereum Classic\'s core client development for years, contributing millions of dollars to the network\'s client teams and infrastructure through every upgrade cycle. Every hard fork, every client release, and every cross-client coordination effort has been backed by their balance sheet. Olympia is what they were building toward: a protocol-native funding model that does not depend on any single organization\'s continued generosity. The Olympia Treasury, governed on-chain by the Olympia DAO and executed by the Wyoming DAO LLC, extends beyond institutional dependency with a durable financial foundation that scales with network usage. The model changes, not the commitment. The ETC Cooperative continues as an active steward, and any developer, mining operation, hardware manufacturer, or individual worldwide can now contribute directly on-chain without fielding a team or managing a non-profit to do it.',
+      'The ETC Cooperative is a US 501(c)(3) non-profit that funded Ethereum Classic\'s core client development for years, contributing millions of dollars to the network\'s client teams and infrastructure through every upgrade cycle up to Spiral in 2024. Every hard fork, every client release, and every cross-client coordination effort in that time was backed by its balance sheet. It entered maintenance mode at the end of 2024, and its board has communicated that it will dissolve, with the public goods it maintained continuing in the ethereumclassic GitHub organization. Olympia is a protocol-native funding model that does not depend on any single organization\'s continued generosity. The Olympia Treasury, governed on-chain by the Olympia DAO and executed by the Wyoming DAO LLC, extends beyond institutional dependency with a durable financial foundation that scales with network usage, and any developer, mining operation, hardware manufacturer, or individual worldwide can contribute directly on-chain without fielding a team or managing a non-profit to do it.',
   },
   {
     question: "What is Grayscale's role in Ethereum Classic's development?",

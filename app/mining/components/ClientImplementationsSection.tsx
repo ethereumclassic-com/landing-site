@@ -5,7 +5,7 @@ const primaryClient = {
   name: 'Core-Geth',
   language: 'Go',
   description:
-    'A go-ethereum derivative released and maintained for Ethereum Classic in the ethereumclassic organization. Etchash mining is built in, and the MESS chain-selection defense is on by default. v1.13.0, prepared by White B0x, fixes six CVEs and moves the client to Go 1.26.',
+    'An Ethereum Classic execution client and public-good Go reference client, released and maintained in the ethereumclassic GitHub organization, and the recommended client. Etchash mining is built in, and MESS, the deep-reorg defense, is set with --mess or --mess=false. The v1.13 line closes every client CVE the audits found, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026, and is built with a supported Go toolchain.',
   website: 'https://docs.coregeth.com',
   websiteLabel: 'docs.coregeth.com',
   github: 'https://github.com/ethereumclassic/core-geth',
@@ -30,7 +30,7 @@ const secondaryClients: SecondaryClient[] = [
     name: 'Fukuii',
     language: 'Scala',
     description:
-      "Ethereum Classic's first native client, built ground-up for ETC rather than derived from an Ethereum client — an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.",
+      'A native Ethereum Classic client, built ground-up for ETC rather than derived from an Ethereum client: an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.',
     github: 'https://github.com/chippr-robotics/fukuii',
     status: 'Pre-1.0',
   },
@@ -59,7 +59,7 @@ export function ClientImplementationsSection() {
             Multi-client architecture eliminates single points of failure at the protocol layer.
             Independent implementations in distinct languages, maintained by separate teams, ensure
             the network can withstand the discontinuation or compromise of any single codebase.
-            Fukuii and Core-Geth provide implementation diversity, and ETC plugins for Besu, Erigon,
+            Core-Geth and Fukuii provide implementation diversity, and ETC plugins for Besu, Erigon,
             Ethrex, Go-Ethereum, Nethermind, and Reth widen execution-layer reach without
             fragmenting the ecosystem.
           </p>

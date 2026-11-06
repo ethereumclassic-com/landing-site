@@ -7,6 +7,7 @@ import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearch, getTypeLabel, getTypeIcon, type SearchResult, type SearchResultType } from '@/hooks/useSearch'
 import { EtcMark } from './ui/EtcMark'
+import { CORE_GETH_INSTALL_STEPS_URL } from '@/lib/core-geth'
 
 // Navigation structure with dropdowns
 type NavDropdownItem =
@@ -723,7 +724,7 @@ export default function Navigation() {
 
             {/* Run Core-Geth Button (Desktop) */}
             <a
-              href="https://github.com/ethereumclassic/core-geth/releases/latest"
+              href={CORE_GETH_INSTALL_STEPS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden items-center justify-center whitespace-nowrap rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-2 text-sm font-medium text-[var(--brand-green)] transition hover:bg-[var(--brand-green-subtle)] hover:opacity-80 md:inline-flex"
@@ -762,7 +763,7 @@ export default function Navigation() {
               <div className="max-h-[calc(100vh-4rem)] overflow-y-auto p-4">
                 {/* Mobile Run Core-Geth Button */}
                 <a
-                  href="https://github.com/ethereumclassic/core-geth/releases/latest"
+                  href={CORE_GETH_INSTALL_STEPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mb-4 flex w-full items-center justify-center rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-3 text-sm font-medium text-[var(--brand-green)] transition hover:opacity-80"
