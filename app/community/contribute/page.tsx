@@ -21,7 +21,7 @@ const contributionAreas = [
     title: 'Code & Development',
     description: 'Contribute to core clients, tools, and ecosystem projects.',
     items: [
-      { label: 'Core Clients', detail: 'Fukuii (Scala), Core-Geth (Go)', href: '/olympia/clients' },
+      { label: 'Core Clients', detail: 'Core-Geth (Go), Fukuii (Scala)', href: '/olympia/clients' },
       { label: 'Smart Contracts', detail: 'Solidity development, auditing, and testing', href: '/build' },
       { label: 'Frontend & Tools', detail: 'dApp interfaces, developer tooling, utilities', href: '/build/tools' },
     ],

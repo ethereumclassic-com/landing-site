@@ -373,7 +373,7 @@ export const wallets: Wallet[] = [
   {
     name: 'Emerald Wallet',
     type: 'Mobile',
-    description: 'ETC-focused wallet by ETC Cooperative',
+    description: 'ETC-focused wallet by EmeraldPay',
     link: 'https://emerald.cash',
     platforms: ['Desktop'],
     features: {

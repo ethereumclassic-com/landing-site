@@ -13,15 +13,6 @@ interface FundingSource {
 
 const fundingSources: FundingSource[] = [
   {
-    name: 'ETC Cooperative Grants',
-    description: 'The ETC Cooperative provides grants for projects that benefit the Ethereum Classic ecosystem, including protocol development, tooling, and community initiatives.',
-    type: 'grants',
-    url: 'https://etccooperative.org',
-    fundingRange: '$5K - $100K+',
-    status: 'active',
-    focus: ['Protocol Development', 'Infrastructure', 'Developer Tools', 'Education'],
-  },
-  {
     name: 'ETC Community Fund',
     description: 'Community-driven funding for smaller projects, events, and initiatives. Proposals are reviewed by community members.',
     type: 'community',
@@ -362,18 +353,6 @@ export default function BuildGrantsPage() {
                   Contact Us
                 </Link>
               </div>
-
-              <p className="mt-6 text-sm text-[var(--color-text-muted)]">
-                For general inquiries about grants, reach out via{' '}
-                <a
-                  href="https://etccooperative.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--color-primary)] hover:underline"
-                >
-                  ETC Cooperative
-                </a>
-              </p>
             </div>
           </div>
         </div>

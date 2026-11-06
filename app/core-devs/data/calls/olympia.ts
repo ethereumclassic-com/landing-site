@@ -127,8 +127,8 @@ Two independent client implementations are ready for the Olympia hard fork and p
 
 | Client | Language | Release | Role |
 |--------|----------|---------|------|
-| [Fukuii](https://github.com/chippr-robotics/fukuii) | Scala | TBD | **Recommended** — Ethereum Classic's first native client, built ground-up for ETC; native PoW for ETC and Mordor |
-| [Core-Geth](https://github.com/ethereumclassic/core-geth) | Go | TBD | **Maintained** — A go-ethereum derivative maintained for ETC, carried through the Olympia transition |
+| [Core-Geth](https://github.com/ethereumclassic/core-geth) | Go | TBD | **Recommended** — An Ethereum Classic execution client and public-good Go reference client, a go-ethereum derivative carried through the Olympia transition |
+| [Fukuii](https://github.com/chippr-robotics/fukuii) | Scala | TBD | **Alternative** — A native ETC client, built for ETC; native PoW for ETC and Mordor |
 
 Both clients produce identical genesis hashes and have been verified through Mordor testnet with matching chain state. See [client details](/olympia/clients) for upgrade instructions.
 

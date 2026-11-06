@@ -138,11 +138,11 @@ const FORK_EVENTS: ForkEvent[] = [
   },
   {
     title: 'ETC Cooperative Founded — Core Development Funded',
-    date: '2017 – Present',
+    date: '2017',
     type: 'institutional',
     description:
-      "The ETC Cooperative is established as a US 501(c)(3) non-profit by Ethereum Classic's earliest core contributors. A 1% portion of Grayscale's ETCG management fee is donated to the Cooperative, making Grayscale the primary institutional funder of ETC's core development. The Cooperative has backed every hard fork, every client release, and every cross-client coordination effort since the Atlantis upgrade.",
-    tags: ['US 501(c)(3) non-profit', '1% of ETCG fee donated', 'Every hard fork since Atlantis funded', 'Millions contributed to client teams'],
+      "The ETC Cooperative is established as a US 501(c)(3) non-profit by Ethereum Classic's earliest core contributors. Under its arrangement with Grayscale, a third of the fees Grayscale collected on its Ethereum Classic Trust were contributed to the Cooperative, the last of them in March 2022, making Grayscale the primary institutional funder of ETC's core development. The Cooperative backed every hard fork, every client release, and every cross-client coordination effort from the Atlantis upgrade through Spiral, and entered maintenance mode at the end of 2024.",
+    tags: ['US 501(c)(3) non-profit', '1/3 of ETCG fees, to March 2022', 'Every hard fork from Atlantis to Spiral funded', 'Millions contributed to client teams'],
   },
   {
     title: 'DAO Hacker Identified — Toby Hoenisch',

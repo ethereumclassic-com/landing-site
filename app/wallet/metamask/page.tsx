@@ -274,8 +274,9 @@ export default function MetaMaskPage() {
           >
             <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Alternative RPC Endpoints</h2>
             <p className="mb-6 text-[var(--color-text-secondary)]">
-              Rivet is the primary public RPC endpoint, funded by ETC Cooperative and Grayscale.
-              If you experience issues, try these alternatives:
+              The network settings above use Blockscout&apos;s endpoint. <code>etc.rivet.link</code>, which
+              Rivet provided under contract with the ETC Cooperative, went offline in late August 2026, so
+              a wallet still set to it needs a new RPC URL. If you experience issues, use one of these:
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               {[

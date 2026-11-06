@@ -116,7 +116,7 @@ const partners: Partner[] = [
   // Development
   {
     name: 'ETC Cooperative',
-    description: 'Non-profit supporting ETC protocol development.',
+    description: 'Non-profit that funded Ethereum Classic public goods from 2017, and is winding down.',
     category: 'development',
     url: 'https://etccooperative.org',
     featured: true,
@@ -125,7 +125,7 @@ const partners: Partner[] = [
   {
     name: 'The Fukuii Authors',
     description:
-      "Chippr Robotics LLC and White B0x Inc., who maintain Fukuii — Ethereum Classic's first native client.",
+      'Chippr Robotics LLC and White B0x Inc., who maintain Fukuii, a native Ethereum Classic client.',
     category: 'development',
     url: 'https://github.com/chippr-robotics/fukuii',
     partnerSince: '2024',

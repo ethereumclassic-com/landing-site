@@ -137,7 +137,7 @@ export default function OlympiaHubPage() {
                 {
                   ecip: 'ECIP-1122',
                   title: 'Network Security Client Configuration',
-                  description: 'Chain configuration rather than consensus rules: a MIN_MINER_TIP of 1 gwei, which with the ECIP-1111 basefee floor of 1 gwei sets a 2 gwei minimum gas price so miner revenue cannot reach zero once the basefee is redirected; a network-authoritative gas target that overrides operator --miner.gaslimit; and MESS re-enabled at the Olympia block. A client omitting these gives weaker guarantees but does not fork.',
+                  description: 'Chain configuration rather than consensus rules: a MIN_MINER_TIP of 1 gwei, which with the ECIP-1111 basefee floor of 1 gwei sets a 2 gwei minimum gas price so miner revenue cannot reach zero once the basefee is redirected, and a network-authoritative gas target that overrides operator --miner.gaslimit. A client omitting these gives weaker guarantees but does not fork.',
                   color: 'var(--color-purple)',
                 },
               ].map((item) => (
@@ -473,19 +473,19 @@ export default function OlympiaHubPage() {
                 {
                   name: 'Ethereum Classic DAO LLC',
                   role: 'Legal Entity',
-                  description: 'The legal wrapper for the Olympia DAO under Wyoming\'s DAO LLC framework. Ensures regulatory compliance, proper reporting, and alignment with digital asset legislation.',
+                  description: 'The Wyoming DAO LLC that maintains and funds Ethereum Classic\'s public goods today as their funder of last resort, with Ethereum Classic\'s core developers and community contributors doing the work, and the legal wrapper for the Olympia DAO. It does not control or lead Ethereum Classic.',
                   href: olympiaLinks.ethereumClassicDAO,
                 },
                 {
                   name: 'ETC Cooperative',
-                  role: 'Protocol Steward',
-                  description: 'US 501(c)(3) non-profit that has funded Ethereum Classic\'s core client development since 2017, backing every hard fork, every client release, and every cross-client coordination effort across a decade of ETC network upgrades.',
+                  role: 'Protocol Steward, 2017 to 2024',
+                  description: 'US 501(c)(3) non-profit that funded Ethereum Classic\'s core client development from 2017, backing every hard fork, every client release, and every cross-client coordination effort through Spiral in 2024. It entered maintenance mode at the end of 2024 and is winding down, and the public goods it maintained continue in the ethereumclassic GitHub organization.',
                   href: olympiaLinks.etcCooperative,
                 },
                 {
                   name: 'Grayscale ETCG',
                   role: 'Institutional Access',
-                  description: 'The Grayscale Ethereum Classic Trust launched in 2018, years before Bitcoin ETFs existed as a product category, providing regulated institutional access to ETC and indirectly funding ETC Cooperative core development work.',
+                  description: 'The Grayscale Ethereum Classic Trust launched in 2018, years before Bitcoin ETFs existed as a product category, providing regulated institutional access to ETC and, until March 2022, indirectly funding ETC Cooperative core development work.',
                   href: olympiaLinks.grayscaleETCG,
                 },
               ].map((entity) => (

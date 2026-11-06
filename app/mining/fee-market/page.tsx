@@ -173,7 +173,7 @@ export default function FeeMarketPage() {
               Growing fee revenue requires an active, growing dApp ecosystem. That requires funded core development. Engineers must maintain clients, improve the EVM, build tooling, attract projects, and support builders who deploy on ETC.
             </p>
             <p>
-              Historically, ETC has had no sustainable development funding mechanism. The Ethereum Classic Labs and ETC Cooperative organizations have operated on donations and grants with no guaranteed continuity. When funding dries up, development slows. When development slows, builders go elsewhere. When builders go elsewhere, transactions don&apos;t happen. When transactions don&apos;t happen, blocks stay empty.
+              Historically, ETC has had no sustainable development funding mechanism. The Ethereum Classic Labs and ETC Cooperative organizations operated on donations and grants with no guaranteed continuity. When funding dries up, development slows. When development slows, builders go elsewhere. When builders go elsewhere, transactions don&apos;t happen. When transactions don&apos;t happen, blocks stay empty.
             </p>
             <p>
               The chain has remained secure because miners have continued to secure it. But miners are not a charity. They are rational economic actors. The current model offers only a block reward that declines on a fixed schedule, with no mechanism to grow fee revenue.

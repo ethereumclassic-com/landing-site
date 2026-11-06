@@ -136,7 +136,7 @@ export const ecipIndex: Record<string, ECIPMeta> = {
   'ecip-1100': {
     id: 'ecip-1100',
     title: 'MESS (Modified Exponential Subjective Scoring)',
-    status: 'Replaced',
+    status: 'Active',
     type: 'Standards Track (ECBP)',
     url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1100',
   },

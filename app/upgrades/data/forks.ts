@@ -244,11 +244,10 @@ export const forks: ForkData[] = [
     ecip: 'ECIP-1110',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1110',
     summary:
-      'MESS (ECBP-1110) switched off by default at the Spiral block, as sustained hashrate growth removed the conditions it was introduced to mitigate. ECIP-1122 re-enables it at the Olympia block.',
+      'MESS (ECBP-1100) switched off by default under ECBP-1110 at the Spiral block, as sustained hashrate growth removed the conditions it was introduced to mitigate.',
     keyChanges: [
       'MESS disabled by default (ECBP-1110)',
       'Activated at the same block as Spiral',
-      'Re-enabled at Olympia by ECIP-1122',
     ],
   },
   {
@@ -270,8 +269,8 @@ export const forks: ForkData[] = [
       'EVM parity with Ethereum through Glamsterdam',
       'EIPs from London, Dencun, Pectra, Fusaka, and Glamsterdam',
       'Protocol treasury funding mechanism',
-      'Two independent client implementations: Fukuii and Core-Geth',
-      'Network security client configuration: MIN_MINER_TIP, gas target, MESS (ECIP-1122)',
+      'Two independent client implementations: Core-Geth and Fukuii',
+      'Network security client configuration: MIN_MINER_TIP, gas target (ECIP-1122)',
     ],
     isOlympia: true,
   },

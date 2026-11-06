@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { CORE_GETH_DOCS_URL, CORE_GETH_LATEST_RELEASE_URL } from '@/lib/core-geth'
+import { CORE_GETH_DOCS_URL, CORE_GETH_LATEST_RELEASE_URL, CORE_GETH_UPGRADE_STEPS_URL } from '@/lib/core-geth'
 // Inline SVG icons (etc-com does not use lucide-react)
 type IconProps = { size?: number; className?: string; style?: React.CSSProperties; 'aria-hidden'?: boolean | 'true' | 'false' }
 const CheckCircle2 = ({ size = 16, className = '', style, ...rest }: IconProps) => (
@@ -92,7 +92,7 @@ const ecips = [
     icon: ShieldCheck,
     color: 'var(--color-purple)',
     description:
-      'Chain configuration rather than consensus rules: a MIN_MINER_TIP of 1 gwei, which with the ECIP-1111 basefee floor of 1 gwei sets a 2 gwei minimum gas price so miner revenue cannot reach zero once the basefee is redirected; a network-authoritative gas target that overrides operator --miner.gaslimit; and MESS re-enabled at the Olympia block. A client omitting these gives weaker guarantees but does not fork.',
+      'Chain configuration rather than consensus rules: a MIN_MINER_TIP of 1 gwei, which with the ECIP-1111 basefee floor of 1 gwei sets a 2 gwei minimum gas price so miner revenue cannot reach zero once the basefee is redirected, and a network-authoritative gas target that overrides operator --miner.gaslimit. A client omitting these gives weaker guarantees but does not fork.',
   },
 ]
 
@@ -199,12 +199,46 @@ const roadmapStages = [
   },
 ]
 
-const clientData = [
+const clientData: {
+  name: string
+  language: string
+  languageColor: string
+  role: string
+  runtime: string
+  disk: string
+  ram: string
+  steps: string[]
+  githubUrl: string
+  docsUrl: string
+  /** Where a node on a vulnerable line moves first, before any Olympia release. */
+  moveUrl?: string
+  securityAuditUrl?: string
+}[] = [
+  {
+    name: 'Core-Geth',
+    language: 'Go',
+    languageColor: '#00ADD8',
+    role: 'Recommended · Go-Ethereum Derivative',
+    runtime: 'Native binary',
+    disk: '~51 GiB (snap sync)',
+    ram: '~2.3 GiB peak',
+    steps: [
+      'If the node is on a v1.12 release, move it to the v1.13 line first, which rotates its P2P node key, a required step',
+      'Stop your running Core-Geth node',
+      'Download the Olympia-compatible release from GitHub',
+      'Replace the existing geth binary',
+      'Restart your node. It will automatically follow the Olympia fork.',
+    ],
+    githubUrl: CORE_GETH_LATEST_RELEASE_URL,
+    docsUrl: CORE_GETH_DOCS_URL,
+    moveUrl: CORE_GETH_UPGRADE_STEPS_URL,
+    securityAuditUrl: '/build/clients/core-geth-security-audit',
+  },
   {
     name: 'Fukuii',
     language: 'Scala',
     languageColor: '#DC322F',
-    role: 'Primary · Enterprise · ETC-native',
+    role: 'Alternative · Enterprise · ETC-native',
     runtime: 'JDK 25+',
     disk: '500 GB+ (SNAP sync)',
     ram: '8 GB minimum',
@@ -216,24 +250,6 @@ const clientData = [
     ],
     githubUrl: 'https://github.com/chippr-robotics/fukuii/releases',
     docsUrl: 'https://docs.fukuii.com',
-  },
-  {
-    name: 'Core-Geth',
-    language: 'Go',
-    languageColor: '#00ADD8',
-    role: 'Go-Ethereum Derivative · Maintained',
-    runtime: 'Native binary',
-    disk: '~51 GiB (snap sync)',
-    ram: '~2.3 GiB peak',
-    steps: [
-      'Stop your running Core-Geth node',
-      'Download the Olympia-compatible release from GitHub',
-      'Replace the existing geth binary',
-      'Restart your node. It will automatically follow the Olympia fork.',
-    ],
-    githubUrl: CORE_GETH_LATEST_RELEASE_URL,
-    docsUrl: CORE_GETH_DOCS_URL,
-      securityAuditUrl: '/build/clients/core-geth-security-audit',
   },
 ]
 
@@ -624,7 +640,17 @@ export default function UpgradeGuidePage() {
                   </div>
 
                   {/* Links */}
-                  <div className="mt-4 flex gap-4">
+                  <div className="mt-4 flex flex-wrap gap-4">
+                    {client.moveUrl && (
+                      <a
+                        href={client.moveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-[var(--brand-green)] transition hover:opacity-80"
+                      >
+                        Move a v1.12 node <ExternalLink size={12} />
+                      </a>
+                    )}
                     <a
                       href={client.githubUrl}
                       target="_blank"
