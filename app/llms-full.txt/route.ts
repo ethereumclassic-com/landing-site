@@ -1,4 +1,8 @@
+import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
+import { coreGethLlmsSection } from '@/lib/llms-core-geth'
 import { DISCORD_INVITE_URL } from '@/lib/social'
+
+const eraSpan = `${getEraEndBlock(CURRENT_ERA - 1) / 1_000_000}M–${getEraEndBlock(CURRENT_ERA) / 1_000_000}M`
 
 export function GET() {
   const body = `# Ethereum Classic — Extended AI Context
@@ -15,9 +19,9 @@ export function GET() {
 - Consensus: Proof-of-Work, ETCHash algorithm
 - Block time: ~13 seconds
 - Supply cap: ~210.7 million ETC
-- Current block reward: 1.6384 ETC (Era 6, blocks 25M–30M)
+- Current block reward: ${getBlockRewardForEra(CURRENT_ERA)} ETC (Era ${CURRENT_ERA}, blocks ${eraSpan})
 - Block reward reduction: 20% every 5 million blocks ("fifthing", defined by ECIP-1017)
-- Hashrate: ~150 TH/s (Blockscout difficulty over its reported average block time)
+- Hashrate: moves block to block, so no figure is given here; live at https://ethereumclassic.com/mining/hashrate (Blockscout difficulty over its reported average block time)
 - Smart contracts: EVM-compatible (Solidity, Vyper, Yul)
 - EVM opcodes: London baseline + Spiral (partial Shanghai) as of 2024
 
@@ -28,7 +32,7 @@ Get wallets and manage ETC. Sub-pages:
 - /wallet/metamask — MetaMask setup guide for ETC
 - /wallet/hardware — Hardware wallet options (Ledger, Trezor)
 - /wallet/compare — Comparison of all ETC-compatible wallets
-- /wallet/reviews — User reviews and ratings
+- /wallet/reviews — Editorial reviews and ratings
 
 ### /buy — Acquiring ETC
 Purchase ETC across multiple channels:
@@ -54,7 +58,7 @@ Purchase ETC across multiple channels:
 ### /exchanges — Exchange Directory
 Filter and compare exchanges by criteria:
 - /exchanges (main) — Full exchange listing
-- /exchanges/reviews — User reviews and ratings
+- /exchanges/reviews — Editorial reviews and ratings
 - /exchanges/compare — Side-by-side comparison
 - /exchanges/beginners — Best exchanges for first-time buyers
 - /exchanges/lowest-fees — Exchanges ranked by trading fees
@@ -106,7 +110,7 @@ ETC's ideological foundation:
 ### /build — Developer Docs
 - /build (overview) — Getting started for developers
 - /build/getting-started — First dApp on ETC
-- /build/clients — Node client options (Fukuii, Core-Geth) and the ETC execution plugins
+- /build/clients — Node client options (Core-Geth, Fukuii) and the ETC execution plugins
 - /build/networks — Mainnet, Mordor testnet, local devnet
 - /build/api — JSON-RPC API reference
 - /build/docs — ETC Improvement Proposals (ECIPs)
@@ -139,12 +143,12 @@ ETC's ideological foundation:
 ETC's most significant upgrade to date:
 - /olympia (hub) — Upgrade overview and timeline
 - /olympia/upgrade — Node operator upgrade guide
-- /olympia/clients — Client comparison (Fukuii, Core-Geth) and the ETC execution plugins
+- /olympia/clients — Client comparison (Core-Geth, Fukuii) and the ETC execution plugins
 - /olympia/clients/fukuii — Fukuii upgrade guide
 - /olympia/clients/core-geth — Core-Geth upgrade guide
 - /olympia/governance — Treasury and on-chain governance contracts
 - /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
-- /build/clients/core-geth-security-audit — Core-Geth v1.12.x security audit: six CVEs in etclabscore/core-geth v1.12.x (21-month gap, Go 1.21 and 1.22 EOL), March 2026 live exploit on ETC bootnodes, full postmortem PR trail, and the upgrade path. All fixed in Core-Geth v1.13.0, prepared by White B0x.
+- /build/clients/core-geth-security-audit — Core-Geth v1.12 security audits and the v1.13 upgrade: the CVEs the 2026 audits found, what was used against Core-Geth v1.12 bootnodes, every release since the maintenance gap, what the network is running, and what upgrading to v1.13 fixes, as coregeth.com/security records them.
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap
@@ -193,9 +197,9 @@ Proposal → Discussion → Snapshot vote → On-chain execution.
 Contract addresses (Mordor testnet): see https://app.olympiadao.org
 
 ECIP-1122 — Olympia ETC Network Security Client Configuration
-MIN_MINER_TIP 1 gwei (2 gwei minimum gas price with ECIP-1111's basefee floor), a
-network-authoritative gas target overriding operator --miner.gaslimit, and MESS
-re-enabled at the Olympia block. Chain configuration, not consensus rules.
+MIN_MINER_TIP 1 gwei (2 gwei minimum gas price with ECIP-1111's basefee floor), and a
+network-authoritative gas target overriding operator --miner.gaslimit. Chain configuration,
+not consensus rules.
 
 ECIP-1114 — OFP (Olympia Funding Proposal Process)
 Structured grant process for ecosystem funding requests from the treasury.
@@ -263,23 +267,35 @@ Explicitly excluded from ECIP-1121:
 
 ### Client Support
 
-Fukuii — ETC-native client
-Ethereum Classic's first native client, built ground-up for ETC rather than derived from an
-Ethereum client. An EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM.
-One binary runs several networks at once in one JVM process, each isolated with its own state, its
-own metrics registry, and its own configuration; a further network is configuration, not a new
-client. Consensus is selected per deployment behind one interface: native Proof-of-Work for ETC
-mainnet and Mordor, or Proof-of-Stake with a built-in consensus layer, so one process is a complete
-Proof-of-Stake node — an external consensus client over the Engine API V1–V4 is the alternative.
-Ships an MCP server exposing node state to AI agents. Requires a current JDK LTS (25); the Docker
-image bundles one.
+Core-Geth — the recommended client for Ethereum Classic
+An Ethereum Classic execution client and public-good Go reference client: a go-ethereum
+derivative released and maintained in the ethereumclassic GitHub organization. Not a native ETC
+client, and not a plugin. It is the client to run: the v1.13 line closes every client CVE the audits
+found in the v1.12 line, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026,
+bounds GraphQL queries, and is built with a supported Go toolchain. A node tracking the previous
+repository, etclabscore/core-geth, will not see its releases. Ethereum Classic's core developers and
+community contributors do the work, and the Ethereum Classic DAO maintains and funds the client
+today as its funder of last resort.
+Downloads: https://coregeth.com/downloads/
+Docs: https://docs.coregeth.com
+Releases: https://github.com/ethereumclassic/core-geth/releases/latest
+Repo: https://github.com/ethereumclassic/core-geth
 
-Enterprise-grade by way of the JVM rather than a separate edition: JVM-native infrastructure end to
-end for institutions already running on the JVM, with no foreign-language bridge, so JFR,
-async-profiler, JMX and heap dumps work exactly as on any other JVM process. Prometheus metrics,
-Grafana dashboards, and liveness and readiness endpoints ship in the binary, alongside concurrent
-multi-instance execution and external-signer/HSM custody integration. Separate Pekko dispatchers for
-sync, RPC and general work keep sync pressure from starving the RPC.
+Fukuii — an alternative, ETC-native client
+A native Ethereum Classic client, built ground-up for ETC rather than derived from an Ethereum
+client. An EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary
+runs several networks at once in one JVM process, each isolated with its own state, its own metrics
+registry, and its own configuration; a further network is configuration, not a new client. Consensus
+is selected per deployment behind one interface: native Proof-of-Work for ETC mainnet and Mordor, or
+Proof-of-Stake with a built-in consensus layer, so one process is a complete Proof-of-Stake node, or
+an external consensus client over the Engine API V1 to V4. Ships an MCP server exposing node state to
+AI agents. Requires a current JDK LTS (25); the Docker image bundles one.
+
+JVM-native infrastructure end to end for institutions already running on the JVM, with no
+foreign-language bridge, so JFR, async-profiler, JMX and heap dumps work exactly as on any other JVM
+process. Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints ship in the
+binary, alongside concurrent multi-instance execution and external-signer/HSM custody integration.
+Separate Pekko dispatchers for sync, RPC and general work keep sync pressure from starving the RPC.
 
 Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release
 artifacts. Maintained by The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.).
@@ -287,15 +303,6 @@ Website: https://fukuii.com
 Docs: https://docs.fukuii.com
 Repo: https://github.com/chippr-robotics/fukuii
 Docker: ghcr.io/chippr-robotics/fukuii
-
-Core-Geth — The recommended client for Ethereum Classic
-A go-ethereum derivative, released and maintained in the ethereumclassic organization. Not a native
-ETC client, and not a plugin. Core-Geth v1.13.0, prepared by White B0x, fixes six CVEs and moves the
-client to Go 1.26. A node tracking the previous repository, etclabscore/core-geth, will not see its
-releases.
-Docs: https://docs.coregeth.com
-Releases: https://github.com/ethereumclassic/core-geth/releases/latest
-Repo: https://github.com/ethereumclassic/core-geth
 
 ETC execution client plugins — ETC support added into existing Ethereum clients
 A plugin adds Ethereum Classic chain support to an upstream Ethereum client's execution layer. It
@@ -345,13 +352,13 @@ The /research/emission-schedule page provides a live countdown to the next fifth
 
 ## Technical Specifications
 
-- Genesis block: 1920000 (block at which ETC diverged from ETH)
-- Algorithm: ETCHash (ASIC-resistant variant of Ethash)
-- Current block reward: 1.6384 ETC (Era 6)
+- Fork block: 1920000 (the block at which ETC and ETH diverged in July 2016; both chains share the genesis block of July 30, 2015)
+- Algorithm: ETCHash (Ethash with a doubled epoch length, ECIP-1099), mined on GPUs and ASICs
+- Current block reward: ${getBlockRewardForEra(CURRENT_ERA)} ETC (Era ${CURRENT_ERA})
 - Uncle reward: included
 - Emission schedule: 20% reduction every 5 million blocks ("fifthing", ECIP-1017)
 - Total supply: ~210.7 million ETC (mathematical limit)
-- Current era: 5 (blocks 20M–25M)
+- Current era: ${CURRENT_ERA} (blocks ${eraSpan})
 
 ## Network Endpoints
 
@@ -360,26 +367,9 @@ The /research/emission-schedule page provides a live countdown to the next fifth
 - Block Explorer (mainnet): https://etc.blockscout.com
 - Block Explorer (Mordor): https://etc-mordor.blockscout.com
 
-## Node Client Exposure
+## Core-Geth: What the Network Is Running
 
-Core-Geth v1.13.0 or later is the recommended release, published from https://github.com/ethereumclassic/core-geth/releases/latest. A node tracking the previous repository, etclabscore/core-geth, will not see it. Upgrading requires rotating the P2P node key rather than merely suggesting it: CVE-2026-26315 is an oracle against that key, so a key used by an unpatched node should be treated as exposed. Rename the key file rather than deleting it, and expect the enode ID to change.
-
-Every v1.12.x archive, including the newest, was built on a Go release that is no longer supported. The toolchains are Go 1.21 and Go 1.22, whose support ended in August 2024 and February 2025, and each archive carries 55 to 61 Go standard library advisories that v1.13.0 does not.
-
-What the network was running on 2026-09-17, from the census of etcnodes.org covering 524 Core-Geth nodes of 550. These figures move, and https://etcnodes.org carries the current breakdown:
-
-- v1.12.20 and earlier — 158 nodes (30.2%), spread across v1.12.17 to v1.12.20: all six client CVEs and the GraphQL denial of service unpatched, two of them (CVE-2026-22862 and CVE-2026-26315) exploited against Ethereum Classic bootnodes in March 2026
-- v1.12.21 — 50 nodes (9.5%): the ECIES crash and the key oracle closed; two curve checks, the RLP work and the GraphQL limit still missing
-- v1.12.22 — 165 nodes (31.5%): the rest of the CVE backports, with CVE-2026-26313 only partly mitigated; introduces the eth_syncing regression that reports highestBlock incorrectly
-- v1.12.23 — 138 nodes (26.3%): the delayed-decoding hardening series, and nothing else above is fixed
-- v1.13.0 — 9 nodes (1.7%): recommended; six CVEs resolved, the GraphQL depth limit fixed, built with Go 1.26.8, zero Go advisories
-- Four further nodes report v1.12.24, which is not a release but a development build of the previous repository's master branch
-
-Two defaults changed in v1.13.0, for different reasons. MESS (ECBP-1100) applies again, reversing the deactivation v1.12.17 scheduled: it decides which of two competing chains a node prefers during a deep reorganization, never whether a block is valid, so it is a client default and not a consensus rule. --mess=false turns it off, and nodes in one fleet should agree on the setting. The second change does follow from the wind-down: the bootnodes and DNS discovery trees compiled into the release are published from the ethereumclassic organization on domains it holds, replacing lists set to be archived; --bootnodes and --discovery.dns accept any other list. https://docs.coregeth.com/operate/mess/ and https://docs.coregeth.com/guides/bootnodes-and-discovery/ carry both.
-
-Every v1.12.x archive from v1.12.21 also requires glibc 2.34, up from 2.17 in v1.12.20, so an operator on Ubuntu 20.04, Debian 11, RHEL 8 or Amazon Linux 2 could not run the security release they were told to install. From v1.13.1 a change reaches main only with an approving review from someone other than its author.
-
-The measurements behind these claims: https://docs.coregeth.com/audits/2026-03-security-audit/ for the six CVEs, the GraphQL denial of service and the disclosure timeline, https://docs.coregeth.com/audits/2026-08-security-followup/ for v1.12.23 measured at its tag, https://docs.coregeth.com/audits/2026-08-dependency-modernization/ for the module graph, https://docs.coregeth.com/audits/2026-09-go-toolchain/ for which toolchain built each published archive and the advisories each one carries, https://docs.coregeth.com/audits/2026-09-release-pipeline/ for what the published archives contain, and https://docs.coregeth.com/etc-cooperative-transition/ for where the services the ETC Cooperative maintained now continue.
+${coreGethLlmsSection()}
 
 ## Regulatory Summary
 
@@ -406,7 +396,7 @@ Japan:
 - OlympiaDAO.org (https://olympiadao.org) — Governance landing page
 - OlympiaTreasury.org (https://olympiatreasury.org) — Treasury monitoring dashboard
 - Olympia App (https://app.olympiadao.org) — Proposal submission, voting, execution
-- EthereumClassicDAO.org (https://ethereumclassicdao.org) — Institutional entity (LLC)
+- EthereumClassicDAO.org (https://ethereumclassicdao.org) — the Ethereum Classic DAO, a Wyoming DAO LLC that maintains and funds Ethereum Classic's public goods today as their funder of last resort
 - GitHub (https://github.com/olympiadao) — Open-source governance contracts
 
 ## Contact and Resources
