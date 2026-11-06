@@ -332,10 +332,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: app.featured ? 0.7 : 0.5,
   }))
 
-  // Dynamic routes - News articles (already use article.date — correct)
+  // Dynamic routes - News articles, dated by publication or by the correction that followed it
   const newsEntries = newsArticles.map((article) => ({
     url: `${baseUrl}/news/${article.slug}`,
-    lastModified: new Date(article.date),
+    lastModified: new Date(article.updated ?? article.date),
     changeFrequency: 'weekly' as const,
     priority: article.featured ? 0.7 : 0.5,
   }))

@@ -1,4 +1,9 @@
 import { articles } from '../data/articles'
+import { articleHtml } from '../lib/content'
+import { CARD_SIZE, cardUrl } from '../lib/images'
+
+// The feed changes only when the articles do, so it is written once per build.
+export const dynamic = 'force-static'
 
 const baseUrl = 'https://ethereumclassic.com'
 
@@ -17,10 +22,12 @@ export async function GET() {
   )
 
   const recentArticles = sortedArticles.slice(0, 50)
-  const updated = new Date(sortedArticles[0].date).toISOString()
+  // An entry is updated when it is corrected, and the feed when any entry is.
+  const entryUpdated = (article: (typeof articles)[number]) => new Date(article.updated ?? article.date).toISOString()
+  const updated = recentArticles.map(entryUpdated).sort().at(-1)!
 
   const atomXml = `<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
   <title>Ethereum Classic News</title>
   <subtitle>Latest news and updates from the Ethereum Classic ecosystem.</subtitle>
   <link href="${baseUrl}/news/atom.xml" rel="self" type="application/atom+xml"/>
@@ -42,12 +49,13 @@ export async function GET() {
     <link href="${baseUrl}/news/${article.slug}" rel="alternate" type="text/html"/>
     <id>${baseUrl}/news/${article.slug}</id>
     <published>${new Date(article.date).toISOString()}</published>
-    <updated>${new Date(article.date).toISOString()}</updated>
+    <updated>${entryUpdated(article)}</updated>
     <summary>${escapeXml(article.excerpt)}</summary>
-    ${article.content ? `<content type="text">${escapeXml(article.content)}</content>` : ''}
+    ${article.content ? `<content type="html">${escapeXml(articleHtml(article.content))}</content>` : ''}
     ${article.author ? `<author><name>${escapeXml(article.author)}</name></author>` : ''}
     <category term="${escapeXml(article.category)}"/>
     ${article.tags ? article.tags.map((tag) => `<category term="${escapeXml(tag)}"/>`).join('\n    ') : ''}
+    <media:content url="${cardUrl(article.slug)}" medium="image" type="image/png" width="${CARD_SIZE.width}" height="${CARD_SIZE.height}"/>
   </entry>`
     )
     .join('')}

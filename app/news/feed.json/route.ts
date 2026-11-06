@@ -1,4 +1,9 @@
 import { articles } from '../data/articles'
+import { articleHtml } from '../lib/content'
+import { cardUrl } from '../lib/images'
+
+// The feed changes only when the articles do, so it is written once per build.
+export const dynamic = 'force-static'
 
 const baseUrl = 'https://ethereumclassic.com'
 
@@ -30,8 +35,10 @@ export async function GET() {
       url: `${baseUrl}/news/${article.slug}`,
       title: article.title,
       summary: article.excerpt,
-      ...(article.content ? { content_text: article.content } : {}),
+      ...(article.content ? { content_html: articleHtml(article.content) } : { content_text: article.excerpt }),
+      image: cardUrl(article.slug),
       date_published: new Date(article.date).toISOString(),
+      ...(article.updated ? { date_modified: new Date(article.updated).toISOString() } : {}),
       ...(article.author
         ? { authors: [{ name: article.author }] }
         : {}),

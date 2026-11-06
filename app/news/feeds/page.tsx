@@ -92,7 +92,7 @@ export default function FeedsPage() {
                     <h3 className="font-semibold text-[var(--text-primary)]">{feed.name}</h3>
                     <p className="mt-1 text-sm text-[var(--color-text-muted)]">{feed.description}</p>
                     <div className="mt-3 flex items-center gap-3">
-                      <code className="block truncate rounded bg-black/30 px-3 py-1.5 text-xs text-[var(--color-text-secondary)]">
+                      <code className="block truncate rounded bg-[var(--bg-elevated)] px-3 py-1.5 text-xs text-[var(--color-text-secondary)]">
                         {feed.url}
                       </code>
                       <a
@@ -142,10 +142,10 @@ export default function FeedsPage() {
           <h2 className="text-xl font-semibold text-[var(--text-primary)]">For Developers</h2>
           <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--panel)] p-5 text-sm text-[var(--color-text-secondary)] space-y-3">
             <p>
-              All pages on this site include <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">&lt;link rel=&quot;alternate&quot;&gt;</code> tags for autodiscovery. Feed readers and aggregators can detect our feeds automatically from any page URL.
+              All pages on this site include <code className="rounded bg-[var(--bg-elevated)] px-1.5 py-0.5 text-xs text-[var(--color-primary)]">&lt;link rel=&quot;alternate&quot;&gt;</code> tags for autodiscovery. Feed readers and aggregators can detect our feeds automatically from any page URL.
             </p>
             <p>
-              Feeds include full article content (not just excerpts) and update hourly. Please respect the <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">Cache-Control</code> and <code className="rounded bg-black/30 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">TTL</code> headers. Polling more frequently than once per hour returns cached content.
+              Feeds carry each article in full, with its share image, and change when an article is published or corrected. Please respect the <code className="rounded bg-[var(--bg-elevated)] px-1.5 py-0.5 text-xs text-[var(--color-primary)]">Cache-Control</code> and <code className="rounded bg-[var(--bg-elevated)] px-1.5 py-0.5 text-xs text-[var(--color-primary)]">TTL</code> headers: polling more often than once an hour returns the same feed.
             </p>
           </div>
         </section>

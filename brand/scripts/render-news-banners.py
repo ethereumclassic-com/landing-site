@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 """
-Generate the news category banners in public/news/images/.
+Generate the art every news article's banner is drawn on:
+brand/news/banner-base-on-light.svg and brand/news/banner-base-on-dark.svg.
 
-These are NOT social cards. An OG card is a standalone object a scraper shows in
-a feed, so it carries a headline, a CTA and the URL. A banner is the art band at
-the top of a news card whose own title, category and date render directly below
-it -- repeating any of that in the image would collide with the card's markup.
-So the banners inherit the OG card's *substrate and instrument chrome* and drop
-its copy furniture entirely.
+A banner is NOT a social card. An OG card is a standalone object a scraper shows
+in a feed, so it carries a headline, a CTA and the URL. A banner is the art band
+at the top of a news card, and of an article's own page, whose title, category
+and date render directly below it -- repeating any of that in the image would
+collide with the markup. So a banner inherits the OG card's *substrate and
+instrument chrome* and drops its copy furniture.
 
-Two things here are decisions rather than taste:
+What makes one article's banner its own is drawn at build, by
+app/news/lib/banner.tsx: a reticle around the article's category glyph, the
+article's subject beside it, and a readout of its identifiers and date. This
+script draws only what every banner shares, so a new article needs no run of it.
+
+Three things here are decisions rather than taste:
 
 1. THE BANNER IS INVERTED AGAINST THE PAGE, and each palette is a SEPARATE FILE
-   that the component picks. A light page gets a dark banner and a dark page a
+   that the caller picks. A light page gets a dark banner and a dark page a
    light one, so the band reads as a distinct object -- the way a photograph
    would -- rather than as a washed-out continuation of the card.
 
@@ -20,8 +26,8 @@ Two things here are decisions rather than taste:
    `@media (prefers-color-scheme: ...)`, and it was built that way first. IT DOES
    NOT WORK HERE, for a reason worth writing down because it looks like it should:
 
-     - An SVG in an `<img>` cannot see the page's class, so the media query is
-       the only theming channel available to it. That query tracks the OS.
+     - An image cannot see the page's class, so the media query is the only
+       theming channel available to it. That query tracks the OS.
      - The page does not track the OS. `app/layout.tsx` sets
        `defaultTheme="dark"`, which pins a visitor with no stored preference to
        dark REGARDLESS of their OS. `enableSystem` only adds "system" as a choice
@@ -31,16 +37,8 @@ Two things here are decisions rather than taste:
        prevent.
 
    Verified, not reasoned: dumping the DOM with the OS forced light and forced
-   dark returned `class="... dark"` both times.
-
-   Tailwind's `dark:` variant is not a way out either -- in Tailwind 4 it keys
-   off `prefers-color-scheme` unless `@custom-variant dark` is declared, and this
-   repo does not declare it (`app/globals.css` is protected, so adding it is not
-   a wiring decision to make in passing).
-
-   What is left is the component reading the resolved theme, which is what
-   `NewsCardHero` now does. Two files per category, named for the page they
-   belong on, so the lookup is `-on-${resolvedTheme}`.
+   dark returned `class="... dark"` both times. So the caller reads the resolved
+   theme and asks for the banner drawn for that page, `banner-on-${theme}.png`.
 
 2. ALPHAS ARE PER-PALETTE, AND THE LIGHT ONE NEEDS **MORE**. The OG card
    documents the opposite asymmetry -- a dark line on a light field reading
@@ -50,63 +48,36 @@ Two things here are decisions rather than taste:
    near-black is a much larger luminance jump than mid-green on off-white, so
    the low-alpha end of the two ramps is nowhere near equivalent. The light
    palette therefore runs roughly 1.4x the dark one. Trust the side-by-side
-   render, not the inherited rule -- the OG card's version is true at ITS alphas
-   and on ITS one background, and does not generalise.
+   render, not the inherited rule.
 
-Geometry is constrained by how the banner is actually cropped, and the slot is
-much wider than it is tall. A placeholder carries no information, so it does not
-earn a photograph's height: NewsCardHero gives a real image `h-52` and a
-placeholder `h-32` (128px), which on a ~700px card is a 5.5:1 letterbox.
+3. COLORS ARE WRITTEN AS LITERAL VALUES. next/og draws this file with resvg,
+   which does not resolve CSS custom properties, and an unresolved var() in a
+   presentation attribute falls back to the property's initial value -- the
+   grain at opacity 1, covering the art. The palettes keep their names here and
+   are substituted on the way out.
 
-    desktop ~700px wide, h-32 -> scale .875, 127 units clipped top AND bottom
-    mobile  ~390px wide, h-32 -> scale .49,  car full height, 8 units off each side
+Geometry is constrained by how the banner is actually cropped, and the slots are
+much wider than they are tall:
 
-That leaves a survivable band of roughly y 130..270 -- 140 of the 400 units. A
-vertically stacked lockup (glyph above wordmark) does not fit in it; the first
-build stacked them and the wordmark fell outside the crop entirely. The lockup is
-therefore HORIZONTAL, reticle beside wordmark, both on the center line.
+    a ~700px card at h-40 -> scale .875, ~60 units clipped top AND bottom
+    a ~390px card at h-40 -> full height, ~40 units off each side
+
+That leaves a survivable band of roughly y 130..270 -- 140 of the 400 units --
+and a lockup no wider than about 600 of the 800. The circuit and the chrome
+stop short of the center so the lockup has the band to itself, and the lockup
+is HORIZONTAL, reticle beside the subject, both on the center line.
 
 Run:  pnpm brand:banners
 """
 
+import json
 import pathlib
 import re
 
-from fontTools.ttLib import TTFont
-from fontTools.varLib.instancer import instantiateVariableFont
-
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-FONT = ROOT / "brand/fonts/inter/InterVariable.ttf"
-OUT = ROOT / "public/news/images"
+OUT = ROOT / "brand/news"
 
 W, H = 800, 400
-CY = 200                   # center line; the crop is symmetric about it
-R = 46                     # reticle radius, sized to the ~140-unit surviving band
-
-# ---------------------------------------------------------------- text metrics
-
-_cache: dict[int, tuple[dict, int]] = {}
-
-
-def _metrics(weight: int):
-    """Advance widths for one weight of the variable font, in units/em."""
-    if weight not in _cache:
-        f = instantiateVariableFont(TTFont(FONT), {"wght": weight}, updateFontNames=False)
-        _cache[weight] = (f.getBestCmap(), f["hmtx"].metrics, f["head"].unitsPerEm)
-    return _cache[weight]
-
-
-def text_width(s: str, size: float, weight: int = 600, tracking: float = 0.0) -> float:
-    """Rendered advance width in user units. `tracking` is in em, as CSS letter-spacing."""
-    cmap, hmtx, upem = _metrics(weight)
-    total = 0.0
-    for ch in s:
-        g = cmap.get(ord(ch))
-        total += (hmtx[g][0] if g and g in hmtx else upem * 0.5) / upem * size
-    # letter-spacing applies after every glyph including the last, which is what
-    # browsers do -- the trailing space is real and must be counted for centering.
-    return total + tracking * size * len(s)
-
 
 # ------------------------------------------------------------------- palettes
 #
@@ -137,17 +108,6 @@ LIGHT_BANNER = dict(  # shown on DARK pages
     a_wash1="0.09", a_wash2="0.05", a_wash3="0.04",
     a_glyph="0.78", a_ret="0.34", a_ret2="0.50",
 )
-
-
-def style_block(palette: dict) -> str:
-    # Python identifiers use underscores; CSS custom properties are referenced
-    # with hyphens. Emitting the raw key leaves every multi-word var undefined,
-    # and an undefined var() in a presentation attribute falls back to the
-    # property's INITIAL value -- so `opacity="var(--a-grain)"` silently became
-    # opacity:1 and the grain covered the artwork. Failing loud would have been
-    # kinder; it does not, so the translation happens here.
-    decls = "".join(f"--{k.replace('_', '-')}:{v};" for k, v in palette.items())
-    return f"<style>:root{{{decls}}}</style>"
 
 
 # ------------------------------------------------------------------- ornament
@@ -270,118 +230,33 @@ def hud() -> str:
     return "\n    ".join(o)
 
 
-def reticle(cx: float) -> str:
-    """Tracking reticle around the category glyph -- the OG card's mark reticle,
-    re-centerd and shrunk to banner scale."""
-    o = ['<g id="reticle" fill="none" stroke="var(--ink)">']
-    o.append(f'<circle cx="{cx:.1f}" cy="{CY}" r="{R}" stroke-opacity="var(--a-ret)" stroke-width="1.1"/>')
-    o.append(f'<circle cx="{cx:.1f}" cy="{CY}" r="{R - 9}" stroke-opacity="var(--a-ret)" stroke-width="0.75" '
-             'stroke-dasharray="3 7"/>')
 
-    # cardinal ticks
-    for dx, dy in ((0, -1), (0, 1), (-1, 0), (1, 0)):
-        o.append(
-            f'<line x1="{cx + dx * (R - 5):.1f}" y1="{CY + dy * (R - 5)}" '
-            f'x2="{cx + dx * (R + 7):.1f}" y2="{CY + dy * (R + 7)}" '
-            'stroke-opacity="var(--a-ret2)" stroke-width="1.3"/>'
-        )
-
-    # quadrant arcs at 45 degrees, the part that makes it read as tracking
-    for a0 in (30, 120, 210, 300):
-        o.append(
-            f'<path d="{_arc(cx, CY, R + 13, a0, a0 + 30)}" stroke-opacity="var(--a-ret)" stroke-width="1.2"/>'
-        )
-    o.append("</g>")
-    return "\n    ".join(o)
+# ------------------------------------------------------------------- substrate
 
 
-def _arc(cx, cy, r, a0, a1) -> str:
-    import math
-    x0, y0 = cx + r * math.cos(math.radians(a0)), cy + r * math.sin(math.radians(a0))
-    x1, y1 = cx + r * math.cos(math.radians(a1)), cy + r * math.sin(math.radians(a1))
-    return f"M{x0:.2f} {y0:.2f} A{r} {r} 0 0 1 {x1:.2f} {y1:.2f}"
+def literal(svg: str, palette: dict) -> str:
+    """Replace every var(--name) with the palette's value. A name the palette lacks fails loud."""
+
+    def value(match: re.Match) -> str:
+        key = match.group(1).replace("-", "_")
+        if key not in palette:
+            raise KeyError(f"no palette value for --{match.group(1)}")
+        return palette[key]
+
+    return re.sub(r"var\(--([a-z0-9-]+)\)", value, svg)
 
 
-# -------------------------------------------------------------------- content
-#
-# Glyphs are Heroicons v2 24-outline, matching the shield-check the previous
-# banners already used, except Ecosystem: a generic globe says nothing a
-# blockchain reader needs, so that one is a node graph drawn in the same
-# 24-unit space and it echoes the circuit layer's via pads.
-
-CATEGORIES = {
-    "updates": (
-        "Updates",
-        '<path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183'
-        'a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>',
-    ),
-    "security": (
-        "Security",
-        '<path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749'
-        'c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152'
-        'c-3.196 0-6.1-1.248-8.25-3.285Z"/>',
-    ),
-    "ecosystem": (
-        "Ecosystem",
-        '<path d="M12 12 12 4M12 12 4.7 8.2M12 12l7.3-3.8M12 12l-5 7.4M12 12l5 7.4"/>'
-        '<circle cx="12" cy="3.2" r="1.9"/><circle cx="3.6" cy="7.6" r="1.9"/>'
-        '<circle cx="20.4" cy="7.6" r="1.9"/><circle cx="6.4" cy="20.1" r="1.9"/>'
-        '<circle cx="17.6" cy="20.1" r="1.9"/><circle cx="12" cy="12" r="2.4"/>',
-    ),
-    "community": (
-        "Community",
-        '<path d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493'
-        'M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21'
-        'c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375'
-        'a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0'
-        'a2.625 2.625 0 0 1 5.25 0Z"/>',
-    ),
-    "development": (
-        "Development",
-        '<path d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/>',
-    ),
-}
-
-
-def banner(slug: str, palette: dict, on_page: str) -> str:
-    label, glyph = CATEGORIES[slug]
-
-    # Horizontal lockup: [reticle] gap [wordmark], centerd as one unit.
-    # Widths are measured from the vendored font rather than estimated -- the
-    # trailing letter-space is real and browsers include it, so text-anchor
-    # "middle" would sit the wordmark half a space left of true center.
-    fs, track = 17.0, 0.20
-    w = text_width(label.upper(), fs, weight=600, tracking=track)
-    gap = 30
-    lock_w = 2 * R + gap + w
-    lock_x = (W - lock_w) / 2
-    cx = lock_x + R                      # reticle center
-    tx_start = lock_x + 2 * R + gap      # wordmark left edge
-    ty = CY + fs * 0.35                  # optical centering on the center line
-
-    # hairline continuing past the wordmark, echoing the OG card's measure rule
-    rule_x0 = tx_start + w + 14
-    rule_x1 = rule_x0 + 40
-
-    gs = 2.00  # 24-unit glyph -> 48px, sized inside the smaller reticle
-
-    return f"""<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="{label}">
+def substrate(palette: dict, on_page: str) -> str:
+    svg = f"""<svg width="{W}" height="{H}" viewBox="0 0 {W} {H}" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!--
-    {label} — news category banner, for use on a {on_page.upper()} page.
-    Generated by brand/scripts/render-news-banners.py. Do not hand-edit: the next
-    run overwrites it. Change the generator instead.
+    The art every news article's banner is drawn on, for an article shown on a
+    {on_page.upper()} page. Generated by brand/scripts/render-news-banners.py. Do
+    not hand-edit: the next run overwrites it. Change the generator instead.
 
-    Inverted against the page on purpose, so the band reads as art rather than as
-    a faded extension of the card beneath it. The palette is baked in rather than
-    switched by a media query, because the page's theme does not follow the OS —
-    see the generator's docstring. NewsCardHero picks the file from the resolved
-    theme.
-
-    Substrate and instrument chrome are the OG card's; the headline, CTA and URL
-    are deliberately absent, because the news card renders its own title,
-    category and date directly below this image.
+    Substrate and instrument chrome only. The reticle, the category glyph, the
+    subject and the readout are drawn per article at build, by
+    app/news/lib/banner.tsx, centered on y 200.
   -->
-  {style_block(palette)}
   <defs>
     <linearGradient id="ramp" x1="0" y1="0" x2="0" y2="{H}" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="var(--g0)"/><stop offset="45%" stop-color="var(--g1)"/><stop offset="100%" stop-color="var(--g2)"/>
@@ -397,9 +272,6 @@ def banner(slug: str, palette: dict, on_page: str) -> str:
     <radialGradient id="w3" gradientUnits="userSpaceOnUse" cx="660" cy="300" r="520"
       gradientTransform="translate(660,300) scale(1,0.44) translate(-660,-300)">
       <stop offset="0%" stop-color="var(--ink2)" stop-opacity="var(--a-wash3)"/><stop offset="55%" stop-color="var(--ink2)" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="var(--ink)" stop-opacity="0.09"/><stop offset="100%" stop-color="var(--ink)" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
       <path d="M48 0 H0 V48" fill="none" stroke="var(--grid)" stroke-opacity="var(--a-grid)" stroke-width="1"/>
@@ -424,34 +296,26 @@ def banner(slug: str, palette: dict, on_page: str) -> str:
   <g id="chrome">
     {hud()}
   </g>
-
-  <circle cx="{cx:.1f}" cy="{CY}" r="{R + 62}" fill="url(#halo)"/>
-  {reticle(cx)}
-
-  <g transform="translate({cx - 12 * gs:.1f}, {CY - 12 * gs:.1f}) scale({gs})"
-     fill="none" stroke="var(--ink)" stroke-opacity="var(--a-glyph)" stroke-width="1.6"
-     stroke-linecap="round" stroke-linejoin="round">
-    {glyph}
-  </g>
-
-  <text x="{tx_start:.1f}" y="{ty:.1f}" font-family="Inter, system-ui, sans-serif" font-size="{fs}"
-        font-weight="600" letter-spacing="{track * fs:.2f}" fill="var(--ink)">{label.upper()}</text>
-  <line x1="{rule_x0:.1f}" y1="{CY}" x2="{rule_x1:.1f}" y2="{CY}"
-        stroke="var(--ink)" stroke-opacity="var(--a-hud2)" stroke-width="1"/>
 </svg>
 """
+    return literal(svg, palette)
 
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     # Named for the page they belong ON, not for their own color, so the
-    # component's lookup is a direct `-on-${resolvedTheme}` substitution and
+    # caller's lookup is a direct `-on-${resolvedTheme}` substitution and
     # nobody has to remember which way the inversion runs.
-    for slug in CATEGORIES:
-        for on_page, palette in (("light", DARK_BANNER), ("dark", LIGHT_BANNER)):
-            p = OUT / f"placeholder-{slug}-on-{on_page}.svg"
-            p.write_text(banner(slug, palette, on_page))
-            print(f"  {p.relative_to(ROOT)}  {p.stat().st_size:,}B")
+    pages = (("light", DARK_BANNER), ("dark", LIGHT_BANNER))
+    for on_page, palette in pages:
+        path = OUT / f"banner-base-on-{on_page}.svg"
+        path.write_text(substrate(palette, on_page))
+        print(f"  {path.relative_to(ROOT)}  {path.stat().st_size:,}B")
+    # The per-article lockup is drawn in the same colors, so it reads them from
+    # here rather than from a second copy of the palettes.
+    path = OUT / "banner-palettes.json"
+    path.write_text(json.dumps({f"on-{on_page}": palette for on_page, palette in pages}, indent=2) + "\n")
+    print(f"  {path.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

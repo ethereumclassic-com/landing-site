@@ -1,5 +1,6 @@
 /**
- * Shared Open Graph / Twitter card image.
+ * Shared Open Graph card image. X reads the same card: the root layout leaves
+ * the twitter fields unset so Next fills them from each page's openGraph.
  *
  * Every layout that declares its own `openGraph` block must spread this in.
  * Next.js REPLACES the parent's openGraph object rather than merging it, so a
@@ -8,7 +9,9 @@
  *
  * The `app/opengraph-image.png` file convention does NOT cover this case: it
  * was tested and only applies to routes that do not redefine openGraph
- * themselves. Hence one constant, imported explicitly.
+ * themselves. Hence one constant, imported explicitly. A route's own
+ * `opengraph-image` file, as each news article has, still wins over this
+ * constant in that same segment.
  */
 export const OG_IMAGE = [
   {
@@ -19,9 +22,6 @@ export const OG_IMAGE = [
     type: 'image/png',
   },
 ]
-
-/** Twitter accepts a bare URL list. */
-export const TWITTER_IMAGE = ['/og.png']
 
 /**
  * Site-level Open Graph fields. Spread this FIRST in any child openGraph block,
@@ -45,4 +45,17 @@ export const OG_BASE = {
   locale: 'en_US',
   type: 'website' as const,
   images: OG_IMAGE,
+}
+
+/**
+ * OG_BASE without the sitewide image, for a route that draws its own card with
+ * an `opengraph-image` file. Next uses that file only when the route's
+ * openGraph block names no image, so spreading OG_BASE there ships og.png
+ * instead of the route's card (measured on the news articles).
+ */
+export const OG_BASE_OWN_CARD = {
+  url: OG_BASE.url,
+  siteName: OG_BASE.siteName,
+  locale: OG_BASE.locale,
+  type: OG_BASE.type,
 }

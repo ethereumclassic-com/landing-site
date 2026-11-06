@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import type { Article } from '../data/articles'
 import { CategoryIcon } from './CategoryIcon'
-import { categoryBannerSrc } from './categoryBanner'
+import { bannerSrc } from '../lib/images'
 
 /**
  * The lead story — the single largest item on the news index.
@@ -17,13 +17,12 @@ import { categoryBannerSrc } from './categoryBanner'
  * one component means every future change has to be qualified by which mode it
  * applies to.
  *
- * The banner is taller here (h-64) than on a section hero (h-32) because a lead
- * IS the visual anchor — that is the one place the art earns the height.
+ * The banner is taller here (up to h-80) than on a section hero (h-40) because
+ * a lead IS the visual anchor — that is the one place the art earns the height.
  */
 export default function NewsLead({ article }: { article: Article }) {
   const { resolvedTheme } = useTheme()
-  const isPlaceholder = !article.image
-  const imageSrc = article.image ?? categoryBannerSrc(article.category, resolvedTheme)
+  const imageSrc = article.image ?? bannerSrc(article.slug, resolvedTheme)
 
   const date = new Date(article.date).toLocaleDateString('en-US', { timeZone: 'UTC',
     year: 'numeric',
@@ -42,7 +41,6 @@ export default function NewsLead({ article }: { article: Article }) {
             priority
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             sizes="(max-width: 1024px) 100vw, 62vw"
-            unoptimized={isPlaceholder}
           />
         </div>
 

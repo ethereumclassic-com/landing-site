@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import type { Article } from '../data/articles'
 import { CategoryIcon } from './CategoryIcon'
-import { categoryBannerSrc } from './categoryBanner'
+import { bannerSrc } from '../lib/images'
 
 interface NewsCardHeroProps {
   article: Article
@@ -36,8 +36,7 @@ function formatDate(dateString: string): string {
 
 export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) {
   const { resolvedTheme } = useTheme()
-  const isPlaceholder = !article.image
-  const imageSrc = article.image ?? categoryBannerSrc(article.category, resolvedTheme)
+  const imageSrc = article.image ?? bannerSrc(article.slug, resolvedTheme)
 
   return (
     <motion.div
@@ -51,12 +50,12 @@ export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) 
         href={`/news/${article.slug}`}
         className="group flex flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--panel)] transition-all hover:border-[var(--color-primary)]/40 hover:shadow-lg hover:shadow-[var(--color-primary)]/10"
       >
-        {/* Image — real photo or category SVG placeholder. A placeholder carries
-            no information, so it does not earn a photograph's height; the banner
-            art is composed to survive the shorter letterbox. */}
+        {/* Image — a photograph, or the article's generated banner. The banner
+            is art around a one-line subject, so it does not earn a photograph's
+            height; it is composed to survive the shorter letterbox. */}
         <div
           className={`relative w-full overflow-hidden border-b border-[var(--border)] ${
-            isPlaceholder ? 'h-32' : 'h-52'
+            article.image ? 'h-52' : 'h-40'
           }`}
         >
           <Image
@@ -65,7 +64,6 @@ export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) 
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 60vw"
-            unoptimized={isPlaceholder}
           />
         </div>
 

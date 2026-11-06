@@ -3,7 +3,9 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 import type { Article } from '../data/articles'
+import { bannerSrc } from '../lib/images'
 import { CategoryIcon } from './CategoryIcon'
 
 interface NewsCardProps {
@@ -35,6 +37,7 @@ function formatDate(dateString: string): string {
 }
 
 export default function NewsCard({ article, index, variant = 'default' }: NewsCardProps) {
+  const { resolvedTheme } = useTheme()
   const isFeatured = variant === 'featured' || article.featured
   const isCompact = variant === 'compact'
   const padding = isCompact ? 'p-4' : 'p-6'
@@ -60,18 +63,20 @@ export default function NewsCard({ article, index, variant = 'default' }: NewsCa
           <div className="absolute inset-y-0 left-0 w-0.5 rounded-l-2xl bg-[var(--color-primary)]/60" aria-hidden />
         )}
 
-        {/* Optional image (only renders when article.image is set) */}
-        {article.image && (
-          <div className={`relative -mx-6 -mt-6 mb-4 h-36 overflow-hidden rounded-t-2xl ${isCompact ? '-mx-4 -mt-4' : ''}`}>
-            <Image
-              src={article.image}
-              alt=""
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, 33vw"
-            />
-          </div>
-        )}
+        {/* A photograph, or the article's generated banner, bled to the card's edges */}
+        <div
+          className={`relative mb-4 overflow-hidden rounded-t-2xl border-b border-[var(--border)] ${
+            isCompact ? '-mx-4 -mt-4 h-24' : '-mx-6 -mt-6 h-28'
+          }`}
+        >
+          <Image
+            src={article.image ?? bannerSrc(article.slug, resolvedTheme)}
+            alt=""
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, 33vw"
+          />
+        </div>
 
         {/* Category, Featured Badge & Date */}
         <div className="mb-3 flex items-center justify-between gap-2">

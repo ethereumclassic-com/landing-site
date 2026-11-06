@@ -1,8 +1,12 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 import { type Article, type ArticleCategory, getRelatedArticles, getAuthorInfo } from '../data/articles'
 import NewsCard from '../components/NewsCard'
+import { type Inline, parseArticle } from '../lib/content'
+import { bannerSrc } from '../lib/images'
 
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
@@ -62,256 +66,131 @@ function formatDate(dateString: string): string {
   })
 }
 
-// Simple markdown-like content renderer
-function renderContent(content: string): React.ReactNode {
-  const lines = content.split('\n')
-  const elements: React.ReactNode[] = []
-  let currentList: string[] = []
-  let listType: 'ul' | 'ol' | null = null
-  let inCodeBlock = false
-  let codeBlockContent: string[] = []
-  let inTable = false
-  let tableRows: string[][] = []
-
-  const flushList = () => {
-    if (currentList.length > 0) {
-      if (listType === 'ol') {
-        elements.push(
-          <ol key={elements.length} className="my-4 ml-6 list-decimal space-y-2 text-[var(--color-text-secondary)]">
-            {currentList.map((item, i) => (
-              <li key={i}>{renderInlineContent(item)}</li>
-            ))}
-          </ol>
+// The body grammar lives in ../lib/content, which the feeds share, so the page
+// and the feeds render the same blocks.
+function renderInline(parts: Inline[]): React.ReactNode {
+  const nodes = parts.map((part, key) => {
+    switch (part.type) {
+      case 'text':
+        return part.text
+      case 'bold':
+        return (
+          <strong key={key} className="font-semibold text-[var(--text-primary)]">
+            {part.text}
+          </strong>
         )
-      } else {
-        elements.push(
-          <ul key={elements.length} className="my-4 ml-6 list-disc space-y-2 text-[var(--color-text-secondary)]">
-            {currentList.map((item, i) => (
-              <li key={i}>{renderInlineContent(item)}</li>
-            ))}
-          </ul>
+      case 'code':
+        return (
+          <code key={key} className="rounded bg-[var(--panel)] px-1.5 py-0.5 text-sm text-[var(--color-primary)]">
+            {part.text}
+          </code>
         )
-      }
-      currentList = []
-      listType = null
-    }
-  }
-
-  const flushTable = () => {
-    if (tableRows.length > 1) {
-      const [header, ...rows] = tableRows
-      elements.push(
-        <div key={elements.length} className="my-6 overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-[var(--border)]">
-                {header.map((cell, i) => (
-                  <th key={i} className="px-4 py-2 text-left font-semibold text-[var(--text-primary)]">
-                    {cell.trim()}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.filter((row) => !row.every((cell) => /^[-|:]+$/.test(cell.trim()))).map((row, i) => (
-                <tr key={i} className="border-b border-[var(--border)]/50">
-                  {row.map((cell, j) => (
-                    <td key={j} className="px-4 py-2 text-[var(--color-text-secondary)]">
-                      {cell.trim()}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )
-      tableRows = []
-      inTable = false
-    }
-  }
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-
-    if (line.startsWith('```')) {
-      if (inCodeBlock) {
-        elements.push(
-          <pre key={elements.length} className="my-4 overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
-            <code className="text-sm text-[var(--color-text-secondary)]">{codeBlockContent.join('\n')}</code>
-          </pre>
-        )
-        codeBlockContent = []
-        inCodeBlock = false
-      } else {
-        flushList()
-        flushTable()
-        inCodeBlock = true
-      }
-      continue
-    }
-
-    if (inCodeBlock) {
-      codeBlockContent.push(line)
-      continue
-    }
-
-    if (line.includes('|') && line.trim().startsWith('|')) {
-      flushList()
-      inTable = true
-      const cells = line.split('|').slice(1, -1)
-      tableRows.push(cells)
-      continue
-    } else if (inTable) {
-      flushTable()
-    }
-
-    if (line.trim() === '') {
-      flushList()
-      continue
-    }
-
-    if (line.startsWith('## ')) {
-      flushList()
-      elements.push(
-        <h2 key={elements.length} className="mb-4 mt-8 text-xl font-bold text-[var(--text-primary)]">
-          {line.slice(3)}
-        </h2>
-      )
-      continue
-    }
-
-    if (line.startsWith('### ')) {
-      flushList()
-      elements.push(
-        <h3 key={elements.length} className="mb-3 mt-6 text-lg font-semibold text-[var(--text-primary)]">
-          {line.slice(4)}
-        </h3>
-      )
-      continue
-    }
-
-    const orderedMatch = line.match(/^(\d+)\.\s+(.+)$/)
-    if (orderedMatch) {
-      if (listType !== 'ol') {
-        flushList()
-        listType = 'ol'
-      }
-      currentList.push(orderedMatch[2])
-      continue
-    }
-
-    if (line.startsWith('- [ ] ') || line.startsWith('- [x] ')) {
-      flushList()
-      const checked = line.startsWith('- [x] ')
-      const text = line.slice(6)
-      elements.push(
-        <div key={elements.length} className="my-1 flex items-center gap-2 text-[var(--color-text-secondary)]">
-          <span className={`flex h-5 w-5 items-center justify-center rounded border ${checked ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/20 text-[var(--color-primary)]' : 'border-[var(--border)]'}`}>
-            {checked && (
-              <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-              </svg>
-            )}
-          </span>
-          {text}
-        </div>
-      )
-      continue
-    }
-
-    if (line.startsWith('- ')) {
-      if (listType !== 'ul') {
-        flushList()
-        listType = 'ul'
-      }
-      currentList.push(line.slice(2))
-      continue
-    }
-
-    flushList()
-    elements.push(
-      <p key={elements.length} className="my-4 text-[var(--color-text-secondary)] leading-relaxed">
-        {renderInlineContent(line)}
-      </p>
-    )
-  }
-
-  flushList()
-  flushTable()
-
-  return elements
-}
-
-function renderInlineContent(text: string): React.ReactNode {
-  const parts: React.ReactNode[] = []
-  let remaining = text
-  let keyCounter = 0
-
-  while (remaining.length > 0) {
-    const boldMatch = remaining.match(/\*\*(.+?)\*\*/)
-    const linkMatch = remaining.match(/\[([^\]]+)\]\(([^)]+)\)/)
-    const codeMatch = remaining.match(/`([^`]+)`/)
-
-    const matches = [
-      boldMatch ? { type: 'bold', match: boldMatch, index: boldMatch.index! } : null,
-      linkMatch ? { type: 'link', match: linkMatch, index: linkMatch.index! } : null,
-      codeMatch ? { type: 'code', match: codeMatch, index: codeMatch.index! } : null,
-    ].filter(Boolean).sort((a, b) => a!.index - b!.index)
-
-    if (matches.length === 0) {
-      parts.push(remaining)
-      break
-    }
-
-    const firstMatch = matches[0]!
-
-    if (firstMatch.index > 0) {
-      parts.push(remaining.slice(0, firstMatch.index))
-    }
-
-    if (firstMatch.type === 'bold') {
-      parts.push(
-        <strong key={keyCounter++} className="font-semibold text-[var(--text-primary)]">
-          {firstMatch.match![1]}
-        </strong>
-      )
-      remaining = remaining.slice(firstMatch.index + firstMatch.match![0].length)
-    } else if (firstMatch.type === 'link') {
-      const href = firstMatch.match![2]
-      const isExternal = href.startsWith('http')
-      parts.push(
-        isExternal ? (
+      case 'link':
+        return part.href.startsWith('http') ? (
           <a
-            key={keyCounter++}
-            href={href}
+            key={key}
+            href={part.href}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--color-primary)] hover:underline"
           >
-            {firstMatch.match![1]}
+            {part.text}
           </a>
         ) : (
-          <Link key={keyCounter++} href={href} className="text-[var(--color-primary)] hover:underline">
-            {firstMatch.match![1]}
+          <Link key={key} href={part.href} className="text-[var(--color-primary)] hover:underline">
+            {part.text}
           </Link>
         )
-      )
-      remaining = remaining.slice(firstMatch.index + firstMatch.match![0].length)
-    } else if (firstMatch.type === 'code') {
-      parts.push(
-        <code
-          key={keyCounter++}
-          className="rounded bg-[var(--panel)] px-1.5 py-0.5 text-sm text-[var(--color-primary)]"
-        >
-          {firstMatch.match![1]}
-        </code>
-      )
-      remaining = remaining.slice(firstMatch.index + firstMatch.match![0].length)
     }
-  }
+  })
+  return nodes.length === 1 ? nodes[0] : nodes
+}
 
-  return parts.length === 1 ? parts[0] : parts
+function renderContent(content: string): React.ReactNode {
+  return parseArticle(content).map((block, key) => {
+    switch (block.type) {
+      case 'h2':
+        return (
+          <h2 key={key} className="mb-4 mt-8 text-xl font-bold text-[var(--text-primary)]">
+            {block.text}
+          </h2>
+        )
+      case 'h3':
+        return (
+          <h3 key={key} className="mb-3 mt-6 text-lg font-semibold text-[var(--text-primary)]">
+            {block.text}
+          </h3>
+        )
+      case 'p':
+        return (
+          <p key={key} className="my-4 text-[var(--color-text-secondary)] leading-relaxed">
+            {renderInline(block.inline)}
+          </p>
+        )
+      case 'ol':
+        return (
+          <ol key={key} className="my-4 ml-6 list-decimal space-y-2 text-[var(--color-text-secondary)]">
+            {block.items.map((item, i) => (
+              <li key={i}>{renderInline(item)}</li>
+            ))}
+          </ol>
+        )
+      case 'ul':
+        return (
+          <ul key={key} className="my-4 ml-6 list-disc space-y-2 text-[var(--color-text-secondary)]">
+            {block.items.map((item, i) => (
+              <li key={i}>{renderInline(item)}</li>
+            ))}
+          </ul>
+        )
+      case 'task':
+        return (
+          <div key={key} className="my-1 flex items-center gap-2 text-[var(--color-text-secondary)]">
+            <span className={`flex h-5 w-5 items-center justify-center rounded border ${block.checked ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/20 text-[var(--color-primary)]' : 'border-[var(--border)]'}`}>
+              {block.checked && (
+                <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              )}
+            </span>
+            {block.text}
+          </div>
+        )
+      case 'code':
+        return (
+          <pre key={key} className="my-4 overflow-x-auto rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+            <code className="text-sm text-[var(--color-text-secondary)]">{block.text}</code>
+          </pre>
+        )
+      case 'table':
+        return (
+          <div key={key} className="my-6 overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-[var(--border)]">
+                  {block.header.map((cell, i) => (
+                    <th key={i} className="px-4 py-2 text-left font-semibold text-[var(--text-primary)]">
+                      {renderInline(cell)}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {block.rows.map((row, i) => (
+                  <tr key={i} className="border-b border-[var(--border)]/50">
+                    {row.map((cell, j) => (
+                      <td key={j} className="px-4 py-2 text-[var(--color-text-secondary)]">
+                        {renderInline(cell)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+    }
+  })
 }
 
 interface NewsArticleContentProps {
@@ -319,6 +198,7 @@ interface NewsArticleContentProps {
 }
 
 export default function NewsArticleContent({ article }: NewsArticleContentProps) {
+  const { resolvedTheme } = useTheme()
   const authorInfo = article.author ? getAuthorInfo(article.author) : undefined
   const relatedArticles = getRelatedArticles(article, 3)
 
@@ -349,7 +229,14 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               {categoryIcons[article.category]}
               {article.category}
             </Link>
-            <time className="text-sm text-[var(--color-text-muted)]">{formatDate(article.date)}</time>
+            <time dateTime={article.date} className="text-sm text-[var(--color-text-muted)]">
+              {formatDate(article.date)}
+            </time>
+            {article.updated && (
+              <span className="text-sm text-[var(--color-text-muted)]">
+                Updated <time dateTime={article.updated}>{formatDate(article.updated)}</time>
+              </span>
+            )}
             {article.featured && (
               <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-warning)]/20 px-3 py-1 text-xs font-medium text-[var(--color-warning)]">
                 <svg aria-hidden="true" className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -419,6 +306,17 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               ))}
             </div>
           )}
+
+          <div className="relative mt-10 aspect-[5/2] w-full overflow-hidden rounded-xl border border-[var(--border)]">
+            <Image
+              src={article.image ?? bannerSrc(article.slug, resolvedTheme)}
+              alt=""
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+            />
+          </div>
         </div>
       </section>
 

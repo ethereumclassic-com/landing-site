@@ -7,7 +7,9 @@ category this directory does not yet cover.
 ```
 brand/
   fonts/          vendored typefaces + scoped fontconfig
+    */static/     static instances for the generated cards and banners (derived, see below)
   logo/           etc-mark.svg — the source of truth for every mark on the site
+  news/           the art every news article's banner is drawn on (.svg), and its palettes
   social/         Open Graph / Twitter card art (.svg source, .png artifact)
   scripts/        regeneration
 ```
@@ -15,10 +17,45 @@ brand/
 ## Regenerating
 
 ```bash
-pnpm brand:og        # -> public/og.png
+pnpm brand:og        # -> brand/social/*.png, and public/og.png
+pnpm brand:og-fonts  # -> brand/fonts/{inter,jetbrains-mono}/static/*
 pnpm brand:icons     # -> public/icons/*, public/favicon.ico
-pnpm brand:banners   # -> public/news/images/*
+pnpm brand:banners   # -> brand/news/*
 ```
+
+`pnpm brand:og` re-renders every SVG in `social/`, and `pnpm brand:og-fonts` every
+static instance. Commit only the files whose source you changed: re-rendering an
+unchanged source can still change a binary's bytes, and a binary diff with no
+source change behind it is noise in review.
+
+## Article cards and banners are drawn at build, not committed
+
+Each news article gets two generated images, and no per-article image is committed:
+
+| Image | Drawn by | Shown |
+|---|---|---|
+| Share card, 1200×630 | `app/news/[slug]/opengraph-image.tsx` through `lib/og-card.tsx` | link previews, the feeds, the article's structured data |
+| Banner, 1600×800, one per page theme | `app/news/[slug]/banner-on-{light,dark}.png/` through `app/news/lib/banner.tsx` | the news cards and the head of the article page |
+
+So a card always carries its article's current title. A card is the sitewide card with its copy layer
+replaced: `social/og-news-base.svg` keeps the background, the circuit, the HUD and
+the mark, and the article's eyebrow, headline, subline and chips are set in the same
+type, sizes and positions as the sitewide card's copy.
+
+A banner sits directly above the article's title in the markup, so it carries no
+headline. It is `news/banner-base-on-{light,dark}.svg`, the substrate and chrome of
+the category banners it replaced, with the article's own lockup on the center line:
+the category glyph in a reticle, the article's `subject` from
+`app/news/data/articles.ts` in the card's headline face, and a JetBrains Mono readout
+of the ECIP, ECBP, EIP, BIP and SLIP numbers among its tags and its date. It is
+inverted against the page, so the caller picks the file for the page's resolved
+theme; `scripts/render-news-banners.py` says why the image cannot pick for itself.
+
+next/og cannot read a variable font, so `scripts/instance-og-fonts.py` derives the
+static weights the images use from `fonts/inter/InterVariable.ttf` and
+`fonts/jetbrains-mono/JetBrainsMono[wght].ttf`. The headline
+uses Inter's display optical size, because that is what librsvg draws the sitewide
+card's 62px headline with: measured, both end "The Original" on the same pixel.
 
 ## Two marks, and they are not interchangeable
 

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "brand:og": "FONTCONFIG_FILE=\"$PWD/brand/fonts/fonts.conf\" node brand/scripts/render-og.mjs",
+    "brand:og-fonts": "python3 brand/scripts/instance-og-fonts.py",
     "brand:icons": "node brand/scripts/render-icons.mjs",
     "brand:banners": "python3 brand/scripts/render-news-banners.py",
     "brand:flags": "node brand/scripts/vendor-flags.mjs"
