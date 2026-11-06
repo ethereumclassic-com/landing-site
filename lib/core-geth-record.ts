@@ -1,0 +1,671 @@
+/**
+ * Core-Geth's security record, mirrored from coregeth.com so this site states the same facts.
+ *
+ * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit 59f7696, the
+ * published state of coregeth.com. Every statement below is that file's own text, copied whole
+ * and in its order, so a sentence here reads exactly as it does on coregeth.com. Do not edit
+ * the wording here: change it on coregeth.com first, then mirror it again.
+ *
+ * Hrefs are kept as coregeth.com writes them, so a site-relative one (`/downloads/`) belongs
+ * to coregeth.com. Render them through `coregethHref` in lib/core-geth.ts, never as they are.
+ * Backticks mark code and `[label](href)` marks a link, as on coregeth.com.
+ */
+/* eslint-disable @typescript-eslint/no-unused-vars -- mirrored whole, including values only coregeth.com reads */
+
+export const SITE_URL = "https://coregeth.com";
+
+export const REPO = {
+  slug: "ethereumclassic/core-geth",
+  url: "https://github.com/ethereumclassic/core-geth",
+  releasesUrl: "https://github.com/ethereumclassic/core-geth/releases",
+  /** GitHub's address for the newest release: a link to it lands on a release the moment
+   *  it ships, where a tag link would keep pointing at the old one. */
+  latestUrl: "https://github.com/ethereumclassic/core-geth/releases/latest",
+  /**
+   * The repository card's Watch, Fork and Star link to where a reader can act. **Only
+   * forking has a URL that does anything**: GitHub starts a fork from a plain link, while
+   * starring and watching are POST actions with no GET equivalent, and `/stargazers` and
+   * `/watchers` answer 404 to a signed-out visitor (measured 2026-10-08 and 2026-11-01, with
+   * `ethereum/go-ethereum/stargazers` as the first control, which 404s the same way). So
+   * those two link to the repository, where their buttons are.
+   */
+  forkUrl: "https://github.com/ethereumclassic/core-geth/fork",
+} as const;
+
+export const RECOMMENDED_LINE = "v1.13";
+
+export const EXPOSED_LINE = "v1.12";
+
+export const LAST_RELEASE_BEFORE_GAP = "v1.12.20";
+
+export const PREVIOUS_REPO = "etclabscore/core-geth";
+
+export const DOCS_URL = "https://docs.coregeth.com/";
+
+export interface DocPage {
+  href: string;
+  title: string;
+  /** One line for /llms.txt, following the documentation's own llms.txt wording. */
+  summary: string;
+}
+
+export const DOCS = {
+  home: {
+    href: DOCS_URL,
+    title: "Documentation home",
+    summary: "what this client is, which networks it supports, and where to go first.",
+  },
+  operators: {
+    href: `${DOCS_URL}operators/`,
+    title: "Node operators: start here",
+    summary:
+      "the short path for node, pool, exchange and RPC operators: what to do now, and what to read in what order.",
+  },
+  installation: {
+    href: `${DOCS_URL}getting-started/installation/`,
+    title: "Installation",
+    summary: "download, checksum and install a release.",
+  },
+  history: {
+    href: `${DOCS_URL}about/project-history/`,
+    title: "Project history",
+    summary:
+      "the lineage of the code, from go-ethereum through Multi-Geth, and of the organizations that funded and maintained it.",
+  },
+  securityAudit: {
+    href: "/security/2026-03-core-geth-v1.12-security-audit/",
+    title: `Core-Geth ${EXPOSED_LINE} security audit`,
+    summary:
+      "the audit of the client's source, with the per-release breakdown and the disclosure timeline.",
+  },
+  goToolchain: {
+    href: "/security/2026-09-core-geth-v1.12-go-toolchain-audit/",
+    title: `Core-Geth ${EXPOSED_LINE} to ${RECOMMENDED_LINE} Go toolchain audit`,
+    summary:
+      "which Go toolchain built each published archive, and the standard library advisories each one carries.",
+  },
+  releaseReport: {
+    href: "/security/2026-09-core-geth-v1.13.0-release-report/",
+    title: `Core-Geth ${RECOMMENDED_LINE}.0 release report`,
+    summary: "what the release fixes, what it changes, and how to verify a download.",
+  },
+  support: {
+    href: `${DOCS_URL}support/`,
+    title: "Support this work",
+    summary: "how this client's maintenance is funded, and the routes for sponsoring it.",
+  },
+  guides: {
+    href: `${DOCS_URL}guides/`,
+    title: "Choose your role",
+    summary: "the starting page for each kind of node, from a personal node to a mining pool.",
+  },
+  developerEndpoints: {
+    href: `${DOCS_URL}guides/developer-endpoints/`,
+    title: "Endpoints for your own project",
+    summary:
+      "running your own JSON-RPC and archive endpoints for an application you are building, and getting Mordor test coins by mining rather than from a faucet.",
+  },
+  transition: {
+    href: `${DOCS_URL}etc-cooperative-transition/`,
+    title: "The ETC Cooperative transition",
+    summary:
+      "where the services the ETC Cooperative maintained continue as it winds down, including the public JSON-RPC endpoints and the peer discovery lists.",
+  },
+  migration: {
+    href: `${DOCS_URL}tutorials/v1.13.0-migration/`,
+    title: "Migration guide",
+    summary: "what changes on upgrade, per platform, and the steps a node needs.",
+  },
+  buildFromSource: {
+    href: `${DOCS_URL}developers/build-from-source/`,
+    title: "Build from source",
+    summary: "what a build needs, and the commands.",
+  },
+  versioning: {
+    href: `${DOCS_URL}developers/versioning/`,
+    title: "Versioning",
+    summary: "what the version string and its release stage mean.",
+  },
+  messSetting: {
+    href: `${DOCS_URL}operate/mess/#which-setting-fits-which-operator`,
+    title: "Which setting fits which operator",
+    summary: "the MESS trade for each kind of operator.",
+  },
+  faq: {
+    href: `${DOCS_URL}about/faq/`,
+    title: "Questions and answers",
+    summary:
+      "which repository publishes releases, which version to run, why node key rotation is required, public RPC endpoints and how to verify a download.",
+  },
+} as const satisfies Record<string, DocPage>;
+
+export const UPGRADE_ANCHOR = "upgrade";
+
+export const DISCOVERY_FLAG_ANCHOR = "discovery-flag";
+
+export const MOVE_RECOMMENDATION = `Every node still on a \`${EXPOSED_LINE}\` release should move to the \`${RECOMMENDED_LINE}\` line.`;
+
+const MOVE_WHERE = `[Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) has the commands and checksums, and the [migration guide](${DOCS.migration.href}) has the steps, including the required P2P node key rotation.`;
+
+export const UPGRADE_COST =
+  "Your chain data carries over. Budget about twenty minutes for the steps; the node is down only between its stop and its start, and each of those takes seconds.";
+
+export const DISCOVERY_FLAG_STEP = `A \`${EXPOSED_LINE}\` node that cannot move yet can [add the \`--discovery.dns\` flag](${SITE_URL}/downloads/#${DISCOVERY_FLAG_ANCHOR}) to read the \`ethereumclassic\` GitHub organization's peer discovery lists, a small step that closes none of the flaws the audits found in the \`${EXPOSED_LINE}\` line.`;
+
+export const TRANSITION = {
+  lede: "The ETC Cooperative is winding down, and the services it maintained are moving to the `ethereumclassic` GitHub organization: the peer discovery lists, the bootnodes and public JSON-RPC.",
+  advice: `Move a \`${EXPOSED_LINE}\` node to the \`${RECOMMENDED_LINE}\` line with the commands and checksums on [Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) and the steps in the [migration guide](${DOCS.migration.href}), including the required P2P node key rotation. ${DISCOVERY_FLAG_STEP} Before you move a node, a pool or an application to a new source of software or data, confirm which organization publishes it.`,
+} as const;
+
+export const OPERATOR_ACTIONS: readonly {
+  text: string;
+  code?: string;
+  detail?: string;
+  href?: string;
+}[] = [
+  {
+    text: `Upgrade to the ${RECOMMENDED_LINE} line`,
+    detail: `${UPGRADE_COST} The migration guide has a path for each platform.`,
+    href: DOCS.migration.href,
+  },
+  {
+    text: "Rotate the P2P node key",
+    detail: `Required if your node ran the \`${EXPOSED_LINE}\` line: one of the flaws in that line leaks bits of that key across repeated handshakes, and no fix can take back what already leaked. A key that has only ever run \`${RECOMMENDED_LINE}\` was never exposed, so a fresh install skips this step.`,
+    href: `${DOCS.migration.href}#rotate-the-p2p-node-key`,
+  },
+  {
+    text: "Track releases at ",
+    code: REPO.slug,
+    detail: `Releases are published from \`${REPO.slug}\`. Anything still watching \`${PREVIOUS_REPO}\`, a script or a mirror, will not see a new release.`,
+  },
+  {
+    text: "Decide the MESS setting",
+    detail:
+      "`--mess` turns it on and `--mess=false` turns it off; without either, a node uses the setting its release ships with. Every node you run should carry the same one.",
+    href: DOCS.messSetting.href,
+  },
+];
+
+export interface ReleaseFact {
+  label:
+    | "Issues fixed"
+    | "Unaddressed issues"
+    | "Added regressions"
+    | "Unsupported toolchain"
+    | "Supported toolchain"
+    | "Source of the fixes"
+    | "Known issues";
+  /** Red where something is still open, a regression is present or the toolchain is out of
+   *  support; green for a fix or a supported toolchain; neutral where the row says there is none. */
+  tone: "vulnerable" | "fixed" | "neutral";
+  text: string;
+}
+
+const HANDSHAKE_CRASH =
+  "CVE-2026-22862, the handshake crash used against Core-Geth `v1.12` bootnodes in March 2026";
+
+const KEY_ORACLE_FIXED =
+  "CVE-2026-26315, the node key oracle, though a node that kept the key it ran on `v1.12.20` or older is still running an exposed one";
+
+const GRAPHQL_OPEN =
+  "GraphQL queries can nest without limit, which can exhaust a node that serves GraphQL; the endpoint is off unless `--graphql` is set.";
+
+const KZG_OPEN =
+  "CVE-2026-22868, a denial of service in blob proof checks, not reached on Ethereum Classic and active on the Ethereum mainnet, Sepolia and Holesky configurations this binary also ships";
+
+const EMERGENCY_SOURCE_AUTHORED =
+  "Ethereum Classic core developers wrote these fixes and the Go toolchain upgrade for the `v1.13` line from February 2026, and reported the work privately to the `etclabscore/core-geth` maintainers in February and March 2026.";
+
+const CUT_FROM_V113_WORK =
+  "This release was cut from the security work Ethereum Classic core developers reported privately for the `v1.13` line.";
+
+const NO_REGRESSIONS_YET =
+  "None: `eth_syncing` broke in `v1.12.22`, and the snap storage-range cap arrived in `v1.12.23`.";
+
+const SYNCING_REGRESSION =
+  "a node reports the wrong network head, which misleads the exchanges, explorers and monitoring that read it to decide whether that node has finished syncing. Its report, `etclabscore/core-geth` issue #697, is still open.";
+
+const TOOLCHAIN_2026: ReleaseFact = {
+  label: "Unsupported toolchain",
+  tone: "vulnerable",
+  text: "Built with go1.21.13, and go1.22.1 for the Arm archives. Go 1.21 left support in August 2024 and Go 1.22 in February 2025, before this release shipped, so no Go security fix will reach its binaries. Its archives carry 62 Go standard library advisories, 48 of them in code compiled into the binary, and that count only rises; whether a node can reach that code was not assessed.",
+};
+
+const NETWORK_ROWS: readonly {
+  running: string;
+  nodes: number;
+  status: "vulnerable" | "recommended";
+  /** The tally in the row: counts, in the same shape for every release. */
+  summary: string;
+  /** What that release carries, under the row and collapsible. */
+  carries: readonly ReleaseFact[];
+}[] = [
+  {
+    running: "`v1.13.0`",
+    nodes: 9,
+    status: "recommended",
+    summary:
+      "every client CVE patched, a supported Go toolchain, GraphQL queries bounded, about six months of testing on Ethereum Classic mainnet and Mordor from February 2026 until release, the security work the `v1.12.21` and `v1.12.22` emergency releases were cut from",
+    carries: [
+      {
+        label: "Issues fixed",
+        tone: "fixed",
+        text: `All six client CVEs the audits found in the \`v1.12\` client code, each patched with a test: ${HANDSHAKE_CRASH}; CVE-2026-26315, the node key oracle; CVE-2025-24883 and CVE-2026-26314, two missing public key checks; CVE-2026-26313, peer message memory exhaustion; and CVE-2026-22868, the blob proof denial of service. GraphQL query depth is limited.`,
+      },
+      { label: "Unaddressed issues", tone: "neutral", text: "Nothing the 2026 audits found." },
+      {
+        label: "Added regressions",
+        tone: "neutral",
+        text: "Neither `v1.12` regression carries over. Both arrived in releases cut in `etclabscore/core-geth`: `eth_syncing` broke in `v1.12.22`, and the snap storage-range cap arrived in `v1.12.23`.",
+      },
+      {
+        label: "Supported toolchain",
+        tone: "fixed",
+        text: "Built with go1.26.8, the newest Go 1.26 release when `v1.13.0` was cut, with no Go standard library advisory against it that day. Go 1.26 is in support and receives the Go team's security fixes, and each `v1.13` release is cut with the newest patch of its Go version.",
+      },
+      {
+        label: "Source of the fixes",
+        tone: "neutral",
+        text: `${EMERGENCY_SOURCE_AUTHORED} The emergency releases \`v1.12.21\` and \`v1.12.22\` were cut from that work, and the same fixes were published in \`ethereumclassic/core-geth\` as pull requests #10 to #36 on March 20 and 21, 2026.`,
+      },
+      {
+        label: "Known issues",
+        tone: "neutral",
+        text: "Listed in the release report for `v1.13.0`, under [Known issues](/security/2026-09-core-geth-v1.13.0-release-report/#known-issues).",
+      },
+    ],
+  },
+  {
+    running: "`v1.12.23`",
+    nodes: 138,
+    status: "vulnerable",
+    summary:
+      "1 client CVE open, unsupported Go toolchain, 62 known Go flaws with 48 in the binary, GraphQL queries unbounded, `eth_syncing` regression, snap storage-range cap regression",
+    carries: [
+      {
+        label: "Issues fixed",
+        tone: "fixed",
+        text: `${HANDSHAKE_CRASH}; ${KEY_ORACLE_FIXED}; CVE-2025-24883 and CVE-2026-26314, two missing public key checks; and CVE-2026-26313, peer message memory exhaustion, which this release finishes by hardening how peer messages are decoded.`,
+      },
+      {
+        label: "Unaddressed issues",
+        tone: "vulnerable",
+        text: `${KZG_OPEN}. ${GRAPHQL_OPEN} The \`eth_syncing\` regression carried from \`v1.12.22\` stays: ${SYNCING_REGRESSION}`,
+      },
+      {
+        label: "Added regressions",
+        tone: "vulnerable",
+        text: "A cap on snap sync storage-range responses that can disconnect peers answering correctly, measured in the [August 2026 follow-up](/security/2026-08-core-geth-v1.12-security-follow-up/#finding-one-response-cap-in-v11223-can-still-reject-honest-peers).",
+      },
+      TOOLCHAIN_2026,
+    ],
+  },
+  {
+    running: "`v1.12.22`",
+    nodes: 165,
+    status: "vulnerable",
+    summary:
+      "1 client CVE open and 1 partially mitigated, unsupported Go toolchain, 62 known Go flaws with 48 in the binary, GraphQL queries unbounded, `eth_syncing` regression",
+    carries: [
+      {
+        label: "Issues fixed",
+        tone: "fixed",
+        text: `${HANDSHAKE_CRASH}; ${KEY_ORACLE_FIXED}; and CVE-2025-24883 and CVE-2026-26314, two missing public key checks, which this release adds. It also stops the out-of-memory crash in CVE-2026-26313, peer message memory exhaustion, a partial fix its own commit calls a mitigation. ${CUT_FROM_V113_WORK}`,
+      },
+      {
+        label: "Unaddressed issues",
+        tone: "vulnerable",
+        text: `The rest of CVE-2026-26313: a peer can still make the node spend CPU on a message it will reject. CVE-2026-22868, a denial of service in blob proof checks, which \`etclabscore/core-geth\` declared not applicable to Ethereum Classic and left unpatched: the flaw is not reached on Ethereum Classic and is active on the Ethereum mainnet, Sepolia and Holesky configurations this binary also ships. ${GRAPHQL_OPEN}`,
+      },
+      {
+        label: "Added regressions",
+        tone: "vulnerable",
+        text: `The \`eth_syncing\` regression: ${SYNCING_REGRESSION}`,
+      },
+      TOOLCHAIN_2026,
+    ],
+  },
+  {
+    running: "`v1.12.21`",
+    nodes: 50,
+    status: "vulnerable",
+    summary:
+      "4 client CVEs open, unsupported Go toolchain, 62 known Go flaws with 48 in the binary, GraphQL queries unbounded",
+    carries: [
+      {
+        label: "Issues fixed",
+        tone: "fixed",
+        text: `${HANDSHAKE_CRASH}, and ${KEY_ORACLE_FIXED}. It also caps the size of a handshake message. ${CUT_FROM_V113_WORK}`,
+      },
+      {
+        label: "Unaddressed issues",
+        tone: "vulnerable",
+        text: `CVE-2025-24883 and CVE-2026-26314, two missing public key checks; CVE-2026-26313, peer message memory exhaustion; and ${KZG_OPEN}. ${GRAPHQL_OPEN}`,
+      },
+      { label: "Added regressions", tone: "neutral", text: NO_REGRESSIONS_YET },
+      TOOLCHAIN_2026,
+    ],
+  },
+  {
+    running: "`v1.12.20` and older",
+    nodes: 158,
+    status: "vulnerable",
+    summary:
+      "6 client CVEs open, unsupported Go toolchain, 62 known Go flaws with 48 in the binary, GraphQL queries unbounded",
+    carries: [
+      { label: "Issues fixed", tone: "neutral", text: "Nothing the 2026 audits found." },
+      {
+        label: "Unaddressed issues",
+        tone: "vulnerable",
+        text: `All six client CVEs: ${HANDSHAKE_CRASH}; CVE-2026-26315, the node key oracle, which is why a node that ran one of these releases must rotate its P2P key; CVE-2025-24883 and CVE-2026-26314, two missing public key checks; CVE-2026-26313, peer message memory exhaustion; and CVE-2026-22868, a denial of service in blob proof checks, not reached on Ethereum Classic and active on the Ethereum networks the client also ships. ${GRAPHQL_OPEN}`,
+      },
+      {
+        label: "Added regressions",
+        tone: "neutral",
+        text: NO_REGRESSIONS_YET,
+      },
+      {
+        label: "Unsupported toolchain",
+        tone: "vulnerable",
+        text: "`v1.12.20` was built with go1.21.10, and go1.22.1 for the Windows and Arm archives, each already behind its newest patch the day it shipped. Go 1.21 left support in August 2024 and Go 1.22 in February 2025, so no Go security fix will reach these binaries. The `v1.12.20` archives carry 62 Go standard library advisories, 48 of them in code compiled into the binary, and that count only rises; whether a node can reach that code was not assessed. Earlier `v1.12` releases were built with Go 1.13 to Go 1.22, and none of those Go versions is supported today.",
+      },
+    ],
+  },
+];
+
+for (const row of NETWORK_ROWS) {
+  const states = row.carries.map((fact) => fact.label.replace(/^(Uns|S)upported /, ""));
+  if (
+    states.slice(0, 4).join("|") !== "Issues fixed|Unaddressed issues|Added regressions|toolchain"
+  ) {
+    throw new Error(`the census row for ${row.running} does not lay out its release in full`);
+  }
+}
+
+const NETWORK_UNLISTED = {
+  nodes: 4,
+  what: "a development build of the previous repository's `master`, which is not a release",
+} as const;
+
+const NETWORK_TOTAL = 524;
+
+const listed = NETWORK_ROWS.reduce((sum, row) => sum + row.nodes, 0);
+
+if (listed + NETWORK_UNLISTED.nodes !== NETWORK_TOTAL) {
+  throw new Error(
+    `the census lists ${listed} nodes and excludes ${NETWORK_UNLISTED.nodes}, which is not the measured ${NETWORK_TOTAL}`,
+  );
+}
+
+const networkShare = (nodes: number) => (nodes / NETWORK_TOTAL) * 100;
+
+const recommendedRows = NETWORK_ROWS.filter((row) => row.status === "recommended");
+
+export const NETWORK_RUNNING = {
+  measured: { iso: "2026-09-17", text: "September 17, 2026" },
+  source: { label: "etcnodes.org", href: "https://etcnodes.org" },
+  evidence: `${DOCS_URL}release-reports/v1.13.0-record/#what-the-network-is-running`,
+  /** Where the Go advisory counts in the rows come from, which is a different audit. */
+  goAdvisories: {
+    label: "Where the Go figures come from",
+    href: "/security/2026-09-core-geth-v1.12-go-toolchain-audit/",
+  },
+  upgrade: { label: "Upgrade to the latest release", href: `/downloads/#${UPGRADE_ANCHOR}` },
+  total: NETWORK_TOTAL,
+  /** The nodes in the total that are not a release row, named in the caption so the rows and
+   *  the total reconcile for a reader. */
+  unlisted: NETWORK_UNLISTED,
+  /** The line above the table: what the recommended line resolves, in the record's words for
+   *  the release it measured, and the maintainer's recommendation to run one beside the current
+   *  nodes before moving a whole fleet across. Each row says its own Go build, so this line does
+   *  not. The trial node, optional and best practice, peers and syncs, but no RPC clients or miners
+   *  point at it: the migration guide asks for one MESS setting per fleet, and a release's MESS
+   *  default need not match the fleet's. Check all of it against the documentation whenever the
+   *  recommended line changes. */
+  lede: `The \`${RECOMMENDED_LINE}\` line patches every client CVE the audits found in the \`${EXPOSED_LINE}\` client code, bounds GraphQL queries, carries neither the \`eth_syncing\` regression nor the snap storage-range regression of the last \`${EXPOSED_LINE}\` releases, and is built with a supported Go version. As a best practice, first run one \`${RECOMMENDED_LINE}\` node on a machine of its own beside your current ones, with no RPC clients or miners pointed at it. Once it has caught up with the network and holds peers, move your whole fleet to the \`${RECOMMENDED_LINE}\` line.`,
+  rows: NETWORK_ROWS.map((row) => ({ ...row, share: `${networkShare(row.nodes).toFixed(1)}%` })),
+} as const;
+
+export const PREVIOUS_NAMESPACE = `Archives still published under \`etclabscore/core-geth\` are built from the older code: none carries every \`${RECOMMENDED_LINE}\` fix, and each was built with an unsupported Go toolchain, so none is a release to run.`;
+
+export const NAMESPACE_TONES: Readonly<Record<string, string>> = {
+  etclabscore: "namespace--previous",
+  [PREVIOUS_REPO]: "namespace--previous",
+  ethereumclassic: "namespace--current",
+  [REPO.slug]: "namespace--current",
+};
+
+export const RECORDS: readonly {
+  date: { month: string; year: string; iso: string };
+  label: string;
+  summary: string;
+  page: DocPage;
+  /** A button under the record, where the record is something a reader can act on. */
+  cta?: { label: string; href: string };
+}[] = [
+  {
+    date: { month: "Jun", year: "2024", iso: "2024-06" },
+    label: "The dormancy",
+    summary: `The last stable release from \`${PREVIOUS_REPO}\` was \`${LAST_RELEASE_BEFORE_GAP}\`, before 21 months of dormancy, through which contributors' issues and pull requests went unmerged. The emergency releases that eventually followed were still built on Go versions no longer supported. Go is compiled into the binary rather than loaded when it runs, so each emergency release carries 62 known Go security flaws for as long as the node is up, and nothing short of a new build removes those flaws.`,
+    page: DOCS.goToolchain,
+  },
+  {
+    date: { month: "Mar", year: "2026", iso: "2026-03" },
+    label: "The attack",
+    summary: `One of the flaws left unpatched through the gap was used against Core-Geth \`${EXPOSED_LINE}\` bootnodes in March 2026, in an attack on that line. Ethereum Classic core developers had resumed maintenance in \`${REPO.slug}\` the month before and had disclosed the fixes privately to the \`${PREVIOUS_REPO}\` maintainers, who cut the emergency \`${EXPOSED_LINE}.21\` and \`${EXPOSED_LINE}.22\` releases from that work while the \`${RECOMMENDED_LINE}\` line was built and tested in \`${REPO.slug}\` for the network to move to.`,
+    page: DOCS.securityAudit,
+  },
+  {
+    date: { month: "Sep", year: "2026", iso: "2026-09" },
+    label: "The solution",
+    summary: `\`${RECOMMENDED_LINE}.0\`, published from \`${REPO.slug}\`, fixes every client CVE the audits found in the \`${EXPOSED_LINE}\` client code, bounds GraphQL queries, carries neither \`${EXPOSED_LINE}\` regression, and returns the dependencies and the Go toolchain to supported versions.`,
+    page: DOCS.releaseReport,
+    // The record's heading already links the release report, which is the document. This
+    // button is for the reader who wants the client: /downloads/ carries the archive for
+    // each platform with its checksum and the commands to install and run it, which the
+    // GitHub release page does not (maintainer, 2026-10-08).
+    cta: { label: "Download Core-Geth", href: "/downloads/" },
+  },
+];
+
+export const RECORDS_SUMMARY = `In March 2026, one of the flaws left open by 21 months without security maintenance was used to crash Core-Geth \`${EXPOSED_LINE}\` bootnodes, and the \`${RECOMMENDED_LINE}\` line closes that flaw and every other client CVE the audits found.`;
+
+export const SECURITY_EMAIL = "security@ethereumclassic.net";
+
+export const ADVISORIES_URL = `${REPO.url}/security/advisories`;
+
+export const SECURITY_POLICY_URL = `${REPO.url}/blob/main/SECURITY.md`;
+
+export interface HistoryEntry {
+  /** What the entry is, as a reader scans the rail: a year, a span or a date. */
+  when: string;
+  /** Machine-readable where the entry is a single date, for `<time datetime>`. */
+  iso?: string;
+  title: string;
+  body: string;
+  link?: { label: string; href: string };
+  /** A quotation, set under the entry's prose rather than inside it. `kicker` labels
+   *  what kind of document it is, `attribution` sits on the quotation itself, and
+   *  `source` names the document, linked where it is published. */
+  quote?: {
+    kicker?: string;
+    text: string;
+    attribution: string;
+    source: string;
+    href?: string;
+  };
+  /** A button under the entry, where the entry is something a reader can act on now. */
+  cta?: { label: string; href: string };
+  /** The entry this project continues from, drawn in green rather than in the hairline. */
+  current?: boolean;
+}
+
+export const STAKEHOLDERS_QUOTE = {
+  kicker: "RETROSPECTIVE",
+  text: "it will be up to other stakeholders to take on any required maintenance of the ETC client",
+  attribution: "ETC Cooperative, 2024",
+  source: "ETC Cooperative 2024 retrospective",
+  href: "https://etccooperative.org/etc-cooperative-retrospective-2024.pdf",
+} as const;
+
+const RELEASE_HISTORY: readonly HistoryEntry[] = [
+  {
+    when: "June 10, 2024",
+    iso: "2024-06-10",
+    title: `\`${LAST_RELEASE_BEFORE_GAP}\` from \`${PREVIOUS_REPO}\``,
+    body: `The last stable release from \`${PREVIOUS_REPO}\` before a 21-month gap in security maintenance, from June 2024 to February 2026. Every client CVE the audits found is unpatched in it, including the one later used against the bootnodes, and GraphQL queries are unbounded. Its Go toolchains, Go 1.21 and Go 1.22, left support in August 2024 and February 2025. The last commit of any kind in that repository was a dependency bump in January 2025, and the private security disclosures sent to it through 2025 got no response.`,
+  },
+  {
+    when: "December 21, 2024",
+    iso: "2024-12-21",
+    title: `Maintenance moves to \`${REPO.slug}\``,
+    body: `\`${REPO.slug}\` was created from the previous repository's commit of December 16, 2024, the move the ETC Cooperative's own roadmap of July 2024 had proposed. No stakeholder took the maintenance up until February 2026, which is why the gap runs as long as it does.`,
+    link: {
+      label: "The commit it was created from",
+      href: "https://github.com/ethereumclassic/core-geth/releases/tag/archive%2Fetclabscore-2024-12",
+    },
+  },
+  {
+    when: "May 2025",
+    iso: "2025-05",
+    title: "The Ethereum Classic DAO is formed",
+    body: "It took up Core-Geth's maintenance in February 2026 as the funder of last resort, with Ethereum Classic's core developers and open community contributions doing the day-to-day work.",
+    link: { label: "ethereumclassicdao.org", href: "https://ethereumclassicdao.org" },
+  },
+  {
+    when: "February 2026",
+    iso: "2026-02",
+    title: `Maintenance resumes in \`${REPO.slug}\``,
+    body: `Ethereum Classic core developers began work on the next release line in \`${REPO.slug}\`: the outstanding CVEs patched, a supported Go toolchain, the release pipeline rebuilt. The first patch was authored on February 26, and the line was tested on Ethereum Classic mainnet and Mordor from then until release. They are the stakeholders the Cooperative's retrospective had left the client's maintenance to.`,
+    quote: STAKEHOLDERS_QUOTE,
+  },
+  {
+    when: "March 18, 2026",
+    iso: "2026-03-18",
+    title: `The bootnode attack on the Core-Geth \`${EXPOSED_LINE}\` line`,
+    body: "A flaw left open through the gap was used against Core-Geth `v1.12` bootnodes in production in March 2026: a handshake crash loop that panics the node on a malformed message. A second flaw patched in the same emergency release, an oracle that leaks bits of a node's P2P key across repeated handshakes, played no part in the attack. It is the reason a node that ran the `v1.12` line must rotate its P2P key. Every release published before March 18, 2026 carries both flaws.",
+  },
+  {
+    when: "March 18, 2026",
+    iso: "2026-03-18",
+    title: `\`v1.12.21\` from \`${PREVIOUS_REPO}\``,
+    body: `\`${PREVIOUS_REPO}\` cut this release about five hours after the attack was reported, from the patches Ethereum Classic core developers had disclosed privately. It closed the exploited crash and the key oracle alongside it and capped the size of a handshake message, left four known CVEs open, and introduced no regression. Its Go toolchains were unchanged and out of support, GraphQL queries still unbounded, and its notes did not tell operators to rotate the node key the oracle had exposed. Its release pull request was opened and merged by a single account in about 70 minutes, with no reviewer recorded.`,
+  },
+  {
+    when: "March 20 and 21, 2026",
+    iso: "2026-03-20",
+    title: `The fixes are published in \`${REPO.slug}\``,
+    body: "27 pull requests, #10 to #36, each scoped to a single change: a fix for each of the six CVEs, with a test and a linked advisory, plus the Go toolchain upgrade and the rebuilt release pipeline. Everything the rest of this page measures has been public since March 2026.",
+  },
+  {
+    when: "March 28, 2026",
+    iso: "2026-03-28",
+    title: `\`v1.12.22\` from \`${PREVIOUS_REPO}\``,
+    body: `\`${PREVIOUS_REPO}\` cut this release 95 seconds after its pull request opened, again with no reviewer recorded. It backported two more CVE fixes from the same privately reported work and left two client CVEs open: one mitigated rather than fixed, so a peer can still exhaust a node's CPU on a message that node will reject, and one never addressed at all, having been declared not applicable to Ethereum Classic. The Go toolchains were unchanged and out of support, and GraphQL queries still unbounded. It also introduced a regression in \`eth_syncing\`: a node reports the wrong network head, which misleads the exchanges, explorers and monitoring that read it to decide whether that node has finished syncing.`,
+  },
+  {
+    when: "August 14, 2026",
+    iso: "2026-08-14",
+    title: `\`v1.12.23\` from \`${PREVIOUS_REPO}\``,
+    body: `The last release from \`${PREVIOUS_REPO}\`, and still not one to run today. It closed CVE-2026-26313 by hardening how peer messages are decoded, and left the rest open: one client CVE unpatched, GraphQL queries unbounded, the \`eth_syncing\` regression and the Go toolchains out of support. It also added a regression of its own, a snap storage-range cap that can disconnect peers answering correctly.`,
+  },
+  {
+    when: "August 28, 2026",
+    iso: "2026-08-28",
+    title: "Bootnodes and peer discovery move to this organization",
+    body: `A node finds its first peers through bootnodes and the peer discovery lists. \`ethereumclassic/discv4-dns-lists\` was created on August 28, 2026 to publish those lists from the \`ethereumclassic\` organization, the first trees were published on September 10, 2026, and \`${RECOMMENDED_LINE}.0\` ships with three Ethereum Classic and two Mordor bootnodes run by the Core-Geth maintainers and reads the new lists by default.`,
+    link: {
+      label: "ethereumclassic/discv4-dns-lists",
+      href: "https://github.com/ethereumclassic/discv4-dns-lists",
+    },
+  },
+  {
+    when: "September 14, 2026",
+    iso: "2026-09-14",
+    title: `\`${RECOMMENDED_LINE}.0\` from \`${REPO.slug}\``,
+    body: `About six months of work, tested on Ethereum Classic mainnet and Mordor throughout, from February 2026: every client CVE the audits found in the \`${EXPOSED_LINE}\` client code closed, GraphQL queries bounded, neither \`${EXPOSED_LINE}\` regression, and a supported Go toolchain. \`${REPO.slug}\` has several maintainers with admin access and takes pull requests from anyone, which the single-author emergency releases in \`${PREVIOUS_REPO}\` did not have.`,
+    cta: { label: "Get the latest release", href: "/downloads/" },
+    current: true,
+  },
+];
+
+export const RELEASE_TIMELINE: readonly HistoryEntry[] = [...RELEASE_HISTORY].reverse();
+
+RELEASE_TIMELINE.forEach((entry, i, all) => {
+  if (i > 0 && (entry.iso ?? "") > (all[i - 1]!.iso ?? "")) {
+    throw new Error(`the release history is out of order at "${entry.title}"`);
+  }
+});
+
+export const DISCLOSURE = {
+  heading: "The fixes were disclosed before they were published",
+  body: [
+    `Ethereum Classic core developers wrote the patches, reported them privately to the \`${PREVIOUS_REPO}\` maintainers in February and March 2026, and published them in \`${REPO.slug}\` as 27 individually scoped pull requests on March 20 and 21, 2026. \`${PREVIOUS_REPO}\` cut its emergency releases on March 18 and 28, 2026 by copying those patches into the \`${EXPOSED_LINE}\` line.`,
+    `Others had tried to get the same problems fixed there first, and the record of those attempts is public. Private security disclosures sent to \`${PREVIOUS_REPO}\` through 2025 got no response, and so did a public issue a security researcher at Ledger opened in February 2026 naming three of the CVEs. Seven pull requests that would have closed parts of the problem were closed without merging: four dependency updates Dependabot opened, and three from contributors, one of which carried both a Go upgrade and a CVE fix. Three of those were closed on the day \`v1.12.23\` was released, and at that tag \`go.mod\` still named the old versions. Writing the patches elsewhere and handing them over was what finally moved them.`,
+    `\`${RECOMMENDED_LINE}.0\` shipped on September 14, 2026, nearly six months after the fixes were public. Operators still on \`${EXPOSED_LINE}\` got relief first, in that line's own emergency releases.`,
+  ],
+  link: {
+    label: "The disclosure timeline",
+    href: "/security/2026-03-core-geth-v1.12-security-audit/#disclosure-timeline",
+  },
+} as const;
+
+export const RELEASE_FIXES = `The \`${RECOMMENDED_LINE}\` line closes every client CVE the audits found in the \`${EXPOSED_LINE}\` client code, including the one used against Core-Geth \`${EXPOSED_LINE}\` bootnodes in March 2026 and the one \`${PREVIOUS_REPO}\` declared not applicable to Ethereum Classic, and it bounds the GraphQL query nesting that line left unlimited. It carries neither regression \`${PREVIOUS_REPO}\` introduced, the \`eth_syncing\` regression from \`${EXPOSED_LINE}.22\` or the snap storage-range cap from \`${EXPOSED_LINE}.23\`. It is built with a supported Go toolchain, and the dependency tree behind it was modernized in the same work. It reads peer discovery lists published from the \`ethereumclassic\` organization, ships bootnodes run by the Core-Geth maintainers, and is cut by a rebuilt release pipeline that gives each archive a checksum and a build attestation binding it to the workflow run that produced it. ${MOVE_RECOMMENDATION} ${MOVE_WHERE}`;
+
+export const AUDITS: readonly {
+  title: string;
+  href: string;
+  /** The month the document itself carries, from its own name or the release it covers. */
+  date: { text: string; iso: string };
+  summary: string;
+}[] = [
+  {
+    title: DOCS.securityAudit.title,
+    href: DOCS.securityAudit.href,
+    date: { text: "March 2026", iso: "2026-03" },
+    summary: `What 21 months without security maintenance in \`${PREVIOUS_REPO}\` left open in the ${EXPOSED_LINE} client code, and the March 2026 attack that used one of those flaws against Core-Geth \`${EXPOSED_LINE}\` bootnodes. It names which releases carry each flaw.`,
+  },
+  {
+    title: `Core-Geth ${EXPOSED_LINE} security follow-up`,
+    href: "/security/2026-08-core-geth-v1.12-security-follow-up/",
+    date: { text: "August 2026", iso: "2026-08" },
+    summary: `\`v1.12.23\` Argos is real security work and an improvement on the rest of the ${EXPOSED_LINE} line, and still not safe to run: one client CVE unpatched, GraphQL queries unbounded, the \`eth_syncing\` regression from \`v1.12.22\`, a snap storage-range cap of its own that can disconnect peers answering correctly, and Go toolchains out of support. Only the ${RECOMMENDED_LINE} line clears every one of those findings, and a node that ran ${EXPOSED_LINE} needs a new P2P key.`,
+  },
+  {
+    title: `Core-Geth ${EXPOSED_LINE} to ${RECOMMENDED_LINE} dependency modernization`,
+    href: "/security/2026-08-core-geth-v1.12-dependency-modernization/",
+    date: { text: "August 2026", iso: "2026-08" },
+    summary: `What the maintenance gap left behind in the ${EXPOSED_LINE} line: a module graph that had not moved since December 2024, and Go toolchains already out of support. The ${RECOMMENDED_LINE} line moved that module graph onto a supported Go with 83 module changes, and the report records why each version was chosen.`,
+  },
+  {
+    title: `Core-Geth ${EXPOSED_LINE} to ${RECOMMENDED_LINE} release pipeline audit`,
+    href: "/security/2026-09-core-geth-v1.12-release-pipeline/",
+    date: { text: "September 2026", iso: "2026-09" },
+    summary: `Nobody was checking what the ${EXPOSED_LINE} releases contained until the ${RECOMMENDED_LINE} work opened their archives. The Linux glibc floor rose across three ${EXPOSED_LINE} releases unobserved, their macOS archive ships a binary most of its downloaders cannot run, and no ${EXPOSED_LINE} archive is signed or attested.`,
+  },
+  {
+    title: DOCS.releaseReport.title,
+    href: DOCS.releaseReport.href,
+    date: { text: "September 2026", iso: "2026-09" },
+    summary: `What ${RECOMMENDED_LINE}.0 fixes, what it changes, how to verify a download, and what is known to be imperfect in it.`,
+  },
+  {
+    title: DOCS.goToolchain.title,
+    href: DOCS.goToolchain.href,
+    date: { text: "September 2026", iso: "2026-09" },
+    summary: `Every ${EXPOSED_LINE} binary carries the security flaws of the Go version it was built with, and those toolchains left support in 2024 and 2025. Only a rebuild on a supported Go removes those flaws, and the ${EXPOSED_LINE} source does not build on one. The ${RECOMMENDED_LINE} line is built on a supported Go, and each of its releases is cut with the newest patch of that Go version.`,
+  },
+  {
+    title: `Core-Geth ${RECOMMENDED_LINE}.0: the record behind the release`,
+    href: "/security/2026-09-core-geth-v1.13.0-release-record/",
+    date: { text: "September 2026", iso: "2026-09" },
+    summary: `Every claim made about ${RECOMMENDED_LINE}.0 answered from the public record: commit metadata, pull requests, release files and advisory databases.`,
+  },
+];
+
+const isReleaseDoc = (href: string) =>
+  href.includes("release-report") || href.includes("release-record");
+
+export const AUDIT_DOCS = AUDITS.filter((doc) => !isReleaseDoc(doc.href));
+
+export const REPORT_DOCS = AUDITS.filter((doc) => isReleaseDoc(doc.href));
