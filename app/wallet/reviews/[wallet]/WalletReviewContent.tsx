@@ -293,17 +293,24 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
               >
                 <h2 className="mb-4 text-xl font-bold text-[var(--text-primary)]">Full Review</h2>
                 <div className="prose prose-invert max-w-none">
-                  {review.fullReview.split('\n\n').map((paragraph, i) => {
-                    if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                      return (
-                        <h3 key={i} className="mt-6 mb-3 text-lg font-semibold text-[var(--text-primary)]">
-                          {paragraph.replace(/\*\*/g, '')}
+                  {review.fullReview.split('\n\n').flatMap((block, i) => {
+                    // A section opens with its heading on the first line of the same block,
+                    // "**Security Architecture**\nTrezor devices...", so the heading is split off here.
+                    const [first = '', ...rest] = block.split('\n')
+                    const heading = /^\*\*(.+)\*\*$/.exec(first.trim())
+                    const paragraph = heading ? rest.join('\n').trim() : block
+                    const parts: React.ReactNode[] = []
+                    if (heading) {
+                      parts.push(
+                        <h3 key={`${i}-heading`} className="mt-6 mb-3 text-lg font-semibold text-[var(--text-primary)]">
+                          {heading[1]}
                         </h3>
                       )
                     }
+                    if (!paragraph) return parts
                     if (paragraph.startsWith('- ')) {
                       const items = paragraph.split('\n').filter((line) => line.startsWith('- '))
-                      return (
+                      parts.push(
                         <ul key={i} className="my-4 space-y-2">
                           {items.map((item, j) => (
                             <li key={j} className="flex items-start gap-2 text-[var(--color-text-secondary)]">
@@ -313,12 +320,14 @@ export function WalletReviewContent({ review, relatedReviews }: WalletReviewCont
                           ))}
                         </ul>
                       )
+                      return parts
                     }
-                    return (
+                    parts.push(
                       <p key={i} className="mb-4 text-[var(--color-text-secondary)] leading-relaxed">
                         {paragraph}
                       </p>
                     )
+                    return parts
                   })}
                 </div>
               </div>

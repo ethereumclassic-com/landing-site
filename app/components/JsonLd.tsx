@@ -51,14 +51,7 @@ export function WebsiteJsonLd() {
     url: 'https://ethereumclassic.com',
     description:
       'The official resource for Ethereum Classic. Get wallets, buy ETC, explore apps, and learn about the proof-of-work blockchain.',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://ethereumclassic.com/search?q={search_term_string}',
-      },
-      'query-input': 'required name=search_term_string',
-    },
+    // No SearchAction: the site has no /search route for one to point at.
   }
 
   return (
@@ -157,7 +150,7 @@ export function ArticleJsonLd({
       name: 'EthereumClassic.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://ethereumclassic.com/etc-logo.png',
+        url: 'https://ethereumclassic.com/icons/icon-512.png',
       },
     },
     ...(image && {

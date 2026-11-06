@@ -32,7 +32,7 @@ export async function GET() {
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${baseUrl}/news/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
-      <url>${baseUrl}/etc-logo.png</url>
+      <url>${baseUrl}/icons/icon-512.png</url>
       <title>Ethereum Classic News</title>
       <link>${baseUrl}/news</link>
     </image>

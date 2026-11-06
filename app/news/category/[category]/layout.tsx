@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getAllCategories().find((c) => c.toLowerCase() === slug.toLowerCase())
 
   if (!category) {
-    return { title: 'Category Not Found | Ethereum Classic News' }
+    return { title: 'Category Not Found' }
   }
 
   const count = getArticlesByCategory(category).length

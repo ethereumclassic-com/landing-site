@@ -28,7 +28,7 @@ export async function GET() {
   <id>${baseUrl}/news</id>
   <updated>${updated}</updated>
   <icon>${baseUrl}/icons/favicon-32x32.png</icon>
-  <logo>${baseUrl}/etc-logo.png</logo>
+  <logo>${baseUrl}/icons/icon-512.png</logo>
   <rights>Copyright ${new Date().getFullYear()} EthereumClassic.com</rights>
   <author>
     <name>Ethereum Classic</name>

@@ -57,6 +57,13 @@ const submissionFields = [
   { label: 'Contact Email', placeholder: 'contact@your-app.com', required: true },
 ]
 
+// A new issue on this site's own repository, prefilled with the fields above. The repository
+// carries no issue template, so the form is the body rather than a `template=` parameter.
+const SUBMIT_ISSUE_URL = `https://github.com/ethereumclassic-com/landing-site/issues/new?${new URLSearchParams({
+  title: '[App Submission] Your App Name',
+  body: submissionFields.map((field) => `**${field.label}**${field.required ? ' (required)' : ''}: `).join('\n\n'),
+}).toString()}`
+
 export default function SubmitAppPage() {
   return (
     <main className="min-h-screen">
@@ -208,7 +215,7 @@ export default function SubmitAppPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="https://github.com/etccooperative/ethereumclassic-com/issues/new?template=app-submission.md&title=[App%20Submission]%20Your%20App%20Name"
+              href={SUBMIT_ISSUE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"

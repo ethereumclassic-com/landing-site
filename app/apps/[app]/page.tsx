@@ -21,13 +21,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!app) {
     return {
-      title: 'App Not Found | Ethereum Classic',
+      title: 'App Not Found',
     }
   }
 
   return {
-    title: `${app.name} — ${app.category} on Ethereum Classic`,
-    description: app.longDescription || app.description,
+    // The section template adds "| ETC Apps — Ethereum Classic", so the title carries the app alone.
+    title: `${app.name} — ${app.category}`,
+    description: app.description,
     alternates: {
       canonical: `https://ethereumclassic.com/apps/${app.slug}`,
     },
@@ -40,11 +41,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+/**
+ * schema.org application categories Google supports for SoftwareApplication. WebApplication is a
+ * subtype rather than a category, so it is not used: node clients, explorers and RPC listings are
+ * developer software.
+ */
 const categoryMap: Record<string, string> = {
   DeFi: 'FinanceApplication',
-  Infrastructure: 'WebApplication',
-  Governance: 'WebApplication',
-  Tools: 'WebApplication',
+  Infrastructure: 'DeveloperApplication',
+  Governance: 'FinanceApplication',
+  Tools: 'DeveloperApplication',
   Payments: 'FinanceApplication',
 }
 
@@ -62,8 +68,7 @@ export default async function AppPage({ params }: Props) {
         name={app.name}
         description={app.description}
         url={app.link}
-        applicationCategory={categoryMap[app.category] || 'WebApplication'}
-        offers={{ price: '0', priceCurrency: 'USD' }}
+        applicationCategory={categoryMap[app.category] || 'UtilitiesApplication'}
       />
       <AppDetailClient app={app} />
     </>

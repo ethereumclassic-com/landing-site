@@ -16,7 +16,7 @@ export async function GET() {
     feed_url: `${baseUrl}/news/feed.json`,
     description:
       'Latest news and updates from the Ethereum Classic ecosystem. Network upgrades, development progress, community announcements, and more.',
-    icon: `${baseUrl}/etc-logo.png`,
+    icon: `${baseUrl}/icons/icon-512.png`,
     favicon: `${baseUrl}/icons/favicon-32x32.png`,
     language: 'en-US',
     authors: [

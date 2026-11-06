@@ -44,7 +44,7 @@ export const walletReviews: WalletReview[] = [
     name: 'Trezor',
     slug: 'trezor',
     tagline: 'The Original Hardware Wallet',
-    website: 'https://trezor.io',
+    website: 'https://affil.trezor.io/aff_c?offer_id=133&aff_id=34561',
     rating: {
       overall: 4.8,
       security: 5.0,
@@ -102,7 +102,7 @@ Trezor offers comprehensive documentation, video tutorials, and responsive email
     name: 'Ledger',
     slug: 'ledger',
     tagline: 'Industry-Leading Secure Element Technology',
-    website: 'https://ledger.com',
+    website: 'https://shop.ledger.com/?r=bbf4d7f32e72',
     rating: {
       overall: 4.6,
       security: 4.8,
@@ -603,7 +603,7 @@ For the best MEW experience with ETC, use a hardware wallet. This provides MEW's
       support: 4.0,
     },
     pros: [
-      'Built specifically for ETC by ETC Cooperative',
+      'Built for ETC, first by ETCDEV and now by EmeraldPay',
       'Open-source with transparent development',
       'Hardware wallet support (Ledger)',
       'Direct connection to ETC network',
@@ -616,8 +616,8 @@ For the best MEW experience with ETC, use a hardware wallet. This provides MEW's
       'Less polished than commercial alternatives',
       'Fewer features than multi-chain wallets',
     ],
-    summary: 'Emerald Wallet is the official ETC Cooperative wallet, built specifically for Ethereum Classic. While limited in scope compared to multi-chain alternatives, it offers dedicated ETC support from the community that maintains the network.',
-    fullReview: `Emerald Wallet is developed by the ETC Cooperative, the organization that funds Ethereum Classic core development. This makes it the most "official" ETC wallet available.
+    summary: 'Emerald Wallet is built specifically for Ethereum Classic, first by ETCDEV and now by EmeraldPay. While limited in scope compared to multi-chain alternatives, it offers dedicated ETC support.',
+    fullReview: `Emerald Wallet was first built by ETCDEV, Ethereum Classic's first development team. After ETCDEV closed in 2018, its team lead started EmeraldPay, which develops the wallet today.
 
 **ETC-First Development**
 Unlike multi-chain wallets where ETC is one of many supported assets, Emerald Wallet prioritizes ETC. Updates and features are designed with ETC users in mind.
@@ -638,7 +638,7 @@ Emerald Wallet supports only ETC and ETH. If you hold multiple cryptocurrencies,
 - Desktop users who don't need mobile access
 
 **Future Development**
-The ETC Cooperative continues to develop Emerald Wallet with plans for additional features. Check the GitHub repository for the latest updates.`,
+EmeraldPay develops Emerald Wallet. Check its GitHub organization for the latest updates.`,
     etcSupport: {
       native: true,
       networkSetup: 'not-required',

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { OG_BASE } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import { philosophyArticles, getPhilosophyArticle } from '../data/philosophy'
 import WhyClassicArticleClient from '../components/WhyClassicArticleClient'
@@ -25,13 +26,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!article) {
     return {
-      title: 'Article Not Found | Ethereum Classic',
+      title: 'Article Not Found',
     }
   }
 
+  // The section template adds "| Why Classic — Ethereum Classic".
   return {
-    title: `${article.title} | Why Classic`,
+    title: article.title,
     description: article.description,
+    openGraph: {
+      ...OG_BASE,
+      title: `${article.title} | Why Classic — Ethereum Classic`,
+      description: article.description,
+      type: 'article',
+    },
   }
 }
 
