@@ -62,6 +62,12 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      // A preview of a mining pool the site does not run, with invented statistics.
+      {
+        source: '/pool',
+        destination: '/mining/pools',
+        permanent: true,
+      },
     ]
   },
 };

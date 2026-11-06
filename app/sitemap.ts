@@ -256,7 +256,6 @@ const staticRoutes: StaticRoute[] = [
 
   // Standalone pages
   { path: '/earn', priority: 0.6, changeFrequency: 'weekly' as const },
-  { path: '/pool', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/environmental-impact', priority: 0.5, changeFrequency: 'weekly' as const },
   { path: '/investment-products', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/learn/on-ramp', priority: 0.6, changeFrequency: 'weekly' as const },
