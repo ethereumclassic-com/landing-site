@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import Link from 'next/link'
+import { formatVolume, useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
 import { exchanges } from '../../buy/data/exchanges'
 
 const ExternalLinkIcon = () => (
@@ -12,9 +13,10 @@ const ExternalLinkIcon = () => (
 
 export default function USFriendlyExchangesPage() {
   // Filter US-friendly exchanges
+  const { byVolume, volumeOf } = useExchangeVolume()
   const usExchanges = useMemo(() => {
-    return exchanges.filter((ex) => ex.regions.includes('US'))
-  }, [])
+    return byVolume(exchanges.filter((ex) => ex.regions.includes('US')))
+  }, [byVolume])
 
   // Separate regulated (KYC) from others
   const regulatedExchanges = usExchanges.filter((ex) => ex.kycRequired === true)
@@ -155,9 +157,9 @@ export default function USFriendlyExchangesPage() {
                           Fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                         </span>
                       )}
-                      {exchange.volume24h && (
+                      {volumeOf(exchange) !== undefined && (
                         <span className="text-[var(--color-text-muted)]">
-                          Vol: <span className="text-[var(--text-primary)]">{exchange.volume24h}</span>
+                          Vol: <span className="text-[var(--text-primary)]">{formatVolume(volumeOf(exchange))}</span>
                         </span>
                       )}
                     </div>
@@ -205,6 +207,9 @@ export default function USFriendlyExchangesPage() {
                     )}
                   </a>
                 ))}
+              </div>
+              <div className="mt-4 flex justify-end">
+                <VolumeSource />
               </div>
             </section>
           )}

@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import Link from 'next/link'
+import { formatVolume, useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
 import { exchanges } from '../../buy/data/exchanges'
 
 const ExternalLinkIcon = () => (
@@ -12,9 +13,10 @@ const ExternalLinkIcon = () => (
 
 export default function NoKYCExchangesPage() {
   // Filter exchanges that don't require KYC
+  const { byVolume, volumeOf } = useExchangeVolume()
   const noKycExchanges = useMemo(() => {
-    return exchanges.filter((ex) => ex.kycRequired === false)
-  }, [])
+    return byVolume(exchanges.filter((ex) => ex.kycRequired === false))
+  }, [byVolume])
 
   // Separate DEXs and CEXs
   const dexExchanges = noKycExchanges.filter((ex) => ex.type === 'DEX')
@@ -179,14 +181,17 @@ export default function NoKYCExchangesPage() {
                           Fee: <span className="text-[var(--text-primary)]">{exchange.tradingFee}</span>
                         </span>
                       )}
-                      {exchange.volume24h && exchange.volume24h !== 'DEX' && (
+                      {volumeOf(exchange) !== undefined && (
                         <span className="text-[var(--color-text-muted)]">
-                          Vol: <span className="text-[var(--text-primary)]">{exchange.volume24h}</span>
+                          Vol: <span className="text-[var(--text-primary)]">{formatVolume(volumeOf(exchange))}</span>
                         </span>
                       )}
                     </div>
                   </a>
                 ))}
+              </div>
+              <div className="mt-4 flex justify-end">
+                <VolumeSource />
               </div>
             </section>
           )}

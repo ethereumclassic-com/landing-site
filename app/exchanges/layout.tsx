@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { ExchangeVolumeProvider } from '@/app/components/ExchangeVolume'
+import { fetchExchangeVolumes } from '@/lib/exchange-volume'
 
 export const metadata: Metadata = {
   title: {
@@ -9,6 +11,7 @@ export const metadata: Metadata = {
     'Compare the best exchanges for buying, selling, and trading Ethereum Classic. Reviews, fees, security, and beginner guides.',
 }
 
-export default function ExchangesLayout({ children }: { children: React.ReactNode }) {
-  return children
+// The exchange pages order their listings by live volume, read here once for the whole section.
+export default async function ExchangesLayout({ children }: { children: React.ReactNode }) {
+  return <ExchangeVolumeProvider volumes={await fetchExchangeVolumes()}>{children}</ExchangeVolumeProvider>
 }

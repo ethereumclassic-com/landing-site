@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import Link from 'next/link'
+import { formatVolume, useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
 import { exchanges } from '../../buy/data/exchanges'
 
 const ExternalLinkIcon = () => (
@@ -11,13 +12,15 @@ const ExternalLinkIcon = () => (
 )
 
 // Security-focused exchanges (regulated, long track record, no major hacks)
-const secureExchangeNames = ['Coinbase', 'Kraken', 'Gemini', 'Bitstamp', 'Binance', 'OKX']
+const secureExchangeNames = ['Coinbase', 'Kraken', 'Bitstamp', 'Binance', 'OKX']
 
 export default function MostSecureExchangesPage() {
-  // Filter security-focused exchanges
+  const { byVolume, volumeOf } = useExchangeVolume()
+
+  // Filter security-focused exchanges, highest volume first
   const secureExchanges = useMemo(() => {
-    return exchanges.filter((ex) => secureExchangeNames.includes(ex.name))
-  }, [])
+    return byVolume(exchanges.filter((ex) => secureExchangeNames.includes(ex.name)))
+  }, [byVolume])
 
   // Regulated vs others
   const regulated = secureExchanges.filter((ex) => ex.kycRequired === true && ex.regions.includes('US'))
@@ -230,13 +233,16 @@ export default function MostSecureExchangesPage() {
                         </span>
                       ))}
                     </div>
-                    {exchange.volume24h && (
+                    {volumeOf(exchange) !== undefined && (
                       <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-                        24h Volume: <span className="text-[var(--text-primary)]">{exchange.volume24h}</span>
+                        24h Volume: <span className="text-[var(--text-primary)]">{formatVolume(volumeOf(exchange))}</span>
                       </p>
                     )}
                   </a>
                 ))}
+              </div>
+              <div className="mt-4 flex justify-end">
+                <VolumeSource />
               </div>
             </section>
           )}

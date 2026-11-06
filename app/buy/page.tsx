@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
 import { exchanges } from './data/exchanges'
 import ExchangeCard from './components/ExchangeCard'
 
@@ -110,15 +111,10 @@ function WalletIcon() {
 }
 
 export default function BuyPage() {
+  const { byVolume } = useExchangeVolume()
   const dex = exchanges.find((ex) => ex.type === 'DEX' && ex.featured)
-  const majorExchanges = exchanges
-    .filter((ex) => ex.type === 'CEX' && ex.featured)
-    .sort((a, b) => {
-      const aVol = parseFloat(a.volume24h?.replace(/[$M,]/g, '') || '0')
-      const bVol = parseFloat(b.volume24h?.replace(/[$M,]/g, '') || '0')
-      return bVol - aVol
-    })
-  const additionalExchanges = exchanges.filter((ex) => ex.type === 'CEX' && !ex.featured)
+  const majorExchanges = byVolume(exchanges.filter((ex) => ex.type === 'CEX' && ex.featured))
+  const additionalExchanges = byVolume(exchanges.filter((ex) => ex.type === 'CEX' && !ex.featured))
 
   const steps = [
     {
@@ -407,6 +403,9 @@ export default function BuyPage() {
             {majorExchanges.map((exchange, index) => (
               <ExchangeCard key={exchange.name} exchange={exchange} index={index} />
             ))}
+          </div>
+          <div className="mt-4 flex justify-end">
+            <VolumeSource />
           </div>
 
           <div

@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import Link from 'next/link'
+import { useExchangeVolume } from '@/app/components/ExchangeVolume'
 import { exchanges } from '../../buy/data/exchanges'
 
 const ExternalLinkIcon = () => (
@@ -14,13 +15,15 @@ const ExternalLinkIcon = () => (
 // - Featured (established, trusted)
 // - Has card/bank payment methods (easy fiat on-ramp)
 // - Has description (we have info about them)
-const beginnerFriendlyNames = ['Coinbase', 'Kraken', 'Crypto.com', 'Bitstamp', 'Gemini', 'Binance', 'KuCoin']
+const beginnerFriendlyNames = ['Coinbase', 'Kraken', 'Crypto.com', 'Bitstamp', 'Binance', 'KuCoin']
 
 export default function BeginnersExchangesPage() {
-  // Filter beginner-friendly exchanges
+  const { byVolume } = useExchangeVolume()
+
+  // Filter beginner-friendly exchanges, highest volume first
   const beginnerExchanges = useMemo(() => {
-    return exchanges.filter((ex) => beginnerFriendlyNames.includes(ex.name))
-  }, [])
+    return byVolume(exchanges.filter((ex) => beginnerFriendlyNames.includes(ex.name)))
+  }, [byVolume])
 
   // Separate by region availability
   const usAvailable = beginnerExchanges.filter((ex) => ex.regions.includes('US'))

@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { exchanges, sortExchangesByVolume, type Exchange, type PaymentMethod } from '../../buy/data/exchanges'
+import { formatVolume, useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
+import { exchanges, type Exchange, type PaymentMethod } from '../../buy/data/exchanges'
 
 type ViewMode = 'grid' | 'table'
 type SortOption = 'volume' | 'name' | 'fee'
@@ -85,6 +86,7 @@ function PaymentIcon({ method }: { method: PaymentMethod }) {
 
 function ExchangeCard({ exchange }: { exchange: Exchange }) {
   const isDEX = exchange.type === 'DEX'
+  const volume = useExchangeVolume().volumeOf(exchange)
 
   return (
     <a
@@ -125,10 +127,10 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
         {exchange.name}
       </h3>
 
-      {exchange.volume24h && (
+      {volume !== undefined && (
         <div className="mb-3 flex items-center justify-between rounded-lg bg-[var(--border-subtle)] px-3 py-2">
           <span className="text-xs text-[var(--color-text-muted)]">24h Volume</span>
-          <span className="font-semibold text-[var(--color-primary)]">{exchange.volume24h}</span>
+          <span className="font-semibold text-[var(--color-primary)]">{formatVolume(volume)}</span>
         </div>
       )}
 
@@ -205,6 +207,7 @@ function ExchangeCard({ exchange }: { exchange: Exchange }) {
 
 function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
   const isDEX = exchange.type === 'DEX'
+  const volume = useExchangeVolume().volumeOf(exchange)
 
   return (
     <tr
@@ -241,8 +244,8 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
         </span>
       </td>
       <td className="hidden py-4 sm:table-cell">
-        <span className={`text-sm ${isDEX ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'}`}>
-          {exchange.volume24h}
+        <span className={`text-sm ${volume === undefined ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'}`}>
+          {formatVolume(volume)}
         </span>
       </td>
       <td className="hidden py-4 lg:table-cell">
@@ -304,6 +307,7 @@ function ExchangeTableRow({ exchange }: { exchange: Exchange }) {
 export default function DirectoryExchangesPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('grid')
   const [sortBy, setSortBy] = useState<SortOption>('volume')
+  const { byVolume } = useExchangeVolume()
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all')
   const [regionFilter, setRegionFilter] = useState<RegionFilter>('all')
   const [kycFilter, setKycFilter] = useState<KYCFilter>('all')
@@ -342,7 +346,7 @@ export default function DirectoryExchangesPage() {
     // Apply sorting
     switch (sortBy) {
       case 'volume':
-        result = sortExchangesByVolume(result)
+        result = byVolume(result)
         break
       case 'name':
         result.sort((a, b) => a.name.localeCompare(b.name))
@@ -357,7 +361,7 @@ export default function DirectoryExchangesPage() {
     }
 
     return result
-  }, [typeFilter, regionFilter, kycFilter, paymentFilter, searchQuery, sortBy])
+  }, [typeFilter, regionFilter, kycFilter, paymentFilter, searchQuery, sortBy, byVolume])
 
   // Stats
   const cexCount = exchanges.filter((e) => e.type === 'CEX').length
@@ -588,6 +592,7 @@ export default function DirectoryExchangesPage() {
             <p className="text-sm text-[var(--color-text-muted)]">
               Showing {filteredExchanges.length} of {exchanges.length} exchanges
             </p>
+            <VolumeSource />
           </div>
 
           {viewMode === 'grid' ? (
@@ -607,7 +612,7 @@ export default function DirectoryExchangesPage() {
                   <tr className="border-b border-[var(--border)]">
                     <th className="py-4 text-left text-sm font-medium text-[var(--color-text-muted)]">Exchange</th>
                     <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] md:table-cell">Type</th>
-                    <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] sm:table-cell">Volume</th>
+                    <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] sm:table-cell">24h Volume</th>
                     <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] lg:table-cell">Fee</th>
                     <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] md:table-cell">Pairs</th>
                     <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] lg:table-cell">KYC</th>

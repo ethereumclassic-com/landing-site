@@ -193,22 +193,13 @@ export default function BankPage() {
       index: 2,
     },
     {
-      name: 'Gemini',
-      description: 'US-based regulated exchange with free ACH and wire options',
-      bankMethods: ['ACH', 'Wire'],
-      fees: 'Free (ACH)',
-      processingTime: '1-4 days',
-      link: 'https://www.gemini.com',
-      index: 3,
-    },
-    {
       name: 'Bitstamp',
       description: 'One of the oldest exchanges with strong SEPA and wire support',
       bankMethods: ['SEPA', 'Wire', 'ACH'],
       fees: 'Free (SEPA)',
       processingTime: '1-3 days',
       link: 'https://www.bitstamp.net',
-      index: 4,
+      index: 3,
     },
     {
       name: 'OKX',
@@ -217,7 +208,7 @@ export default function BankPage() {
       fees: 'Free - Varies',
       processingTime: '1-5 days',
       link: 'https://www.okx.com',
-      index: 5,
+      index: 4,
     },
   ]
 

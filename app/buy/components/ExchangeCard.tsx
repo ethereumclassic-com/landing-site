@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { formatVolume, useExchangeVolume } from '@/app/components/ExchangeVolume'
 import type { Exchange } from '../data/exchanges'
 
 interface ExchangeCardProps {
@@ -46,6 +47,7 @@ function RegionIcon() {
 
 export default function ExchangeCard({ exchange, index }: ExchangeCardProps) {
   const isDEX = exchange.type === 'DEX'
+  const volume = useExchangeVolume().volumeOf(exchange)
 
   return (
     <motion.a
@@ -95,10 +97,10 @@ export default function ExchangeCard({ exchange, index }: ExchangeCardProps) {
       </div>
 
       {/* Volume */}
-      {exchange.volume24h && (
+      {volume !== undefined && (
         <div className="mb-4 flex items-center justify-between rounded-lg bg-[var(--border-subtle)] px-3 py-2">
           <span className="text-xs text-[var(--color-text-muted)]">24h Volume</span>
-          <span className="font-semibold text-[var(--color-primary)]">{exchange.volume24h}</span>
+          <span className="font-semibold text-[var(--color-primary)]">{formatVolume(volume)}</span>
         </div>
       )}
 

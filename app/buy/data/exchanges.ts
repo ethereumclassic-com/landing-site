@@ -4,7 +4,12 @@ export interface Exchange {
   name: string
   type: 'CEX' | 'DEX'
   featured?: boolean
-  volume24h?: string
+  /**
+   * The exchange's market identifier at CoinGecko, which reports its live ETC
+   * volume (lib/exchange-volume.ts). Absent where CoinGecko tracks no ETC
+   * market for it, and for the DEX.
+   */
+  coingeckoId?: string
   pairs: string[]
   regions: string[]
   link: string
@@ -28,14 +33,6 @@ export function getExchangesByRegion(region: string): Exchange[] {
   return exchanges.filter((ex) => ex.regions.includes(region))
 }
 
-export function sortExchangesByVolume(exchangeList: Exchange[]): Exchange[] {
-  return [...exchangeList].sort((a, b) => {
-    const aVol = parseFloat(a.volume24h?.replace(/[$M,]/g, '') || '0')
-    const bVol = parseFloat(b.volume24h?.replace(/[$M,]/g, '') || '0')
-    return bVol - aVol
-  })
-}
-
 export const exchanges: Exchange[] = [
   // DEX (Featured)
   {
@@ -45,14 +42,13 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDC', 'ETC/USC', 'ETC/WBTC'],
     regions: ['Global'],
     link: 'https://etcswap.org',
-    volume24h: 'DEX',
     paymentMethods: ['Wallet'],
     tradingFee: '0.3%',
     kycRequired: false,
     description: 'Native ETC decentralized exchange with concentrated liquidity (V3) and classic AMM (V2).',
   },
 
-  // Top 10 CEXs by Volume (Featured)
+  // Featured CEXs. Pages order every listing by live volume, so this order is used only when CoinGecko is unreachable.
   {
     name: 'Binance',
     type: 'CEX',
@@ -60,7 +56,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/BTC', 'ETC/USDC', 'ETC/FDUSD', 'ETC/ETH', 'ETC/TRY'],
     regions: ['Global'],
     link: 'https://www.binance.com',
-    volume24h: '$4.17M',
+    coingeckoId: 'binance',
     paymentMethods: ['Card', 'Bank', 'Crypto', 'P2P'],
     tradingFee: '0.1%',
     withdrawalFee: '0.01 ETC',
@@ -74,7 +70,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/BTC', 'ETC/USDC'],
     regions: ['Global'],
     link: 'https://www.mexc.com',
-    volume24h: '$2.84M',
+    coingeckoId: 'mxc',
     paymentMethods: ['Card', 'Crypto', 'P2P'],
     tradingFee: '0.2%',
     withdrawalFee: '0.01 ETC',
@@ -88,7 +84,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/KRW', 'ETC/USDT', 'ETC/BTC'],
     regions: ['Asia', 'Korea'],
     link: 'https://upbit.com',
-    volume24h: '$2.48M',
+    coingeckoId: 'upbit',
     paymentMethods: ['Bank', 'Crypto'],
     tradingFee: '0.05%',
     withdrawalFee: '0.01 ETC',
@@ -102,7 +98,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/ETH'],
     regions: ['Global'],
     link: 'https://www.gate.io',
-    volume24h: '$1.48M',
+    coingeckoId: 'gate',
     paymentMethods: ['Card', 'Crypto', 'P2P'],
     tradingFee: '0.2%',
     withdrawalFee: '0.01 ETC',
@@ -116,7 +112,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/USD'],
     regions: ['Global', 'Asia', 'EU'],
     link: 'https://www.okx.com',
-    volume24h: '$1.29M',
+    coingeckoId: 'okex',
     paymentMethods: ['Card', 'Bank', 'Crypto', 'P2P'],
     tradingFee: '0.1%',
     withdrawalFee: '0.008 ETC',
@@ -130,7 +126,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USD', 'ETC/GBP', 'ETC/EUR', 'ETC/BTC'],
     regions: ['US', 'EU', 'UK'],
     link: 'https://www.coinbase.com',
-    volume24h: '$0.52M',
+    coingeckoId: 'gdax',
     paymentMethods: ['Card', 'Bank', 'Wire', 'Crypto'],
     tradingFee: '0.6%',
     withdrawalFee: 'Network fee',
@@ -144,7 +140,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/ETH', 'ETC/USDC'],
     regions: ['Global'],
     link: 'https://www.kucoin.com',
-    volume24h: '$0.52M',
+    coingeckoId: 'kucoin',
     paymentMethods: ['Card', 'Crypto', 'P2P'],
     tradingFee: '0.1%',
     withdrawalFee: '0.01 ETC',
@@ -158,7 +154,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global'],
     link: 'https://www.bybit.com',
-    volume24h: '$0.31M',
+    coingeckoId: 'bybit_spot',
     paymentMethods: ['Card', 'Crypto', 'P2P'],
     tradingFee: '0.1%',
     withdrawalFee: '0.01 ETC',
@@ -172,7 +168,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USD', 'ETC/EUR', 'ETC/BTC', 'ETC/ETH'],
     regions: ['US', 'EU'],
     link: 'https://www.kraken.com',
-    volume24h: '$0.11M',
+    coingeckoId: 'kraken',
     paymentMethods: ['Bank', 'Wire', 'Crypto'],
     tradingFee: '0.26%',
     withdrawalFee: '0.005 ETC',
@@ -186,7 +182,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/BTC'],
     regions: ['Global'],
     link: 'https://www.bitget.com',
-    volume24h: '$0.15M',
+    coingeckoId: 'bitget',
     paymentMethods: ['Card', 'Crypto', 'P2P'],
     tradingFee: '0.1%',
     withdrawalFee: '0.01 ETC',
@@ -201,7 +197,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global', 'Asia'],
     link: 'https://www.htx.com',
-    volume24h: '$0.07M',
+    coingeckoId: 'huobi',
     paymentMethods: ['Card', 'Crypto', 'P2P'],
     tradingFee: '0.2%',
     kycRequired: true,
@@ -212,7 +208,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/USDC', 'ETC/BTC', 'ETC/EUR', 'ETC/TRY', 'ETC/UAH'],
     regions: ['EU'],
     link: 'https://whitebit.com',
-    volume24h: '$1.39M',
+    coingeckoId: 'whitebit',
     paymentMethods: ['Card', 'Bank', 'Crypto'],
     tradingFee: '0.1%',
     kycRequired: true,
@@ -223,7 +219,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USD', 'ETC/BTC', 'ETC/USDT'],
     regions: ['Global'],
     link: 'https://www.bitfinex.com',
-    volume24h: '$0.01M',
+    coingeckoId: 'bitfinex',
     paymentMethods: ['Bank', 'Wire', 'Crypto'],
     tradingFee: '0.2%',
     kycRequired: true,
@@ -234,7 +230,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/BTC', 'ETC/ETH'],
     regions: ['Global'],
     link: 'https://poloniex.com',
-    volume24h: '$2.70M',
+    coingeckoId: 'poloniex',
     paymentMethods: ['Crypto'],
     tradingFee: '0.2%',
     kycRequired: false,
@@ -245,7 +241,6 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/BTC', 'ETC/USDC'],
     regions: ['Global'],
     link: 'https://www.coinex.com',
-    volume24h: '$0.12M',
     paymentMethods: ['Crypto'],
     tradingFee: '0.2%',
     kycRequired: false,
@@ -256,7 +251,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/KRW'],
     regions: ['Asia', 'Korea'],
     link: 'https://www.bithumb.com',
-    volume24h: '$0.65M',
+    coingeckoId: 'bithumb',
     paymentMethods: ['Bank', 'Crypto'],
     tradingFee: '0.04%',
     kycRequired: true,
@@ -267,7 +262,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global'],
     link: 'https://phemex.com',
-    volume24h: '$0.93M',
+    coingeckoId: 'phemex',
     paymentMethods: ['Card', 'Crypto'],
     tradingFee: '0.1%',
     kycRequired: false,
@@ -278,7 +273,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global'],
     link: 'https://bingx.com',
-    volume24h: '$0.52M',
+    coingeckoId: 'bingx',
     paymentMethods: ['Card', 'Crypto', 'P2P'],
     tradingFee: '0.1%',
     kycRequired: false,
@@ -289,7 +284,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USD', 'ETC/USDT'],
     regions: ['Global', 'US', 'EU'],
     link: 'https://crypto.com',
-    volume24h: '$0.01M',
+    coingeckoId: 'crypto_com',
     paymentMethods: ['Card', 'Bank', 'Crypto'],
     tradingFee: '0.4%',
     kycRequired: true,
@@ -300,20 +295,9 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USD', 'ETC/EUR'],
     regions: ['US', 'EU'],
     link: 'https://www.bitstamp.net',
-    volume24h: '$0.03M',
+    coingeckoId: 'bitstamp',
     paymentMethods: ['Bank', 'Wire', 'Card', 'Crypto'],
     tradingFee: '0.5%',
-    kycRequired: true,
-  },
-  {
-    name: 'Gemini',
-    type: 'CEX',
-    pairs: ['ETC/USD'],
-    regions: ['US'],
-    link: 'https://www.gemini.com',
-    volume24h: '$0.02M',
-    paymentMethods: ['Bank', 'Wire', 'Crypto'],
-    tradingFee: '0.35%',
     kycRequired: true,
   },
   {
@@ -322,7 +306,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT', 'ETC/XRP'],
     regions: ['Global'],
     link: 'https://www.bitrue.com',
-    volume24h: '$0.08M',
+    coingeckoId: 'bitrue',
     paymentMethods: ['Crypto'],
     tradingFee: '0.1%',
     kycRequired: false,
@@ -333,7 +317,6 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global'],
     link: 'https://www.bitmart.com',
-    volume24h: '$0.04M',
     paymentMethods: ['Card', 'Crypto'],
     tradingFee: '0.25%',
     kycRequired: false,
@@ -344,7 +327,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/KRW'],
     regions: ['Korea'],
     link: 'https://www.korbit.co.kr',
-    volume24h: '$0.01M',
+    coingeckoId: 'korbit',
     paymentMethods: ['Bank'],
     tradingFee: '0.2%',
     kycRequired: true,
@@ -355,7 +338,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/KRW'],
     regions: ['Korea'],
     link: 'https://coinone.co.kr',
-    volume24h: '$0.01M',
+    coingeckoId: 'coinone',
     paymentMethods: ['Bank'],
     tradingFee: '0.2%',
     kycRequired: true,
@@ -366,7 +349,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global', 'Asia'],
     link: 'https://www.digifinex.com',
-    volume24h: '$0.05M',
+    coingeckoId: 'digifinex',
     paymentMethods: ['Crypto'],
     tradingFee: '0.2%',
     kycRequired: false,
@@ -377,7 +360,6 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global'],
     link: 'https://ascendex.com',
-    volume24h: '$0.01M',
     paymentMethods: ['Crypto'],
     tradingFee: '0.1%',
     kycRequired: false,
@@ -388,7 +370,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global'],
     link: 'https://www.lbank.com',
-    volume24h: '$0.03M',
+    coingeckoId: 'lbank',
     paymentMethods: ['Crypto'],
     tradingFee: '0.1%',
     kycRequired: false,
@@ -399,7 +381,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/USDT'],
     regions: ['Global'],
     link: 'https://www.xt.com',
-    volume24h: '$0.02M',
+    coingeckoId: 'xt',
     paymentMethods: ['Crypto'],
     tradingFee: '0.2%',
     kycRequired: false,
@@ -410,7 +392,7 @@ export const exchanges: Exchange[] = [
     pairs: ['ETC/EUR'],
     regions: ['EU'],
     link: 'https://bitvavo.com',
-    volume24h: '$0.01M',
+    coingeckoId: 'bitvavo',
     paymentMethods: ['Bank', 'Card'],
     tradingFee: '0.25%',
     kycRequired: true,

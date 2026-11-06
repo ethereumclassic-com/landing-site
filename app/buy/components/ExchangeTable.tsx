@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { formatVolume, useExchangeVolume } from '@/app/components/ExchangeVolume'
 import type { Exchange, PaymentMethod } from '../data/exchanges'
 
 interface ExchangeTableProps {
@@ -50,6 +51,7 @@ function PaymentIcon({ method }: { method: PaymentMethod }) {
 }
 
 export default function ExchangeTable({ exchanges, showVolume = true }: ExchangeTableProps) {
+  const { volumeOf } = useExchangeVolume()
   return (
     <div className="overflow-x-auto">
       <motion.table
@@ -63,7 +65,7 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
             <th className="py-4 text-left text-sm font-medium text-[var(--color-text-muted)]">Exchange</th>
             <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] md:table-cell">Type</th>
             {showVolume && (
-              <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] sm:table-cell">Volume</th>
+              <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] sm:table-cell">24h Volume</th>
             )}
             <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] lg:table-cell">Trading Fee</th>
             <th className="hidden py-4 text-left text-sm font-medium text-[var(--color-text-muted)] md:table-cell">Pairs</th>
@@ -124,9 +126,9 @@ export default function ExchangeTable({ exchanges, showVolume = true }: Exchange
                 {showVolume && (
                   <td className="hidden py-4 sm:table-cell">
                     <span className={`text-sm ${
-                      isDEX ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'
+                      volumeOf(exchange) === undefined ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'
                     }`}>
-                      {exchange.volume24h}
+                      {formatVolume(volumeOf(exchange))}
                     </span>
                   </td>
                 )}

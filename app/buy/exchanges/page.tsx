@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { exchanges, sortExchangesByVolume, type PaymentMethod } from '../data/exchanges'
+import { useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
+import { exchanges, type PaymentMethod } from '../data/exchanges'
 import ExchangeCard from '../components/ExchangeCard'
 import ExchangeTable from '../components/ExchangeTable'
 
@@ -17,6 +18,7 @@ const allPaymentMethods: PaymentMethod[] = ['Card', 'Bank', 'Crypto', 'P2P', 'Wi
 export default function ExchangesPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('table')
   const [sortBy, setSortBy] = useState<SortOption>('volume')
+  const { byVolume } = useExchangeVolume()
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all')
   const [regionFilter, setRegionFilter] = useState<RegionFilter>('all')
   const [paymentFilter, setPaymentFilter] = useState<PaymentMethod | 'all'>('all')
@@ -63,7 +65,7 @@ export default function ExchangesPage() {
     // Sort
     switch (sortBy) {
       case 'volume':
-        result = sortExchangesByVolume(result)
+        result = byVolume(result)
         break
       case 'name':
         result.sort((a, b) => a.name.localeCompare(b.name))
@@ -78,7 +80,7 @@ export default function ExchangesPage() {
     }
 
     return result
-  }, [searchQuery, typeFilter, regionFilter, paymentFilter, kycFilter, sortBy])
+  }, [searchQuery, typeFilter, regionFilter, paymentFilter, kycFilter, sortBy, byVolume])
 
   const dexCount = exchanges.filter((ex) => ex.type === 'DEX').length
   const cexCount = exchanges.filter((ex) => ex.type === 'CEX').length
@@ -341,6 +343,7 @@ export default function ExchangesPage() {
             <p className="text-sm text-[var(--color-text-muted)]">
               Showing <span className="font-medium text-[var(--text-primary)]">{filteredExchanges.length}</span> of {exchanges.length} exchanges
             </p>
+            <VolumeSource />
           </div>
 
           {filteredExchanges.length === 0 ? (

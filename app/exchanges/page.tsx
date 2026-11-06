@@ -2,7 +2,8 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { exchanges, sortExchangesByVolume, type PaymentMethod } from '../buy/data/exchanges'
+import { formatVolume, useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
+import { exchanges, type PaymentMethod } from '../buy/data/exchanges'
 import { FlagImg, isFlagEmoji } from '@/app/components/ui'
 
 type ViewMode = 'table' | 'cards'
@@ -76,6 +77,7 @@ function PaymentIcon({ method }: { method: PaymentMethod }) {
 export default function ExchangeDirectoryPage() {
   const [viewMode, setViewMode] = useState<ViewMode>('table')
   const [sortBy, setSortBy] = useState<SortOption>('volume')
+  const { byVolume, volumeOf } = useExchangeVolume()
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all')
   const [regionFilter, setRegionFilter] = useState<RegionFilter>('all')
   const [paymentFilter, setPaymentFilter] = useState<PaymentMethod | 'all'>('all')
@@ -122,7 +124,7 @@ export default function ExchangeDirectoryPage() {
     // Sort
     switch (sortBy) {
       case 'volume':
-        result = sortExchangesByVolume(result)
+        result = byVolume(result)
         break
       case 'name':
         result.sort((a, b) => a.name.localeCompare(b.name))
@@ -137,7 +139,7 @@ export default function ExchangeDirectoryPage() {
     }
 
     return result
-  }, [searchQuery, typeFilter, regionFilter, paymentFilter, kycFilter, sortBy])
+  }, [searchQuery, typeFilter, regionFilter, paymentFilter, kycFilter, sortBy, byVolume])
 
   const dexCount = exchanges.filter((ex) => ex.type === 'DEX').length
   const cexCount = exchanges.filter((ex) => ex.type === 'CEX').length
@@ -421,6 +423,7 @@ export default function ExchangeDirectoryPage() {
             <p className="text-sm text-[var(--color-text-muted)]">
               Showing <span className="font-medium text-[var(--text-primary)]">{filteredExchanges.length}</span> of {exchanges.length} exchanges
             </p>
+            <VolumeSource />
           </div>
 
           {filteredExchanges.length === 0 ? (
@@ -501,8 +504,8 @@ export default function ExchangeDirectoryPage() {
                           </span>
                         </td>
                         <td className="hidden px-4 py-4 sm:table-cell">
-                          <span className={`text-sm ${isDEX ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'}`}>
-                            {exchange.volume24h}
+                          <span className={`text-sm ${volumeOf(exchange) === undefined ? 'text-[var(--color-text-muted)]' : 'font-medium text-[var(--text-primary)]'}`}>
+                            {formatVolume(volumeOf(exchange))}
                           </span>
                         </td>
                         <td className="hidden px-4 py-4 lg:table-cell">
@@ -604,10 +607,10 @@ export default function ExchangeDirectoryPage() {
                       </div>
                     </div>
 
-                    {exchange.volume24h && (
+                    {volumeOf(exchange) !== undefined && (
                       <div className="mb-4 flex items-center justify-between rounded-lg bg-[var(--border-subtle)] px-3 py-2">
                         <span className="text-xs text-[var(--color-text-muted)]">24h Volume</span>
-                        <span className="font-semibold text-[var(--color-primary)]">{exchange.volume24h}</span>
+                        <span className="font-semibold text-[var(--color-primary)]">{formatVolume(volumeOf(exchange))}</span>
                       </div>
                     )}
 

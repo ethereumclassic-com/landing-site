@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import { formatVolume, useExchangeVolume, VolumeSource } from '@/app/components/ExchangeVolume'
 import { exchanges } from '../../buy/data/exchanges'
 
 const ExternalLinkIcon = () => (
@@ -28,20 +29,11 @@ function parseFeePercent(fee: string | undefined): number {
   return match ? parseFloat(match[1]) : Infinity
 }
 
-function parseVolume(volume: string | undefined): number {
-  if (!volume || volume === 'DEX') return 0
-  const match = volume.replace(/[$,]/g, '').match(/(\d+\.?\d*)/)
-  if (!match) return 0
-  const val = parseFloat(match[1])
-  if (volume.includes('M')) return val * 1000000
-  if (volume.includes('K')) return val * 1000
-  return val
-}
-
 export default function CompareExchangesPage() {
   const [sortField, setSortField] = useState<SortField>('volume')
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc')
   const [filterType, setFilterType] = useState<'all' | 'CEX' | 'DEX'>('all')
+  const { volumeOf } = useExchangeVolume()
 
   // Filter and sort exchanges
   const sortedExchanges = useMemo(() => {
@@ -50,6 +42,7 @@ export default function CompareExchangesPage() {
       return ex.type === filterType
     })
 
+    // Every comparison is ascending; the direction flips it. An exchange with no volume figure counts as the lowest.
     return [...filtered].sort((a, b) => {
       let comparison = 0
       switch (sortField) {
@@ -60,22 +53,22 @@ export default function CompareExchangesPage() {
           comparison = parseFeePercent(a.tradingFee) - parseFeePercent(b.tradingFee)
           break
         case 'volume':
-          comparison = parseVolume(b.volume24h) - parseVolume(a.volume24h)
+          comparison = (volumeOf(a) ?? -1) - (volumeOf(b) ?? -1)
           break
         case 'pairs':
-          comparison = b.pairs.length - a.pairs.length
+          comparison = a.pairs.length - b.pairs.length
           break
       }
       return sortDirection === 'asc' ? comparison : -comparison
     })
-  }, [sortField, sortDirection, filterType])
+  }, [sortField, sortDirection, filterType, volumeOf])
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
     } else {
       setSortField(field)
-      setSortDirection(field === 'tradingFee' ? 'asc' : 'desc')
+      setSortDirection(field === 'tradingFee' || field === 'name' ? 'asc' : 'desc')
     }
   }
 
@@ -140,8 +133,9 @@ export default function CompareExchangesPage() {
                 ))}
               </div>
             </div>
-            <div className="text-sm text-[var(--color-text-muted)]">
+            <div className="text-right text-sm text-[var(--color-text-muted)]">
               Showing {sortedExchanges.length} exchanges
+              <VolumeSource />
             </div>
           </div>
 
@@ -230,9 +224,9 @@ export default function CompareExchangesPage() {
                       )}
                     </td>
                     <td className="px-4 py-3">
-                      {exchange.volume24h && exchange.volume24h !== 'DEX' ? (
+                      {volumeOf(exchange) !== undefined ? (
                         <span className="font-mono text-sm text-[var(--color-text-secondary)]">
-                          {exchange.volume24h}
+                          {formatVolume(volumeOf(exchange))}
                         </span>
                       ) : exchange.type === 'DEX' ? (
                         <span className="text-xs text-[var(--color-text-muted)]">On-chain</span>

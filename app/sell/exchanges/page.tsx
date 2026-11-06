@@ -155,23 +155,6 @@ export default function SellExchangesPage() {
       badge: 'High Liquidity',
     },
     {
-      name: 'Gemini',
-      description: 'US-regulated exchange with focus on security and compliance.',
-      tradingFee: '0.2-0.4%',
-      withdrawalFee: 'Free (10/mo)',
-      minWithdrawal: 'No minimum',
-      payoutMethods: ['ACH', 'Wire', 'Debit Card'],
-      payoutTime: '4-5 days',
-      features: [
-        'SOC 2 certified',
-        'Free withdrawals (limited)',
-        'Insurance coverage',
-        'New York BitLicense',
-      ],
-      url: 'https://gemini.com',
-      badge: 'Regulated',
-    },
-    {
       name: 'Bitstamp',
       description: 'European exchange with long track record and global bank transfers.',
       tradingFee: '0.3-0.5%',

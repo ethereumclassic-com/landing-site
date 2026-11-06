@@ -74,9 +74,18 @@ export interface ExchangeRates {
     etc: AssetPriceHistory
     eth: AssetPriceHistory
   }
+  // ETC's market figures over the last 24 hours, in USD, from /coins/markets. Null in the fallback.
+  market?: EtcMarket | null
   // Metadata
   lastUpdated: string
   source: 'coingecko' | 'fallback'
+}
+
+export interface EtcMarket {
+  market_cap_usd: number
+  volume_24h_usd: number
+  high_24h_usd: number
+  low_24h_usd: number
 }
 
 // Cache entry structure
@@ -243,9 +252,14 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
     const fallbackSupply = fallback.supply
     let supply = fallbackSupply
     let history = fallback.history
+    let market: EtcMarket | null = null
 
     type MarketsEntry = {
       id: string
+      market_cap: number | null
+      total_volume: number | null
+      high_24h: number | null
+      low_24h: number | null
       total_supply: number | null
       circulating_supply: number | null
       max_supply: number | null
@@ -258,6 +272,16 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
     if (marketsResponse.ok) {
       const marketsData: MarketsEntry[] = await marketsResponse.json()
       const byId = Object.fromEntries(marketsData.map((d) => [d.id, d]))
+
+      const etcMarket = byId['ethereum-classic']
+      if (etcMarket?.market_cap && etcMarket.total_volume && etcMarket.high_24h && etcMarket.low_24h) {
+        market = {
+          market_cap_usd: etcMarket.market_cap,
+          volume_24h_usd: etcMarket.total_volume,
+          high_24h_usd: etcMarket.high_24h,
+          low_24h_usd: etcMarket.low_24h,
+        }
+      }
 
       supply = {
         etc: {
@@ -356,6 +380,7 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
       btc_usd,
       supply,
       history,
+      market,
       lastUpdated: new Date().toISOString(),
       source: 'coingecko',
     }

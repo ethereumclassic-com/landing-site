@@ -88,6 +88,7 @@ The site fetches at request or build time; it is not fully static.
 | Blockscout ETC | `lib/pool-hashrate.ts` | per-pool share, from block attribution |
 | Blockscout ETC | `lib/blockscout.ts` | blocks, chain statistics |
 | CoinGecko | `lib/` price helpers | market data |
+| CoinGecko | `lib/exchange-volume.ts` | each listed exchange's 24h ETC volume, which orders the exchange listings |
 
 **Hashrate is derived, not reported.** Blockscout exposes no hashrate field: it
 is block difficulty ÷ Blockscout's own `average_block_time` from `/stats`. Never
@@ -199,6 +200,9 @@ reputation alone.
   without approval.
 - Content adapted from ethereumclassic.org must be audited for dated
   information, dead projects, and fork or governance material before use.
+- Exchange listings are ordered by live 24h ETC volume, the measure of how much
+  of ETC's market an exchange carries. `featured` is an editorial choice, not a
+  volume rank, so do not re-derive it from the figures.
 
 ## Boundaries
 
@@ -226,7 +230,7 @@ reputation alone.
 
 - Commit `.env` files, credentials, or anything under `.local/`
 - Cite a `.local/` path from a tracked file, or move private material into one
-- Hardcode a hashrate, block reward, or era number that a derived value already provides
+- Hardcode a hashrate, block reward, era number, or exchange volume that a derived value already provides
 
 ## Upstream sources of truth
 
