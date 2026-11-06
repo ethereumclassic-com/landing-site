@@ -54,11 +54,12 @@ const submissionFields = [
   { label: 'Long Description', placeholder: 'Detailed description of your app', required: false },
   { label: 'GitHub URL', placeholder: 'https://github.com/your-org/your-repo', required: false },
   { label: 'Contract Address(es)', placeholder: '0x... (if applicable)', required: false },
-  { label: 'Contact Email', placeholder: 'contact@your-app.com', required: true },
 ]
 
 // A new issue on this site's own repository, prefilled with the fields above. The repository
 // carries no issue template, so the form is the body rather than a `template=` parameter.
+// The issue is public, so the form asks for nothing private: the GitHub account that opens
+// it is how the maintainers reach the submitter.
 const SUBMIT_ISSUE_URL = `https://github.com/ethereumclassic-com/landing-site/issues/new?${new URLSearchParams({
   title: '[App Submission] Your App Name',
   body: submissionFields.map((field) => `**${field.label}**${field.required ? ' (required)' : ''}: `).join('\n\n'),
@@ -211,7 +212,7 @@ export default function SubmitAppPage() {
             Ready to Submit?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Send your submission to our team via GitHub or email. We review submissions weekly and will get back to you within a few days.
+            Open a GitHub issue with the information above. The maintainers review each submission against the requirements, and nothing is listed without their approval.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
@@ -225,15 +226,6 @@ export default function SubmitAppPage() {
               </svg>
               Submit via GitHub
             </a>
-            <a
-              href="mailto:apps@ethereumclassic.org?subject=[App%20Submission]%20Your%20App%20Name"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10"
-            >
-              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-              </svg>
-              Submit via Email
-            </a>
           </div>
 
           <div
@@ -243,7 +235,7 @@ export default function SubmitAppPage() {
             <ul className="mt-4 space-y-3 text-sm text-[var(--color-text-secondary)]">
               <li className="flex items-start gap-3">
                 <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-xs font-medium text-[var(--color-primary)]">1</span>
-                <span>Submit your application via GitHub issue or email</span>
+                <span>Open a GitHub issue with the information above</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/20 text-xs font-medium text-[var(--color-primary)]">2</span>
