@@ -2,6 +2,9 @@ import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/researc
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
 import { DISCORD_INVITE_URL } from '@/lib/social'
 
+// Everything here comes from modules read at build, so it is generated once, as /llms.txt is.
+export const dynamic = 'force-static'
+
 const eraSpan = `${getEraEndBlock(CURRENT_ERA - 1) / 1_000_000}M–${getEraEndBlock(CURRENT_ERA) / 1_000_000}M`
 
 export function GET() {

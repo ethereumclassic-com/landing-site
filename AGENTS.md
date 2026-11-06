@@ -70,7 +70,7 @@ app/
 lib/                    → cross-section data fetching and helpers
 hooks/                  → client hooks
 docs/                   → contributor documentation and site content data
-public/llms.txt         → machine-readable site summary; keep in sync with copy
+app/llms.txt/           → machine-readable site summary, generated from the data it cites
 ```
 
 **Colocation rule:** section data lives in `app/<section>/data/*.ts` and is
