@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { DISCORD_INVITE_URL } from '@/lib/social'
+import { DISCORD_URL } from '@/lib/social'
 import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
@@ -177,7 +177,7 @@ export default function CommunityContributePage() {
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={DISCORD_INVITE_URL}
+              href={DISCORD_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"

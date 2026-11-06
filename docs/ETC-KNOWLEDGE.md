@@ -489,7 +489,7 @@ When displaying ETC data on public-facing pages, use these authoritative sources
 - **ETC Docs**: [PLACEHOLDER: Official documentation URL]
 
 ### Community
-- **Discord**: [PLACEHOLDER: Official Discord invite]
+- **Discord**: https://ethereumclassic.com/discord, the site's address for the Ethereum Classic Community server. Link it rather than the invite, which can be rotated: the invite is kept in `lib/social.ts` and read only by the `/discord` redirect.
 - **Twitter/X**: [PLACEHOLDER: Official Twitter handle]
 
 ---

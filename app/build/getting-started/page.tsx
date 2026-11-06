@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { gettingStartedSteps, networks, getRecommendedTools, buildStats } from '../data/build'
-import { DISCORD_INVITE_URL } from '@/lib/social'
+import { DISCORD_URL } from '@/lib/social'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -453,7 +453,7 @@ export default function GettingStartedPage() {
                 View Documentation
               </Link>
               <a
-                href={DISCORD_INVITE_URL}
+                href={DISCORD_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"

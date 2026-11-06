@@ -1,11 +1,16 @@
 /**
  * Community links that get shared as URLs rather than only clicked.
  *
- * The Discord invite lives here because ethereumclassic.com/discord redirects to
- * it, in app/discord/route.ts. An invite can be rotated or revoked, so having one
- * place to change it matters more than for a link that only ever sits in a footer.
+ * Link Discord with DISCORD_URL everywhere: pages, structured data and the llms
+ * files. Only app/discord/route.ts reads the invite, and redirects to it. An
+ * invite can be rotated or revoked, so the address readers copy stays the site's
+ * own, and the invite has one place to change.
  */
 
+/** ethereumclassic.com/discord: the address every page links and shares. */
+export const DISCORD_URL = 'https://ethereumclassic.com/discord'
+
+/** The invite /discord redirects to. Read only by app/discord/route.ts. */
 export const DISCORD_INVITE_URL = 'https://discord.com/invite/Tq57jxSwsa'
 
 /**

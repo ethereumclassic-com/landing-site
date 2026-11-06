@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { explorerAPIs, getDocsByCategory, getMainnetEndpoints, getTestnetEndpoints } from '../data/build'
-import { DISCORD_INVITE_URL } from '@/lib/social'
+import { DISCORD_URL } from '@/lib/social'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -356,7 +356,7 @@ export default function DocsPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href={DISCORD_INVITE_URL}
+                href={DISCORD_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"

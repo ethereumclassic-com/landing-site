@@ -1,6 +1,6 @@
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
-import { DISCORD_INVITE_URL } from '@/lib/social'
+import { DISCORD_URL } from '@/lib/social'
 
 // Everything here comes from modules read at build, so it is generated once, as /llms.txt is.
 export const dynamic = 'force-static'
@@ -406,7 +406,7 @@ Japan:
 - Website: https://ethereumclassic.com
 - GitHub: https://github.com/ethereumclassic-com
 - Twitter/X: https://x.com/ETC_Network
-- Discord: ${DISCORD_INVITE_URL}
+- Discord: ${DISCORD_URL}
 - Reddit: https://reddit.com/r/EthereumClassic
 - News RSS: https://ethereumclassic.com/news/feed.xml
 - Summary context: https://ethereumclassic.com/llms.txt

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { DISCORD_INVITE_URL } from '@/lib/social'
+import { DISCORD_URL } from '@/lib/social'
 import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
@@ -20,43 +20,37 @@ const socialPlatforms = [
   {
     name: 'Discord',
     description: 'Main community server for real-time discussions, support, and announcements',
-    url: DISCORD_INVITE_URL,
-    members: '20K+',
+    url: DISCORD_URL,
     category: 'Chat',
   },
   {
     name: 'Telegram',
     description: 'Active chat group for ETC news and community updates',
     url: 'https://t.me/ethclassic',
-    members: '15K+',
     category: 'Chat',
   },
   {
     name: 'X (Twitter)',
     description: 'Official ETC Network account for news, updates, and ecosystem highlights',
     url: 'https://x.com/ETC_Network',
-    members: '600K+',
     category: 'Social',
   },
   {
     name: 'Reddit',
     description: 'r/EthereumClassic for discussions, memes, and community governance',
     url: 'https://reddit.com/r/EthereumClassic',
-    members: '200K+',
     category: 'Forum',
   },
   {
     name: 'GitHub',
     description: 'Open-source development hub for core clients, tools, and ecosystem projects',
     url: 'https://github.com/ethereumclassic',
-    members: '50+ repos',
     category: 'Development',
   },
   {
     name: 'YouTube',
     description: 'Core dev calls, tutorials, and community content',
     url: 'https://youtube.com/@ETCCooperative',
-    members: '5K+',
     category: 'Media',
   },
 ]
@@ -136,7 +130,6 @@ export default function DirectoryCommunityPage() {
                     </span>
                   </div>
                   <p className="mt-2 text-sm text-[var(--color-text-muted)]">{platform.description}</p>
-                  <div className="mt-3 text-sm font-medium text-[var(--color-primary)]">{platform.members} members</div>
                 </a>
               ))}
             </div>
