@@ -1,3 +1,19 @@
+import Link from 'next/link'
+import { CURRENT_ERA, getBlockRewardForEra } from '@/app/research/data/emission'
+
+// The worked example's inputs. The network hashrate and the ETC price move constantly, so the
+// text states them as the example's assumptions; the block reward is the current era's.
+const EXAMPLE = { gpuMHs: 180, watts: 390, kwhUSD: 0.1, networkTHs: 150, etcUSD: 7, blockSeconds: 13 }
+const blockReward = getBlockRewardForEra(CURRENT_ERA)
+const share = (EXAMPLE.gpuMHs * 1e6) / (EXAMPLE.networkTHs * 1e12)
+const blocksPerDay = 86_400 / EXAMPLE.blockSeconds
+const dailyEtc = share * blocksPerDay * blockReward
+const dailyRevenue = dailyEtc * EXAMPLE.etcUSD
+const dailyPower = (EXAMPLE.watts / 1000) * 24 * EXAMPLE.kwhUSD
+const dailyResult = dailyRevenue - dailyPower
+
+const usd = (value: number) => `${value < 0 ? '−' : ''}$${Math.abs(value).toFixed(2)}`
+
 export default function MiningProfitability() {
   return (
     <>
@@ -66,28 +82,49 @@ export default function MiningProfitability() {
 
       <h3>Example Calculation</h3>
       <p>
-        For a 180 MH/s GPU (typical single card):
+        For a {EXAMPLE.gpuMHs} MH/s GPU (typical single card), taking a network hashrate of {EXAMPLE.networkTHs} TH/s and an
+        ETC price of ${EXAMPLE.etcUSD} for the example:
       </p>
       <ul>
-        <li>Power consumption: 390W</li>
-        <li>Electricity rate: $0.10/kWh</li>
-        <li>Daily power cost: 0.39kW × 24h × $0.10 = $0.94</li>
-        <li>Estimated daily ETC: ~0.0125 ETC</li>
-        <li>At current prices: Revenue ≈ $0.16/day</li>
-        <li>Daily profit/loss: approximately -$0.77 (loss)</li>
+        <li>Power consumption: {EXAMPLE.watts}W</li>
+        <li>Electricity rate: ${EXAMPLE.kwhUSD.toFixed(2)}/kWh</li>
+        <li>
+          Daily power cost: {EXAMPLE.watts / 1000}kW × 24h × ${EXAMPLE.kwhUSD.toFixed(2)} = {usd(dailyPower)}
+        </li>
+        <li>
+          Network share: {EXAMPLE.gpuMHs} MH/s ÷ {EXAMPLE.networkTHs} TH/s = {(share * 100).toFixed(5)}%
+        </li>
+        <li>
+          Daily ETC: about {Math.round(blocksPerDay).toLocaleString('en-US')} blocks × {blockReward} ETC × that share ≈{' '}
+          {dailyEtc.toFixed(4)} ETC
+        </li>
+        <li>
+          Revenue at ${EXAMPLE.etcUSD} per ETC: ≈ {usd(dailyRevenue)}/day
+        </li>
+        <li>
+          Daily profit/loss: about {usd(dailyResult)}
+          {dailyResult < 0 ? ' (loss)' : ''}
+        </li>
       </ul>
       <p className="mt-4 text-sm text-[var(--color-text-muted)]">
-        Note: This example uses approximate current network values. Always use a live calculator like WhatToMine for accurate estimates based on real-time difficulty and prices.
+        Note: The example&apos;s network hashrate and price are assumptions, not current values. The{' '}
+        <Link href="/mining/profitability" className="text-[var(--color-primary)] hover:underline">profitability calculator</Link> uses live figures.
       </p>
 
-      <h2>Current Network Statistics</h2>
+      <h2>Network Statistics</h2>
       <p>
-        Key metrics that affect profitability (these change constantly):
+        Key metrics that affect profitability:
       </p>
       <ul>
-        <li><strong>Block Reward:</strong> ~1.64 ETC average (base reward plus uncle rewards; decreases 20% every 5 million blocks)</li>
-        <li><strong>Block Time:</strong> ~13 seconds average</li>
-        <li><strong>Network Hashrate:</strong> ~150 TH/s (fluctuates with miner activity)</li>
+        <li>
+          <strong>Block Reward:</strong> {blockReward} ETC per block in Era {CURRENT_ERA}, plus uncle rewards; it falls 20%
+          every 5,000,000 blocks
+        </li>
+        <li><strong>Block Time:</strong> about 13 seconds on average</li>
+        <li>
+          <strong>Network Hashrate:</strong> moves with miner activity; the{' '}
+          <Link href="/mining/hashrate" className="text-[var(--color-primary)] hover:underline">current figure</Link> is derived live from Blockscout
+        </li>
         <li><strong>Algorithm:</strong> ETCHash (memory-intensive)</li>
       </ul>
       <p className="mt-4 text-sm text-[var(--color-text-muted)]">

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function PoolVsSolo() {
   return (
     <>
@@ -160,18 +162,18 @@ export default function PoolVsSolo() {
         Estimate your expected time between solo blocks:
       </p>
       <ol>
-        <li>Check current network hashrate (<a href="https://etc.blockscout.com/stats" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">Blockscout</a>)</li>
-        <li>Calculate your percentage: (Your hashrate / Network hashrate) × 100</li>
-        <li>Average block time is ~13 seconds</li>
-        <li>Expected blocks per day: Your % × (86400 / 15.6)</li>
+        <li>Check the <Link href="/mining/hashrate" className="text-[var(--color-primary)] hover:underline">current network hashrate</Link></li>
+        <li>Calculate your share: your hashrate ÷ network hashrate</li>
+        <li>Blocks average about 13 seconds, so the network finds about 6,650 a day</li>
+        <li>Expected blocks per day: your share × 6,650</li>
       </ol>
       <p>
-        Example: With 500 MH/s on a 150 TH/s network:
+        Example: with 500 MH/s, against a network hashrate of 150 TH/s taken for the example:
       </p>
       <ul>
-        <li>Your share: 0.00027%</li>
-        <li>Expected blocks/day: 0.0000027 × 5538 ≈ 0.015</li>
-        <li>Average days per block: ~67 days</li>
+        <li>Your share: 500 MH/s ÷ 150 TH/s ≈ 0.0000033 (0.00033%)</li>
+        <li>Expected blocks/day: 0.0000033 × 6,650 ≈ 0.022</li>
+        <li>Average days per block: about 45 days</li>
       </ul>
 
       <h2>Hybrid Approaches</h2>
