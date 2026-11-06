@@ -50,8 +50,6 @@ export async function GET() {
       <link>${baseUrl}/news</link>
     </image>
     <copyright>Copyright ${new Date().getFullYear()} EthereumClassic.com</copyright>
-    <managingEditor>news@ethereumclassic.com (EthereumClassic.com)</managingEditor>
-    <webMaster>webmaster@ethereumclassic.com (EthereumClassic.com)</webMaster>
     <ttl>60</ttl>
     ${recentArticles
       .map(
@@ -65,7 +63,6 @@ export async function GET() {
       <pubDate>${new Date(article.date).toUTCString()}</pubDate>
       <category>${escapeXml(article.category)}</category>
       ${article.author ? `<dc:creator>${escapeXml(article.author)}</dc:creator>` : ''}
-      ${article.author ? `<author>news@ethereumclassic.com (${escapeXml(article.author)})</author>` : ''}
       ${article.tags ? article.tags.map((tag) => `<category>${escapeXml(tag)}</category>`).join('\n      ') : ''}
       <media:content url="${cardUrl(article.slug)}" medium="image" type="image/png" width="${CARD_SIZE.width}" height="${CARD_SIZE.height}"/>
     </item>`
