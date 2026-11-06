@@ -64,10 +64,11 @@ Plugin upstream repositories (link these; every `github.com/ethereumclassic/<plu
 **Repository**: https://github.com/ethereumclassic/core-geth
 **Docs**: https://docs.coregeth.com
 **Releases**: https://github.com/ethereumclassic/core-geth/releases
-**Maintainer**: Ethereum Classic core developers (The core-geth Authors). White B0x carried out the v1.13
-modernization. The ETC Cooperative stopped developing Core-Geth in 2025, and the previous repository,
-`etclabscore/core-geth`, carries only the v1.12.x releases.
-**Security contact**: security@ethereumclassic.com, or private vulnerability reporting on the repository
+**Maintainer**: Ethereum Classic core developers and community contributors (The core-geth Authors), who do
+the work, with the Ethereum Classic DAO as the standing legal entity that maintains and funds the client today
+as its funder of last resort. Core-Geth copy names no contractor. The ETC Cooperative stopped developing
+Core-Geth in 2025, and the previous repository, `etclabscore/core-geth`, carries only the v1.12.x releases.
+**Security contact**: security@ethereumclassic.net, or private vulnerability reporting on the repository
 
 **Category**: A go-ethereum derivative maintained for Ethereum Classic. Not native, and not a plugin.
 
@@ -83,7 +84,8 @@ modernization. The ETC Cooperative stopped developing Core-Geth in 2025, and the
 - Major refactoring would be required to maintain compatibility
 
 Do not write that either client replaces the other, or that Core-Geth is sunsetting. It is
-released and maintained in the community organization, and that is what the site recommends.
+released and maintained in the `ethereumclassic` GitHub organization, and that is what the site
+recommends.
 
 ### Fukuii
 
@@ -231,25 +233,28 @@ codebase.
 ### ETC Cooperative
 
 **Website**: https://etccooperative.org
-**Role**: Primary funding and development organization for ETC
+**Role**: A US 501(c)(3) non-profit that funded Ethereum Classic public goods from 2017. Its staff
+maintained Core-Geth from January 2022, at `etclabscore/core-geth`, through the Mystique and Spiral
+upgrades, alongside the peer discovery lists, the bootnodes and the public JSON-RPC endpoints. It entered
+maintenance mode at the end of 2024, stopped developing Core-Geth in 2025, and its board has communicated
+that it will dissolve, with the public goods continuing in the `ethereumclassic` GitHub organization.
 
-**Responsibilities**:
-- Network infrastructure
-- Developer grants
-- Community coordination
+**Grants**: It took part in the ETC Grants DAO program with Bitmain from 2023 and left it on
+December 5, 2024. Its 2024 retrospective says it stays in maintenance mode, with spending minimized,
+until its funding runs out.
 
-**Key Personnel**:
-- [PLACEHOLDER: Executive Director?]
-- [PLACEHOLDER: Key developers?]
+Write about it in the past tense, credited for what it funded. Never present it as a current steward,
+a grant source or a donation route, and give no dissolution date. Sources: Core-Geth's
+[ETC Cooperative transition](https://docs.coregeth.com/etc-cooperative-transition/) page and the
+Cooperative's [2024 retrospective](https://etccooperative.org/etc-cooperative-retrospective-2024.pdf).
 
 ### ETC Labs
 
 **Website**: https://etclabs.org
-**Role**: [PLACEHOLDER: Current role of ETC Labs?]
-
-**Historical Context**:
-- [PLACEHOLDER: History of ETC Labs]
-- [PLACEHOLDER: Relationship with ETC Cooperative]
+**Role**: Led Core-Geth's development from the Atlantis upgrade in 2019 to Magneto in 2021, through the
+fork and rebrand of Multi-Geth to Core-Geth, publishing as ETC Labs and ETC Core. It left the Ethereum
+Classic ecosystem in 2021, and `etclabscore/core-geth` passed to the ETC Cooperative. Source:
+coregeth.com/about, from Core-Geth's project history.
 
 ### IOHK (Historical)
 
@@ -497,18 +502,17 @@ The following sections need input from ETC Core Contributors:
 2. **Mantis historical context (active period, deprecation reason)**
 3. **Olympia upgrade specific scope (EIPs included)**
 4. **Organization personnel and current roles**
-5. **ETC Labs current status**
-6. **IOHK departure details**
-7. **Fukuii Authors — individual company roles beyond Fukuii**
-8. **Treasury proposal history**
-9. **51% attack specific details**
-10. **ETH Merge hashrate impact numbers**
-11. **Mordor testnet launch date**
-12. **Network upgrade naming conventions**
-13. **Ecosystem project details (ETCswap, USC)**
-14. **HebeSwap status**
-15. **POW Summit/Alliance involvement**
-16. **Official community links**
+5. **IOHK departure details**
+6. **Fukuii Authors — individual company roles beyond Fukuii**
+7. **Treasury proposal history**
+8. **51% attack specific details**
+9. **ETH Merge hashrate impact numbers**
+10. **Mordor testnet launch date**
+11. **Network upgrade naming conventions**
+12. **Ecosystem project details (ETCswap, USC)**
+13. **HebeSwap status**
+14. **POW Summit/Alliance involvement**
+15. **Official community links**
 
 ---
 

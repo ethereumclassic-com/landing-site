@@ -138,17 +138,31 @@ includes transaction fees, which vary per block.
   contracts, operating continuously since 2015, EVM-native and interoperable
   with the Ethereum ecosystem.
 - **Forward-looking.** No fork debates, governance disputes, or historical
-  controversy — that is the community site's territory, not this one's.
+  controversy, which is the community site's territory, not this one's. The one
+  sanctioned exception is the Core-Geth security material: the v1.12-versus-v1.13
+  facts and the `/build/clients/core-geth-security-audit` page, kept aligned to
+  coregeth.com's restraint (document the facts, name no individual, attribute the
+  work to Ethereum Classic's core developers), with the deeper narrative linked
+  out to coregeth.com and ethereumclassicdao.org rather than carried here.
 - **Olympia:** advances the execution layer through Dencun, Pectra and Fusaka,
   and carries that work into Glamsterdam. Do **not** claim "full Glamsterdam
   parity" — ECIP-1121 includes two of Glamsterdam's seven execution-layer EIPs;
   the rest are blocked on EIP-7928 and EIP-4788 dependencies, not on
   Proof-of-Stake grounds.
 - **Activation:** targeted for 2027. The activation *block* is TBD.
-- **Clients:** Fukuii is ETC's first native client. Core-Geth is a go-ethereum
-  derivative — not native, not a plugin. Besu, Erigon, Ethrex, Go-Ethereum,
-  Nethermind and Reth are ETC *plugins* — never "overlays". A plugin is not a
-  client implementation and is never counted among built or shipped clients.
+- **Clients:** Core-Geth is the recommended client to run: an Ethereum Classic
+  execution client and public-good Go reference client (never "the"), a
+  go-ethereum derivative released and maintained in the `ethereumclassic` GitHub
+  organization. Its core developers and community contributors do the work, and
+  the Ethereum Classic DAO maintains and funds it today as its funder of last
+  resort. coregeth.com leads its framing. Recommend the v1.13 line, never a
+  patch; the v1.12 line is vulnerable. A reader told to install or move a node
+  lands on coregeth.com/downloads/, and this site carries no copy of those
+  commands. Core-Geth is not native and not a plugin. Fukuii is a native ETC client and a credible
+  alternative, not the recommended client and not Core-Geth's successor. Besu,
+  Erigon, Ethrex, Go-Ethereum, Nethermind and Reth are ETC *plugins*, never
+  "overlays". A plugin is not a client implementation and is never counted among
+  built or shipped clients.
 - **Governance:** the Olympia DAO makes binding decisions via OpenZeppelin
   Governor 5.x. Futarchy (ECIP-1117/1118) is an open signal layer and a
   Child-DAO, never binding.
@@ -222,7 +236,8 @@ spec wins and the site is corrected.
 | Subject | Authority |
 |---|---|
 | ETC technical claims, clients, upgrades | `docs/ETC-KNOWLEDGE.md` |
-| Olympia ECIPs (1111–1122) | the ECIPs repository |
+| Core-Geth facts, v1.12/v1.13, security, MESS | coregeth.com, docs.coregeth.com, and `ethereumclassic/core-geth` |
+| Olympia ECIPs (1111–1122), and ECBP-1100/1110 (MESS) | the ECIPs repository |
 | EIP contents and dependencies | `eips.ethereum.org` |
 | Fukuii positioning and URLs | fukuii.com and `chippr-robotics/fukuii` |
-| Chain state — height, difficulty, block reward | Blockscout |
+| Chain state, height, difficulty, block reward | Blockscout |
