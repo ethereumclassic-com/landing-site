@@ -46,6 +46,73 @@ export const authors: Record<string, Author> = {
 export const articles: Article[] = [
   // Featured Articles - Recent and historically significant
   {
+    slug: 'core-geth-v1-12-to-v1-13-migration',
+    title: 'Moving a Core-Geth v1.12 Node to the v1.13 Line',
+    excerpt:
+      'Every Core-Geth node on a v1.12 release should move to the v1.13 line. Who should move, why, what the move changes for an operator, and where the steps are.',
+    content: `Every Core-Geth node still on a \`v1.12\` release should move to the \`v1.13\` line, published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest) in the \`ethereumclassic\` GitHub organization. The steps for each platform are on [coregeth.com](https://coregeth.com/downloads/#upgrade), and the [migration guide](https://docs.coregeth.com/tutorials/v1.13.0-migration/) gives the reasons behind them.
+
+## Who should move
+
+Every node on a \`v1.12\` release, \`v1.12.23\` included, whatever it serves: an exchange or custodian, a mining pool or solo miner, an RPC endpoint, an explorer, or a node you run for yourself. The emergency releases cut in 2026 closed some of the \`v1.12\` flaws and left others open, so no \`v1.12\` release is one to stay on.
+
+A node on a release older than \`v1.12.17\` is a separate case. Those releases do not schedule the Spiral upgrade, so such a node left Ethereum Classic at block 19,250,000 and does not resume where it stopped.
+
+## Why
+
+Core-Geth went 21 months without security maintenance, from \`v1.12.20\` in June 2024 to the emergency releases of March 2026. In March 2026 one of the flaws left open in that time, the handshake crash CVE-2026-22862, was used against Core-Geth \`v1.12\` bootnodes, which crash-looped until a patch reached them. The \`v1.12\` releases cut since then closed some of the flaws and left others open, and every \`v1.12\` archive was built with a Go toolchain that no longer receives security fixes.
+
+The \`v1.13\` line closes every client CVE the audits found in the \`v1.12\` client code, bounds GraphQL queries, carries neither of the regressions the last \`v1.12\` releases introduced, and is built with a supported Go toolchain. On September 17, 2026, etcnodes.org counted 524 Core-Geth nodes, and 9 of them ran \`v1.13.0\`. [coregeth.com/security](https://coregeth.com/security/) has the audits, and what each \`v1.12\` release fixed and left open.
+
+## What the move changes
+
+- **The P2P node key rotates, and that is required.** One of the \`v1.12\` flaws leaks bits of the node key across repeated handshakes, and no fix can take back what already leaked. The move renames the old key file aside, and the node writes a new key on its next start, so its enode ID changes: give the new ID to every node that lists this one as a static or trusted peer, and to the monitoring and allowlists that name it. A key that has only ever run the \`v1.13\` line was never exposed. [The node key](https://docs.coregeth.com/operate/security/#the-node-key) explains it.
+- **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
+- **Discovery settings added for \`v1.12\` come out.** A \`--discovery.dns\` or \`--bootnodes\` flag added on the \`v1.12\` line comes out before the first start on the \`v1.13\` line, and a config file loses its \`BootstrapNodes\`, \`EthDiscoveryURLs\` and \`SnapDiscoveryURLs\` lines unless you set them yourself on purpose, so the node reads the bootnodes and peer discovery lists its release ships with.
+- **A container keeps its chain only where its data is mounted.** A container started with no data mount holds the chain inside itself, so the container steps check where the data is before the stop, and copy it out first when it is inside the container.
+- **The chain data and the accounts stay.** Nothing resyncs, and the account keystore is not touched.
+
+Each of these is a step on [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), with the commands for Linux, macOS, Windows, containers and a build from source.
+
+## In what order
+
+1. **Optional, and best practice: one trial node.** Before moving a node you depend on, set up one new node on the \`v1.13\` line on a machine of its own, point no RPC clients or miners at it, and let it catch up with the network, as checked below.
+2. **Then each node in turn, with the steps for its platform.** They keep the node running until the release is downloaded and checked, keep the old binary or container so you can roll back, and rotate the key before the node starts again. [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade) has them, and the [migration guide](https://docs.coregeth.com/tutorials/v1.13.0-migration/) has a guide per platform and the rollback.
+
+The trial node has caught up when the first command returns \`false\` and the second returns a number above zero, where \`<datadir>\` is the node's data directory. [How to tell it is done](https://docs.coregeth.com/getting-started/run-classic-node/#how-to-tell-it-is-done) has two more checks.
+
+\`\`\`shell
+geth --classic attach --exec 'eth.syncing' <datadir>/geth.ipc
+geth --classic attach --exec 'net.peerCount' <datadir>/geth.ipc
+\`\`\`
+
+## A node that cannot move yet
+
+A \`v1.12\` node that cannot move yet can add the \`--discovery.dns\` flag, which points it at the peer discovery lists published from the \`ethereumclassic\` organization, so it keeps finding peers after the lists \`v1.12\` releases read by default stop being updated. It is a small step that closes none of the flaws the audits found in the \`v1.12\` line. [coregeth.com](https://coregeth.com/downloads/#discovery-flag) has the flag for each network, and what changes for a node started from a config file or in a container.
+
+## Where releases come from
+
+Core-Geth releases are published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest). \`etclabscore/core-geth\` is the previous namespace: archives still published there are built from the older code, none carries every \`v1.13\` fix, and the ETC Cooperative board has communicated its intent to archive that repository. A node, script or mirror watching it will not see a new release. Check each download's checksum and build attestation with the steps on [coregeth.com/downloads](https://coregeth.com/downloads/#verify).
+
+## What else moves as the ETC Cooperative winds down
+
+- **Peer discovery.** The \`v1.13\` line reads the lists published from [ethereumclassic/discv4-dns-lists](https://github.com/ethereumclassic/discv4-dns-lists) by default, and ships with bootnodes run by the Core-Geth maintainers.
+- **Public JSON-RPC.** \`etc.rivet.link\` went offline in late August 2026. For a public endpoint, use the lists on ChainList for [Ethereum Classic](https://chainlist.org/chain/61) and [Mordor](https://chainlist.org/chain/63) while endpoints run from the \`ethereumclassic\` organization are stood up. Anything you depend on should run against a node you control.
+- **Security contact.** Pools, exchanges and service providers should use security@ethereumclassic.net. A person answers it: one of the core developers who maintain Core-Geth.
+
+[The ETC Cooperative transition](https://docs.coregeth.com/etc-cooperative-transition/) lists where each service continues.
+
+## Who maintains and funds Core-Geth
+
+Core-Geth is maintained in the \`ethereumclassic\` organization by Ethereum Classic's core developers and community contributors, who do the work, together with the [Ethereum Classic DAO](https://ethereumclassicdao.org), a Wyoming DAO LLC and the standing legal entity that maintains and funds the client today as its funder of last resort. The DAO does not control or lead Ethereum Classic, and it is not the only organization that can fund the work: what the work needs is steady funding from the stakeholders who depend on it, so that it no longer rests on a single backer. [coregeth.com/sponsor](https://coregeth.com/sponsor/) sets out who has funded Core-Geth and how to sponsor it, and sponsorship is arranged through donations@ethereumclassic.net.`,
+    date: '2026-11-05',
+    category: 'Security',
+    featured: true,
+    tags: ['Core-Geth', 'Security', 'Node Operators', 'Migration'],
+    author: 'ETC Community',
+    readTime: 5,
+  },
+  {
     slug: 'spiral-network-upgrade',
     title: 'Spiral Network Upgrade Brings Shanghai EVM Equivalence',
     excerpt:
@@ -346,7 +413,7 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
     slug: 'mess-implemented',
     title: 'MESS: Modified Exponential Subjective Scoring Implemented',
     excerpt:
-      'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. MESS was later deprecated after hashrate grew substantially post-Merge.',
+      'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. As hashrate grew after the Merge, ECBP-1110 later set its default to off, and MESS stays in the client as a setting each node operator chooses.',
     content: `Following the August 2020 chain reorganization attacks, Ethereum Classic implemented ECBP-1100 — Modified Exponential Subjective Scoring (MESS) — a novel approach to enhancing chain security without introducing centralized checkpoints.
 
 ## What is MESS?
@@ -368,9 +435,9 @@ Longer reorganizations require proportionally more work to succeed, making deep 
 - **No Centralization**: Does not rely on checkpoints, trusted parties, or finality gadgets
 - **Preserves PoW Model**: Transactions still achieve probabilistic finality through proof-of-work
 
-## Deprecation
+## Default off under ECBP-1110
 
-MESS was deprecated after Ethereum's Merge in September 2022, when GPU miners migrated to ETC and network hashrate increased from ~25 TH/s to over 200 TH/s. At that hashrate level, the economic cost of a 51% attack became prohibitively expensive without MESS, and the additional reorganization penalty was no longer necessary.
+MESS was never removed from the client. After Ethereum's Merge in September 2022, GPU miners migrated to ETC and network hashrate increased from ~25 TH/s to over 200 TH/s. At that hashrate level the economic cost of a 51% attack became prohibitive without MESS, so ECBP-1110 set its default to off from block 19,250,000. Each node operator can still turn MESS on or off with a flag, according to their own security needs.
 
 ## Specification
 
@@ -794,7 +861,7 @@ Modified Exponential Subjective Scoring (MESS) was activated in October 2020. ME
 
 ## Long-Term Resolution
 
-The most effective security improvement came in September 2022, when Ethereum's transition to proof-of-stake caused GPU miners to migrate to ETC. Network hashrate increased from ~25 TH/s to over 200 TH/s, making the economic cost of a 51% attack prohibitively expensive. MESS was subsequently deprecated, as the hashrate increase provided sufficient natural protection.
+The most effective security improvement came in September 2022, when Ethereum's transition to proof-of-stake caused GPU miners to migrate to ETC. Network hashrate increased from ~25 TH/s to over 200 TH/s, making the economic cost of a 51% attack prohibitively expensive. With the hashrate increase providing natural protection, ECBP-1110 later set MESS's default to off, and node operators can still turn it on.
 
 ## Lessons
 
@@ -807,14 +874,14 @@ The 2020 attacks demonstrated that proof-of-work security is directly proportion
   },
   {
     slug: 'core-geth-client',
-    title: 'Core-Geth: The Reference ETC Client',
+    title: 'Core-Geth: A Reference ETC Client',
     excerpt:
-      'Core-Geth became the primary Ethereum Classic client, forked from go-ethereum with multi-chain support for ETC, ETH, and testnets.',
-    content: `Core-Geth is the primary Ethereum Classic client, maintained as a fork of go-ethereum (Geth) with native support for ETC, ETH, and their respective testnets. It serves as the reference implementation for the Ethereum Classic protocol.
+      'Core-Geth is an Ethereum Classic execution client, descended from go-ethereum through Multi-Geth, with multi-chain support for ETC, ETH, and testnets.',
+    content: `Core-Geth is an Ethereum Classic execution client and a reference client for the Ethereum Classic protocol. It descends from go-ethereum (Geth) through Multi-Geth, with native support for ETC, ETH, and their respective testnets.
 
 ## Origins
 
-Core-Geth evolved from Multi-Geth, a multi-chain variant of go-ethereum maintained by ETC Labs. When Multi-Geth development transitioned to broader community stewardship, it was renamed Core-Geth to reflect its role as the core reference client for ETC.
+Core-Geth descends from Multi-Geth, which forked go-ethereum in March 2018 to serve several networks from one client, holding chain rules as configuration rather than as code branches. In 2020 ETC Labs forked and rebranded Multi-Geth as Core-Geth, keeping that configuration model.
 
 ## Key Features
 
@@ -1781,7 +1848,7 @@ After Ethereum's Merge, ETC's hashrate increased dramatically, making 51% attack
 
 ## MESS and Additional Protections
 
-In 2020, following 51% attacks, ETC implemented MESS (Modified Exponential Subjective Scoring, ECBP-1100) to penalize deep reorganizations. MESS was later deprecated after the post-Merge hashrate increase made attacks economically infeasible.
+In 2020, following 51% attacks, ETC implemented MESS (Modified Exponential Subjective Scoring, ECBP-1100) to penalize deep reorganizations. After the post-Merge hashrate increase made attacks economically infeasible, ECBP-1110 set MESS's default to off, and node operators can still turn it on.
 
 ## Compared to PoS Finality
 
@@ -1886,10 +1953,10 @@ Describes a process surrounding ETC (like the ECIP process itself).
 | ECIP-1017 | Monetary Policy and Final Modification to the Ethereum Classic Emission Schedule | Final |
 | ECIP-1054 | Atlantis EVM and Protocol Upgrades | Final |
 | ECIP-1056 | Agharta EVM and Protocol Upgrades | Final |
-| ECIP-1061 | Blake2b, Derivation Path, and ECIP-1061 | Final |
-| ECIP-1078 | Phoenix EVM and Protocol Upgrades | Final |
+| ECIP-1061 | Aztlán EVM and Protocol Upgrades (Yingchun Edition) | Rejected |
+| ECIP-1088 | Phoenix EVM and Protocol Upgrades | Final |
 | ECIP-1099 | Calibrate Epoch Duration (Thanos/Etchash) | Final |
-| ECIP-1100 | MESS (Modified Exponential Subjective Scoring) | Deprecated |
+| ECIP-1100 | MESS (Modified Exponential Subjective Scoring) | Active |
 | ECIP-1103 | Magneto EVM and Protocol Upgrades | Final |
 | ECIP-1104 | Mystique EVM and Protocol Upgrades | Final |
 | ECIP-1109 | Spiral EVM and Protocol Upgrades | Final |
@@ -1911,7 +1978,7 @@ The ECIP process is open to anyone. Proposals are submitted as pull requests to 
     slug: 'reorg-mitigation',
     title: 'Chain Reorganization Mitigation on ETC',
     excerpt:
-      'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations — and later deprecated it as hashrate grew.',
+      'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations — and later, as hashrate grew, ECBP-1110 set its default to off while keeping it available to every node operator.',
     content: `In August 2020, Ethereum Classic experienced multiple 51% attacks that resulted in deep chain reorganizations and double-spend attempts. The community responded with MESS (Modified Exponential Subjective Scoring), a novel defense mechanism.
 
 ## The 2020 Attacks
@@ -1945,9 +2012,9 @@ When Ethereum transitioned to proof-of-stake in September 2022, GPU miners migra
 
 This dramatically changed the economics of 51% attacks. The cost to rent sufficient hashrate to attack ETC became prohibitively expensive.
 
-## Deprecation
+## Default off under ECBP-1110
 
-With the post-Merge hashrate providing strong natural protection, MESS was deprecated. The community determined that the economic security from high hashrate made the additional subjective penalty unnecessary — and removing it simplified the client codebase.
+With the post-Merge hashrate providing strong natural protection, ECBP-1110 set MESS's default to off. The community determined that the economic security from high hashrate made the additional subjective penalty unnecessary by default. MESS was not removed: it stays in the client, and each node operator can turn it on or off according to their own security needs.
 
 ## Lessons Learned
 
