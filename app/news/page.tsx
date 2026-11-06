@@ -145,7 +145,7 @@ export default function NewsPage() {
                         {article.title}
                       </h3>
                       <span className="text-xs text-[var(--color-text-muted)]">
-                        {new Date(article.date).toLocaleDateString('en-US', {
+                        {new Date(article.date).toLocaleDateString('en-US', { timeZone: 'UTC',
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',

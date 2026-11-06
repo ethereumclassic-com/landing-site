@@ -372,7 +372,7 @@ export function ExchangeReviewContent({ review, relatedReviews }: ExchangeReview
 
               {/* Last Updated */}
               <div className="text-center text-sm text-[var(--color-text-muted)]">
-                Review updated: {new Date(review.lastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                Review updated: {new Date(review.lastUpdated).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric' })}
               </div>
             </div>
           </div>

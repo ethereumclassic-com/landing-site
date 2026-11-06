@@ -57,7 +57,7 @@ function PlaceholderTemplate({ entry }: { entry: CDCEntry }) {
 
 function formatDate(date: string) {
   if (date === '2026-TBD') return 'TBD'
-  return new Date(date).toLocaleDateString('en-US', {
+  return new Date(date).toLocaleDateString('en-US', { timeZone: 'UTC',
     year: 'numeric',
     month: 'long',
     day: 'numeric',

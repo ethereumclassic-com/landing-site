@@ -55,7 +55,7 @@ const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString('en-US', { timeZone: 'UTC',
     year: 'numeric',
     month: 'long',
     day: 'numeric',

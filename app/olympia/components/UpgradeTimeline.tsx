@@ -66,7 +66,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                 )}
                 {fork.date && (
                   <span className="text-xs text-[var(--color-text-muted)]">
-                    {new Date(fork.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    {new Date(fork.date).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' })}
                   </span>
                 )}
                 {fork.ecips ? (

@@ -25,7 +25,7 @@ export default function NewsLead({ article }: { article: Article }) {
   const isPlaceholder = !article.image
   const imageSrc = article.image ?? categoryBannerSrc(article.category, resolvedTheme)
 
-  const date = new Date(article.date).toLocaleDateString('en-US', {
+  const date = new Date(article.date).toLocaleDateString('en-US', { timeZone: 'UTC',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
