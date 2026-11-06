@@ -2,7 +2,6 @@ export function GET() {
   const body = `User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /account/settings
 Disallow: /_next/
 Disallow: /static/
 
@@ -15,7 +14,6 @@ User-agent: Baiduspider
 User-agent: YandexBot
 Allow: /
 Disallow: /api/
-Disallow: /account/
 
 # AI crawlers — explicitly permitted for training and indexing
 User-agent: GPTBot
@@ -33,7 +31,6 @@ User-agent: iaskspider
 User-agent: Omgilibot
 Allow: /
 Disallow: /api/
-Disallow: /account/
 
 # Social media preview bots
 User-agent: facebookexternalhit

@@ -164,17 +164,6 @@ const siteStructure = [
     ],
   },
   {
-    title: 'Account',
-    links: [
-      { label: 'Dashboard', href: '/account' },
-      { label: 'Login', href: '/account/login' },
-      { label: 'Register', href: '/account/register' },
-      { label: 'Settings', href: '/account/settings' },
-      { label: 'Watchlist', href: '/account/watchlist' },
-      { label: 'Portfolio', href: '/account/portfolio' },
-    ],
-  },
-  {
     title: 'Legal',
     links: [
       { label: 'Terms of Service', href: '/legal' },

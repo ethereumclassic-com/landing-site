@@ -268,10 +268,6 @@ const staticRoutes: StaticRoute[] = [
   { path: '/markets/price', priority: 0.8, changeFrequency: 'hourly' as const },
   { path: '/markets/calculator', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/markets/converter', priority: 0.7, changeFrequency: 'daily' as const },
-
-  // The /account section is deliberately absent: robots.txt disallows it and
-  // app/account/layout.tsx marks it noindex. Listing it here asked a crawler to
-  // index what the same site tells it to skip.
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

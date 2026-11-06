@@ -51,6 +51,17 @@ const nextConfig: NextConfig = {
         destination: '/research',
         permanent: true,
       },
+      // The retired account prototype, which kept passwords in the browser.
+      {
+        source: '/account',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/account/:path*',
+        destination: '/',
+        permanent: true,
+      },
     ]
   },
 };
