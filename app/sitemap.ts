@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { execSync } from 'child_process'
+import { existsSync } from 'fs'
 import { miningPools, miningHardware } from './mining/data/mining'
 import { walletReviews } from './wallet/data/reviews'
 import { articles as newsArticles } from './news/data/articles'
@@ -9,16 +10,18 @@ import { exchangeReviews } from './buy/data/reviews'
 import { reports } from './research/data/research'
 import { cdcEntries } from './core-devs/data/index'
 import { philosophyArticles } from './why-classic/data/philosophy'
+import { nodeClients, executionPlugins } from './build/data/build'
 
 const baseUrl = 'https://ethereumclassic.com'
 
 // Build a map of file path → last commit date in one git log pass.
-// Single subprocess call covers all ~150 static routes efficiently.
+// Single subprocess call covers all ~150 static routes efficiently. lib/ is
+// included because shared data there (lib/core-geth.ts) renders on several pages.
 function buildDateMap(): Map<string, Date> {
   const map = new Map<string, Date>()
   try {
     const raw = execSync(
-      `git log --name-only --diff-filter=AM --pretty=format:"%cI" HEAD -- app/`,
+      `git log --name-only --diff-filter=AM --pretty=format:"%cI" HEAD -- app/ lib/`,
       { encoding: 'utf8', cwd: process.cwd() }
     )
     let currentDate = new Date()
@@ -41,21 +44,54 @@ function buildDateMap(): Map<string, Date> {
 
 const dateMap = buildDateMap()
 
-function pageDate(route: string): Date {
-  const file = route === '' ? 'app/page.tsx' : `app${route}/page.tsx`
-  return dateMap.get(file) ?? new Date()
-}
-
 function dataDate(dataFile: string): Date {
   return dateMap.get(dataFile) ?? new Date()
 }
 
+/**
+ * The newest commit date among the files a page is built from, the first being
+ * the page itself. A source path that does not exist fails the build: dropped
+ * silently, it would leave the page dated by an older file.
+ */
+function newestDate(label: string, [page, ...sources]: string[]): Date {
+  const dates = [dataDate(page)]
+  for (const source of sources) {
+    if (!existsSync(source)) {
+      throw new Error(`sitemap: ${label} names a source that does not exist: ${source}`)
+    }
+    const date = dateMap.get(source)
+    if (date) dates.push(date)
+  }
+  return new Date(Math.max(...dates.map((date) => date.getTime())))
+}
+
+/**
+ * A page's date is the newest of its page.tsx and the files in `sources`: a page
+ * whose words come from a data module or a layout changes when that file does,
+ * and its own page.tsx can sit untouched for months.
+ */
+function pageDate(route: string, sources: string[] = []): Date {
+  const file = route === '' ? 'app/page.tsx' : `app${route}/page.tsx`
+  return newestDate(route || '/', [file, ...sources])
+}
+
+type StaticRoute = {
+  path: string
+  priority: number
+  changeFrequency: NonNullable<MetadataRoute.Sitemap[number]['changeFrequency']>
+  /** Files besides the route's page.tsx that its content comes from. */
+  sources?: string[]
+}
+
+const CORE_GETH_DATA = 'lib/core-geth.ts'
+const OLYMPIA_DATA = 'app/olympia/data/olympia.ts'
+
 // Static routes - all main pages
-const staticRoutes = [
+const staticRoutes: StaticRoute[] = [
   // Core pages
   { path: '', priority: 1.0, changeFrequency: 'daily' as const },
   { path: '/about', priority: 0.6, changeFrequency: 'weekly' as const },
-  { path: '/contact', priority: 0.5, changeFrequency: 'weekly' as const },
+  { path: '/contact', priority: 0.5, changeFrequency: 'weekly' as const, sources: ['lib/social.ts'] },
   { path: '/advertise', priority: 0.5, changeFrequency: 'weekly' as const },
   { path: '/partners', priority: 0.5, changeFrequency: 'weekly' as const },
   { path: '/legal', priority: 0.3, changeFrequency: 'yearly' as const },
@@ -63,11 +99,11 @@ const staticRoutes = [
   { path: '/site-map', priority: 0.3, changeFrequency: 'weekly' as const },
 
   // Wallet section
-  { path: '/wallet', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/wallet', priority: 0.9, changeFrequency: 'weekly' as const, sources: ['app/wallet/data/wallets.ts'] },
   { path: '/wallet/metamask', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/wallet/hardware', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/wallet/compare', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/wallet/reviews', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/wallet/compare', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/wallet/data/wallets.ts'] },
+  { path: '/wallet/reviews', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/wallet/data/reviews.ts'] },
 
   // Buy/Sell section
   { path: '/buy', priority: 0.9, changeFrequency: 'weekly' as const },
@@ -93,7 +129,7 @@ const staticRoutes = [
   { path: '/exchanges/staking', priority: 0.5, changeFrequency: 'weekly' as const },
 
   // Apps section
-  { path: '/apps', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/apps', priority: 0.9, changeFrequency: 'weekly' as const, sources: ['app/apps/data/apps.ts'] },
   { path: '/apps/featured', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/apps/defi', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/apps/payments', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -115,18 +151,18 @@ const staticRoutes = [
   { path: '/learn/glossary', priority: 0.6, changeFrequency: 'weekly' as const },
 
   // FAQ section
-  { path: '/faq', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/faq/users', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/faq/investors', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/faq/miners', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/faq/developers', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/faq/community', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/faq', priority: 0.8, changeFrequency: 'weekly' as const, sources: ['app/faq/data/faqs.ts'] },
+  { path: '/faq/users', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/faq/data/faqs.ts'] },
+  { path: '/faq/investors', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/faq/data/faqs.ts'] },
+  { path: '/faq/miners', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/faq/data/faqs.ts'] },
+  { path: '/faq/developers', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/faq/data/faqs.ts'] },
+  { path: '/faq/community', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/faq/data/faqs.ts'] },
 
   // Why Classic section
   { path: '/why-classic', priority: 0.8, changeFrequency: 'weekly' as const },
 
   // News section
-  { path: '/news', priority: 0.9, changeFrequency: 'daily' as const },
+  { path: '/news', priority: 0.9, changeFrequency: 'daily' as const, sources: ['app/news/data/articles.ts'] },
   { path: '/news/feeds', priority: 0.3, changeFrequency: 'yearly' as const },
   { path: '/news/category/updates', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/news/category/security', priority: 0.7, changeFrequency: 'daily' as const },
@@ -138,7 +174,7 @@ const staticRoutes = [
   { path: '/price', priority: 0.9, changeFrequency: 'hourly' as const },
 
   // Mining section
-  { path: '/mining', priority: 0.9, changeFrequency: 'weekly' as const },
+  { path: '/mining', priority: 0.9, changeFrequency: 'weekly' as const, sources: ['app/mining/components/ClientImplementationsSection.tsx'] },
   { path: '/mining/getting-started', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/mining/pools', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/mining/hardware', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -158,8 +194,8 @@ const staticRoutes = [
   { path: '/build/getting-started', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/docs', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/tools', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/build/clients', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/build/clients/core-geth-security-audit', priority: 0.9, changeFrequency: 'monthly' as const },
+  { path: '/build/clients', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/build/data/build.ts', CORE_GETH_DATA] },
+  { path: '/build/clients/core-geth-security-audit', priority: 0.9, changeFrequency: 'monthly' as const, sources: ['app/build/clients/core-geth-security-audit/layout.tsx', 'app/build/clients/core-geth-security-audit/RecordText.tsx', 'lib/core-geth-record.ts', CORE_GETH_DATA] },
   { path: '/build/networks', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/faucets', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/build/grants', priority: 0.6, changeFrequency: 'weekly' as const },
@@ -192,7 +228,7 @@ const staticRoutes = [
 
   // Directory section
   { path: '/directory', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/directory/wallets', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/directory/wallets', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/wallet/data/wallets.ts'] },
   { path: '/directory/exchanges', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/directory/mining', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/directory/developers', priority: 0.6, changeFrequency: 'weekly' as const },
@@ -205,17 +241,17 @@ const staticRoutes = [
   { path: '/community/contribute', priority: 0.5, changeFrequency: 'weekly' as const },
 
   // Olympia upgrade section
-  { path: '/olympia', priority: 0.9, changeFrequency: 'weekly' as const },
-  { path: '/olympia/upgrade', priority: 0.9, changeFrequency: 'weekly' as const },
-  { path: '/olympia/clients', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/olympia/clients/core-geth', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const },
+  { path: '/olympia', priority: 0.9, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA] },
+  { path: '/olympia/upgrade', priority: 0.9, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA, CORE_GETH_DATA] },
+  { path: '/olympia/clients', priority: 0.8, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA, CORE_GETH_DATA] },
+  { path: '/olympia/clients/core-geth', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/core-geth/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', CORE_GETH_DATA] },
+  { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/fukuii/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx'] },
   { path: '/olympia/treasury', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/history', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/etymology', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const, sources: ['app/upgrades/data/forks.ts'] },
 
   // Core Devs Calls
   { path: '/core-devs', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -227,7 +263,7 @@ const staticRoutes = [
   { path: '/investment-products', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/learn/on-ramp', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/network', priority: 0.5, changeFrequency: 'daily' as const },
-  { path: '/regulation', priority: 0.6, changeFrequency: 'weekly' as const },
+  { path: '/regulation', priority: 0.6, changeFrequency: 'weekly' as const, sources: ['app/regulation/components/NetworkSecuritySection.tsx'] },
   { path: '/store', priority: 0.4, changeFrequency: 'weekly' as const },
 
   // Markets (direct routes)
@@ -244,9 +280,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static routes — each gets the git commit date of its page.tsx
   const staticEntries = staticRoutes.map((route) => ({
     url: `${baseUrl}${route.path}`,
-    lastModified: pageDate(route.path),
+    lastModified: pageDate(route.path, route.sources),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
+  }))
+
+  // Dynamic routes - Node clients and execution plugins, one template fed by build.ts
+  const clientDate = newestDate('/build/clients/[client]', [
+    'app/build/clients/[client]/page.tsx',
+    'app/build/data/build.ts',
+    CORE_GETH_DATA,
+  ])
+  const clientEntries = [...nodeClients, ...executionPlugins].map((entry) => ({
+    url: `${baseUrl}/build/clients/${entry.id}`,
+    lastModified: clientDate,
+    changeFrequency: 'weekly' as const,
+    priority: nodeClients.some((client) => client.id === entry.id) ? 0.8 : 0.5,
   }))
 
   // Dynamic routes - Mining pools
@@ -351,6 +400,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticEntries,
+    ...clientEntries,
     ...poolEntries,
     ...hardwareEntries,
     ...walletReviewEntries,
