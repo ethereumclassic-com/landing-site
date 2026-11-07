@@ -152,7 +152,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 {title && (
                   <h2
                     id="modal-title"
-                    className="text-[var(--text-lg)] font-semibold text-[var(--color-text-primary)]"
+                    className="text-lg font-semibold text-[var(--color-text-primary)]"
                   >
                     {title}
                   </h2>
@@ -160,7 +160,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 {description && (
                   <p
                     id="modal-description"
-                    className="mt-1 text-[var(--text-sm)] text-[var(--color-text-secondary)]"
+                    className="mt-1 text-sm text-[var(--color-text-secondary)]"
                   >
                     {description}
                   </p>

@@ -142,7 +142,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ as: Component = 'h3', children, className = '', ...props }, ref) => (
     <Component
       ref={ref}
-      className={`text-[var(--text-lg)] font-semibold text-[var(--color-text-primary)] ${className}`}
+      className={`text-lg font-semibold text-[var(--color-text-primary)] ${className}`}
       {...props}
     >
       {children}
@@ -160,7 +160,7 @@ export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionP
   ({ children, className = '', ...props }, ref) => (
     <p
       ref={ref}
-      className={`text-[var(--text-sm)] text-[var(--color-text-secondary)] leading-relaxed ${className}`}
+      className={`text-sm text-[var(--color-text-secondary)] leading-relaxed ${className}`}
       {...props}
     >
       {children}

@@ -26,9 +26,9 @@ const variantStyles: Record<ButtonVariant, string> = {
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
-  sm: 'h-[var(--btn-height-sm)] px-3 text-[var(--text-sm)] gap-1.5',
-  md: 'h-[var(--btn-height-md)] px-4 text-[var(--text-sm)] gap-2',
-  lg: 'h-[var(--btn-height-lg)] px-6 text-[var(--text-base)] gap-2.5',
+  sm: 'h-[var(--btn-height-sm)] px-3 text-sm gap-1.5',
+  md: 'h-[var(--btn-height-md)] px-4 text-sm gap-2',
+  lg: 'h-[var(--btn-height-lg)] px-6 text-base gap-2.5',
 }
 
 const Spinner = ({ className }: { className?: string }) => (

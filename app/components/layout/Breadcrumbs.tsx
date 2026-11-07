@@ -34,7 +34,7 @@ export const Breadcrumbs = forwardRef<HTMLElement, BreadcrumbsProps>(
         className={className}
         {...props}
       >
-        <ol className="flex items-center gap-2 text-[var(--text-sm)]">
+        <ol className="flex items-center gap-2 text-sm">
           {items.map((item, index) => {
             const isLast = index === items.length - 1
 

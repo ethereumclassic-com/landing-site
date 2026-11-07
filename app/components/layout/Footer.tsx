@@ -116,10 +116,10 @@ const Newsletter = () => (
     <Container>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
-          <h3 className="text-[var(--text-xl)] font-semibold text-[var(--color-text-primary)]">
+          <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
             Stay Updated
           </h3>
-          <p className="mt-1 text-[var(--text-sm)] text-[var(--color-text-secondary)]">
+          <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
             Get the latest news and updates about Ethereum Classic.
           </p>
         </div>
@@ -129,7 +129,7 @@ const Newsletter = () => (
             placeholder="Enter your email"
             className={[
               'flex-1 md:w-64 px-4 py-2',
-              'text-[var(--text-sm)]',
+              'text-sm',
               'bg-[var(--panel)]',
               'border border-[var(--border)]',
               'rounded-[var(--radius-md)]',
@@ -143,7 +143,7 @@ const Newsletter = () => (
             type="submit"
             className={[
               'px-6 py-2',
-              'text-[var(--text-sm)] font-medium',
+              'text-sm font-medium',
               'text-[var(--text-primary)]',
               'bg-[var(--color-primary)]',
               'hover:bg-[var(--color-primary-hover)]',
@@ -187,7 +187,7 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
             {sections.map((section) => (
               <div key={section.title}>
-                <h4 className="text-[var(--text-sm)] font-semibold text-[var(--color-text-primary)] uppercase tracking-wider mb-4">
+                <h4 className="text-sm font-semibold text-[var(--color-text-primary)] uppercase tracking-wider mb-4">
                   {section.title}
                 </h4>
                 <ul className="space-y-3">
@@ -198,14 +198,14 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[var(--text-sm)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[var(--transition-fast)]"
+                          className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[var(--transition-fast)]"
                         >
                           {link.label}
                         </a>
                       ) : (
                         <Link
                           href={link.href}
-                          className="text-[var(--text-sm)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[var(--transition-fast)]"
+                          className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-[var(--transition-fast)]"
                         >
                           {link.label}
                         </Link>
@@ -250,14 +250,14 @@ export const Footer = forwardRef<HTMLElement, FooterProps>(
       <div className="border-t border-[var(--border)]">
         <Container>
           <div className="py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="text-[var(--text-sm)] text-[var(--color-text-muted)]">{copyright}</p>
+            <p className="text-sm text-[var(--color-text-muted)]">{copyright}</p>
             {legalLinks.length > 0 && (
               <nav className="flex flex-wrap items-center gap-6">
                 {legalLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-[var(--text-sm)] text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors duration-[var(--transition-fast)]"
+                    className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors duration-[var(--transition-fast)]"
                   >
                     {link.label}
                   </Link>

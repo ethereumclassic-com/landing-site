@@ -124,7 +124,7 @@ function TableInner<T>(
               return (
                 <th
                   key={String(col.key)}
-                  className={`px-4 py-3 text-[var(--text-sm)] font-medium text-[var(--color-text-secondary)] ${
+                  className={`px-4 py-3 text-sm font-medium text-[var(--color-text-secondary)] ${
                     alignClass[col.align || 'left']
                   } ${canSort ? 'cursor-pointer hover:text-[var(--color-text-primary)]' : ''}`}
                   style={col.width ? { width: col.width } : undefined}
@@ -187,7 +187,7 @@ function TableInner<T>(
                   return (
                     <td
                       key={String(col.key)}
-                      className={`px-4 py-3 text-[var(--text-sm)] text-[var(--color-text-primary)] ${
+                      className={`px-4 py-3 text-sm text-[var(--color-text-primary)] ${
                         alignClass[col.align || 'left']
                       }`}
                     >

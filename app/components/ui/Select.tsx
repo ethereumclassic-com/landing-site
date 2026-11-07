@@ -20,9 +20,9 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
 }
 
 const sizeStyles: Record<SelectSize, string> = {
-  sm: 'h-8 text-[var(--text-sm)] px-3 pr-8',
-  md: 'h-[var(--input-height)] text-[var(--text-sm)] px-4 pr-10',
-  lg: 'h-12 text-[var(--text-base)] px-4 pr-10',
+  sm: 'h-8 text-sm px-3 pr-8',
+  md: 'h-[var(--input-height)] text-sm px-4 pr-10',
+  lg: 'h-12 text-base px-4 pr-10',
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
@@ -75,7 +75,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label
             htmlFor={selectId}
-            className="block text-[var(--text-sm)] font-medium text-[var(--color-text-secondary)] mb-2"
+            className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2"
           >
             {label}
           </label>
@@ -123,7 +123,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {error && (
           <p
             id={`${selectId}-error`}
-            className="mt-1.5 text-[var(--text-xs)] text-[var(--color-error)]"
+            className="mt-1.5 text-xs text-[var(--color-error)]"
             role="alert"
           >
             {error}
@@ -132,7 +132,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {helper && !error && (
           <p
             id={`${selectId}-helper`}
-            className="mt-1.5 text-[var(--text-xs)] text-[var(--color-text-muted)]"
+            className="mt-1.5 text-xs text-[var(--color-text-muted)]"
           >
             {helper}
           </p>

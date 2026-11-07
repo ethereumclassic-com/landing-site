@@ -124,7 +124,7 @@ export const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           'bg-[var(--color-bg-elevated)]',
           'border border-[var(--border)]',
           'rounded-[var(--radius-md)]',
-          'text-[var(--text-sm)] text-[var(--color-text-primary)]',
+          'text-sm text-[var(--color-text-primary)]',
           'shadow-lg',
           'max-w-xs',
           'animate-[fade-in_var(--transition-fast)_ease-out]',

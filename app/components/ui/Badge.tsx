@@ -21,8 +21,8 @@ const variantStyles: Record<BadgeVariant, string> = {
 }
 
 const sizeStyles: Record<BadgeSize, string> = {
-  sm: 'text-[var(--text-xs)] px-1.5 py-0.5 gap-1',
-  md: 'text-[var(--text-sm)] px-2.5 py-1 gap-1.5',
+  sm: 'text-xs px-1.5 py-0.5 gap-1',
+  md: 'text-sm px-2.5 py-1 gap-1.5',
 }
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(

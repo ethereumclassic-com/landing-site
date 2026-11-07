@@ -14,9 +14,9 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 }
 
 const sizeStyles: Record<InputSize, string> = {
-  sm: 'h-8 text-[var(--text-sm)] px-3',
-  md: 'h-[var(--input-height)] text-[var(--text-sm)] px-4',
-  lg: 'h-12 text-[var(--text-base)] px-4',
+  sm: 'h-8 text-sm px-3',
+  md: 'h-[var(--input-height)] text-sm px-4',
+  lg: 'h-12 text-base px-4',
 }
 
 const iconPaddingLeft: Record<InputSize, string> = {
@@ -80,7 +80,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-[var(--text-sm)] font-medium text-[var(--color-text-secondary)] mb-2"
+            className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2"
           >
             {label}
           </label>
@@ -106,7 +106,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {error && (
           <p
             id={`${inputId}-error`}
-            className="mt-1.5 text-[var(--text-xs)] text-[var(--color-error)]"
+            className="mt-1.5 text-xs text-[var(--color-error)]"
             role="alert"
           >
             {error}
@@ -115,7 +115,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {helper && !error && (
           <p
             id={`${inputId}-helper`}
-            className="mt-1.5 text-[var(--text-xs)] text-[var(--color-text-muted)]"
+            className="mt-1.5 text-xs text-[var(--color-text-muted)]"
           >
             {helper}
           </p>
