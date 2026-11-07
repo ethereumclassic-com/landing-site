@@ -317,7 +317,7 @@ Wrap up your article with a conclusion.`,
                 <div className="flex gap-2">
                   <button
                     onClick={handleCopy}
-                    className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--background)] transition-colors hover:bg-[var(--color-primary-dark)]"
+                    className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--background)] transition-colors hover:bg-[var(--color-primary-hover)]"
                   >
                     {copied ? 'Copied!' : 'Copy'}
                   </button>
