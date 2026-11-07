@@ -115,7 +115,7 @@ export default function ArticleCard({ article, index = 0, variant = 'default' }:
       >
         <Link
           href={href}
-          className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/40 hover:shadow-lg hover:shadow-[var(--color-primary)]/10"
+          className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-primary)]/20 bg-gradient-to-b from-[var(--color-primary)]/10 to-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/40 hover:shadow-lg hover:shadow-[color:var(--color-primary)]/10"
         >
           {/* Featured badge */}
           <div className="absolute right-4 top-4">

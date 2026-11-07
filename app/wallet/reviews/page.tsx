@@ -78,7 +78,7 @@ function ReviewCard({ review }: { review: WalletReview }) {
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel)] transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
+      className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel)] transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[color:var(--color-primary)]/5"
     >
       <Link href={`/wallet/reviews/${review.slug}`} className="block p-6">
         {/* Header */}
@@ -465,7 +465,7 @@ export default function WalletReviewsPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/wallet/compare"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[var(--color-primary)]/25"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--color-primary-hover)] hover:shadow-lg hover:shadow-[color:var(--color-primary)]/25"
               >
                 Compare Wallets
               </Link>

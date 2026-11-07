@@ -43,7 +43,7 @@ export default function FAQPage() {
             <div key={section.id}>
               <Link
                 href={`/faq/${section.id}`}
-                className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/50 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
+                className="group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/50 hover:shadow-lg hover:shadow-[color:var(--color-primary)]/5"
               >
                 <span className="text-3xl">{section.icon}</span>
                 <h2 className="mt-4 text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">

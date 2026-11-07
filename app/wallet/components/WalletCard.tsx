@@ -32,7 +32,7 @@ export default function WalletCard({ wallet, index }: WalletCardProps) {
       href={wallet.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all duration-300 hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel)]/80 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
+      className="group block rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all duration-300 hover:border-[var(--color-primary)]/30 hover:bg-[var(--panel)]/80 hover:shadow-lg hover:shadow-[color:var(--color-primary)]/5"
     >
       <div className="mb-4 flex items-start justify-between">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-xl font-bold text-[var(--color-primary)] transition-transform duration-300 group-hover:scale-110">

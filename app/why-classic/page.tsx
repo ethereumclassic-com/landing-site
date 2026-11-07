@@ -42,7 +42,7 @@ export default function WhyClassicPage() {
             <div key={article.slug}>
               <Link
                 href={`/why-classic/${article.slug}`}
-                className="group flex items-start gap-6 rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/50 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
+                className="group flex items-start gap-6 rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/50 hover:shadow-lg hover:shadow-[color:var(--color-primary)]/5"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-2xl">
                   {article.icon}

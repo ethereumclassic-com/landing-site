@@ -42,7 +42,7 @@ function ReviewCard({ review }: { review: ExchangeReview }) {
     <div>
       <Link
         href={`/buy/reviews/${review.slug}`}
-        className="group block h-full rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
+        className="group block h-full rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[color:var(--color-primary)]/5"
       >
         {/* Header */}
         <div className="mb-4 flex items-start justify-between">

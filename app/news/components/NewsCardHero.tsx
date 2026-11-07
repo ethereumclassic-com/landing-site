@@ -43,7 +43,7 @@ export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) 
     >
       <Link
         href={`/news/${article.slug}`}
-        className="group flex flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--panel)] transition-all hover:border-[var(--color-primary)]/40 hover:shadow-lg hover:shadow-[var(--color-primary)]/10"
+        className="group flex flex-col overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--panel)] transition-all hover:border-[var(--color-primary)]/40 hover:shadow-lg hover:shadow-[color:var(--color-primary)]/10"
       >
         {/* Image — a photograph, or the article's generated banner. The banner
             is art around a one-line subject, so it does not earn a photograph's

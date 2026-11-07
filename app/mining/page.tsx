@@ -64,7 +64,7 @@ export default async function MiningPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/mining/getting-started"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--brand-green-hover)] hover:shadow-lg hover:shadow-[var(--brand-green)]/25"
+              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--brand-green-hover)] hover:shadow-lg hover:shadow-[color:var(--brand-green)]/25"
             >
               <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
@@ -452,7 +452,7 @@ export default async function MiningPage() {
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
                 href="/mining/getting-started"
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--brand-green-hover)] hover:shadow-lg hover:shadow-[var(--brand-green)]/25"
+                className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-[var(--background)] transition-all hover:bg-[var(--brand-green-hover)] hover:shadow-lg hover:shadow-[color:var(--brand-green)]/25"
               >
                 <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
