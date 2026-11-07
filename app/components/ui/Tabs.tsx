@@ -18,20 +18,25 @@ export interface TabsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChang
   variant?: TabsVariant
 }
 
-const variantStyles: Record<TabsVariant, { container: string; tab: string; active: string }> = {
+// A tab gets `idle` or `active`, never both. Two utilities setting the same property apply in
+// stylesheet order, not class order, so a selected tab carrying its idle color too can lose to it.
+const variantStyles: Record<TabsVariant, { container: string; tab: string; idle: string; active: string }> = {
   default: {
     container: 'bg-[var(--panel)] p-1 rounded-[var(--radius-lg)] border border-[var(--border)]',
-    tab: 'px-4 py-2 rounded-[var(--radius-md)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--panel-hover)]',
-    active: 'bg-[var(--panel-strong)] text-[var(--color-text-primary)] shadow-sm',
+    tab: 'px-4 py-2 rounded-[var(--radius-md)]',
+    idle: 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--panel-hover)]',
+    active: 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)] shadow-sm',
   },
   pills: {
     container: 'gap-2',
-    tab: 'px-4 py-2 rounded-full text-[var(--color-text-secondary)] border border-transparent hover:text-[var(--color-text-primary)] hover:bg-[var(--panel)]',
+    tab: 'px-4 py-2 rounded-full border',
+    idle: 'text-[var(--color-text-secondary)] border-transparent hover:text-[var(--color-text-primary)] hover:bg-[var(--panel)]',
     active: 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)] border-[var(--color-primary)]',
   },
   underline: {
     container: 'border-b border-[var(--border)]',
-    tab: 'px-4 py-3 text-[var(--color-text-secondary)] border-b-2 border-transparent -mb-px hover:text-[var(--color-text-primary)] hover:border-[var(--border-strong)]',
+    tab: 'px-4 py-3 border-b-2 -mb-px',
+    idle: 'text-[var(--color-text-secondary)] border-transparent hover:text-[var(--color-text-primary)] hover:border-[var(--border-strong)]',
     active: 'text-[var(--color-primary)] border-[var(--color-primary)]',
   },
 }
@@ -104,13 +109,13 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={[
                 'inline-flex items-center gap-2',
-                'text-[var(--text-sm)] font-medium',
+                'text-sm font-medium',
                 'transition-all duration-[var(--transition-normal)] ease-[var(--ease-default)]',
                 'focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]',
                 isDisabled && 'opacity-50 cursor-not-allowed',
                 !isDisabled && 'cursor-pointer',
                 styles.tab,
-                isActive && styles.active,
+                isActive ? styles.active : styles.idle,
               ]
                 .filter(Boolean)
                 .join(' ')}
@@ -118,7 +123,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(
               {tab.label}
               {tab.count !== undefined && (
                 <span
-                  className={`text-[var(--text-xs)] px-1.5 py-0.5 rounded-full ${
+                  className={`text-xs px-1.5 py-0.5 rounded-full ${
                     isActive
                       ? variant === 'pills'
                         ? 'bg-[var(--bg-elevated)]'
