@@ -167,8 +167,8 @@ includes transaction fees, which vary per block.
   in Scala 3 that Chippr Robotics LLC maintains as a continuation of IOHK's
   Mantis, is an alternative to try: its maintainers mark it alpha, and it is not
   the recommended client and not Core-Geth's successor. fukuii.com and
-  docs.fukuii.com lead its framing, and `lib/fukuii.ts` holds its copy, links
-  and latest full release. `fukuii-project/fukuii-cli` is a separate codebase
+  docs.fukuii.com lead its framing, and `lib/fukuii.ts` holds its copy and
+  links. `fukuii-project/fukuii-cli` is a separate codebase
   whose descriptions never describe Fukuii here. Besu, Erigon, Ethrex,
   Go-Ethereum, Nethermind and Reth are ETC *plugins*, never "overlays" and never
   app cards of their own; the plugin framework's status is planned. A plugin is
@@ -199,7 +199,10 @@ milestone numbers, phase references, or roadmap terminology in rendered content.
 **Write timeless.** No "future work", "coming soon", "planned post-X", "not yet".
 Describe what a thing is; put mutable status in a structured field such as a
 badge or status property, so changing it later is one edit rather than a prose
-hunt.
+hunt. A client's current release is mutable status too, and no field keeps up
+with it: never type its version. Name the line where a recommendation needs one
+(`CORE_GETH_RECOMMENDED_LINE`), and link the release itself as
+`releases/latest`. A version a fix first shipped in is history and stays.
 
 ## Listing apps, exchanges, and pools
 

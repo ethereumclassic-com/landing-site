@@ -66,7 +66,7 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   execution client in Scala 3 that Chippr Robotics LLC maintains as a
   continuation of IOHK's Mantis, is an alternative to try: its maintainers mark
   it alpha. fukuii.com and docs.fukuii.com lead its framing, and
-  `lib/fukuii.ts` holds its copy and latest full release. Besu, Erigon, Ethrex,
+  `lib/fukuii.ts` holds its copy and links. Besu, Erigon, Ethrex,
   Go-Ethereum, Nethermind and Reth are ETC *plugins*, never "overlays", never
   app cards of their own, and never counted among built client implementations.
 - **Client URLs** — every client link outside the Olympia hub goes to
@@ -83,7 +83,9 @@ references, or roadmap terminology in rendered content.
 
 **Write timeless.** No "coming soon", "not yet", "planned post-X". Describe what a
 thing is; put mutable status in a badge or status property so changing it later is
-one edit.
+one edit. Never type the version of a client's current release: name the line a
+recommendation needs, and link the release itself as `releases/latest`. A version
+a fix first shipped in is history and stays.
 
 ## Three paths
 
