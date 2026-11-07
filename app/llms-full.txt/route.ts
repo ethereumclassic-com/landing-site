@@ -1,6 +1,17 @@
 import { getArticleBySlug } from '@/app/news/data/articles'
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
+import { apps } from '@/app/apps/data/apps'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
+import {
+  FUKUII_DESCRIPTION,
+  FUKUII_DOCS_URL,
+  FUKUII_FEATURES,
+  FUKUII_HOMEPAGE_URL,
+  FUKUII_IMAGE,
+  FUKUII_LATEST_RELEASE,
+  FUKUII_LATEST_RELEASE_URL,
+  FUKUII_REPO_URL,
+} from '@/lib/fukuii'
 import { DISCORD_URL } from '@/lib/social'
 
 // Everything here comes from modules read at build, so it is generated once, as /llms.txt is.
@@ -58,7 +69,7 @@ Purchase ETC across multiple channels:
 - /buy/reviews — Exchange reviews
 
 ### /apps — Ecosystem Apps
-50+ apps on Ethereum Classic:
+${apps.length} apps on Ethereum Classic:
 - /apps (main) — Featured applications
 - /apps/defi — Decentralized finance protocols
 - /apps/tools — Developer and user tools
@@ -122,7 +133,11 @@ ETC's ideological foundation:
 ### /build — Developer Docs
 - /build (overview) — Getting started for developers
 - /build/getting-started — First dApp on ETC
-- /build/clients — Node client options (Core-Geth, Fukuii) and the ETC execution plugins
+- /build/clients — Node clients, on pages that hold across network upgrades: Core-Geth, the recommended client, and Fukuii, an alternative to try, with the ETC plugin framework
+- /build/clients/core-geth — Core-Geth: run the v1.13 line, move a v1.12 node with its required key rotation, and the advisories the v1.13 line fixed
+- /build/clients/fukuii — Fukuii: an alternative client in alpha, its latest release, and the documentation for running it
+- /build/clients/core-geth-security-audit — Core-Geth v1.12 security audits and the v1.13 upgrade: the CVEs the 2026 audits found, what was used against Core-Geth v1.12 bootnodes, every release since the maintenance gap, what the network is running, and what upgrading to v1.13 fixes, as coregeth.com/security records them.
+- /news/${moveGuide.slug} — ${moveGuide.title}: ${moveGuide.excerpt}
 - /build/networks — Mainnet, Mordor testnet, local devnet
 - /build/api — JSON-RPC API reference
 - /build/docs — ETC Improvement Proposals (ECIPs)
@@ -154,13 +169,11 @@ ETC's ideological foundation:
 ETC's most significant upgrade to date:
 - /olympia (hub) — Upgrade overview and timeline
 - /olympia/upgrade — Node operator upgrade guide
-- /olympia/clients — Client comparison (Core-Geth, Fukuii) and the ETC execution plugins
-- /olympia/clients/fukuii — Fukuii upgrade guide
-- /olympia/clients/core-geth — Core-Geth upgrade guide
+- /olympia/clients — Client readiness for Olympia: each client's current release and Olympia release
+- /olympia/clients/core-geth — Core-Geth's Olympia upgrade guide
+- /olympia/clients/fukuii — Fukuii's Olympia upgrade guide
 - /olympia/governance — Treasury and on-chain governance contracts
 - /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
-- /build/clients/core-geth-security-audit — Core-Geth v1.12 security audits and the v1.13 upgrade: the CVEs the 2026 audits found, what was used against Core-Geth v1.12 bootnodes, every release since the maintenance gap, what the network is running, and what upgrading to v1.13 fixes, as coregeth.com/security records them.
-- /news/${moveGuide.slug} — ${moveGuide.title}: ${moveGuide.excerpt}
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap
@@ -279,53 +292,8 @@ Explicitly excluded from ECIP-1121:
 
 ### Client Support
 
-Core-Geth — the recommended client for Ethereum Classic
-An Ethereum Classic execution client and public-good Go reference client: a go-ethereum
-derivative released and maintained in the ethereumclassic GitHub organization. Not a native ETC
-client, and not a plugin. It is the client to run: the v1.13 line closes every client CVE the audits
-found in the v1.12 line, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026,
-bounds GraphQL queries, and is built with a supported Go toolchain. A node tracking the previous
-repository, etclabscore/core-geth, will not see its releases. Ethereum Classic's core developers and
-community contributors do the work, and the Ethereum Classic DAO maintains and funds the client
-today as its funder of last resort.
-Downloads: https://coregeth.com/downloads/
-Docs: https://docs.coregeth.com
-Releases: https://github.com/ethereumclassic/core-geth/releases/latest
-Repo: https://github.com/ethereumclassic/core-geth
-
-Fukuii — an alternative, ETC-native client
-A native Ethereum Classic client, built ground-up for ETC rather than derived from an Ethereum
-client. An EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary
-runs several networks at once in one JVM process, each isolated with its own state, its own metrics
-registry, and its own configuration; a further network is configuration, not a new client. Consensus
-is selected per deployment behind one interface: native Proof-of-Work for ETC mainnet and Mordor, or
-Proof-of-Stake with a built-in consensus layer, so one process is a complete Proof-of-Stake node, or
-an external consensus client over the Engine API V1 to V4. Ships an MCP server exposing node state to
-AI agents. Requires a current JDK LTS (25); the Docker image bundles one.
-
-JVM-native infrastructure end to end for institutions already running on the JVM, with no
-foreign-language bridge, so JFR, async-profiler, JMX and heap dumps work exactly as on any other JVM
-process. Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints ship in the
-binary, alongside concurrent multi-instance execution and external-signer/HSM custody integration.
-Separate Pekko dispatchers for sync, RPC and general work keep sync pressure from starving the RPC.
-
-Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release
-artifacts. Maintained by The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.).
-Website: https://fukuii.com
-Docs: https://docs.fukuii.com
-Repo: https://github.com/chippr-robotics/fukuii
-Docker: ghcr.io/chippr-robotics/fukuii
-
-ETC execution client plugins — ETC support added into existing Ethereum clients
-A plugin adds Ethereum Classic chain support to an upstream Ethereum client's execution layer. It
-is not a client implementation and carries no mining or Proof-of-Work consensus, so plugins serve
-non-mining infrastructure: exchanges, RPC providers, block explorers, and indexers.
-- Besu (Java) — https://github.com/besu-eth/besu
-- Erigon (Go) — https://github.com/erigontech/erigon
-- Ethrex (Rust) — https://github.com/lambdaclass/ethrex
-- Go-Ethereum (Go) — https://github.com/ethereum/go-ethereum
-- Nethermind (C#) — https://github.com/NethermindEth/nethermind
-- Reth (Rust) — https://github.com/paradigmxyz/reth
+Each client publishes an Olympia release before the activation block. Client readiness for Olympia:
+https://ethereumclassic.com/olympia/clients. The clients themselves are described under Node Clients.
 
 ### Developer Impact After Olympia
 
@@ -378,6 +346,47 @@ The /research/emission-schedule page provides a live countdown to the next fifth
 - Mordor Testnet RPC: https://etc-mordor.blockscout.com/api/eth-rpc
 - Block Explorer (mainnet): https://etc.blockscout.com
 - Block Explorer (Mordor): https://etc-mordor.blockscout.com
+
+## Node Clients
+
+The client pages, which hold across network upgrades: https://ethereumclassic.com/build/clients
+
+Core-Geth — the recommended client for Ethereum Classic
+An Ethereum Classic execution client and public-good Go reference client: a go-ethereum
+derivative released and maintained in the ethereumclassic GitHub organization. Not a native ETC
+client, and not a plugin. It is the client to run: the v1.13 line closes every client CVE the audits
+found in the v1.12 line, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026,
+bounds GraphQL queries, and is built with a supported Go toolchain. A node tracking the previous
+repository, etclabscore/core-geth, will not see its releases. Ethereum Classic's core developers and
+community contributors do the work, and the Ethereum Classic DAO maintains and funds the client
+today as its funder of last resort.
+Downloads: https://coregeth.com/downloads/
+Docs: https://docs.coregeth.com
+Releases: https://github.com/ethereumclassic/core-geth/releases/latest
+Repo: https://github.com/ethereumclassic/core-geth
+Overview: https://ethereumclassic.com/build/clients/core-geth
+
+Fukuii — an alternative to try, in alpha
+${FUKUII_DESCRIPTION}
+${FUKUII_FEATURES.map((feature) => `- ${feature}`).join('\n')}
+Latest release: ${FUKUII_LATEST_RELEASE} (${FUKUII_LATEST_RELEASE_URL})
+Website: ${FUKUII_HOMEPAGE_URL}
+Docs: ${FUKUII_DOCS_URL}
+Repo: ${FUKUII_REPO_URL}
+Container image: ${FUKUII_IMAGE}
+Overview: https://ethereumclassic.com/build/clients/fukuii
+
+ETC execution client plugins — a planned framework that adds ETC support into existing Ethereum clients
+A plugin adds Ethereum Classic chain support to an upstream Ethereum client's execution layer. It
+is not a client implementation and carries no mining or Proof-of-Work consensus, so plugins serve
+non-mining infrastructure: exchanges, RPC providers, block explorers, and indexers.
+- Besu (Java) — https://github.com/besu-eth/besu
+- Erigon (Go) — https://github.com/erigontech/erigon
+- Ethrex (Rust) — https://github.com/lambdaclass/ethrex
+- Go-Ethereum (Go) — https://github.com/ethereum/go-ethereum
+- Nethermind (C#) — https://github.com/NethermindEth/nethermind
+- Reth (Rust) — https://github.com/paradigmxyz/reth
+The framework: https://ethereumclassic.com/build/clients#plugins
 
 ## Core-Geth: What the Network Is Running
 

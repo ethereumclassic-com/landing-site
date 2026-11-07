@@ -1,6 +1,13 @@
 import { getArticleBySlug } from '@/app/news/data/articles'
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
+import {
+  FUKUII_DESCRIPTION,
+  FUKUII_DOCS_URL,
+  FUKUII_LATEST_RELEASE,
+  FUKUII_LATEST_RELEASE_URL,
+  FUKUII_REPO_URL,
+} from '@/lib/fukuii'
 
 /**
  * /llms.txt, the machine-readable site summary. A route rather than a file in public/, so the
@@ -57,6 +64,7 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 - [Why Classic](https://ethereumclassic.com/why-classic) — Philosophy: genesis, code is law, decentralism, proof of work, sound money
 - [Mining](https://ethereumclassic.com/mining) — Mining pools, hardware, and profitability
 - [Build](https://ethereumclassic.com/build) — Developer documentation and tools
+- [Node Clients](https://ethereumclassic.com/build/clients) — Core-Geth, the recommended client, and Fukuii, an alternative to try, with the ETC plugin framework
 - [News](https://ethereumclassic.com/news) — Latest Ethereum Classic news and updates
 - [Research](https://ethereumclassic.com/research) — Network analytics, supply data, and reports
 - [Emission Schedule](https://ethereumclassic.com/research/emission-schedule) — Supply reduction countdown, S2F charts, and era history
@@ -110,13 +118,18 @@ Included EIPs (18, per ECIP-1121's Specification section):
 
 Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain.
 
-Two client implementations:
-- Core-Geth (coregeth.com) — the recommended client to run: an Ethereum Classic execution client and public-good Go reference client, a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization. Not native, and not a plugin. The v1.13 line is the current production line; the v1.12 line is vulnerable and should be left. Ethereum Classic's core developers and community contributors do the work, and the Ethereum Classic DAO maintains and funds the client today as its funder of last resort. Current release: https://github.com/ethereumclassic/core-geth/releases/latest. Docs: https://docs.coregeth.com
-- Fukuii (fukuii.com) — an alternative, ETC-native client: an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration; a further network is configuration, not a new client. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor, or Proof-of-Stake with a built-in consensus layer, or an external client over the Engine API V1 to V4. Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on releases. By The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.). Repo: https://github.com/chippr-robotics/fukuii · Docs: https://docs.fukuii.com
-
-ETC execution client plugins add Ethereum Classic support into existing Ethereum clients. A plugin is not a client implementation and carries no mining or Proof-of-Work consensus: Besu (https://github.com/besu-eth/besu), Erigon (https://github.com/erigontech/erigon), Ethrex (https://github.com/lambdaclass/ethrex), Go-Ethereum (https://github.com/ethereum/go-ethereum), Nethermind (https://github.com/NethermindEth/nethermind), Reth (https://github.com/paradigmxyz/reth).
+Each client publishes an Olympia release before the activation block. Client readiness for Olympia: https://ethereumclassic.com/olympia/clients. The clients themselves are under Node Clients below.
 
 Activation block: TBD (announced after CDC-23 community call).
+
+## Node Clients
+
+The client pages, which hold across network upgrades: https://ethereumclassic.com/build/clients
+
+- Core-Geth (coregeth.com) — the recommended client to run: an Ethereum Classic execution client and public-good Go reference client, a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization. Not native, and not a plugin. The v1.13 line is the current production line; the v1.12 line is vulnerable and should be left. Ethereum Classic's core developers and community contributors do the work, and the Ethereum Classic DAO maintains and funds the client today as its funder of last resort. Current release: https://github.com/ethereumclassic/core-geth/releases/latest. Docs: https://docs.coregeth.com. Overview: https://ethereumclassic.com/build/clients/core-geth
+- Fukuii (fukuii.com) — an alternative to try, in alpha. ${FUKUII_DESCRIPTION} Latest release: ${FUKUII_LATEST_RELEASE} (${FUKUII_LATEST_RELEASE_URL}). Repo: ${FUKUII_REPO_URL} · Docs: ${FUKUII_DOCS_URL}. Overview: https://ethereumclassic.com/build/clients/fukuii
+
+ETC execution client plugins, a planned framework, add Ethereum Classic support into existing Ethereum clients. A plugin is not a client implementation and carries no mining or Proof-of-Work consensus: Besu (https://github.com/besu-eth/besu), Erigon (https://github.com/erigontech/erigon), Ethrex (https://github.com/lambdaclass/ethrex), Go-Ethereum (https://github.com/ethereum/go-ethereum), Nethermind (https://github.com/NethermindEth/nethermind), Reth (https://github.com/paradigmxyz/reth). The framework: https://ethereumclassic.com/build/clients#plugins
 
 ## Networks
 
