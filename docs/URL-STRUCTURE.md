@@ -297,6 +297,7 @@
 | `/mining/profitability` | Profitability calculator | Complete | P2 |
 | `/mining/stats` | Network hashrate stats | Complete | P2 |
 | `/mining/fees` | Network fees, read from the chain | Complete | P1 |
+| `/mining/fee-market` | Removed; redirects to `/olympia/miners`, where its Olympia material lives | Redirect | — |
 
 **Pool Pages (by hashrate relevance):**
 

@@ -365,7 +365,7 @@ export default async function MiningPage() {
             </Link>
 
             <Link
-              href="/mining/fee-market"
+              href="/mining/fees"
               className="group block rounded-2xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 p-6 transition-all hover:border-[var(--brand-green)]/40"
             >
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--brand-green)]/15">
@@ -374,10 +374,10 @@ export default async function MiningPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">
-                Olympia &amp; Fee Market
+                Network Fees
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
-                How Olympia aligns core dev with miner incentives
+                What transactions pay, and what that pays miners
               </p>
             </Link>
 

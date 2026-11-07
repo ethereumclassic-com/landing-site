@@ -57,6 +57,12 @@ const nextConfig: NextConfig = {
         destination: '/research',
         permanent: true,
       },
+      // The fee market argument for Olympia, which lives in the Olympia hub.
+      {
+        source: '/mining/fee-market',
+        destination: '/olympia/miners',
+        permanent: true,
+      },
       // The fee dashboard, rebuilt on observed fees under the mining section.
       {
         source: '/research/fees',

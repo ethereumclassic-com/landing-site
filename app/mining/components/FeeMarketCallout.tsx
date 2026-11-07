@@ -1,72 +1,70 @@
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui'
-import { fetchMiningNetworkStats } from '@/lib/etc-rpc'
+import { fetchNetworkFees, formatShare } from '@/lib/network-fees'
 
+const ArrowIcon = () => (
+  <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+  </svg>
+)
+
+/** The mining hub's fee summary, read from the same daily series as /mining/fees. */
 export async function FeeMarketCallout() {
-  const stats = await fetchMiningNetworkStats()
-  const avgTx = stats.latestBlock.txCount
-  const utilization =
-    stats.latestBlock.gasLimit > 0
-      ? (stats.latestBlock.gasUsed / stats.latestBlock.gasLimit) * 100
-      : 0.42
+  const fees = await fetchNetworkFees()
 
   return (
     <section className="border-y border-[var(--border-default)] py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <FadeIn>
           <p className="font-mono text-xs uppercase tracking-widest text-[var(--brand-green)]">
-            Fee Market
+            Network Fees
           </p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">
-            The Fee Market Problem
+            Fees and Miner Revenue
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            ETC blocks are currently near ATL utilization. The average block is over 99% empty.
-            Block rewards fifthened every 5M blocks under ECIP-1017. Without fee revenue to replace
-            diminishing block rewards, PoW miners eventually have no financial incentive to secure
-            the network. Olympia is how ETC fixes this: it funds the core development that fills
-            blocks, creates fee revenue, and aligns miners with long-term ecosystem growth.
+            Miners are paid the block reward and the fees of the transactions they include. The block
+            reward falls 20% every 5 million blocks under ECIP-1017, so fees are the part of miner revenue
+            that can grow with use of the network.
           </p>
         </FadeIn>
 
-        <FadeIn delay={100}>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
-              <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">
-                Avg Txs / Block
-              </p>
-              <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
-                ~{avgTx.toFixed(1)}
-              </p>
+        {fees && (
+          <FadeIn delay={100}>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
+                <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">
+                  Fee share of miner revenue
+                </p>
+                <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">{formatShare(fees.feeShare)}</p>
+                <p className="mt-1 text-xs text-[var(--text-subtle)]">Last {fees.days.length} days</p>
+              </div>
+              <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
+                <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">
+                  Block space used
+                </p>
+                <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">{formatShare(fees.utilization)}</p>
+                <p className="mt-1 text-xs text-[var(--text-subtle)]">Gas used as a share of the gas limit</p>
+              </div>
             </div>
-            <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
-              <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">
-                Network Utilization
-              </p>
-              <p className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
-                {utilization.toFixed(2)}%
-              </p>
-            </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        )}
 
         <FadeIn delay={150}>
-          <div className="mt-6 flex justify-start">
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
             <Link
-              href="/olympia"
+              href="/mining/fees"
               className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--brand-green)] transition-colors hover:underline"
             >
-              Learn about the Olympia upgrade
-              <svg
-                aria-hidden="true"
-                className="h-3.5 w-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
+              See network fees
+              <ArrowIcon />
+            </Link>
+            <Link
+              href="/olympia/miners"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--brand-green)] transition-colors hover:underline"
+            >
+              What Olympia changes for miners
+              <ArrowIcon />
             </Link>
           </div>
         </FadeIn>

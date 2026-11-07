@@ -218,9 +218,9 @@ export default function TreasuryPage() {
                   body: 'The five stages, the ECIPs, and what activates when.',
                 },
                 {
-                  href: '/mining/fee-market',
+                  href: '/olympia/miners',
                   title: 'Miners & the Fee Market',
-                  body: 'Why a fee market matters to Proof-of-Work security.',
+                  body: 'Why a fee market matters to Proof-of-Work security, and what Olympia changes for miners.',
                 },
                 {
                   href: '/olympia',

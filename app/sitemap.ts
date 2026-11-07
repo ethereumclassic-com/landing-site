@@ -187,7 +187,6 @@ const staticRoutes: StaticRoute[] = [
   { path: '/mining/os', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/mining/approaches', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/mining/regulation', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/mining/fee-market', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/mining/fees', priority: 0.8, changeFrequency: 'daily' as const, sources: ['app/mining/fees/layout.tsx', 'lib/network-fees.ts'] },
 
   // Build section
