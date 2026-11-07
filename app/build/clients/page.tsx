@@ -94,7 +94,8 @@ export default function ClientsPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
               Run your own Ethereum Classic node for maximum decentralization and independence.
-              Core-Geth (Go) is the recommended client; Fukuii (Scala) is a native alternative; and ETC execution plugins add Ethereum Classic support to other Ethereum clients.
+              Core-Geth (Go) is the recommended client to run. Fukuii (Scala), in alpha, is an alternative to try.
+              The ETC plugin framework adds Ethereum Classic support into other Ethereum clients.
             </p>
           </div>
         </div>
@@ -276,13 +277,19 @@ export default function ClientsPage() {
                       )}
 
                       <div className="flex gap-2">
+                        <Link
+                          href={`/build/clients/${client.id}`}
+                          className="flex-1 rounded-lg bg-[var(--color-primary)] py-2 text-center text-sm font-medium text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
+                        >
+                          Details
+                        </Link>
                         <a
                           href={client.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 rounded-lg bg-[var(--color-primary)] py-2 text-center text-sm font-medium text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
+                          className="flex-1 rounded-lg border border-[var(--border)] bg-[var(--bg)] py-2 text-center text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
                         >
-                          Documentation
+                          Website
                         </a>
                         <a
                           href={client.github}
@@ -327,8 +334,8 @@ export default function ClientsPage() {
                     <code className="text-[var(--text-primary)]">--classic</code>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--color-text-muted)]">Fukuii Flag</span>
-                    <code className="text-[var(--text-primary)]">network=etc</code>
+                    <span className="text-[var(--color-text-muted)]">Fukuii Argument</span>
+                    <code className="text-[var(--text-primary)]">etc</code>
                   </div>
                 </div>
               </div>
@@ -350,8 +357,8 @@ export default function ClientsPage() {
                     <code className="text-[var(--text-primary)]">--mordor</code>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--color-text-muted)]">Fukuii Flag</span>
-                    <code className="text-[var(--text-primary)]">network=mordor</code>
+                    <span className="text-[var(--color-text-muted)]">Fukuii Argument</span>
+                    <code className="text-[var(--text-primary)]">mordor</code>
                   </div>
                 </div>
               </div>
@@ -418,22 +425,21 @@ export default function ClientsPage() {
         </div>
       </section>
 
-      {/* Execution Client Plugins — Post-Olympia Roadmap */}
-      <section className="px-6 py-16">
+      {/* Execution client plugins: each one's status badge says it is planned */}
+      <section id="plugins" className="scroll-mt-24 px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <div
           >
             <h2 className="mb-2 text-2xl font-bold text-[var(--text-primary)]">
               Execution Client Plugins
             </h2>
-            <p className="mb-2 text-sm font-mono text-[var(--color-text-muted)]">Post-Olympia Roadmap</p>
             <p className="mb-8 max-w-3xl text-[var(--color-text-muted)]">
               Upstream Ethereum clients separated the consensus engine from the execution engine to support
-              Proof-of-Stake. ETC plugins leverage this separation to add Ethereum Classic chain support
+              Proof-of-Stake. ETC plugins use this separation to add Ethereum Classic chain support
               to the execution layer only. No mining, no PoW consensus. Products and infrastructure built on
-              Go-Ethereum, Nethermind, Erigon, Besu, or Reth can add ETC support via a lightweight plugin without running
-              a separate PoW consensus client. Core-Geth carries the Proof-of-Work consensus and mining path
-              for the ecosystem.
+              Besu, Erigon, Ethrex, Go-Ethereum, Nethermind, or Reth can add ETC support through a plugin without running
+              a separate PoW consensus client. A plugin is not a client implementation: Core-Geth carries the
+              Proof-of-Work consensus and mining path for the ecosystem.
             </p>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
@@ -469,7 +475,7 @@ export default function ClientsPage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Ready to Run a Node?</h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-muted)]">
               Core-Geth is the recommended client for Ethereum Classic, released and maintained in the
-              ethereumclassic organization. For upgrade-specific guidance, see the client upgrade guides.
+              ethereumclassic GitHub organization. Fukuii, in alpha, is an alternative to try.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
@@ -482,10 +488,10 @@ export default function ClientsPage() {
                 <ExternalLinkIcon />
               </a>
               <Link
-                href="/olympia/clients"
+                href="/build/clients/fukuii"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel-hover)]"
               >
-                Client Upgrade Guides
+                Try Fukuii
               </Link>
             </div>
           </div>

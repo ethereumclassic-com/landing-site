@@ -83,6 +83,7 @@ type StaticRoute = {
 }
 
 const CORE_GETH_DATA = 'lib/core-geth.ts'
+const FUKUII_DATA = 'lib/fukuii.ts'
 const OLYMPIA_DATA = 'app/olympia/data/olympia.ts'
 
 // Static routes - all main pages
@@ -193,7 +194,8 @@ const staticRoutes: StaticRoute[] = [
   { path: '/build/getting-started', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/docs', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/tools', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/build/clients', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/build/data/build.ts', CORE_GETH_DATA] },
+  // The fork-agnostic client pages outrank the Olympia hub's client pages, which carry only Olympia readiness.
+  { path: '/build/clients', priority: 0.9, changeFrequency: 'weekly' as const, sources: ['app/build/data/build.ts', CORE_GETH_DATA, FUKUII_DATA] },
   { path: '/build/clients/core-geth-security-audit', priority: 0.9, changeFrequency: 'monthly' as const, sources: ['app/build/clients/core-geth-security-audit/layout.tsx', 'app/build/clients/core-geth-security-audit/RecordText.tsx', 'lib/core-geth-record.ts', CORE_GETH_DATA] },
   { path: '/build/networks', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/build/faucets', priority: 0.6, changeFrequency: 'weekly' as const },
@@ -241,9 +243,9 @@ const staticRoutes: StaticRoute[] = [
   // Olympia upgrade section
   { path: '/olympia', priority: 0.9, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA] },
   { path: '/olympia/upgrade', priority: 0.9, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA, CORE_GETH_DATA] },
-  { path: '/olympia/clients', priority: 0.8, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA, CORE_GETH_DATA] },
-  { path: '/olympia/clients/core-geth', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/core-geth/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', CORE_GETH_DATA] },
-  { path: '/olympia/clients/fukuii', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/fukuii/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx'] },
+  { path: '/olympia/clients', priority: 0.7, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', CORE_GETH_DATA, FUKUII_DATA] },
+  { path: '/olympia/clients/core-geth', priority: 0.6, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/core-geth/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', CORE_GETH_DATA] },
+  { path: '/olympia/clients/fukuii', priority: 0.6, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/fukuii/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', FUKUII_DATA] },
   { path: '/olympia/treasury', priority: 0.8, changeFrequency: 'monthly' as const },
   { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
   { path: '/olympia/history', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -283,6 +285,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'app/build/clients/[client]/page.tsx',
     'app/build/data/build.ts',
     CORE_GETH_DATA,
+    FUKUII_DATA,
   ])
   const clientEntries = [...nodeClients, ...executionPlugins].map((entry) => ({
     url: `${baseUrl}/build/clients/${entry.id}`,

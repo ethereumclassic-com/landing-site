@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui'
 
 interface MiningOverviewSectionProps {
@@ -51,15 +52,13 @@ export function MiningOverviewSection({ hashrateTHs }: MiningOverviewSectionProp
               Jasminer. ETChash supports both ASIC efficiency for commercial-grade operations and
               GPU accessibility for global participation, decentralizing hashrate across
               geographies and reducing supply chain risk. Run{' '}
-              <a
-                href="https://github.com/chippr-robotics/fukuii"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono font-semibold text-[var(--brand-green)] transition-colors hover:underline"
+              <Link
+                href="/build/clients/core-geth"
+                className="font-semibold text-[var(--brand-green)] transition-colors hover:underline"
               >
-                fukuii
-              </a>{' '}
-              to participate in block production and earn ETC rewards.
+                Core-Geth
+              </Link>
+              , the recommended client, to participate in block production and earn ETC rewards.
             </p>
             <p className="mt-4 text-sm font-medium text-[var(--text-muted)]">
               Secure the network, earn block rewards.
