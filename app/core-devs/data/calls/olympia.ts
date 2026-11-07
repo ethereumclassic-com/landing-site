@@ -83,10 +83,10 @@ None of these need to be solved now with a $0 treasury. The governance layer can
 - ETC's primary execution client went 21 months without a maintenance release, from June 2024 to the emergency releases of March 2026: the longest maintenance gap in the network's history
 - Every v1.12.x release still carries at least one disclosed CVE unpatched; Core-Geth v1.13.0 fixes all of them
 - The previous repository had no active maintainer: security disclosures went unanswered, and core development had no redundancy
-- For the Olympia transition, Core-Geth was brought forward under the [ethereumclassic](https://github.com/ethereumclassic) organization, and its [v1.13.0 release](https://github.com/ethereumclassic/core-geth/releases/tag/v1.13.0) carries every known security fix
+- For the Olympia transition, Core-Geth was brought forward under the [ethereumclassic](https://github.com/ethereumclassic) organization, and its [v1.13.0 release](https://github.com/ethereumclassic/core-geth/releases/tag/v1.13.0) fixed every client CVE the audits found
 - Olympia directly addresses these structural issues through multi-client architecture, protocol-funded maintenance, and multi-maintainer review
 
-The full [Core-Geth security audit](/build/clients/core-geth-security-audit) is published, and node operators on any v1.12.x release should upgrade to Core-Geth v1.13.0 now, following the [migration guide](https://docs.coregeth.com/tutorials/v1.13.0-migration/). We recommend all node operators update to the active development of Ethereum Classic with the Olympia Upgrade.
+The full [Core-Geth security audit](/build/clients/core-geth-security-audit) is published, and node operators on any v1.12.x release should move to the Core-Geth v1.13 line, following the [migration guide](https://docs.coregeth.com/tutorials/v1.13.0-migration/). We recommend all node operators update to the active development of Ethereum Classic with the Olympia Upgrade.
 
 ---
 

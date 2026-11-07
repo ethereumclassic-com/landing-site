@@ -103,7 +103,14 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
           <p className="text-xs text-[var(--color-text-muted)]">Current release</p>
-          <p className="mt-1 font-mono text-lg text-[var(--text-primary)]">{client.currentVersion}</p>
+          <a
+            href={client.latestReleaseUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-1 inline-block font-mono text-lg text-[var(--text-primary)] hover:text-[var(--brand-green)]"
+          >
+            {client.currentVersion} →
+          </a>
         </div>
         <div className="rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 p-4">
           <p className="text-xs text-[var(--brand-green)]">Olympia release</p>

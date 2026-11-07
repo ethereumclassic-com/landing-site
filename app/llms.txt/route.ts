@@ -4,7 +4,6 @@ import { coreGethLlmsSection } from '@/lib/llms-core-geth'
 import {
   FUKUII_DESCRIPTION,
   FUKUII_DOCS_URL,
-  FUKUII_LATEST_RELEASE,
   FUKUII_LATEST_RELEASE_URL,
   FUKUII_REPO_URL,
 } from '@/lib/fukuii'
@@ -127,7 +126,7 @@ Activation block: TBD (announced after CDC-23 community call).
 The client pages, which hold across network upgrades: https://ethereumclassic.com/build/clients
 
 - Core-Geth (coregeth.com) — the recommended client to run: an Ethereum Classic execution client and public-good Go reference client, a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization. Not native, and not a plugin. The v1.13 line is the current production line; the v1.12 line is vulnerable and should be left. Ethereum Classic's core developers and community contributors do the work, and the Ethereum Classic DAO maintains and funds the client today as its funder of last resort. Current release: https://github.com/ethereumclassic/core-geth/releases/latest. Docs: https://docs.coregeth.com. Overview: https://ethereumclassic.com/build/clients/core-geth
-- Fukuii (fukuii.com) — an alternative to try, in alpha. ${FUKUII_DESCRIPTION} Latest release: ${FUKUII_LATEST_RELEASE} (${FUKUII_LATEST_RELEASE_URL}). Repo: ${FUKUII_REPO_URL} · Docs: ${FUKUII_DOCS_URL}. Overview: https://ethereumclassic.com/build/clients/fukuii
+- Fukuii (fukuii.com) — an alternative to try, in alpha. ${FUKUII_DESCRIPTION} Latest release: ${FUKUII_LATEST_RELEASE_URL}. Repo: ${FUKUII_REPO_URL} · Docs: ${FUKUII_DOCS_URL}. Overview: https://ethereumclassic.com/build/clients/fukuii
 
 ETC execution client plugins, a planned framework, add Ethereum Classic support into existing Ethereum clients. A plugin is not a client implementation and carries no mining or Proof-of-Work consensus: Besu (https://github.com/besu-eth/besu), Erigon (https://github.com/erigontech/erigon), Ethrex (https://github.com/lambdaclass/ethrex), Go-Ethereum (https://github.com/ethereum/go-ethereum), Nethermind (https://github.com/NethermindEth/nethermind), Reth (https://github.com/paradigmxyz/reth). The framework: https://ethereumclassic.com/build/clients#plugins
 

@@ -8,7 +8,6 @@ import {
   FUKUII_FEATURES,
   FUKUII_HOMEPAGE_URL,
   FUKUII_IMAGE,
-  FUKUII_LATEST_RELEASE,
   FUKUII_LATEST_RELEASE_URL,
   FUKUII_REPO_URL,
 } from '@/lib/fukuii'
@@ -369,7 +368,7 @@ Overview: https://ethereumclassic.com/build/clients/core-geth
 Fukuii — an alternative to try, in alpha
 ${FUKUII_DESCRIPTION}
 ${FUKUII_FEATURES.map((feature) => `- ${feature}`).join('\n')}
-Latest release: ${FUKUII_LATEST_RELEASE} (${FUKUII_LATEST_RELEASE_URL})
+Latest release: ${FUKUII_LATEST_RELEASE_URL}
 Website: ${FUKUII_HOMEPAGE_URL}
 Docs: ${FUKUII_DOCS_URL}
 Repo: ${FUKUII_REPO_URL}

@@ -1,6 +1,7 @@
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 import {
   CORE_GETH_DOCS_URL,
+  CORE_GETH_LATEST_RELEASE_URL,
   CORE_GETH_RECOMMENDED_LINE,
   CORE_GETH_TASKS,
   type CoreGethTask,
@@ -9,7 +10,7 @@ import {
   FUKUII_DESCRIPTION,
   FUKUII_DOCS_URL,
   FUKUII_IMAGE,
-  FUKUII_LATEST_RELEASE,
+  FUKUII_LATEST_RELEASE_URL,
   FUKUII_REPO_URL,
   FUKUII_STATUS,
   FUKUII_TASKS,
@@ -57,7 +58,13 @@ export interface ClientUpgrade {
    * hard fork goes stale the moment the network forks past it.
    */
   badges: string[]
+  /**
+   * What to run before Olympia: a line ("v1.13 line") or "Latest release", never a version
+   * number, which goes stale at the client's next release.
+   */
   currentVersion: string
+  /** The client's newest full release, which the current-release box links. */
+  latestReleaseUrl: string
   olympiaVersion: string
   githubUrl: string
   /** Published security review, surfaced as a CTA on every card for this client. */
@@ -85,6 +92,7 @@ export const clients: ClientUpgrade[] = [
     securityAuditUrl: '/build/clients/core-geth-security-audit',
     // The line, never a patch: a release inside it ships with no edit here.
     currentVersion: `${CORE_GETH_RECOMMENDED_LINE} line`,
+    latestReleaseUrl: CORE_GETH_LATEST_RELEASE_URL,
     olympiaVersion: 'TBD',
     githubUrl: 'https://github.com/ethereumclassic/core-geth',
     docsUrl: CORE_GETH_DOCS_URL,
@@ -107,8 +115,10 @@ export const clients: ClientUpgrade[] = [
     description: FUKUII_DESCRIPTION,
     role: 'alternative',
     badges: ['Alternative', FUKUII_STATUS],
-    // Its latest full release; the builds between full releases are marked pre-release.
-    currentVersion: FUKUII_LATEST_RELEASE,
+    // Its newest full release, linked rather than named: the builds between full releases are
+    // marked pre-release, and releases/latest skips them.
+    currentVersion: 'Latest release',
+    latestReleaseUrl: FUKUII_LATEST_RELEASE_URL,
     olympiaVersion: 'TBD',
     githubUrl: FUKUII_REPO_URL,
     docsUrl: FUKUII_DOCS_URL,

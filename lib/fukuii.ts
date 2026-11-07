@@ -10,24 +10,23 @@ import type { CoreGethTask } from './core-geth'
  *
  * Core-Geth is the recommended client. Fukuii's maintainers mark it alpha, so the site offers
  * it as an alternative to try, and the status below says so wherever it appears.
+ *
+ * Copy here names no release: a link to the release itself is `releases/latest`, so a new
+ * Fukuii release needs no edit here.
  */
 
 export const FUKUII_HOMEPAGE_URL = 'https://fukuii.com'
 export const FUKUII_DOCS_URL = 'https://docs.fukuii.com'
 export const FUKUII_REPO_URL = 'https://github.com/chippr-robotics/fukuii'
 export const FUKUII_RELEASES_URL = `${FUKUII_REPO_URL}/releases`
-/** The newest release not marked pre-release, whatever it is. */
+/**
+ * The newest release not marked pre-release, whatever it is: the builds published between full
+ * releases are marked pre-release, and this skips them. A link to the release itself uses this,
+ * never a tag.
+ */
 export const FUKUII_LATEST_RELEASE_URL = `${FUKUII_RELEASES_URL}/latest`
 export const FUKUII_IMAGE = 'ghcr.io/chippr-robotics/fukuii'
 export const FUKUII_MAINTAINER = 'Chippr Robotics LLC'
-
-/**
- * The release `releases/latest` resolves to: the newest one not marked pre-release. The
- * builds published between full releases are marked pre-release and are not this. Read it
- * with `gh api repos/chippr-robotics/fukuii/releases/latest --jq .tag_name` and change it here,
- * the one place the site states it.
- */
-export const FUKUII_LATEST_RELEASE = 'v0.10.0'
 
 /** Its maintainers' own maturity label, shown as a badge so a change is one edit. */
 export const FUKUII_STATUS = 'Alpha'
@@ -69,7 +68,7 @@ export const FUKUII_TASKS: CoreGethTask[] = [
   {
     title: 'Download a release',
     body: 'Each release carries a distribution with launch scripts, a standalone JAR, checksums and a CycloneDX SBOM. Unpack it and start the node with the network name.',
-    links: [{ label: `Latest release, ${FUKUII_LATEST_RELEASE}`, href: FUKUII_LATEST_RELEASE_URL }],
+    links: [{ label: 'Latest release', href: FUKUII_LATEST_RELEASE_URL }],
   },
   {
     title: 'Build from source',

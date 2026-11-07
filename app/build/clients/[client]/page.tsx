@@ -22,7 +22,6 @@ import {
   ETHEREUM_CLASSIC_DAO_URL,
 } from '@/lib/core-geth'
 import {
-  FUKUII_LATEST_RELEASE,
   FUKUII_LATEST_RELEASE_URL,
   FUKUII_MAINNET_COMMAND,
   FUKUII_MAINTAINER,
@@ -500,7 +499,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                       rel="noopener noreferrer"
                       className="font-medium text-[var(--color-primary)] hover:underline"
                     >
-                      Latest release, {FUKUII_LATEST_RELEASE} →
+                      Latest release →
                     </a>
                   </div>
                 </div>
