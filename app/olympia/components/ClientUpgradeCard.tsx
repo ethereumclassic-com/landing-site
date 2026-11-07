@@ -102,14 +102,21 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       {/* Version info */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
-          <p className="text-xs text-[var(--color-text-muted)]">Current Version</p>
+          <p className="text-xs text-[var(--color-text-muted)]">Current release</p>
           <p className="mt-1 font-mono text-lg text-[var(--text-primary)]">{client.currentVersion}</p>
         </div>
         <div className="rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 p-4">
-          <p className="text-xs text-[var(--brand-green)]">Olympia Version</p>
+          <p className="text-xs text-[var(--brand-green)]">Olympia release</p>
           <p className="mt-1 font-mono text-lg text-[var(--text-primary)]">{client.olympiaVersion}</p>
         </div>
       </div>
+      <p className="text-sm text-[var(--color-text-muted)]">
+        The Olympia release is published before the activation block, and the{' '}
+        <Link href="/olympia/upgrade" className="font-medium text-[var(--brand-green)] hover:underline">
+          Olympia upgrade guide
+        </Link>{' '}
+        has the steps to take it. Until then, run the current release.
+      </p>
 
       {/* Prerequisites */}
       <div>
@@ -126,7 +133,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
 
       {/* Install: the tasks and where their steps are, or the client's own commands */}
       <div>
-        <h2 className="text-xl font-semibold text-[var(--text-primary)]">Installation</h2>
+        <h2 className="text-xl font-semibold text-[var(--text-primary)]">Run the current release</h2>
         <div className="mt-3 space-y-3">
           {client.tasks?.map(({ title, body, links }) => (
             <div key={title} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
@@ -160,12 +167,18 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       <div>
         <h2 className="text-xl font-semibold text-[var(--text-primary)]">Verify Installation</h2>
         <div className="mt-3 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
-          <code className="font-mono text-sm text-[var(--brand-green)]">{client.verifyCommand}</code>
+          <code className="font-mono text-sm break-all text-[var(--brand-green)]">{client.verifyCommand}</code>
         </div>
       </div>
 
       {/* Links */}
       <div className="flex flex-wrap gap-3">
+        <Link
+          href={`/build/clients/${client.id}`}
+          className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
+        >
+          Client overview →
+        </Link>
         <a
           href={client.githubUrl}
           target="_blank"

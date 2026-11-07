@@ -15,7 +15,7 @@ export default function CoreGethUpgradePage() {
             href="/olympia/clients"
             className="text-sm text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
           >
-            ← All Clients
+            ← Clients for Olympia
           </Link>
         </div>
         <ClientUpgradeCard client={client} detail />

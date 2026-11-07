@@ -3,9 +3,9 @@ import { OG_BASE } from '@/lib/seo'
 
 // /olympia/clients/layout.tsx sets a plain-string title, which ends the section's
 // title template, so this title carries its own context.
-const title = 'Core-Geth Upgrade Guide for Ethereum Classic'
+const title = 'Core-Geth Olympia Upgrade Guide — Ethereum Classic'
 const description =
-  'Run Core-Geth on the v1.13 line: install it, move a v1.12 node with its required P2P key rotation, and verify a download, with the steps on coregeth.com.'
+  'Get a Core-Geth node ready for Olympia: run the v1.13 line now, moving a v1.12 node with its required key rotation, and take the Olympia release before activation.'
 
 export const metadata: Metadata = {
   title,
