@@ -1,1 +1,0 @@
-// Template Components - EthereumClassic.com

@@ -61,7 +61,7 @@ app/
   styles/tokens.css     → design tokens (light + dark)
   api/                  → route handlers: hashrate, pools, network, price, rates
   components/           → shared UI
-    ui/                 → FadeIn, SectionDivider, Card, Button, Badge, Modal
+    ui/                 → small building blocks shared across sections
     ecip1017/           → emission charts, era table, ECIP-1017 explainer
     homepage/           → homepage sections
   <section>/            → one directory per site section
