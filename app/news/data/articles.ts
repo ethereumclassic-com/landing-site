@@ -452,9 +452,9 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
 
 ## Client Requirements
 
-- Core-Geth v1.11.0 or later (Multi-Geth at the time)
-- Hyperledger Besu with ETC Atlantis support`,
+- Core-Geth v1.11.0 or later (Multi-Geth at the time)`,
     date: '2019-09-12',
+    updated: '2026-11-07',
     category: 'Updates',
     subject: 'Atlantis',
     tags: ['Network Upgrade', 'Byzantium', 'ECIP-1054'],
@@ -969,9 +969,9 @@ Core-Geth processes the majority of ETC network traffic. It is used by:
 
 ## Multi-Client Future
 
-Ethereum Classic also supports Hyperledger Besu (Java) and has development underway on Fukuii (Scala). Running multiple independent client implementations provides consensus diversity — if one client has a bug, the others continue producing correct blocks, preventing a single point of failure from halting the network.`,
+Running multiple independent client implementations provides consensus diversity — if one client has a bug, the others continue producing correct blocks, preventing a single point of failure from halting the network.`,
     date: '2019-04-01',
-    updated: '2026-11-05',
+    updated: '2026-11-07',
     category: 'Ecosystem',
     subject: 'Core-Geth',
     tags: ['Core-Geth', 'Client', 'Infrastructure'],
@@ -994,10 +994,9 @@ Olympia implements EIP-1559's dynamic basefee mechanism, which replaces the firs
 Olympia brings Cancun execution-layer EIPs to ETC, maintaining the network's track record of selective EVM alignment. PoS-specific changes are omitted as usual.
 
 ### Multi-Client Activation
-Three independent client implementations are preparing for Olympia:
+Two independent client implementations are preparing for Olympia:
 - **Core-Geth** (Go) — primary reference client
-- **Hyperledger Besu** (Java) — enterprise-grade alternative
-- **Fukuii** (Scala) — primary ETC client for the Olympia era
+- **Fukuii** (Scala) — an alternative client, in development
 
 ## Treasury Funding Mechanism
 
@@ -1011,6 +1010,7 @@ Olympia will activate on the Mordor testnet first, followed by ETC mainnet. Acti
 
 Treasury fund allocation will be governed by the Olympia decentralized governance framework, ensuring that spending decisions are made by ETC stakeholders rather than any single organization.`,
     date: '2026-01-15',
+    updated: '2026-11-07',
     category: 'Updates',
     subject: 'Olympia',
     featured: true,
@@ -1522,7 +1522,7 @@ As with previous upgrades, ETC excluded PoS-specific changes:
 ## Network Impact
 
 ### Stability
-Zero client incompatibilities. All three ETC clients (Core-Geth, Besu, Fukuii) processed the fork boundary without issues.
+Zero client incompatibilities. The clients running the network processed the fork boundary without issues.
 
 ### Developer Experience
 EVM parity with Shanghai means developers can use the latest Solidity compiler features when deploying to ETC. Tools like Hardhat, Foundry, and Remix work without special configuration.
@@ -1534,6 +1534,7 @@ PUSH0 and Warm COINBASE have measurably reduced gas costs for common operations,
 
 Spiral represents ETC's current production EVM level. The next planned upgrade, Olympia, will introduce the treasury funding mechanism via EIP-1559 base fee redirection.`,
     date: '2024-07-31',
+    updated: '2026-11-07',
     category: 'Updates',
     subject: 'Spiral, Six Months In',
     tags: ['Network Upgrade', 'Spiral', 'ECIP-1109', 'Shanghai'],
@@ -2383,8 +2384,9 @@ The ECIPs were published in Draft status, opening a formal review period for the
 
 ## Testing Plan
 
-The upgrade targets deployment on the Mordor testnet before mainnet activation, allowing thorough multi-client testing across Core-Geth, Besu, and Fukuii — the three ETC client implementations preparing Olympia support.`,
+The upgrade targets deployment on the Mordor testnet before mainnet activation, allowing thorough multi-client testing across Core-Geth and Fukuii, the two ETC client implementations preparing Olympia support.`,
     date: '2025-09-01',
+    updated: '2026-11-07',
     category: 'Updates',
     subject: 'Olympia ECIPs',
     tags: ['Olympia', 'ECIP', 'EIP-1559', 'Treasury', 'Governance', 'Network Upgrade'],
@@ -2449,6 +2451,7 @@ The Gorgoroth Trials represent the first phase of a multi-stage testing process.
     excerpt:
       "Olympia is the most significant protocol upgrade in Ethereum Classic's history — delivering EIP-1559, Fusaka EVM parity, a protocol-native treasury, on-chain DAO governance, futarchy prediction markets, and miner distribution improvements in a single coordinated activation. This is a complete overview of what Olympia is, how it works, and why it matters.",
     date: '2026-03-08',
+    updated: '2026-11-07',
     category: 'Updates',
     subject: 'The Olympia Upgrade',
     featured: true,
@@ -2539,7 +2542,7 @@ No new tokens are minted. Block rewards and priority fees go entirely to miners,
 
 ## Rollout
 
-Three client implementations are preparing Olympia support: Core-Geth, Besu, and Fukuii. Mordor testnet activation is scheduled for Q4 2025, followed by multi-client cross-validation through the Hive integration testing framework. Mainnet activation is targeted before 2027, announced after a successful Mordor run and coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers.
+Two client implementations are preparing Olympia support: Core-Geth and Fukuii. Mordor testnet activation is scheduled for Q4 2025, followed by multi-client cross-validation through the Hive integration testing framework. Mainnet activation is targeted before 2027, announced after a successful Mordor run and coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers.
 
 All ten ECIPs are in Draft status and open for community review. Join the discussion at github.com/orgs/ethereumclassic/discussions/530, or read the full specifications at ecips.ethereumclassic.org.`,
   },
