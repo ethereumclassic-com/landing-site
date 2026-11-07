@@ -282,7 +282,7 @@ export default function DirectoryPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/build/start" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
+                  <Link href="/build/getting-started" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
                     Dev Quick Start
                   </Link>
                 </li>
