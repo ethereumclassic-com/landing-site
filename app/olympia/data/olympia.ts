@@ -5,6 +5,15 @@ import {
   CORE_GETH_TASKS,
   type CoreGethTask,
 } from '@/lib/core-geth'
+import {
+  FUKUII_DESCRIPTION,
+  FUKUII_DOCS_URL,
+  FUKUII_IMAGE,
+  FUKUII_LATEST_RELEASE,
+  FUKUII_REPO_URL,
+  FUKUII_STATUS,
+  FUKUII_TASKS,
+} from '@/lib/fukuii'
 // Olympia Network Upgrade — Core Data
 //
 // COPY SAFETY: Treasury is funded by EIP-1559 basefee, NOT block rewards.
@@ -40,7 +49,7 @@ export interface ClientUpgrade {
   languageColor: string
   description: string
   /** Drives the badge color only. */
-  role: 'primary' | 'enterprise' | 'maintenance'
+  role: 'primary' | 'alternative' | 'maintenance'
   /**
    * What renders on the card, in order. An array rather than one label because
    * a client is several things at once, and because these must describe what a
@@ -95,22 +104,25 @@ export const clients: ClientUpgrade[] = [
     name: 'Fukuii',
     language: 'Scala',
     languageColor: '#DC322F',
-    description:
-      'A native Ethereum Classic client: an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, metrics registry, and configuration. Consensus is selected per deployment: native Proof-of-Work for ETC mainnet and Mordor.',
-    role: 'enterprise',
-    badges: ['ETC-native', 'Enterprise'],
-    currentVersion: 'v0.1.240',
+    description: FUKUII_DESCRIPTION,
+    role: 'alternative',
+    badges: ['Alternative', FUKUII_STATUS],
+    // Its latest full release; the builds between full releases are marked pre-release.
+    currentVersion: FUKUII_LATEST_RELEASE,
     olympiaVersion: 'TBD',
-    githubUrl: 'https://github.com/chippr-robotics/fukuii',
-    docsUrl: 'https://docs.fukuii.com',
-    dockerImage: 'ghcr.io/chippr-robotics/fukuii:latest',
-    platforms: ['Linux', 'macOS', 'Docker'],
-    installCommands: [
-      { platform: 'Docker', command: 'docker pull ghcr.io/chippr-robotics/fukuii:latest' },
-      { platform: 'Source', command: 'sbt stage' },
+    githubUrl: FUKUII_REPO_URL,
+    docsUrl: FUKUII_DOCS_URL,
+    dockerImage: `${FUKUII_IMAGE}:latest`,
+    platforms: ['Linux', 'macOS', 'Windows', 'Docker'],
+    installCommands: [],
+    tasks: FUKUII_TASKS,
+    // The check Fukuii's First Start runbook gives, on the RPC port its documentation uses.
+    verifyCommand:
+      'curl -X POST --data \'{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}\' http://localhost:8546',
+    prerequisites: [
+      'JDK 25, which the container image carries',
+      '8 GB of RAM and 500 GB of storage for an Ethereum Classic node, per its hardware sizing',
     ],
-    verifyCommand: 'fukuii --version',
-    prerequisites: ['Current JDK LTS (25), bundled in the Docker image', '8 GB RAM minimum', '500 GB SSD (full sync)'],
   },
 ]
 

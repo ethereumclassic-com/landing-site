@@ -21,6 +21,13 @@ import {
   CORE_GETH_UPGRADE_STEPS_URL,
   ETHEREUM_CLASSIC_DAO_URL,
 } from '@/lib/core-geth'
+import {
+  FUKUII_LATEST_RELEASE,
+  FUKUII_LATEST_RELEASE_URL,
+  FUKUII_MAINNET_COMMAND,
+  FUKUII_MAINTAINER,
+  FUKUII_MORDOR_COMMAND,
+} from '@/lib/fukuii'
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { client: slug } = await params
@@ -298,25 +305,6 @@ function InstallationSection({ client }: { client: NodeClient }) {
             ))}
           </ul>
         )}
-
-        {client.id === 'fukuii' && (
-          <div className="space-y-4">
-            <div>
-              <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Docker</h3>
-              <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-sm">
-                <code className="text-[var(--color-primary)]">docker pull ghcr.io/chippr-robotics/fukuii:latest</code>
-              </div>
-            </div>
-            <div>
-              <h3 className="mb-2 text-sm font-medium text-[var(--color-text-muted)]">Build from Source</h3>
-              <div className="rounded-lg bg-[var(--bg)] p-3 font-mono text-xs space-y-1">
-                <code className="block text-[var(--color-text-muted)]">git clone https://github.com/chippr-robotics/fukuii.git</code>
-                <code className="block text-[var(--color-text-muted)]">cd fukuii && sbt assembly</code>
-              </div>
-              <p className="mt-2 text-xs text-[var(--color-text-muted)]">Requires JDK 25 or later and sbt.</p>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )
@@ -344,7 +332,7 @@ function ConfigurationSection({ client }: { client: NodeClient }) {
                 <code className="text-[var(--color-primary)]">geth --classic</code>
               )}
               {client.id === 'fukuii' && (
-                <code className="text-[var(--color-primary)]">fukuii --network=etc</code>
+                <code className="text-[var(--color-primary)]">{FUKUII_MAINNET_COMMAND}</code>
               )}
             </div>
           </div>
@@ -355,7 +343,7 @@ function ConfigurationSection({ client }: { client: NodeClient }) {
                 <code className="text-[var(--color-primary)]">geth --mordor</code>
               )}
               {client.id === 'fukuii' && (
-                <code className="text-[var(--color-primary)]">fukuii --network=mordor</code>
+                <code className="text-[var(--color-primary)]">{FUKUII_MORDOR_COMMAND}</code>
               )}
             </div>
           </div>
@@ -501,6 +489,22 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                   </p>
                 </div>
               )}
+              {client.id === 'fukuii' && (
+                <div className="mt-4 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-sm">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <span className="font-medium text-[var(--text-primary)]">Maintained by {FUKUII_MAINTAINER}</span>
+                    <span className="text-[var(--color-text-muted)]">Releases are published at chippr-robotics/fukuii</span>
+                    <a
+                      href={FUKUII_LATEST_RELEASE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-[var(--color-primary)] hover:underline"
+                    >
+                      Latest release, {FUKUII_LATEST_RELEASE} →
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -610,7 +614,12 @@ function NodeClientPage({ client }: { client: NodeClient }) {
       {/* Status Badge */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          {(
+          {client.statusNote ? (
+            <div className="rounded-xl border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 p-4">
+              <p className="font-medium text-[var(--text-primary)]">{client.statusNote.title}</p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">{client.statusNote.body}</p>
+            </div>
+          ) : (
             <div className="rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success)]/5 p-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-success-bg)]">

@@ -7,6 +7,18 @@ import {
   CORE_GETH_TASKS,
   type CoreGethTask,
 } from '@/lib/core-geth'
+import {
+  FUKUII_DESCRIPTION,
+  FUKUII_DOCS_URL,
+  FUKUII_FEATURES,
+  FUKUII_HOMEPAGE_URL,
+  FUKUII_MAINNET_COMMAND,
+  FUKUII_MORDOR_COMMAND,
+  FUKUII_REPO_URL,
+  FUKUII_STATUS,
+  FUKUII_SUMMARY,
+  FUKUII_TASKS,
+} from '@/lib/fukuii'
 
 // Network configuration
 export interface Network {
@@ -107,7 +119,7 @@ export interface NodeClient {
   features: string[]
   status: 'active' | 'maintained' | 'deprecated'
   /** Drives the badge color only. */
-  role?: 'recommended' | 'maintained' | 'reference'
+  role?: 'recommended' | 'alternative' | 'maintained' | 'reference'
   /**
    * Badges to render, in order. Describe what the client IS — never which hard
    * fork is next, which stops being true once the network forks past it. Falls
@@ -119,11 +131,13 @@ export interface NodeClient {
   /** What an operator comes to do, each linking the page that carries the steps. Shown in place of installCommand. */
   installTasks?: CoreGethTask[]
   configNotes?: string
+  /** Replaces the default "actively maintained" status on the client page, where the maintainers' own maturity label says otherwise. */
+  statusNote?: { title: string; body: string }
   securityAdvisories?: SecurityAdvisory[]
   securityAuditUrl?: string
 }
 
-// Execution Client Plugins (Post-Olympia Roadmap)
+// Execution client plugins: a planned framework, so each one's status is 'planned'
 export interface ExecutionPlugin {
   id: string
   name: string
@@ -210,29 +224,24 @@ export const nodeClients: NodeClient[] = [
   {
     id: 'fukuii',
     name: 'Fukuii',
-    website: 'https://fukuii.com',
-    docs: 'https://docs.fukuii.com',
-    github: 'https://github.com/chippr-robotics/fukuii',
-    metaDescription:
-      'Fukuii, a native Ethereum Classic client in Scala 3 on the JVM: one binary runs several networks at once, each with its own state and configuration.',
-    description:
-      'A native Ethereum Classic client: an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration; a further network is configuration, not a new client.',
+    website: FUKUII_HOMEPAGE_URL,
+    docs: FUKUII_DOCS_URL,
+    github: FUKUII_REPO_URL,
+    metaDescription: `Fukuii: ${FUKUII_SUMMARY}`,
+    description: FUKUII_DESCRIPTION,
     language: 'Scala',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
-    features: [
-      'Several networks at once in one JVM process, each fully isolated',
-      'Consensus selected per deployment: native Proof-of-Work for ETC mainnet and Mordor',
-      'Proof-of-Stake with a built-in consensus layer, or an external client over the Engine API V1–V4',
-      'SNAP, fast, and regular sync; JSON-RPC, GraphQL, and an MCP server exposing node state to AI agents',
-      'JVM-native end to end for institutions already on the JVM: JFR, async-profiler, JMX and heap dumps work as on any JVM process, with no foreign-language bridge',
-      'Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints in the binary',
-      'Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts',
-    ],
+    features: FUKUII_FEATURES,
     status: 'active',
-    badges: ['ETC-native', 'Enterprise'],
+    role: 'alternative',
+    badges: ['Alternative', FUKUII_STATUS],
     recommended: false,
-    configNotes:
-      'Select the network with --network=etc for ETC mainnet or --network=mordor for the ETC testnet. Requires a current JDK LTS (25); the Docker image bundles one.',
+    installTasks: FUKUII_TASKS,
+    configNotes: `Name the network when the node starts: ${FUKUII_MAINNET_COMMAND} for Ethereum Classic mainnet, or ${FUKUII_MORDOR_COMMAND} for the Mordor testnet. It runs on JDK 25, and the container image carries its own.`,
+    statusNote: {
+      title: FUKUII_STATUS,
+      body: "Fukuii's maintainers mark it alpha and not yet recommended for production-critical workloads. Core-Geth is the client to run; Fukuii is an alternative to try, and operator reports shape its road to a stable release.",
+    },
   },
 ]
 
@@ -719,7 +728,7 @@ export function getActiveClients(): NodeClient[] {
  *
  * The sort puts the recommended client first, so Core-Geth leads and takes the
  * preferred card treatment (green border for `recommended`). Core-Geth is the
- * client to run today; Fukuii is the alternative native client and is not marked
+ * client to run; Fukuii, in alpha, is the alternative to try and is not marked
  * recommended.
  */
 export function getClientImplementations(): NodeClient[] {

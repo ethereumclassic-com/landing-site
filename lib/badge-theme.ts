@@ -20,12 +20,12 @@
  * WCAG AA 4.5 in both themes — see .local/scratch/contrast-variant.py.
  */
 
-export type BadgeTone = 'native' | 'maintenance' | 'neutral' | 'enterprise'
+export type BadgeTone = 'native' | 'maintenance' | 'neutral'
 
 /** The two role vocabularies in this repo, mapped onto one tone set. */
 export type ClientRole =
   | 'primary'
-  | 'enterprise'
+  | 'alternative'
   | 'maintenance'
   | 'recommended'
   | 'maintained'
@@ -34,7 +34,7 @@ export type ClientRole =
 export const CLIENT_ROLE_TONE: Record<ClientRole, BadgeTone> = {
   primary: 'native',
   recommended: 'native',
-  enterprise: 'enterprise',
+  alternative: 'neutral',
   maintenance: 'maintenance',
   maintained: 'maintenance',
   reference: 'neutral',
@@ -61,11 +61,6 @@ export const BADGE_TONE: Record<BadgeTone, ToneStyle> = {
     color: 'var(--text-muted)',
     background: 'var(--border-subtle)',
     borderColor: 'var(--border-default)',
-  },
-  enterprise: {
-    color: 'var(--color-info)',
-    background: 'var(--color-info-bg)',
-    borderColor: 'var(--color-info-border)',
   },
 }
 

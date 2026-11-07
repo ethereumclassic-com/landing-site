@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { CORE_GETH_DOCS_URL, CORE_GETH_LATEST_RELEASE_URL, CORE_GETH_UPGRADE_STEPS_URL } from '@/lib/core-geth'
+import { FUKUII_DOCS_URL, FUKUII_RELEASES_URL, FUKUII_STATUS } from '@/lib/fukuii'
 // Inline SVG icons (etc-com does not use lucide-react)
 type IconProps = { size?: number; className?: string; style?: React.CSSProperties; 'aria-hidden'?: boolean | 'true' | 'false' }
 const CheckCircle2 = ({ size = 16, className = '', style, ...rest }: IconProps) => (
@@ -238,7 +239,7 @@ const clientData: {
     name: 'Fukuii',
     language: 'Scala',
     languageColor: '#DC322F',
-    role: 'Alternative · Enterprise · ETC-native',
+    role: `Alternative · ${FUKUII_STATUS}`,
     runtime: 'JDK 25+',
     disk: '500 GB+ (SNAP sync)',
     ram: '8 GB minimum',
@@ -248,8 +249,8 @@ const clientData: {
       'Replace the existing binary',
       'Restart your node. Fukuii automatically follows the Olympia fork.',
     ],
-    githubUrl: 'https://github.com/chippr-robotics/fukuii/releases',
-    docsUrl: 'https://docs.fukuii.com',
+    githubUrl: FUKUII_RELEASES_URL,
+    docsUrl: FUKUII_DOCS_URL,
   },
 ]
 

@@ -123,9 +123,9 @@ const partners: Partner[] = [
     partnerSince: '2017',
   },
   {
-    name: 'The Fukuii Authors',
+    name: 'Chippr Robotics',
     description:
-      'Chippr Robotics LLC and White B0x Inc., who maintain Fukuii, a native Ethereum Classic client.',
+      'Maintains Fukuii, an execution client in Scala 3 with native Proof-of-Work for Ethereum Classic.',
     category: 'development',
     url: 'https://github.com/chippr-robotics/fukuii',
     partnerSince: '2024',
