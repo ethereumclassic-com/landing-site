@@ -8,7 +8,7 @@ The consumer and institutional portal for Ethereum Classic — covering wallets,
 
 ## What's Here
 
-- **Wallet** — Fukuii GUI, hardware wallets, comparison tools
+- **Wallet** — wallet hub, reviews, hardware wallets, comparison tools
 - **Buy & Sell** — Exchange directory, payment methods, reviews
 - **Apps** — DeFi, payments, governance, and infrastructure on ETC
 - **Mining** — Pools, hardware, software, profitability, and getting started

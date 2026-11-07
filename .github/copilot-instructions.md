@@ -61,10 +61,18 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   carries that work into Glamsterdam. Do not claim "full Glamsterdam parity" —
   ECIP-1121 includes two of Glamsterdam's seven execution-layer EIPs. Activation
   is targeted for 2027; the activation block is TBD.
-- **Clients** — Fukuii is ETC's first native client. Core-Geth is a go-ethereum
-  derivative, not native and not a plugin. Besu, Erigon, Ethrex, Go-Ethereum,
-  Nethermind and Reth are ETC *plugins*, never "overlays", and never counted
-  among built client implementations.
+- **Clients** — Core-Geth is the recommended client: a go-ethereum derivative,
+  not native and not a plugin, recommended on its v1.13 line. Fukuii, an
+  execution client in Scala 3 that Chippr Robotics LLC maintains as a
+  continuation of IOHK's Mantis, is an alternative to try: its maintainers mark
+  it alpha. fukuii.com and docs.fukuii.com lead its framing, and
+  `lib/fukuii.ts` holds its copy and latest full release. Besu, Erigon, Ethrex,
+  Go-Ethereum, Nethermind and Reth are ETC *plugins*, never "overlays", never
+  app cards of their own, and never counted among built client implementations.
+- **Client URLs** — every client link outside the Olympia hub goes to
+  `/build/clients` or `/build/clients/<id>`, which name no upgrade.
+  `/olympia/clients` carries only Olympia readiness, and an `/olympia` link
+  appears in the navigation only under the Olympia tab.
 
 ## Consumer copy
 
@@ -81,7 +89,7 @@ one edit.
 
 1. **Use ETC** → ETCswap, wallets
 2. **Earn ETC** → mining pools, liquidity
-3. **Build on ETC** → Fukuii, Core-Geth, developer docs
+3. **Build on ETC** → Core-Geth, Fukuii, developer docs
 
 ## Do not build
 

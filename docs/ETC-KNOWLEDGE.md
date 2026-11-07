@@ -3,7 +3,7 @@
 **Purpose**: Authoritative reference for ETC-specific technical details, historical context, and insider knowledge from core contributors. This document serves as the single source of truth for public-facing copy on EthereumClassic.com and related properties.
 
 **Maintainer**: ETC Core Contributors
-**Last Updated**: January 2026
+**Last Updated**: November 2026
 
 ---
 
@@ -26,8 +26,10 @@
 
 Three distinct categories. They are not interchangeable:
 
-- **Fukuii** — Ethereum Classic's **first native client**, built ground-up for ETC rather than
-  derived from an Ethereum client.
+- **Fukuii** — an **EVM-compliant execution client in Scala 3** with pluggable consensus, maintained
+  by Chippr Robotics LLC as a continuation of IOHK's **Mantis**, the Scala client built for Ethereum
+  Classic. It runs ETC natively with Proof-of-Work. Its maintainers mark it alpha, so the site offers
+  it as an alternative to try.
 - **Core-Geth** — a **go-ethereum derivative** maintained for ETC. Not native, and **not a plugin**.
   Do not describe it as "the legacy client" or "the established client".
 - **Plugins** — ETC support **added into existing Ethereum clients**. Six, alphabetical: Besu,
@@ -39,7 +41,7 @@ Three distinct categories. They are not interchangeable:
 
 | Client | Category | Language | Notes |
 |--------|----------|----------|-------|
-| **Fukuii** | Native client | Scala 3 LTS | ETC's first native client; pre-1.0, released from `chippr-robotics/fukuii` |
+| **Fukuii** | Execution client | Scala 3 | A continuation of Mantis by Chippr Robotics LLC; alpha, released from `chippr-robotics/fukuii` |
 | **Core-Geth** | go-ethereum derivative | Go | The recommended client, released and maintained in the `ethereumclassic` organization |
 | **Besu** | Plugin target | Java | ETC support via plugin; no PoW mining |
 | **Erigon** | Plugin target | Go | ETC support via plugin; archive-optimized |
@@ -76,12 +78,12 @@ Core-Geth in 2025, and the previous repository, `etclabscore/core-geth`, carries
 - Derived from go-ethereum (Geth); originally forked from the deprecated Multi-Geth client
 - Full PoW mining support
 - Supports ETC mainnet, Mordor testnet, and private networks
-- Released and maintained in the `ethereumclassic` organization; supports the Olympia upgrade
+- Released and maintained in the `ethereumclassic` organization. v1.13.0 does not include Olympia,
+  and its Olympia release is TBD
 
-**Why a native client was built alongside it**:
-- Upstream Geth deprecated PoW support in favor of PoS
-- Core-Geth has not separated execution layer (EVM) from consensus (PoW)
-- Major refactoring would be required to maintain compatibility
+**Why a second client matters**: Fukuii is a separate implementation, in Scala on the JVM, with a
+different dependency tree and failure profile, so a bug in one client is not a bug in the whole
+network. Fukuii's README makes this case under client diversity.
 
 Do not write that either client replaces the other, or that Core-Geth is sunsetting. It is
 released and maintained in the `ethereumclassic` GitHub organization, and that is what the site
@@ -90,63 +92,43 @@ recommends.
 ### Fukuii
 
 **Website**: https://fukuii.com
+**Docs**: https://docs.fukuii.com (the same site as https://chippr-robotics.github.io/fukuii/)
 **Repository**: https://github.com/chippr-robotics/fukuii
-**Docs**: https://docs.fukuii.com
-**Container**: ghcr.io/chippr-robotics/fukuii
-**Releases**: https://github.com/chippr-robotics/fukuii/releases/latest — pre-1.0; fukuii.org,
-docs.fukuii.org and the `fukuii-project` repositories no longer resolve or carry releases
-**Maintainer**: The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.)
+**Container**: ghcr.io/chippr-robotics/fukuii (mirror: docker.io/chipprbots/fukuii)
+**Releases**: https://github.com/chippr-robotics/fukuii/releases/latest — the newest full release.
+The builds published between full releases are marked pre-release. The site states the latest full
+release once, in `lib/fukuii.ts`.
+**Maintainer**: Chippr Robotics LLC (2025-present), per the repository's `NOTICE`
 **License**: Apache 2.0
+**Status**: alpha. fukuii.com: *"Fukuii is in alpha and not yet recommended for production-critical
+workloads."* The site offers it as an alternative to try beside Core-Geth.
 
-**Category**: Ethereum Classic's **first native client** — built ground-up for ETC rather than
-derived from an Ethereum client.
+**Category**: An EVM-compliant Ethereum execution layer client written in Scala 3, with pluggable
+consensus (docs.fukuii.com). A continuation of IOHK's Mantis: its `NOTICE` describes a derivative
+work of Mantis, rebranded and maintained by Chippr Robotics LLC.
 
-**Technical Details**:
-- An EVM execution client in **Scala 3 LTS on Pekko Typed Actors**, running on the JVM
-- **One binary runs several networks at once in one JVM process**, each isolated with its own
-  state, its own metrics registry, and its own configuration
-- **A further network is configuration, not a new client**
-- Requires a current JDK LTS (25); the Docker image bundles one
+**Technical Details** (fukuii.com, docs.fukuii.com and the repository README):
+- Scala 3 LTS on JDK 25 LTS, with an Apache Pekko actor system
+- Native Proof-of-Work (Ethash) for ETC mainnet and Mordor
+- Engine API V1–V4, through Prague/Electra, for post-Merge Ethereum networks, paired with a
+  consensus client such as Lighthouse, Prysm, Teku, Lodestar or Nimbus
+- Pluggable consensus in three layers: `fukuii-core`, `fukuii-env`, and a swappable consensus module
+- The network is a positional argument when the node starts: `./bin/fukuii etc`, `./bin/fukuii mordor`
+- SNAP, fast and regular sync; JSON-RPC over HTTP and WebSocket, GraphQL, and an MCP server
+- MESS (ECBP-1100) against deep reorganizations
+- Prometheus metrics, Grafana dashboards, and health and readiness endpoints
+- Cosign-signed container images with SLSA build provenance, and a CycloneDX SBOM per release
 
-**Consensus** — selected per deployment behind one interface:
-- **Native Proof-of-Work** for ETC mainnet and Mordor
-- **Proof-of-Stake with a built-in consensus layer** — one process is a complete PoS node
-- An **external consensus client over the Engine API V1–V4** is the *alternative*, not the default
+**Verification**: Fukuii publishes which CI checks can block a merge, generated from its own gate
+configuration, at https://docs.fukuii.com/STATUS/. Hive suites run there as informational checks, so
+do not describe Fukuii as Hive-verified.
 
-> **Correction to watch for.** Older copy says Fukuii "pairs with" or requires Lighthouse / Prysm /
-> Teku / Lodestar / Nimbus to run Proof-of-Stake networks. That inverts it — Fukuii runs its own
-> consensus layer. Also avoid "with pluggable consensus"; say "consensus selected per deployment".
-
-**Key Features**:
-- Fast initial sync with checkpoints; SNAP, fast, and regular sync
-- Interactive TUI and CLI utilities
-- **MCP server** exposing node state, sync progress, peer counts, and block data to AI agents
-- **Cosign-signed build provenance** and a **CycloneDX SBOM** on release artifacts
-- Comprehensive test suites
-
-**Enterprise / institutional positioning — this is Fukuii's, not Besu's.** Fukuii is enterprise-grade
-by way of the JVM rather than through a separate edition, and the site should say so:
-- **JVM-native end to end** for institutions already running on the JVM, with **no foreign-language
-  bridge** — JFR, async-profiler, JMX and heap dumps work exactly as on any other JVM process
-- Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints ship in the binary
-- Concurrent multi-instance execution, and **external-signer/HSM custody integration**
-- Separate Pekko dispatchers for sync, RPC and general work, so sync pressure cannot starve the RPC
-- Signed container images with build provenance attestation and a CycloneDX SBOM
-
-> Older copy assigned "enterprise-grade" to Besu and left Fukuii described only as the primary
-> client. Besu is enterprise-grade as an *upstream Ethereum client*; for Ethereum Classic the
-> enterprise/institutional client is Fukuii, and ETC support only reaches Besu via a plugin.
-
-**Testing Networks**:
-- **Gorgoroth Trials**: Private test network for Alpha testing
-- **Mordor**: Public testnet support
-
-> **Fukuii is NOT a Mantis fork.** This document previously said it was, and that claim propagated
-> into site copy. Per the project's own `NOTICE`: *"Fukuii is an independent, ground-up client. It
-> contains no Mantis source code and is not a derivative work of Mantis."* Fukuii acknowledges two
-> projects for vision and tech stack while taking no code from either — ETCDEV's **Orbita** (2018),
-> an early multi-network client vision for ETC, and IOHK's **Mantis**, which chose Scala and the JVM
-> for the task. "Mantis" is a trademark of IOHK, referenced only for lineage and the name story.
+> **Two codebases share the name.** `fukuii-project/fukuii-cli` is an independent rewrite with no
+> common ancestor, and not the client this site lists; Fukuii's Verification Status page says so.
+> Its descriptions (no Mantis code, several networks in one JVM process, a built-in consensus
+> layer, external-signer/HSM custody, "The Fukuii Authors") were once used here for the client the
+> site links, and still appear on ethereumclassicdao.org. Describe Fukuii from fukuii.com,
+> docs.fukuii.com and the chippr-robotics/fukuii repository only.
 
 ### Besu
 
@@ -155,6 +137,9 @@ by way of the JVM rather than through a separate edition, and the site should sa
 
 **Category**: Plugin target — an enterprise-grade Ethereum client in Java. ETC support is delivered
 as a plugin that adds it into the upstream codebase, not as a separate ETC client.
+**Status**: planned, with the rest of the plugin framework (each plugin's `status` in
+`app/build/data/build.ts`). The site lists Besu only among the plugins: no app card and no client
+listing of its own.
 
 **Technical Details**:
 - Enterprise-grade Java client
@@ -203,9 +188,11 @@ codebase.
 - Any ETH-specific PoS infrastructure
 
 **Client Readiness**:
-- Fukuii: pre-1.0 and in active development; not recommended for production on this site
-- Core-Geth: the recommended client, released and maintained in the `ethereumclassic` organization
-- Besu: [PLACEHOLDER: Will Besu support Olympia?]
+- Core-Geth: the recommended client, released and maintained in the `ethereumclassic` organization.
+  Its Olympia release is TBD; v1.13.0 does not include Olympia
+- Fukuii: alpha, by its maintainers' label, and offered as an alternative to try. Its Olympia
+  release is TBD
+- Plugins, Besu among them: not client implementations, so not part of client readiness
 
 **Historical Context**:
 - [PLACEHOLDER: Why is Olympia named Olympia?]
@@ -269,17 +256,11 @@ coregeth.com/about, from Core-Geth's project history.
 - [PLACEHOLDER: When did IOHK reduce ETC involvement?]
 - [PLACEHOLDER: Why?]
 
-### The Fukuii Authors
+### Chippr Robotics LLC
 
-Fukuii is attributed to **The Fukuii Authors**, comprising **Chippr Robotics LLC** and
-**White B0x Inc.** Use that attribution in public copy rather than crediting either company alone.
-
-**Chippr Robotics LLC** — a Fukuii Author.
-
-**White B0x Inc.** — a Fukuii Author. https://whiteb0x.com. Also authored the six CVE patches and
-the Go toolchain modernization released in Core-Geth v1.13.0 from `ethereumclassic/core-geth`.
-
-Fukuii itself lives at https://github.com/chippr-robotics/fukuii
+Maintains Fukuii. The repository's `NOTICE`: *"This software has been modified and is maintained as
+a derivative work by Chippr Robotics, LLC (2025-present) under the project name 'Fukuii'."* Credit
+Fukuii to Chippr Robotics LLC.
 
 **Contributions**:
 - Fukuii client development (https://github.com/chippr-robotics/fukuii)
@@ -462,12 +443,12 @@ added into the upstream Erigon codebase, adding chain support to the execution l
 not the same as being an ETC client implementation, and it carries no mining or PoW consensus. The
 same distinction applies to Besu, Ethrex, Go-Ethereum, Nethermind, and Reth.
 
-### "Fukuii is a fork of Mantis"
+### "Fukuii contains no Mantis code" or "Fukuii was written from scratch"
 
-**Reality**: Fukuii is an independent, ground-up client containing no Mantis source code, and is not
-a derivative work of Mantis. It is Ethereum Classic's first **native** client. Mantis is
-acknowledged for choosing Scala and the JVM for the task, and ETCDEV's Orbita (2018) for the
-multi-network vision — neither contributed code.
+**Reality**: The Fukuii this site lists, chippr-robotics/fukuii, is a derivative work of IOHK's
+Mantis maintained by Chippr Robotics LLC, as its `NOTICE` and Verification Status page say. The
+ground-up description belongs to `fukuii-project/fukuii-cli`, a separate codebase the site does not
+list.
 
 ### "ETC will switch to PoS"
 
@@ -498,21 +479,20 @@ When displaying ETC data on public-facing pages, use these authoritative sources
 
 The following sections need input from ETC Core Contributors:
 
-1. **Fukuii maintainer and timeline details**
+1. **Fukuii release timeline**
 2. **Mantis historical context (active period, deprecation reason)**
 3. **Olympia upgrade specific scope (EIPs included)**
 4. **Organization personnel and current roles**
 5. **IOHK departure details**
-6. **Fukuii Authors — individual company roles beyond Fukuii**
-7. **Treasury proposal history**
-8. **51% attack specific details**
-9. **ETH Merge hashrate impact numbers**
-10. **Mordor testnet launch date**
-11. **Network upgrade naming conventions**
-12. **Ecosystem project details (ETCswap, USC)**
-13. **HebeSwap status**
-14. **POW Summit/Alliance involvement**
-15. **Official community links**
+6. **Treasury proposal history**
+7. **51% attack specific details**
+8. **ETH Merge hashrate impact numbers**
+9. **Mordor testnet launch date**
+10. **Network upgrade naming conventions**
+11. **Ecosystem project details (ETCswap, USC)**
+12. **HebeSwap status**
+13. **POW Summit/Alliance involvement**
+14. **Official community links**
 
 ---
 

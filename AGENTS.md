@@ -163,11 +163,22 @@ includes transaction fees, which vary per block.
   `lib/core-geth-moves.ts` is generated from that page's move tabs for the
   migration article. Change a step on coregeth.com, then mirror the published
   page again; a step the article names by title that the mirror loses fails the
-  build. Core-Geth is not native and not a plugin. Fukuii is a native ETC client and a credible
-  alternative, not the recommended client and not Core-Geth's successor. Besu,
-  Erigon, Ethrex, Go-Ethereum, Nethermind and Reth are ETC *plugins*, never
-  "overlays". A plugin is not a client implementation and is never counted among
-  built or shipped clients.
+  build. Core-Geth is not native and not a plugin. Fukuii, an execution client
+  in Scala 3 that Chippr Robotics LLC maintains as a continuation of IOHK's
+  Mantis, is an alternative to try: its maintainers mark it alpha, and it is not
+  the recommended client and not Core-Geth's successor. fukuii.com and
+  docs.fukuii.com lead its framing, and `lib/fukuii.ts` holds its copy, links
+  and latest full release. `fukuii-project/fukuii-cli` is a separate codebase
+  whose descriptions never describe Fukuii here. Besu, Erigon, Ethrex,
+  Go-Ethereum, Nethermind and Reth are ETC *plugins*, never "overlays" and never
+  app cards of their own; the plugin framework's status is planned. A plugin is
+  not a client implementation and is never counted among built or shipped
+  clients.
+- **Client URLs:** `/build/clients` and `/build/clients/<id>` name no upgrade,
+  so every client link outside the Olympia hub (navigation, footer, apps,
+  mining, llms files) goes there. `/olympia/clients` and its guides carry only
+  Olympia readiness, and an `/olympia` link appears in the navigation only
+  under the Olympia tab.
 - **Governance:** the Olympia DAO makes binding decisions via OpenZeppelin
   Governor 5.x. Futarchy (ECIP-1117/1118) is an open signal layer and a
   Child-DAO, never binding.
@@ -247,5 +258,5 @@ spec wins and the site is corrected.
 | Core-Geth facts, v1.12/v1.13, security, MESS | coregeth.com, docs.coregeth.com, and `ethereumclassic/core-geth` |
 | Olympia ECIPs (1111–1122), and ECBP-1100/1110 (MESS) | the ECIPs repository |
 | EIP contents and dependencies | `eips.ethereum.org` |
-| Fukuii positioning and URLs | fukuii.com and `chippr-robotics/fukuii` |
+| Fukuii positioning, releases and URLs | fukuii.com, docs.fukuii.com, and `chippr-robotics/fukuii` with its `NOTICE` |
 | Chain state, height, difficulty, block reward | Blockscout |
