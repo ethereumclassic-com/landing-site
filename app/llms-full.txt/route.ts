@@ -128,6 +128,7 @@ ETC's ideological foundation:
 - /mining/stats — Network hash rate and difficulty
 - /mining/hashrate — Live hashrate charts and how the figure is derived
 - /mining/difficulty — Live difficulty charts and how ETC difficulty adjustment works
+- /mining/fees — Network fees read from the chain over the last 30 days: fees paid, their share of miner revenue, gas prices and block space used
 - /mining/os — Mining OS options
 
 ### /build — Developer Docs
@@ -161,7 +162,6 @@ ETC's ideological foundation:
 - /block-reward-countdown — Fifthing countdown, emission curve chart, inflation rate, era history, ECIP-1017 explainer (/research/fifthing redirects here)
 - /research/ethereum-ico — Ethereum 2014 presale data: $18.5M raised, 72,009,991 ETH issued at $0.308; ROI history; tokenomics split; the original genesis supply ETC carries today
 - /research/dao-fork — How the Ethereum Foundation forked the original Ethereum chain in 2016 and applied the ETH name and ticker to the new chain; leaked internal communications confirming coordinated ETC sell campaign; Poloniex ETC listing; Grayscale ETCG; ETC Cooperative; DAO hacker identification; TheDAO Security Fund (2026)
-- /research/fees — Gas fee trends and basefee analytics
 - /research/history — Historical price and chain data
 - /research/ecosystem — Ecosystem metrics
 

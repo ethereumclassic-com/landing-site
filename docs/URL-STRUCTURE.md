@@ -296,6 +296,7 @@
 | `/mining/os` | Mining OS options | Complete | P2 |
 | `/mining/profitability` | Profitability calculator | Complete | P2 |
 | `/mining/stats` | Network hashrate stats | Complete | P2 |
+| `/mining/fees` | Network fees, read from the chain | Complete | P1 |
 
 **Pool Pages (by hashrate relevance):**
 
@@ -360,7 +361,7 @@ Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 | `/research/reports/[slug]` | Individual report | Complete | P3 |
 | `/research/network` | Network analysis | Complete | P2 |
 | `/research/ecosystem` | Ecosystem reports | Complete | P3 |
-| `/research/fees` | Fee market analysis | Complete | P2 |
+| `/research/fees` | Removed; redirects to `/mining/fees` | Redirect | — |
 | `/research/history` | ETC history | Complete | P2 |
 | `/research/supply` | Supply tracker & Fifthening | Complete | P2 |
 

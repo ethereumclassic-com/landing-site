@@ -96,7 +96,7 @@ export default function ResearchPage() {
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">Emission schedule &amp; Fifthing countdown</p>
             </Link>
             <Link
-              href="/research/fees"
+              href="/mining/fees"
               className="group rounded-xl border border-[var(--color-warning-border)] bg-[var(--color-warning)]/5 p-4 transition-colors hover:border-[var(--color-warning)]/50"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-warning)]/20 text-[var(--color-warning)]">
@@ -104,8 +104,8 @@ export default function ResearchPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-warning)]">Fee Market</h3>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Gas prices &amp; miner revenue analysis</p>
+              <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-warning)]">Network Fees</h3>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Fees paid and their share of miner revenue</p>
             </Link>
             <Link
               href="/research/ecosystem"

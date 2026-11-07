@@ -188,6 +188,7 @@ const staticRoutes: StaticRoute[] = [
   { path: '/mining/approaches', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/mining/regulation', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/mining/fee-market', priority: 0.8, changeFrequency: 'weekly' as const },
+  { path: '/mining/fees', priority: 0.8, changeFrequency: 'daily' as const, sources: ['app/mining/fees/layout.tsx', 'lib/network-fees.ts'] },
 
   // Build section
   { path: '/build', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -214,7 +215,6 @@ const staticRoutes: StaticRoute[] = [
   { path: '/research/dao-fork', priority: 0.7, changeFrequency: 'yearly' as const },
   { path: '/research/network', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/supply', priority: 0.6, changeFrequency: 'daily' as const },
-  { path: '/research/fees', priority: 0.6, changeFrequency: 'daily' as const },
   { path: '/research/history', priority: 0.6, changeFrequency: 'weekly' as const },
   { path: '/research/ecosystem', priority: 0.6, changeFrequency: 'weekly' as const },
 

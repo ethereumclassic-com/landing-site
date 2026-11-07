@@ -57,6 +57,12 @@ const nextConfig: NextConfig = {
         destination: '/research',
         permanent: true,
       },
+      // The fee dashboard, rebuilt on observed fees under the mining section.
+      {
+        source: '/research/fees',
+        destination: '/mining/fees',
+        permanent: true,
+      },
       // The retired account prototype, which kept passwords in the browser.
       {
         source: '/account',

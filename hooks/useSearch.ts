@@ -147,12 +147,12 @@ const staticPages: SearchResult[] = [
     category: 'Research',
   },
   {
-    id: 'page-research-fees',
-    title: 'Fee Market',
-    description: 'Gas prices, transaction costs, and fee market analytics for Ethereum Classic.',
-    url: '/research/fees',
+    id: 'page-mining-fees',
+    title: 'Network Fees',
+    description: 'Fees paid on Ethereum Classic and their share of miner revenue, with gas prices and block space used, read from the chain.',
+    url: '/mining/fees',
     type: 'page',
-    category: 'Research',
+    category: 'Mining',
   },
   {
     id: 'page-community',

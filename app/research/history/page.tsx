@@ -403,11 +403,11 @@ export default function HistoricalDataPage() {
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">Emission schedule and circulation</p>
               </Link>
               <Link
-                href="/research/fees"
+                href="/mining/fees"
                 className="rounded-lg border border-[var(--border)] bg-[var(--bg)] p-4 transition-colors hover:border-[var(--color-primary)]/50"
               >
-                <p className="font-medium text-[var(--text-primary)]">Fee Market</p>
-                <p className="mt-1 text-sm text-[var(--color-text-muted)]">Transaction fees and gas analysis</p>
+                <p className="font-medium text-[var(--text-primary)]">Network Fees</p>
+                <p className="mt-1 text-sm text-[var(--color-text-muted)]">Fees paid, gas prices and block space used</p>
               </Link>
             </div>
           </div>
