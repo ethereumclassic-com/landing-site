@@ -1,12 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import type { Article } from '../data/articles'
 import { CategoryIcon } from './CategoryIcon'
-import { bannerSrc } from '../lib/images'
+import NewsBanner from './NewsBanner'
 
 interface NewsCardHeroProps {
   article: Article
@@ -35,9 +33,6 @@ function formatDate(dateString: string): string {
 }
 
 export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) {
-  const { resolvedTheme } = useTheme()
-  const imageSrc = article.image ?? bannerSrc(article.slug, resolvedTheme)
-
   return (
     <motion.div
       custom={index}
@@ -58,10 +53,9 @@ export default function NewsCardHero({ article, index = 0 }: NewsCardHeroProps) 
             article.image ? 'h-52' : 'h-40'
           }`}
         >
-          <Image
-            src={imageSrc}
-            alt=""
-            fill
+          <NewsBanner
+            slug={article.slug}
+            image={article.image}
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 60vw"
           />

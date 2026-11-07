@@ -1,12 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import type { Article } from '../data/articles'
-import { bannerSrc } from '../lib/images'
 import { CategoryIcon } from './CategoryIcon'
+import NewsBanner from './NewsBanner'
 
 interface NewsCardProps {
   article: Article
@@ -37,7 +35,6 @@ function formatDate(dateString: string): string {
 }
 
 export default function NewsCard({ article, index, variant = 'default' }: NewsCardProps) {
-  const { resolvedTheme } = useTheme()
   const isFeatured = variant === 'featured' || article.featured
   const isCompact = variant === 'compact'
   const padding = isCompact ? 'p-4' : 'p-6'
@@ -69,10 +66,9 @@ export default function NewsCard({ article, index, variant = 'default' }: NewsCa
             isCompact ? '-mx-4 -mt-4 h-24' : '-mx-6 -mt-6 h-28'
           }`}
         >
-          <Image
-            src={article.image ?? bannerSrc(article.slug, resolvedTheme)}
-            alt=""
-            fill
+          <NewsBanner
+            slug={article.slug}
+            image={article.image}
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, 33vw"
           />

@@ -1,11 +1,9 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import type { Article } from '../data/articles'
 import { CategoryIcon } from './CategoryIcon'
-import { bannerSrc } from '../lib/images'
+import NewsBanner from './NewsBanner'
 
 /**
  * The lead story — the single largest item on the news index.
@@ -21,9 +19,6 @@ import { bannerSrc } from '../lib/images'
  * a lead IS the visual anchor — that is the one place the art earns the height.
  */
 export default function NewsLead({ article }: { article: Article }) {
-  const { resolvedTheme } = useTheme()
-  const imageSrc = article.image ?? bannerSrc(article.slug, resolvedTheme)
-
   const date = new Date(article.date).toLocaleDateString('en-US', { timeZone: 'UTC',
     year: 'numeric',
     month: 'long',
@@ -34,11 +29,10 @@ export default function NewsLead({ article }: { article: Article }) {
     <article>
       <Link href={`/news/${article.slug}`} className="group block">
         <div className="relative h-56 w-full overflow-hidden rounded-xl border border-[var(--border)] sm:h-64 lg:h-80">
-          <Image
-            src={imageSrc}
-            alt=""
-            fill
-            priority
+          <NewsBanner
+            slug={article.slug}
+            image={article.image}
+            lead
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             sizes="(max-width: 1024px) 100vw, 62vw"
           />

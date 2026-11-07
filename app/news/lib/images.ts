@@ -13,12 +13,13 @@
 const SITE = 'https://ethereumclassic.com'
 
 /**
- * The banner drawn for the page it shows on. `resolvedTheme` is undefined until
- * mount; falling back to dark matches the site's configured default theme, so
- * the pre-hydration guess is right for almost every visit.
+ * The banner drawn for one theme. Pages show both drawings and let CSS pick
+ * (../components/NewsBanner.tsx): next-themes knows the stored theme from the
+ * first render in the browser, so choosing in code renders a page the server
+ * did not.
  */
-export function bannerSrc(slug: string, resolvedTheme: string | undefined): string {
-  return `/news/${slug}/banner-on-${resolvedTheme === 'light' ? 'light' : 'dark'}.png`
+export function bannerSrc(slug: string, theme: 'light' | 'dark'): string {
+  return `/news/${slug}/banner-on-${theme}.png`
 }
 
 /** The id ../[slug]/opengraph-image.tsx gives the article's one card. */

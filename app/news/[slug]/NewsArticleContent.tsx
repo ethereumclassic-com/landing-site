@@ -1,12 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 import { type Article, type ArticleCategory, getRelatedArticles, getAuthorInfo } from '../data/articles'
+import NewsBanner from '../components/NewsBanner'
 import NewsCard from '../components/NewsCard'
 import { type Inline, parseArticle } from '../lib/content'
-import { bannerSrc } from '../lib/images'
 
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
@@ -198,7 +196,6 @@ interface NewsArticleContentProps {
 }
 
 export default function NewsArticleContent({ article }: NewsArticleContentProps) {
-  const { resolvedTheme } = useTheme()
   const authorInfo = article.author ? getAuthorInfo(article.author) : undefined
   const relatedArticles = getRelatedArticles(article, 3)
 
@@ -308,11 +305,10 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
           )}
 
           <div className="relative mt-10 aspect-[5/2] w-full overflow-hidden rounded-xl border border-[var(--border)]">
-            <Image
-              src={article.image ?? bannerSrc(article.slug, resolvedTheme)}
-              alt=""
-              fill
-              priority
+            <NewsBanner
+              slug={article.slug}
+              image={article.image}
+              lead
               className="object-cover"
               sizes="(max-width: 896px) 100vw, 896px"
             />
