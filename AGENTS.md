@@ -157,9 +157,13 @@ includes transaction fees, which vary per block.
   organization. Its core developers and community contributors do the work, and
   the Ethereum Classic DAO maintains and funds it today as its funder of last
   resort. coregeth.com leads its framing. Recommend the v1.13 line, never a
-  patch; the v1.12 line is vulnerable. A reader told to install or move a node
-  lands on coregeth.com/downloads/, and this site carries no copy of those
-  commands. Core-Geth is not native and not a plugin. Fukuii is a native ETC client and a credible
+  patch; the v1.12 line is vulnerable. A reader told to install a node lands on
+  coregeth.com/downloads/, and this site carries no copy of the install
+  commands. The move steps are mirrored, never written by hand:
+  `lib/core-geth-moves.ts` is generated from that page's move tabs for the
+  migration article. Change a step on coregeth.com, then mirror the published
+  page again; a step the article names by title that the mirror loses fails the
+  build. Core-Geth is not native and not a plugin. Fukuii is a native ETC client and a credible
   alternative, not the recommended client and not Core-Geth's successor. Besu,
   Erigon, Ethrex, Go-Ethereum, Nethermind and Reth are ETC *plugins*, never
   "overlays". A plugin is not a client implementation and is never counted among

@@ -2,9 +2,11 @@
 
 import Link from 'next/link'
 import { type Article, type ArticleCategory, getRelatedArticles, getAuthorInfo } from '../data/articles'
+import { renderInline } from '../components/ArticleInline'
+import { EMBED_COMPONENTS } from '../components/embeds'
 import NewsBanner from '../components/NewsBanner'
 import NewsCard from '../components/NewsCard'
-import { type Inline, parseArticle } from '../lib/content'
+import { parseArticle } from '../lib/content'
 
 const categoryIcons: Record<ArticleCategory, React.ReactNode> = {
   Updates: (
@@ -66,44 +68,6 @@ function formatDate(dateString: string): string {
 
 // The body grammar lives in ../lib/content, which the feeds share, so the page
 // and the feeds render the same blocks.
-function renderInline(parts: Inline[]): React.ReactNode {
-  const nodes = parts.map((part, key) => {
-    switch (part.type) {
-      case 'text':
-        return part.text
-      case 'bold':
-        return (
-          <strong key={key} className="font-semibold text-[var(--text-primary)]">
-            {part.text}
-          </strong>
-        )
-      case 'code':
-        return (
-          <code key={key} className="rounded bg-[var(--panel)] px-1.5 py-0.5 text-sm text-[var(--color-primary)]">
-            {part.text}
-          </code>
-        )
-      case 'link':
-        return part.href.startsWith('http') ? (
-          <a
-            key={key}
-            href={part.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--color-primary)] hover:underline"
-          >
-            {part.text}
-          </a>
-        ) : (
-          <Link key={key} href={part.href} className="text-[var(--color-primary)] hover:underline">
-            {part.text}
-          </Link>
-        )
-    }
-  })
-  return nodes.length === 1 ? nodes[0] : nodes
-}
-
 function renderContent(content: string): React.ReactNode {
   return parseArticle(content).map((block, key) => {
     switch (block.type) {
@@ -187,6 +151,35 @@ function renderContent(content: string): React.ReactNode {
             </table>
           </div>
         )
+      case 'callout':
+        return (
+          <aside
+            key={key}
+            className="not-prose my-8 rounded-xl border border-[var(--border)] border-l-4 border-l-[var(--color-primary)] bg-[var(--bg-elevated)] px-6 py-5"
+          >
+            {block.title && (
+              <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-primary)]">
+                {block.title}
+              </p>
+            )}
+            <ul className="list-disc space-y-2 pl-5 text-[var(--color-text-secondary)] marker:text-[var(--color-primary)]">
+              {block.items.map((item, i) => (
+                <li key={i} className="leading-relaxed">
+                  {renderInline(item)}
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )
+      case 'embed': {
+        // The typography styles stop at an embed, which styles everything it renders itself.
+        const Embed = EMBED_COMPONENTS[block.name]
+        return (
+          <div key={key} className="not-prose">
+            <Embed />
+          </div>
+        )
+      }
     }
   })
 }

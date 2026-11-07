@@ -8,13 +8,26 @@
  * inline text carries **bold**, [links](href) and `code`. Paragraphs, list
  * items and table cells are read for inline markup; headings, task items and
  * the text inside bold are plain text.
+ *
+ * Two blocks go past that. A callout is a run of `>` lines: an optional
+ * `> **Title**`, then `> - ` items. An embed is a line of its own, `::name`,
+ * that places a component the article page renders and the feeds render as
+ * plain HTML. Every name must be in EMBEDS, so a misspelled one fails the build
+ * rather than rendering nothing.
  */
+
+import { ENODE_CAPTION, MOVE_PHASES, MOVE_SOURCE, PHASES_CAPTION, VERSION_CHECKS, panelFor } from './moves'
+import { MOVE_RECORDINGS, recordingSrc } from './recordings'
 
 export type Inline =
   | { type: 'text'; text: string }
   | { type: 'bold'; text: string }
   | { type: 'link'; text: string; href: string }
   | { type: 'code'; text: string }
+
+/** The components an article can place with `::name`. */
+export const EMBEDS = ['version-check', 'move-phases', 'move-steps', 'enode-change'] as const
+export type EmbedName = (typeof EMBEDS)[number]
 
 export type Block =
   | { type: 'h2' | 'h3'; text: string }
@@ -23,6 +36,8 @@ export type Block =
   | { type: 'task'; checked: boolean; text: string }
   | { type: 'code'; text: string }
   | { type: 'table'; header: Inline[][]; rows: Inline[][][] }
+  | { type: 'callout'; title?: string; items: Inline[][] }
+  | { type: 'embed'; name: EmbedName }
 
 const BOLD = /\*\*(.+?)\*\*/
 const LINK = /\[([^\]]+)\]\(([^)]+)\)/
@@ -58,6 +73,12 @@ export function parseInline(text: string): Inline[] {
 }
 
 const SEPARATOR_CELL = /^[-|:]+$/
+const CALLOUT_TITLE = /^\*\*(.+)\*\*$/
+const EMBED = /^::([a-z-]+)$/
+
+function isEmbed(name: string): name is EmbedName {
+  return (EMBEDS as readonly string[]).includes(name)
+}
 
 export function parseArticle(content: string): Block[] {
   const blocks: Block[] = []
@@ -67,6 +88,7 @@ export function parseArticle(content: string): Block[] {
   let code: string[] = []
   let inTable = false
   let tableRows: string[][] = []
+  let callout: { title?: string; items: string[] } | null = null
 
   const flushList = () => {
     if (list.length > 0 && listType) {
@@ -74,6 +96,14 @@ export function parseArticle(content: string): Block[] {
     }
     list = []
     listType = null
+  }
+
+  const flushCallout = () => {
+    if (callout) {
+      if (callout.items.length === 0) throw new Error(`a callout has no items: ${callout.title ?? ''}`)
+      blocks.push({ type: 'callout', title: callout.title, items: callout.items.map(parseInline) })
+      callout = null
+    }
   }
 
   const flushTable = () => {
@@ -107,6 +137,32 @@ export function parseArticle(content: string): Block[] {
 
     if (inCode) {
       code.push(line)
+      continue
+    }
+
+    if (line.startsWith('> ')) {
+      flushList()
+      flushTable()
+      const text = line.slice(2)
+      const title = text.match(CALLOUT_TITLE)
+      if (!callout) callout = { items: [] }
+      if (title && callout.items.length === 0 && callout.title === undefined) {
+        callout.title = title[1]
+      } else if (text.startsWith('- ')) {
+        callout.items.push(text.slice(2))
+      } else {
+        throw new Error(`a callout line is neither its title nor an item: ${line}`)
+      }
+      continue
+    }
+    flushCallout()
+
+    const embed = line.match(EMBED)
+    if (embed) {
+      flushList()
+      flushTable()
+      if (!isEmbed(embed[1])) throw new Error(`no embed is named ::${embed[1]}`)
+      blocks.push({ type: 'embed', name: embed[1] })
       continue
     }
 
@@ -167,6 +223,7 @@ export function parseArticle(content: string): Block[] {
 
   flushList()
   flushTable()
+  flushCallout()
 
   return blocks
 }
@@ -203,6 +260,52 @@ function inlineHtml(parts: Inline[]): string {
     .join('')
 }
 
+function noteHtml(text: string): string {
+  return inlineHtml(parseInline(text))
+}
+
+function plainText(text: string): string {
+  return parseInline(text)
+    .map((part) => part.text)
+    .join('')
+}
+
+/**
+ * An embed as a feed reader shows it: what the component says, as text. The move steps are the
+ * Linux tab with its recordings' last frames, and a link to the other platforms' tabs.
+ */
+function embedHtml(name: EmbedName): string {
+  switch (name) {
+    case 'version-check':
+      return `<ul>${VERSION_CHECKS.map((check) => `<li>${escapeHtml(check.label)}: <code>${escapeHtml(check.line)}</code></li>`).join('')}</ul>`
+    case 'move-phases':
+      return [
+        `<p>${noteHtml(PHASES_CAPTION)}</p>`,
+        `<ol>${MOVE_PHASES.map((phase) => `<li><strong>${escapeHtml(phase.label)}:</strong> ${phase.steps.map((step) => `${step.number}. ${escapeHtml(step.title)}`).join('; ')}</li>`).join('')}</ol>`,
+      ].join('')
+    case 'move-steps': {
+      const steps = panelFor('linux').steps.map((step, index) =>
+        [
+          `<h3>${index + 1}. ${escapeHtml(step.title)}</h3>`,
+          step.before ? `<p>${noteHtml(step.before)}</p>` : '',
+          step.code ? `<pre><code>${escapeHtml(step.code)}</code></pre>` : '',
+          step.after ? `<p>${noteHtml(step.after)}</p>` : '',
+          ...MOVE_RECORDINGS.filter((recording) => recording.step === step.title).map(
+            (recording) =>
+              `<p><img src="${SITE}${recordingSrc(recording, 'png')}" width="${recording.width}" height="${recording.height}" alt="${escapeHtml(plainText(recording.caption))}"></p>`,
+          ),
+        ].join(''),
+      )
+      return [
+        `<p>The Linux steps, as <a href="${escapeHtml(MOVE_SOURCE.page)}">coregeth.com/downloads</a> gives them. The same page has them for macOS, Windows, containers and a build from source.</p>`,
+        ...steps,
+      ].join('')
+    }
+    case 'enode-change':
+      return `<p>${noteHtml(ENODE_CAPTION)}</p>`
+  }
+}
+
 /** The article body as HTML: the same blocks the article page renders, without its styling. */
 export function articleHtml(content: string): string {
   return parseArticle(content)
@@ -227,6 +330,15 @@ export function articleHtml(content: string): string {
             `<tbody>${block.rows.map((row) => `<tr>${row.map((cell) => `<td>${inlineHtml(cell)}</td>`).join('')}</tr>`).join('')}</tbody>`,
             '</table>',
           ].join('')
+        case 'callout':
+          return [
+            '<blockquote>',
+            block.title ? `<p><strong>${escapeHtml(block.title)}</strong></p>` : '',
+            `<ul>${block.items.map((item) => `<li>${inlineHtml(item)}</li>`).join('')}</ul>`,
+            '</blockquote>',
+          ].join('')
+        case 'embed':
+          return embedHtml(block.name)
       }
     })
     .join('\n')

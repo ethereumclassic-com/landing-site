@@ -16,7 +16,7 @@ export interface Article {
   content?: string // Full article content in markdown-like format
   date: string
   /**
-   * The day an error of fact in a published article was corrected, YYYY-MM-DD.
+   * The day a published article was last corrected or revised, YYYY-MM-DD.
    * Shown beside the date, and the article's modified date in its structured
    * data, the feeds and the sitemap.
    */
@@ -71,52 +71,71 @@ export const articles: Article[] = [
   // Featured Articles - Recent and historically significant
   {
     slug: 'core-geth-v1-12-to-v1-13-migration',
-    title: 'Moving a Core-Geth v1.12 Node to the v1.13 Line',
+    title: 'How to Move a Core-Geth Node from v1.12 to v1.13',
     excerpt:
-      'Every Core-Geth node on a v1.12 release should move to the v1.13 line. Who should move, why, what the move changes for an operator, and where the steps are.',
-    content: `Every Core-Geth node still on a \`v1.12\` release should move to the \`v1.13\` line, published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest) in the \`ethereumclassic\` GitHub organization. The steps for each platform are on [coregeth.com](https://coregeth.com/downloads/#upgrade), and the [migration guide](https://docs.coregeth.com/tutorials/v1.13.0-migration/) gives the reasons behind them.
+      'Every step, with every command, for moving a Core-Geth node off the v1.12 line on Linux, macOS, Windows, containers or a build from source, with recordings of a real node making the move.',
+    content: `Every Core-Geth node on a \`v1.12\` release should move to the \`v1.13\` line, published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest) in the \`ethereumclassic\` GitHub organization. The move happens in place: the chain data and the accounts stay, nothing resyncs, and the old binary is kept so the node can roll back. This guide walks through it, with the commands for Linux, macOS, Windows, containers and a build from source from [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), Core-Geth's download page.
 
-## Who should move
+> **At a glance**
+> - **Who moves:** every node on a \`v1.12\` release, \`v1.12.23\` included, whatever it serves: an exchange or custodian, a mining pool or solo miner, an RPC endpoint, an explorer, or a node you run for yourself.
+> - **When the node is down:** from the stop to the start. The download and its checks come first, while the node still runs.
+> - **What changes:** the node's P2P key, and with it the enode ID. MESS, which the move sets explicitly. And any discovery flags added on \`v1.12\`, which come out.
+> - **What stays:** the chain data, the account keystore, and the executable's name, \`geth\`, so units and scripts keep working.
+> - **Rolling back:** put the old binary back. The data directory works with both lines.
 
-Every node on a \`v1.12\` release, \`v1.12.23\` included, whatever it serves: an exchange or custodian, a mining pool or solo miner, an RPC endpoint, an explorer, or a node you run for yourself. The emergency releases cut in 2026 closed some of the \`v1.12\` flaws and left others open, so no \`v1.12\` release is one to stay on.
+## Check what your node runs
+
+Ask the node which release it runs. On Linux, macOS and Windows this asks the running node itself; for a container it asks the binary inside it.
+
+::version-check
+
+| It prints | What to do |
+|---|---|
+| \`v1.12.17\` or later on the \`v1.12\` line | Move the node with the steps below |
+| a release older than \`v1.12.17\` | A separate case, set out under this table |
+| a \`v1.13\` release | Nothing: the node is on the \`v1.13\` line |
 
 A node on a release older than \`v1.12.17\` is a separate case. Those releases do not schedule the Spiral upgrade, so such a node left Ethereum Classic at block 19,250,000 and does not resume where it stopped.
 
-## Why
+## The move, step by step
+
+Choose the platform the node runs on. The steps below are the ones on [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), which also has the [install steps](https://coregeth.com/downloads/#install) for a new node and [how to verify a download](https://coregeth.com/downloads/#verify). They keep the node running until the release is downloaded and checked, keep the old binary or container so you can roll back, and rotate the node key before the node starts again. Every block has a copy button. Read the notes beside a block before you run it: they say what it must print, and what to change for your setup.
+
+::move-phases
+
+::move-steps
+
+## What the move changes
+
+::enode-change
+
+- **The P2P node key rotates, and that is required.** One of the \`v1.12\` flaws leaks bits of the node key across repeated handshakes, and no fix can take back what already leaked. The move renames the old key file aside, and the node writes a new key on its next start, so its enode ID changes: give the new ID to every node that lists this one as a static or trusted peer, and to the monitoring and allowlists that name it. A key that has only ever run the \`v1.13\` line was never exposed. [The node key](https://docs.coregeth.com/operate/security/#the-node-key) explains it.
+- **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
+- **Discovery settings added for v1.12 come out,** so the node reads the bootnodes and peer discovery lists its release ships with.
+- **A container keeps its chain only where its data is mounted.** The containers tab checks where the data is before the stop, and copies it out first when it is inside the container.
+- **The chain data and the accounts stay.** Nothing resyncs, and the account keystore is not touched.
+
+## If something goes wrong
+
+Each platform's migration guide on docs.coregeth.com ends with its rollback: [Linux](https://docs.coregeth.com/tutorials/migration/linux/#6-if-you-need-to-roll-back), [macOS](https://docs.coregeth.com/tutorials/migration/macos/#6-if-you-need-to-roll-back), [Windows](https://docs.coregeth.com/tutorials/migration/windows/#6-if-you-need-to-roll-back) and [Docker](https://docs.coregeth.com/tutorials/migration/docker/#6-if-you-need-to-roll-back). The data directory works with both lines, so rolling back puts the old binary back, or for a container the old container. The new key stays: rolling back does not make the old key safe.
+
+The Linux guide's procedure was run end to end on a Mordor data directory before it was published, rollback included, and [its record](https://docs.coregeth.com/tutorials/migration/linux/#this-procedure-was-executed-before-it-was-published) sets out what was tested. For a node that finds no peers or stops short of the network's head, [Troubleshooting](https://docs.coregeth.com/operate/troubleshooting/) works through the causes.
+
+## Why move
 
 Core-Geth went 21 months without security maintenance, from \`v1.12.20\` in June 2024 to the emergency releases of March 2026. In March 2026 one of the flaws left open in that time, the handshake crash CVE-2026-22862, was used against Core-Geth \`v1.12\` bootnodes, which crash-looped until a patch reached them. The \`v1.12\` releases cut since then closed some of the flaws and left others open, and every \`v1.12\` archive was built with a Go toolchain that no longer receives security fixes.
 
 The \`v1.13\` line closes every client CVE the audits found in the \`v1.12\` client code, bounds GraphQL queries, carries neither of the regressions the last \`v1.12\` releases introduced, and is built with a supported Go toolchain. On September 17, 2026, etcnodes.org counted 524 Core-Geth nodes, and 9 of them ran \`v1.13.0\`. [coregeth.com/security](https://coregeth.com/security/) has the audits, and what each \`v1.12\` release fixed and left open.
 
-## What the move changes
+## A node that has to stay on v1.12
 
-- **The P2P node key rotates, and that is required.** One of the \`v1.12\` flaws leaks bits of the node key across repeated handshakes, and no fix can take back what already leaked. The move renames the old key file aside, and the node writes a new key on its next start, so its enode ID changes: give the new ID to every node that lists this one as a static or trusted peer, and to the monitoring and allowlists that name it. A key that has only ever run the \`v1.13\` line was never exposed. [The node key](https://docs.coregeth.com/operate/security/#the-node-key) explains it.
-- **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
-- **Discovery settings added for \`v1.12\` come out.** A \`--discovery.dns\` or \`--bootnodes\` flag added on the \`v1.12\` line comes out before the first start on the \`v1.13\` line, and a config file loses its \`BootstrapNodes\`, \`EthDiscoveryURLs\` and \`SnapDiscoveryURLs\` lines unless you set them yourself on purpose, so the node reads the bootnodes and peer discovery lists its release ships with.
-- **A container keeps its chain only where its data is mounted.** A container started with no data mount holds the chain inside itself, so the container steps check where the data is before the stop, and copy it out first when it is inside the container.
-- **The chain data and the accounts stay.** Nothing resyncs, and the account keystore is not touched.
-
-Each of these is a step on [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), with the commands for Linux, macOS, Windows, containers and a build from source.
-
-## In what order
-
-1. **Optional, and best practice: one trial node.** Before moving a node you depend on, set up one new node on the \`v1.13\` line on a machine of its own, point no RPC clients or miners at it, and let it catch up with the network, as checked below.
-2. **Then each node in turn, with the steps for its platform.** They keep the node running until the release is downloaded and checked, keep the old binary or container so you can roll back, and rotate the key before the node starts again. [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade) has them, and the [migration guide](https://docs.coregeth.com/tutorials/v1.13.0-migration/) has a guide per platform and the rollback.
-
-The trial node has caught up when the first command returns \`false\` and the second returns a number above zero, where \`<datadir>\` is the node's data directory. [How to tell it is done](https://docs.coregeth.com/getting-started/run-classic-node/#how-to-tell-it-is-done) has two more checks.
-
-\`\`\`shell
-geth --classic attach --exec 'eth.syncing' <datadir>/geth.ipc
-geth --classic attach --exec 'net.peerCount' <datadir>/geth.ipc
-\`\`\`
-
-## A node that cannot move yet
-
-A \`v1.12\` node that cannot move yet can add the \`--discovery.dns\` flag, which points it at the peer discovery lists published from the \`ethereumclassic\` organization, so it keeps finding peers after the lists \`v1.12\` releases read by default stop being updated. It is a small step that closes none of the flaws the audits found in the \`v1.12\` line. [coregeth.com](https://coregeth.com/downloads/#discovery-flag) has the flag for each network, and what changes for a node started from a config file or in a container.
+A \`v1.12\` node that has to wait before it moves can add the \`--discovery.dns\` flag, which points it at the peer discovery lists published from the \`ethereumclassic\` organization, so it keeps finding peers after the lists \`v1.12\` releases read by default stop being updated. It is a small step that closes none of the flaws the audits found in the \`v1.12\` line. [coregeth.com](https://coregeth.com/downloads/#discovery-flag) has the flag for each network, and what changes for a node started from a config file or in a container.
 
 ## Where releases come from
 
 Core-Geth releases are published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest). \`etclabscore/core-geth\` is the previous namespace: archives still published there are built from the older code, none carries every \`v1.13\` fix, and the ETC Cooperative board has communicated its intent to archive that repository. A node, script or mirror watching it will not see a new release. Check each download's checksum and build attestation with the steps on [coregeth.com/downloads](https://coregeth.com/downloads/#verify).
+
+No \`v1.12\` release archive is signed or attested. Every one rests on its publisher's word for the source it was built from, and the checksum published beside it shows only that the download arrived intact. The [release pipeline audit](https://coregeth.com/security/2026-09-core-geth-v1.12-release-pipeline/) sets out what that leaves unchecked.
 
 ## What else moves as the ETC Cooperative winds down
 
@@ -130,12 +149,13 @@ Core-Geth releases are published from [ethereumclassic/core-geth](https://github
 
 Core-Geth is maintained in the \`ethereumclassic\` organization by Ethereum Classic's core developers and community contributors, who do the work, together with the [Ethereum Classic DAO](https://ethereumclassicdao.org), a Wyoming DAO LLC and the standing legal entity that maintains and funds the client today as its funder of last resort. The DAO does not control or lead Ethereum Classic, and it is not the only organization that can fund the work: what the work needs is steady funding from the stakeholders who depend on it, so that it no longer rests on a single backer. [coregeth.com/sponsor](https://coregeth.com/sponsor/) sets out who has funded Core-Geth and how to sponsor it, and sponsorship is arranged through donations@ethereumclassic.net.`,
     date: '2026-11-05',
+    updated: '2026-11-07',
     category: 'Security',
     subject: 'Core-Geth v1.13',
     featured: true,
     tags: ['Core-Geth', 'Security', 'Node Operators', 'Migration'],
     author: 'ETC Community',
-    readTime: 5,
+    readTime: 12,
   },
   {
     slug: 'spiral-network-upgrade',
