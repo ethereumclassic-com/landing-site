@@ -286,8 +286,8 @@ function InstallationSection({ client }: { client: NodeClient }) {
                     <a
                       key={href}
                       href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      // A page on this site opens in place; the client's own sites open beside it.
+                      {...(href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                       className="font-medium text-[var(--color-primary)] hover:underline"
                     >
                       {label} →

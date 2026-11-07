@@ -3,9 +3,10 @@
  *
  * The commands to install a node, move a v1.12 node and verify a download are
  * coregeth.com's, on its /downloads/ page, which is kept in step with the
- * documentation's guides. This site links those sections rather than carrying a
- * copy of its own, so it names no release: a recommendation names the line, and a
- * link to the release itself is `releases/latest`.
+ * documentation's guides. This site links those sections rather than writing its
+ * own: the one copy it carries, the move steps in its migration guide, is generated
+ * from that page (lib/core-geth-moves.ts). So copy written here names no release: a
+ * recommendation names the line, and a link to the release itself is `releases/latest`.
  *
  * A version a fix first shipped in ("fixed in v1.13.0") is history, not the
  * current release, so copy that states one keeps it written out.
@@ -53,6 +54,8 @@ export const CORE_GETH_DOCS_URL = 'https://docs.coregeth.com/'
 export const CORE_GETH_INSTALL_URL = `${CORE_GETH_DOCS_URL}getting-started/installation/`
 /** The move from any v1.12.x release, with its required node key rotation. Named for v1.13.0, and the guide for the v1.13 line. */
 export const CORE_GETH_MIGRATION_URL = `${CORE_GETH_DOCS_URL}tutorials/v1.13.0-migration/`
+/** This site's walkthrough of the same move: coregeth.com's steps, with recordings of a real node making it. */
+export const CORE_GETH_MOVE_GUIDE_PATH = '/news/core-geth-v1-12-to-v1-13-migration'
 export const CORE_GETH_BUILD_FROM_SOURCE_URL = `${CORE_GETH_DOCS_URL}developers/build-from-source/`
 /** MESS, and how each release sets its default. */
 export const CORE_GETH_MESS_URL = `${CORE_GETH_DOCS_URL}operate/mess/`
@@ -88,6 +91,7 @@ export const CORE_GETH_TASKS: CoreGethTask[] = [
     links: [
       { label: 'Steps for each platform', href: CORE_GETH_UPGRADE_STEPS_URL },
       { label: 'Migration guide', href: CORE_GETH_MIGRATION_URL },
+      { label: 'Walkthrough with recordings', href: CORE_GETH_MOVE_GUIDE_PATH },
     ],
   },
   {
