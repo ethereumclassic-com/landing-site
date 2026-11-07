@@ -1,3 +1,4 @@
+import { getArticleBySlug } from '@/app/news/data/articles'
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
 import { DISCORD_URL } from '@/lib/social'
@@ -6,6 +7,14 @@ import { DISCORD_URL } from '@/lib/social'
 export const dynamic = 'force-static'
 
 const eraSpan = `${getEraEndBlock(CURRENT_ERA - 1) / 1_000_000}M–${getEraEndBlock(CURRENT_ERA) / 1_000_000}M`
+
+// Listed under its own title and summary, so this file cannot describe a guide the article no longer is.
+function listedArticle(slug: string) {
+  const article = getArticleBySlug(slug)
+  if (!article) throw new Error(`llms-full.txt lists the article ${slug}, and no article has that slug`)
+  return article
+}
+const moveGuide = listedArticle('core-geth-v1-12-to-v1-13-migration')
 
 export function GET() {
   const body = `# Ethereum Classic — Extended AI Context
@@ -151,6 +160,7 @@ ETC's most significant upgrade to date:
 - /olympia/governance — Treasury and on-chain governance contracts
 - /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
 - /build/clients/core-geth-security-audit — Core-Geth v1.12 security audits and the v1.13 upgrade: the CVEs the 2026 audits found, what was used against Core-Geth v1.12 bootnodes, every release since the maintenance gap, what the network is running, and what upgrading to v1.13 fixes, as coregeth.com/security records them.
+- /news/${moveGuide.slug} — ${moveGuide.title}: ${moveGuide.excerpt}
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap

@@ -1,3 +1,4 @@
+import { getArticleBySlug } from '@/app/news/data/articles'
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
 
@@ -10,6 +11,14 @@ import { coreGethLlmsSection } from '@/lib/llms-core-geth'
 export const dynamic = 'force-static'
 
 const eraSpan = `${getEraEndBlock(CURRENT_ERA - 1) / 1_000_000}M–${getEraEndBlock(CURRENT_ERA) / 1_000_000}M`
+
+// Listed under its own title and summary, so this file cannot describe a guide the article no longer is.
+function listedArticle(slug: string) {
+  const article = getArticleBySlug(slug)
+  if (!article) throw new Error(`llms.txt lists the article ${slug}, and no article has that slug`)
+  return article
+}
+const moveGuide = listedArticle('core-geth-v1-12-to-v1-13-migration')
 
 export function GET() {
   const body = `# Ethereum Classic (ETC)
@@ -60,6 +69,7 @@ ETC sits at the intersection of two distinct regulatory trajectories: the commod
 - [Upgrade Your Node](https://ethereumclassic.com/olympia/upgrade) — Client upgrade guides
 - [Miners & Fee Market](https://ethereumclassic.com/olympia/miners) — How EIP-1559 affects miners under Olympia
 - [Core-Geth v1.12 Security Audits and the v1.13 Upgrade](https://ethereumclassic.com/build/clients/core-geth-security-audit) — The 2026 security audits of Core-Geth v1.12: the CVEs found, what was used against Core-Geth v1.12 bootnodes, and what upgrading to v1.13 fixes, with every release since the maintenance gap and what the network is running, as coregeth.com/security records them.
+- [${moveGuide.title}](https://ethereumclassic.com/news/${moveGuide.slug}) — ${moveGuide.excerpt}
 - [Olympia Governance](https://ethereumclassic.com/olympia/governance) — Treasury and governance contracts
 - [Fork History](https://ethereumclassic.com/upgrades) — Network upgrade history (Atlantis → Olympia)
 
