@@ -77,17 +77,15 @@ export default function Decentralism() {
       </p>
       <ul>
         <li>
-          <strong>Core-Geth:</strong> A Go-based client derived from go-ethereum,
-          maintained by independent developers.
+          <strong>Core-Geth:</strong> An Ethereum Classic execution client and public-good
+          Go reference client, a go-ethereum derivative released and maintained in the
+          ethereumclassic GitHub organization, and the recommended client to run.
         </li>
         <li>
-          <strong>Besu:</strong> A Java-based client originally developed by Hyperledger,
-          with ETC support maintained independently.
-        </li>
-        <li>
-          <strong>Fukuii:</strong> An Ethereum execution layer client in Scala 3 —
-          native Proof-of-Work consensus for Ethereum Classic and Mordor, Engine API V1–V4
-          for post-Merge Ethereum.
+          <strong>Fukuii:</strong> An execution client in Scala 3, maintained by Chippr
+          Robotics as a continuation of IOHK&apos;s Mantis, with native Proof-of-Work for
+          Ethereum Classic and Mordor and the Engine API for post-Merge Ethereum. Its
+          maintainers mark it alpha, so it is an alternative to try.
         </li>
       </ul>
       <p>

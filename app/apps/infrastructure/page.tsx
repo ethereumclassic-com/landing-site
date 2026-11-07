@@ -87,7 +87,7 @@ export default function InfrastructurePage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            The core infrastructure that powers Ethereum Classic — execution clients, RPC providers, block explorers, and essential network services. This layer supports developers, validators, and node operators who need reliable, production-grade access to the ETC network.
+            The core infrastructure that powers Ethereum Classic — execution clients, RPC providers, block explorers, and essential network services. This layer supports developers, miners, and node operators who need reliable access to the ETC network.
           </p>
         </div>
       </section>

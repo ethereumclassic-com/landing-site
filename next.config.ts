@@ -25,6 +25,12 @@ const nextConfig: NextConfig = {
         destination: '/build/clients',
         permanent: true,
       },
+      // Besu reaches ETC through the plugin framework, so it has no app card.
+      {
+        source: '/apps/besu',
+        destination: '/build/clients/besu-etc',
+        permanent: true,
+      },
       {
         source: '/wallet/classic-os',
         destination: '/wallet',

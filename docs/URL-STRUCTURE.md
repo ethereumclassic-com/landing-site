@@ -158,6 +158,7 @@
 | `/apps/payments` | Payment apps | Complete | P2 |
 | `/apps/submit` | Submit an app | Complete | P3 |
 | `/apps/[app]` | Individual app page | Complete | P2 |
+| `/apps/besu` | Removed; redirects to `/build/clients/besu-etc`, its plugin page | Redirect | — |
 
 **Individual App Pages:**
 ```

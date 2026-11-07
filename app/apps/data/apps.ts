@@ -1,3 +1,5 @@
+import { FUKUII_DESCRIPTION, FUKUII_FEATURES, FUKUII_HOMEPAGE_URL, FUKUII_STATUS, FUKUII_SUMMARY } from '@/lib/fukuii'
+
 export interface App {
   name: string
   slug: string
@@ -132,39 +134,17 @@ export const apps: App[] = [
     ],
   },
 
-  // Infrastructure
-  {
-    name: 'Fukuii',
-    slug: 'fukuii',
-    description: 'A native Ethereum Classic client: an EVM execution client in Scala 3 LTS on the JVM. Several networks at once in one JVM process, each fully isolated.',
-    longDescription: "Fukuii is a native Ethereum Classic client, built ground-up for ETC rather than derived from an Ethereum client. It is an EVM execution client in Scala 3 LTS on Pekko Typed Actors, running on the JVM. One binary runs several networks at once in one JVM process, each isolated with its own state, its own metrics registry, and its own configuration; a further network is configuration, not a new client. Consensus is selected per deployment behind one interface: native Proof-of-Work for ETC mainnet and Mordor, or Proof-of-Stake with a built-in consensus layer, so one process is a complete Proof-of-Stake node; an external consensus client over the Engine API V1 to V4 is the alternative. Fukuii ships an MCP server exposing node state to AI agents. It is enterprise-grade by way of the JVM rather than by a separate edition: JVM-native infrastructure end to end for institutions already running on the JVM, with no foreign-language bridge, so JFR, async-profiler, JMX and heap dumps work exactly as they do on any other JVM process. Prometheus metrics, Grafana dashboards, and liveness and readiness endpoints ship in the binary, alongside concurrent multi-instance execution and external-signer/HSM custody integration. Apache 2.0, with Cosign-signed build provenance and a CycloneDX SBOM on release artifacts. Maintained by The Fukuii Authors (Chippr Robotics LLC and White B0x Inc.).",
-    category: 'Infrastructure',
-    link: 'https://fukuii.com',
-    featured: true,
-    tags: ['Node', 'Client', 'Enterprise', 'Scala', 'Multi-Network'],
-    features: [
-      'Several networks at once in one JVM process, each fully isolated',
-      'Consensus selected per deployment: native Proof-of-Work, or Proof-of-Stake with a built-in consensus layer',
-      'Engine API V1–V4 for driving execution from an external consensus client',
-      'SNAP, fast, and regular sync; JSON-RPC and GraphQL',
-      'MCP server exposing node state to AI agents',
-      'JVM-native end to end — JFR, async-profiler, JMX and heap dumps, no FFI bridge',
-      'External-signer/HSM custody integration and concurrent multi-instance execution',
-      'Cosign-signed build provenance and a CycloneDX SBOM on release artifacts',
-    ],
-    stats: [
-      { label: 'Language', value: 'Scala 3' },
-      { label: 'Runtime', value: 'JVM' },
-      { label: 'Status', value: 'Alpha' },
-    ],
-  },
+  // Infrastructure. Core-Geth is the recommended client, so it leads and is featured; Fukuii is
+  // the alternative to try. Each links its page under /build/clients, which outlives any one fork.
   {
     name: 'Core-Geth',
     slug: 'core-geth',
-    description: 'An Ethereum Classic execution client and public-good Go reference client, released and maintained in the ethereumclassic GitHub organization.',
+    description: 'An Ethereum Classic execution client and public-good Go reference client, released and maintained in the ethereumclassic GitHub organization, and the recommended client to run.',
     longDescription: 'Core-Geth is an Ethereum Classic execution client and public-good Go reference client: a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization, not a native ETC client, and not a plugin. It is the recommended client to run. The v1.12 line went 21 months without security maintenance; the v1.13 line closes every client CVE the audits found, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026, and is built with a supported Go toolchain.',
     category: 'Infrastructure',
     link: 'https://coregeth.com',
+    internalUrl: '/build/clients/core-geth',
+    featured: true,
     tags: ['Node', 'Client', 'Go', 'Derivative'],
     features: [
       'A go-ethereum derivative maintained for ETC',
@@ -181,27 +161,23 @@ export const apps: App[] = [
     ],
   },
   {
-    name: 'Besu',
-    slug: 'besu',
-    description: 'An enterprise-grade Ethereum client in Java. Ethereum Classic support is delivered as a plugin that adds it into the upstream codebase.',
-    longDescription: 'Besu is an enterprise-grade Ethereum client written in Java. Ethereum Classic support reaches it as a plugin that adds it into the upstream codebase rather than as a separate ETC client, so it adds ETC chain support to the execution layer only — no mining, no Proof-of-Work consensus. That makes it a fit for non-mining infrastructure such as exchanges, RPC providers, block explorers, and indexers, and for cross-client protocol validation.',
+    name: 'Fukuii',
+    slug: 'fukuii',
+    description: FUKUII_SUMMARY,
+    longDescription: FUKUII_DESCRIPTION,
     category: 'Infrastructure',
-    link: 'https://github.com/besu-eth/besu',
-    tags: ['Node', 'Plugin', 'Testing', 'Java'],
-    features: [
-      'ETC support via an execution plugin',
-      'Implementation reference',
-      'Java-based',
-      'No mining support',
-      'Protocol validation',
-      'Enterprise APIs',
-    ],
+    link: FUKUII_HOMEPAGE_URL,
+    internalUrl: '/build/clients/fukuii',
+    tags: ['Node', 'Client', 'Scala', 'Multi-EVM'],
+    features: FUKUII_FEATURES,
     stats: [
-      { label: 'Type', value: 'Plugin' },
-      { label: 'Mining', value: 'No' },
-      { label: 'Language', value: 'Java' },
+      { label: 'Language', value: 'Scala 3' },
+      { label: 'Runtime', value: 'JVM' },
+      { label: 'Status', value: FUKUII_STATUS },
     ],
   },
+  // Besu has no card here: ETC support reaches it only through the plugin framework, listed
+  // with the node clients. /apps/besu redirects to that plugin's page.
   {
     name: 'Blockscout',
     slug: 'blockscout',
