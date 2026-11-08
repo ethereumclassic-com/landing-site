@@ -16,7 +16,6 @@ import {
   FUKUII_MORDOR_COMMAND,
   FUKUII_REPO_URL,
   FUKUII_STATUS,
-  FUKUII_SUMMARY,
   FUKUII_TASKS,
 } from '@/lib/fukuii'
 
@@ -227,7 +226,8 @@ export const nodeClients: NodeClient[] = [
     website: FUKUII_HOMEPAGE_URL,
     docs: FUKUII_DOCS_URL,
     github: FUKUII_REPO_URL,
-    metaDescription: `Fukuii: ${FUKUII_SUMMARY}`,
+    metaDescription:
+      'Fukuii, an Ethereum Classic execution client in Scala 3, in alpha: run it on mainnet or the Mordor testnet, and find its latest release.',
     description: FUKUII_DESCRIPTION,
     language: 'Scala',
     platforms: ['Windows', 'macOS', 'Linux', 'Docker'],
@@ -245,13 +245,23 @@ export const nodeClients: NodeClient[] = [
   },
 ]
 
-// ETC Execution Client Plugins
-// Upstream Ethereum clients separate the consensus engine from the execution
-// engine. An ETC plugin uses that seam to add Ethereum Classic chain
-// support onto an existing Ethereum client's execution layer — it is not a
-// separate client, and it carries no mining or PoW consensus. Plugins serve
-// non-mining infrastructure: exchanges, RPC providers, explorers, indexers.
-// `github` links the upstream project each plugin targets.
+/**
+ * What an ETC plugin is, in the words every surface uses: the clients pages, the mining and Olympia
+ * pages, the core-devs agenda and both llms files. The distinction is ownership. A plugin adds
+ * Ethereum Classic support to a client another project maintains, so that codebase and the decisions
+ * about it stay with that project. Core-Geth is downstream of go-ethereum but a full implementation
+ * whose codebase is maintained for Ethereum Classic, and Fukuii is an independent client. Say no more
+ * about what a plugin validates until the framework's own documentation states it.
+ */
+export const PLUGIN_POSITION =
+  "A plugin is not a client implementation. It adds Ethereum Classic support to a client another project maintains, so that codebase and the decisions about it stay with that project, outside Ethereum Classic's control. A plugin is no substitute for Fukuii, an independent client, or for Core-Geth, a full implementation downstream of go-ethereum."
+
+/** The same, in one sentence, where a page has room for no more. */
+export const PLUGIN_POSITION_SHORT =
+  'A plugin is not a client implementation: the codebase it extends, and the decisions about it, stay with the project that maintains it.'
+
+// ETC Execution Client Plugins: a planned framework. `github` links the upstream project each plugin
+// targets, which that project maintains.
 export const executionPlugins: ExecutionPlugin[] = [
   {
     id: 'besu-etc',
@@ -260,7 +270,7 @@ export const executionPlugins: ExecutionPlugin[] = [
     language: 'Java',
     github: 'https://github.com/besu-eth/besu',
     description:
-      'A plugin that adds Ethereum Classic chain support to the Besu codebase, an enterprise-grade Java client.',
+      'A plugin that adds Ethereum Classic chain support to the Besu codebase, a Java client.',
     status: 'planned',
   },
   {
@@ -290,7 +300,7 @@ export const executionPlugins: ExecutionPlugin[] = [
     language: 'Go',
     github: 'https://github.com/ethereum/go-ethereum',
     description:
-      'A plugin that adds Ethereum Classic chain support to the Go-Ethereum codebase, the most widely deployed EVM client.',
+      'A plugin that adds Ethereum Classic chain support to the Go-Ethereum codebase, Ethereum\'s Go client.',
     status: 'planned',
   },
   {
@@ -300,7 +310,7 @@ export const executionPlugins: ExecutionPlugin[] = [
     language: 'C#',
     github: 'https://github.com/NethermindEth/nethermind',
     description:
-      'A plugin that adds Ethereum Classic chain support to the Nethermind codebase, a high-performance .NET client.',
+      'A plugin that adds Ethereum Classic chain support to the Nethermind codebase, a .NET client.',
     status: 'planned',
   },
   {

@@ -1,6 +1,7 @@
 import { FadeIn } from '@/app/components/ui'
 import Link from 'next/link'
 import { FUKUII_DESCRIPTION, FUKUII_REPO_URL, FUKUII_STATUS } from '@/lib/fukuii'
+import { PLUGIN_POSITION_SHORT } from '@/app/build/data/build'
 
 const primaryClient = {
   name: 'Core-Geth',
@@ -38,7 +39,7 @@ const secondaryClients: SecondaryClient[] = [
     name: 'ETC Plugins',
     language: '',
     description:
-      'A plugin framework that adds Ethereum Classic chain support into existing Ethereum clients — Besu, Erigon, Ethrex, Go-Ethereum, Nethermind, and Reth — at the execution layer, rather than maintaining a fork. A plugin carries no mining or Proof-of-Work consensus.',
+      `A planned framework that would add Ethereum Classic chain support to Besu, Erigon, Ethrex, Go-Ethereum, Nethermind and Reth. ${PLUGIN_POSITION_SHORT}`,
     github: '/build/clients#plugins',
     status: 'Planned',
   },
@@ -60,9 +61,10 @@ export function ClientImplementationsSection() {
             Independent implementations in distinct languages, maintained by separate teams, ensure
             the network can withstand the discontinuation or compromise of any single codebase.
             Core-Geth, the recommended client, and Fukuii, an alternative to try, provide
-            implementation diversity. The ETC plugin framework, for Besu, Erigon, Ethrex,
-            Go-Ethereum, Nethermind, and Reth, is designed to widen execution-layer reach without
-            fragmenting the ecosystem.
+            implementation diversity. ETC plugins, a planned framework for Besu, Erigon, Ethrex,
+            Go-Ethereum, Nethermind and Reth, would widen where Ethereum Classic runs, but each
+            plugin&apos;s codebase stays with the project that maintains it, so a plugin adds no
+            implementation of its own.
           </p>
         </FadeIn>
 

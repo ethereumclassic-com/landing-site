@@ -8,6 +8,7 @@ import {
   type NodeClient,
   type ExecutionPlugin,
   type SecurityAdvisory,
+  PLUGIN_POSITION,
 } from '../../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
@@ -48,11 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: label,
     description,
     alternates: { canonical: `https://ethereumclassic.com/build/clients/${slug}` },
-    openGraph: {
-      ...OG_BASE,
-      title: label,
-      description,
-    },
+    openGraph: { ...OG_BASE },
   }
 }
 
@@ -725,36 +722,12 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
           <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
             <h2 className="mb-3 text-lg font-semibold text-[var(--text-primary)]">What is an execution plugin?</h2>
             <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-              Ethereum clients separated consensus from execution for Ethereum&apos;s proof-of-stake transition. ETC leverages this same architecture — adding Ethereum Classic chain support to the execution layer only. Execution plugins have no PoW consensus or mining capability. They serve infrastructure that doesn&apos;t need to participate in consensus: exchanges, RPC providers, block explorers, and indexers.{' '}
-              <strong className="text-[var(--text-primary)]">Core-Geth</strong> carries the Proof-of-Work consensus layer as a full node.
+              Ethereum clients separated consensus from execution for Ethereum&apos;s Proof-of-Stake transition. ETC plugins, a planned framework, would use that separation to add Ethereum Classic chain support to existing Ethereum clients, {plugin.baseClient} among them. {PLUGIN_POSITION}
             </p>
           </div>
         </div>
       </section>
 
-      {/* When to use */}
-      <section className="px-6 pb-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
-            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">When to use {plugin.name}</h2>
-            <ul className="space-y-3">
-              {[
-                'Exchanges that need ETC chain data without running a full consensus node',
-                'RPC providers serving read-only JSON-RPC access at scale',
-                'Block explorers and indexers that process historical chain data',
-                'Infrastructure operators familiar with ' + plugin.baseClient + ' who want ETC support',
-              ].map((use) => (
-                <li key={use} className="flex items-start gap-3">
-                  <svg aria-hidden="true" className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                  <span className="text-sm text-[var(--color-text-muted)]">{use}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="px-6 md:px-10 lg:px-12">

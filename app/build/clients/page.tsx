@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { networks, getClientImplementations, executionPlugins } from '../data/build'
+import { networks, getClientImplementations, executionPlugins, PLUGIN_POSITION } from '../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
 import { CORE_GETH_INSTALL_STEPS_URL, CORE_GETH_UPGRADE_STEPS_URL } from '@/lib/core-geth'
@@ -95,7 +95,7 @@ export default function ClientsPage() {
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
               Run your own Ethereum Classic node for maximum decentralization and independence.
               Core-Geth (Go) is the recommended client to run. Fukuii (Scala), in alpha, is an alternative to try.
-              The ETC plugin framework adds Ethereum Classic support into other Ethereum clients.
+              ETC plugins, a planned framework, would add Ethereum Classic support to clients other projects maintain.
             </p>
           </div>
         </div>
@@ -435,11 +435,9 @@ export default function ClientsPage() {
             </h2>
             <p className="mb-8 max-w-3xl text-[var(--color-text-muted)]">
               Upstream Ethereum clients separated the consensus engine from the execution engine to support
-              Proof-of-Stake. ETC plugins use this separation to add Ethereum Classic chain support
-              to the execution layer only. No mining, no PoW consensus. Products and infrastructure built on
-              Besu, Erigon, Ethrex, Go-Ethereum, Nethermind, or Reth can add ETC support through a plugin without running
-              a separate PoW consensus client. A plugin is not a client implementation: Core-Geth carries the
-              Proof-of-Work consensus and mining path for the ecosystem.
+              Proof-of-Stake. ETC plugins, a planned framework, would use that separation to add Ethereum Classic
+              chain support to Besu, Erigon, Ethrex, Go-Ethereum, Nethermind and Reth. {PLUGIN_POSITION} To run
+              an Ethereum Classic node today, run Core-Geth.
             </p>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
