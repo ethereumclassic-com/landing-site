@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { DISCORD_URL } from '@/lib/social'
+import { CONTACT_EMAILS, DISCORD_URL } from '@/lib/social'
 
 interface FundingSource {
   name: string
@@ -145,7 +145,7 @@ export default function BuildGrantsPage() {
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Funding opportunities for builders on Ethereum Classic — grants and community-backed support for open-source development, tooling, and ecosystem infrastructure. With the Olympia upgrade introducing a protocol-native treasury, ETC&apos;s capacity to fund development is expanding for the first time in the network&apos;s history.
+              Funding opportunities for builders on Ethereum Classic — grants and community-backed support for open-source development, tooling, and ecosystem infrastructure. The Olympia proposal would add a treasury funded by the network&apos;s own use, spent by funding proposals that Olympia DAO&apos;s members vote on.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
@@ -346,12 +346,12 @@ export default function BuildGrantsPage() {
                 >
                   Developer Hub
                 </Link>
-                <Link
-                  href="/contact?type=partnership"
+                <a
+                  href={`mailto:${CONTACT_EMAILS.grants}`}
                   className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
                 >
                   Contact Us
-                </Link>
+                </a>
               </div>
             </div>
           </div>

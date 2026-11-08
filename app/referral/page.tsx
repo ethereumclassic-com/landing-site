@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { CONTACT_EMAILS } from '@/lib/social'
 
 const referralTiers = [
   {
@@ -116,15 +116,7 @@ const howItWorks = [
 ]
 
 export default function ReferralPage() {
-  const [email, setEmail] = useState('')
-  const [wallet, setWallet] = useState('')
-  const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Placeholder - would submit to backend in production
-    setSubmitted(true)
-  }
 
   return (
     <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
@@ -271,58 +263,14 @@ export default function ReferralPage() {
             className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8"
           >
             <div className="mx-auto max-w-xl text-center">
-              <h2 className="text-2xl font-bold text-[var(--text-primary)]">Join the Waitlist</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)]">Hear When It Launches</h2>
               <p className="mt-2 text-[var(--color-text-muted)]">
-                Be the first to know when the referral program launches.
+                The referral program is not running, and this page keeps no list. To hear when it launches, write to{' '}
+                <a href={`mailto:${CONTACT_EMAILS.partnerships}`} className="text-[var(--color-primary)] hover:underline">
+                  {CONTACT_EMAILS.partnerships}
+                </a>
+                .
               </p>
-
-              {submitted ? (
-                <div
-                  className="mt-6 rounded-xl border border-[var(--color-success-border)] bg-[var(--color-success-bg)] p-4"
-                >
-                  <div className="flex items-center justify-center gap-2 text-[var(--color-success)]">
-                    <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className="font-medium">You&apos;re on the list!</span>
-                  </div>
-                  <p className="mt-2 text-sm text-[var(--color-success)]/80">
-                    We&apos;ll notify you when the referral program launches.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="ETC Wallet Address (optional)"
-                      value={wallet}
-                      onChange={(e) => setWallet(e.target.value)}
-                      pattern="^0x[a-fA-F0-9]{40}$"
-                      className="w-full rounded-xl border border-[var(--border)] bg-[var(--panel)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
-                    />
-                    <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-                      Provide your wallet to receive priority access
-                    </p>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full rounded-xl bg-[var(--color-primary)] py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
-                  >
-                    Join Waitlist
-                  </button>
-                </form>
-              )}
             </div>
           </div>
         </div>

@@ -21,3 +21,19 @@ export const DISCORD_INVITE_URL = 'https://discord.com/invite/Tq57jxSwsa'
  * organization; check it against them before changing it here.
  */
 export const SECURITY_CONTACT_EMAIL = 'security@ethereumclassic.net'
+
+/**
+ * This site's own addresses, one per topic. The domain takes mail for any address, so each topic
+ * gets its own and the right person reads it. Vulnerability reports go to SECURITY_CONTACT_EMAIL
+ * above, never to these.
+ */
+export const CONTACT_EMAILS = {
+  general: 'contact@ethereumclassic.com',
+  partnerships: 'partnerships@ethereumclassic.com',
+  listings: 'listings@ethereumclassic.com',
+  advertising: 'advertise@ethereumclassic.com',
+  press: 'press@ethereumclassic.com',
+  grants: 'grants@ethereumclassic.com',
+  store: 'store@ethereumclassic.com',
+  website: 'website@ethereumclassic.com',
+} as const

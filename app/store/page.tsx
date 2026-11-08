@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { CONTACT_EMAILS } from '@/lib/social'
 
 type Category = 'all' | 'mining-hardware' | 'equipment' | 'network' | 'hardware-wallets' | 'apparel' | 'accessories'
 
@@ -836,8 +837,8 @@ export default function StorePage() {
               <div>
                 <h3 className="font-medium text-[var(--color-primary)]">Hardware Wallets & Merch</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                  Trezor and Ledger hardware wallets via affiliate partnerships. ETC-branded apparel
-                  and accessories coming soon via Printful.
+                  Trezor and Ledger hardware wallets via affiliate partnerships, and ETC-branded
+                  apparel and accessories printed through Printful.
                 </p>
               </div>
             </div>
@@ -857,15 +858,15 @@ export default function StorePage() {
               merchandise. Selected designs earn royalties on each sale.
             </p>
             <div className="mt-6">
-              <Link
-                href="/contact?type=design"
+              <a
+                href={`mailto:${CONTACT_EMAILS.store}`}
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
               >
                 Submit Design
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -1,64 +1,39 @@
-import Link from 'next/link'
+import { CONTACT_EMAILS } from '@/lib/social'
 
 const adPlacements = [
   {
     name: 'Banner Ads',
     description: 'Full-width banners at the top of key pages. High visibility placement.',
     pages: ['Homepage', 'Wallet', 'Mining', 'Apps'],
-    impressions: '50K+/month',
     format: '728x90 or responsive',
   },
   {
     name: 'Sidebar Ads',
     description: 'Vertical ad cards in page sidebars. Great for targeted content.',
     pages: ['Learn articles', 'News', 'Tools'],
-    impressions: '30K+/month',
     format: '300x250',
   },
   {
     name: 'Inline Ads',
     description: 'Native-style ads within content areas. Non-intrusive integration.',
     pages: ['Mining guides', 'Trading pages', 'Hardware reviews'],
-    impressions: '20K+/month',
     format: 'Text + small image',
   },
   {
     name: 'Sponsored Content',
     description: 'Featured articles and guides promoting your product or service.',
     pages: ['News section', 'Learn section'],
-    impressions: 'Permanent',
     format: 'Full article',
   },
 ]
 
-const audienceStats = [
-  { label: 'Monthly Visitors', value: '100K+' },
-  { label: 'Page Views', value: '500K+' },
-  { label: 'Newsletter Subscribers', value: '5K+' },
-  { label: 'Active Miners', value: '10K+' },
-]
-
+// Who reads the site, described by what they come for. No figures: nothing on the site measures them,
+// so a number here would be a claim with nothing behind it.
 const audienceTypes = [
-  {
-    type: 'Miners',
-    percentage: 40,
-    description: 'Active ETC miners looking for hardware, pools, and tools',
-  },
-  {
-    type: 'Traders',
-    percentage: 25,
-    description: 'Active traders seeking exchanges, wallets, and market tools',
-  },
-  {
-    type: 'Developers',
-    percentage: 20,
-    description: 'Developers building dApps and integrations on ETC',
-  },
-  {
-    type: 'Investors',
-    percentage: 15,
-    description: 'Long-term holders interested in ecosystem news',
-  },
+  { type: 'Miners', description: 'ETC miners looking for hardware, pools, and tools' },
+  { type: 'Traders', description: 'Traders looking for exchanges, wallets, and market tools' },
+  { type: 'Developers', description: 'Developers building dApps and integrations on ETC' },
+  { type: 'Holders', description: 'Long-term holders following ecosystem news' },
 ]
 
 const guidelines = [
@@ -91,12 +66,12 @@ export default function AdvertisePage() {
               Reach the Ethereum Classic community directly — a technically sophisticated audience of miners, developers, DeFi users, and long-term holders. Promote your wallet, exchange, mining pool, or blockchain product to one of the most engaged Proof-of-Work communities in the industry.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact?type=partnership"
+              <a
+                href={`mailto:${CONTACT_EMAILS.advertising}`}
                 className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 Get Started
-              </Link>
+              </a>
               <a
                 href="#placements"
                 className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
@@ -104,23 +79,6 @@ export default function AdvertisePage() {
                 View Placements
               </a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Audience Stats */}
-      <section className="border-b border-[var(--border)] py-12">
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {audienceStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 text-center"
-              >
-                <div className="text-3xl font-bold text-[var(--color-primary)]">{stat.value}</div>
-                <div className="mt-1 text-sm text-[var(--color-text-muted)]">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -133,7 +91,7 @@ export default function AdvertisePage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Our Audience</h2>
             <p className="mt-4 text-[var(--color-text-muted)]">
-              Highly targeted audience segments actively engaged with the ETC ecosystem
+              The people who come to the site, and what they come for
             </p>
           </div>
 
@@ -143,19 +101,8 @@ export default function AdvertisePage() {
                 key={audience.type}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
               >
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{audience.type}</h3>
-                  <span className="text-2xl font-bold text-[var(--color-primary)]">
-                    {audience.percentage}%
-                  </span>
-                </div>
+                <h3 className="text-lg font-semibold text-[var(--text-primary)]">{audience.type}</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">{audience.description}</p>
-                <div className="mt-4 h-2 overflow-hidden rounded-full bg-[var(--bg)]">
-                  <div
-                    className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-700 ease-out"
-                    style={{ width: `${audience.percentage}%` }}
-                  />
-                </div>
               </div>
             ))}
           </div>
@@ -187,10 +134,6 @@ export default function AdvertisePage() {
                   <div className="flex items-start gap-2">
                     <span className="text-xs font-medium text-[var(--color-text-secondary)]">Pages:</span>
                     <span className="text-xs text-[var(--color-text-muted)]">{placement.pages.join(', ')}</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <span className="text-xs font-medium text-[var(--color-text-secondary)]">Est. Impressions:</span>
-                    <span className="text-xs text-[var(--color-primary)]">{placement.impressions}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-xs font-medium text-[var(--color-text-secondary)]">Format:</span>
@@ -252,12 +195,12 @@ export default function AdvertisePage() {
                   </ul>
                 </div>
 
-                <Link
-                  href="/contact?type=partnership"
+                <a
+                  href={`mailto:${CONTACT_EMAILS.advertising}`}
                   className="mt-6 block w-full rounded-xl bg-[var(--color-primary)] px-6 py-4 text-center font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
                 >
                   Contact Us
-                </Link>
+                </a>
 
                 <p className="text-center text-xs text-[var(--color-text-muted)]">
                   Typical response time: 1-2 business days
@@ -281,7 +224,7 @@ export default function AdvertisePage() {
             {[
               {
                 title: 'Targeted Audience',
-                description: 'Reach users actively engaged with the ETC ecosystem. No wasted impressions.',
+                description: 'Reach people engaged with the ETC ecosystem.',
                 icon: (
                   <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

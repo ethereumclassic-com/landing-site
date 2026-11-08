@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { CONTACT_EMAILS } from '@/lib/social'
 
 type PartnerCategory = 'all' | 'wallets' | 'exchanges' | 'infrastructure' | 'development' | 'mining' | 'defi'
 
@@ -199,12 +200,12 @@ export default function PartnersPage() {
               The wallets, exchanges, mining pools, infrastructure providers, and service companies that make up the Ethereum Classic ecosystem. These partners have verified ETC support and represent the operational backbone of the network for users, miners, and developers worldwide.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact?type=partnership"
+              <a
+                href={`mailto:${CONTACT_EMAILS.partnerships}`}
                 className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
               >
                 Become a Partner
-              </Link>
+              </a>
               <Link
                 href="/advertise"
                 className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
@@ -372,12 +373,12 @@ export default function PartnersPage() {
               </div>
 
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/contact?type=partnership"
+                <a
+                  href={`mailto:${CONTACT_EMAILS.partnerships}`}
                   className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
                 >
                   Contact Us
-                </Link>
+                </a>
                 <Link
                   href="/apps/submit"
                   className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--bg)]"

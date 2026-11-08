@@ -1,24 +1,25 @@
-'use client'
-
-import { useState, type FormEvent } from 'react'
 import Link from 'next/link'
-import { DISCORD_URL, SECURITY_CONTACT_EMAIL } from '@/lib/social'
+import { CONTACT_EMAILS, DISCORD_URL, SECURITY_CONTACT_EMAIL } from '@/lib/social'
 
-type InquiryType = 'general' | 'partnership' | 'technical' | 'listing' | 'media' | 'other'
-
-const inquiryTypes: { value: InquiryType; label: string; description: string }[] = [
-  { value: 'general', label: 'General Inquiry', description: 'Questions about ETC or this website' },
-  { value: 'partnership', label: 'Partnership', description: 'Business partnerships and collaborations' },
-  { value: 'technical', label: 'Technical Support', description: 'Help with wallets, transactions, or dApps' },
-  { value: 'listing', label: 'Listing Request', description: 'List your app, exchange, or wallet' },
-  { value: 'media', label: 'Media / Press', description: 'Press inquiries and interviews' },
-  { value: 'other', label: 'Other', description: 'Something else' },
+/**
+ * How to reach the people behind this site: one address per topic, all on ethereumclassic.com, and the
+ * community channels. There is no form: a message goes from the reader's own mail client, so nothing
+ * passes through the site and nothing is stored here.
+ */
+const topics: { label: string; description: string; email: string }[] = [
+  { label: 'General questions', description: 'About Ethereum Classic or this website.', email: CONTACT_EMAILS.general },
+  { label: 'Partnerships', description: 'Business partnerships and collaborations.', email: CONTACT_EMAILS.partnerships },
+  { label: 'Listings', description: 'A wallet, exchange, app or mining pool to list. Every listing is reviewed before it appears.', email: CONTACT_EMAILS.listings },
+  { label: 'Advertising', description: 'Placements on this site.', email: CONTACT_EMAILS.advertising },
+  { label: 'Media and press', description: 'Press questions and interviews.', email: CONTACT_EMAILS.press },
+  { label: 'Grants', description: 'Funding for open-source work on Ethereum Classic.', email: CONTACT_EMAILS.grants },
+  { label: 'The website', description: 'Something wrong or out of date on this site.', email: CONTACT_EMAILS.website },
 ]
 
 const communityChannels = [
   {
     name: 'Discord',
-    description: 'Fastest response time. Join the community server.',
+    description: 'Ask the community. Join the server.',
     url: DISCORD_URL,
     icon: (
       <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -29,7 +30,7 @@ const communityChannels = [
   },
   {
     name: 'Twitter / X',
-    description: 'DMs open for quick questions.',
+    description: 'News and announcements from the network.',
     url: 'https://x.com/ETC_Network',
     icon: (
       <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -49,87 +50,20 @@ const communityChannels = [
     ),
     color: 'text-[var(--text-muted)]',
   },
-  {
-    name: 'Security',
-    description: 'Report a vulnerability. For pools, exchanges and service providers.',
-    url: `mailto:${SECURITY_CONTACT_EMAIL}`,
-    icon: (
-      <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 1 3.5 4.5v6.2c0 5.2 3.6 10 8.5 11.3 4.9-1.3 8.5-6.1 8.5-11.3V4.5L12 1zm0 6a2.5 2.5 0 0 1 1.3 4.6v2.4a1.3 1.3 0 0 1-2.6 0v-2.4A2.5 2.5 0 0 1 12 7z" />
-      </svg>
-    ),
-    color: 'text-[var(--color-warning)]',
-  },
 ]
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    inquiryType: 'general' as InquiryType,
-    subject: '',
-    message: '',
-  })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState('')
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    setStatus('loading')
-    setErrorMessage('')
-
-    // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
-      setStatus('error')
-      setErrorMessage('Please fill in all required fields.')
-      return
-    }
-
-    if (!formData.email.includes('@')) {
-      setStatus('error')
-      setErrorMessage('Please enter a valid email address.')
-      return
-    }
-
-    try {
-      // Simulate API call - replace with actual form submission
-      // Could integrate with: Formspree, Netlify Forms, custom API endpoint
-      await new Promise(resolve => setTimeout(resolve, 1500))
-
-      setStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        inquiryType: 'general',
-        subject: '',
-        message: '',
-      })
-    } catch {
-      setStatus('error')
-      setErrorMessage('Failed to send message. Please try again or contact us through Discord.')
-    }
-  }
-
   return (
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
         <div className="container relative mx-auto max-w-6xl px-4">
-          <div
-            className="mx-auto max-w-3xl text-center"
-          >
-            <h1
-              className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
-            >
-              Get in Touch
-            </h1>
-            <p
-              className="mt-4 text-lg text-[var(--color-text-secondary)]"
-            >
-              Questions, feedback, or partnership proposals — reach out directly. Whether you are looking to list a wallet or exchange, inquire about advertising, report an issue with the site, or explore a collaboration, we aim to respond within one to two business days.
-            </p>
-          </div>
+          <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">Get in Touch</h1>
+          <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            Questions, feedback, or partnership proposals: write to the address for your topic. To report a
+            vulnerability in Ethereum Classic&apos;s software, use the security address instead.
+          </p>
         </div>
       </section>
 
@@ -137,229 +71,99 @@ export default function ContactPage() {
       <section className="py-12 md:py-20">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="grid gap-12 lg:grid-cols-5">
-            {/* Contact Form */}
+            {/* Email by topic */}
             <div className="lg:col-span-3">
-              <div
-                className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 md:p-8"
-              >
-                <h2 className="text-xl font-bold text-[var(--text-primary)]">Send us a Message</h2>
-                <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                  Fill out the form below and we will get back to you as soon as possible.
+              <h2 className="text-xl font-bold text-[var(--text-primary)]">Email by Topic</h2>
+              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                Each address reaches the people who handle that topic.
+              </p>
+              <ul className="mt-6 space-y-3">
+                {topics.map((t) => (
+                  <li key={t.email} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
+                    <p className="font-medium text-[var(--text-primary)]">{t.label}</p>
+                    <p className="mt-0.5 text-sm text-[var(--color-text-muted)]">{t.description}</p>
+                    <a href={`mailto:${t.email}`} className="mt-2 inline-block font-mono text-sm text-[var(--color-primary)] hover:underline">
+                      {t.email}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 rounded-xl border border-[var(--color-warning)]/30 bg-[var(--color-warning)]/5 p-4">
+                <p className="font-medium text-[var(--text-primary)]">Security</p>
+                <p className="mt-0.5 text-sm text-[var(--color-text-muted)]">
+                  A vulnerability in Core-Geth or the network&apos;s public goods, for pools, exchanges and service
+                  providers. A core developer reads it.
                 </p>
-
-                {status === 'success' ? (
-                  <div
-                    className="mt-8 rounded-xl bg-[var(--color-success)]/10 p-6 text-center"
-                  >
-                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[var(--color-success)]/20">
-                      <svg aria-hidden="true" className="h-6 w-6 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <h3 className="text-lg font-semibold text-[var(--text-primary)]">Message Sent!</h3>
-                    <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                      Thank you for reaching out. We will respond within 2-3 business days.
-                    </p>
-                    <button
-                      onClick={() => setStatus('idle')}
-                      className="mt-4 text-sm text-[var(--color-primary)] hover:underline"
-                    >
-                      Send another message
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-                    {/* Name and Email */}
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <label className="block text-sm font-medium text-[var(--color-text-secondary)]">
-                          Name <span className="text-[var(--color-error)]">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
-                          placeholder="Your name"
-                          disabled={status === 'loading'}
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-[var(--color-text-secondary)]">
-                          Email <span className="text-[var(--color-error)]">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
-                          placeholder="your@email.com"
-                          disabled={status === 'loading'}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Inquiry Type */}
-                    <div>
-                      <label className="block text-sm font-medium text-[var(--color-text-secondary)]">
-                        Inquiry Type
-                      </label>
-                      <select
-                        value={formData.inquiryType}
-                        onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value as InquiryType })}
-                        className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--color-text-primary)] outline-none transition focus:border-[var(--color-primary)]"
-                        disabled={status === 'loading'}
-                      >
-                        {inquiryTypes.map((type) => (
-                          <option key={type.value} value={type.value}>
-                            {type.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Subject */}
-                    <div>
-                      <label className="block text-sm font-medium text-[var(--color-text-secondary)]">
-                        Subject
-                      </label>
-                      <input
-                        type="text"
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
-                        placeholder="Brief subject line"
-                        disabled={status === 'loading'}
-                      />
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label className="block text-sm font-medium text-[var(--color-text-secondary)]">
-                        Message <span className="text-[var(--color-error)]">*</span>
-                      </label>
-                      <textarea
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        rows={5}
-                        className="mt-2 w-full resize-none rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)] outline-none transition focus:border-[var(--color-primary)]"
-                        placeholder="How can we help you?"
-                        disabled={status === 'loading'}
-                      />
-                    </div>
-
-                    {/* Error Message */}
-                    {status === 'error' && (
-                      <p
-                        className="text-sm text-[var(--color-error)]"
-                      >
-                        {errorMessage}
-                      </p>
-                    )}
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      disabled={status === 'loading'}
-                      className="w-full rounded-xl bg-[var(--color-primary)] px-6 py-4 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
-                    >
-                      {status === 'loading' ? (
-                        <span className="flex items-center justify-center gap-2">
-                          <svg aria-hidden="true" className="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          Sending...
-                        </span>
-                      ) : (
-                        'Send Message'
-                      )}
-                    </button>
-                  </form>
-                )}
+                <a href={`mailto:${SECURITY_CONTACT_EMAIL}`} className="mt-2 inline-block font-mono text-sm text-[var(--color-primary)] hover:underline">
+                  {SECURITY_CONTACT_EMAIL}
+                </a>
               </div>
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-2">
-              <div
-                className="space-y-6"
-              >
-                {/* Community Channels */}
-                <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                  <h3 className="font-semibold text-[var(--text-primary)]">Community Channels</h3>
-                  <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                    For faster responses, reach out through our community channels.
-                  </p>
-                  <div className="mt-4 space-y-3">
-                    {communityChannels.map((channel) => (
-                      <a
-                        key={channel.name}
-                        href={channel.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3 transition hover:border-[var(--color-primary)]/50"
-                      >
-                        <span className={channel.color}>{channel.icon}</span>
-                        <div>
-                          <span className="font-medium text-[var(--text-primary)]">{channel.name}</span>
-                          <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">
-                            {channel.description}
-                          </p>
-                        </div>
-                      </a>
-                    ))}
+            <div className="space-y-6 lg:col-span-2">
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
+                <h3 className="font-semibold text-[var(--text-primary)]">Community Channels</h3>
+                <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                  For help with a wallet, a transaction or an app, ask the community.
+                </p>
+                <div className="mt-4 space-y-3">
+                  {communityChannels.map((channel) => (
+                    <a
+                      key={channel.name}
+                      href={channel.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-3 transition hover:border-[var(--color-primary)]/50"
+                    >
+                      <span className={channel.color}>{channel.icon}</span>
+                      <div>
+                        <span className="font-medium text-[var(--text-primary)]">{channel.name}</span>
+                        <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">{channel.description}</p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
+                <h3 className="font-semibold text-[var(--text-primary)]">Common Questions</h3>
+                <div className="mt-4 space-y-4">
+                  <div>
+                    <h4 className="text-sm font-medium text-[var(--color-text-secondary)]">Lost funds or a scam?</h4>
+                    <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                      No one can recover lost funds: blockchain transactions are irreversible. No one from
+                      Ethereum Classic will ask for your seed phrase or private keys.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-[var(--color-text-secondary)]">Help with a wallet or app?</h4>
+                    <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                      Ask in the community channels, or contact the wallet&apos;s or app&apos;s own support.{' '}
+                      <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
+                        Discord
+                      </a>{' '}
+                      is the quickest place to ask.
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* FAQ */}
-                <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                  <h3 className="font-semibold text-[var(--text-primary)]">Common Questions</h3>
-                  <div className="mt-4 space-y-4">
-                    <div>
-                      <h4 className="text-sm font-medium text-[var(--color-text-secondary)]">
-                        Response time?
-                      </h4>
-                      <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                        We typically respond within 2-3 business days. For urgent matters, use Discord.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-medium text-[var(--color-text-secondary)]">
-                        Partnership inquiries?
-                      </h4>
-                      <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                        Select &quot;Partnership&quot; as inquiry type and include details about your project.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-medium text-[var(--color-text-secondary)]">
-                        Lost funds / Scams?
-                      </h4>
-                      <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                        We cannot recover lost funds. Blockchain transactions are irreversible. Be cautious of scams.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Links */}
-                <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
-                  <h3 className="font-semibold text-[var(--text-primary)]">Helpful Links</h3>
-                  <div className="mt-4 space-y-2">
-                    <Link href="/learn" className="block text-sm text-[var(--color-primary)] hover:underline">
-                      Learning Center
-                    </Link>
-                    <Link href="/build/docs" className="block text-sm text-[var(--color-primary)] hover:underline">
-                      Developer Documentation
-                    </Link>
-                    <Link href="/community" className="block text-sm text-[var(--color-primary)] hover:underline">
-                      Community Hub
-                    </Link>
-                    <Link href="/partners" className="block text-sm text-[var(--color-primary)] hover:underline">
-                      Partner Directory
-                    </Link>
-                  </div>
+              <div className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6">
+                <h3 className="font-semibold text-[var(--text-primary)]">Helpful Links</h3>
+                <div className="mt-4 space-y-2">
+                  <Link href="/learn" className="block text-sm text-[var(--color-primary)] hover:underline">
+                    Learning Center
+                  </Link>
+                  <Link href="/build/docs" className="block text-sm text-[var(--color-primary)] hover:underline">
+                    Developer Documentation
+                  </Link>
+                  <Link href="/community" className="block text-sm text-[var(--color-primary)] hover:underline">
+                    Community Hub
+                  </Link>
+                  <Link href="/partners" className="block text-sm text-[var(--color-primary)] hover:underline">
+                    Partner Directory
+                  </Link>
                 </div>
               </div>
             </div>
