@@ -4,16 +4,11 @@ import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Community',
+  title: 'Community Directory',
   description:
     'Where the Ethereum Classic community gathers: social platforms, community-run resources, and the venues where governance proposals are discussed.',
   alternates: { canonical: 'https://ethereumclassic.com/directory/community' },
-  openGraph: {
-    ...OG_BASE,
-    title: 'Ethereum Classic Community Directory',
-    description:
-      'Where the Ethereum Classic community gathers: social platforms, community-run resources, and the venues where governance proposals are discussed.',
-  },
+  openGraph: { ...OG_BASE },
 }
 
 const socialPlatforms = [
@@ -69,7 +64,7 @@ const communityResources = [
   },
   {
     title: 'Olympia Governance',
-    description: 'On-chain governance through Olympia DAO membership, voting, and basefee-funded treasury',
+    description: 'How the proposed Olympia DAO would govern a treasury funded by the base fee: CoreNFT membership, funding proposals and a public timelock',
     href: '/olympia/governance',
   },
   {

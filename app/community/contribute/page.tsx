@@ -8,12 +8,7 @@ export const metadata: Metadata = {
   description:
     'Ways to contribute to Ethereum Classic: write code, run a node or mine, take part in governance through the ECIP process, or help other people learn the chain.',
   alternates: { canonical: 'https://ethereumclassic.com/community/contribute' },
-  openGraph: {
-    ...OG_BASE,
-    title: 'How to Contribute to Ethereum Classic',
-    description:
-      'Ways to contribute to Ethereum Classic: write code, run a node or mine, take part in governance through the ECIP process, or help other people learn the chain.',
-  },
+  openGraph: { ...OG_BASE },
 }
 
 const contributionAreas = [
@@ -51,9 +46,9 @@ const contributionAreas = [
     title: 'Governance & ECIPs',
     description: 'Participate in protocol governance and improvement proposals.',
     items: [
-      { label: 'Olympia DAO', detail: 'Membership NFT voting, proposals, and treasury governance', href: '/olympia/governance' },
+      { label: 'Olympia DAO', detail: 'The proposed governance of the Olympia Treasury: membership voting and funding proposals', href: '/olympia/governance' },
       { label: 'ECIPs', detail: 'Write, review, and discuss improvement proposals', href: 'https://ecips.ethereumclassic.org' },
-      { label: 'Core Dev Calls', detail: 'Join bi-weekly protocol development meetings', href: '/core-devs' },
+      { label: 'Core Dev Calls', detail: 'The calls where each network upgrade is discussed and scheduled', href: '/core-devs' },
     ],
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

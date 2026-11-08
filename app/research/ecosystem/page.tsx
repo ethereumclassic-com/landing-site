@@ -8,16 +8,11 @@ import { miningPools } from '@/app/mining/data/mining'
 import { wallets } from '@/app/wallet/data/wallets'
 
 export const metadata: Metadata = {
-  title: 'Ecosystem',
+  title: 'Ecosystem Research',
   description:
     'An overview of the Ethereum Classic ecosystem: the applications, wallets and exchanges that support ETC, grouped by what each one does.',
   alternates: { canonical: 'https://ethereumclassic.com/research/ecosystem' },
-  openGraph: {
-    ...OG_BASE,
-    title: 'Ethereum Classic Ecosystem Overview',
-    description:
-      'An overview of the Ethereum Classic ecosystem: the applications, wallets and exchanges that support ETC, grouped by what each one does.',
-  },
+  openGraph: { ...OG_BASE },
 }
 
 // Counted from the directory each card links to, so a figure cannot drift from the page that lists what it counts.
@@ -47,8 +42,8 @@ const ecosystemSections = [
   },
   {
     title: 'Governance',
-    description: 'On-chain governance through Olympia DAO, with basefee-funded treasury, Olympia DAO membership, and futarchy.',
-    items: ['EIP-1559 basefee treasury funding', 'Olympia DAO NFT voting membership', 'Futarchy prediction markets'],
+    description: 'The proposed Olympia DAO: governance of a treasury the EIP-1559 base fee would fund, with CoreNFT membership voting and Ecosystem Growth DAOs.',
+    items: ['A treasury funded by the base fee', 'CoreNFT membership voting', 'Ecosystem Growth DAOs'],
     href: '/olympia/governance',
   },
   {
