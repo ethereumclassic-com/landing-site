@@ -66,7 +66,7 @@ export default function TypesOfWallets() {
 
       <h2>Hardware Wallets</h2>
       <p>
-        Hardware wallets are dedicated physical devices that store your private keys offline. They&apos;re the gold standard for securing significant holdings.
+        Hardware wallets are dedicated physical devices that store your private keys offline. They&apos;re the usual recommendation for securing significant holdings.
       </p>
       <h3>Advantages</h3>
       <ul>

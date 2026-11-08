@@ -75,7 +75,7 @@ export const exchangeReviews: ExchangeReview[] = [
       'Gas fees for each transaction',
       'Limited trading pairs compared to CEXs',
     ],
-    summary: 'ETCswap is the premier decentralized exchange native to Ethereum Classic. With both V2 classic AMM and V3 concentrated liquidity, it offers the most trustless way to trade ETC tokens while maintaining full custody of your assets.',
+    summary: 'ETCswap is the decentralized exchange native to Ethereum Classic, with a V2 AMM and V3 concentrated liquidity. You trade from your own wallet and keep custody.',
     fullReview: `ETCswap represents the pinnacle of decentralized trading on Ethereum Classic. As a native DEX, it eliminates the need for wrapped tokens or bridges, providing a pure ETC trading experience.
 
 **Protocol Architecture**
@@ -121,7 +121,7 @@ ETCswap excels for privacy-conscious traders, those avoiding CEX custody risks, 
     id: 'binance',
     name: 'Binance',
     slug: 'binance',
-    tagline: "World's Largest Crypto Exchange",
+    tagline: 'High-Volume Global Exchange',
     website: 'https://www.binance.com',
     type: 'CEX',
     rating: {
@@ -147,7 +147,7 @@ ETCswap excels for privacy-conscious traders, those avoiding CEX custody risks, 
       'Complex interface can overwhelm beginners',
       'Occasional withdrawal delays during high volume',
     ],
-    summary: 'Binance offers the deepest ETC liquidity and lowest fees of any exchange. With multiple trading pairs and advanced features, it is the go-to platform for serious ETC traders seeking the best execution.',
+    summary: 'Binance offers deep ETC liquidity, low fees and several ETC trading pairs, with advanced trading features suited to active traders.',
     fullReview: `Binance dominates global crypto trading, and their ETC markets are among the most liquid available. For traders prioritizing execution and fees, it's hard to beat.
 
 **Trading Features**
@@ -191,7 +191,7 @@ Regulatory restrictions mean some features aren't available in certain jurisdict
     id: 'coinbase',
     name: 'Coinbase',
     slug: 'coinbase',
-    tagline: 'Most Trusted US Exchange',
+    tagline: 'Publicly Traded US Exchange',
     website: 'https://www.coinbase.com',
     type: 'CEX',
     rating: {
@@ -216,8 +216,8 @@ Regulatory restrictions mean some features aren't available in certain jurisdict
       'Limited ETC trading pairs',
       'Slower support during high-demand periods',
     ],
-    summary: 'Coinbase is the premier choice for US-based ETC buyers seeking regulatory compliance and ease of use. While fees are higher than competitors, the platform\'s security and simplicity justify the premium for many users.',
-    fullReview: `For US residents, Coinbase offers unmatched legitimacy and ease of use. As a publicly traded company with insurance on custodial funds, it provides peace of mind that smaller exchanges cannot match.
+    summary: 'Coinbase suits US-based ETC buyers who want a regulated, publicly traded exchange that is easy to use, and who accept higher fees for that simplicity.',
+    fullReview: `For US residents, Coinbase offers a regulated, publicly traded platform and ease of use. As a publicly traded company with insurance on custodial funds, it provides peace of mind that smaller exchanges cannot match.
 
 **Regulatory Standing**
 Coinbase is registered with FinCEN, holds state money transmitter licenses, and is subject to SEC oversight as a public company. This regulatory clarity is valuable for users concerned about compliance.
@@ -285,7 +285,7 @@ US residents prioritizing compliance and simplicity over lowest fees. Particular
       'Lower liquidity than Binance',
       'Wire transfers only for large fiat deposits',
     ],
-    summary: 'Kraken is one of the oldest and most secure crypto exchanges operating today. With proof of reserves and a spotless security record, it is an excellent choice for security-conscious ETC holders.',
+    summary: 'Kraken is one of the oldest crypto exchanges still operating and publishes proof of reserves, a strong choice for security-conscious ETC holders.',
     fullReview: `Founded in 2011, Kraken has never suffered a security breach - a remarkable achievement in the crypto industry. This track record, combined with proof of reserves, makes it a top choice for security-focused traders.
 
 **Security Philosophy**
@@ -341,7 +341,7 @@ Kraken uses tiered verification - basic verification for crypto deposits/withdra
       support: 3.8,
     },
     pros: [
-      '0% maker fees - industry leading',
+      '0% maker fees',
       'No mandatory KYC for basic trading',
       'Fast listing of new tokens',
       'High ETC liquidity',
@@ -354,11 +354,11 @@ Kraken uses tiered verification - basic verification for crypto deposits/withdra
       'Not available in some jurisdictions',
       'Some features region-locked',
     ],
-    summary: 'MEXC offers exceptional value with zero maker fees and optional KYC for basic trading. It is ideal for cost-conscious traders comfortable with a less regulated environment.',
+    summary: 'MEXC charges zero maker fees and offers basic trading with optional KYC, for cost-conscious traders comfortable with a less regulated environment.',
     fullReview: `MEXC has rapidly grown to become a major player in crypto trading, primarily due to its aggressive fee structure and early token listings. For ETC traders, it offers excellent value.
 
 **Fee Innovation**
-MEXC's 0% maker fee policy is industry-leading. Combined with a low 0.2% taker fee, it's one of the most cost-effective platforms for ETC trading. This makes it particularly attractive for market makers and high-frequency traders.
+MEXC charges no maker fee. Combined with a low 0.2% taker fee, it's one of the most cost-effective platforms for ETC trading. This makes it particularly attractive for market makers and high-frequency traders.
 
 **KYC Policy**
 Basic trading is available without KYC verification, appealing to privacy-conscious users. Higher withdrawal limits and additional features require identity verification.
@@ -423,7 +423,7 @@ Less regulatory oversight than US-based exchanges. Users should assess their own
       'Some features overwhelming for beginners',
       'Support response times vary',
     ],
-    summary: 'Gate.io offers a comprehensive trading platform with unique features like copy trading. While complex, it provides good ETC liquidity and competitive fees for experienced traders.',
+    summary: 'Gate.io is a full-featured trading platform with tools such as copy trading. Complex, but with good ETC liquidity and competitive fees for experienced traders.',
     fullReview: `Gate.io, founded in 2013, has evolved into a feature-rich exchange catering to experienced traders. With proof of reserves and extensive features, it's a solid ETC trading venue.
 
 **Platform Features**
@@ -491,7 +491,7 @@ The platform is not available to US residents. The interface can be overwhelming
       'KYC required for full features',
       'Some advanced features complex',
     ],
-    summary: 'OKX combines a modern exchange with an excellent Web3 wallet, making it a great choice for traders who want both centralized convenience and decentralized access.',
+    summary: 'OKX pairs a modern exchange with its own Web3 wallet, for traders who want centralized convenience and decentralized access in one place.',
     fullReview: `OKX has transformed from a simple exchange into a comprehensive Web3 platform. The combination of CEX trading and self-custody wallet makes it unique in the market.
 
 **Web3 Integration**
@@ -535,7 +535,7 @@ US availability is limited. Full features require KYC verification.`,
     id: 'upbit',
     name: 'Upbit',
     slug: 'upbit',
-    tagline: 'Korea\'s Leading Exchange',
+    tagline: 'South Korean Exchange',
     website: 'https://upbit.com',
     type: 'CEX',
     rating: {
@@ -559,7 +559,7 @@ US availability is limited. Full features require KYC verification.`,
       'Limited payment methods for non-Koreans',
       'KYC required',
     ],
-    summary: 'Upbit is the dominant exchange in South Korea with exceptional ETC/KRW liquidity. Essential for Korean traders, but limited utility for international users.',
+    summary: 'Upbit is a major South Korean exchange with deep ETC/KRW liquidity: essential for Korean traders, of limited use to international users.',
     fullReview: `Upbit dominates the South Korean crypto market, often showing the highest ETC/KRW volume globally. For Korean residents, it's the obvious choice.
 
 **Market Position**
@@ -624,7 +624,7 @@ The platform is optimized for the Korean market. While international access is p
       'Support can be slow',
       'US users face restrictions',
     ],
-    summary: 'KuCoin offers accessible trading without mandatory KYC, with unique features like built-in trading bots. Good for privacy-focused traders comfortable with less regulatory oversight.',
+    summary: 'KuCoin offers built-in trading bots and a broad set of trading features, suited to traders comfortable with lighter regulatory oversight.',
     fullReview: `KuCoin has built a reputation as "the people's exchange" with its accessible approach and extensive altcoin listings. The platform offers unique features while maintaining competitive fees.
 
 **Trading Features**
@@ -689,7 +689,7 @@ KuCoin experienced a security breach in 2020 but recovered stolen funds and made
       'Support quality inconsistent',
       'Not recommended for US users',
     ],
-    summary: 'HTX (formerly Huobi) is an established exchange with decent ETC liquidity and competitive fees, though recent changes have introduced some uncertainty.',
+    summary: 'HTX (formerly Huobi) is an established exchange with decent ETC liquidity and competitive fees, though changes at the exchange have added some uncertainty.',
     fullReview: `HTX, rebranded from Huobi in 2023, is one of the oldest exchanges still operating. The transition has caused some confusion, but the platform remains functional.
 
 **Market Position**

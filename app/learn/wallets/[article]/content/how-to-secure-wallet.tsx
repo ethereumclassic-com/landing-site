@@ -123,7 +123,7 @@ export default function HowToSecureWallet() {
 
       <h2>Using Hardware Wallets</h2>
       <p>
-        Hardware wallets provide the strongest security for significant holdings:
+        For significant holdings, a hardware wallet is the usual recommendation:
       </p>
       <ul>
         <li>Keys never leave the device</li>

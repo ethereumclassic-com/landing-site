@@ -9,7 +9,7 @@ export default function WhatIsEthereumClassic() {
 
       <h2>The Original Ethereum</h2>
       <p>
-        Ethereum Classic is the original Ethereum network that has been running continuously since July 2015. It preserves the unaltered history of the Ethereum blockchain and maintains the foundational principles that made Ethereum revolutionary: immutability, decentralization, and censorship resistance.
+        Ethereum Classic is the original Ethereum network that has been running continuously since July 2015. It preserves the unaltered history of the Ethereum blockchain and maintains the foundational principles Ethereum launched with: immutability, decentralization, and censorship resistance.
       </p>
 
       <h2>Key Features</h2>
@@ -52,7 +52,7 @@ export default function WhatIsEthereumClassic() {
       <ul>
         <li><strong><ETCswapLink />:</strong> Decentralized exchange for token swaps and liquidity provision</li>
         <li><strong><ClassicUSDLink /> (USC):</strong> Native stablecoin backed 1:1 by USD</li>
-        <li><strong>Olympia DAO:</strong> Decentralized governance for the ecosystem</li>
+        <li><strong>Olympia DAO:</strong> On-chain governance of a treasury, proposed in the Olympia upgrade</li>
       </ul>
 
       <h2>Getting Started with ETC</h2>

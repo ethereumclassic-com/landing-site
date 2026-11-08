@@ -65,7 +65,7 @@ export const walletReviews: WalletReview[] = [
       'Touchscreen only on Model T (higher price)',
       'No mobile app for direct management',
     ],
-    summary: 'Trezor is the gold standard for hardware wallet security. With fully open-source firmware and native ETC support through Trezor Suite, it provides unmatched transparency and ease of use for Ethereum Classic holders.',
+    summary: 'Trezor is a long-established hardware wallet with fully open-source firmware and native ETC support in Trezor Suite, transparent and easy to use.',
     fullReview: `Trezor pioneered the hardware wallet industry in 2014 and continues to lead with its commitment to open-source security. The Trezor Model One and Model T both offer excellent ETC support through the Trezor Suite desktop application.
 
 **Security Architecture**
@@ -101,7 +101,7 @@ Trezor offers comprehensive documentation, video tutorials, and responsive email
     id: 'ledger',
     name: 'Ledger',
     slug: 'ledger',
-    tagline: 'Industry-Leading Secure Element Technology',
+    tagline: 'Secure Element Hardware Wallet',
     website: 'https://shop.ledger.com/?r=bbf4d7f32e72',
     rating: {
       overall: 4.6,
@@ -124,7 +124,7 @@ Trezor offers comprehensive documentation, video tutorials, and responsive email
       '2020 customer data breach (addressed)',
       'Higher price point for full features',
     ],
-    summary: 'Ledger offers a polished hardware wallet experience with excellent mobile support through Ledger Live. Native ETC support and secure element technology make it a top choice for users who value convenience alongside security.',
+    summary: 'Ledger is a hardware wallet with a secure element, native ETC support and a polished mobile app in Ledger Live, for users who want convenience with security.',
     fullReview: `Ledger has established itself as a leading hardware wallet manufacturer with over 6 million devices sold. The Ledger Nano S Plus, Nano X, and Stax all support Ethereum Classic natively through Ledger Live.
 
 **Security Architecture**
@@ -162,7 +162,7 @@ Following the 2020 data breach affecting customer information (not funds), Ledge
     id: 'metamask',
     name: 'MetaMask',
     slug: 'metamask',
-    tagline: 'The Most Popular Web3 Wallet',
+    tagline: 'Widely Used Web3 Wallet',
     website: 'https://metamask.io',
     rating: {
       overall: 4.5,
@@ -185,7 +185,7 @@ Following the 2020 data breach affecting customer information (not funds), Ledge
       'Potential phishing risks for beginners',
       'Can be targeted by browser exploits',
     ],
-    summary: 'MetaMask is the gateway to Web3 for millions of users. While ETC requires manual network setup, once configured, it provides an excellent experience for interacting with ETC dApps and managing your tokens.',
+    summary: 'MetaMask is a widely used Web3 wallet. ETC needs a manual network setup, and once added it works well for ETC dApps and managing tokens.',
     fullReview: `MetaMask has become synonymous with Web3, boasting over 30 million monthly active users. Originally built for Ethereum, it fully supports Ethereum Classic through its custom network feature.
 
 **Security Considerations**
@@ -249,7 +249,7 @@ For enhanced security, connect a Trezor or Ledger device to MetaMask. This gives
       'Desktop only (no mobile app yet)',
       'Newer wallet with shorter track record',
     ],
-    summary: 'Rabby brings enterprise-grade security features to everyday users. Its transaction simulation and security warnings help prevent costly mistakes, making it an excellent choice for security-conscious ETC users.',
+    summary: 'Rabby simulates each transaction and warns before risky ones, which helps prevent costly mistakes: a strong choice for security-conscious ETC users.',
     fullReview: `Rabby was developed by the DeBank team with a focus on transaction security. It shows you exactly what will happen before you sign, helping prevent scams and costly errors.
 
 **Security Features**
@@ -310,7 +310,7 @@ While MetaMask has broader compatibility and mobile support, Rabby offers superi
       'Smaller ecosystem than MetaMask',
       'Less dApp compatibility',
     ],
-    summary: 'Brave Wallet offers a secure, integrated experience for Brave browser users. Native ETC support and no extension requirements make it a convenient choice for those already in the Brave ecosystem.',
+    summary: 'Brave Wallet is built into the Brave browser, with native ETC support and no extension to install: a convenient choice for people who already use Brave.',
     fullReview: `Brave Wallet is built directly into the Brave browser, eliminating extension-related security risks. For Brave users, it provides a seamless crypto experience with native ETC support.
 
 **Security Advantages**
@@ -346,7 +346,7 @@ If you already use Brave browser and want a simple, secure wallet without managi
     id: 'trust-wallet',
     name: 'Trust Wallet',
     slug: 'trust-wallet',
-    tagline: 'The Most Trusted Mobile Wallet',
+    tagline: 'Mobile Wallet with a dApp Browser',
     website: 'https://trustwallet.com',
     rating: {
       overall: 4.4,
@@ -369,7 +369,7 @@ If you already use Brave browser and want a simple, secure wallet without managi
       'Limited hardware wallet integration',
       'Some features require Trust Wallet token',
     ],
-    summary: 'Trust Wallet provides an excellent mobile experience for ETC users. Native support, built-in dApp browser, and intuitive design make it perfect for managing ETC on the go.',
+    summary: 'Trust Wallet is a mobile wallet with native ETC support, a built-in dApp browser and an intuitive design, suited to managing ETC on the go.',
     fullReview: `Trust Wallet has grown to become one of the most popular mobile wallets with over 60 million users. Originally acquired by Binance, it maintains an open-source core and operates independently.
 
 **Mobile Experience**
@@ -426,7 +426,7 @@ While excellent for mobile use, consider pairing Trust Wallet with a hardware wa
       'No multi-sig support',
       'Cannot set custom transaction fees on some assets',
     ],
-    summary: 'Exodus combines beautiful design with practical functionality. Native ETC support across all platforms and excellent customer support make it a solid choice for users who value aesthetics and ease of use.',
+    summary: 'Exodus pairs polished design with native ETC support on desktop and mobile and well-regarded customer support, for users who value ease of use.',
     fullReview: `Exodus stands out with its gorgeous interface and focus on user experience. Available on desktop, mobile, and as a browser extension, it provides a consistent experience across all platforms.
 
 **Design Philosophy**
@@ -487,7 +487,7 @@ Exodus provides excellent support with 24/7 live chat and comprehensive help art
       'Limited dApp support',
       'Customer support can be slow',
     ],
-    summary: 'Coinomi is a veteran wallet with strong privacy credentials and long-standing ETC support. While the interface shows its age, it remains a solid choice for privacy-conscious users.',
+    summary: 'Coinomi is a veteran wallet with strong privacy credentials and long-standing ETC support. Its interface shows its age, but it suits privacy-conscious users.',
     fullReview: `Coinomi launched in 2014 and has supported Ethereum Classic since 2016, making it one of the earliest multi-chain wallets with ETC support.
 
 **Privacy Focus**
@@ -549,7 +549,7 @@ For privacy-focused users who want a reliable, long-standing wallet with native 
       'Requires understanding of blockchain basics',
       'Software wallet options less secure than hardware',
     ],
-    summary: 'MyEtherWallet (MEW) provides powerful, open-source tools for managing ETC. Native network support and excellent hardware wallet integration make it great for advanced users, though beginners may find it complex.',
+    summary: 'MyEtherWallet (MEW) offers open-source tools for managing ETC, with native network support and hardware wallet integration. Advanced users gain most from it.',
     fullReview: `MyEtherWallet has been a cornerstone of the Ethereum ecosystem since 2015 and provides excellent Ethereum Classic support. Its open-source nature and feature depth make it valuable for advanced users.
 
 **ETC Network Support**
@@ -616,7 +616,7 @@ For the best MEW experience with ETC, use a hardware wallet. This provides MEW's
       'Less polished than commercial alternatives',
       'Fewer features than multi-chain wallets',
     ],
-    summary: 'Emerald Wallet is built specifically for Ethereum Classic, first by ETCDEV and now by EmeraldPay. While limited in scope compared to multi-chain alternatives, it offers dedicated ETC support.',
+    summary: 'Emerald Wallet is built for Ethereum Classic, first by ETCDEV and now by EmeraldPay. Narrower than multi-chain wallets, it offers dedicated ETC support.',
     fullReview: `Emerald Wallet was first built by ETCDEV, Ethereum Classic's first development team. After ETCDEV closed in 2018, its team lead started EmeraldPay, which develops the wallet today.
 
 **ETC-First Development**

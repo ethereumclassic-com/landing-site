@@ -25,7 +25,7 @@ export default function WhyProofOfWork() {
 
       <h2>Censorship Resistance</h2>
       <p>
-        Proof-of-work provides the strongest possible censorship resistance. Since block production depends on computation rather than permission, anyone can participate in securing the network.
+        Proof-of-work provides strong censorship resistance. Since block production depends on computation rather than permission, anyone can participate in securing the network.
       </p>
       <p>
         No authority can prevent miners from including valid transactions. The global distribution of mining hardware ensures the network continues operating even if individual participants are targeted.

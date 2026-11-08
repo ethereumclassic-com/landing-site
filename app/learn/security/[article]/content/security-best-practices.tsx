@@ -18,7 +18,7 @@ export default function SecurityBestPractices() {
 
       <h2>Hardware Wallets</h2>
       <p>
-        A hardware wallet keeps your private keys on a dedicated device that never exposes them to your computer or the internet. This is the gold standard for securing significant amounts of ETC.
+        A hardware wallet keeps your private keys on a dedicated device that never exposes them to your computer or the internet. It is the usual recommendation for securing significant amounts of ETC.
       </p>
       <p>
         Popular hardware wallets that support Ethereum Classic include Trezor and Ledger. Both allow you to manage ETC alongside other assets. When using a hardware wallet, every transaction requires physical confirmation on the device itself, preventing remote attackers from moving your funds.
