@@ -1,3 +1,5 @@
+import { OLYMPIA_ECIPS, ecipUrl } from '@/lib/olympia-ecips'
+
 export interface ECIPMeta {
   id: string
   title: string
@@ -79,21 +81,21 @@ export const ecipIndex: Record<string, ECIPMeta> = {
   },
   'ecip-1061': {
     id: 'ecip-1061',
-    title: 'Aztlan EVM and Protocol Upgrades (Yingchun Edition)',
+    title: 'Aztlán EVM and Protocol Upgrades (Yingchun Edition)',
     status: 'Rejected',
     type: 'Meta',
     url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1061',
   },
   'ecip-1078': {
     id: 'ecip-1078',
-    title: 'Phoenix EVM and Protocol Upgrades ("Aztlan fix")',
+    title: 'Phoenix EVM and Protocol Upgrades ("Aztlán fix")',
     status: 'Rejected',
     type: 'Meta',
     url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1078',
   },
   'ecip-1079': {
     id: 'ecip-1079',
-    title: 'Phoenix EVM and Protocol Upgrades ("Aztlan redo")',
+    title: 'Phoenix EVM and Protocol Upgrades ("Aztlán redo")',
     status: 'Withdrawn',
     type: 'Meta',
     url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1079',
@@ -161,25 +163,11 @@ export const ecipIndex: Record<string, ECIPMeta> = {
     type: 'Meta',
     url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1109',
   },
-  'ecip-1111': {
-    id: 'ecip-1111',
-    title: 'Olympia EVM and Protocol Upgrades',
-    status: 'Draft',
-    type: 'Standards Track (Core)',
-    url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1111',
-  },
-  'ecip-1112': {
-    id: 'ecip-1112',
-    title: 'Olympia Treasury Contract',
-    status: 'Draft',
-    type: 'Standards Track (Core)',
-    url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1112',
-  },
-  'ecip-1121': {
-    id: 'ecip-1121',
-    title: 'Execution Client Specification Alignment (Olympia Hardfork)',
-    status: 'Draft',
-    type: 'Meta',
-    url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1121',
-  },
+  // The Olympia ECIPs, under their front-matter titles, from the one module every surface reads.
+  ...Object.fromEntries(
+    OLYMPIA_ECIPS.map((e) => [
+      `ecip-${e.number}`,
+      { id: `ecip-${e.number}`, title: e.title, status: e.status, type: e.type, url: ecipUrl(e.number) },
+    ]),
+  ),
 }
