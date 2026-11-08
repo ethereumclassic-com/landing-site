@@ -109,9 +109,9 @@ export default function DocsPage() {
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
               Everything you need to build on Ethereum Classic — protocol specifications, JSON-RPC API
-              references, developer tutorials, and tooling documentation. With the Olympia upgrade, the
-              full Ethereum developer toolchain (Hardhat, Foundry, wagmi, viem, ethers.js) works on ETC
-              without modification.
+              references, developer tutorials, and tooling documentation. The standard Ethereum toolchain
+              (Hardhat, Foundry, wagmi, viem, ethers.js) works on ETC, with a legacy-transaction setting where
+              a tool assumes EIP-1559.
             </p>
           </div>
         </div>

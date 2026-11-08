@@ -101,8 +101,8 @@ export default function WhatAreSmartContracts() {
         Ethereum Classic provides a robust platform for smart contracts with some unique advantages:
       </p>
       <ul>
-        <li><strong>Proof-of-work security:</strong> Maximum protection against attacks</li>
-        <li><strong>Full EVM compatibility:</strong> Use existing Ethereum tools and libraries</li>
+        <li><strong>Proof-of-work security:</strong> Rewriting the chain costs real computing power</li>
+        <li><strong>EVM compatibility:</strong> Use existing Ethereum tools and libraries</li>
         <li><strong>Lower fees:</strong> Generally more affordable than congested networks</li>
         <li><strong>Established ecosystem:</strong> Growing DeFi with DEXs, stablecoins, and more</li>
       </ul>

@@ -72,9 +72,9 @@ export default function BuildPage() {
               Build on Ethereum Classic
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)] md:text-xl">
-              The Olympia upgrade closes the final EVM gaps — Hardhat, Foundry, wagmi, viem, and ethers.js work on
-              Ethereum Classic without modification, just like on Ethereum mainnet. Deploy your contracts to a network
-              with
+              Ethereum Classic runs the EVM through the Shanghai set, so Hardhat, Foundry, wagmi, viem and
+              ethers.js work against it, with --legacy where a tool assumes EIP-1559. Deploy your contracts to a
+              network with
               <span className="text-[var(--text-primary)]"> immutability</span>,
               <span className="text-[var(--text-primary)]"> code is law</span>, and a continuous production record
               since July 2015.

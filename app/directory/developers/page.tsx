@@ -8,12 +8,7 @@ export const metadata: Metadata = {
   description:
     "A developer's index of Ethereum Classic: network parameters, public RPC endpoints, the node clients that serve the chain, and the tooling for building on it.",
   alternates: { canonical: 'https://ethereumclassic.com/directory/developers' },
-  openGraph: {
-    ...OG_BASE,
-    title: 'Ethereum Classic Developer Directory',
-    description:
-      "A developer's index of Ethereum Classic: network parameters, public RPC endpoints, the node clients that serve the chain, and the tooling for building on it.",
-  },
+  openGraph: { ...OG_BASE },
 }
 
 export default function DirectoryDevelopersPage() {
@@ -37,7 +32,7 @@ export default function DirectoryDevelopersPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Developer Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Everything you need to build on Ethereum Classic — networks, RPC endpoints, execution clients, development tools, and contract frameworks. With the Olympia upgrade, the full Ethereum toolchain works on ETC without modification, making the ETC developer experience identical to Ethereum mainnet.
+                Everything you need to build on Ethereum Classic — networks, RPC endpoints, execution clients, development tools, and contract frameworks. The standard Ethereum toolchain works on ETC, with a legacy-transaction setting where a tool assumes EIP-1559.
               </p>
             </div>
           </div>

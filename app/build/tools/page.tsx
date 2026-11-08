@@ -195,10 +195,11 @@ export default function BuildToolsPage() {
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">ETC Compatibility</h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div>
-                <h3 className="mb-2 font-medium text-[var(--color-primary)]">Full EVM Compatibility</h3>
+                <h3 className="mb-2 font-medium text-[var(--color-primary)]">EVM Compatibility</h3>
                 <p className="text-sm text-[var(--color-text-muted)]">
-                  Ethereum Classic is fully EVM-compatible. Any Ethereum development tool, library, or framework
-                  works on ETC. Just configure the correct RPC endpoint and chain ID.
+                  Ethereum Classic runs the EVM through the Shanghai set, so standard Ethereum tools work once
+                  pointed at its RPC endpoint and chain ID. A tool that assumes EIP-1559 needs a legacy
+                  transaction here: with Foundry, pass --legacy.
                 </p>
               </div>
               <div>

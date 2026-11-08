@@ -46,7 +46,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'Which wallets support Ethereum Classic?',
         answer:
-          'Hardware wallets (Trezor, Ledger, SafePal), browser extensions (MetaMask), and mobile wallets (Trust Wallet, Exodus, Coinomi) all support ETC. MetaMask requires manual network configuration with Chain ID 61 and RPC URL https://etc.blockscout.com/api/eth-rpc. Hardware wallets provide the strongest security for long-term storage.',
+          'Hardware wallets (Trezor, Ledger, SafePal), browser extensions (MetaMask), and mobile wallets (Trust Wallet, Exodus, Coinomi) all support ETC. MetaMask requires manual network configuration with Chain ID 61 and RPC URL https://etc.blockscout.com/api/eth-rpc. For long-term storage, a hardware wallet keeps your keys offline.',
       },
       {
         question: 'What dApps are available on ETC?',
@@ -109,7 +109,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What makes ETC different from other cryptocurrencies?',
         answer:
-          'ETC occupies a unique intersection: it has the programmability of Ethereum (full EVM compatibility) with the monetary properties of Bitcoin (fixed supply, Proof of Work). Unlike Ethereum, ETC never performed an irregular state change — the ledger is immutable. Unlike Bitcoin, ETC supports smart contracts. No other major cryptocurrency combines all three properties: PoW security, EVM programmability, and ledger immutability.',
+          'ETC occupies a unique intersection: it has the programmability of Ethereum (the EVM, through the Shanghai set) with the monetary properties of Bitcoin (fixed supply, Proof of Work). Unlike Ethereum, ETC never performed an irregular state change — the ledger is immutable. Unlike Bitcoin, ETC supports smart contracts. No other major cryptocurrency combines all three properties: PoW security, EVM programmability, and ledger immutability.',
       },
       {
         question: 'Is ETC a good investment?',
@@ -210,7 +210,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'Are there grants or funding available for ETC development?',
         answer:
-          'The Olympia DAO governance framework (currently in development) will establish a non-inflationary treasury funded by EIP-1559 base fees, with on-chain governance for funding allocation. Until Olympia activates, development funding comes from community initiatives and individual contributors. Check the ETC Community channels for current opportunities.',
+          'The grants page at /build/grants lists the funding sources open to builders today. Ethereum Classic DAO LLC maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort. The Olympia proposal would add a treasury funded by the EIP-1559 base fee, spent only by funding proposals Olympia DAO\'s members vote on; its ECIPs are drafts and its activation block is TBD.',
       },
       {
         question: 'How does the ECIP process work?',
@@ -220,7 +220,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What development tools work with ETC?',
         answer:
-          'All standard EVM tools: Hardhat and Foundry for development/testing, Remix for browser-based development, OpenZeppelin for audited contract libraries, Blockscout for contract verification and blockchain exploration, MetaMask for wallet interaction, and ethers.js/viem/wagmi for frontend integration. No ETC-specific tooling is needed — standard EVM tools work by changing the RPC endpoint.',
+          'The standard EVM tools: Hardhat and Foundry for development/testing, Remix for browser-based development, OpenZeppelin for audited contract libraries, Blockscout for contract verification and blockchain exploration, MetaMask for wallet interaction, and ethers.js/viem/wagmi for frontend integration. Most work once pointed at an Ethereum Classic RPC endpoint. Tooling that assumes EIP-1559 needs a path of its own here today: Foundry, for one, sends a type-2 transaction unless told otherwise, so pass --legacy when deploying to ETC.',
       },
     ],
   },
