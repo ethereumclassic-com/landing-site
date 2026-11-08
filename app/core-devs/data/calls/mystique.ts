@@ -5,7 +5,9 @@ const entry: CDCEntry = {
   title: 'Mystique',
   date: '2022-02-12',
   summary:
-    'ECIP-1104 — Aligned ETC with a subset of Ethereum\'s London upgrade, excluding EIP-1559. Fee market change deferred to Olympia where basefee is redirected to the Treasury.',
+    'ECIP-1104 — Aligned ETC with a subset of Ethereum\'s London upgrade, excluding EIP-1559. Fee market change deferred to Olympia where basefee is redirected to the Sovereignty Vault.',
+  metaDescription:
+    'ECIP-1104 aligned ETC with part of Ethereum\'s London upgrade and left out EIP-1559, whose fee market the Olympia proposal would adopt.',
   content: `## Mystique (ECIP-1104) Network Upgrade
 
 **Activation Block:** 14,525,000\\
@@ -16,7 +18,7 @@ const entry: CDCEntry = {
 
 ### Overview
 
-Mystique aligned Ethereum Classic with a subset of the Ethereum Foundation's London upgrade. It included the gas refund reduction (EIP-3529) and the 0xEF byte reservation (EIP-3541), while deliberately excluding EIP-1559 (fee market change), EIP-3198 (BASEFEE opcode), and EIP-3228 (difficulty bomb delay). The EIP-1559 fee market was deferred to the Olympia upgrade, where the basefee is redirected to the Treasury instead of being burned.
+Mystique aligned Ethereum Classic with a subset of the Ethereum Foundation's London upgrade. It included the gas refund reduction (EIP-3529) and the 0xEF byte reservation (EIP-3541), while deliberately excluding EIP-1559 (fee market change), EIP-3198 (BASEFEE opcode), and EIP-3228 (difficulty bomb delay). The EIP-1559 fee market was deferred to the Olympia upgrade, where the basefee is redirected to the Sovereignty Vault instead of being burned.
 
 ### Included Changes
 
@@ -29,7 +31,7 @@ Mystique aligned Ethereum Classic with a subset of the Ethereum Foundation's Lon
 
 | EIP | Title | Reason |
 |-----|-------|--------|
-| [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) | Fee Market Change | Burning basefee conflicts with ECIP-1017 fixed monetary policy. Deferred to Olympia where basefee funds the Treasury |
+| [EIP-1559](https://eips.ethereum.org/EIPS/eip-1559) | Fee Market Change | Burning basefee conflicts with ECIP-1017 fixed monetary policy. Deferred to Olympia where basefee is redirected to the Sovereignty Vault |
 | [EIP-3198](https://eips.ethereum.org/EIPS/eip-3198) | BASEFEE Opcode | Depends on EIP-1559 activation; behavior undefined without it |
 | [EIP-3228](https://eips.ethereum.org/EIPS/eip-3228) | Difficulty Bomb Delay | Not applicable — ETC permanently removed the bomb in ECIP-1041 |
 
@@ -40,7 +42,7 @@ Mystique aligned Ethereum Classic with a subset of the Ethereum Foundation's Lon
 
 ### Context
 
-The decision to exclude EIP-1559 was deliberate and principled. On Ethereum, EIP-1559 burns the basefee — permanently destroying ETH. For ETC, this would conflict with the fixed monetary policy established by ECIP-1017: burning supply would reduce the total below the ~210.7M cap, undermining the predictable emission schedule. The Olympia upgrade solves this by redirecting the basefee to the Treasury (ECIP-1112) instead of burning it, preserving the monetary policy while adopting the fee market mechanism.
+The decision to exclude EIP-1559 was deliberate and principled. On Ethereum, EIP-1559 burns the basefee — permanently destroying ETH. For ETC, this would conflict with the fixed monetary policy established by ECIP-1017: burning supply would reduce the total below the ~210.7M cap, undermining the predictable emission schedule. The Olympia upgrade solves this by redirecting the basefee to the Sovereignty Vault (ECIP-1111, ECIP-1112) instead of burning it, preserving the monetary policy while adopting the fee market mechanism.
 
 ### Outcome
 
