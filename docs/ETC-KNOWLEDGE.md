@@ -33,9 +33,14 @@ Three distinct categories. They are not interchangeable:
 - **Core-Geth** — a **go-ethereum derivative** maintained for ETC. Not native, and **not a plugin**.
   Do not describe it as "the legacy client" or "the established client".
 - **Plugins** — ETC support **added into existing Ethereum clients**. Six, alphabetical: Besu,
-  Erigon, Ethrex, Go-Ethereum, Nethermind, Reth. A plugin is **not a client implementation** and
-  carries no mining or PoW consensus. Never count plugins as built or shipped client
-  implementations in a milestone, timeline, or test-coverage claim.
+  Erigon, Ethrex, Go-Ethereum, Nethermind, Reth. A plugin is **not a client implementation**. The
+  distinction is ownership: a plugin adds ETC support to a client another project maintains, so
+  that codebase and the decisions about it stay with that project, outside Ethereum Classic's
+  control. A plugin is no substitute for Fukuii, an independent client, or for Core-Geth, a full
+  implementation downstream of go-ethereum. The site's wording is `PLUGIN_POSITION` in
+  `app/build/data/build.ts`. Say no more about what a plugin validates until the framework's own
+  documentation states it. Never count plugins as built or shipped client implementations in a
+  milestone, timeline, or test-coverage claim.
 
 ### Client landscape
 
@@ -43,7 +48,7 @@ Three distinct categories. They are not interchangeable:
 |--------|----------|----------|-------|
 | **Fukuii** | Execution client | Scala 3 | A continuation of Mantis by Chippr Robotics LLC; alpha, released from `chippr-robotics/fukuii` |
 | **Core-Geth** | go-ethereum derivative | Go | The recommended client, released and maintained in the `ethereumclassic` organization |
-| **Besu** | Plugin target | Java | ETC support via plugin; no PoW mining |
+| **Besu** | Plugin target | Java | ETC support via plugin |
 | **Erigon** | Plugin target | Go | ETC support via plugin; archive-optimized |
 | **Ethrex** | Plugin target | Rust | ETC support via plugin |
 | **Go-Ethereum** | Plugin target | Go | ETC support via plugin |
@@ -141,15 +146,9 @@ as a plugin that adds it into the upstream codebase, not as a separate ETC clien
 `app/build/data/build.ts`). The site lists Besu only among the plugins: no app card and no client
 listing of its own.
 
-**Technical Details**:
-- Enterprise-grade Java client
-- ETC chain support comes from the ETC execution plugin
-- Does NOT support PoW mining — plugins add execution-layer support only
-
-**Recommended Use Cases**:
-- Non-mining infrastructure: exchanges, RPC providers, block explorers, indexers
-- Cross-client protocol validation
-- NOT for production mining nodes
+**Besu's own Ethereum Classic support** was deprecated in its pull request 9437 and removed in 9671,
+which took out the Classic and Mordor networks, so no current Besu release runs Ethereum Classic.
+Copy that presents Besu as a current Ethereum Classic client is wrong.
 
 ### Erigon
 
@@ -168,36 +167,64 @@ codebase.
 
 ## Network Upgrades
 
-### Olympia Upgrade (2027 target)
+### Olympia (proposed, targeted for 2027)
 
-**ECIP**: ECIP-1121
-**Status**: In Development
-**Target**: 2027 (activation block TBD)
+**Status**: Proposed · Draft ECIPs · Activation block TBD, shown as `OLYMPIA_STATUS` from
+`app/olympia/data/olympia.ts`. Olympia is targeted for mainnet activation in 2027. The countdowns
+run to December 31, 2027 (`OLYMPIA_PLACEHOLDER_ISO`), a placeholder target and never an activation
+date. ECIP-1111 §Implementation is the only document that records the activation blocks, and
+ECIP-1121 §Activation says they are decided at the Olympia Core Devs Call.
 
-**Purpose**: Modernize ETC EVM stack to current ETH EVM version, excluding PoS and blob structures.
+**Authority**: the ECIPs repository, `ethereumclassic/ECIPs`. ecips.ethereumclassic.org can show an
+older version of a draft until the next publication round. This section routes and carries no
+specification value: read the section a sentence comes from when writing it.
 
-**Scope**:
-- [PLACEHOLDER: List of EIPs/ECIPs included in Olympia]
-- [PLACEHOLDER: EVM opcode additions]
-- [PLACEHOLDER: Gas schedule changes]
-- [PLACEHOLDER: Any other protocol changes]
+**The suite, by concern** (titles come from `lib/olympia-ecips.ts`, which reads the front matter):
+
+| ECIP | Concern |
+|------|---------|
+| ECIP-1111 | The EIP-1559 fee market, the base-fee credit, and the activation blocks |
+| ECIP-1112 | The Sovereignty Vault: the permanent address, and what is deployed there |
+| ECIP-1113 | Olympia DAO: the Governor, the Timelock behind the Treasury proxy, CoreNFT, and the deployment order |
+| ECIP-1114 | Funding proposals, and the legal wrapper |
+| ECIP-1115 | Paying block producers from base-fee revenue, by funding proposals |
+| ECIP-1116 | The same at the consensus layer: a separate, later hard fork, not part of Olympia |
+| ECIP-1117 | Ecosystem Growth DAOs |
+| ECIP-1118 | Milestone-structured funding |
+| ECIP-1119 | Sanctions screening in the voting interface |
+| ECIP-1121 | EVM alignment: every EIP's disposition, generated into `lib/olympia-eips.ts` |
+
+**Never cited**: ECIP-1122, 1123 and 1124, which are not published, or their specifics; and
+ECIP-1120 and ECIP-1130, other authors' proposals outside the suite.
+
+**Writing about it**:
+- Proposal voice throughout: Olympia "would" do a thing, never "does".
+- EVM alignment advances the execution layer through Dencun, Pectra and Fusaka, and carries that
+  work into Glamsterdam. ECIP-1121 adopts part of Glamsterdam's set, so full Glamsterdam parity is
+  never claimed, and every EIP list or count comes from `lib/olympia-eips.ts`.
+- Tooling: never "without modification" or "full JSON-RPC parity". ECIP-1111 §Motivation records
+  that tooling assuming EIP-1559 needs an ETC-specific path today.
+- Ethereum Classic DAO LLC: the line ethereumclassicdao.org settled, read from
+  ECIP-1114 §"Off-Chain Legal Interface and Donations". The long form is
+  `app/olympia/components/LegalWrapper.tsx`.
+- Fee economics: Ethereum Classic has no base fee before Olympia, so nothing is "discarded", and the
+  base fee would go to the Treasury, so it does not "grow miner revenue".
 
 **What Olympia Does NOT Include**:
-- Proof of Stake (PoS) consensus
-- Blob transactions (EIP-4844)
-- Any ETH-specific PoS infrastructure
+- Proof-of-Stake mechanisms
+- Blob data availability, which ECIP-1121 defers
+- Any change to block rewards or to ECIP-1017's emission schedule
 
-**Client Readiness**:
+**Client Readiness**: no released client implements Olympia, and a client's readiness is what its
+maintainers publish.
 - Core-Geth: the recommended client, released and maintained in the `ethereumclassic` organization.
   Its Olympia release is TBD; v1.13.0 does not include Olympia
 - Fukuii: alpha, by its maintainers' label, and offered as an alternative to try. Its Olympia
   release is TBD
 - Plugins, Besu among them: not client implementations, so not part of client readiness
 
-**Historical Context**:
-- [PLACEHOLDER: Why is Olympia named Olympia?]
-- [PLACEHOLDER: Who proposed ECIP-1121?]
-- [PLACEHOLDER: Key discussions/decisions leading to Olympia]
+**Historical Context**: the name is set out at `/olympia/etymology`, and the funding history behind
+the proposal at `/olympia/history`. The first Olympia ECIPs were published on July 4, 2025.
 
 ### Previous Network Upgrades
 
@@ -295,12 +322,17 @@ Fukuii to Chippr Robotics LLC.
 
 **"Fifthening"**: The community term for the 20% block reward reduction every 5M blocks (analogous to Bitcoin's "halving").
 
-### Treasury Proposal (Not Implemented)
+### Treasury Proposals Before Olympia (Not Implemented)
 
-- [PLACEHOLDER: When was the treasury proposal made?]
-- [PLACEHOLDER: What was proposed?]
-- [PLACEHOLDER: Why was it not implemented?]
-- [PLACEHOLDER: Community response]
+- **ECIP-1051**, "Ethereum Classic Treasury system", created December 31, 2018, status Rejected:
+  split the base block reward between two treasury addresses and the miner.
+- **ECIP-1098**, "Proto Treasury System", created August 26, 2020, status Withdrawn: 80% of the
+  block reward to miners and 20% to a treasury contract, with withdrawal rights limited to members
+  the proposal named.
+
+Olympia takes neither design: no block reward is redirected, and the base fee ECIP-1111 introduces
+is credited to the Sovereignty Vault instead of being destroyed. ECIP-1115 §"This Is Not a
+Block-Reward Split" sets out the differences.
 
 ---
 
@@ -440,8 +472,8 @@ Fukuii to Chippr Robotics LLC.
 
 **Reality**: Erigon is one of the six **plugin targets** — ETC support reaches it as a plugin
 added into the upstream Erigon codebase, adding chain support to the execution layer only. That is
-not the same as being an ETC client implementation, and it carries no mining or PoW consensus. The
-same distinction applies to Besu, Ethrex, Go-Ethereum, Nethermind, and Reth.
+not the same as being an ETC client implementation. The same distinction applies to Besu, Ethrex,
+Go-Ethereum, Nethermind, and Reth.
 
 ### "Fukuii contains no Mantis code" or "Fukuii was written from scratch"
 
@@ -481,18 +513,16 @@ The following sections need input from ETC Core Contributors:
 
 1. **Fukuii release timeline**
 2. **Mantis historical context (active period, deprecation reason)**
-3. **Olympia upgrade specific scope (EIPs included)**
-4. **Organization personnel and current roles**
-5. **IOHK departure details**
-6. **Treasury proposal history**
-7. **51% attack specific details**
-8. **ETH Merge hashrate impact numbers**
-9. **Mordor testnet launch date**
-10. **Network upgrade naming conventions**
-11. **Ecosystem project details (ETCswap, USC)**
-12. **HebeSwap status**
-13. **POW Summit/Alliance involvement**
-14. **Official community links**
+3. **Organization personnel and current roles**
+4. **IOHK departure details**
+5. **51% attack specific details**
+6. **ETH Merge hashrate impact numbers**
+7. **Mordor testnet launch date**
+8. **Network upgrade naming conventions**
+9. **Ecosystem project details (ETCswap, USC)**
+10. **HebeSwap status**
+11. **POW Summit/Alliance involvement**
+12. **Official community links**
 
 ---
 
