@@ -17,12 +17,12 @@ The consumer and institutional portal for Ethereum Classic — covering wallets,
 - **Learn** — Guides covering basics, DeFi, wallets, trading, and security
 - **News** — Protocol updates, ecosystem announcements, and community news
 - **Research** — Emission schedule, supply tracker, network stats, and reports
-- **Olympia** — The next Ethereum Classic upgrade: protocol-funded treasury, on-chain governance, and multi-client support
+- **Olympia** — A proposed Ethereum Classic upgrade, targeted for 2027: EVM alignment through Glamsterdam, an EIP-1559 base fee credited to a treasury, and Olympia DAO to govern it
 
 ---
 
 ## Ethereum Classic
 
-Ethereum Classic is the original Ethereum chain — preserved through the 2016 DAO fork and operating continuously since 2015. It is the only mature Proof-of-Work blockchain with native smart contracts: EVM-native, and interoperable with the Ethereum ecosystem. The Olympia upgrade introduces a protocol-funded treasury, multi-client support, and on-chain governance open to any ETC account.
+Ethereum Classic is the original Ethereum chain — preserved through the 2016 DAO fork and operating continuously since 2015. It is the only mature Proof-of-Work blockchain with native smart contracts: EVM-native, and interoperable with the Ethereum ecosystem. The proposed Olympia upgrade would add a treasury funded by the EIP-1559 base fee, governed on-chain by Olympia DAO.
 
 Learn more at [ethereumclassic.org](https://ethereumclassic.org).

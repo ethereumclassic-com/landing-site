@@ -57,10 +57,24 @@ pnpm is the package manager, pinned by `packageManager` in `package.json`.
 Ethereum Classic is the only mature Proof-of-Work blockchain with native smart
 contracts, live since 2015, EVM-native and interoperable with Ethereum.
 
-- **Olympia** advances the execution layer through Dencun, Pectra and Fusaka, and
-  carries that work into Glamsterdam. Do not claim "full Glamsterdam parity" —
-  ECIP-1121 includes two of Glamsterdam's seven execution-layer EIPs. Activation
-  is targeted for 2027; the activation block is TBD.
+- **Olympia is a proposal**: draft ECIPs, activation block TBD, targeted for
+  mainnet activation in 2027. Write it in proposal voice, and show its state as
+  `OLYMPIA_STATUS` from `app/olympia/data/olympia.ts`, where the countdown's
+  placeholder date also lives. It advances the execution layer through Dencun,
+  Pectra and Fusaka and carries that work into Glamsterdam; ECIP-1121 adopts
+  part of Glamsterdam's set, so full Glamsterdam parity is never claimed. ECIP
+  titles come from `lib/olympia-ecips.ts` and every EIP list or count from
+  `lib/olympia-eips.ts`. ECIP-1122, 1123 and 1124 are unpublished and never
+  cited, nor are ECIP-1120 and ECIP-1130, other authors' proposals.
+- **The DAO and Olympia** — ECIP-1114 names Ethereum Classic DAO LLC as the legal
+  wrapper it contemplates for Olympia DAO, downstream of it in authority, with
+  no role until Olympia DAO is operating. Ecosystem Growth DAOs (ECIP-1117) are
+  funded by season and not governed by Olympia DAO; never "Child-DAO".
+- **Claims to avoid** — tooling that works "without modification" or "full
+  JSON-RPC parity" (ECIP-1111 §Motivation: Foundry needs `--legacy` today); the
+  CLARITY Act as settled (it is pending: "positioned for", "candidate"); ETCG
+  as an ETF (it is a trust); Classic USD as "compliant" or "the first" (it is
+  "aligned with"); and superlatives.
 - **Clients** — Core-Geth is the recommended client: a go-ethereum derivative,
   not native and not a plugin, recommended on its v1.13 line. Fukuii, an
   execution client in Scala 3 that Chippr Robotics LLC maintains as a
@@ -69,6 +83,11 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   `lib/fukuii.ts` holds its copy and links. Besu, Erigon, Ethrex,
   Go-Ethereum, Nethermind and Reth are ETC *plugins*, never "overlays", never
   app cards of their own, and never counted among built client implementations.
+  A plugin adds Ethereum Classic support to a client another project maintains,
+  so that codebase and its decisions stay with that project: it is no substitute
+  for Fukuii, an independent client, or for Core-Geth, a full implementation
+  downstream of go-ethereum. The wording is `PLUGIN_POSITION` in
+  `app/build/data/build.ts`.
 - **Client URLs** — every client link outside the Olympia hub goes to
   `/build/clients` or `/build/clients/<id>`, which name no upgrade.
   `/olympia/clients` carries only Olympia readiness, and an `/olympia` link

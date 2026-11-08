@@ -145,12 +145,30 @@ includes transaction fees, which vary per block.
   coregeth.com's restraint (document the facts, name no individual, attribute the
   work to Ethereum Classic's core developers), with the deeper narrative linked
   out to coregeth.com and ethereumclassicdao.org rather than carried here.
-- **Olympia:** advances the execution layer through Dencun, Pectra and Fusaka,
-  and carries that work into Glamsterdam. Do **not** claim "full Glamsterdam
-  parity" — ECIP-1121 includes two of Glamsterdam's seven execution-layer EIPs;
-  the rest are blocked on EIP-7928 and EIP-4788 dependencies, not on
-  Proof-of-Stake grounds.
-- **Activation:** targeted for 2027. The activation *block* is TBD.
+- **Olympia is a proposal.** Its ECIPs are drafts and its activation block is
+  TBD, so every sentence about it is in proposal voice ("would", "proposed"),
+  and its state shows as `OLYMPIA_STATUS`, "Proposed · Draft ECIPs ·
+  Activation block TBD". It is targeted for mainnet activation in 2027. The
+  countdowns run to `OLYMPIA_PLACEHOLDER_ISO`, a placeholder target and never
+  an activation date, whose label is derived from it in UTC. All three live in
+  `app/olympia/data/olympia.ts`, and every countdown reads them there.
+- **The Olympia ECIPs:** named by number and front-matter title, from
+  `lib/olympia-ecips.ts`, which every surface imports. The ECIPs repository is
+  the authority; ecips.ethereumclassic.org can show an older version of a
+  draft. Read the section a sentence comes from when writing it, and describe
+  ECIP-1113 onward by what each would do rather than restating its mechanics.
+  ECIP-1122, 1123 and 1124 are not published, so no page cites them or carries
+  their specifics. ECIP-1120 and ECIP-1130 are other authors' proposals and are
+  not cited either.
+- **EVM alignment:** Olympia advances the execution layer through Dencun,
+  Pectra and Fusaka, and carries that work into Glamsterdam. Every EIP list,
+  table and count comes from `lib/olympia-eips.ts`, generated from ECIP-1121's
+  rows, and the one fork timeline is `app/olympia/components/ForkTimeline.tsx`.
+  ECIP-1121 adopts part of Glamsterdam's set, so full Glamsterdam parity is
+  never claimed.
+- **Tooling:** never write that Ethereum tools work "without modification", or
+  of "full JSON-RPC parity". ECIP-1111 §Motivation records that tooling assuming
+  EIP-1559 needs an ETC-specific path today: Foundry passes `--legacy`.
 - **Clients:** Core-Geth is the recommended client to run: an Ethereum Classic
   execution client and public-good Go reference client (never "the"), a
   go-ethereum derivative released and maintained in the `ethereumclassic` GitHub
@@ -173,15 +191,41 @@ includes transaction fees, which vary per block.
   Go-Ethereum, Nethermind and Reth are ETC *plugins*, never "overlays" and never
   app cards of their own; the plugin framework's status is planned. A plugin is
   not a client implementation and is never counted among built or shipped
-  clients.
+  clients. The distinction is ownership: a plugin adds Ethereum Classic support
+  to a client another project maintains, so that codebase and the decisions
+  about it stay with that project. A plugin is no substitute for Fukuii, an
+  independent client, or for Core-Geth, a full implementation downstream of
+  go-ethereum. Every page takes that wording from `PLUGIN_POSITION` in
+  `app/build/data/build.ts`; say no more about what a plugin validates until the
+  framework's own documentation states it.
 - **Client URLs:** `/build/clients` and `/build/clients/<id>` name no upgrade,
   so every client link outside the Olympia hub (navigation, footer, apps,
   mining, llms files) goes there. `/olympia/clients` and its guides carry only
   Olympia readiness, and an `/olympia` link appears in the navigation only
   under the Olympia tab.
-- **Governance:** the Olympia DAO makes binding decisions via OpenZeppelin
-  Governor 5.x. Futarchy (ECIP-1117/1118) is an open signal layer and a
-  Child-DAO, never binding.
+- **The Treasury and Olympia DAO:** read ECIP-1112 and ECIP-1113 when writing
+  about them. The copy they retire includes an "immutable" Treasury with "no
+  proxy", a separate executor contract, a five-stage rollout, a base fee
+  credited "at block finalization", and futarchy as a "Child-DAO" or a "signal
+  layer": ECIP-1117 specifies Ecosystem Growth DAOs, which Olympia DAO would
+  fund by season and not govern. Protocol change stays with ECIP-1000.
+- **Ethereum Classic DAO LLC and Olympia:** the line ethereumclassicdao.org
+  settled, read from ECIP-1114 §"Off-Chain Legal Interface and Donations". The
+  LLC is the legal wrapper ECIP-1114 contemplates for Olympia DAO, downstream of
+  it in authority, with no on-chain role and no role in anything ECIP-1114
+  specifies until Olympia DAO is operating. `app/olympia/components/LegalWrapper.tsx`
+  carries the long form. What the DAO does today comes from coregeth.com: it
+  maintains and funds the public goods as their funder of last resort, and does
+  not control or lead Ethereum Classic.
+- **Fee economics:** Ethereum Classic has no base fee before Olympia, so nothing
+  is "discarded", and the base fee would go to the Treasury, so it does not
+  "grow miner revenue". Observed fee figures come from Blockscout, never typed.
+- **Regulation:** the CLARITY Act is pending, so ETC is "positioned for"
+  classification or a "candidate", never "classified" or "qualifies". ETCG is a
+  trust product, never an ETF. Classic USD is issued by Brale and "aligned with"
+  MiCA and the GENIUS Act, never "compliant" and never "the first".
+- **No hype and no superlatives:** not "most significant", "unmatched", "the
+  premier" or "gold standard".
 
 **Consumer copy.** Everything a visitor reads is consumer-facing; internal and
 development language must not reach the UI.
