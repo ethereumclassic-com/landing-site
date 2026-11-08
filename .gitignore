@@ -24,7 +24,9 @@ next-env.d.ts
 # ---------------------------------------------------------------------------
 .env
 .env.*
-!.env.example
+# Every example file is a template that must reach a clone, .env.local.example included;
+# end-anchored, so .env.example.local stays ignored.
+!.env*.example
 *.pem
 *.key
 *.p12
@@ -50,6 +52,10 @@ keystore/
 *.keystore
 wallet.json
 mnemonic.txt
+# A node's data directory: its private key, a rotated copy of it, and the RPC secret.
+nodekey
+nodekey.*
+jwtsecret
 
 # ---------------------------------------------------------------------------
 # Claude Code — this directory is TRACKED so repo-local agents, skills and rules
