@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Security',
+  title: 'Security Guides',
   description: 'Protect your Ethereum Classic. Best practices for wallet security, scam avoidance, and safe storage.',
 }
 

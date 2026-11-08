@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Mining Profitability',
+  title: 'Mining Profitability Calculator',
   description:
     'Calculate your ETC mining profitability. Revenue estimator with live difficulty.',
 }

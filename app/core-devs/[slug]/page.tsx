@@ -23,11 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title,
-    description: entry.summary,
+    description: entry.metaDescription ?? entry.summary,
     openGraph: {
       ...OG_BASE,
-      title: `${title} | Core Devs — Ethereum Classic`,
-      description: entry.summary,
       type: 'article',
     },
     keywords: [

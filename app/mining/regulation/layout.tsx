@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Mining Regulation & Policy — Ethereum Classic',
+  title: 'Mining Regulation and Policy',
   description:
-    'Global regulatory landscape for ETC mining. Covers the US CLARITY Act, EU MiCA, Central Asia, Canada, Asia-Pacific, and Middle East. PoW mining as a legally defined activity across all major jurisdictions.',
+    'How Proof-of-Work mining is regulated where ETC is mined: the US, where the CLARITY Act is pending, EU MiCA, Canada, Central Asia, Asia-Pacific, Middle East.',
   keywords: [
     'ETC mining regulation',
     'CLARITY Act mining',

@@ -30,14 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  // The section template adds "| Why Classic — Ethereum Classic".
+  // The section template adds " | Ethereum Classic".
   return {
     title: article.title,
     description: article.description,
     openGraph: {
       ...OG_BASE,
-      title: `${article.title} | Why Classic — Ethereum Classic`,
-      description: article.description,
       type: 'article',
     },
   }

@@ -5,9 +5,9 @@ import { FadeIn } from '@/app/components/ui/FadeIn'
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: '2016 DAO Fork — How Ethereum Classic Got Its Name | ETC Research',
+  title: '2016 DAO Fork: How ETC Got Its Name',
   description:
-    'In 2016 the Ethereum Foundation forked the original chain and applied the ETH name and ticker to the new chain. The original chain has operated since 2015 and became known as Ethereum Classic.',
+    'In 2016 the Ethereum Foundation forked the original chain and applied the ETH name and ticker to the new chain. The original chain became Ethereum Classic.',
   keywords: [
     'DAO fork 2016',
     'Ethereum Classic genesis',

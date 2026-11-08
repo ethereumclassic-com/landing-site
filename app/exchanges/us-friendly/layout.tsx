@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'US-Friendly Exchanges | Ethereum Classic',
+  title: 'US-Friendly Exchanges',
   description: 'Buy and trade Ethereum Classic on US-regulated exchanges. FDIC-insured deposits, bank transfers, and full regulatory compliance.',
 }
 

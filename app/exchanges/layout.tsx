@@ -4,7 +4,7 @@ import { fetchExchangeVolumes } from '@/lib/exchange-volume'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | ETC Exchanges — Ethereum Classic',
+    template: '%s | Ethereum Classic',
     default: 'Best Exchanges for Ethereum Classic',
   },
   description:

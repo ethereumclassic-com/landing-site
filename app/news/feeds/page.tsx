@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'News Feeds — Ethereum Classic',
+  title: 'News Feeds',
   description:
     'Subscribe to Ethereum Classic news via RSS, Atom, or JSON Feed. Get network upgrades, security updates, and ecosystem news delivered to your feed reader.',
 }

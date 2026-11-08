@@ -3,6 +3,8 @@ export interface CDCEntry {
   title: string
   date: string
   summary: string
+  /** The page's meta description, where the summary runs past what a search result shows. */
+  metaDescription?: string
   content: string
   ecipRefs: string[]
   recordingUrl: string | null

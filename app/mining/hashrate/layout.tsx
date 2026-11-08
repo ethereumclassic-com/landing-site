@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'ETC Network Hashrate — Live Chart and Explainer',
+  title: 'ETC Hashrate: Live Chart and Explainer',
   description:
-    'Live Ethereum Classic network hashrate with 7-day, 30-day, 1-year and full-history charts. How ETC hashrate is derived from difficulty and block time, why no one can measure it directly, and what it means for network security and mining returns.',
+    'Live Ethereum Classic network hashrate over 7 days, 30 days, a year and its full history, and how the figure is derived from difficulty and block time.',
   keywords: [
     'ETC network hashrate',
     'Ethereum Classic hashrate',
@@ -16,12 +16,7 @@ export const metadata: Metadata = {
     'ETC 51% attack cost',
     'ETC hashrate difficulty',
   ],
-  openGraph: {
-    ...OG_BASE,
-    title: 'ETC Network Hashrate — Live Chart and Explainer',
-    description:
-      'Live Ethereum Classic network hashrate across four timeframes, and how the figure is derived from difficulty and block time.',
-  },
+  openGraph: { ...OG_BASE },
 }
 
 export default function HashrateLayout({ children }: { children: React.ReactNode }) {

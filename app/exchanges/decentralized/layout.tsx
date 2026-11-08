@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Decentralized Exchanges (DEX) | Ethereum Classic',
+  title: 'Decentralized Exchanges (DEX)',
   description: 'Trade ETC on decentralized exchanges. Non-custodial, permissionless trading without intermediaries.',
 }
 

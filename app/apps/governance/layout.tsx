@@ -10,9 +10,6 @@ export const metadata: Metadata = {
   },
   openGraph: {
     ...OG_BASE,
-    title: 'Governance & DAO Apps — Ethereum Classic',
-    description:
-      'Decentralized governance tools on ETC — on-chain voting, treasury management, and proposal systems.',
     url: 'https://ethereumclassic.com/apps/governance',
   },
 }

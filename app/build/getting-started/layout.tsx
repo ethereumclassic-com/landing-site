@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Getting Started',
+  title: 'Getting Started Building on ETC',
   description: 'Start building on Ethereum Classic. Deploy your first smart contract.',
 }
 

@@ -6,6 +6,8 @@ const entry: CDCEntry = {
   date: '2020-08-13',
   summary:
     'ECIP-1051 proposed an Ethereum Classic treasury system funded by block reward diversion. Discussed across two Core Devs Calls alongside 51% attack solutions. The proposal did not achieve consensus and was superseded by ECIP-1098.',
+  metaDescription:
+    'ECIP-1051 proposed an Ethereum Classic treasury funded by block reward diversion. It did not achieve consensus and was superseded by ECIP-1098.',
   content: `## ECIP-1051 Treasury System Proposal
 
 **ECIP Status:** Rejected\\

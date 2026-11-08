@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | ETC Mining — Ethereum Classic',
+    template: '%s | Ethereum Classic',
     default: 'Mine Ethereum Classic',
   },
   description:

@@ -10,7 +10,7 @@ import { GlobalHashrateSection } from './components/GlobalHashrateSection'
 export const metadata: Metadata = {
   title: 'Environmental Impact & Energy Infrastructure — Ethereum Classic',
   description:
-    'Ethereum Classic proof-of-work mining as programmable energy infrastructure. Stranded energy monetization, grid stabilization, methane conversion, and sustainable PoW economics.',
+    'Ethereum Classic mining as demand for stranded and excess energy: remote hydro, flared wellhead gas, curtailed renewables and off-peak industrial power.',
   keywords: [
     'ETC mining energy',
     'stranded energy crypto',

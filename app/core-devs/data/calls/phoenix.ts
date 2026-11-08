@@ -6,6 +6,8 @@ const entry: CDCEntry = {
   date: '2020-06-01',
   summary:
     'ECIP-1088 — Aligned ETC with Ethereum\'s Istanbul upgrade. Blake2, alt_bn128 repricing, ChainID opcode, trie-dependent opcode repricing, calldata reduction, and SSTORE rebalancing.',
+  metaDescription:
+    'ECIP-1088 aligned ETC with Ethereum\'s Istanbul upgrade: Blake2, the CHAINID opcode, alt_bn128 and opcode repricing, cheaper calldata, SSTORE rebalancing.',
   content: `## Phoenix (ECIP-1088) Network Upgrade
 
 **Activation Block:** 10,500,839\\

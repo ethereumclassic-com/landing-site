@@ -10,9 +10,9 @@ import SupplyPieCharts from './components/SupplyPieCharts'
 export const revalidate = 600
 
 export const metadata: Metadata = {
-  title: 'Ethereum 2014 ICO | ETC Research',
+  title: 'Ethereum 2014 ICO: Presale Data',
   description:
-    'Complete data on the Ethereum 2014 presale: $18.5M raised, 72,009,991 ETH issued at $0.308. These are the original Ethereum genesis tokens, carried today by Ethereum Classic.',
+    'The Ethereum 2014 presale in figures: $18.5M raised and 72,009,991 ETH issued at $0.308, the genesis tokens Ethereum Classic carries today.',
   keywords: [
     'Ethereum ICO',
     'ETH presale 2014',

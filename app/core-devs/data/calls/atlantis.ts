@@ -6,6 +6,8 @@ const entry: CDCEntry = {
   date: '2019-09-12',
   summary:
     'ECIP-1054 — Aligned ETC with Ethereum\'s Spurious Dragon and Byzantium upgrades. REVERT, STATICCALL, alt_bn128 precompiles, receipt status codes, and state trie clearing.',
+  metaDescription:
+    'ECIP-1054 aligned ETC with Ethereum\'s Spurious Dragon and Byzantium: REVERT, STATICCALL, alt_bn128 precompiles, receipt status and state trie clearing.',
   content: `## Atlantis (ECIP-1054) Network Upgrade
 
 **Activation Block:** 8,772,000\\

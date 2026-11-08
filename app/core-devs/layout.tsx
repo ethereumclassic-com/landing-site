@@ -3,17 +3,12 @@ import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Core Devs — Ethereum Classic',
+    template: '%s | Ethereum Classic',
     default: 'Core Developer Calls — Ethereum Classic',
   },
   description:
-    'Where Ethereum Classic protocol decisions are made. Core Developer Calls bring together client teams to reach consensus on network upgrades, ECIP proposals, and protocol changes.',
-  openGraph: {
-    ...OG_BASE,
-    title: 'Core Developer Calls — Ethereum Classic',
-    description:
-      'The decision-making forum for ETC protocol upgrades. Full archive of consensus calls with agendas, recordings, and ECIP references since 2019.',
-  },
+    'Ethereum Classic\'s Core Developer Calls, where client teams discuss ECIPs and schedule network upgrades: the record of each call, and the next one\'s agenda.',
+  openGraph: { ...OG_BASE },
   keywords: [
     'Ethereum Classic',
     'Core Developer Calls',

@@ -8,12 +8,7 @@ export const metadata: Metadata = {
   description:
     'An index of Ethereum Classic mining: the pools that serve the network, GPU and ASIC hardware, and the mining software that supports ETCHash.',
   alternates: { canonical: 'https://ethereumclassic.com/directory/mining' },
-  openGraph: {
-    ...OG_BASE,
-    title: 'Ethereum Classic Mining Directory',
-    description:
-      'An index of Ethereum Classic mining: the pools that serve the network, GPU and ASIC hardware, and the mining software that supports ETCHash.',
-  },
+  openGraph: { ...OG_BASE },
 }
 
 export default function DirectoryMiningPage() {

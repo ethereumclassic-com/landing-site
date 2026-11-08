@@ -17,8 +17,6 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     ...OG_BASE,
-    title: TITLE,
-    description: DESCRIPTION,
     type: 'article',
     url: 'https://ethereumclassic.com/build/clients/core-geth-security-audit',
   },

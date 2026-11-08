@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
   title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
   description:
-    "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by dedicated mining infrastructure operating continuously since 2015.",
+    "The only mature Proof-of-Work blockchain with native smart contracts: permissionless, censorship-resistant, and operating continuously since 2015.",
   keywords: [
     "Ethereum Classic",
     "ETC",
@@ -39,7 +39,6 @@ export const metadata: Metadata = {
     "ECIP-1111",
     "ECIP-1112",
     "ECIP-1121",
-    "ECIP-1122",
     "Fusaka",
     "Glamsterdam",
     "EVM upgrade",
@@ -59,9 +58,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Ethereum Classic" }],
   creator: "Ethereum Classic",
+  // No title or description here: Next fills each page's og: and twitter: text from that page's
+  // own title and description, so a page that declares no openGraph still shares its own card
+  // rather than the home page's.
   openGraph: {
-    title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
-    description: "The only mature Proof-of-Work blockchain with native smart contracts. Permissionless, censorship-resistant, and secured by dedicated mining infrastructure operating continuously since 2015.",
     // Relative for the same reason as the canonical above: routes that inherit
     // this block instead of declaring their own would otherwise all advertise
     // the homepage URL on their share cards.

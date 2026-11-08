@@ -4,7 +4,6 @@ import {
   walletReviews,
   getReviewBySlug,
   getAllReviewSlugs,
-  getVerdictLabel,
 } from '../../data/reviews'
 import { WalletReviewContent } from './WalletReviewContent'
 import { OG_BASE } from '@/lib/seo'
@@ -32,11 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${review.name} Review | Ethereum Classic`,
     description: review.summary,
-    openGraph: {
-      ...OG_BASE,
-      title: `${review.name} Review - ${getVerdictLabel(review.verdict)}`,
-      description: review.summary,
-    },
+    openGraph: { ...OG_BASE },
   }
 }
 

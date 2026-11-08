@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'GPU vs ASIC Mining Approaches — Ethereum Classic',
+  title: 'GPU vs ASIC Mining Approaches',
   description:
-    'Compare GPU and ASIC mining on ETC. Understand dedicated vs flexible load strategies, scale considerations, and how to choose the right approach for your operation.',
+    'Compare GPU and ASIC mining on ETC: dedicated and flexible load strategies, scale, and how to choose the approach that fits your operation.',
   keywords: [
     'ETC GPU mining',
     'ETC ASIC mining',

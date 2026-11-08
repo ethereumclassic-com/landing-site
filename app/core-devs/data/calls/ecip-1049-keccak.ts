@@ -6,6 +6,8 @@ const entry: CDCEntry = {
   date: '2020-09-11',
   summary:
     'ECIP-1049 proposed changing ETC\'s mining algorithm from Ethash/Etchash to Keccak256 (SHA-3). After three years of discussion and four Core Devs Calls, the proposal was withdrawn due to lack of consensus and risk of a contentious chain split.',
+  metaDescription:
+    'ECIP-1049 proposed moving ETC\'s mining algorithm from Etchash to Keccak256 (SHA-3). After four Core Devs Calls it was withdrawn for lack of consensus.',
   content: `## ECIP-1049 Keccak256 Mining Algorithm Change
 
 **ECIP Status:** Withdrawn\\

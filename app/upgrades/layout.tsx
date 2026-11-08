@@ -2,15 +2,10 @@ import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Network Upgrade History : Ethereum Classic',
+  title: 'Network Upgrade History | Ethereum Classic',
   description:
-    'Complete history of Ethereum Classic network upgrades from Frontier through Olympia : every hard fork from genesis to EVM alignment with Glamsterdam.',
-  openGraph: {
-    ...OG_BASE,
-    title: 'Network Upgrade History : Ethereum Classic',
-    description:
-      'Complete history of ETC network upgrades from genesis through Olympia : Frontier, Homestead, Die Hard, Gotham, Atlantis, Phoenix, Spiral, and more.',
-  },
+    'Every Ethereum Classic network upgrade from Frontier through Spiral, each with its ECIPs and activation block, and the proposed Olympia upgrade.',
+  openGraph: { ...OG_BASE },
 }
 
 export default function UpgradesLayout({ children }: { children: React.ReactNode }) {

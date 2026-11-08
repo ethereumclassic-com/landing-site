@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    // The section template adds "| ETC Apps — Ethereum Classic", so the title carries the app alone.
+    // The section template adds " | Ethereum Classic", so the title carries the app alone.
     title: `${app.name} — ${app.category}`,
     description: app.description,
     alternates: {
@@ -34,8 +34,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       ...OG_BASE,
-      title: `${app.name} — ${app.category} on Ethereum Classic`,
-      description: app.description,
       url: `https://ethereumclassic.com/apps/${app.slug}`,
     },
   }

@@ -6,6 +6,8 @@ const entry: CDCEntry = {
   date: '2021-09-20',
   summary:
     'ECIP-1098 was IOHK\'s formal Proto Treasury System proposal. After a year of community debate, both ETC Coop and IOHK withdrew support. The IOHK Grothendieck team wound down following the withdrawal.',
+  metaDescription:
+    'ECIP-1098 was IOHK\'s Proto Treasury System proposal. After a year of community debate, both ETC Coop and IOHK withdrew their support for it.',
   content: `## ECIP-1098 Proto Treasury System
 
 **ECIP Status:** Withdrawn\\
