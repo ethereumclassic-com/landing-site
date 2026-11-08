@@ -2,6 +2,8 @@ import { getArticleBySlug } from '@/app/news/data/articles'
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
 import { apps } from '@/app/apps/data/apps'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
+import { olympiaLlmsDetail } from '@/lib/llms-olympia'
+import { PLUGIN_POSITION } from '@/app/build/data/build'
 import {
   FUKUII_DESCRIPTION,
   FUKUII_DOCS_URL,
@@ -45,7 +47,7 @@ export function GET() {
 - Block reward reduction: 20% every 5 million blocks ("fifthing", defined by ECIP-1017)
 - Hashrate: moves block to block, so no figure is given here; live at https://ethereumclassic.com/mining/hashrate (Blockscout difficulty over its reported average block time)
 - Smart contracts: EVM-compatible (Solidity, Vyper, Yul)
-- EVM opcodes: London baseline + Spiral (partial Shanghai) as of 2024
+- EVM: Ethereum's Shanghai set, which Spiral activated in 2024, apart from Proof-of-Stake EIPs and London's fee market (EIP-1559 and EIP-3198, which the Olympia proposal would activate)
 
 ## Navigation Hierarchy
 
@@ -164,15 +166,15 @@ ETC's ideological foundation:
 - /research/history — Historical price and chain data
 - /research/ecosystem — Ecosystem metrics
 
-### /olympia — Olympia Network Upgrade
-ETC's most significant upgrade to date:
-- /olympia (hub) — Upgrade overview and timeline
-- /olympia/upgrade — Node operator upgrade guide
-- /olympia/clients — Client readiness for Olympia: each client's current release and Olympia release
-- /olympia/clients/core-geth — Core-Geth's Olympia upgrade guide
-- /olympia/clients/fukuii — Fukuii's Olympia upgrade guide
-- /olympia/governance — Treasury and on-chain governance contracts
-- /olympia/miners — How EIP-1559 affects miners; priority fee mechanics under Olympia
+### /olympia — Olympia (proposed)
+- /olympia — The proposal: its draft ECIPs, activation order, EVM alignment, the Treasury and Olympia DAO, and the LLC's role
+- /olympia/upgrade — For node operators: what the proposal would change for a node, what to run now, and every EIP ECIP-1121 classifies
+- /olympia/treasury — The Treasury at the Sovereignty Vault address: how the base fee would reach it, who could spend it, what is permanent
+- /olympia/governance — Olympia DAO: CoreNFT membership, funding proposals, milestones, sanctions screening and Ecosystem Growth DAOs
+- /olympia/miners — What the proposed base fee would change for miners, and ECIP-1115 and ECIP-1116
+- /olympia/clients — Client readiness: what each client's maintainers publish about Olympia; no released client implements it
+- /olympia/history — The funding history behind the proposal
+- /olympia/etymology — Where the name comes from
 
 ### /markets — Market Data
 - /markets — Live price, volume, market cap
@@ -185,126 +187,9 @@ ETC's most significant upgrade to date:
 - /community/social — Twitter, Discord, Telegram, Reddit
 - /community/events — Upcoming events and hackathons
 
-## Olympia Network Upgrade — Technical Detail
+## Olympia (proposed)
 
-Olympia is Ethereum Classic's next hard fork. It is the most significant upgrade in ETC history.
-
-### ECIPs in Olympia
-
-ECIP-1111 — EIP-1559 Fee Market
-Introduces the dynamic basefee mechanism deferred from ETC's London-equivalent (Mystique, 2022).
-The basefee is burned on Ethereum; on ETC it is redirected to the protocol treasury.
-Transaction cost structure: gas × (basefee + priority_fee), where basefee flows to treasury.
-Block rewards remain unchanged — miners keep 100% of block reward plus priority fees.
-
-ECIP-1112 — Protocol-Controlled Treasury
-A smart contract treasury funded exclusively by basefee revenue from ECIP-1111.
-No inflation, no premine, no foundation. Self-funding via the fee market.
-Treasury disbursements controlled by on-chain governance (ECIP-1113).
-
-/olympia/treasury — Olympia Treasury (ECIP-1112)
-Funding: BASEFEE is the only protocol-directed source, credited to the Treasury
-address at block finalization under ECIP-1111. Voluntary contributions are also
-possible — sending ETC to the address, or a miner naming it as their coinbase
-recipient, which donates hashpower rather than currency. No ECIP directs miner
-block rewards to the Treasury; block rewards and priority tips are untouched.
-Invariants: cannot mint; code is immutable with no proxy or upgrade path;
-withdrawal restricted to a single authorized executor fixed at deployment;
-non-custodial with no admin key; holds no proposal accounting.
-Deployment: the Treasury deploys at Stage 1 via plain CREATE from a reserved
-deployer nonce — NOT CREATE2. Only CoreNFT, Executor and Governor use CREATE2.
-The governance suite that spends it follows at Stage 2.
-
-ECIP-1113 — DAO Governance
-On-chain governance for treasury allocation. Voting weight via soulbound participation NFTs.
-Proposal → Discussion → Snapshot vote → On-chain execution.
-Contract addresses (Mordor testnet): see https://app.olympiadao.org
-
-ECIP-1122 — Olympia ETC Network Security Client Configuration
-MIN_MINER_TIP 1 gwei (2 gwei minimum gas price with ECIP-1111's basefee floor), and a
-network-authoritative gas target overriding operator --miner.gaslimit. Chain configuration,
-not consensus rules.
-
-ECIP-1114 — OFP (Olympia Funding Proposal Process)
-Structured grant process for ecosystem funding requests from the treasury.
-
-ECIP-1119 — Treasury Sanctions Compliance Oracle
-Sanctions screening bound to Treasury disbursement. Applies to Stage 2 governance
-spending and again at Stage 3, because funds move there too.
-
-ECIP-1117 — Futarchy Child-DAO Governance
-An open signal layer. Prediction markets let anyone stake on proposal outcomes without
-DAO membership, producing financially-backed public signals alongside member votes.
-A Child-DAO under ECIP-1113 section 6. It informs decisions and is never binding —
-binding allocation stays with the Olympia DAO.
-
-ECIP-1118 — Futarchy Funding and Streaming Disbursements
-Funding and streaming disbursements for the futarchy Child-DAO, seeded by an executed
-funding proposal rather than a direct basefee share.
-
-ECIP-1115 — Olympia L-Curve Smoothing for Long-Term Network Security
-A smoothing curve that supplements miner security budgets as fixed-emission block
-subsidies decline. Runs at the contract layer, where allocation fraction, window and
-curve shape are adjustable through governance without a hard fork. Supersedes
-ECIP-1120, which is excluded.
-
-ECIP-1116 — Consensus-Layer L-Curve Hardening for Base Fee Miner Distribution
-Embeds the curve ECIP-1115 demonstrated into block finalization, paid by the protocol
-rather than disbursed from the treasury. This is the second hard fork of the roadmap,
-sequenced after ECIP-1115 — not part of the Olympia activation block.
-
-Olympia deploys in five stages. Stages 1 and 5 are hard forks; Stages 2, 3 and 4 are
-contract deployments and governance actions on already-settled consensus rules.
-- Stage 1, Consensus Upgrades (HARD FORK): ECIP-1111, 1112, 1121, 1122
-- Stage 2, Core Governance: ECIP-1113, 1114, 1119
-- Stage 3, Prediction Markets: ECIP-1117, 1118 (+1119)
-- Stage 4, Treasury Distribution: ECIP-1115
-- Stage 5, Protocol Integration (HARD FORK): ECIP-1116
-
-ECIP-1121 — EVM Compatibility
-Advances ETC's execution layer through Dencun, Pectra and Fusaka, and carries that work into
-Glamsterdam (Gloas-Amsterdam). Includes the EIPs from those cycles that do not require
-Proof-of-Stake or blob data. Of Glamsterdam's execution-layer set, ECIP-1121 takes EIP-7975
-(eth/70) and EIP-7997 (deterministic CREATE2 factory); the rest resolve to EIP-7928 Block-Level
-Access Lists, a consensus-rule change needing its own ECIP, or to the beacon-chain-dependent
-EIP-4788 that ETC excludes.
-
-Included EIPs in ECIP-1121:
-- EIP-7702: Account delegation (EOA can delegate to contract for one tx)
-- EIP-7623: Calldata cost increase
-- EIP-7825: Gas limit cap
-- EIP-7883: MODEXP gas cost increase
-- EIP-7935: Default gas limit 60M (network-authoritative on ETC per ECIP-1122)
-- EIP-6780: SELFDESTRUCT restriction (only clears balance, not code)
-- EIP-7934: RLP block size limit (8 MiB on ETC)
-- EIP-7910: eth_config JSON-RPC method
-- EIP-2537: BLS12-381 precompile (ZK-friendly cryptography)
-- EIP-7951: P256VERIFY precompile (WebAuthn / passkeys)
-- EIP-5656: MCOPY memory copy opcode
-- EIP-2935: Historical block hashes in state
-- EIP-1153: Transient storage (TSTORE/TLOAD)
-
-Explicitly excluded from ECIP-1121:
-- EIP-4844 (blob transactions) — L2 scaffolding, not applicable to ETC
-- EIP-7516 (BLOBBASEFEE opcode) — blob-dependent
-- EIP-7691 (blob throughput increase) — blob-dependent
-
-### Client Support
-
-Each client publishes an Olympia release before the activation block. Client readiness for Olympia:
-https://ethereumclassic.com/olympia/clients. The clients themselves are described under Node Clients.
-
-### Developer Impact After Olympia
-
-After Olympia activation, all standard Ethereum tooling works on ETC without modification:
-- Foundry (forge, cast, anvil)
-- Hardhat + Ethers.js or viem
-- wagmi + viem
-- Remix IDE
-- OpenZeppelin contracts
-- Solidity 0.8.x+
-
-Chain ID 61 works in all wallets and tools that support EVM chains.
+${olympiaLlmsDetail()}
 
 ## Emission Schedule — "Fifthing"
 
@@ -375,10 +260,8 @@ Repo: ${FUKUII_REPO_URL}
 Container image: ${FUKUII_IMAGE}
 Overview: https://ethereumclassic.com/build/clients/fukuii
 
-ETC execution client plugins — a planned framework that adds ETC support into existing Ethereum clients
-A plugin adds Ethereum Classic chain support to an upstream Ethereum client's execution layer. It
-is not a client implementation and carries no mining or Proof-of-Work consensus, so plugins serve
-non-mining infrastructure: exchanges, RPC providers, block explorers, and indexers.
+ETC execution client plugins — a planned framework that would add ETC support to existing Ethereum clients
+${PLUGIN_POSITION}
 - Besu (Java) — https://github.com/besu-eth/besu
 - Erigon (Go) — https://github.com/erigontech/erigon
 - Ethrex (Rust) — https://github.com/lambdaclass/ethrex
@@ -394,8 +277,8 @@ ${coreGethLlmsSection()}
 ## Regulatory Summary
 
 United States:
-- CLARITY Act (proposed): classifies ETC as digital commodity under CFTC jurisdiction
-- GENIUS Act (proposed): permits regulated stablecoins (like ClassicUSD) on ETC as Proof-of-Work EVM
+- CLARITY Act (pending): ETC is positioned as a digital commodity candidate under CFTC jurisdiction
+- GENIUS Act (signed July 18, 2025): a framework for regulated stablecoins, under which ETC is a Proof-of-Work EVM platform for them, such as Classic USD
 
 European Union:
 - MiCA: ETC classified as decentralized asset, exempt from issuer obligations
@@ -406,18 +289,10 @@ Japan:
 ## Ecosystem Products
 
 - ETCswap V3 (https://etcswap.org) — Concentrated liquidity DEX
-- ETCswap Launchpad (https://etcswap.org/launchpad) — Token launch platform with bonding curves
-- ClassicUSD (https://classicusd.com) — USD-backed stablecoin native to ETC
+- ETCswap Launchpad (https://launchpad.etcswap.org) — Token launch platform with bonding curves
+- Classic USD (https://classicusd.com) — a USD-backed stablecoin on ETC, issued by Brale and aligned with MiCA and the GENIUS Act
 - Rain Cards (https://rain.xyz) — Spend ETC via debit card
-- Brale (https://brale.xyz) — Fiat on/off ramp for ClassicUSD
-
-## Olympia Governance Ecosystem
-
-- OlympiaDAO.org (https://olympiadao.org) — Governance landing page
-- OlympiaTreasury.org (https://olympiatreasury.org) — Treasury monitoring dashboard
-- Olympia App (https://app.olympiadao.org) — Proposal submission, voting, execution
-- EthereumClassicDAO.org (https://ethereumclassicdao.org) — the Ethereum Classic DAO, a Wyoming DAO LLC that maintains and funds Ethereum Classic's public goods today as their funder of last resort
-- GitHub (https://github.com/olympiadao) — Open-source governance contracts
+- Brale (https://brale.xyz) — Issuer of Classic USD, and its fiat on and off ramp
 
 ## Contact and Resources
 
