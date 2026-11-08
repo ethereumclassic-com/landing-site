@@ -155,7 +155,7 @@ export const nodeClients: NodeClient[] = [
     docs: CORE_GETH_DOCS_URL,
     github: 'https://github.com/ethereumclassic/core-geth',
     description:
-      'An Ethereum Classic execution client and public-good Go reference client: a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization, and the recommended client to run. The v1.12 line went 21 months without security maintenance. The v1.13 line closes every client CVE the audits found, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026, bounds GraphQL queries, and is built with a supported Go toolchain.',
+      'An Ethereum Classic execution client and public-good Go reference client: a go-ethereum downstream released and maintained in the ethereumclassic GitHub organization, and the recommended client to run. Every v1.12 release ships known-vulnerable code, and one of those flaws was exploited against the Core-Geth v1.12 bootnodes in March 2026. The v1.12 line went 21 months without security maintenance; the v1.13 line closes every client CVE the audits found, bounds GraphQL queries, and is built with a supported Go toolchain.',
     metaDescription:
       'Core-Geth, an Ethereum Classic execution client: run the v1.13 line, move a v1.12 node with its required key rotation, and read the v1.12 security audit.',
     language: 'Go',

@@ -78,7 +78,7 @@ export default function Decentralism() {
       <ul>
         <li>
           <strong>Core-Geth:</strong> An Ethereum Classic execution client and public-good
-          Go reference client, a go-ethereum derivative released and maintained in the
+          Go reference client, a go-ethereum downstream released and maintained in the
           ethereumclassic GitHub organization, and the recommended client to run.
         </li>
         <li>

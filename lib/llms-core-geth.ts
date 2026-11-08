@@ -14,13 +14,13 @@ import {
   SITE_URL,
   TRANSITION,
 } from '@/lib/core-geth-record'
-import { CORE_GETH_LLMS_URL, CORE_GETH_SECURITY_URL, coregethHref } from '@/lib/core-geth'
+import { CORE_GETH_LLMS_URL, CORE_GETH_MESS_DEFAULT_URL, CORE_GETH_SECURITY_URL, coregethHref } from '@/lib/core-geth'
 
 /** A link in this file is read away from coregeth.com, so its site-relative hrefs are spelled out. */
 const absolute = (text: string) => text.replaceAll('](/', `](${SITE_URL}/`)
 
-/** A release's MESS default, named with its reason (docs.coregeth.com, operate/mess, "The default is set per release"). */
-const MESS = `MESS (Modified Exponential Subjective Scoring, ECBP-1100) makes a node resist deep chain reorganizations. It never changes whether a block is valid; it only decides which of two valid chains the node keeps when a competing chain would replace blocks it already accepted. A release ships MESS on or off by default: because every \`${EXPOSED_LINE}\` release still carried at least one known vulnerability when \`${RECOMMENDED_LINE}.0\` was released, \`${RECOMMENDED_LINE}.0\` ships it on, while \`${EXPOSED_LINE}.x\` releases carrying ECBP-1110 switch it off from the Spiral block, 19,250,000. Without a flag the node uses the setting its release ships with; \`--mess\` turns it on and \`--mess=false\` turns it off, and every node you run should carry the same setting: https://docs.coregeth.com/operate/mess/`
+/** A release's MESS default, named with its reason. */
+const MESS = `MESS (Modified Exponential Subjective Scoring, ECBP-1100) makes a node resist deep chain reorganizations. It never changes whether a block is valid; it only decides which of two valid chains the node keeps when a competing chain would replace blocks it already accepted. A release ships MESS on or off by default: because every \`${EXPOSED_LINE}\` release still carried at least one known vulnerability when \`${RECOMMENDED_LINE}.0\` was released, \`${RECOMMENDED_LINE}.0\` ships it on, while \`${EXPOSED_LINE}.x\` releases carrying ECBP-1110 switch it off from the Spiral block, 19,250,000. \`${RECOMMENDED_LINE}.1\` turns it off by default again, and a build of the main branch, which reports \`${RECOMMENDED_LINE}.1-unstable\`, already does. Without a flag the node uses the setting its release ships with; \`--mess\` turns it on and \`--mess=false\` turns it off, and every node you run should carry the same setting: ${CORE_GETH_MESS_DEFAULT_URL}`
 
 /** coregeth.com's release pipeline audit, in its own words (src/data/reports.ts). */
 const GLIBC = `From \`${EXPOSED_LINE}.21\`, every Linux archive requires glibc 2.34, up from 2.17 in \`${EXPOSED_LINE}.20\` on x86_64, so Ubuntu 20.04, Debian 11, RHEL 8 and Amazon Linux 2 cannot run any later \`${EXPOSED_LINE}\` release, and nothing in a build log reported the change.`

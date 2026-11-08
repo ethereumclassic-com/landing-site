@@ -7,14 +7,14 @@ const primaryClient = {
   name: 'Core-Geth',
   language: 'Go',
   description:
-    'An Ethereum Classic execution client and public-good Go reference client, released and maintained in the ethereumclassic GitHub organization, and the recommended client. Etchash mining is built in, and MESS, the deep-reorg defense, is set with --mess or --mess=false. The v1.13 line closes every client CVE the audits found, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026, and is built with a supported Go toolchain.',
-  website: 'https://docs.coregeth.com',
-  websiteLabel: 'docs.coregeth.com',
+    'An Ethereum Classic execution client and public-good Go reference client, released and maintained in the ethereumclassic GitHub organization, and the recommended client. Etchash mining is built in, and MESS, the deep-reorg defense, is set with --mess or --mess=false. Every v1.12 release ships known-vulnerable code, and one of those flaws was exploited against the Core-Geth v1.12 bootnodes in March 2026. The v1.13 line closes every client CVE the audits found and is built with a supported Go toolchain.',
+  website: 'https://coregeth.com',
+  websiteLabel: 'coregeth.com',
   github: 'https://github.com/ethereumclassic/core-geth',
   securityAuditUrl: '/build/clients/core-geth-security-audit',
   // Describes what the client is, not which fork is next. A badge naming a
   // specific hard fork stops being true the moment the network forks past it.
-  badges: ['Recommended', 'Go-Ethereum derivative'],
+  badges: ['Recommended', 'Go-Ethereum downstream'],
 }
 
 interface SecondaryClient {

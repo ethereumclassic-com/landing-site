@@ -1,7 +1,7 @@
 /**
  * Core-Geth's security record, mirrored from coregeth.com so this site states the same facts.
  *
- * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit 59f7696, the
+ * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit e63338c, the
  * published state of coregeth.com. Every statement below is that file's own text, copied whole
  * and in its order, so a sentence here reads exactly as it does on coregeth.com. Do not edit
  * the wording here: change it on coregeth.com first, then mirror it again.
@@ -145,7 +145,7 @@ export const DISCOVERY_FLAG_ANCHOR = "discovery-flag";
 
 export const MOVE_RECOMMENDATION = `Every node still on a \`${EXPOSED_LINE}\` release should move to the \`${RECOMMENDED_LINE}\` line.`;
 
-const MOVE_WHERE = `[Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) has the commands and checksums, and the [migration guide](${DOCS.migration.href}) has the steps, including the required P2P node key rotation.`;
+const MOVE_WHERE = `[Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) has the steps for each platform, including the required P2P node key rotation.`;
 
 export const UPGRADE_COST =
   "Your chain data carries over. Budget about twenty minutes for the steps; the node is down only between its stop and its start, and each of those takes seconds.";
@@ -154,7 +154,7 @@ export const DISCOVERY_FLAG_STEP = `A \`${EXPOSED_LINE}\` node that cannot move 
 
 export const TRANSITION = {
   lede: "The ETC Cooperative is winding down, and the services it maintained are moving to the `ethereumclassic` GitHub organization: the peer discovery lists, the bootnodes and public JSON-RPC.",
-  advice: `Move a \`${EXPOSED_LINE}\` node to the \`${RECOMMENDED_LINE}\` line with the commands and checksums on [Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) and the steps in the [migration guide](${DOCS.migration.href}), including the required P2P node key rotation. ${DISCOVERY_FLAG_STEP} Before you move a node, a pool or an application to a new source of software or data, confirm which organization publishes it.`,
+  advice: `Move a \`${EXPOSED_LINE}\` node to the \`${RECOMMENDED_LINE}\` line with the steps on [Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}), including the required P2P node key rotation. ${DISCOVERY_FLAG_STEP} Before you move a node, a pool or an application to a new source of software or data, confirm which organization publishes it.`,
 } as const;
 
 export const OPERATOR_ACTIONS: readonly {
@@ -165,13 +165,13 @@ export const OPERATOR_ACTIONS: readonly {
 }[] = [
   {
     text: `Upgrade to the ${RECOMMENDED_LINE} line`,
-    detail: `${UPGRADE_COST} The migration guide has a path for each platform.`,
-    href: DOCS.migration.href,
+    detail: `${UPGRADE_COST} Downloads has the steps for each platform.`,
+    href: `/downloads/#${UPGRADE_ANCHOR}`,
   },
   {
     text: "Rotate the P2P node key",
     detail: `Required if your node ran the \`${EXPOSED_LINE}\` line: one of the flaws in that line leaks bits of that key across repeated handshakes, and no fix can take back what already leaked. A key that has only ever run \`${RECOMMENDED_LINE}\` was never exposed, so a fresh install skips this step.`,
-    href: `${DOCS.migration.href}#rotate-the-p2p-node-key`,
+    href: `/downloads/#${UPGRADE_ANCHOR}`,
   },
   {
     text: "Track releases at ",
@@ -404,7 +404,7 @@ const recommendedRows = NETWORK_ROWS.filter((row) => row.status === "recommended
 export const NETWORK_RUNNING = {
   measured: { iso: "2026-09-17", text: "September 17, 2026" },
   source: { label: "etcnodes.org", href: "https://etcnodes.org" },
-  evidence: `${DOCS_URL}release-reports/v1.13.0-record/#what-the-network-is-running`,
+  evidence: "/security/2026-09-core-geth-v1.13.0-release-record/#what-the-network-is-running",
   /** Where the Go advisory counts in the rows come from, which is a different audit. */
   goAdvisories: {
     label: "Where the Go figures come from",

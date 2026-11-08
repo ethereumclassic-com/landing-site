@@ -246,10 +246,11 @@ export const forks: ForkData[] = [
     ecip: 'ECIP-1110',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1110',
     summary:
-      'MESS (ECBP-1100) switched off by default under ECBP-1110 at the Spiral block, as sustained hashrate growth removed the conditions it was introduced to mitigate.',
+      'ECBP-1110 recommends that clients ship MESS (ECBP-1100) off, and Core-Geth v1.12.x releases carrying it switch MESS off from the Spiral block, as sustained hashrate growth removed the conditions MESS was introduced to mitigate. Both are Best Practice documents, not consensus rules, and MESS never decides whether a block is valid. Core-Geth v1.13.0 ships MESS on by default, because every v1.12 node on the network carried severe vulnerabilities when it was released. v1.13.1 turns it off by default again, and a build from source of the main branch already does.',
     keyChanges: [
-      'MESS disabled by default (ECBP-1110)',
+      'ECBP-1110 recommends shipping MESS off',
       'Activated at the same block as Spiral',
+      'A Best Practice, not a consensus rule',
     ],
   },
   {

@@ -77,7 +77,7 @@ No released client implements Olympia. A client's Olympia readiness is what its 
 
 | Client | Language | Role |
 |--------|----------|------|
-| [Core-Geth](https://github.com/ethereumclassic/core-geth) | Go | **Recommended**: an Ethereum Classic execution client and public-good Go reference client, a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization. Run its ${CORE_GETH_RECOMMENDED_LINE} line |
+| [Core-Geth](https://github.com/ethereumclassic/core-geth) | Go | **Recommended**: an Ethereum Classic execution client and public-good Go reference client, a go-ethereum downstream released and maintained in the ethereumclassic GitHub organization. Run its ${CORE_GETH_RECOMMENDED_LINE} line |
 | [Fukuii](https://github.com/chippr-robotics/fukuii) | Scala | **Alternative**: an execution client in Scala 3 that continues IOHK's Mantis client, maintained by Chippr Robotics LLC. Its maintainers mark it alpha |
 
 ETC plugins, a planned framework, would add Ethereum Classic support to clients other projects maintain. ${PLUGIN_POSITION_SHORT} Plugins are therefore not part of client readiness.

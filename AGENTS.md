@@ -171,7 +171,7 @@ includes transaction fees, which vary per block.
   EIP-1559 needs an ETC-specific path today: Foundry passes `--legacy`.
 - **Clients:** Core-Geth is the recommended client to run: an Ethereum Classic
   execution client and public-good Go reference client (never "the"), a
-  go-ethereum derivative released and maintained in the `ethereumclassic` GitHub
+  go-ethereum downstream released and maintained in the `ethereumclassic` GitHub
   organization. Its core developers and community contributors do the work, and
   the Ethereum Classic DAO maintains and funds it today as its funder of last
   resort. coregeth.com leads its framing. Recommend the v1.13 line, never a

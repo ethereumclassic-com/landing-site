@@ -103,9 +103,9 @@ export const clients: ClientUpgrade[] = [
     language: 'Go',
     languageColor: '#00ADD8',
     description:
-      'An Ethereum Classic execution client and public-good Go reference client: a go-ethereum derivative released and maintained in the ethereumclassic GitHub organization, and the recommended client to run. The v1.12 line went 21 months without security maintenance. The v1.13 line closes every client CVE the audits found, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026, bounds GraphQL queries, and is built with a supported Go toolchain.',
+      'An Ethereum Classic execution client and public-good Go reference client: a go-ethereum downstream released and maintained in the ethereumclassic GitHub organization, and the recommended client to run. Every v1.12 release ships known-vulnerable code, and one of those flaws was exploited against the Core-Geth v1.12 bootnodes in March 2026. The v1.12 line went 21 months without security maintenance; the v1.13 line closes every client CVE the audits found, bounds GraphQL queries, and is built with a supported Go toolchain.',
     role: 'primary',
-    badges: ['Recommended', 'Go-Ethereum derivative'],
+    badges: ['Recommended', 'Go-Ethereum downstream'],
     securityAuditUrl: '/build/clients/core-geth-security-audit',
     // The line, never a patch: a release inside it ships with no edit here.
     currentVersion: `${CORE_GETH_RECOMMENDED_LINE} line`,

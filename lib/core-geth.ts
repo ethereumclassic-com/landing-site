@@ -35,6 +35,8 @@ export const CORE_GETH_DISCOVERY_FLAG_URL = `${CORE_GETH_DOWNLOADS_URL}#discover
 export const CORE_GETH_VERIFY_URL = `${CORE_GETH_DOWNLOADS_URL}#verify`
 /** The audits, the release record and what the network runs. */
 export const CORE_GETH_SECURITY_URL = `${CORE_GETH_HOMEPAGE_URL}/security/`
+/** MESS, and why v1.13.0 ships it on by default. */
+export const CORE_GETH_MESS_DEFAULT_URL = `${CORE_GETH_SECURITY_URL}2026-09-core-geth-v1.13.0-release-report/#mess-is-on-by-default`
 /** coregeth.com's machine-readable summary, generated from the data lib/core-geth-record.ts mirrors. */
 export const CORE_GETH_LLMS_URL = `${CORE_GETH_HOMEPAGE_URL}/llms.txt`
 
@@ -56,9 +58,6 @@ export const CORE_GETH_INSTALL_URL = `${CORE_GETH_DOCS_URL}getting-started/insta
 export const CORE_GETH_MIGRATION_URL = `${CORE_GETH_DOCS_URL}tutorials/v1.13.0-migration/`
 /** This site's walkthrough of the same move: coregeth.com's steps, with recordings of a real node making it. */
 export const CORE_GETH_MOVE_GUIDE_PATH = '/news/core-geth-v1-12-to-v1-13-migration'
-export const CORE_GETH_BUILD_FROM_SOURCE_URL = `${CORE_GETH_DOCS_URL}developers/build-from-source/`
-/** MESS, and how each release sets its default. */
-export const CORE_GETH_MESS_URL = `${CORE_GETH_DOCS_URL}operate/mess/`
 /** Where each service the ETC Cooperative maintained continues as it winds down. */
 export const CORE_GETH_TRANSITION_URL = `${CORE_GETH_DOCS_URL}etc-cooperative-transition/`
 
@@ -87,7 +86,7 @@ export const CORE_GETH_TASKS: CoreGethTask[] = [
   },
   {
     title: 'Move a v1.12 node to the v1.13 line',
-    body: 'One step at a time on each platform. Your chain data carries over, and the P2P node key is rotated, which is required. The install steps are the wrong ones for this, because they start a node before its key changes.',
+    body: 'One step at a time on each platform. Your chain data carries over, and the P2P node key is rotated, which is required because CVE-2026-26315 leaks bits of that key. The install steps are the wrong ones for this, because they start a node before its key changes.',
     links: [
       { label: 'Steps for each platform', href: CORE_GETH_UPGRADE_STEPS_URL },
       { label: 'Migration guide', href: CORE_GETH_MIGRATION_URL },
@@ -106,7 +105,7 @@ export const CORE_GETH_TASKS: CoreGethTask[] = [
   },
   {
     title: 'Build from source',
-    body: "A source build clones the main branch, where every change arrives through a pull request that needs an approving review and the project's required checks.",
-    links: [{ label: 'Build from source', href: CORE_GETH_BUILD_FROM_SOURCE_URL }],
+    body: "A source build clones the main branch, where every change arrives through a pull request that needs an approving review and the project's required checks. A build of main reports v1.13.1-unstable, and like v1.13.1 it runs with MESS off by default.",
+    links: [{ label: 'Build from source', href: CORE_GETH_INSTALL_STEPS_URL }],
   },
 ]

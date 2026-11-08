@@ -46,7 +46,7 @@ const clientRows = [
   {
     name: 'Core-Geth',
     role: 'Recommended',
-    run: `Run its ${CORE_GETH_RECOMMENDED_LINE} line. A node on a v1.12 release moves to the ${CORE_GETH_RECOMMENDED_LINE} line first, which rotates its P2P node key.`,
+    run: `Run its ${CORE_GETH_RECOMMENDED_LINE} line. A node on a v1.12 release moves to the ${CORE_GETH_RECOMMENDED_LINE} line first and rotates its P2P node key, which is required because CVE-2026-26315 leaks bits of that key.`,
     links: [
       { label: 'Move a v1.12 node', href: CORE_GETH_UPGRADE_STEPS_URL },
       { label: 'The migration guide', href: CORE_GETH_MOVE_GUIDE_PATH },

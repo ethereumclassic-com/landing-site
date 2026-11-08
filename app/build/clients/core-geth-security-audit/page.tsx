@@ -185,7 +185,7 @@ export default function CoreGethSecurityAuditPage() {
 
             <p className="mt-4 max-w-3xl text-lg leading-relaxed text-[var(--color-text-secondary)]">
               <RecordText
-                text={`The \`${EXPOSED_LINE}\` line went 21 months without security maintenance, and in March 2026 one of the flaws that gap left open was used to crash Core-Geth \`${EXPOSED_LINE}\` bootnodes. The \`${RECOMMENDED_LINE}\` line closes all six client CVEs the audits found, that one among them. Every finding on this page is measured, dated and linked to the audit that records it, so nothing here has to be taken on trust.`}
+                text={`Every \`${EXPOSED_LINE}\` release ships known-vulnerable code, and one of those flaws was exploited against the Core-Geth \`${EXPOSED_LINE}\` bootnodes in March 2026. The line had gone 21 months without security maintenance. The \`${RECOMMENDED_LINE}\` line closes all six client CVEs the audits found, that one among them. Every finding on this page is measured, dated and linked to the audit that records it, so nothing here has to be taken on trust.`}
               />
             </p>
 

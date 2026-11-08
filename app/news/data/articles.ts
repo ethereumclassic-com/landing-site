@@ -119,21 +119,21 @@ Choose the platform the node runs on. The steps below are the ones on [coregeth.
 
 ::enode-change
 
-- **The P2P node key rotates, and that is required.** One of the \`v1.12\` flaws leaks bits of the node key across repeated handshakes, and no fix can take back what already leaked. The move renames the old key file aside, and the node writes a new key on its next start, so its enode ID changes: give the new ID to every node that lists this one as a static or trusted peer, and to the monitoring and allowlists that name it. A key that has only ever run the \`v1.13\` line was never exposed. [The node key](https://docs.coregeth.com/operate/security/#the-node-key) explains it.
-- **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
+- **The P2P node key rotates, and that is required,** because CVE-2026-26315, one of the \`v1.12\` flaws, leaks bits of the node key across repeated handshakes, and no fix can take back what already leaked. The move renames the old key file aside, and the node writes a new key on its next start, so its enode ID changes: give the new ID to every node that lists this one as a static or trusted peer, and to the monitoring and allowlists that name it. A key that has only ever run the \`v1.13\` line was never exposed. [Node key rotation](https://coregeth.com/security/2026-09-core-geth-v1.13.0-release-record/#node-key-rotation) on coregeth.com explains it.
+- **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. The \`v1.13.0\` release runs with MESS on by default, and a build from source of the main branch, \`v1.13.1-unstable\`, runs with it off. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
 - **Discovery settings added for v1.12 come out,** so the node reads the bootnodes and peer discovery lists its release ships with.
 - **A container keeps its chain only where its data is mounted.** The containers tab checks where the data is before the stop, and copies it out first when it is inside the container.
 - **The chain data and the accounts stay.** Nothing resyncs, and the account keystore is not touched.
 
 ## If something goes wrong
 
-Each platform's migration guide on docs.coregeth.com ends with its rollback: [Linux](https://docs.coregeth.com/tutorials/migration/linux/#6-if-you-need-to-roll-back), [macOS](https://docs.coregeth.com/tutorials/migration/macos/#6-if-you-need-to-roll-back), [Windows](https://docs.coregeth.com/tutorials/migration/windows/#6-if-you-need-to-roll-back) and [Docker](https://docs.coregeth.com/tutorials/migration/docker/#6-if-you-need-to-roll-back). The data directory works with both lines, so rolling back puts the old binary back, or for a container the old container. The new key stays: rolling back does not make the old key safe.
+The rollback is the last step of the containers tab on [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), and the last section of the migration guides on docs.coregeth.com for [Linux](https://docs.coregeth.com/tutorials/migration/linux/#6-if-you-need-to-roll-back), [macOS](https://docs.coregeth.com/tutorials/migration/macos/#6-if-you-need-to-roll-back) and [Windows](https://docs.coregeth.com/tutorials/migration/windows/#6-if-you-need-to-roll-back). The data directory works with both lines, so rolling back puts the old binary back, or for a container the old container. The new key stays: rolling back does not make the old key safe.
 
-The Linux guide's procedure was run end to end on a Mordor data directory before it was published, rollback included, and [its record](https://docs.coregeth.com/tutorials/migration/linux/#this-procedure-was-executed-before-it-was-published) sets out what was tested. For a node that finds no peers or stops short of the network's head, [Troubleshooting](https://docs.coregeth.com/operate/troubleshooting/) works through the causes.
+For a node that finds no peers or stops short of the network's head, [Troubleshooting](https://docs.coregeth.com/operate/troubleshooting/) works through the causes.
 
 ## Why move
 
-Core-Geth went 21 months without security maintenance, from \`v1.12.20\` in June 2024 to the emergency releases of March 2026. In March 2026 one of the flaws left open in that time, the handshake crash CVE-2026-22862, was used against Core-Geth \`v1.12\` bootnodes, which crash-looped until a patch reached them. The \`v1.12\` releases cut since then closed some of the flaws and left others open, and every \`v1.12\` archive was built with a Go toolchain that no longer receives security fixes.
+Every \`v1.12\` release ships known-vulnerable code, and one of those flaws was exploited against the Core-Geth \`v1.12\` bootnodes in March 2026. Core-Geth went 21 months without security maintenance, from \`v1.12.20\` in June 2024 to the emergency releases of March 2026, and the flaw exploited, the handshake crash CVE-2026-22862, crash-looped those bootnodes until a patch reached them. The \`v1.12\` releases cut since then closed some of the flaws and left others open, and every \`v1.12\` archive was built with a Go toolchain that no longer receives security fixes.
 
 The \`v1.13\` line closes every client CVE the audits found in the \`v1.12\` client code, bounds GraphQL queries, carries neither of the regressions the last \`v1.12\` releases introduced, and is built with a supported Go toolchain. On September 17, 2026, etcnodes.org counted 524 Core-Geth nodes, and 9 of them ran \`v1.13.0\`. [coregeth.com/security](https://coregeth.com/security/) has the audits, and what each \`v1.12\` release fixed and left open.
 
@@ -484,8 +484,8 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
     title: 'MESS: Modified Exponential Subjective Scoring Implemented',
     metaTitle: 'ETC Implements MESS Against Deep Reorgs',
     excerpt:
-      'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. As hashrate grew after the Merge, ECBP-1110 later set its default to off, and MESS stays in the client as a setting each node operator chooses.',
-    metaDescription: 'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. ECBP-1110 later set its default to off, and each operator chooses.',
+      'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. As hashrate grew after the Merge, ECBP-1110 later recommended shipping it off, and MESS stays in the client as a setting each node operator chooses.',
+    metaDescription: 'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. ECBP-1110 later recommended shipping it off; each operator chooses.',
     content: `Following the August 2020 chain reorganization attacks, Ethereum Classic implemented ECBP-1100 — Modified Exponential Subjective Scoring (MESS) — a novel approach to enhancing chain security without introducing centralized checkpoints.
 
 ## What is MESS?
@@ -509,13 +509,13 @@ Longer reorganizations require proportionally more work to succeed, making deep 
 
 ## Default off under ECBP-1110
 
-MESS was never removed from the client. After Ethereum's Merge in September 2022, GPU miners migrated to ETC and network hashrate increased from ~25 TH/s to over 200 TH/s. At that hashrate level the economic cost of a 51% attack became prohibitive without MESS, so ECBP-1110 set its default to off from block 19,250,000. Each node operator can still turn MESS on or off with a flag, according to their own security needs.
+MESS was never removed from the client. After Ethereum's Merge in September 2022, GPU miners migrated to ETC and network hashrate increased from ~25 TH/s to over 200 TH/s. At that hashrate level the economic cost of a 51% attack became prohibitive without MESS, so ECBP-1110 recommended shipping it off from block 19,250,000. Each node operator can still turn MESS on or off with a flag, according to their own security needs.
 
 ## Specification
 
 ECBP-1100 is documented in the Ethereum Classic Improvement Proposals repository.`,
     date: '2020-10-10',
-    updated: '2026-11-05',
+    updated: '2026-11-07',
     category: 'Security',
     subject: 'MESS',
     tags: ['Security', 'ECBP-1100', 'Network'],
@@ -958,13 +958,13 @@ Modified Exponential Subjective Scoring (MESS) was activated in October 2020. ME
 
 ## Long-Term Resolution
 
-The most effective security improvement came in September 2022, when Ethereum's transition to proof-of-stake caused GPU miners to migrate to ETC. Network hashrate increased from ~25 TH/s to over 200 TH/s, making the economic cost of a 51% attack prohibitively expensive. With the hashrate increase providing natural protection, ECBP-1110 later set MESS's default to off, and node operators can still turn it on.
+The most effective security improvement came in September 2022, when Ethereum's transition to proof-of-stake caused GPU miners to migrate to ETC. Network hashrate increased from ~25 TH/s to over 200 TH/s, making the economic cost of a 51% attack prohibitively expensive. With the hashrate increase providing natural protection, ECBP-1110 later recommended shipping MESS off, and node operators can still turn it on.
 
 ## Lessons
 
 The 2020 attacks demonstrated that proof-of-work security is directly proportional to hashrate, and that low-hashrate PoW chains are vulnerable to rental attacks. ETC's response was pragmatic: implement a short-term defense (MESS), and benefit from the long-term hashrate growth that the Merge delivered.`,
     date: '2020-08-06',
-    updated: '2026-11-05',
+    updated: '2026-11-07',
     category: 'Security',
     subject: '51% Attacks',
     tags: ['Security', '51% Attack', 'ECBP-1100', 'Chain Reorganization'],
@@ -1983,13 +1983,13 @@ After Ethereum's Merge, ETC's hashrate increased dramatically, making 51% attack
 
 ## MESS and Additional Protections
 
-In 2020, following 51% attacks, ETC implemented MESS (Modified Exponential Subjective Scoring, ECBP-1100) to penalize deep reorganizations. After the post-Merge hashrate increase made attacks economically infeasible, ECBP-1110 set MESS's default to off, and node operators can still turn it on.
+In 2020, following 51% attacks, ETC implemented MESS (Modified Exponential Subjective Scoring, ECBP-1100) to penalize deep reorganizations. After the post-Merge hashrate increase made attacks economically infeasible, ECBP-1110 recommended shipping MESS off, and node operators can still turn it on.
 
 ## Compared to PoS Finality
 
 Proof-of-stake chains like Ethereum offer deterministic finality — after a certain point, transactions cannot be reversed at all. PoW chains offer probabilistic finality — transactions become increasingly secure but are never mathematically irreversible. The tradeoff is that PoW finality requires no trusted validator set.`,
     date: '2019-02-07',
-    updated: '2026-11-05',
+    updated: '2026-11-07',
     category: 'Security',
     subject: 'Confirmations',
     tags: ['Confirmations', 'Security', 'Reorgs', 'Finality'],
@@ -2120,8 +2120,8 @@ The ECIP process is open to anyone. Proposals are submitted as pull requests to 
     slug: 'reorg-mitigation',
     title: 'Chain Reorganization Mitigation on ETC',
     excerpt:
-      'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations — and later, as hashrate grew, ECBP-1110 set its default to off while keeping it available to every node operator.',
-    metaDescription: 'After the 2020 51% attacks, Ethereum Classic implemented MESS (ECBP-1100) against deep reorganizations; ECBP-1110 later set its default to off.',
+      'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations — and later, as hashrate grew, ECBP-1110 recommended shipping it off while keeping it available to every node operator.',
+    metaDescription: 'After the 2020 51% attacks, Ethereum Classic implemented MESS (ECBP-1100) against deep reorganizations; ECBP-1110 later recommended shipping it off.',
     content: `In August 2020, Ethereum Classic experienced multiple 51% attacks that resulted in deep chain reorganizations and double-spend attempts. The community responded with MESS (Modified Exponential Subjective Scoring), a novel defense mechanism.
 
 ## The 2020 Attacks
@@ -2157,7 +2157,7 @@ This dramatically changed the economics of 51% attacks. The cost to rent suffici
 
 ## Default off under ECBP-1110
 
-With the post-Merge hashrate providing strong natural protection, ECBP-1110 set MESS's default to off. The community determined that the economic security from high hashrate made the additional subjective penalty unnecessary by default. MESS was not removed: it stays in the client, and each node operator can turn it on or off according to their own security needs.
+With the post-Merge hashrate providing strong natural protection, ECBP-1110 recommended shipping MESS off. The community determined that the economic security from high hashrate made the additional subjective penalty unnecessary by default. MESS was not removed: it stays in the client, and each node operator can turn it on or off according to their own security needs.
 
 ## Lessons Learned
 
@@ -2167,7 +2167,7 @@ The 2020 attacks and MESS response demonstrated ETC's ability to:
 3. Remove temporary measures when they're no longer needed
 4. Rely on fundamental PoW economics for long-term security`,
     date: '2020-11-10',
-    updated: '2026-11-05',
+    updated: '2026-11-07',
     category: 'Security',
     subject: 'Reorg Mitigation',
     tags: ['51% Attack', 'MESS', 'ECBP-1100', 'Chain Reorganization'],

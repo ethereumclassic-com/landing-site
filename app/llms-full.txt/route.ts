@@ -237,10 +237,12 @@ The client pages, which hold across network upgrades: https://ethereumclassic.co
 
 Core-Geth — the recommended client for Ethereum Classic
 An Ethereum Classic execution client and public-good Go reference client: a go-ethereum
-derivative released and maintained in the ethereumclassic GitHub organization. Not a native ETC
-client, and not a plugin. It is the client to run: the v1.13 line closes every client CVE the audits
-found in the v1.12 line, including the flaw used to crash Core-Geth v1.12 bootnodes in March 2026,
-bounds GraphQL queries, and is built with a supported Go toolchain. A node tracking the previous
+downstream released and maintained in the ethereumclassic GitHub organization. Not a native ETC
+client, and not a plugin. It is the client to run. Every v1.12 release ships known-vulnerable code,
+and one of those flaws was exploited against the Core-Geth v1.12 bootnodes in March 2026. The v1.13
+line closes every client CVE the audits found in the v1.12 line, bounds GraphQL queries, and is
+built with a supported Go toolchain. A node moving to it rotates its P2P node key, which is required
+because CVE-2026-26315 leaks bits of that key. A node tracking the previous
 repository, etclabscore/core-geth, will not see its releases. Ethereum Classic's core developers and
 community contributors do the work, and the Ethereum Classic DAO maintains and funds the client
 today as its funder of last resort.

@@ -75,7 +75,7 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   CLARITY Act as settled (it is pending: "positioned for", "candidate"); ETCG
   as an ETF (it is a trust); Classic USD as "compliant" or "the first" (it is
   "aligned with"); and superlatives.
-- **Clients** — Core-Geth is the recommended client: a go-ethereum derivative,
+- **Clients** — Core-Geth is the recommended client: a go-ethereum downstream,
   not native and not a plugin, recommended on its v1.13 line. Fukuii, an
   execution client in Scala 3 that Chippr Robotics LLC maintains as a
   continuation of IOHK's Mantis, is an alternative to try: its maintainers mark

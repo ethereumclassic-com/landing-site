@@ -8,7 +8,7 @@
  *   amber  = reserved for the treasury site; never used here
  *
  * This exists because the meaning lived in per-file ternaries, and Core-Geth —
- * a go-ethereum derivative in maintenance — rendered VIOLET on the Olympia
+ * a go-ethereum downstream in maintenance — rendered VIOLET on the Olympia
  * cards, AMBER on /build/clients, and gray only on the mining hub. Three
  * surfaces, three colors, one of them right. A repo can be half-fixed and look
  * correct from whichever page you happen to open.

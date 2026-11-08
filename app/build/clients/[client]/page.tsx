@@ -16,7 +16,7 @@ import { OG_BASE } from '@/lib/seo'
 import {
   CORE_GETH_ABOUT_URL,
   CORE_GETH_LATEST_RELEASE_URL,
-  CORE_GETH_MESS_URL,
+  CORE_GETH_MESS_DEFAULT_URL,
   CORE_GETH_MIGRATION_URL,
   CORE_GETH_SPONSOR_URL,
   CORE_GETH_UPGRADE_STEPS_URL,
@@ -129,7 +129,8 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
             <div className="flex-1">
               <h3 className="font-semibold text-[var(--color-error)]">Move a v1.12 node to the v1.13 line</h3>
               <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                Every v1.12.x release, including v1.12.23 from{' '}
+                Every v1.12 release ships known-vulnerable code, and one of those flaws was exploited against the
+                Core-Geth v1.12 bootnodes in March 2026. Each, including v1.12.23 from{' '}
                 <code className="rounded bg-[var(--color-error)]/10 px-1 font-mono text-[var(--color-error)]">etclabscore/core-geth</code>,
                 carries at least one of the vulnerabilities below and was built on Go 1.21 or Go 1.22, whose support
                 ended in August 2024 and February 2025.{' '}
@@ -142,7 +143,8 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
                 >
                   github.com/ethereumclassic/core-geth
                 </a>
-                , and rotate the P2P node key as you go.
+                , and rotate the P2P node key as you go, which is required because CVE-2026-26315 leaks bits of
+                that key.
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a
@@ -205,11 +207,12 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
             <li>
               Because every v1.12 release still carried at least one known vulnerability when v1.13.0 was released,
               v1.13.0 ships MESS (ECBP-1100) on by default, where v1.12.x releases carrying ECBP-1110 switch it off
-              from block 19,250,000. A release sets its own default, so set it with{' '}
+              from block 19,250,000. v1.13.1 turns it off by default again, and a build from source of the main branch,
+              v1.13.1-unstable, already does. A release sets its own default, so set it with{' '}
               <code className="whitespace-nowrap">--mess</code> or <code className="whitespace-nowrap">--mess=false</code>, and
               keep every node you run on the same setting.{' '}
               <a
-                href={CORE_GETH_MESS_URL}
+                href={CORE_GETH_MESS_DEFAULT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-[var(--color-primary)] hover:underline"

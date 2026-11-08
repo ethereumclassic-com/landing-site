@@ -30,7 +30,7 @@ Three distinct categories. They are not interchangeable:
   by Chippr Robotics LLC as a continuation of IOHK's **Mantis**, the Scala client built for Ethereum
   Classic. It runs ETC natively with Proof-of-Work. Its maintainers mark it alpha, so the site offers
   it as an alternative to try.
-- **Core-Geth** — a **go-ethereum derivative** maintained for ETC. Not native, and **not a plugin**.
+- **Core-Geth** — a **go-ethereum downstream** maintained for ETC. Not native, and **not a plugin**.
   Do not describe it as "the legacy client" or "the established client".
 - **Plugins** — ETC support **added into existing Ethereum clients**. Six, alphabetical: Besu,
   Erigon, Ethrex, Go-Ethereum, Nethermind, Reth. A plugin is **not a client implementation**. The
@@ -47,7 +47,7 @@ Three distinct categories. They are not interchangeable:
 | Client | Category | Language | Notes |
 |--------|----------|----------|-------|
 | **Fukuii** | Execution client | Scala 3 | A continuation of Mantis by Chippr Robotics LLC; alpha, released from `chippr-robotics/fukuii` |
-| **Core-Geth** | go-ethereum derivative | Go | The recommended client, released and maintained in the `ethereumclassic` organization |
+| **Core-Geth** | go-ethereum downstream | Go | The recommended client, released and maintained in the `ethereumclassic` organization |
 | **Besu** | Plugin target | Java | ETC support via plugin |
 | **Erigon** | Plugin target | Go | ETC support via plugin; archive-optimized |
 | **Ethrex** | Plugin target | Rust | ETC support via plugin |
@@ -77,7 +77,7 @@ as its funder of last resort. Core-Geth copy names no contractor. The ETC Cooper
 Core-Geth in 2025, and the previous repository, `etclabscore/core-geth`, carries only the v1.12.x releases.
 **Security contact**: security@ethereumclassic.net, or private vulnerability reporting on the repository
 
-**Category**: A go-ethereum derivative maintained for Ethereum Classic. Not native, and not a plugin.
+**Category**: A go-ethereum downstream maintained for Ethereum Classic. Not native, and not a plugin.
 
 **Technical Details**:
 - Derived from go-ethereum (Geth); originally forked from the deprecated Multi-Geth client
