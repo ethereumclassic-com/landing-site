@@ -332,7 +332,7 @@ export default function BeginnersExchangesPage() {
                 Compare Fees
               </Link>
               <Link
-                href="/wallets"
+                href="/wallet"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-primary)]/30"
               >
                 Get a Wallet

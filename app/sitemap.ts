@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next'
 import { execSync } from 'child_process'
 import { existsSync } from 'fs'
-import { miningPools, miningHardware } from './mining/data/mining'
+import { miningPools } from './mining/data/mining'
 import { walletReviews } from './wallet/data/reviews'
-import { articles as newsArticles } from './news/data/articles'
+import { articles as newsArticles, tagPath } from './news/data/articles'
 import { apps } from './apps/data/apps'
 import { articles as learnArticles } from './learn/data/articles'
 import { exchangeReviews } from './buy/data/reviews'
@@ -85,6 +85,9 @@ type StaticRoute = {
 const CORE_GETH_DATA = 'lib/core-geth.ts'
 const FUKUII_DATA = 'lib/fukuii.ts'
 const OLYMPIA_DATA = 'app/olympia/data/olympia.ts'
+// The Olympia ECIP titles and ECIP-1121's EIP rows, which several pages render.
+const OLYMPIA_ECIPS_DATA = 'lib/olympia-ecips.ts'
+const OLYMPIA_EIPS_DATA = 'lib/olympia-eips.ts'
 
 // Static routes - all main pages
 const staticRoutes: StaticRoute[] = [
@@ -168,6 +171,7 @@ const staticRoutes: StaticRoute[] = [
   { path: '/news/category/security', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/news/category/ecosystem', priority: 0.7, changeFrequency: 'daily' as const },
   { path: '/news/category/community', priority: 0.7, changeFrequency: 'daily' as const },
+  { path: '/news/category/development', priority: 0.7, changeFrequency: 'daily' as const },
 
   // Markets section
   { path: '/markets', priority: 0.8, changeFrequency: 'hourly' as const },
@@ -240,17 +244,17 @@ const staticRoutes: StaticRoute[] = [
   { path: '/community/contribute', priority: 0.5, changeFrequency: 'weekly' as const },
 
   // Olympia upgrade section
-  { path: '/olympia', priority: 0.9, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA] },
-  { path: '/olympia/upgrade', priority: 0.9, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA, CORE_GETH_DATA] },
+  { path: '/olympia', priority: 0.9, changeFrequency: 'weekly' as const, sources: ['app/olympia/layout.tsx', OLYMPIA_DATA, OLYMPIA_ECIPS_DATA, OLYMPIA_EIPS_DATA] },
+  { path: '/olympia/upgrade', priority: 0.9, changeFrequency: 'weekly' as const, sources: ['app/olympia/upgrade/layout.tsx', OLYMPIA_DATA, OLYMPIA_ECIPS_DATA, OLYMPIA_EIPS_DATA, CORE_GETH_DATA] },
   { path: '/olympia/clients', priority: 0.7, changeFrequency: 'weekly' as const, sources: [OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', CORE_GETH_DATA, FUKUII_DATA] },
   { path: '/olympia/clients/core-geth', priority: 0.6, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/core-geth/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', CORE_GETH_DATA] },
   { path: '/olympia/clients/fukuii', priority: 0.6, changeFrequency: 'weekly' as const, sources: ['app/olympia/clients/fukuii/layout.tsx', OLYMPIA_DATA, 'app/olympia/components/ClientUpgradeCard.tsx', FUKUII_DATA] },
-  { path: '/olympia/treasury', priority: 0.8, changeFrequency: 'monthly' as const },
-  { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/olympia/history', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/olympia/etymology', priority: 0.8, changeFrequency: 'weekly' as const },
-  { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const },
-  { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const, sources: ['app/upgrades/data/forks.ts'] },
+  { path: '/olympia/treasury', priority: 0.8, changeFrequency: 'monthly' as const, sources: ['app/olympia/treasury/layout.tsx'] },
+  { path: '/olympia/governance', priority: 0.8, changeFrequency: 'weekly' as const, sources: ['app/olympia/governance/layout.tsx', OLYMPIA_DATA] },
+  { path: '/olympia/history', priority: 0.8, changeFrequency: 'weekly' as const, sources: ['app/olympia/history/layout.tsx'] },
+  { path: '/olympia/etymology', priority: 0.8, changeFrequency: 'weekly' as const, sources: ['app/olympia/etymology/layout.tsx'] },
+  { path: '/olympia/miners', priority: 0.7, changeFrequency: 'weekly' as const, sources: ['app/olympia/miners/layout.tsx'] },
+  { path: '/upgrades', priority: 0.8, changeFrequency: 'weekly' as const, sources: ['app/upgrades/layout.tsx', 'app/upgrades/data/forks.ts', OLYMPIA_ECIPS_DATA] },
 
   // Core Devs Calls
   { path: '/core-devs', priority: 0.7, changeFrequency: 'weekly' as const },
@@ -302,12 +306,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  const hardwareEntries = miningHardware.map((hw) => ({
-    url: `${baseUrl}/mining/hardware/${hw.id}`,
-    lastModified: miningDataDate,
-    changeFrequency: 'weekly' as const,
-    priority: 0.5,
-  }))
+  // No per-model hardware pages exist: /mining/hardware lists every model on one page, so each
+  // model has no URL of its own to list.
 
   // Dynamic routes - Wallet reviews
   const walletDataDate = dataDate('app/wallet/data/reviews.ts')
@@ -339,7 +339,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const newsDataDate = dataDate('app/news/data/articles.ts')
   const allTags = [...new Set(newsArticles.flatMap((a) => a.tags || []))]
   const tagEntries = allTags.map((tag) => ({
-    url: `${baseUrl}/news/tag/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`,
+    url: `${baseUrl}${tagPath(tag)}`,
     lastModified: newsDataDate,
     changeFrequency: 'weekly' as const,
     priority: 0.4,
@@ -347,12 +347,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamic routes - Learn articles by category
   const learnDataDate = dataDate('app/learn/data/articles.ts')
-  const learnEntries = learnArticles.map((article) => ({
-    url: `${baseUrl}/learn/${article.category}/${article.slug}`,
-    lastModified: learnDataDate,
-    changeFrequency: 'weekly' as const,
-    priority: article.featured ? 0.7 : 0.5,
-  }))
+  // An article already listed as a static route (with its own priority) is not listed twice.
+  const staticPaths = new Set(staticRoutes.map((route) => route.path))
+  const learnEntries = learnArticles
+    .filter((article) => !staticPaths.has(`/learn/${article.category}/${article.slug}`))
+    .map((article) => ({
+      url: `${baseUrl}/learn/${article.category}/${article.slug}`,
+      lastModified: learnDataDate,
+      changeFrequency: 'weekly' as const,
+      priority: article.featured ? 0.7 : 0.5,
+    }))
 
   // Dynamic routes - Exchange reviews
   const exchangeDataDate = dataDate('app/buy/data/reviews.ts')
@@ -366,15 +370,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
-  // Dynamic routes - Core Devs Call entries (already use entry.date — correct)
-  const cdcSitemapEntries = cdcEntries
-    .filter((e) => !e.date.includes('TBD'))
-    .map((entry) => ({
-      url: `${baseUrl}/core-devs/${entry.slug}`,
-      lastModified: new Date(entry.date),
-      changeFrequency: 'weekly' as const,
-      priority: 0.5,
-    }))
+  // Dynamic routes - Core Devs Call entries. A held call is dated by its call; the upcoming one, whose
+  // date is TBD, is an agenda and is dated by its own file.
+  const cdcSitemapEntries = cdcEntries.map((entry) => ({
+    url: `${baseUrl}/core-devs/${entry.slug}`,
+    lastModified: entry.date.includes('TBD')
+      ? newestDate(`/core-devs/${entry.slug}`, [`app/core-devs/data/calls/${entry.slug}.ts`])
+      : new Date(entry.date),
+    changeFrequency: 'weekly' as const,
+    priority: 0.5,
+  }))
 
   // Dynamic routes - Why Classic philosophy articles
   const philosophyDataDate = dataDate('app/why-classic/data/philosophy.ts')
@@ -389,7 +394,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticEntries,
     ...clientEntries,
     ...poolEntries,
-    ...hardwareEntries,
     ...walletReviewEntries,
     ...appEntries,
     ...newsEntries,

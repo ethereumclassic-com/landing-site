@@ -260,7 +260,7 @@ export default function DirectoryPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/mining/start" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
+                  <Link href="/mining/getting-started" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
                     Getting Started
                   </Link>
                 </li>
