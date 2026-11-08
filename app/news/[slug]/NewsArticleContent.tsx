@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { type Article, type ArticleCategory, getRelatedArticles, getAuthorInfo } from '../data/articles'
+import { type Article, type ArticleCategory, getRelatedArticles, getAuthorInfo, tagPath } from '../data/articles'
 import { renderInline } from '../components/ArticleInline'
 import { EMBED_COMPONENTS } from '../components/embeds'
 import NewsBanner from '../components/NewsBanner'
@@ -288,7 +288,7 @@ export default function NewsArticleContent({ article }: NewsArticleContentProps)
               {article.tags.map((tag) => (
                 <Link
                   key={tag}
-                  href={`/news/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`}
+                  href={tagPath(tag)}
                   className="rounded-full border border-[var(--border)] bg-[var(--panel)] px-3 py-1 text-sm text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-primary)]/30 hover:text-[var(--color-primary)]"
                 >
                   {tag}

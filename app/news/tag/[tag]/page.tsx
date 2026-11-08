@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { getArticlesByTag, getAllTags } from '../../data/articles'
+import { getArticlesByTag, getAllTags, tagPath, tagSlug } from '../../data/articles'
 import NewsCard from '../../components/NewsCard'
 
 function formatTagName(tag: string): string {
@@ -14,12 +14,19 @@ function formatTagName(tag: string): string {
 
 export default function NewsTagPage() {
   const params = useParams()
-  const tagSlug = params.tag as string
-  const tagName = formatTagName(tagSlug)
+  // useParams gives the segment as it appears in the URL, still percent-encoded (51%25-attack).
+  const raw = params.tag as string
+  let slug = raw
+  try {
+    slug = decodeURIComponent(raw)
+  } catch {
+    // Not valid percent-encoding: match it as written.
+  }
+  const tagName = formatTagName(slug)
 
   // Find matching tag (case-insensitive)
   const allTags = getAllTags()
-  const matchedTag = allTags.find((t) => t.toLowerCase().replace(/\s+/g, '-') === tagSlug.toLowerCase())
+  const matchedTag = allTags.find((t) => tagSlug(t) === slug.toLowerCase())
   const articles = matchedTag ? getArticlesByTag(matchedTag) : []
 
   return (
@@ -78,7 +85,7 @@ export default function NewsTagPage() {
             {allTags.slice(0, 12).map((tag) => (
               <Link
                 key={tag}
-                href={`/news/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`}
+                href={tagPath(tag)}
                 className={`rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
                   tag === matchedTag
                     ? 'bg-[var(--color-primary)] text-[var(--background)]'

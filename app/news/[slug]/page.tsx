@@ -19,13 +19,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) return {}
 
   return {
-    title: article.title,
-    description: article.excerpt,
+    // The /news layout's template appends " | Ethereum Classic".
+    title: article.metaTitle ?? article.title,
+    description: article.metaDescription ?? article.excerpt,
     openGraph: {
       // The card is drawn by ./opengraph-image.tsx, which Next uses only when this block names no image.
+      // No title or description: Next fills them from the page's own, above.
       ...OG_BASE_OWN_CARD,
-      title: `${article.title} | ETC News — Ethereum Classic`,
-      description: article.excerpt,
       type: 'article',
       publishedTime: new Date(article.date).toISOString(),
       ...(article.updated ? { modifiedTime: new Date(article.updated).toISOString() } : {}),

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getAllTags, getArticlesByTag } from '../../data/articles'
+import { getAllTags, getArticlesByTag, tagSlug } from '../../data/articles'
 import { OG_BASE } from '@/lib/seo'
 
 /**
@@ -22,15 +22,14 @@ function formatTagName(tag: string): string {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tag: slug } = await params
-  const matched = getAllTags().find((t) => t.toLowerCase().replace(/\s+/g, '-') === slug.toLowerCase())
+  const matched = getAllTags().find((t) => tagSlug(t) === slug.toLowerCase())
   const name = matched ?? formatTagName(slug)
   const count = matched ? getArticlesByTag(matched).length : 0
 
-  // The /news layout appends "| ETC News — Ethereum Classic" through its title
-  // template, so this stays short. "Articles tagged X" rather than bare "X",
-  // because a category of the same name would otherwise produce the same title.
+  // The /news layout appends " | Ethereum Classic" through its title template, so
+  // this stays short. "Articles tagged X" rather than bare "X", because a category
+  // of the same name would otherwise produce the same title.
   const title = `Articles tagged ${name}`
-  const ogTitle = `${name} — Ethereum Classic News`
   const description =
     count > 0
       ? `Every Ethereum Classic article tagged ${name}. ${count} ${count === 1 ? 'story' : 'stories'} covering what changed and what it means for holders, miners and developers.`
@@ -39,8 +38,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `https://ethereumclassic.com/news/tag/${slug}` },
-    openGraph: { ...OG_BASE, title: ogTitle, description },
+    // The slug arrives decoded, so a tag such as "51% Attack" is encoded again here.
+    alternates: { canonical: `https://ethereumclassic.com/news/tag/${encodeURIComponent(slug)}` },
+    // No title or description: Next fills the card from the page's own, above.
+    openGraph: { ...OG_BASE },
   }
 }
 

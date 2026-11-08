@@ -21,10 +21,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = `${categoryDescriptions[category]} ${count} ${count === 1 ? 'article' : 'articles'}.`
 
   return {
-    title: category,
+    title: `News: ${category}`,
     description,
     alternates: { canonical: `https://ethereumclassic.com/news/category/${slug}` },
-    openGraph: { ...OG_BASE, title: `${category} — Ethereum Classic News`, description },
+    openGraph: { ...OG_BASE },
   }
 }
 

@@ -12,7 +12,15 @@ export interface Author {
 export interface Article {
   slug: string
   title: string
+  /**
+   * A shorter form of the headline for the page's <title> and share card, where the headline and
+   * " | Ethereum Classic" together run past 65 characters. The headline itself, on the page, in the
+   * feeds and in the structured data, is unchanged.
+   */
+  metaTitle?: string
   excerpt: string
+  /** The page's meta description and card text, where the excerpt runs past 160 characters. */
+  metaDescription?: string
   content?: string // Full article content in markdown-like format
   date: string
   /**
@@ -72,8 +80,10 @@ export const articles: Article[] = [
   {
     slug: 'core-geth-v1-12-to-v1-13-migration',
     title: 'How to Move a Core-Geth Node from v1.12 to v1.13',
+    metaTitle: 'Moving a Core-Geth Node From v1.12 to v1.13',
     excerpt:
       'Every step, with every command, for moving a Core-Geth node off the v1.12 line on Linux, macOS, Windows, containers or a build from source, with recordings of a real node making the move.',
+    metaDescription: 'Every step and command for moving a Core-Geth node off the v1.12 line, on Linux, macOS, Windows, containers or source, with recordings of a real move.',
     content: `Every Core-Geth node on a \`v1.12\` release should move to the \`v1.13\` line, published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest) in the \`ethereumclassic\` GitHub organization. The move happens in place: the chain data and the accounts stay, nothing resyncs, and the old binary is kept so the node can roll back. This guide walks through it, with the commands for Linux, macOS, Windows, containers and a build from source from [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), Core-Geth's download page.
 
 > **At a glance**
@@ -160,6 +170,7 @@ Core-Geth is maintained in the \`ethereumclassic\` organization by Ethereum Clas
   {
     slug: 'spiral-network-upgrade',
     title: 'Spiral Network Upgrade Brings Shanghai EVM Equivalence',
+    metaTitle: "Spiral Upgrade: Shanghai's EVM on ETC",
     excerpt:
       'Ethereum Classic activated Spiral at block 19,250,000 on February 5, 2024, adopting Shanghai execution-layer EIPs including PUSH0 and warm COINBASE.',
     content: `Ethereum Classic activated the Spiral network upgrade at block 19,250,000 on February 5, 2024, achieving Shanghai execution-layer equivalence. Spiral was specified in ECIP-1109.
@@ -274,6 +285,7 @@ The genesis block that was mined on this date remains block 0 on Ethereum Classi
     title: 'The DAO Fork and the Birth of Ethereum Classic',
     excerpt:
       'On July 20, 2016, Ethereum forked at block 1,920,000 to reverse The DAO exploit. Those who rejected the rollback continued the original chain as Ethereum Classic.',
+    metaDescription: 'On July 20, 2016, Ethereum forked at block 1,920,000 to reverse The DAO exploit, and those who rejected the rollback kept the original chain: Ethereum Classic.',
     content: `On July 20, 2016, at block 1,920,000, the Ethereum network executed an irregular state change to reverse The DAO exploit. A portion of the community rejected this intervention and continued mining the original, unaltered chain. That chain became Ethereum Classic.
 
 ## The DAO
@@ -349,6 +361,7 @@ The chain that launched on July 30, 2015, continues unbroken on Ethereum Classic
   {
     slug: 'magneto-network-upgrade',
     title: 'Magneto Network Upgrade Achieves Berlin Equivalence',
+    metaTitle: 'Magneto Upgrade Brings Berlin to ETC',
     excerpt:
       'Ethereum Classic activated Magneto at block 13,189,133 on July 23, 2021, introducing typed transactions, access lists, and the cold/warm state access model.',
     content: `Ethereum Classic activated the Magneto network upgrade at block 13,189,133 on July 23, 2021, achieving Berlin EVM equivalence. Magneto was specified in ECIP-1103.
@@ -374,6 +387,7 @@ The chain that launched on July 30, 2015, continues unbroken on Ethereum Classic
   {
     slug: 'phoenix-network-upgrade',
     title: 'Phoenix Network Upgrade Completes Istanbul Alignment',
+    metaTitle: 'Phoenix Upgrade Completes Istanbul on ETC',
     excerpt:
       'Ethereum Classic activated Phoenix at block 10,500,839 on June 1, 2020, achieving full Istanbul EVM equivalence after the Aztlan governance crisis.',
     content: `Ethereum Classic activated the Phoenix network upgrade at block 10,500,839 on June 1, 2020, completing Istanbul EVM equivalence. Phoenix was specified in ECIP-1088, replacing the earlier failed Aztlan proposal.
@@ -405,6 +419,7 @@ Phoenix replaced the earlier Aztlan proposal (ECIP-1061), which included EIP-220
   {
     slug: 'agharta-network-upgrade',
     title: 'Agharta Network Upgrade Adopts Constantinople/Petersburg',
+    metaTitle: 'Agharta Adopts Constantinople and Petersburg',
     excerpt:
       'Ethereum Classic activated Agharta at block 9,573,000 on January 12, 2020, adding bitwise shifting, CREATE2, and EXTCODEHASH.',
     content: `Ethereum Classic activated the Agharta network upgrade at block 9,573,000 on January 12, 2020, implementing Ethereum's Constantinople and Petersburg features. Agharta was specified in ECIP-1056.
@@ -433,6 +448,7 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
   {
     slug: 'atlantis-network-upgrade',
     title: 'Atlantis Network Upgrade Brings Byzantium to ETC',
+    metaTitle: 'Atlantis Upgrade Brings Byzantium to ETC',
     excerpt:
       'Ethereum Classic activated Atlantis at block 8,772,000 on September 12, 2019, closing a two-year EVM gap with 10 Byzantium EIPs.',
     content: `Ethereum Classic activated the Atlantis network upgrade at block 8,772,000 on September 12, 2019, achieving Spurious Dragon and Byzantium EVM equivalence. Atlantis was specified in ECIP-1054 and closed a two-year compatibility gap with Ethereum.
@@ -466,8 +482,10 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
   {
     slug: 'mess-implemented',
     title: 'MESS: Modified Exponential Subjective Scoring Implemented',
+    metaTitle: 'ETC Implements MESS Against Deep Reorgs',
     excerpt:
       'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. As hashrate grew after the Merge, ECBP-1110 later set its default to off, and MESS stays in the client as a setting each node operator chooses.',
+    metaDescription: 'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. ECBP-1110 later set its default to off, and each operator chooses.',
     content: `Following the August 2020 chain reorganization attacks, Ethereum Classic implemented ECBP-1100 — Modified Exponential Subjective Scoring (MESS) — a novel approach to enhancing chain security without introducing centralized checkpoints.
 
 ## What is MESS?
@@ -509,6 +527,7 @@ ECBP-1100 is documented in the Ethereum Classic Improvement Proposals repository
     title: 'Thanos Network Upgrade Preserves GPU Mining',
     excerpt:
       'Ethereum Classic activated Thanos at block 11,700,000 on November 28, 2020, doubling the DAG epoch length to keep 4GB GPUs mining and establishing the Etchash algorithm.',
+    metaDescription: 'Thanos activated at block 11,700,000 on November 28, 2020, doubling the DAG epoch length to keep 4GB GPUs mining and establishing the Etchash algorithm.',
     content: `Ethereum Classic activated the Thanos network upgrade at block 11,700,000 on November 28, 2020, implementing ECIP-1099 to modify the mining algorithm's DAG growth schedule.
 
 ## The DAG Size Problem
@@ -638,8 +657,10 @@ The Cooperative is funded through donations and grants, operating as a nonprofit
   {
     slug: 'monetary-policy-fixed',
     title: 'ETC Monetary Policy: Fixed Supply via ECIP-1017',
+    metaTitle: "ETC's Fixed Supply via ECIP-1017",
     excerpt:
       'Ethereum Classic implemented ECIP-1017 and ECIP-1039, establishing a fixed monetary policy with 20% block reward reductions every 5 million blocks and a maximum supply of approximately 210.7 million ETC.',
+    metaDescription: 'Ethereum Classic implemented ECIP-1017 and ECIP-1039: a fixed monetary policy, a 20% block reward cut every 5 million blocks, and about 210.7 million ETC.',
     content: `Ethereum Classic implemented ECIP-1017 at block 5,000,001, establishing a fixed monetary policy that differentiates ETC from other smart contract platforms. ECIP-1039 later clarified the rounding behavior for sub-wei reward calculations.
 
 ## The 5M20 Policy
@@ -685,6 +706,7 @@ ECIP-1039 specified that when reward reductions produce sub-wei fractional amoun
   {
     slug: 'etc-declaration-independence',
     title: 'The Ethereum Classic Declaration of Independence',
+    metaTitle: 'The ETC Declaration of Independence',
     excerpt:
       'The ETC community publishes its Declaration of Independence, articulating the principles and values that define Ethereum Classic.',
     content: `The Ethereum Classic community has published a Declaration of Independence, articulating the core principles that define the project and differentiate it from other blockchains.
@@ -722,6 +744,7 @@ Read the full declaration at the Ethereum Classic website.`,
   {
     slug: 'iohk-grothendieck-team',
     title: 'IOHK Grothendieck Team Contributes to ETC Development',
+    metaTitle: 'IOHK Grothendieck Team Contributes to ETC',
     excerpt:
       'IOHK established the Grothendieck team to contribute to Ethereum Classic, producing the Mantis client and treasury research including ECIP-1051 and ECIP-1098.',
     content: `Input Output Hong Kong (IOHK) established the Grothendieck team in early 2017, dedicating resources to Ethereum Classic protocol development and research. Named after the mathematician Alexander Grothendieck, the team operated until its wind-down in 2020.
@@ -786,8 +809,10 @@ This upgrade marked the moment smart contract deployment became practical on the
   {
     slug: 'homestead-network-upgrade',
     title: 'Homestead Network Upgrade Marks Production Readiness',
+    metaTitle: 'Homestead: The Network Reaches Production',
     excerpt:
       'At block 1,150,000 on March 14, 2016, Homestead moved the network from beta to production with DELEGATECALL, tightened transaction rules, and P2P forward compatibility.',
+    metaDescription: 'At block 1,150,000 on March 14, 2016, Homestead moved the network from beta to production with DELEGATECALL, tighter transaction rules and P2P upgrades.',
     content: `At block 1,150,000 on March 14, 2016, the Homestead network upgrade activated — the first major planned hard fork, marking the network's transition from beta ("Frontier") to production status.
 
 ## Included EIPs
@@ -811,6 +836,7 @@ Homestead established the network as production-ready. DELEGATECALL enabled the 
     title: 'Gas Reprice: Emergency Response to DoS Attacks',
     excerpt:
       'At block 2,500,000 on October 24, 2016, the Gas Reprice upgrade (EIP-150) was activated as an emergency response to the Shanghai DoS attacks that had been crippling the network.',
+    metaDescription: 'At block 2,500,000 on October 24, 2016, the Gas Reprice upgrade (EIP-150) activated as an emergency response to the Shanghai DoS attacks on the network.',
     content: `At block 2,500,000 on October 24, 2016, the Gas Reprice network upgrade activated EIP-150 in response to the Shanghai denial-of-service attacks that had been disrupting the network since September 2016. This upgrade was specified in ECIP-1015.
 
 ## The Shanghai DoS Attacks
@@ -847,8 +873,10 @@ The Gas Reprice was one of the few post-DAO-Fork security measures coordinated b
   {
     slug: 'die-hard-network-upgrade',
     title: 'Die Hard: ETC\'s First Independent Network Upgrade',
+    metaTitle: "Die Hard: ETC's First Independent Upgrade",
     excerpt:
       'At block 3,000,000 on January 13, 2017, Die Hard established ETC\'s protocol sovereignty with replay protection (Chain ID 61), difficulty bomb delay, and state trie cleanup.',
+    metaDescription: 'At block 3,000,000 on January 13, 2017, Die Hard gave ETC replay protection with chain ID 61, delayed the difficulty bomb and cleaned up the state trie.',
     content: `At block 3,000,000 on January 13, 2017, the Die Hard network upgrade activated — the first network upgrade specific to Ethereum Classic, marking the network's protocol independence from Ethereum. Die Hard was specified in ECIP-1010.
 
 ## Included Changes
@@ -904,8 +932,10 @@ This was a deliberate sovereignty decision. By removing the bomb, ETC committed 
   {
     slug: '51-percent-attacks-2020',
     title: 'ETC Responds to 51% Attacks with Security Upgrades',
+    metaTitle: "ETC's Response to the 2020 51% Attacks",
     excerpt:
       'In August 2020, Ethereum Classic experienced three chain reorganization attacks. The network responded with ECBP-1100 (MESS), increased confirmations, and ultimately benefited from post-Merge hashrate growth.',
+    metaDescription: 'In August 2020, Ethereum Classic weathered three chain reorganization attacks and responded with ECBP-1100 (MESS) and more confirmations.',
     content: `In August 2020, the Ethereum Classic network experienced three separate chain reorganization (51%) attacks over a period of approximately two weeks. The incidents prompted immediate security responses and longer-term protocol improvements.
 
 ## The Attacks
@@ -1062,6 +1092,7 @@ The full text remains available at [ethereumclassic.com](https://ethereumclassic
   {
     slug: 'code-is-law',
     title: 'Code Is Law and the Genesis of Ethereum Classic',
+    metaTitle: 'Code Is Law and the Genesis of ETC',
     excerpt:
       'The principle that smart contracts should execute exactly as written — without external intervention — becomes the defining ethos of Ethereum Classic.',
     content: `"Code is law" is the principle that smart contract outcomes should be determined solely by the code that was deployed and the transactions that were submitted — not by the decisions of any external authority. This idea predates Ethereum, but it became the defining principle of Ethereum Classic after the events of 2016.
@@ -1134,8 +1165,10 @@ Both chains trace their genesis to July 30, 2015. The difference is purely in go
   {
     slug: 'monetary-policy-adopted',
     title: 'ETC Adopts Fixed Monetary Policy with 210M Supply Cap',
+    metaTitle: 'ETC Adopts a Fixed Monetary Policy',
     excerpt:
       'ECIP-1017 introduces a fixed monetary policy for Ethereum Classic with a hard supply cap of approximately 210.7 million ETC and a 20% emission reduction every 5 million blocks.',
+    metaDescription: 'ECIP-1017 gives Ethereum Classic a fixed monetary policy: a hard supply cap of about 210.7 million ETC and a 20% emission cut every 5 million blocks.',
     content: `On March 1, 2017, the Ethereum Classic community formally adopted ECIP-1017, establishing a fixed monetary policy with a hard supply cap — differentiating ETC from Ethereum's uncapped supply model.
 
 ## ECIP-1017: The Monetary Policy
@@ -1230,6 +1263,7 @@ This was ETC's first monetary policy event — proving that the community could 
   {
     slug: 'mordor-testnet-launch',
     title: 'Mordor PoW Testnet Launched for ETC Development',
+    metaTitle: 'Mordor PoW Testnet Launched for ETC',
     excerpt:
       'Ethereum Classic launches Mordor, a dedicated proof-of-work testnet using the ETChash algorithm, providing developers with an accurate testing environment.',
     content: `In October 2019, the Ethereum Classic community launched the Mordor testnet — a dedicated proof-of-work test network that mirrors ETC mainnet conditions.
@@ -1365,6 +1399,7 @@ The combination of reduced block rewards and dramatically increased hashrate mea
   {
     slug: 'era-5-fifthening',
     title: "Era 5 'Fifthing': Block Reward Drops to 2.048 ETC",
+    metaTitle: 'Era 5 Fifthing: Reward Drops to 2.048 ETC',
     excerpt:
       'At block 20,000,001, Ethereum Classic enters its fifth monetary era, reducing block rewards from 2.56 ETC to 2.048 ETC per block.',
     content: `On May 31, 2024, at block 20,000,001, Ethereum Classic entered Era 5 of its fixed monetary policy — the fifth "fifthing" since the ECIP-1017 emission schedule was established.
@@ -1414,6 +1449,7 @@ The emission asymptotically approaches zero but never technically reaches it. In
     title: 'ETC Welcomes Ethereum Miners After PoS Merge',
     excerpt:
       'Following Ethereum\'s transition to proof-of-stake, Ethereum Classic becomes the primary destination for displaced GPU miners seeking proof-of-work opportunities.',
+    metaDescription: 'After Ethereum moved to proof-of-stake, Ethereum Classic became the main destination for displaced GPU miners seeking proof-of-work.',
     content: `On September 15, 2022, Ethereum completed its transition from proof-of-work to proof-of-stake — "The Merge." This ended PoW mining on the Ethereum network and displaced thousands of GPU miners worldwide. Ethereum Classic emerged as the natural home for this mining community.
 
 ## The Migration
@@ -1456,6 +1492,7 @@ Post-Merge, Ethereum Classic became the largest proof-of-work smart contract pla
   {
     slug: 'mystique-upgrade-success',
     title: 'Mystique Network Upgrade Successfully Activated',
+    metaTitle: 'Mystique Network Upgrade Activated',
     excerpt:
       'Ethereum Classic activates the Mystique network upgrade at block 14,525,000, implementing selected London EIPs while deliberately omitting EIP-1559.',
     content: `On February 12, 2022, at block 14,525,000, the Ethereum Classic network successfully activated the Mystique network upgrade. The upgrade brought selected improvements from Ethereum's London release to ETC while deliberately omitting EIP-1559's fee-burning mechanism.
@@ -1475,7 +1512,7 @@ Mystique implemented four EIPs from Ethereum's London upgrade:
 The most notable omission was EIP-1559's fee-burning mechanism. ETC chose not to implement the automatic burning of base fees because:
 
 - ETC has a **fixed supply cap** under ECIP-1017. Burning fees would reduce the effective supply below the intended ~210.7M cap.
-- The Olympia proposal (later formalized in ECIP-1109) would redirect the base fee to a community treasury instead of burning it.
+- The Olympia proposal (later formalized in ECIP-1111) would redirect the base fee to a community treasury instead of burning it.
 
 ## ECIP Reference
 
@@ -1489,6 +1526,7 @@ The upgrade activated smoothly across all ETC clients. No network disruptions we
 
 Mystique demonstrated ETC's approach to protocol upgrades: adopt proven EVM improvements for compatibility while making independent decisions about economic mechanisms. The deliberate omission of EIP-1559 burning showed that ETC evaluates each change against its own principles rather than automatically following Ethereum.`,
     date: '2022-02-12',
+    updated: '2026-11-07',
     category: 'Updates',
     subject: 'Mystique Activated',
     tags: ['Network Upgrade', 'Mystique', 'ECIP-1104', 'London'],
@@ -1549,6 +1587,7 @@ Spiral represents ETC's current production EVM level. The next planned upgrade, 
   {
     slug: 'smart-contracts-overview',
     title: 'Smart Contracts on Ethereum Classic: A Technical Overview',
+    metaTitle: 'Smart Contracts on ETC: An Overview',
     excerpt:
       'How smart contracts work on the EVM, from Solidity compilation to on-chain execution, and what makes ETC a reliable platform for immutable contract deployment.',
     content: `Smart contracts are self-executing programs stored on the blockchain that run exactly as written. On Ethereum Classic, smart contracts benefit from the network's commitment to immutability — once deployed, a contract's code cannot be altered by any party.
@@ -1596,6 +1635,7 @@ ETC's immutability guarantee means deployed contracts will execute as written in
   {
     slug: 'keys-and-addresses',
     title: 'Public Keys, Private Keys, and Addresses in ETC',
+    metaTitle: 'Public and Private Keys and Addresses on ETC',
     excerpt:
       'A technical explanation of elliptic curve cryptography, key derivation, and address generation on Ethereum Classic.',
     content: `Every Ethereum Classic account is secured by public-key cryptography. Understanding how keys and addresses work is fundamental to safe interaction with the network.
@@ -1644,6 +1684,7 @@ EIP-55 mixed-case checksums encode error detection directly into the address str
   {
     slug: 'replay-attacks-explained',
     title: 'Replay Attacks: What They Are and How ETC Handles Them',
+    metaTitle: 'Replay Attacks and How ETC Handles Them',
     excerpt:
       'After the 2016 DAO fork created two chains with shared history, replay attacks became a real concern. How ETC and ETH addressed the problem.',
     content: `When the Ethereum network split into ETH and ETC on July 20, 2016, both chains shared identical transaction formats and account histories. This created a vulnerability: a transaction signed on one chain could be "replayed" on the other.
@@ -1693,6 +1734,7 @@ The chain ID solution was one of the earliest examples of both chains cooperatin
   {
     slug: 'merkle-trees-explained',
     title: 'Merkle Trees: The Data Structure Behind Blockchain Verification',
+    metaTitle: 'Merkle Trees and Blockchain Verification',
     excerpt:
       'How Merkle trees enable efficient and trustless verification of blockchain data, from transaction inclusion proofs to state verification.',
     content: `Every block in Ethereum Classic contains three Merkle tree roots: one for transactions, one for receipts, and one for the world state. These trees are the foundation of trustless verification.
@@ -1743,6 +1785,7 @@ When your wallet shows your ETC balance, it's ultimately verified against the st
   {
     slug: 'dos-attacks-blockchain',
     title: 'Understanding DoS Attacks on Blockchain Networks',
+    metaTitle: 'DoS Attacks on Blockchain Networks',
     excerpt:
       'How denial-of-service attacks target blockchain networks, the 2016 attacks on Ethereum/ETC, and the protocol-level defenses that were implemented.',
     content: `In September and October 2016, both Ethereum and Ethereum Classic experienced coordinated denial-of-service attacks that exploited underpriced EVM opcodes. The response shaped both networks' approach to gas pricing.
@@ -1956,6 +1999,7 @@ Proof-of-stake chains like Ethereum offer deterministic finality — after a cer
   {
     slug: 'zero-knowledge-proofs',
     title: 'Zero-Knowledge Proofs and Their Potential on ETC',
+    metaTitle: 'Zero-Knowledge Proofs on ETC',
     excerpt:
       'How zero-knowledge proofs work, their applications in blockchain privacy and scalability, and what they mean for EVM-compatible chains like Ethereum Classic.',
     content: `Zero-knowledge proofs (ZKPs) are cryptographic protocols that allow one party to prove a statement is true without revealing any information beyond the statement's validity. They have significant implications for blockchain privacy and scalability.
@@ -2013,6 +2057,7 @@ As ZKP technology matures, ETC's role as an immutable base layer could make it a
   {
     slug: 'ecip-process-explained',
     title: 'The ECIP Process: How ETC Protocol Changes Work',
+    metaTitle: 'The ECIP Process and How ETC Changes',
     excerpt:
       'The Ethereum Classic Improvement Proposal process governs all protocol-level changes to ETC, from initial draft through community review to network activation.',
     content: `The Ethereum Classic Improvement Proposal (ECIP) process is the formal mechanism through which protocol changes are proposed, discussed, and implemented on the ETC network.
@@ -2076,6 +2121,7 @@ The ECIP process is open to anyone. Proposals are submitted as pull requests to 
     title: 'Chain Reorganization Mitigation on ETC',
     excerpt:
       'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations — and later, as hashrate grew, ECBP-1110 set its default to off while keeping it available to every node operator.',
+    metaDescription: 'After the 2020 51% attacks, Ethereum Classic implemented MESS (ECBP-1100) against deep reorganizations; ECBP-1110 later set its default to off.',
     content: `In August 2020, Ethereum Classic experienced multiple 51% attacks that resulted in deep chain reorganizations and double-spend attempts. The community responded with MESS (Modified Exponential Subjective Scoring), a novel defense mechanism.
 
 ## The 2020 Attacks
@@ -2226,6 +2272,7 @@ Proper derivation path separation is foundational infrastructure. It ensures tha
   {
     slug: 'false-dapp-warning',
     title: 'Security Advisory: Fraudulent dApp Sites Targeting ETC Users',
+    metaTitle: 'Advisory: Fraudulent dApp Sites Targeting ETC',
     excerpt:
       'The ETC community issued warnings about fraudulent websites impersonating legitimate dApps to steal user funds through phishing and malicious smart contracts.',
     content: `The Ethereum Classic community issued a security advisory warning users about a rise in fraudulent websites impersonating legitimate decentralized applications. These scam sites targeted ETC users through phishing, malicious contract approvals, and fake token offerings.
@@ -2272,8 +2319,10 @@ Always verify before you interact. If a deal seems too good to be true, it almos
   {
     slug: 'pow-censorship-resistance',
     title: 'Proof of Work and Censorship Resistance: Why ETC Stays PoW',
+    metaTitle: 'Why ETC Stays Proof of Work',
     excerpt:
       'After Ethereum transitioned to Proof of Stake in September 2022, Ethereum Classic reaffirmed its commitment to Proof of Work as the foundation of censorship resistance.',
+    metaDescription: 'After Ethereum moved to Proof of Stake in September 2022, Ethereum Classic reaffirmed Proof of Work as the foundation of its censorship resistance.',
     content: `When Ethereum completed its transition to Proof of Stake on September 15, 2022 — an event known as "The Merge" — Ethereum Classic became the largest Proof of Work smart contract platform. ETC's commitment to PoW was not a passive default but a deliberate choice rooted in the network's founding principles.
 
 ## The Merge and Its Implications
@@ -2356,6 +2405,7 @@ The ETC Discord remains the primary real-time communication channel for the Ethe
     title: 'Olympia Network Upgrade: ECIP Review Begins',
     excerpt:
       'The Ethereum Classic community began formal review of the Olympia upgrade ECIPs, proposing EIP-1559 fee markets, a non-inflationary treasury, and on-chain governance.',
+    metaDescription: 'The Ethereum Classic community began formal review of the Olympia ECIPs, proposing an EIP-1559 fee market, a non-inflationary treasury and on-chain governance.',
     content: `The Ethereum Classic community opened formal review of the Olympia network upgrade — the most significant protocol change proposed for ETC since its founding. The upgrade introduces EIP-1559 dynamic fee markets, a non-inflationary treasury mechanism, and an on-chain governance framework.
 
 ## The Olympia ECIPs
@@ -2396,6 +2446,7 @@ The upgrade targets deployment on the Mordor testnet before mainnet activation, 
   {
     slug: 'gorgoroth-trials-fukuii',
     title: 'Gorgoroth Trials: Multi-Client Testing for Olympia',
+    metaTitle: 'Gorgoroth Trials: Olympia Client Testing',
     excerpt:
       'The Gorgoroth Trials testing campaign launched to validate multi-client compatibility between Fukuii, Core-Geth, and Besu ahead of the Olympia network upgrade.',
     content: `The Gorgoroth Trials — a structured testing campaign for the Olympia network upgrade — launched to validate multi-client compatibility across the three Ethereum Classic client implementations. Named after the volcanic plateau in Tolkien's Mordor, the trials serve as a proving ground for protocol changes before testnet and mainnet activation.
@@ -2450,6 +2501,7 @@ The Gorgoroth Trials represent the first phase of a multi-stage testing process.
     title: 'The Olympia Upgrade: A Complete Overview',
     excerpt:
       "Olympia is the most significant protocol upgrade in Ethereum Classic's history — delivering EIP-1559, Fusaka EVM parity, a protocol-native treasury, on-chain DAO governance, futarchy prediction markets, and miner distribution improvements in a single coordinated activation. This is a complete overview of what Olympia is, how it works, and why it matters.",
+    metaDescription: 'The Olympia proposal as it stood in March 2026: a fee market, a treasury, on-chain governance and EVM alignment, before its ECIPs were revised as a set.',
     date: '2026-03-08',
     updated: '2026-11-07',
     category: 'Updates',
@@ -2458,7 +2510,10 @@ The Gorgoroth Trials represent the first phase of a multi-stage testing process.
     tags: ['Olympia', 'ECIP', 'EIP-1559', 'Treasury', 'Governance', 'Futarchy', 'EVM', 'Network Upgrade', 'DAO'],
     author: 'ETC Community',
     readTime: 12,
-    content: `Olympia is the most significant protocol upgrade Ethereum Classic has proposed since its founding. In a single coordinated activation, it delivers three things ETC has lacked: a protocol-native fee market, a self-sustaining on-chain treasury, and full EVM parity with the current Ethereum execution layer. Backed by ten coordinated ECIPs across five architectural layers, Olympia is not an experiment — it is a decade of principled stewardship translated into code.
+    content: `> **Note, November 7, 2026**
+> - Olympia's ECIPs were revised as a set in September 2026. This article describes them as they stood when it was published, and [the Olympia hub](/olympia) describes the current proposal.
+
+Olympia is the most significant protocol upgrade Ethereum Classic has proposed since its founding. In a single coordinated activation, it delivers three things ETC has lacked: a protocol-native fee market, a self-sustaining on-chain treasury, and full EVM parity with the current Ethereum execution layer. Backed by ten coordinated ECIPs across five architectural layers, Olympia is not an experiment — it is a decade of principled stewardship translated into code.
 
 No new tokens are minted. The ECIP-1017 supply cap of 210.7 million ETC is unchanged. Block rewards and priority fees go entirely to miners. The only value redirected is the BASEFEE — which EIP-1559 would otherwise destroy.
 
@@ -2542,7 +2597,7 @@ No new tokens are minted. Block rewards and priority fees go entirely to miners,
 
 ## Rollout
 
-Two client implementations are preparing Olympia support: Core-Geth and Fukuii. Mordor testnet activation is scheduled for Q4 2025, followed by multi-client cross-validation through the Hive integration testing framework. Mainnet activation is targeted before 2027, announced after a successful Mordor run and coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers.
+Two client implementations are preparing Olympia support: Core-Geth and Fukuii. The Mordor testnet activation block is TBD, as ECIP-1111 records it, and its activation would be followed by multi-client cross-validation through the Hive integration testing framework. Mainnet activation is targeted before 2027, announced after a successful Mordor run and coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers.
 
 All ten ECIPs are in Draft status and open for community review. Join the discussion at github.com/orgs/ethereumclassic/discussions/530, or read the full specifications at ecips.ethereumclassic.org.`,
   },
@@ -2597,6 +2652,7 @@ The shared EVM standard means developers can move between chains with near-zero 
   {
     slug: 'eth-shanghai-dencun-review',
     title: 'Ethereum Shanghai and Dencun: What ETC Evaluates',
+    metaTitle: 'Shanghai and Dencun: What ETC Evaluates',
     excerpt:
       'A review of Ethereum\'s Shanghai and Dencun upgrades and which EVM improvements ETC evaluates for potential adoption.',
     content: `Ethereum's Shanghai (April 2023) and Dencun (March 2024) upgrades introduced significant EVM changes. As the original EVM chain, Ethereum Classic actively monitors upstream improvements to evaluate which are beneficial for adoption — and which are irrelevant to a PoW chain.
@@ -2640,8 +2696,10 @@ This selective approach allows ETC to benefit from the broader EVM ecosystem's d
   {
     slug: 'evm-cross-chain-interop',
     title: 'Cross-Chain Bridges and EVM Interoperability with ETC',
+    metaTitle: 'Cross-Chain Bridges and EVM Interop on ETC',
     excerpt:
       'An overview of cross-chain bridge infrastructure connecting Ethereum Classic to the broader EVM ecosystem, and the shared tooling that enables developer portability.',
+    metaDescription: 'An overview of the cross-chain bridges connecting Ethereum Classic to the wider EVM ecosystem, and the shared tooling that lets developers move between them.',
     content: `Ethereum Classic's EVM compatibility extends beyond smart contract execution to encompass the entire development and infrastructure ecosystem. Cross-chain bridges, shared tooling, and universal standards connect ETC to the broader multi-chain landscape.
 
 ## Bridge Infrastructure
@@ -2694,6 +2752,7 @@ ETC nodes expose the standard Ethereum JSON-RPC API, meaning wallets, dApps, and
   {
     slug: 'evm-l1-landscape',
     title: 'The L1 EVM Landscape: Where Ethereum Classic Fits',
+    metaTitle: 'The L1 EVM Landscape: Where ETC Fits',
     excerpt:
       'A factual survey of the Layer 1 EVM ecosystem — from Ethereum PoS to Avalanche, BSC, and rollups — and ETC\'s unique position as the PoW original.',
     content: `The EVM ecosystem has grown from two chains in 2016 to dozens of Layer 1 blockchains and Layer 2 rollups. Each chain makes different trade-offs in consensus, decentralization, throughput, and governance. Understanding the landscape helps contextualize Ethereum Classic's position.
@@ -2824,6 +2883,18 @@ export function getRecentArticles(limit: number = 10): Article[] {
   return [...articles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, limit)
 }
 
+/**
+ * A tag's slug and its path. Tags can carry characters a URL must escape ("51% Attack"), so every link,
+ * the sitemap and the tag page's own lookup go through these two, and the path is percent-encoded.
+ */
+export function tagSlug(tag: string): string {
+  return tag.toLowerCase().replace(/\s+/g, '-')
+}
+
+export function tagPath(tag: string): string {
+  return `/news/tag/${encodeURIComponent(tagSlug(tag))}`
+}
+
 export function getAllTags(): string[] {
   const tags = new Set<string>()
   articles.forEach((article) => {
@@ -2833,7 +2904,7 @@ export function getAllTags(): string[] {
 }
 
 export function getAllCategories(): ArticleCategory[] {
-  return ['Updates', 'Security', 'Ecosystem', 'Community']
+  return ['Updates', 'Security', 'Ecosystem', 'Community', 'Development']
 }
 
 export function getAuthorInfo(authorName: string): Author | undefined {
