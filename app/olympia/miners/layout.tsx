@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Miners & Fees',
+  title: 'Miners and Olympia',
   description:
-    'How Olympia affects Ethereum Classic miners: the block reward and priority fees stay with miners, the EIP-1559 basefee funds the protocol treasury, and why fee revenue matters as the block reward falls.',
+    'What the proposed Olympia upgrade would change for Ethereum Classic miners: block rewards and priority fees stay, and the base fee goes to the Treasury.',
 }
 
 export default function MinersLayout({ children }: { children: React.ReactNode }) {

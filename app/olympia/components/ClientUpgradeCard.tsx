@@ -61,7 +61,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
               Current: {client.currentVersion}
             </span>
             <span className="text-xs font-medium text-[var(--brand-green)] group-hover:text-[var(--brand-green)]/80">
-              View upgrade guide →
+              Olympia readiness →
             </span>
           </div>
         </Link>
@@ -118,11 +118,12 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
         </div>
       </div>
       <p className="text-sm text-[var(--color-text-muted)]">
-        The Olympia release is published before the activation block, and the{' '}
+        No released client implements Olympia, which is a proposal. When {client.name}&apos;s maintainers
+        publish a release that does, it is listed here; until then, run the current release.{' '}
         <Link href="/olympia/upgrade" className="font-medium text-[var(--brand-green)] hover:underline">
-          Olympia upgrade guide
+          Olympia for node operators
         </Link>{' '}
-        has the steps to take it. Until then, run the current release.
+        has what the upgrade would change for a node.
       </p>
 
       {/* Prerequisites */}

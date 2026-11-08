@@ -15,29 +15,46 @@ import {
   FUKUII_STATUS,
   FUKUII_TASKS,
 } from '@/lib/fukuii'
-// Olympia Network Upgrade — Core Data
+
+// Olympia: the status, the date the countdowns run to, client readiness and the FAQs.
 //
-// COPY SAFETY: Treasury is funded by EIP-1559 basefee, NOT block rewards.
-// Block rewards (1.6384 ETC/block, Era 6) remain untouched.
+// Olympia is a proposal: its ECIPs are drafts and its activation block is TBD. Write every
+// sentence about it in proposal voice, and read the ECIP a sentence comes from when writing it.
+// The ECIP titles live in lib/olympia-ecips.ts and ECIP-1121's EIP rows in lib/olympia-eips.ts.
 
 // ============================================================================
-// Activation Block — Change this ONE value when the block number is set.
-// All countdown components across the site read from here.
+// Status and the countdown target. Change these in one place: every countdown reads them.
 // ============================================================================
+
+/** Set only once ECIP-1111 §Implementation records the mainnet block. Until then the countdowns run to the placeholder. */
 export const OLYMPIA_ACTIVATION_BLOCK: number | null = null
 
 export const OLYMPIA_AVG_BLOCK_TIME_SECONDS = NOMINAL_BLOCK_TIME_SECONDS
 
-/**
- * Placeholder countdown target, used until OLYMPIA_ACTIVATION_BLOCK is set.
- * Every countdown on the site reads this one value — do not redeclare it in a
- * component. Two copies drifted once already, leaving the homepage counting to
- * a different date than its own footnote stated.
- */
-export const OLYMPIA_PLACEHOLDER_DATE = new Date('2027-03-31T00:00:00Z')
+/** Shown wherever Olympia's state is given, as a badge or a status line. */
+export const OLYMPIA_STATUS = 'Proposed · Draft ECIPs · Activation block TBD'
 
-/** Human-readable form of OLYMPIA_PLACEHOLDER_DATE, for the countdown footnotes. */
-export const OLYMPIA_PLACEHOLDER_DATE_LABEL = 'March 31, 2027'
+/** The target in words. The date below is a placeholder for it, never an activation date. */
+export const OLYMPIA_TARGET = 'targeted for mainnet activation in 2027'
+
+/**
+ * The placeholder the countdowns run to until OLYMPIA_ACTIVATION_BLOCK is set. Every countdown reads
+ * this one value; do not redeclare it in a component. Two copies drifted once already, leaving the
+ * home page counting to a different date than its own footnote stated.
+ */
+export const OLYMPIA_PLACEHOLDER_ISO = '2027-12-31T00:00:00Z'
+export const OLYMPIA_PLACEHOLDER_DATE = new Date(OLYMPIA_PLACEHOLDER_ISO)
+
+/**
+ * The placeholder as Month D, YYYY, derived from the ISO value rather than typed beside it, and
+ * formatted in UTC: in a time zone west of UTC, 2027-12-31T00:00:00Z is still December 30.
+ */
+export const OLYMPIA_PLACEHOLDER_DATE_LABEL = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'UTC',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(OLYMPIA_PLACEHOLDER_DATE)
 
 // ============================================================================
 // Client Upgrade Data
@@ -137,84 +154,46 @@ export const clients: ClientUpgrade[] = [
 ]
 
 // ============================================================================
-// Olympia Roadmap — from ethereumclassicdao.org/about
+// Governance, as ECIP-1113 specifies it: the stock OpenZeppelin proposal lifecycle
 // ============================================================================
 
-export interface RoadmapStage {
+export interface GovernanceStep {
   title: string
-  status: 'complete' | 'active' | 'research' | 'future'
   description: string
-  deliverables: string[]
 }
 
-export const roadmapStages: RoadmapStage[] = [
+export const governanceSteps: GovernanceStep[] = [
   {
-    title: 'Consensus Upgrades',
-    // Active, not complete: ECIP-1121 targets Glamsterdam-era parity and
-    // Glamsterdam has not shipped on Ethereum yet, so the target it aligns to
-    // is still moving. Matches the Core Governance stage, which is also in
-    // flight rather than delivered.
-    status: 'active',
+    title: 'Propose',
     description:
-      'EIP-1559 fee market, protocol treasury funded by basefee revenue, and Glamsterdam-era EVM parity in a single upgrade. Every Ethereum tool and framework works on ETC without modification.',
-    deliverables: [
-      'EIP-1559 fee market (ECIP-1111)',
-      'Protocol treasury funded by basefee (ECIP-1112)',
-      'Glamsterdam-era EVM parity: Dencun, Pectra, Fusaka, and Glamsterdam EIPs (ECIP-1121)',
-      'Network security client configuration required of every client (ECIP-1122)',
-    ],
+      'A proposal names the calls it would make and carries a description no contract reads. It is submitted to the Governor through its standard propose function.',
   },
   {
-    title: 'Core Governance',
-    status: 'active',
+    title: 'Vote',
     description:
-      'On-chain governance with membership-based voting and a full proposal lifecycle: submit, vote, queue, execute. Core development funding moves to an open, transparent, on-chain process.',
-    deliverables: [
-      'Governance and treasury contracts with timelock execution (ECIP-1113)',
-      'Open proposal process with competitive bidding (ECIP-1114)',
-      'Membership-based voting with sanctions compliance (ECIP-1119)',
-      'Contract deployment on settled consensus rules — not a hard fork',
-    ],
+      'Core Contributors holding CoreNFT vote during the voting period, one vote each. The vote cannot be delegated, bought or transferred.',
   },
   {
-    title: 'Prediction Markets',
-    status: 'research',
+    title: 'Queue',
     description:
-      'An open signal layer. Futarchy prediction markets (ECIP-1117/1118) let anyone stake on proposal outcomes without DAO membership, producing financially-backed public signals alongside member votes. They are a Child-DAO under ECIP-1113 §6, funded by executed funding proposals rather than a direct basefee share, and they inform decisions rather than making them: binding allocation stays with the Olympia DAO.',
-    deliverables: [
-      'Conditional outcome tokens (ECIP-1117)',
-      'Funding and streaming disbursements (ECIP-1118)',
-      'Sanctions compliance applies here too, because funds move (ECIP-1119)',
-      'Seeded by a funding proposal from the governance layer — not a hard fork',
-    ],
+      'A proposal that passes is queued in the Timelock, the contract at the Treasury address, and waits out its delay in public.',
   },
   {
-    title: 'Treasury Distribution',
-    status: 'future',
+    title: 'Execute',
     description:
-      'A smoothing curve supplements miner security budgets as fixed-emission block subsidies decline. ECIP-1115 runs it at the contract layer, where the allocation fraction, window, and curve shape are adjustable through governance without a hard fork — so the network can find the right curve empirically while ECIP-1017 block rewards are still securing it. This is a governance activation on Treasury-held revenue, not a deployment and not a fork. Hardening a proven curve into consensus is the separate stage that follows.',
-    deliverables: [
-      'Treasury smoothing algorithm at the contract layer (ECIP-1115)',
-      'Parameters adjustable through governance without a hard fork',
-      'Runs as a configured experiment on Treasury-held revenue',
-      'Complements ECIP-1017\'s 5M20 emission schedule — the treasury responds as subsidies decline',
-    ],
+      'After the delay, the Governor, the Timelock\'s only executor, carries it out. Value moves only from the Treasury\'s own balance.',
   },
   {
-    title: 'Protocol Integration',
-    status: 'future',
+    title: 'Record',
     description:
-      'The curve proven in the previous stage is embedded into block finalization and leaves governance control. ECIP-1116 is the second and final hard fork of the Olympia roadmap: the distribution is paid by the protocol rather than disbursed from the treasury, making it immutable at the consensus layer.',
-    deliverables: [
-      'Consensus-layer L-curve hardening for base fee miner distribution (ECIP-1116)',
-      'Paid by the protocol, not disbursed from the treasury',
-      'Second hard fork — sequenced after ECIP-1115 has demonstrated the curve',
-    ],
+      'Each step emits the contracts\' standard events, so every governance action can be reconstructed from event logs alone.',
   },
 ]
 
 // ============================================================================
-// FAQ Data — aligned with ethereumclassicdao.org
+// FAQs. Plain strings: each page's FAQPage structured data is built from them.
+// The hub carries the proposal's questions and /olympia/upgrade the node operator's, with no
+// question on both, so no two pages publish the same FAQ.
 // ============================================================================
 
 export interface OlympiaFAQ {
@@ -224,100 +203,99 @@ export interface OlympiaFAQ {
 
 export const faqs: OlympiaFAQ[] = [
   {
-    question: 'Who is coordinating the Olympia upgrade?',
+    question: 'Is Olympia active?',
     answer:
-      'Olympia is coordinated by the same developers, organizations, and community stewards who have delivered every Ethereum Classic network upgrade since 2016: Gotham, Die Hard, Defuse Difficulty Bomb, Thanos, and the full EVM compatibility series spanning Gas Reprice, Atlantis, Agharta, Phoenix, Magneto, Mystique, and Spiral. The ETC Cooperative, a US 501(c)(3) non-profit, funded Ethereum Classic\'s client development teams and managed the hard fork coordination process through Spiral in 2024, before entering maintenance mode at the end of that year. Stakeholder outreach, client release sequencing, and cross-client testing are all established practice. Olympia is a significant upgrade carried forward by a team with a clean delivery record across a decade of ETC network upgrades.',
+      'No. Olympia is a proposal: its ECIPs are drafts and its activation block is TBD. It is targeted for mainnet activation in 2027, and no released client implements it.',
   },
   {
-    question: 'What role has the ETC Cooperative played, and what changes with Olympia?',
+    question: 'When would Olympia activate?',
     answer:
-      'The ETC Cooperative is a US 501(c)(3) non-profit that funded Ethereum Classic\'s core client development for years, contributing millions of dollars to the network\'s client teams and infrastructure through every upgrade cycle up to Spiral in 2024. Every hard fork, every client release, and every cross-client coordination effort in that time was backed by its balance sheet. It entered maintenance mode at the end of 2024, and its board has communicated that it will dissolve, with the public goods it maintained continuing in the ethereumclassic GitHub organization. Olympia is a protocol-native funding model that does not depend on any single organization\'s continued generosity. The Olympia Treasury, governed on-chain by the Olympia DAO and executed by the Wyoming DAO LLC, extends beyond institutional dependency with a durable financial foundation that scales with network usage, and any developer, mining operation, hardware manufacturer, or individual worldwide can contribute directly on-chain without fielding a team or managing a non-profit to do it.',
+      'It is targeted for mainnet activation in 2027. The activation blocks for Mordor and mainnet are decided at the Olympia Core Devs Call and recorded in ECIP-1111, and both read TBD. Before an activation block is scheduled, the governance contracts are deployed, reviewed and rehearsed on Mordor, and the Treasury\'s address is published.',
   },
   {
-    question: "What is Grayscale's role in Ethereum Classic's development?",
+    question: 'What would Olympia change?',
     answer:
-      "Grayscale launched the Grayscale Ethereum Classic Trust (ETCG) in 2018, years before Bitcoin ETFs existed as a product category, and became a major institutional donor to the ETC Cooperative, indirectly funding the network's core client development at a time when no other investment product issuer was doing anything comparable. What Grayscale was practicing on Ethereum Classic in 2018 is now a recognized trend: ETF issuers funding protocol development, corporate treasury strategies reinvesting in network ecosystems. Taking that model on-chain is only possible on Ethereum Classic because ETC is the only Proof-of-Work blockchain with native smart contracts. Olympia DAO makes it permissionless, opening a direct on-chain contribution path to every holder, whether through ETCG, a direct wallet, or any future investment product.",
+      'At the activation block, ECIP-1111 would activate EIP-1559 and EIP-3198, crediting each transaction\'s base fee to a permanent address where Ethereum destroys it, and ECIP-1121 would align the EVM with Ethereum\'s upgrades through Dencun, Pectra and Fusaka, carrying that work into Glamsterdam. Before the fork, the Treasury at that address and Olympia DAO, the only route by which its balance could be spent, would be deployed and published (ECIP-1112 and ECIP-1113).',
   },
   {
-    question: 'What does EVM alignment to Glamsterdam actually mean for builders?',
+    question: 'How would the base fee reach the Treasury?',
     answer:
-      'ECIP-1121 closes years of EVM divergence in a single upgrade, delivering the execution-layer improvements from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability, and carrying that work into Glamsterdam with eth/70 and the deterministic CREATE2 factory. Before Olympia, ETC lagged behind on these EIPs, creating real friction for developers deploying across EVM chains. After Olympia, Solidity 0.8.x, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim full tooling compatibility before Olympia. After Olympia, it can.',
+      'ECIP-1111 activates EIP-1559 and credits each transaction\'s base fee to the Sovereignty Vault address, inside that transaction\'s own state transition, where Ethereum destroys it. The credit runs no contract code. Ethereum Classic has no base fee today, so nothing is taken from what miners earn now.',
   },
   {
-    question: 'How is the Treasury funded?',
+    question: 'Would miner rewards change?',
     answer:
-      'The Olympia Treasury is funded by EIP-1559 basefee revenue, credited to it at block finalization. Contributions beyond that are voluntary and take two forms: sending ETC to the address, or mining to it — a miner naming the Treasury as their coinbase recipient is donating hashpower rather than currency. The protocol directs the basefee and nothing else; miner block rewards are never touched. The vault sits at the treasury address. Block rewards and tips remain completely untouched and go entirely to miners. The basefee is a value that would otherwise be destroyed and has never been part of miner compensation. This creates sustainable, transparent funding without inflation or any impact on miner income.',
+      'No. ECIP-1111 leaves block rewards and priority-fee tips unaffected, and the base fee it introduces goes to the Treasury rather than to miners. Paying miners from base-fee revenue is the subject of ECIP-1115, through ordinary funding proposals, and of ECIP-1116, a separate hard fork after Olympia.',
   },
   {
-    question: 'Will my miner rewards change?',
+    question: 'Who could spend from the Treasury?',
     answer:
-      'No. Block rewards and tips remain completely untouched. Olympia redirects the EIP-1559 basefee to the protocol treasury. The basefee is a value that would otherwise be destroyed and has never been part of miner compensation. Miner revenue is unchanged.',
+      'Only Olympia DAO, by a funding proposal that passes a vote of CoreNFT members, is queued in the Timelock and executes after its delay. The Governor is the Timelock\'s sole executor, and there is no admin key, multisig or committee. The Treasury\'s address is permanent, and the logic behind it can be repaired by a proposal.',
   },
   {
-    question: 'How was Olympia tested before mainnet?',
+    question: 'Who would vote?',
     answer:
-      'Olympia activates on the Mordor testnet first. Mordor is Ethereum Classic\'s Proof-of-Work testnet and mirrors mainnet conditions closely. Multiple independent client implementations run the Mordor fork before any mainnet activation is scheduled. Cross-client validation using the Hive integration testing framework confirms consensus compatibility across implementations. The mainnet activation block is not set until Mordor has run cleanly and major network stakeholders, including exchanges, custodians, and mining pools, have confirmed readiness.',
+      'Core Contributors holding CoreNFT, a soulbound token that carries one vote per member and cannot be transferred or delegated (ECIP-1113). The first members are the people who verifiably contributed to the Olympia ECIPs or their reference client implementations by a published cutoff date. After that, a contributor applies, and the DAO votes on each admission.',
   },
   {
-    question: 'When is the mainnet activation block?',
+    question: 'Would Olympia DAO decide protocol upgrades?',
     answer:
-      'Olympia is targeted for mainnet activation in 2027. Olympia activates on Mordor testnet first. The mainnet activation block is announced after a successful Mordor run and a coordinated stakeholder readiness check with exchanges, mining pools, node operators, and infrastructure providers. All client implementations publish Olympia-compatible releases well before activation.',
+      'No. Protocol change remains with the ECIP process, ECIP-1000. A funding proposal can pay for work on Ethereum Classic without conferring any authority over its specification, and an upgrade takes effect only when client teams release it and the network runs it.',
   },
   {
-    question: 'How does voting work?',
+    question: 'What are Ecosystem Growth DAOs?',
     answer:
-      'Governance operates on two layers, and only one of them is binding. The Olympia DAO makes the binding decisions — security maintenance, EVM parity, client funding, and treasury allocation — using non-transferable membership NFTs, with members casting on-chain votes during a defined voting period via the OpenZeppelin Governor 5.x contract suite. Futarchy prediction markets (ECIP-1117/1118) are an open signal layer on top: anyone can stake on proposal outcomes without membership, producing a financially-backed public signal that informs the vote rather than determining it or executing anything. They run as a Child-DAO under ECIP-1113 §6, funded by executed funding proposals rather than a direct basefee share.',
+      'Bodies ECIP-1117 specifies for growing what is built on Ethereum Classic, open to anyone. Olympia DAO would decide, one season at a time, whether to seed one and with how much; once seeded, the body\'s own published model chooses among the destinations the seeding proposal named, and a conditional market is one model it may use. Client development, network security and critical infrastructure stay with Olympia DAO.',
   },
   {
-    question: 'What happens if I don\'t upgrade my node?',
+    question: 'What would Ethereum Classic DAO LLC do?',
     answer:
-      'Nodes that are not upgraded before the activation block will stop following the canonical chain. You will need to upgrade your client and resync from the fork point. Exchanges, wallets, RPC providers, and services running outdated clients will be unable to process transactions on the post-Olympia chain. Client release announcements are published well in advance to give operators time to upgrade.',
+      'ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper it contemplates for Olympia DAO, for the off-chain acts an on-chain organization cannot perform, without acquiring authority over it. Once Olympia DAO is operating, the LLC would carry out the off-chain obligations a passed proposal has fixed, such as signing the engagement for a security audit the DAO voted to fund. It is downstream of Olympia DAO in authority, holds no on-chain role and no position in the ECIP process, and holds no role in anything ECIP-1114 specifies until Olympia DAO is operating.',
   },
   {
-    question: 'Can I roll back if something goes wrong?',
+    question: 'Who funds Ethereum Classic\'s development today?',
     answer:
-      'In the unlikely event of a critical issue after activation, the same client teams that have managed every ETC emergency response since 2016 would coordinate a patch release promptly. The established stakeholder communication channels, including the ETC Cooperative, client maintainers, and major exchange contacts, are the same ones used for every previous upgrade. Olympia has broader test coverage across more independent client implementations than any previous ETC hard fork, and the Mordor testnet run provides a real network validation environment before mainnet activation.',
+      'Ethereum Classic\'s core developers and community contributors do the work. Ethereum Classic DAO LLC maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort, and it does not control or lead Ethereum Classic. The ETC Cooperative funded much of it from 2017 and is winding down. Olympia proposes a source the network would raise from its own use.',
+  },
+  {
+    question: 'Does Olympia adopt all of Glamsterdam?',
+    answer:
+      'No. ECIP-1121 includes Glamsterdam and adopts part of its set. Some of its EIPs are blocked on a dependency that is out of scope, and those tied to Proof-of-Stake or blob data availability are excluded or deferred. The upgrade guide lists every EIP by its disposition.',
+  },
+]
+
+/** The node operator's questions, on /olympia/upgrade. */
+export const operatorFaqs: OlympiaFAQ[] = [
+  {
+    question: 'Do I need to do anything now?',
+    answer:
+      'Run a current release. Core-Geth, the recommended client, runs on its v1.13 line, and a node still on a v1.12 release should move to v1.13 now, following coregeth.com/downloads. Fukuii, which its maintainers mark alpha, is an alternative to try. Olympia asks nothing more of a node until a client publishes a release that implements it.',
+  },
+  {
+    question: 'Which client releases implement Olympia?',
+    answer:
+      'None yet: Olympia is a proposal, and no released client implements it. A client\'s Olympia readiness is what its maintainers publish, and the client readiness page lists each one.',
+  },
+  {
+    question: 'What happens to a node that does not upgrade?',
+    answer:
+      'Once the activation blocks are set and client releases implement them, a node that has not moved to such a release by the activation block stops following the chain at that block. Operators move by the steps their client\'s maintainers publish.',
+  },
+  {
+    question: 'Would Olympia change the transactions my node accepts?',
+    answer:
+      'It would add to them. ECIP-1111 adds the EIP-1559 transaction type and the BASEFEE opcode, and legacy and access-list transactions stay valid. Every transaction would pay a base fee, with at least 1 gwei per unit of gas as its floor, and the miner keeps the priority fee.',
   },
 ]
 
 // ============================================================================
-// Governance Flow Steps — from olympiadao.org
-// ============================================================================
-
-export interface GovernanceStep {
-  icon: string
-  title: string
-  description: string
-}
-
-export const governanceFlow: GovernanceStep[] = [
-  { icon: 'FileText', title: 'Propose', description: 'Anyone can submit a governance proposal on-chain. Proposals define the action to execute and the supporting rationale.' },
-  { icon: 'Vote', title: 'Vote', description: 'Members cast on-chain votes during a defined voting period via the OpenZeppelin Governor 5.x contract suite. Voting is transparent and immutable.' },
-  { icon: 'Timer', title: 'Queue', description: 'Approved proposals enter a security timelock. This delay provides the community time to review before execution.' },
-  { icon: 'Zap', title: 'Execute', description: 'After the timelock expires, the proposal executes automatically. Treasury transfers happen on-chain with full auditability.' },
-  { icon: 'Eye', title: 'Disclose', description: 'All outcomes are publicly reported and independently verifiable. Proposal records form a permanent on-chain record.' },
-]
-
-// ============================================================================
-// External Links
+// Olympia's own sites, each named for what it is
 // ============================================================================
 
 export const olympiaLinks = {
-  governanceApp: 'https://app.olympiadao.org',
-  treasuryDashboard: 'https://olympiatreasury.org',
-  ethereumClassicDAO: 'https://ethereumclassicdao.org',
   olympiaDAO: 'https://olympiadao.org',
-  etcCooperative: 'https://etccooperative.org',
-  grayscaleETCG: 'https://grayscale.com/funds/ethereum-classic-trust/',
+  governanceApp: 'https://app.olympiadao.org',
+  treasurySite: 'https://olympiatreasury.org',
+  olympiaGitHub: 'https://github.com/olympiadao',
+  ethereumClassicDAO: 'https://ethereumclassicdao.org',
 } as const
-
-// ============================================================================
-// Stats for display
-// ============================================================================
-
-export const olympiaStats = [
-  { label: 'Client Implementations', value: 'Multiple' },
-  { label: 'Network', value: 'Proof-of-Work' },
-  { label: 'Governance', value: 'Membership-Based' },
-  { label: 'Treasury', value: 'Protocol-Funded' },
-]

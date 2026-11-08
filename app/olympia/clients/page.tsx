@@ -2,6 +2,7 @@ import Link from 'next/link'
 import ClientUpgradeCard from '../components/ClientUpgradeCard'
 import OlympiaCountdown from '../components/OlympiaCountdown'
 import { clients } from '../data/olympia'
+import { PLUGIN_POSITION_SHORT } from '@/app/build/data/build'
 
 /**
  * Each client's Olympia readiness, and nothing that outlives the upgrade. Choosing and running a
@@ -27,9 +28,9 @@ export default function OlympiaClientsPage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Each client publishes an Olympia release before the activation block. Until then, run the
-            current release: Core-Geth, on its v1.13 line, is the recommended client, and Fukuii is an
-            alternative to try.
+            No released client implements Olympia, which is a proposal. A client&apos;s Olympia readiness
+            is what its maintainers publish. Until then, run the current release: Core-Geth, on its v1.13
+            line, is the recommended client, and Fukuii is an alternative to try.
           </p>
 
           <p className="mt-6">
@@ -60,8 +61,8 @@ export default function OlympiaClientsPage() {
           </div>
 
           <p className="mt-8 max-w-3xl text-sm text-[var(--color-text-muted)]">
-            ETC plugins are not client implementations, so they are not part of a client&apos;s Olympia
-            readiness. The plugin framework is described with the{' '}
+            {PLUGIN_POSITION_SHORT} Plugins are therefore not part of a client&apos;s Olympia readiness. The
+            plugin framework is described with the{' '}
             <Link
               href="/build/clients#plugins"
               className="font-medium text-[var(--brand-green)] hover:underline"

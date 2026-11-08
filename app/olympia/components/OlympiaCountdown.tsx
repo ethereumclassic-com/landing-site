@@ -7,6 +7,9 @@ import { useOlympiaBlock } from '../hooks/useOlympiaBlock'
 import {
   OLYMPIA_PLACEHOLDER_DATE,
   OLYMPIA_PLACEHOLDER_DATE_LABEL,
+  OLYMPIA_PLACEHOLDER_ISO,
+  OLYMPIA_STATUS,
+  OLYMPIA_TARGET,
 } from '../data/olympia'
 
 function getCountdownTo(target: Date) {
@@ -48,16 +51,19 @@ function DigitBox({ value, label, loading }: { value: number; label: string; loa
 function TBDState({ variant, placeholderCd }: { variant: 'hero' | 'banner'; placeholderCd: { days: number; hours: number; minutes: number; seconds: number } }) {
   if (variant === 'banner') {
     return (
-      <Link href="/olympia" className="block">
-        <div className="flex items-center justify-between rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 px-4 py-3">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
-              <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--brand-green)]" />
+      <Link
+        href="/olympia"
+        className="block"
+        aria-label={`Olympia: ${OLYMPIA_STATUS}. Countdown to ${OLYMPIA_PLACEHOLDER_DATE_LABEL}, a placeholder target`}
+      >
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-[var(--brand-green)]/20 bg-[var(--brand-green)]/5 px-4 py-3">
+          <div>
+            <span className="text-sm font-medium text-[var(--brand-green)]">Olympia: {OLYMPIA_STATUS}</span>
+            <span className="block text-xs text-[var(--color-text-muted)]">
+              Countdown to <time dateTime={OLYMPIA_PLACEHOLDER_ISO}>{OLYMPIA_PLACEHOLDER_DATE_LABEL}</time>, a placeholder target
             </span>
-            <span className="text-sm font-medium text-[var(--brand-green)]">Olympia Countdown</span>
           </div>
-          <div className="flex items-center gap-2 font-mono text-sm text-[var(--text-primary)]">
+          <div aria-hidden="true" className="flex items-center gap-2 font-mono text-sm text-[var(--text-primary)]">
             <span>{placeholderCd.days}d</span>
             <span>{placeholderCd.hours}h</span>
             <span>{placeholderCd.minutes}m</span>
@@ -69,38 +75,42 @@ function TBDState({ variant, placeholderCd }: { variant: 'hero' | 'banner'; plac
   }
 
   return (
-    <div className="text-center">
-      <h2 className="text-lg font-semibold text-[var(--brand-green)]">Olympia Activation Countdown</h2>
+    <div
+      className="text-center"
+      role="group"
+      aria-label={`Countdown to ${OLYMPIA_PLACEHOLDER_DATE_LABEL}, a placeholder target; the Olympia activation block is TBD`}
+    >
+      <h2 className="text-lg font-semibold text-[var(--brand-green)]">Countdown to the 2027 Target</h2>
 
-      <div className="mt-6 grid grid-cols-4 gap-3 md:gap-6">
+      {/* aria-hidden: the digits change every second and would be announced continuously */}
+      <div aria-hidden="true" className="mt-6 grid grid-cols-4 gap-3 md:gap-6">
         <DigitBox value={placeholderCd.days} label="Days" loading={false} />
         <DigitBox value={placeholderCd.hours} label="Hours" loading={false} />
         <DigitBox value={placeholderCd.minutes} label="Minutes" loading={false} />
         <DigitBox value={placeholderCd.seconds} label="Seconds" loading={false} />
       </div>
 
-      <div className="mt-4 flex items-center justify-center gap-2">
-        <span className="relative flex h-3 w-3">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
-          <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--brand-green)]" />
-        </span>
-        <span className="text-sm font-medium text-[var(--brand-green)]">Activation Block: TBD</span>
-      </div>
-      <p className="mt-2 text-xs italic text-[var(--color-text-muted)] opacity-70">
-        Countdown to {OLYMPIA_PLACEHOLDER_DATE_LABEL} — Olympia targets mainnet activation in 2027.
-        Block number announced after successful Mordor testnet run.
+      <p className="mt-4 text-xs italic text-[var(--color-text-muted)]">
+        The countdown runs to <time dateTime={OLYMPIA_PLACEHOLDER_ISO}>{OLYMPIA_PLACEHOLDER_DATE_LABEL}</time>,
+        a placeholder target rather than an activation date, until the activation block is set.
+      </p>
+      <p className="mt-4 text-sm font-medium text-[var(--brand-green)]">{OLYMPIA_STATUS}</p>
+      <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+        Olympia is {OLYMPIA_TARGET}. The activation blocks for Mordor and mainnet are decided at the
+        Olympia Core Devs Call and recorded in ECIP-1111.
       </p>
     </div>
   )
 }
 
-function ActivatedState({ variant }: { variant: 'hero' | 'banner' }) {
+/** Reached only once OLYMPIA_ACTIVATION_BLOCK is set and the chain has passed it. */
+function ActivatedState({ variant, activationBlock }: { variant: 'hero' | 'banner'; activationBlock: number | null }) {
+  const label = activationBlock ? `Activated at block ${activationBlock.toLocaleString('en-US')}` : 'Activated'
   if (variant === 'banner') {
     return (
       <Link href="/olympia" className="block">
         <div className="flex items-center justify-center gap-3 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-3">
-          <span className="text-lg">✦</span>
-          <span className="text-sm font-semibold text-[var(--brand-green)]">Olympia is Live</span>
+          <span className="text-sm font-semibold text-[var(--brand-green)]">Olympia: {label}</span>
         </div>
       </Link>
     )
@@ -109,8 +119,7 @@ function ActivatedState({ variant }: { variant: 'hero' | 'banner' }) {
   return (
     <div className="text-center">
       <div className="inline-flex items-center gap-3 rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-8 py-3">
-        <span className="text-xl">✦</span>
-        <span className="text-lg font-semibold text-[var(--brand-green)]">Olympia is Live</span>
+        <span className="text-lg font-semibold text-[var(--brand-green)]">Olympia: {label}</span>
       </div>
     </div>
   )
@@ -151,7 +160,7 @@ function CountingState({
 
   return (
     <div className="text-center">
-      <h2 className="text-lg font-semibold text-[var(--brand-green)]">Olympia Activation Countdown</h2>
+      <h2 className="text-lg font-semibold text-[var(--brand-green)]">Countdown to the Olympia Activation Block</h2>
       {activationBlock && (
         <p className="mt-1 text-sm text-[var(--color-text-muted)]">
           Block {activationBlock.toLocaleString()}
@@ -193,7 +202,7 @@ export default function OlympiaCountdown({ variant = 'hero' }: OlympiaCountdownP
       case 'tbd':
         return <TBDState variant={variant} placeholderCd={placeholderCd} />
       case 'activated':
-        return <ActivatedState variant={variant} />
+        return <ActivatedState variant={variant} activationBlock={activationBlock} />
       case 'pending':
         return (
           <CountingState

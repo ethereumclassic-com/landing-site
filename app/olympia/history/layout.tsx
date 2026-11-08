@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'A Decade of Conviction — The Foundations of Olympia',
+  title: 'A Decade of Conviction: The Road to Olympia',
   description:
-    "The record behind Ethereum Classic's Olympia upgrade: two rejected treasury proposals, four development teams that came and went, and the decade-long chain of decisions that built the structural foundations of ETC's protocol-funded treasury and on-chain governance. From the August 2016 London meetup to the July 2025 ECIPs.",
+    "The record behind the Olympia proposal: two rejected treasury proposals, the development teams that came and went, and a decade of funding Ethereum Classic.",
   keywords: [
     'Ethereum Classic history',
     'ETC network upgrade history',
@@ -25,13 +25,8 @@ export const metadata: Metadata = {
     'Orbita ETC client',
     'August 2016 ETC meetup',
   ],
-  openGraph: {
-    ...OG_BASE,
-    title: 'A Decade of Conviction — The Foundations of Olympia',
-    description:
-      "Two rejected treasury proposals, four development teams, and the decade-long chain of decisions that seeded Ethereum Classic's Olympia upgrade.",
-    type: 'article',
-  },
+  // No title or description: the share card is drawn from the page's own, above.
+  openGraph: { ...OG_BASE, type: 'article' },
 }
 
 export default function HistoryLayout({ children }: { children: React.ReactNode }) {

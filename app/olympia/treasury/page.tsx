@@ -1,50 +1,52 @@
 import Link from 'next/link'
 import { FadeIn } from '@/app/components/ui/FadeIn'
 import { SectionDivider } from '@/app/components/ui'
+import { ecipUrl } from '@/lib/olympia-ecips'
+import OlympiaStatusBadge from '../components/OlympiaStatusBadge'
+import { olympiaLinks } from '../data/olympia'
 
 /**
- * Every claim on this page is checked against ECIP-1112 rather than paraphrased
- * from another site. Two are easy to get wrong and are stated deliberately:
+ * The Olympia Treasury as ECIP-1112 and ECIP-1113 specify it, read from the ECIPs working copy when
+ * written. Both are drafts, so every sentence is in proposal voice. The two things most often stated
+ * wrongly are stated deliberately:
  *
- *  - The Treasury deploys via plain CREATE from a reserved deployer nonce, NOT
- *    CREATE2. Only CoreNFT, Executor and Governor use CREATE2 (§ Deployment).
- *  - BASEFEE is the only protocol-directed source. Voluntary contributions are
- *    real but are donations, including a miner naming the Treasury as their
- *    coinbase recipient — that is donated hashpower, not a protocol mandate.
+ *  - The address is permanent and the logic behind it is not. It is a stock TransparentUpgradeableProxy,
+ *    repairable by an ordinary proposal; only the address needs a hard fork to change.
+ *  - The base fee is credited inside each transaction's own state transition, never at block
+ *    finalization, and the credit runs no contract code.
  */
 
 const FLOW = [
-  { step: 'Transactions', detail: 'Users pay gas on every ETC transaction' },
-  { step: 'Basefee', detail: 'Redirected by ECIP-1111, not burned' },
-  { step: 'Treasury', detail: 'Credited at block finalization' },
-  { step: 'Governance', detail: 'Members propose and vote on spending' },
-  { step: 'Ecosystem', detail: 'Development, tooling and security work' },
+  { step: 'Transactions', detail: 'Each would pay a base fee under ECIP-1111.' },
+  { step: 'Credit', detail: 'Inside that transaction’s own state transition, with no contract code run.' },
+  { step: 'Treasury', detail: 'The balance at the Sovereignty Vault address.' },
+  { step: 'Proposal', detail: 'A funding proposal, voted by Olympia DAO’s members.' },
+  { step: 'Timelock', detail: 'Queued, a public delay, then executed by the Governor.' },
 ]
 
-const INVARIANTS = [
+const PERMANENCE = [
+  { what: 'The Sovereignty Vault address', permanent: 'Yes: the consensus commitment', replaced: 'A hard fork, and nothing else' },
+  { what: 'The Treasury’s logic, behind the address', permanent: 'No', replaced: 'A proposal, at the same address' },
+  { what: 'The Governor', permanent: 'No', replaced: 'A proposal moving the Timelock’s roles to a successor' },
+  { what: 'CoreNFT, the voting token', permanent: 'No', replaced: 'A new Governor bound to a new token' },
+]
+
+const CANNOT = [
+  {
+    title: 'No key can move it',
+    body: 'There would be no admin key, multisig or committee. The Governor alone would hold the Timelock’s roles to propose, execute and cancel, and the Treasury itself would own the contract that upgrades it.',
+  },
+  {
+    title: 'No one off-chain can approve or veto',
+    body: 'No off-chain entity could unilaterally approve or veto a governance action. Ethereum Classic DAO LLC, the legal wrapper ECIP-1114 contemplates, would hold no on-chain role.',
+  },
+  {
+    title: 'Its balance is the only ledger',
+    body: 'No implementation at the address may keep its own count of what it received, now or after any upgrade, so value credited by consensus can always be spent.',
+  },
   {
     title: 'It cannot mint',
-    body: 'The Treasury holds ETC and disburses ETC. It has no power to create supply, so ECIP-1017 monetary policy is untouched.',
-  },
-  {
-    title: 'Its code cannot change',
-    body: 'The contract is immutable, with no proxy and no upgrade path. What ships at the fork is what runs permanently.',
-  },
-  {
-    title: 'One caller can withdraw',
-    body: 'Withdrawal is restricted to a single authorized executor, fixed in the constructor at deployment and never reassignable.',
-  },
-  {
-    title: 'It is non-custodial',
-    body: 'No individual, foundation or company can move the funds. There is no admin key, because there is no admin.',
-  },
-  {
-    title: 'It tracks nothing',
-    body: 'The withdraw interface receives a recipient and an amount, and nothing else. Proposal accounting lives in the governance layer, never here.',
-  },
-  {
-    title: 'Miner income is untouched',
-    body: 'Block rewards and priority tips go entirely to miners, exactly as before. The basefee was never part of miner compensation.',
+    body: 'It would hold and move what it receives and create nothing, so ECIP-1017 monetary policy is untouched.',
   },
 ]
 
@@ -55,16 +57,17 @@ export default function TreasuryPage() {
         <div className="mx-auto max-w-5xl">
           <FadeIn>
             <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--brand-green)]">
-              Olympia · ECIP-1112
+              Olympia · ECIP-1112 · ECIP-1113
             </p>
-            <h1 className="mt-3 text-3xl font-bold text-[var(--text-primary)] md:text-4xl">
-              The Olympia Treasury
-            </h1>
+            <h1 className="mt-3 text-3xl font-bold text-[var(--text-primary)] md:text-4xl">The Olympia Treasury</h1>
+            <div className="mt-4">
+              <OlympiaStatusBadge />
+            </div>
             <p className="mt-4 max-w-2xl text-[var(--color-text-muted)]">
-              An immutable, non-custodial contract that receives Ethereum
-              Classic&apos;s basefee at block finalization. It is the mechanism that
-              lets the network fund its own development without depending on any
-              single organization&apos;s continued generosity.
+              In the Olympia proposal, the Treasury would be the account at the Sovereignty Vault: the one
+              permanent address at which Ethereum Classic&apos;s base-fee revenue would accumulate. The address
+              would be permanent and the logic behind it repairable, and Olympia DAO would be the only route by
+              which its balance could be spent.
             </p>
           </FadeIn>
         </div>
@@ -73,23 +76,16 @@ export default function TreasuryPage() {
       <section className="px-6 py-10 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn delay={100}>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
-              How funds reach it
-            </h2>
-            <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">How funds would reach it, and leave it</h2>
+            <ol className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
               {FLOW.map((f, i) => (
-                <div
-                  key={f.step}
-                  className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4"
-                >
-                  <p className="font-mono text-[10px] text-[var(--text-subtle)]">
-                    Step {i + 1}
-                  </p>
+                <li key={f.step} className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4">
+                  <p className="font-mono text-[10px] text-[var(--text-subtle)]">Step {i + 1}</p>
                   <p className="mt-1 font-semibold text-[var(--brand-green)]">{f.step}</p>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">{f.detail}</p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ol>
           </FadeIn>
         </div>
       </section>
@@ -99,31 +95,26 @@ export default function TreasuryPage() {
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <FadeIn>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
-              What funds it, and what does not
-            </h2>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">What would fund it</h2>
             <div className="mt-6 space-y-5 text-[var(--color-text-muted)]">
               <p>
-                The basefee reaches the Treasury automatically. Every ETC
-                transaction pays one, and under ECIP-1111 the full amount is
-                credited to the Treasury address during block finalization rather
-                than burned. That is the protocol-directed source, and it is the
-                only one.
+                The base fee is the protocol-directed source, and the only one. ECIP-1111 would credit each
+                transaction&apos;s base fee to the Sovereignty Vault address where Ethereum destroys it: inside
+                that transaction&apos;s own state transition, as a direct addition to the balance that runs no
+                contract code and cannot fail.
               </p>
               <p>
-                Anyone can add to it by choice. Sending ETC to the address works
-                like any other transfer, and a miner can name the Treasury as the
-                recipient of their coinbase — donating hashpower rather than
-                currency. Both are voluntary contributions by different means, and
-                neither is directed by any ECIP.
+                Anyone could add to it by choice. The address would accept any asset, so there would be one
+                contribution address for every asset class, and anything it holds could be moved by an ordinary
+                proposal. The one exception is an ERC-777 token, whose transfer to it reverts, so the sender
+                keeps it. A miner could also name the address as a block&apos;s coinbase, donating that
+                block&apos;s reward. Donations Ethereum Classic DAO LLC receives off-chain are its own, not the
+                Treasury&apos;s, and are accounted for separately.
               </p>
               <p className="rounded-xl border border-[var(--border-default)] bg-[var(--panel)] p-4 text-sm">
-                <span className="font-semibold text-[var(--text-primary)]">
-                  Miner compensation does not change.
-                </span>{' '}
-                Block rewards and priority tips go entirely to miners. The basefee
-                is value that Ethereum destroys and Ethereum Classic redirects; it
-                has never formed part of what a miner is paid.
+                <span className="font-semibold text-[var(--text-primary)]">Miner compensation would not change.</span>{' '}
+                Block rewards and priority-fee tips go to miners as before. Ethereum Classic has no base fee
+                today, so nothing is taken from what miners earn now.
               </p>
             </div>
           </FadeIn>
@@ -135,21 +126,58 @@ export default function TreasuryPage() {
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
-              What it can never do
-            </h2>
-            <p className="mt-2 max-w-2xl text-[var(--color-text-muted)]">
-              These are properties of the contract, not policies of an operator.
-              None can be changed after deployment.
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">A permanent address, with repairable logic</h2>
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
+              Every client would carry the address in its chain configuration, so redirecting the
+              network&apos;s revenue would take a coordinated hard fork. The account there would be a stock
+              OpenZeppelin transparent proxy, so its logic could take a security fix or a dependency migration
+              by an ordinary proposal while the address stands. Wyoming&apos;s DAO statute requires that every
+              smart contract a DAO uses can be upgraded, and this design meets it.
             </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {INVARIANTS.map((inv) => (
-                <div
-                  key={inv.title}
-                  className="rounded-xl border border-[var(--border-default)] bg-[var(--panel)] p-5"
-                >
-                  <p className="font-semibold text-[var(--text-primary)]">{inv.title}</p>
-                  <p className="mt-2 text-sm text-[var(--color-text-muted)]">{inv.body}</p>
+            <div className="mt-6 overflow-x-auto rounded-xl border border-[var(--border-default)]">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-[var(--panel)] text-xs text-[var(--color-text-muted)]">
+                  <tr>
+                    <th scope="col" className="px-4 py-2 font-medium">What</th>
+                    <th scope="col" className="px-4 py-2 font-medium">Permanent?</th>
+                    <th scope="col" className="px-4 py-2 font-medium">Replaced by</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[var(--border-default)]">
+                  {PERMANENCE.map((r) => (
+                    <tr key={r.what}>
+                      <td className="px-4 py-2 text-[var(--text-primary)]">{r.what}</td>
+                      <td className="px-4 py-2 text-[var(--color-text-muted)]">{r.permanent}</td>
+                      <td className="px-4 py-2 text-[var(--color-text-muted)]">{r.replaced}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 max-w-3xl text-sm text-[var(--color-text-muted)]">
+              One case cannot be repaired by a proposal: capture of the upgrade authority itself. The remedy
+              would be a hard fork pointing the address at a newly deployed account, which bounds the loss to
+              the balance held at the moment of capture and the revenue credited before the new block.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section className="px-6 py-12 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-5xl">
+          <FadeIn>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Who could spend it</h2>
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
+              Only Olympia DAO, by a proposal that passes a vote of its members, is queued in the Timelock and
+              executes after its delay. Every step would be public and recorded in the contracts&apos; events.
+            </p>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {CANNOT.map((c) => (
+                <div key={c.title} className="rounded-xl border border-[var(--border-default)] bg-[var(--panel)] p-5">
+                  <p className="font-semibold text-[var(--text-primary)]">{c.title}</p>
+                  <p className="mt-2 text-sm text-[var(--color-text-muted)]">{c.body}</p>
                 </div>
               ))}
             </div>
@@ -162,34 +190,22 @@ export default function TreasuryPage() {
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-3xl">
           <FadeIn>
-            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
-              Deployed in stages, on purpose
-            </h2>
+            <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Deployed before the fork</h2>
             <div className="mt-6 space-y-5 text-[var(--color-text-muted)]">
               <p>
-                The Treasury deploys at the Olympia hard fork, in Stage 1, alongside
-                the consensus changes that fund it. The governance suite that spends
-                it — the DAO framework, the funding-proposal process and the
-                sanctions oracle — follows in Stage 2, once audited.
+                Every contract the revenue would pass through would be deployed on Ethereum Classic as it runs
+                today, in dependency order, with no address predicted or reserved. The Treasury&apos;s address
+                would be published, with the verified source of every contract at and beneath it, where upgrade
+                authority rests and its full role table, before the activation block is scheduled.
               </p>
               <p>
-                It deploys first because its address is written into every client at
-                the consensus layer and can never be changed afterward. Staging buys
-                audit time for the governance layer without leaving the basefee with
-                nowhere to go.
-              </p>
-              <p>
-                Funds stay locked in the meantime by construction rather than by
-                discretion: the only address permitted to withdraw is the Executor,
-                fixed at deployment, and nothing can spend from the Treasury until
-                that contract exists and governance is live.
+                The fork would then commit to an address anyone could inspect first. Before that block the
+                balance is zero, and that window is where a change of Governor is rehearsed end to end, while
+                nothing is at stake.
               </p>
               <p className="text-sm">
-                <Link
-                  href="/olympia/upgrade"
-                  className="text-[var(--brand-green)] underline underline-offset-4"
-                >
-                  The full five-stage roadmap
+                <Link href="/olympia#activation" className="text-[var(--brand-green)] underline underline-offset-4">
+                  The order the ECIPs set for activation
                 </Link>
               </p>
             </div>
@@ -202,43 +218,16 @@ export default function TreasuryPage() {
       <section className="px-6 py-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
-            <h2 className="mb-5 text-xl font-semibold text-[var(--text-primary)]">
-              Related
-            </h2>
+            <h2 className="mb-5 text-xl font-semibold text-[var(--text-primary)]">Related</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                {
-                  href: '/olympia/governance',
-                  title: 'On-Chain Governance',
-                  body: 'Who decides how the Treasury is spent, and how.',
-                },
-                {
-                  href: '/olympia/upgrade',
-                  title: 'Upgrade Details',
-                  body: 'The five stages, the ECIPs, and what activates when.',
-                },
-                {
-                  href: '/olympia/miners',
-                  title: 'Miners & the Fee Market',
-                  body: 'Why a fee market matters to Proof-of-Work security, and what Olympia changes for miners.',
-                },
-                {
-                  href: '/olympia',
-                  title: 'Olympia Hub',
-                  body: 'The upgrade in full, across every ECIP.',
-                },
-                {
-                  href: 'https://olympiatreasury.org',
-                  title: 'Live Treasury Dashboard',
-                  body: 'Balance, inflows and transactions in real time.',
-                  external: true,
-                },
-                {
-                  href: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1112',
-                  title: 'ECIP-1112',
-                  body: 'The specification this page describes.',
-                  external: true,
-                },
+                { href: '/olympia/governance', title: 'Governance', body: 'How Olympia DAO would decide what the Treasury funds.' },
+                { href: '/olympia/miners', title: 'Miners and Fees', body: 'What the base fee would change for miners, and what it would not.' },
+                { href: '/olympia/upgrade', title: 'For Node Operators', body: 'What Olympia would change for a node.' },
+                { href: '/olympia', title: 'Olympia Hub', body: 'The proposal across every ECIP.' },
+                { href: olympiaLinks.treasurySite, title: 'olympiatreasury.org', body: 'The treasury site.', external: true },
+                { href: ecipUrl(1112), title: 'ECIP-1112', body: 'Sovereignty Vault.', external: true },
+                { href: ecipUrl(1113), title: 'ECIP-1113', body: 'Olympia DAO Governance and Treasury.', external: true },
               ].map((c) =>
                 c.external ? (
                   <a

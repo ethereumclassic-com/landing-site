@@ -43,8 +43,8 @@ const threads: Array<{
         <em>ekecheiria</em>
         {' — the sacred Olympic truce — for the duration of the Panhellenic gathering, hostilities ceased across all of Greece. Olympia was neutral not because everyone agreed to make it neutral, but because it was sovereign to none. What endured at Olympia endured because no one owned it.'}
       </>,
-      "This is the parallel that matters for ETC. After a decade of being defined by what it endured — the DAO fork, hash wars, deprecation, the constant pressure to justify its existence — Olympia marks the shift from a chain that survives to a chain with permanent infrastructure. A treasury funded by the protocol itself. Development it funds directly — no foundation required. Governance on-chain, open to any ETC account. A legal wrapper subordinate to on-chain governance, not above it. Permanent infrastructure on permanent ground.",
-      'Ten years of conviction becomes shared infrastructure.',
+      "This is the parallel that matters for ETC. After a decade of being defined by what it endured — the DAO fork, hash wars, deprecation, the constant pressure to justify its existence — Olympia proposes the shift from a chain that survives to a chain with permanent infrastructure. A treasury funded by the network's own use. Development it would fund directly — no foundation required. Governance on-chain, in public. A legal wrapper downstream of that governance in authority, never above it. Permanent infrastructure on permanent ground.",
+      'Ten years of conviction, put forward as shared infrastructure.',
     ],
   },
   {
@@ -63,7 +63,7 @@ const threads: Array<{
     color: 'var(--color-info)',
     body: [
       'Olympia is a place of inheritance. The flame, the rites, the records — what was built by predecessors held in trust and passed forward across generations. The sanctuary endured because each generation accepted custody of what the last had built.',
-      'ETC inherits more than code. It inherits the original social contract of Ethereum — immutability, neutrality, code is law — held intact through a decade when those principles were traded away elsewhere. Olympia is where that inheritance stops being a memory and becomes a working system: a treasury that funds the principles, clients that implement them, governance that defends them.',
+      'ETC inherits more than code. It inherits the original social contract of Ethereum — immutability, neutrality, code is law — held intact through a decade when those principles were traded away elsewhere. Olympia proposes the point where that inheritance stops being a memory and becomes a working system: a treasury to fund the principles, clients to implement them, governance to defend them.',
       <>
         {'In '}
         <a
@@ -74,7 +74,7 @@ const threads: Array<{
         >
           August 2016
         </a>
-        {" — one month after the DAO fork — the earliest ETC core contributors held the chain's first public meetup in London. Sustainable funding and on-chain governance were named there as the two open administrative problems the network would need to solve. They remained the unfinished work of the next decade. Olympia is where that work concludes: protocol-funded development, on-chain governance, multi-client architecture realizing the ETC-native specifications drafted in 2018. The August 2016 question, answered in protocol."}
+        {" — one month after the DAO fork — the earliest ETC core contributors held the chain's first public meetup in London. Sustainable funding and on-chain governance were named there as the two open administrative problems the network would need to solve. They remained the unfinished work of the next decade. Olympia proposes to conclude it: protocol-funded development and on-chain governance. The August 2016 question, answered in protocol."}
       </>,
     ],
   },
@@ -86,9 +86,9 @@ const threads: Array<{
       'Olympia is the latest move in a decade-long pattern.',
       "In December 2016, when no major chain had committed to a deflationary monetary policy, ECIP-1017 set ETC's 5M20 schedule — a Bitcoin-style hard cap of 210,700,000 ETC, committed publicly thirteen months before activation. The position held. ETC has run on that policy for nearly a decade, and the broader market has since validated capped issuance as the property that makes a digital asset a credible store of value.",
       "When Ethereum signaled its move to proof-of-stake, ETC's stewards committed harder to proof-of-work — and prepared infrastructure to absorb what Ethereum would leave behind. Thanos (ECIP-1099) shifted to ETChash in 2020, halving DAG growth so 3GB and 4GB GPUs would remain viable. The 51% attack risk had been signaled years earlier by ECIP-1043 (2018). When the Merge came in 2022, ETC was the only major proof-of-work chain with full EVM execution, ready to receive the displaced hashrate. The position was built before it was needed.",
-      "The pattern repeats at every layer. EVM upgrades have always been absorbed on ETC's own schedule — observed on Ethereum, evaluated empirically, then incorporated through the ECIP process. Fusaka alignment in Olympia is not a rush to catch up. It is the next disciplined increment. Fukuii — the ETC-native execution client — realizes the Orbita specification ETCDEV drafted in 2018, on a Mantis codebase IOHK left behind. Two predecessor teams' work, preserved and shipped seven years after it was first specified.",
-      'Grayscale launched the ETCG trust in May 2018 — years before Bitcoin ETFs existed as a product category — and routed management fees into ETC Cooperative, which backed every hard fork from Atlantis through Spiral. The institutional access infrastructure was in place before the regulatory frameworks that would later make it valuable. CLARITY, GENIUS, MiCA, FSA Green List, MAS, SFC — every framework finalized in the past two years lands on properties ETC already has. The positioning was complete before the regulators arrived.',
-      "Olympia continues the pattern. The treasury captures the basefee — the value Ethereum was already burning, redirected on ETC to permanent on-chain funding. The Wyoming DAO LLC wrapper is filed because the statute now exists to receive it. As the ETC Cooperative's stewardship winds down, Grayscale's institutional bridge is aligned with the treasury design, ready to flow into permanent on-chain infrastructure. The PoW commitment hardens as nation-states begin treating proof-of-work as strategic energy infrastructure.",
+      "The pattern repeats at every layer. EVM upgrades have always been absorbed on ETC's own schedule — observed on Ethereum, evaluated empirically, then incorporated through the ECIP process. EVM alignment in Olympia is not a rush to catch up. It is the next disciplined increment.",
+      'Grayscale launched the ETCG trust in May 2018 — years before Bitcoin ETFs existed as a product category — and routed management fees into ETC Cooperative, which backed every hard fork from Atlantis through Spiral. The institutional access infrastructure was in place before the regulatory frameworks that would later make it valuable. GENIUS, MiCA, the FSA Green List, MAS, SFC — the frameworks finalized in the past two years land on properties ETC already has, and the CLARITY Act, still pending, positions it as a digital commodity candidate. The positioning was complete before the regulators arrived.',
+      "Olympia continues the pattern. Its treasury would take the base fee — the value Ethereum destroys — as permanent on-chain funding. The Wyoming DAO LLC that ECIP-1114 names as the wrapper it contemplates is registered because the statute now exists to receive it. The ETC Cooperative is winding down, and the PoW commitment hardens as nation-states begin treating proof-of-work as strategic energy infrastructure.",
       'This is what good stewardship looks like. Read the conditions ahead. Position the network before the conditions arrive. Let the rest of the market discover, years later, that the work was already done.',
       'The Eternals do not react. They position. Olympia is the latest move.',
     ],

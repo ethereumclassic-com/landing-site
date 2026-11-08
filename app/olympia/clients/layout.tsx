@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Client Readiness',
+  title: 'Olympia Client Readiness',
   description:
-    "How Ethereum Classic's clients get ready for Olympia: run Core-Geth's v1.13 line or Fukuii's latest release today, then take each client's Olympia release before activation.",
+    "No released client implements Olympia. What each client's maintainers publish about it, and what to run today: Core-Geth's v1.13 line, or Fukuii.",
 }
 
 export default function ClientsLayout({ children }: { children: React.ReactNode }) {

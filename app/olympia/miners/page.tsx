@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ecipUrl } from '@/lib/olympia-ecips'
 import { CURRENT_ERA, formatBlockReward, getBlockRewardForEra } from '@/app/research/data/emission'
 import { fetchNetworkFees, formatShare } from '@/lib/network-fees'
 
@@ -9,10 +10,10 @@ export const revalidate = 3600
 const ERAS_AHEAD = 4
 
 const flywheelSteps = [
-  { label: 'Funded development', desc: 'The Protocol Treasury pays for client maintenance, grants and ecosystem programs.' },
+  { label: 'Funded development', desc: 'Olympia DAO would fund client maintenance and ecosystem programs from the Treasury, by proposals its members vote on.' },
   { label: 'More applications', desc: 'Funded development attracts builders, and their applications bring users.' },
   { label: 'More transactions', desc: 'Active applications generate activity on-chain, and blocks start to fill.' },
-  { label: 'More fee revenue', desc: 'More transactions pay more basefee to the treasury and more priority fees to miners.' },
+  { label: 'More fee revenue', desc: 'More transactions would pay more base fee to the Treasury and more priority fees to miners.' },
   { label: 'More miners', desc: 'Higher total revenue makes mining more profitable, and hashrate grows.' },
   { label: 'More security', desc: 'Higher hashrate raises the cost of a 51% attack, and trust in the network grows.' },
   { label: 'More trust', desc: 'A secure, active network draws institutional use and more builders.' },
@@ -72,8 +73,8 @@ export default async function MinersPage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Block rewards and priority fees stay with miners. Olympia adds the EIP-1559 basefee, the
-            portion Ethereum burns, and directs it to the protocol treasury.
+            Block rewards and priority fees would stay with miners. Olympia proposes adding the EIP-1559
+            base fee, the portion Ethereum burns, and crediting it to the Olympia Treasury.
           </p>
         </div>
       </section>
@@ -156,13 +157,14 @@ export default async function MinersPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Olympia&apos;s Answer</h2>
           <div className="mt-4 space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
             <p>
-              Olympia adds the EIP-1559 basefee to Ethereum Classic and directs it to a Protocol Treasury,
-              where Ethereum burns it. Treasury income is small while blocks are nearly empty, and grows with
-              use of the network.
+              Olympia would add the EIP-1559 base fee to Ethereum Classic and credit it to the Olympia
+              Treasury, where Ethereum burns it. Treasury income would be small while blocks are nearly empty,
+              and would grow with use of the network.
             </p>
             <p>
-              The treasury funds development through on-chain governance: protocol teams, grant programs and
-              ecosystem incentives, paid for by the protocol rather than by donations.
+              Olympia DAO would fund development from it by on-chain proposals: client maintenance, network
+              security, infrastructure and ecosystem growth, paid for by the network&apos;s own use rather than
+              by donations.
             </p>
           </div>
 
@@ -179,7 +181,7 @@ export default async function MinersPage() {
               </div>
               <div className="flex items-center gap-3">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-[var(--color-warning)]" />
-                <span>Basefee → Protocol Treasury (burned on Ethereum)</span>
+                <span>Base fee → Olympia Treasury (burned on Ethereum)</span>
               </div>
             </div>
           </div>
@@ -212,17 +214,41 @@ export default async function MinersPage() {
         <div className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">The Miner&apos;s Stake</h2>
           <p>
-            Block rewards are unchanged, and priority fees go to miners. The basefee, which Ethereum burns,
-            pays for the development that brings use, and with it fee revenue, to Ethereum Classic.
+            Block rewards would be unchanged, and priority fees would go to miners. The base fee, which
+            Ethereum burns, would pay for the development that brings use, and with it fee revenue, to
+            Ethereum Classic.
           </p>
           <p>
-            Every transaction pays a basefee to the treasury and a priority fee to the miner who includes it.
+            Under Olympia, every transaction would pay a base fee to the Treasury and a priority fee to the
+            miner who includes it.
             A network whose transaction volume does not grow while its block reward keeps falling is not a
             long-term security model. It is a slow exit.
           </p>
           <p className="font-medium text-[var(--text-primary)]">
-            Olympia ties the funding of Ethereum Classic&apos;s development to the interests of the miners who
-            secure it.
+            Olympia would tie the funding of Ethereum Classic&apos;s development to the interests of the miners
+            who secure it.
+          </p>
+        </div>
+      </section>
+
+      {/* Paying miners from base-fee revenue */}
+      <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-3xl space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Paying Miners From Base-Fee Revenue</h2>
+          <p>
+            Two further ECIPs concern paying miners from that revenue, and neither changes the Olympia fork.{' '}
+            <a href={ecipUrl(1115)} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">
+              ECIP-1115
+            </a>{' '}
+            would do it through ordinary funding proposals, spreading what blocks&apos; base fees raised across a
+            window. No base fee is redirected by it, and nothing is owed to anyone until a proposal passes.
+          </p>
+          <p>
+            <a href={ecipUrl(1116)} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">
+              ECIP-1116
+            </a>{' '}
+            would pay a smoothed share at the consensus layer instead. It is a separate hard fork after Olympia,
+            scheduled only once ECIP-1115 has demonstrated a curve.
           </p>
         </div>
       </section>

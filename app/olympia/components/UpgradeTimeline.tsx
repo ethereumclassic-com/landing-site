@@ -61,7 +61,7 @@ export default function UpgradeTimeline({ forks }: UpgradeTimelineProps) {
                 ) : (
                   <div className="flex items-center gap-1.5 font-mono text-xs text-[var(--brand-green)]">
                     <span className="inline-block h-2 w-2 rounded-full bg-[var(--brand-green)] animate-pulse" />
-                    UPCOMING
+                    PROPOSED
                   </div>
                 )}
                 {fork.date && (

@@ -1,7 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { governanceFlow, type GovernanceStep } from '../data/olympia'
+import { governanceSteps, type GovernanceStep } from '../data/olympia'
+
+/** One icon per step of governanceSteps, in order. */
+const ICONS = ['FileText', 'Vote', 'Timer', 'Zap', 'Eye']
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -32,13 +35,14 @@ function IconSvg({ name, className }: { name: string; className?: string }) {
 }
 
 function FlowStep({ step, index }: { step: GovernanceStep; index: number }) {
+  const icon = ICONS[index] ?? 'FileText'
   return (
     <motion.div variants={fadeInUp} className="relative flex flex-col items-center text-center">
       <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)]">
-        <IconSvg name={step.icon} className="h-5 w-5 text-[var(--brand-green)]" />
+        <IconSvg name={icon} className="h-5 w-5 text-[var(--brand-green)]" />
       </div>
 
-      {index < governanceFlow.length - 1 && (
+      {index < governanceSteps.length - 1 && (
         <div className="absolute left-[calc(50%+24px)] top-6 hidden h-px w-[calc(100%-48px)] bg-gradient-to-r from-[var(--brand-green)]/30 to-[var(--border)] lg:block" />
       )}
 
@@ -59,12 +63,13 @@ export default function GovernanceStageComponent() {
       viewport={{ once: true, margin: '-50px' }}
     >
       <h2 className="text-2xl font-bold text-[var(--text-primary)]">From Proposal to Execution</h2>
-      <p className="mt-2 text-[var(--color-text-muted)]">
-        Five stages from idea to execution. Every step is on-chain, transparent, and auditable.
+      <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
+        As ECIP-1113 specifies it, a proposal would move through the stock OpenZeppelin Governor
+        lifecycle, every step on-chain and public.
       </p>
 
       <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-        {governanceFlow.map((step, i) => (
+        {governanceSteps.map((step, i) => (
           <FlowStep key={step.title} step={step} index={i} />
         ))}
       </div>

@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'On-Chain Governance',
+  title: 'Olympia DAO Governance',
   description:
-    'Treasury funding, Olympia DAO membership NFT voting, timelock security, and sanctions compliance for Ethereum Classic.',
+    'How Olympia DAO would govern the Treasury: CoreNFT membership, funding proposals, milestone tranches, sanctions screening and Ecosystem Growth DAOs.',
 }
 
 export default function GovernanceLayout({ children }: { children: React.ReactNode }) {

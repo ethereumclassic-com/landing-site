@@ -125,9 +125,9 @@ const threads: Array<{
         <strong>ECIP-1111 and ECIP-1112</strong>
         {' '}
         <em>(July 4, 2025 — Cody Burns, Chris Mercer)</em>
-        {': The third attempt learned from both. No miner tax. No block reward capture. No pre-selected beneficiaries. Instead: redirect the basefee — the portion of every transaction fee that EIP-1559 sends to be burned on Ethereum — to a protocol treasury on ETC. '}
+        {': The third attempt learned from both. No miner tax. No block reward capture. No pre-selected beneficiaries. Instead: credit the base fee — the portion of every transaction fee that EIP-1559 destroys on Ethereum — to a treasury on ETC. '}
         <em>What Ethereum incinerates, ETC accumulates.</em>
-        {' Miners are untouched. Block rewards are untouched. Any contributor can propose funding via OFP. Any ETC account can participate. The treasury contract is immutable — no admin keys, no upgrade mechanisms, custody separated from governance by design.'}
+        {' Miners are untouched. Block rewards are untouched. Funds would move only by proposals Olympia DAO\'s members vote on, in public, with no admin key, multisig or committee. The treasury\'s address would be permanent, and its logic repairable by proposal.'}
       </>,
       "The third attempt is also the first to arrive with institutional alignment. ETC Cooperative, the 501(c)(3) steward that backed every hard fork from Atlantis through Spiral, and Grayscale, whose ETCG trust has held ETC in regulated institutional custody since May 2018, were aligned with the treasury and governance design. The proposal that finally satisfies the community's funding question is the same proposal the chain's longest-standing institutional partners backed. The bridge from a decade of nonprofit and regulated-custody stewardship to permanent on-chain infrastructure is built in.",
       'Every principle ECIP-1051 and ECIP-1098 violated became a design constraint Olympia satisfies. The community said no twice, and meant it.',
@@ -150,18 +150,9 @@ const threads: Array<{
         >
           September 2016 Shanghai contributor roster
         </a>
-        {' and serving as technical lead across network upgrades since. He authored ECIP-1043 (Fixed DAG Limit, 2018), anticipating the GPU accessibility problem years before the 2020 attacks made it urgent — foresight that seeded Thanos (ECIP-1099, 2020), the ETChash transition that halved DAG growth and positioned ETC to absorb Ethereum\'s displaced Ethash hashrate at the Merge. At the 2022 Mystique upgrade, EIP-1559 was deliberately deferred — preserving the design space that the 2021 developer consensus had mapped to a treasury model, formalized four years later as Olympia. The Fukuii client he maintains is built on IOHK\'s abandoned Mantis codebase and realizes the ETC-native execution client ETCDEV specified as '}
-        <a
-          href="https://www.slideshare.net/slideshow/etc-summit-18/115722695"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80"
-        >
-          Orbita in 2018
-        </a>
-        {' before their collapse — lineage from two predecessor teams, delivered in one client. He co-authored Olympia ECIPs 1111 through 1114.'}
+        {' and serving as technical lead across network upgrades since. He authored ECIP-1043 (Fixed DAG Limit, 2018), anticipating the GPU accessibility problem years before the 2020 attacks made it urgent — foresight that seeded Thanos (ECIP-1099, 2020), the ETChash transition that halved DAG growth and positioned ETC to absorb Ethereum\'s displaced Ethash hashrate at the Merge. At the 2022 Mystique upgrade, EIP-1559 was deliberately deferred — preserving the design space that the 2021 developer consensus had mapped to a treasury model, formalized four years later as Olympia. The Fukuii client he maintains, through Chippr Robotics LLC, continues IOHK\'s Mantis client. He co-authored the Olympia ECIPs 1111 through 1119.'}
       </>,
-      "Chris Mercer has been a core contributor since Ethereum Classic's first year, active across governance, client development, and the application layer. He built Twitter-Together after IOHK's exit — a GitHub-controlled community account system that prevented any single organization from capturing ETC's social infrastructure again. He proposed the Wyoming DAO LLC legal wrapper: the first legal entity in ETC history explicitly subordinate to an on-chain DAO. From 2022 to 2025 he deployed ETC's foundational DeFi stack: an AMM DEX, Classic USD (the first MiCA and GENIUS Act-compliant stablecoin on a proof-of-work network), a CLMM DEX, and a launchpad. He co-authored Olympia ECIPs 1111 through 1114, contributing on the governance and application layer architecture alongside Burns on the client and protocol work.",
+      "Chris Mercer has been a core contributor since Ethereum Classic's first year, active across governance, client development, and the application layer. He built Twitter-Together after IOHK's exit — a GitHub-controlled community account system that prevented any single organization from capturing ETC's social infrastructure again. He proposed the Wyoming DAO LLC that ECIP-1114 names as the legal wrapper it contemplates for Olympia DAO, downstream of it in authority. From 2022 to 2025 he deployed ETC's foundational DeFi stack: an AMM DEX, Classic USD (issued by Brale, and aligned with MiCA and the GENIUS Act), a CLMM DEX, and a launchpad. He co-authored the Olympia ECIPs 1111 through 1119, contributing on the governance and application layer architecture alongside Burns on the client and protocol work.",
       'They are part of the story, not the whole of it.',
       'In summer 2020, three 51% attacks hit ETC in rapid succession. No foundation rescue. No corporate intervention. The community coordinated emergency responses across time zones. The fixes — Thanos (ECIP-1099) in the protocol and MESS (ECBP-1100) in the clients — stopped the attacks. The lesson from 2020: the risks had been signaled years earlier by ECIP-1043, but underfunding had left them unaddressed until the cost of waiting became undeniable. Only sustainable protocol funding can make ETC proactive rather than reactive.',
       'The Olympia ECIPs (1111 through 1114) were published on July 4, 2025. For the first time, Ethereum Classic had a fully specified, non-inflationary, protocol-native funding proposal — one that had learned from every failure before it.',
@@ -175,7 +166,7 @@ const threads: Array<{
       "For a decade, a consistent thread ran through Ethereum Classic community dialogue: ETC would not only survive — it would be vindicated by the adoption of the EVM stack. While Ethereum moved to proof-of-stake, ETC held its ground. The bet was that the EVM would become the dominant execution environment for global smart contracts, and that the only proof-of-work chain on that stack would eventually be recognized for what it is.",
       "That bet is settled. The EVM stack won. Wallets, tooling, libraries, compiler toolchains, developer knowledge — all converged on the EVM as the universal interface for programmable money. Every major L2, every alternative L1 that achieved real adoption, every institutional deployment ultimately spoke EVM. ETC's position — PoW consensus, EVM execution, no pre-mine, no ICO, decentralized governance — became more compelling with every passing year, not less.",
       'The implication is structural. There is exactly one proof-of-work chain with full EVM execution and a credible decade of operational history. No new chain can manufacture that profile. The combination is not reproducible by capital or by launch — it can only be preserved by a network that already has it.',
-      'Olympia is the moment that ten-year thesis is realized in protocol infrastructure. ECIP-1121 delivers EVM alignment through Fusaka and carries it into Glamsterdam. ECIP-1111 captures basefee revenue. ECIP-1112 puts that revenue under on-chain governance. The EVM bet paid off. Olympia is the payout.',
+      'Olympia proposes to carry that thesis into protocol infrastructure. ECIP-1121 would align the EVM through Fusaka and carry that work into Glamsterdam, ECIP-1111 would credit the base fee to a treasury rather than destroy it, and ECIP-1113 would put that revenue under on-chain governance.',
       <>
         {'The administrative problems the founding contributors listed as "in discussion" at the '}
         <a
@@ -186,7 +177,7 @@ const threads: Array<{
         >
           August 2016 London meetup
         </a>
-        {' — governance model, fundraising plan — close as protocol mechanics in May 2026. The discussion ends. The system runs.'}
+        {' — governance model, fundraising plan — are the questions Olympia proposes to answer in protocol.'}
       </>,
     ],
   },
@@ -196,7 +187,7 @@ const threads: Array<{
     color: 'var(--color-purple)',
     body: [
       "ETC's first decade was defined by what it endured. The second begins from a different position entirely.",
-      "The first decade was held together by ETC Cooperative's institutional commitment and by the Grayscale ETCG trust, which built the earliest regulated institutional access product for any proof-of-work smart contract network. That foundation reached far enough to deliver Olympia — protocol-funded development through an immutable treasury, multi-client architecture, on-chain governance, and a legal wrapper subordinate to that governance. The stopgap held long enough for the permanent infrastructure to be built.",
+      "The first decade was held together by ETC Cooperative's institutional commitment and by the Grayscale ETCG trust, which built the earliest regulated institutional access product for any proof-of-work smart contract network. That foundation held long enough for Olympia to be proposed: protocol-funded development through a treasury at a permanent address, on-chain governance, and a legal wrapper downstream of that governance in authority.",
       <>
         {'What comes next belongs on a different page. '}
         <em>Why Olympia arrives on time</em>
@@ -224,8 +215,8 @@ const timeline = [
   { year: '2021', events: 'Magneto — Berlin parity · 2021 treasury model developer consensus' },
   { year: '2022', events: 'Mystique — EIP-1559 deliberately deferred · Ethereum Merge · ETC absorbs Ethash hashrate' },
   { year: '2024', events: 'Spiral — Shanghai partial parity · ETC Coop reserves near exhausted' },
-  { year: '2025', events: 'Olympia ECIPs published (July 4) · GENIUS Act signed (July 18) · Classic USD live as compliant stablecoin' },
-  { year: '2027', events: 'Olympia upgrade activation (targeted) — Glamsterdam-era EVM + EIP-1559 + DAO governance' },
+  { year: '2025', events: 'Olympia ECIPs published (July 4) · GENIUS Act signed (July 18) · Classic USD live on ETC mainnet' },
+  { year: '2027', events: 'Olympia mainnet activation targeted, as a proposal · EVM alignment through Glamsterdam · EIP-1559 · Olympia DAO' },
 ]
 
 export default function OlympiaHistoryPage() {

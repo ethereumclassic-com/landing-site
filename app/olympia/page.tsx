@@ -1,93 +1,96 @@
-'use client'
-
 import Link from 'next/link'
-import OlympiaCountdown from './components/OlympiaCountdown'
-import OlympiaRoadmap from './components/OlympiaRoadmap'
-import GovernanceStageComponent from './components/GovernanceStage'
 import { FAQAccordion } from '@/app/components/sections/FAQAccordion'
-import { faqs as olympiaFAQ, olympiaLinks } from './data/olympia'
+import { FadeIn, SectionDivider } from '@/app/components/ui'
+import { ecipUrl } from '@/lib/olympia-ecips'
+import ActivationOrder from './components/ActivationOrder'
+import EcipSet from './components/EcipSet'
+import ForkTimeline from './components/ForkTimeline'
+import GovernanceStageComponent from './components/GovernanceStage'
+import LegalWrapper from './components/LegalWrapper'
+import OlympiaCountdown from './components/OlympiaCountdown'
+import OlympiaStatusBadge from './components/OlympiaStatusBadge'
+import { faqs, olympiaLinks, OLYMPIA_TARGET } from './data/olympia'
 
-const howItWorks = [
+const ECIPS_REPO_URL = 'https://github.com/ethereumclassic/ECIPs'
+
+const changes = [
   {
-    title: 'Basefee Revenue',
-    description:
-      'Every transaction pays a basefee via EIP-1559. The basefee is directed to the Treasury. Block rewards and tips remain completely untouched. Miners are unaffected.',
-    color: 'var(--color-warning)',
+    label: 'EVM alignment (ECIP-1121)',
+    body: 'Advances the execution layer through Dencun, Pectra and Fusaka, and carries that work into Glamsterdam.',
   },
   {
-    title: 'Protocol Treasury',
-    description:
-      'Protocol-managed vault. The basefee arrives automatically at block finalization; holders and miners can add to it voluntarily, by sending ETC or by pointing a coinbase at the address. Real-time monitoring via public dashboard.',
-    color: 'var(--brand-green)',
+    label: 'A base fee market (ECIP-1111)',
+    body: 'EIP-1559 and EIP-3198, with the base fee credited to a permanent address where Ethereum destroys it. Block rewards and priority-fee tips are unaffected.',
   },
   {
-    title: 'On-Chain Governance',
-    description:
-      'On-chain governance via the OpenZeppelin Governor 5.x contract suite. The Olympia DAO makes the binding decisions (security maintenance, EVM parity, client funding, and treasury allocation) using non-transferable membership NFTs. Futarchy prediction markets are an open signal layer on top, informing those decisions without determining or executing them. All on-chain and auditable.',
-    color: 'var(--color-info)',
+    label: 'A treasury and its governance (ECIP-1112, ECIP-1113)',
+    body: 'The Sovereignty Vault address, and Olympia DAO, the only route by which the balance there could be spent.',
   },
+]
+
+const sites = [
+  { href: olympiaLinks.olympiaDAO, name: 'olympiadao.org', body: 'Olympia DAO’s own site.' },
+  { href: olympiaLinks.governanceApp, name: 'app.olympiadao.org', body: 'The governance app, where proposals would be submitted and voted on once Olympia DAO is operating.' },
+  { href: olympiaLinks.treasurySite, name: 'olympiatreasury.org', body: 'The treasury site.' },
+  { href: olympiaLinks.olympiaGitHub, name: 'github.com/olympiadao', body: 'The source of the governance contracts.' },
+  { href: olympiaLinks.ethereumClassicDAO, name: 'ethereumclassicdao.org', body: 'Ethereum Classic DAO LLC, which maintains and funds Ethereum Classic’s public goods today as their funder of last resort.' },
+]
+
+const pages = [
+  { href: '/olympia/upgrade', title: 'For Node Operators', body: 'What Olympia would ask of a node, and every EIP ECIP-1121 classifies.' },
+  { href: '/olympia/treasury', title: 'The Treasury', body: 'The Sovereignty Vault address, how the base fee would reach it, and who could spend it.' },
+  { href: '/olympia/governance', title: 'Governance', body: 'Olympia DAO, funding proposals, and the Ecosystem Growth DAOs it could fund.' },
+  { href: '/olympia/miners', title: 'Miners and Fees', body: 'What the base fee would change for miners, and what it would not.' },
+  { href: '/olympia/clients', title: 'Client Readiness', body: 'What each client’s maintainers publish about Olympia.' },
+  { href: '/olympia/history', title: 'A Decade of Conviction', body: 'The funding history that led to the proposal.' },
+  { href: '/olympia/etymology', title: 'Etymology and Lore', body: 'Where the name comes from.' },
 ]
 
 export default function OlympiaHubPage() {
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div
-          className="relative mx-auto max-w-4xl text-center"
-        >
-          <div className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
-              Network Upgrade
-            </span>
-          </div>
-
-          <h1
-            className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl"
-          >
-            <span className="bg-gradient-to-r from-[var(--brand-green)] to-[var(--color-success)] bg-clip-text text-transparent">
-              Olympia
-            </span>
+      {/* Hero */}
+      <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-20 lg:px-12">
+        <div className="relative mx-auto max-w-4xl">
+          <OlympiaStatusBadge />
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl lg:text-6xl">
+            The <span className="text-[var(--brand-green)]">Olympia</span> Upgrade
           </h1>
-
-          <p
-            className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
-          >
-            Active protocol development for Ethereum Classic: EVM modernization, maintained
-            clients, and funded development through sustainable basefee revenue.
+          <p className="mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            Olympia is a proposed upgrade to Ethereum Classic, {OLYMPIA_TARGET}. Its ECIPs are drafts, and{' '}
+            <a
+              href={ECIPS_REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 transition-colors hover:text-[var(--text-primary)]"
+            >
+              the ECIPs repository
+            </a>{' '}
+            is the authority on what it specifies.
           </p>
-
-          <ul
-            className="mx-auto mt-6 max-w-2xl space-y-2 text-left text-sm text-[var(--color-text-muted)]"
-          >
-            {[
-              'Glamsterdam-era EVM alignment: parity with every Ethereum tool, library, and framework',
-              'EIP-1559 fee market: predictable gas pricing, basefee revenue redirected to protocol treasury',
-              'Protocol treasury: sustainable funding without new token issuance or miner reward changes',
-              'Institutional infrastructure: the Proof-of-Work foundation for regulated stablecoin issuance (Classic USD, MiCA and GENIUS Act-compliant), digital commodity classification under the CLARITY Act, and the broadest cross-jurisdictional institutional access profile of any Proof-of-Work smart contract network',
-            ].map((point) => (
-              <li key={point} className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-green)]" />
-                {point}
+          <ul className="mt-6 max-w-2xl space-y-3 text-sm text-[var(--color-text-muted)]">
+            {changes.map((c) => (
+              <li key={c.label} className="flex gap-3">
+                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand-green)]" />
+                <span>
+                  <span className="font-semibold text-[var(--text-primary)]">{c.label}:</span> {c.body}
+                </span>
               </li>
             ))}
           </ul>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/olympia/clients"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-all hover:bg-[var(--brand-green)]/90 hover:shadow-lg hover:shadow-[color:var(--brand-green)]/25"
-            >
-              View Clients
-            </Link>
-            <a
-              href={olympiaLinks.olympiaDAO}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
-            >
-              OlympiaDAO.org
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium">
+            <a href="#activation" className="text-[var(--brand-green)] transition hover:text-[var(--text-primary)]">
+              Activation ↓
             </a>
+            <Link href="/olympia/treasury" className="text-[var(--brand-green)] transition hover:text-[var(--text-primary)]">
+              The Treasury →
+            </Link>
+            <Link href="/olympia/governance" className="text-[var(--brand-green)] transition hover:text-[var(--text-primary)]">
+              Governance →
+            </Link>
+            <Link href="/olympia/upgrade" className="text-[var(--brand-green)] transition hover:text-[var(--text-primary)]">
+              For node operators →
+            </Link>
           </div>
         </div>
       </section>
@@ -99,472 +102,172 @@ export default function OlympiaHubPage() {
         </div>
       </section>
 
-      {/* What Olympia Changes — ECIP Explainer */}
-      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div
-          >
-            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
-              What Olympia Changes
-            </h2>
-            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Four client-facing ECIPs that modernize the protocol in a single coordinated upgrade.
-            </p>
+      <SectionDivider />
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {[
-                {
-                  ecip: 'ECIP-1111',
-                  title: 'EIP-1559 Fee Market',
-                  description:
-                    'The most widely adopted transaction format in the EVM ecosystem, now on Ethereum Classic. Dynamic gas pricing delivers predictable fees. Unlike Ethereum where basefee is burned, ETC redirects it to the protocol treasury. Miner block rewards and tips remain completely untouched.',
-                  color: 'var(--color-warning)',
-                },
-                {
-                  ecip: 'ECIP-1112',
-                  title: 'Protocol Treasury',
-                  description:
-                    'A protocol-controlled vault funded by basefee revenue and voluntary contributions. Institutions, developers, and stakeholders can fund Ethereum Classic core development without fielding their own team. No admin keys, no multisig. Only on-chain governance can release funds.',
-                  color: 'var(--brand-green)',
-                },
-                {
-                  ecip: 'ECIP-1121',
-                  title: 'Glamsterdam EVM Alignment',
-                  description:
-                    'Building on Mystique and Spiral, Olympia delivers the remaining EVM execution-layer improvements from Dencun, Pectra, and Fusaka — every improvement independent of Proof-of-Stake and blob data availability — and carries that work into Glamsterdam. Exchanges and wallets gain modern RPC compatibility. Developers gain full access to every current Ethereum tool, library, and framework. One codebase, every EVM chain.',
-                  color: 'var(--color-info)',
-                },
-                {
-                  ecip: 'ECIP-1122',
-                  title: 'Network Security Client Configuration',
-                  description: 'Chain configuration rather than consensus rules: a MIN_MINER_TIP of 1 gwei, which with the ECIP-1111 basefee floor of 1 gwei sets a 2 gwei minimum gas price so miner revenue cannot reach zero once the basefee is redirected, and a network-authoritative gas target that overrides operator --miner.gaslimit. A client omitting these gives weaker guarantees but does not fork.',
-                  color: 'var(--color-purple)',
-                },
-              ].map((item) => (
-                <div
-                  key={item.ecip}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--brand-green)]/20"
-                >
-                  <div className="mb-3 flex items-center gap-3">
-                    <div className="h-1 w-12 rounded-full" style={{ backgroundColor: item.color }} />
-                    <a href={`https://ecips.ethereumclassic.org/ECIPs/${item.ecip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-2.5 py-0.5 font-mono text-[10px] text-[var(--brand-green)] transition-opacity hover:opacity-80">{item.ecip}</a>
-                  </div>
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ECIP-1121 EVM Deep Dive */}
-      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div
-          >
-            <div>
-              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-2.5 py-0.5 font-mono text-[10px] text-[var(--brand-green)] transition-opacity hover:opacity-80">ECIP-1121</a>
-            </div>
-            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
-              EVM Compatibility in Detail
-            </h2>
-            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Four Ethereum upgrade cycles reach ETC in a single fork. Dencun, Pectra and Fusaka arrive complete &mdash; everything in them that is independent of Proof-of-Stake and blob data availability &mdash; and Glamsterdam opens with eth/70 and the deterministic CREATE2 factory.
-            </p>
-
-            {/* Fork Timeline */}
-            <div className="mt-8 mb-6 relative">
-              <div className="hidden md:block absolute top-[22px] left-[calc(12.5%-1px)] right-[calc(12.5%-1px)] h-px bg-[var(--brand-green)]/30" />
-              <div className="flex flex-col md:flex-row gap-6 md:gap-0 md:justify-between">
-                {[
-                  { name: 'Dencun', fullName: 'Cancun-Deneb', year: '2024', eips: ['EIP-1153', 'EIP-2935', 'EIP-5656'] },
-                  { name: 'Pectra', fullName: 'Prague-Electra', year: '2025', eips: ['EIP-2537', 'EIP-6780', 'EIP-7702'] },
-                  { name: 'Fusaka', fullName: 'Fulu-Osaka', year: '2025', eips: ['EIP-7623', 'EIP-7642', 'EIP-7823', 'EIP-7825', 'EIP-7939', 'EIP-7951'] },
-                  { name: 'Glamsterdam', fullName: 'Gloas-Amsterdam', year: '2026', eips: ['EIP-7975', 'EIP-7997'] },
-                ].map((fork, i, arr) => (
-                  <div key={fork.name} className="relative flex md:flex-col md:items-center md:w-1/4 gap-4 md:gap-0">
-                    {i < arr.length - 1 && (
-                      <div className="md:hidden absolute left-[17px] top-[38px] bottom-[-22px] w-px bg-[var(--brand-green)]/30" />
-                    )}
-                    <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--brand-green)]/40 bg-[var(--brand-green-subtle)] font-mono text-xs font-bold text-[var(--brand-green)] relative z-10">
-                      {String(i + 1).padStart(2, '0')}
-                    </div>
-                    <div className="md:mt-4 md:text-center">
-                      <p className="font-semibold text-sm text-[var(--text-primary)]">{fork.name}</p>
-                      <p className="text-xs text-[var(--color-text-muted)]">{fork.fullName} · {fork.year}</p>
-                      <div className="mt-2 flex flex-wrap gap-1 md:justify-center">
-                        {fork.eips.map((eip) => (
-                          <a key={eip} href={`https://eips.ethereum.org/EIPS/${eip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="rounded bg-[var(--color-violet-bg)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-violet)] transition-colors hover:bg-[var(--color-violet)]/15 hover:text-[var(--color-violet)]/80">
-                            {eip}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Divergence callout */}
-            <div className="mb-8 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-5 text-sm text-[var(--color-text-secondary)]">
-              Ethereum Classic implemented partial London EIPs in Mystique (2022) and partial Shanghai EIPs in Spiral (2024), deliberately deferring the EIP-1559 fee market for independent governance design.
-              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1111" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1111</a>{' '}
-              now delivers those deferred London EIPs.{' '}
-              <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1121" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80">ECIP-1121</a>{' '}
-              advances the execution layer through Dencun, Pectra, and Fusaka: every EVM improvement that is independent of Proof-of-Stake and blob data availability.
-              It opens Glamsterdam with eth/70 and the deterministic CREATE2 factory, so contracts deploy to the same address on ETC as on every other EVM chain.
-            </div>
-
-            {/* EIP Categories */}
-            <div className="mb-6 grid gap-4 sm:grid-cols-2">
-              {[
-                {
-                  title: 'Gas & State Access',
-                  color: 'var(--color-info)',
-                  eips: ['EIP-7623', 'EIP-7702', 'EIP-7823', 'EIP-7825', 'EIP-7883', 'EIP-7935'],
-                  description: 'Account delegation for EOAs, higher calldata cost, a per-transaction gas cap, MODEXP input bounds and repricing, and a 60M network-authoritative gas target. Prices data and computation closer to their real cost, and enables smart account patterns without protocol changes.',
-                },
-                {
-                  title: 'EVM Safety',
-                  color: 'var(--color-warning)',
-                  eips: ['EIP-6780', 'EIP-7910', 'EIP-7934', 'EIP-7997'],
-                  description: 'SELFDESTRUCT restricted to deployment context, an RLP block size limit, the eth_config RPC method, and the deterministic CREATE2 factory predeploy at the same address as every other EVM chain. Makes contract behavior more predictable and reduces attack surface.',
-                },
-                {
-                  title: 'Cryptographic Precompiles',
-                  color: 'var(--color-purple)',
-                  eips: ['EIP-2537', 'EIP-7951'],
-                  description: 'BLS12-381 pairing operations for ZK-friendly proof verification, P256VERIFY for WebAuthn and passkey authentication. Native cryptographic primitives for privacy and identity.',
-                },
-                {
-                  title: 'Execution Context',
-                  color: 'var(--brand-green)',
-                  eips: ['EIP-1153', 'EIP-2935', 'EIP-5656', 'EIP-7939'],
-                  description: 'MCOPY for efficient memory operations, CLZ opcode for leading-zero counting, historical block hashes in state, and transient storage TSTORE/TLOAD. Unlocks reentrancy guards, flash loans, and cross-contract patterns without persistent storage.',
-                },
-                {
-                  title: 'Networking',
-                  color: 'var(--color-violet)',
-                  eips: ['EIP-7642', 'EIP-7975'],
-                  description: 'eth/69 retains total difficulty for Proof-of-Work chain selection and drops receipt bloom filters; eth/70 adds paginated receipts for blocks above the p2p size limit. Both activate through devp2p capability negotiation rather than a hard fork.',
-                },
-              ].map((cat) => (
-                <div
-                  key={cat.title}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/20"
-                >
-                  <div className="mb-3 flex items-center gap-3">
-                    <div className="h-1 w-12 rounded-full" style={{ backgroundColor: cat.color }} />
-                    <h3 className="text-sm font-semibold text-[var(--text-primary)]">{cat.title}</h3>
-                  </div>
-                  <div className="mb-3 flex flex-wrap gap-1">
-                    {cat.eips.map((eip) => (
-                      <a key={eip} href={`https://eips.ethereum.org/EIPS/${eip.toLowerCase()}`} target="_blank" rel="noopener noreferrer" className="rounded bg-[var(--color-violet-bg)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-violet)] transition-colors hover:bg-[var(--color-violet)]/15 hover:text-[var(--color-violet)]/80">
-                        {eip}
-                      </a>
-                    ))}
-                  </div>
-                  <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{cat.description}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Blobs excluded note */}
-            <p className="mb-8 text-xs text-[var(--color-text-muted)] italic">
-              Explicitly excluded: all blob-dependent EIPs (EIP-4844, EIP-7516, EIP-7691). Ethereum Classic is a pure Layer 1 execution chain with no data availability requirement. Blobs are L2 scaffolding ETC does not need.
-            </p>
-
-            {/* Developer tooling */}
-            <h3 className="mb-4 text-base font-semibold text-[var(--text-primary)]">
-              Developer Tooling — Works Without Modification
-            </h3>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                { name: 'Solidity 0.8.x+', description: 'All recent compiler versions produce compatible bytecode for ETC without modification.' },
-                { name: 'Foundry / Hardhat', description: 'Standard EVM testing and deployment toolchains work on ETC without ETC-specific forks or patches.' },
-                { name: 'wagmi / viem / ethers.js', description: 'Standard wallet libraries and RPC types work on ETC without patching or overrides. One codebase, every EVM chain.' },
-              ].map((tool) => (
-                <div
-                  key={tool.name}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 transition hover:border-[var(--brand-green)]/20"
-                >
-                  <p className="mb-1 text-sm font-semibold text-[var(--text-primary)]">{tool.name}</p>
-                  <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">{tool.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Global Regulatory Recognition */}
-      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div
-          >
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--brand-green)]">
-                Regulatory Positioning
-              </span>
-            </div>
-            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">
-              Global Regulatory Recognition
-            </h2>
-            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Ethereum Classic has received formal regulatory classification across four major jurisdictions.
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  framework: 'CLARITY Act',
-                  classification: 'Digital Commodity',
-                  detail: 'CFTC · United States',
-                  description:
-                    'Classified as a digital commodity under CFTC jurisdiction. Proof-of-Work consensus is the defining characteristic for commodity status under US digital asset legislation.',
-                },
-                {
-                  framework: 'GENIUS Act',
-                  classification: 'Stablecoin Platform',
-                  detail: 'United States',
-                  description:
-                    'The only Proof-of-Work EVM platform for regulated stablecoin deployment under the GENIUS Act. Positions ETC as the immutable settlement layer for compliant digital dollar infrastructure.',
-                },
-                {
-                  framework: 'MiCA',
-                  classification: 'Decentralized Asset',
-                  detail: 'European Union',
-                  description:
-                    'Classified as a decentralized crypto-asset under MiCA, exempt from issuer obligations as a fully decentralized protocol with no central issuer or controlling party.',
-                },
-                {
-                  framework: 'FSA Green List',
-                  classification: 'Recognized Asset',
-                  detail: 'Japan',
-                  description:
-                    'Recognized crypto-asset on the FSA Green List via JVCEA. Enables fast-track listing across all Japanese regulated exchanges without additional review requirements.',
-                },
-              ].map((item) => (
-                <div
-                  key={item.framework}
-                  className="flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-5"
-                >
-                  <div className="mb-3 h-0.5 w-8 rounded-full bg-[var(--brand-green)]" />
-                  <p className="text-xs font-mono text-[var(--color-text-muted)]">{item.framework}</p>
-                  <p className="mt-1 text-base font-semibold text-[var(--text-primary)]">{item.classification}</p>
-                  <p className="mt-0.5 text-xs text-[var(--brand-green)]">{item.detail}</p>
-                  <p className="mt-3 flex-1 text-xs leading-relaxed text-[var(--color-text-muted)]">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Olympia Upgrade Callout */}
-      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
+      {/* The ECIPs */}
+      <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <div
-          >
-            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
-              The Olympia Upgrade
-            </h2>
-            <div
-              className="mt-4 space-y-4 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-8 text-base leading-relaxed text-[var(--color-text-secondary)]"
+          <FadeIn>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">The ECIPs</h2>
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
+              The Olympia proposal, under each ECIP&rsquo;s own title, by when each would take effect.
+            </p>
+            <div className="mt-8">
+              <EcipSet />
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Activation */}
+      <section id="activation" className="scroll-mt-24 px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-5xl">
+          <FadeIn>
+            <h2 className="mb-4 text-2xl font-bold text-[var(--text-primary)]">Activation</h2>
+            <ActivationOrder />
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* EVM alignment */}
+      <section className="px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn>
+            <a
+              href={ecipUrl(1121)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] px-2.5 py-0.5 font-mono text-[10px] text-[var(--brand-green)] transition-opacity hover:opacity-80"
             >
-              <p>
-                Olympia is Ethereum Classic&rsquo;s most significant protocol upgrade. Three changes arrive in a single activation: Glamsterdam-era EVM alignment, EIP-1559 fee market, and a protocol-managed treasury.
-              </p>
-              <p>
-                The headline change is Glamsterdam-era EVM parity &mdash; closing years of execution-layer divergence from Ethereum in a single fork. Every Solidity compiler version, every deployment tool (Foundry, Hardhat), and every major library (wagmi, viem, ethers.js) works on ETC without modification, patching, or ETC-specific overrides. One codebase deploys to every EVM chain. ETC could not credibly claim this before Olympia. After Olympia, it can.
-              </p>
-              <p>
-                The EIP-1559 fee market redirects the basefee &mdash; value that would otherwise be destroyed &mdash; to a protocol-managed treasury. Block rewards and tips remain completely untouched and go entirely to miners. Anyone can submit proposals on-chain. Members vote on resource allocation and execute decisions. Every step is transparent and verifiable on-chain.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div
-          >
-            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
-              How It Works
-            </h2>
+              ECIP-1121
+            </a>
+            <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">EVM Alignment</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Funded by basefee revenue, not inflation. Block rewards and tips remain untouched.
+              Spiral, in 2024, brought Ethereum Classic&rsquo;s execution layer up to Ethereum&rsquo;s Shanghai
+              set, apart from what Proof-of-Stake requires and the London fee market Mystique omitted. ECIP-1111
+              would bring that fee market, and ECIP-1121 classifies every execution-layer EIP of the four Ethereum
+              upgrades since Shanghai, giving each one disposition.
             </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {howItWorks.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition hover:border-[var(--brand-green)]/20"
-                >
-                  <div
-                    className="mb-3 h-1 w-12 rounded-full"
-                    style={{ backgroundColor: item.color }}
-                  />
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
+            <div className="mt-8">
+              <ForkTimeline />
             </div>
+            <div className="mt-8 max-w-3xl rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-5 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+              Tooling that assumes EIP-1559 needs a path of its own for Ethereum Classic today. ECIP-1111
+              records that Foundry sends a type-2 transaction to any chain its legacy registry does not name,
+              Ethereum Classic among them, so a deployment here passes <code className="font-mono">--legacy</code>.
+              Activating EIP-1559 would remove that path rather than document it.
+            </div>
+            <p className="mt-6 text-sm">
+              <Link href="/olympia/upgrade#eips" className="font-medium text-[var(--brand-green)] hover:underline">
+                Every EIP ECIP-1121 classifies, by disposition →
+              </Link>
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Treasury and governance */}
+      <section className="px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <FadeIn>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">The Treasury and Olympia DAO</h2>
+            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
+              The base fee would accumulate at one permanent address, the Sovereignty Vault, where a stock
+              OpenZeppelin proxy would hold it as the Olympia Treasury (ECIP-1112, ECIP-1113). Olympia DAO would
+              be the only route by which that balance could be spent: a funding proposal voted by its members,
+              queued in the Timelock and executed after a public delay. There would be no admin key, multisig or
+              committee.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium">
+              <Link href="/olympia/treasury" className="text-[var(--brand-green)] hover:underline">
+                The Treasury →
+              </Link>
+              <Link href="/olympia/governance" className="text-[var(--brand-green)] hover:underline">
+                Governance →
+              </Link>
+            </div>
+          </FadeIn>
+          <div className="mt-12">
+            <GovernanceStageComponent />
           </div>
         </div>
       </section>
 
-      {/* Governance Process */}
-      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <GovernanceStageComponent />
-        </div>
-      </section>
+      <SectionDivider />
 
-      {/* Olympia Roadmap */}
-      <section className="px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div className="mx-auto max-w-3xl">
-          <OlympiaRoadmap />
-        </div>
-      </section>
-
-      {/* Coordinating Organizations */}
-      <section className="border-y border-[var(--border)] bg-[var(--panel)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
+      {/* The DAO's line */}
+      <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
-          <div
-          >
-            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
-              Coordinating Organizations
-            </h2>
-            <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Coordinating organizations working together to govern and advance the Ethereum Classic network.
-            </p>
+          <FadeIn>
+            <LegalWrapper />
+          </FadeIn>
+        </div>
+      </section>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {[
-                {
-                  name: 'Ethereum Classic',
-                  role: 'Network Protocol',
-                  description: 'The largest Proof-of-Work smart contract platform. Coordinating network upgrades to maintain EVM parity and modern tooling.',
-                  href: 'https://ethereumclassic.com',
-                },
-                {
-                  name: 'Olympia Treasury',
-                  role: 'Protocol-Funded Treasury',
-                  description: 'Basefee revenue creates sustainable protocol funding. Real-time treasury monitoring via public dashboard.',
-                  href: olympiaLinks.treasuryDashboard,
-                },
-                {
-                  name: 'Olympia DAO',
-                  role: 'On-Chain Governance',
-                  description: 'Olympia DAO membership NFTs for critical protocol decisions, futarchy prediction markets for public participation. All on-chain on Ethereum Classic.',
-                  href: olympiaLinks.olympiaDAO,
-                },
-                {
-                  name: 'Ethereum Classic DAO LLC',
-                  role: 'Legal Entity',
-                  description: 'The Wyoming DAO LLC that maintains and funds Ethereum Classic\'s public goods today as their funder of last resort, with Ethereum Classic\'s core developers and community contributors doing the work, and the legal wrapper for the Olympia DAO. It does not control or lead Ethereum Classic.',
-                  href: olympiaLinks.ethereumClassicDAO,
-                },
-                {
-                  name: 'ETC Cooperative',
-                  role: 'Protocol Steward, 2017 to 2024',
-                  description: 'US 501(c)(3) non-profit that funded Ethereum Classic\'s core client development from 2017, backing every hard fork, every client release, and every cross-client coordination effort through Spiral in 2024. It entered maintenance mode at the end of 2024 and is winding down, and the public goods it maintained continue in the ethereumclassic GitHub organization.',
-                  href: olympiaLinks.etcCooperative,
-                },
-                {
-                  name: 'Grayscale ETCG',
-                  role: 'Institutional Access',
-                  description: 'The Grayscale Ethereum Classic Trust launched in 2018, years before Bitcoin ETFs existed as a product category, providing regulated institutional access to ETC and, until March 2022, indirectly funding ETC Cooperative core development work.',
-                  href: olympiaLinks.grayscaleETCG,
-                },
-              ].map((entity) => (
+      <SectionDivider />
+
+      {/* Olympia's sites */}
+      <section className="px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-5xl">
+          <FadeIn>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Olympia&rsquo;s Sites</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {sites.map((s) => (
                 <a
-                  key={entity.name}
-                  href={entity.href}
+                  key={s.href}
+                  href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col rounded-xl border border-[var(--border)] bg-[var(--background)] p-6 transition-all hover:-translate-y-0.5 hover:border-[var(--brand-green)]/20"
+                  className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/40"
                 >
-                  <h3 className="text-base font-semibold text-[var(--text-primary)]">{entity.name}</h3>
-                  <p className="mt-1 text-xs text-[var(--color-text-muted)]">{entity.role}</p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-text-muted)]">
-                    {entity.description}
-                  </p>
-                  <span className="mt-4 text-xs font-medium text-[var(--brand-green)] transition group-hover:translate-x-0.5">
-                    Visit →
-                  </span>
+                  <p className="font-mono text-sm text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">{s.name}</p>
+                  <p className="mt-1 text-sm text-[var(--color-text-muted)]">{s.body}</p>
                 </a>
               ))}
             </div>
-          </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* More on Olympia */}
+      <section className="px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-5xl">
+          <FadeIn>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)]">More on Olympia</h2>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {pages.map((p) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition hover:border-[var(--brand-green)]/40"
+                >
+                  <p className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">{p.title}</p>
+                  <p className="mt-1 text-sm text-[var(--color-text-muted)]">{p.body}</p>
+                </Link>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* FAQ */}
-      <FAQAccordion
-        title="Frequently Asked Questions"
-        subtitle="Olympia Upgrade"
-        items={olympiaFAQ.map((f) => ({ question: f.question, answer: f.answer }))}
-      />
+      <FAQAccordion title="Frequently Asked Questions" subtitle="The Olympia proposal" items={faqs} />
 
-      {/* Bottom CTA */}
-      <section className="border-t border-[var(--border)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
-        <div
-          className="mx-auto max-w-3xl text-center"
-        >
-          <h2 className="text-2xl font-bold text-[var(--text-primary)]">
-            Ready to Upgrade?
-          </h2>
-          <p className="mt-3 text-[var(--color-text-muted)]">
-            Core-Geth is the recommended client, released and maintained in the ethereumclassic
-            organization.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/olympia/upgrade"
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--brand-green)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-all hover:bg-[var(--brand-green)]/90 hover:shadow-lg hover:shadow-[color:var(--brand-green)]/25"
-            >
-              Upgrade Guide
-            </Link>
-            <Link
-              href="/olympia/clients"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
-            >
-              View Clients
-            </Link>
-            <Link
-              href="/olympia/etymology"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
-            >
-              Etymology & Lore
-            </Link>
-            <Link
-              href="/olympia/history"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)] hover:bg-[var(--brand-green)]/5"
-            >
-              A Decade of Conviction
-            </Link>
-          </div>
-        </div>
-      </section>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            mainEntity: olympiaFAQ.map((f) => ({
+            mainEntity: faqs.map((f) => ({
               '@type': 'Question',
               name: f.question,
               acceptedAnswer: { '@type': 'Answer', text: f.answer },

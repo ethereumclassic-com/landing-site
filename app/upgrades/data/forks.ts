@@ -1,6 +1,8 @@
 // ETC Network Upgrade History
 // Source: https://ecips.ethereumclassic.org and ETC-KNOWLEDGE.md
 
+import { ecipUrl } from '@/lib/olympia-ecips'
+
 export interface ForkData {
   name: string
   block: number | null // null for TBD (Olympia)
@@ -256,21 +258,15 @@ export const forks: ForkData[] = [
     date: null,
     ecip: null,
     ecipUrl: null,
-    ecips: [
-      { name: 'ECIP-1111', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1111' },
-      { name: 'ECIP-1112', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1112' },
-      { name: 'ECIP-1121', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1121' },
-      { name: 'ECIP-1122', url: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1122' },
-    ],
+    // The ECIPs that change consensus or are carried by clients; the rest of the suite is listed at /olympia.
+    ecips: [1111, 1112, 1121].map((n) => ({ name: `ECIP-${n}`, url: ecipUrl(n) })),
     summary:
-      'EVM alignment through Glamsterdam: EIPs spanning London, Dencun, Pectra, Fusaka, and Glamsterdam. Introduces EIP-1559 fee market with basefee directed to protocol treasury.',
+      'A proposal, targeted for mainnet activation in 2027, with draft ECIPs and the activation block TBD: EVM alignment through Glamsterdam, and an EIP-1559 base fee credited to a treasury.',
     keyChanges: [
-      'EIP-1559 dynamic basefee (directed to treasury)',
-      'EVM parity with Ethereum through Glamsterdam',
-      'EIPs from London, Dencun, Pectra, Fusaka, and Glamsterdam',
-      'Protocol treasury funding mechanism',
-      'Two independent client implementations: Core-Geth and Fukuii',
-      'Network security client configuration: MIN_MINER_TIP, gas target (ECIP-1122)',
+      'EIP-1559 and EIP-3198, with the base fee credited to the Sovereignty Vault address (ECIP-1111)',
+      'The Treasury at that address, and Olympia DAO to govern it, deployed before the fork (ECIP-1112, ECIP-1113)',
+      'EVM alignment through Dencun, Pectra and Fusaka, carried into Glamsterdam (ECIP-1121)',
+      'Block rewards and priority-fee tips unaffected',
     ],
     isOlympia: true,
   },

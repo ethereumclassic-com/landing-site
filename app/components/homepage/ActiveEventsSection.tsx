@@ -10,6 +10,9 @@ import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 import {
   OLYMPIA_PLACEHOLDER_DATE,
   OLYMPIA_PLACEHOLDER_DATE_LABEL,
+  OLYMPIA_PLACEHOLDER_ISO,
+  OLYMPIA_STATUS,
+  OLYMPIA_TARGET,
 } from '@/app/olympia/data/olympia'
 
 function getCountdownTo(target: Date) {
@@ -45,9 +48,9 @@ function DigitBox({ value, label, loading }: { value: number; label: string; loa
 }
 
 const olympiaPoints = [
-  'Glamsterdam-era EVM alignment: Ethereum tooling, library, and framework parity',
-  'EIP-1559 fee market: predictable gas pricing, basefee revenue directed to protocol treasury',
-  'Protocol treasury: sustainable development funding without new token issuance or miner reward changes',
+  'EVM alignment (ECIP-1121): advances the execution layer through Dencun, Pectra and Fusaka, and carries that work into Glamsterdam',
+  'A base fee market (ECIP-1111): EIP-1559, with the base fee credited to a treasury rather than destroyed, and block rewards and tips unaffected',
+  'A treasury and its governance (ECIP-1112, ECIP-1113): Olympia DAO, the only route by which that balance could be spent',
 ]
 
 const fifthingPoints = [
@@ -62,6 +65,7 @@ export default function ActiveEventsSection() {
 
   const {
     status: olympiaStatus,
+    activationBlock: olympiaActivationBlock,
     loading: olympiaLoading,
     countdown: olympiaCountdown,
     blocksRemaining: olympiaBlocksRemaining,
@@ -219,16 +223,16 @@ export default function ActiveEventsSection() {
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--brand-green)]" />
                 </span>
                 <span className="rounded-full border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-2.5 py-0.5 font-mono text-xs font-medium text-[var(--brand-green)]">
-                  Network Upgrade
+                  {OLYMPIA_STATUS}
                 </span>
               </div>
 
               <h3 className="mt-4 text-xl font-bold text-[var(--text-primary)]">
-                Olympia Protocol Upgrade
+                Olympia: A Proposed Upgrade
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
-                The next Ethereum Classic hard fork delivers EVM modernization, an EIP-1559 fee market, and
-                a protocol treasury funded by basefee revenue without touching miner rewards.
+                Olympia is a proposed upgrade to Ethereum Classic, {OLYMPIA_TARGET}. Its ECIPs are drafts, and
+                its activation block is TBD.
               </p>
 
               <ul className="mt-4 space-y-2.5">
@@ -245,14 +249,23 @@ export default function ActiveEventsSection() {
 
               {/* Olympia countdown */}
               <div className="mt-5">
+                {/* Reached only once OLYMPIA_ACTIVATION_BLOCK is set and the chain has passed it. */}
                 {olympiaStatus === 'activated' && (
                   <div className="inline-flex items-center gap-2 rounded-lg border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-3 py-2">
-                    <span className="text-sm font-semibold text-[var(--brand-green)]">✦ Olympia is Live</span>
+                    <span className="text-sm font-semibold text-[var(--brand-green)]">
+                      Activated at block {olympiaActivationBlock?.toLocaleString('en-US')}
+                    </span>
                   </div>
                 )}
                 {(olympiaStatus === 'tbd' || olympiaStatus === 'pending') && (
-                  <div>
-                    <div className="grid grid-cols-4 gap-2">
+                  <div
+                    role="group"
+                    aria-label={olympiaStatus === 'tbd'
+                      ? `Countdown to ${OLYMPIA_PLACEHOLDER_DATE_LABEL}, a placeholder target; the Olympia activation block is TBD`
+                      : 'Countdown to the Olympia activation block'}
+                  >
+                    {/* aria-hidden: the digits change every second and would be announced continuously */}
+                    <div aria-hidden="true" className="grid grid-cols-4 gap-2">
                       <DigitBox value={olympiaStatus === 'pending' ? (olympiaCountdown?.days ?? 0) : placeholderCd.days} label="Days" loading={olympiaLoading} />
                       <DigitBox value={olympiaStatus === 'pending' ? (olympiaCountdown?.hours ?? 0) : placeholderCd.hours} label="Hours" loading={olympiaLoading} />
                       <DigitBox value={olympiaStatus === 'pending' ? (olympiaCountdown?.minutes ?? 0) : placeholderCd.minutes} label="Min" loading={olympiaLoading} />
@@ -274,17 +287,12 @@ export default function ActiveEventsSection() {
                     {olympiaStatus === 'tbd' && (
                       <div className="mt-2.5 space-y-2">
                         <p className="text-[10px] italic text-[var(--text-muted)] opacity-60">
-                          * Countdown is set to {OLYMPIA_PLACEHOLDER_DATE_LABEL} until the ETC mainnet activation block is set
-                        </p>
-                        <div className="flex items-center gap-2">
-                          <span aria-hidden="true" className="h-2 w-2 animate-pulse rounded-full bg-[var(--brand-green)]" />
-                          <span className="text-xs font-medium text-[var(--brand-green)]">Activation Block Pending</span>
-                        </div>
-                        <p className="text-xs text-[var(--text-muted)]">
-                          Olympia is in final testing on the Mordor Testnet. Activation Block: TBD
+                          * The countdown runs to <time dateTime={OLYMPIA_PLACEHOLDER_ISO}>{OLYMPIA_PLACEHOLDER_DATE_LABEL}</time>,
+                          a placeholder target rather than an activation date, until the activation block is set
                         </p>
                         <p className="text-xs text-[var(--text-muted)] opacity-60">
-                          The exact block number will be announced after the Olympia Upgrade core developers call.
+                          The activation blocks for Mordor and mainnet are decided at the Olympia Core Devs Call and
+                          recorded in ECIP-1111.
                         </p>
                       </div>
                     )}
@@ -297,7 +305,7 @@ export default function ActiveEventsSection() {
                   href="/olympia"
                   className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 px-4 py-2 text-sm font-medium text-[var(--brand-green)] transition-colors hover:bg-[var(--brand-green)]/20"
                 >
-                  Explore the Olympia upgrade
+                  Read the Olympia proposal
                   <svg
                     aria-hidden="true"
                     className="h-3.5 w-3.5"

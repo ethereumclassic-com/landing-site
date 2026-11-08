@@ -1,21 +1,11 @@
 import type { Metadata } from 'next'
-import { OG_BASE } from '@/lib/seo'
 
-/** The page is a client component, so its metadata lives here. */
-
-// The /olympia layout appends "| Olympia — Ethereum Classic" through its title template.
-const description =
-  'What the Olympia upgrade asks of an Ethereum Classic node operator: which client release carries it, what each node needs to run, and the steps to take before activation.'
-
+// The /olympia layout appends " | Ethereum Classic" through its title template, and its openGraph block
+// carries no title or description, so this page's card is drawn from the two below.
 export const metadata: Metadata = {
-  title: 'Node Operator Upgrade',
-  description,
-  alternates: { canonical: 'https://ethereumclassic.com/olympia/upgrade' },
-  openGraph: {
-    ...OG_BASE,
-    title: 'Olympia Upgrade — What Node Operators Need to Do',
-    description,
-  },
+  title: 'Olympia for Node Operators',
+  description:
+    'What the proposed Olympia upgrade would change for an Ethereum Classic node, what to run until a client implements it, and every EIP ECIP-1121 classifies.',
 }
 
 export default function OlympiaUpgradeLayout({ children }: { children: React.ReactNode }) {
