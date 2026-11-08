@@ -87,7 +87,7 @@ export default function DeFiPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Decentralized exchanges, stablecoins, lending protocols, and yield opportunities on Ethereum Classic. The ETC DeFi stack includes Classic USD — the first MiCA-compliant stablecoin on a Proof-of-Work network — alongside AMM exchanges, CLMM DEXes, and a token launchpad, all running on immutable infrastructure.
+            Decentralized exchanges, stablecoins, lending protocols, and yield opportunities on Ethereum Classic. The ETC DeFi stack includes Classic USD, a stablecoin issued by Brale and aligned with MiCA, alongside AMM exchanges, CLMM DEXes, and a token launchpad, all running on immutable infrastructure.
           </p>
         </div>
       </section>

@@ -6,7 +6,7 @@ import { DISCORD_URL } from '@/lib/social'
 export const metadata: Metadata = {
   title: 'About | Ethereum Classic',
   description:
-    'EthereumClassic.com is the comprehensive resource for Ethereum Classic — the only Proof-of-Work EVM. Institutional positioning: PoW Security, ETCG investment products, regulatory clarity across CLARITY Act, MiCA, and GENIUS Act. News, education, mining, and developer tools.',
+    'About EthereumClassic.com, a guide to Ethereum Classic: the wallets, exchanges, apps, mining and developer tools on the network, with news and research.',
 }
 
 export default function AboutPage() {
@@ -168,8 +168,8 @@ export default function AboutPage() {
               <ul className="space-y-2 text-sm text-[var(--color-text-secondary)]">
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>No pre-mine, no foundation controlling the protocol, no issuer.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Mining hardware is globally distributed and permissionless to acquire.</li>
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Block rewards and tips go to miners — the treasury is funded by basefee, not inflation.</li>
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>CLARITY Act digital commodity classification path: same PoW profile as Bitcoin.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Block rewards and tips go to miners; the proposed Olympia treasury would be funded by the base fee, not by inflation.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Positioned for classification as a digital commodity under the pending CLARITY Act, with the same Proof-of-Work profile as Bitcoin.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Energy demand that co-locates with any power source, anywhere in the world.</li>
               </ul>
             </div>
@@ -185,9 +185,9 @@ export default function AboutPage() {
                 </div>
               </div>
               <ul className="space-y-2 text-sm text-[var(--color-text-secondary)]">
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Full Solidity and EVM compatibility — every Ethereum tool, library, and framework works without modification.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Solidity and the EVM through the Shanghai set, so standard Ethereum tools work here, with a legacy-transaction setting where a tool assumes EIP-1559.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Classic USD ($USC) by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain.</li>
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>GENIUS Act-compliant stablecoin infrastructure, the first on any Proof-of-Work network.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Stablecoin infrastructure aligned with the GENIUS Act, on a Proof-of-Work network.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>ETCswap V2 and V3 provide on-chain liquidity for composable DeFi with a regulated stable base.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>MiCA decentralized asset classification: exempt from ART/EMT issuer obligations.</li>
               </ul>

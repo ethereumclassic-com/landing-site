@@ -41,7 +41,7 @@ const frameworks = [
     status: 'badge-available' as const,
     statusLabel: 'Signed July 2025',
     description:
-      'Signed into law July 18, 2025. Classic USD ($USC) by Brale is live on ETC mainnet: a 1:1 USD-backed stablecoin issued under US money transmission licensing. ETC is a demonstrated GENIUS Act-compliant stablecoin platform.',
+      'Signed into law July 18, 2025. Classic USD ($USC) by Brale is live on ETC mainnet: a 1:1 USD-backed stablecoin issued under US money transmission licensing. ETC is a demonstrated stablecoin platform aligned with the GENIUS Act.',
   },
 ]
 

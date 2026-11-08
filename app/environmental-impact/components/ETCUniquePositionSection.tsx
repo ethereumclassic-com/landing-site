@@ -3,8 +3,8 @@ import { FadeIn } from '@/app/components/ui'
 import { fetchHashrateTHs } from '@/lib/hashrate'
 
 const staticStats = [
-  { value: 'July 2015', label: 'In Production Since', detail: 'Longest-running EVM' },
-  { value: 'Glamsterdam', label: 'EVM Parity', detail: 'Ethereum execution layer' },
+  { value: 'July 2015', label: 'In Production Since', detail: 'From the Ethereum genesis block' },
+  { value: 'Shanghai', label: 'EVM Alignment', detail: 'Through Spiral; Olympia proposes Glamsterdam' },
   { value: 'GPU + ASIC', label: 'Hardware Access', detail: 'Retail to institutional' },
 ]
 
@@ -16,8 +16,8 @@ const columns = [
     points: [
       'No pre-mine, no foundation controlling the protocol, no issuer.',
       'Mining hardware is globally distributed, permissionless to acquire.',
-      'Block rewards and tips go to miners. The treasury is funded by basefee, not inflation.',
-      'CLARITY Act digital commodity classification path: same PoW profile as Bitcoin.',
+      'Block rewards and tips go to miners; the proposed Olympia treasury would be funded by the base fee, not by inflation.',
+      'Positioned for classification as a digital commodity under the pending CLARITY Act, with the same Proof-of-Work profile as Bitcoin.',
       'Energy demand that can co-locate with any power source, anywhere in the world.',
     ],
   },
@@ -26,9 +26,9 @@ const columns = [
     heading: 'From the EVM',
     subheading: "Ethereum's regulatory trajectory",
     points: [
-      'Full Solidity and EVM compatibility. Every Ethereum tool, library, and framework works without modification.',
+      'Solidity and the EVM through the Shanghai set, so standard Ethereum tools work here, with a legacy-transaction setting where a tool assumes EIP-1559.',
       'Classic USD ($USC) by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain.',
-      'GENIUS Act-compliant stablecoin infrastructure, the first on any Proof-of-Work network.',
+      'Stablecoin infrastructure aligned with the GENIUS Act, on a Proof-of-Work network.',
       'ETCswap V2 and V3 provide on-chain liquidity for composable DeFi with a regulated stable base.',
       'Smart contracts enable programmable settlement for energy transactions on-chain.',
     ],

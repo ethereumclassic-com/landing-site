@@ -90,13 +90,12 @@ export async function NetworkSecuritySection() {
                 thermodynamic constraint.
               </p>
               <p className="text-base text-[var(--text-muted)]">
-                The CLARITY Act, MiCA, and every framework that distinguishes a digital
-                commodity from a security requires evidence that no single entity controls the
-                protocol. Proof-of-Work provides that evidence continuously, on-chain, with
-                every block. ETC&apos;s hashrate absorbed the global GPU mining network and
-                onboarded a mature ASIC manufacturing market built specifically for the
-                ETChash algorithm after Ethereum&apos;s 2022 transition. It represents the largest
-                distributed security budget of any smart contract platform.
+                The pending CLARITY Act, like other frameworks that separate a digital commodity
+                from a security, looks for evidence that no single entity controls the protocol.
+                Proof-of-Work provides that evidence continuously, on-chain, with every block.
+                ETC&apos;s hashrate absorbed the global GPU mining network and onboarded a mature
+                ASIC manufacturing market built specifically for the ETChash algorithm after
+                Ethereum&apos;s 2022 transition.
               </p>
             </div>
           </FadeIn>
@@ -139,8 +138,8 @@ export async function NetworkSecuritySection() {
           <FadeIn delay={400}>
             <div className="mt-10 rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green-subtle)] p-6">
               <p className="text-sm leading-relaxed text-[var(--text-primary)]">
-                The regulatory criterion for digital commodity classification centers on a
-                single question: does any person or entity control the protocol? Proof-of-Work
+                Whether a network is treated as a digital commodity turns on one question above
+                all: does any person or entity control the protocol? Proof-of-Work
                 answers that question with computational evidence rather than legal assurance.
                 Every block mined is a timestamp of distributed consensus, an auditable record
                 of the network&apos;s independence from centralized governance.

@@ -35,13 +35,13 @@ const thesisPoints = [
   },
   {
     number: '02',
-    title: 'Olympia Upgrade',
-    body: 'EIP-1559 fee market redirects basefee to a protocol-managed treasury for the first time on ETC. On-chain DAO governance controls resource allocation. First programmable monetary policy on a Proof-of-Work EVM.',
+    title: 'The Olympia Proposal',
+    body: 'Olympia, a proposal targeted for 2027, would activate the EIP-1559 fee market on ETC and credit the base fee to a treasury rather than destroy it, spent only by funding proposals that Olympia DAO\'s members vote on. Block rewards and the ECIP-1017 emission schedule would be unchanged.',
   },
   {
     number: '03',
     title: 'Regulated Stablecoin Infrastructure',
-    body: <>Classic USD ($USC) is live on ETC mainnet, the first GENIUS Act-aligned stablecoin on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] transition-opacity hover:opacity-80">ETCswap</a> V2/V3.</>,
+    body: <>Classic USD ($USC) is live on ETC mainnet, a stablecoin aligned with the GENIUS Act on a Proof-of-Work EVM. Issued by Brale Inc. (NMLS #2376957), 1:1 USD backed, integrated with <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[var(--brand-green)] transition-opacity hover:opacity-80">ETCswap</a> V2/V3.</>,
   },
   {
     number: '04',
@@ -273,9 +273,9 @@ export default function InvestmentProductsPage() {
 
           <div className="mt-6 border-l-2 border-[var(--color-warning)] pl-4">
             <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-              Grayscale has established the regulatory and legal template for trust-to-ETF conversion.
-              ETCG already satisfies Stage 2 requirements. Conversion is a function of Grayscale&apos;s
-              prioritization and SEC application timing.
+              Grayscale converted two of its trusts to ETFs, GBTC in January 2024 and ETHE in July 2024.
+              ETCG remains a trust product: a conversion would be Grayscale&apos;s decision, and would
+              need SEC approval.
             </p>
           </div>
         </div>
@@ -386,7 +386,7 @@ export default function InvestmentProductsPage() {
                 href="/olympia"
                 className="inline-flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--border-brand)]"
               >
-                Olympia Upgrade
+                The Olympia Proposal
               </Link>
             </div>
           </div>

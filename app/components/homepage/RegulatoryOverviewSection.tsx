@@ -45,7 +45,7 @@ const primaryFrameworks = [
     jurisdiction: 'United States',
     badge: 'badge-pending' as const,
     badgeLabel: 'Pending',
-    desc: 'Classifies ETC as a digital commodity under CFTC jurisdiction, separating it from securities oversight',
+    desc: 'Would place digital commodities under CFTC jurisdiction, separate from securities oversight, and ETC is positioned as a candidate',
   },
   {
     flag: '🇺🇸',
@@ -148,7 +148,7 @@ export default function RegulatoryOverviewSection() {
         <FadeIn>
           <div className="mt-10 space-y-4 border-t border-[var(--border-default)] pt-8">
             <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-              Ethereum Classic inherits two distinct regulatory trajectories: the commodity classification path that Proof-of-Work networks established, and the programmable finance frameworks being built around smart contract platforms. Its regulatory surface is additive. ETC qualifies as a digital commodity candidate under the CLARITY Act, a decentralized asset under MiCA, and the only Proof-of-Work EVM with a live GENIUS Act-aligned stablecoin.
+              Ethereum Classic inherits two distinct regulatory trajectories: the commodity classification path that Proof-of-Work networks established, and the programmable finance frameworks being built around smart contract platforms. Its regulatory surface is additive. ETC is positioned as a digital commodity candidate under the pending CLARITY Act, a decentralized asset under MiCA, and the only Proof-of-Work EVM with a live GENIUS Act-aligned stablecoin.
             </p>
             <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
               Exchanges listing ETC require asset classification clarity. Custodians settling ETC transactions require settlement finality guarantees. Investment product issuers require commodity status. ETF sponsors require CFTC commodity futures markets and SEC classification clarity for spot product approval. Corporate treasuries require auditable reserve proof and accounting treatment clarity before holding digital assets on balance sheet. Banks offering custody require prudential capital treatment under Basel III crypto asset rules, which depend directly on commodity classification. Regulated stablecoin issuers require an immutable, neutral settlement rail. dApp and DeFi protocol developers require an unmodifiable EVM execution layer as a credible neutrality guarantee. Miners and hardware manufacturers require protocol stability, a fixed monetary policy, no proof-of-stake transition risk, and asset acceptance in their operating jurisdictions. These are the conditions that permit continued capital allocation without shutdown risk.

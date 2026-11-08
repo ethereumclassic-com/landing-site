@@ -4,7 +4,7 @@ import { OG_BASE } from '@/lib/seo'
 export const metadata: Metadata = {
   title: 'Regulatory Framework — Ethereum Classic',
   description:
-    'Ethereum Classic qualifies as a digital commodity under the CLARITY Act, a decentralized asset under MiCA, and a stablecoin platform under the GENIUS Act — simultaneously. Its regulatory surface is additive by design.',
+    'Where Ethereum Classic stands: a digital commodity candidate under the pending CLARITY Act, a decentralized asset under MiCA, a GENIUS Act stablecoin platform.',
   keywords: [
     'CLARITY Act',
     'MiCA',
@@ -20,12 +20,8 @@ export const metadata: Metadata = {
     'stablecoin platform',
     'Brale',
   ],
-  openGraph: {
-    ...OG_BASE,
-    title: 'Regulatory Framework — Ethereum Classic',
-    description:
-      'CLARITY Act commodity classification, MiCA decentralized asset status, GENIUS Act stablecoin platform — and Classic USD live on mainnet.',
-  },
+  // No title or description: the share card is drawn from the page's own, above.
+  openGraph: { ...OG_BASE },
 }
 
 export default function RegulationLayout({ children }: { children: React.ReactNode }) {

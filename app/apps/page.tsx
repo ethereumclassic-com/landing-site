@@ -108,8 +108,8 @@ export default function AppsPage() {
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Explore the growing ecosystem of DeFi protocols, developer tools, governance systems, and infrastructure
-            built on Ethereum Classic. From Classic USD — the first MiCA-compliant stablecoin on a Proof-of-Work
-            network — to AMM exchanges and launchpads, ETC&apos;s application layer is live and expanding.
+            built on Ethereum Classic. From Classic USD, a stablecoin issued by Brale and aligned with MiCA, to AMM
+            exchanges and launchpads.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">

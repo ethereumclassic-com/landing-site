@@ -64,7 +64,7 @@ const attributes = [
 const whyItMatters = [
   "Proves ETC's EVM handles regulated financial instruments at production scale",
   'Enables composable DeFi with a USD-stable base (ETCswap V2/V3 integration)',
-  'First deployment validates ETC as a GENIUS Act-compliant stablecoin platform',
+  'Its deployment shows ETC as a stablecoin platform aligned with the GENIUS Act',
   "Brale's API-accessible platform is a pathway for additional fiat-backed issuers on ETC",
 ]
 

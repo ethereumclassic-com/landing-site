@@ -106,12 +106,12 @@ export function MiningHardwareSection() {
               Olympia Connection
             </p>
             <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-              The Olympia upgrade&apos;s EIP-1559 basefee treasury creates a sustainable funding
-              source for the client software that mining operations depend on. Every transaction on
-              the network generates basefee revenue that flows to the protocol treasury, which
-              governance then allocates to core client development, infrastructure, and network
-              security. The economics of mining ETC directly fund the software that keeps it worth
-              mining.
+              The Olympia proposal would add a funding source for the client software mining
+              operations depend on. Each transaction would pay an EIP-1559 base fee to the Olympia
+              Treasury, and Olympia DAO&apos;s members would vote on proposals funding core client
+              development, infrastructure and network security from it. The base fee is paid by the
+              transactions in a block, not by miners, and block rewards and priority fees stay with
+              miners.
             </p>
           </div>
         </FadeIn>

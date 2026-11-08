@@ -72,7 +72,7 @@ export default function TrustSignals() {
     },
     {
       title: 'Longevity',
-      description: '9+ years continuous operation',
+      description: 'Continuous operation since July 2015',
       icon: <ClockIcon />,
       href: '/upgrades',
     },
@@ -84,9 +84,9 @@ export default function TrustSignals() {
     },
     {
       title: 'Institutional Access',
-      description: 'Commodity classification, regulated exchanges, and ETF exposure across major jurisdictions',
+      description: 'Regulated exchanges, the ETCG trust, and a candidate for classification as a digital commodity',
       icon: <BuildingIcon />,
-      href: '/regulatory',
+      href: '/regulation',
     },
   ]
 

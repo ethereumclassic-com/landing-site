@@ -10,8 +10,8 @@ const archColumns = [
     points: [
       'No pre-mine, no foundation controlling the protocol, no issuer.',
       'Mining hardware is globally distributed and permissionless to acquire.',
-      'Block rewards and tips go to miners. The treasury is funded by the basefee, not inflation.',
-      'CLARITY Act digital commodity classification path: same PoW profile as Bitcoin.',
+      'Block rewards and tips go to miners; the proposed Olympia treasury would be funded by the base fee, not by inflation.',
+      'Positioned for classification as a digital commodity under the pending CLARITY Act, with the same Proof-of-Work profile as Bitcoin.',
       'Energy demand that co-locates with any power source, anywhere in the world.',
     ] as React.ReactNode[],
   },
@@ -20,9 +20,9 @@ const archColumns = [
     heading: 'From the EVM',
     subheading: "Ethereum's regulatory trajectory",
     points: [
-      'Full Solidity and EVM compatibility. Every Ethereum tool, library, and framework works without modification.',
-      <><ClassicUSDLink>Classic USD ($USC)</ClassicUSDLink> by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain, the first of its kind.</>,
-      'GENIUS Act-compliant stablecoin infrastructure, the first on any Proof-of-Work network.',
+      'Solidity and the EVM through the Shanghai set, so standard Ethereum tools work here, with a legacy-transaction setting where a tool assumes EIP-1559.',
+      <><ClassicUSDLink>Classic USD ($USC)</ClassicUSDLink> by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain.</>,
+      'Stablecoin infrastructure aligned with the GENIUS Act, on a Proof-of-Work network.',
       <><ETCswapLink>ETCswap</ETCswapLink> V2 and V3 provide on-chain liquidity for composable DeFi with a regulated stable base.</>,
       'MiCA decentralized asset classification: exempt from ART/EMT issuer obligations.',
     ] as React.ReactNode[],

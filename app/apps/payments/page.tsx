@@ -87,7 +87,7 @@ export default function PaymentsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            The payment layer connecting Ethereum Classic to everyday commerce — buy, sell, spend, and accept payments using ETC and Classic USD. Classic USD is the first MiCA and GENIUS Act-compliant stablecoin on a Proof-of-Work network, enabling regulatory-grade stablecoin payments on immutable infrastructure.
+            The payment layer connecting Ethereum Classic to everyday commerce — buy, sell, spend, and accept payments using ETC and Classic USD. Classic USD, issued by Brale and aligned with MiCA and the GENIUS Act, brings stablecoin payments to a Proof-of-Work network.
           </p>
         </div>
       </section>

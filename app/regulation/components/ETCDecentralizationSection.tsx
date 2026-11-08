@@ -30,7 +30,7 @@ const properties = [
     ),
     title: 'Proof-of-Work Makes Censorship Costly',
     description:
-      'PoW consensus makes transaction censorship economically prohibitive, not just technically difficult. An attacker must accumulate and sustain more hashrate than the entire honest mining network, continuously and at their own cost. This is the gold standard for settlement finality.',
+      'PoW consensus makes transaction censorship economically prohibitive, not just technically difficult. An attacker must accumulate and sustain more hashrate than the entire honest mining network, continuously and at their own cost. That cost is what settlement finality on ETC rests on.',
   },
   {
     icon: (

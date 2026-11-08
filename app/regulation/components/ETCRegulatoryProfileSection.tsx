@@ -54,7 +54,7 @@ const profiles = [
     badgeLabel: 'Signed Jul 18, 2025',
     tagline: 'Live Stablecoin Platform',
     points: [
-      "Classic USD ($USC) deployed on ETC mainnet, the first GENIUS Act-aligned stablecoin on ETC",
+      "Classic USD ($USC) deployed on ETC mainnet, a stablecoin aligned with the GENIUS Act",
       "Issued by Brale Inc. (NMLS #2376957) under US money transmission licensing",
       "Reserves held 1:1 in segregated, regulated US bank accounts",
       "Third-party reserve attestations and SOC 2 compliance",
