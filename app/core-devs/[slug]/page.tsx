@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!entry) return {}
 
   const title = entry.forkBlock
-    ? `${entry.title} — Block ${entry.forkBlock.toLocaleString()}`
+    ? `${entry.title}: Block ${entry.forkBlock.toLocaleString()}`
     : entry.title
 
   return {

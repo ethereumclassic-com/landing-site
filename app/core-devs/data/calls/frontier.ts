@@ -5,7 +5,7 @@ const entry: CDCEntry = {
   title: 'Frontier',
   date: '2015-07-30',
   summary:
-    'Genesis block — the Ethereum network launches. ETC inherits all Ethereum Foundation protocol decisions made before the DAO Fork.',
+    'Genesis block: the Ethereum network launches. ETC inherits all Ethereum Foundation protocol decisions made before the DAO Fork.',
   content: `## Frontier Network Upgrade
 
 **Activation Block:** 1\\
@@ -16,17 +16,17 @@ const entry: CDCEntry = {
 
 ### Overview
 
-Frontier was the genesis launch of the Ethereum network — the first block of what would become Ethereum Classic. It was intentionally minimal, designed as a "beta" release for developers and miners to begin operating the network before more complex features were enabled.
+Frontier was the genesis launch of the Ethereum network: the first block of what would become Ethereum Classic. It was intentionally minimal, designed as a "beta" release for developers and miners to begin operating the network before more complex features were enabled.
 
 ETC inherits this and all subsequent Ethereum Foundation protocol decisions made before the DAO Fork at block 1,920,000.
 
 ### Technical Details
 
-- **Genesis block** — Block 1, the first block mined on the network
-- **Gas limit:** 5,000 per block — set extremely low via a "canary contract" to prevent complex transactions during the initial launch period
+- **Genesis block**: Block 1, the first block mined on the network
+- **Gas limit:** 5,000 per block, set extremely low via a "canary contract" to prevent complex transactions during the initial launch period
 - **Consensus:** Proof-of-Work using the Ethash algorithm
 - **Block reward:** 5 ETC per block (pre-monetary policy)
-- **Smart contracts:** Technically supported but impractical at 5,000 gas limit — contract deployment required the gas limit to increase through miner voting
+- **Smart contracts:** Technically supported but impractical at 5,000 gas limit; contract deployment required the gas limit to increase through miner voting
 - **Mining:** CPU and GPU mining supported from day one
 
 ### Context

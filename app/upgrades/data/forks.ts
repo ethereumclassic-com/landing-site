@@ -71,7 +71,7 @@ export const forks: ForkData[] = [
   {
     name: 'Gas Reprice',
     block: 2_500_000,
-    date: '2016-10-24',
+    date: '2016-10-25',
     ecip: 'ECIP-1015',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1015',
     summary: 'EIP-150 repriced I/O-heavy opcodes for DoS protection after the Shanghai attacks.',
@@ -87,7 +87,7 @@ export const forks: ForkData[] = [
     date: '2017-01-13',
     ecip: 'ECIP-1010',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1010',
-    summary: 'Replay protection and difficulty bomb delay. The first ETC-specific hard fork.',
+    summary: 'Replay protection and a delay of the difficulty bomb.',
     keyChanges: [
       'EIP-155 (replay protection)',
       'EIP-160 (EXP gas cost increase)',
@@ -142,7 +142,7 @@ export const forks: ForkData[] = [
   {
     name: 'Agharta',
     block: 9_573_000,
-    date: '2020-01-11',
+    date: '2020-01-12',
     ecip: 'ECIP-1056',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1056',
     summary: 'Aligned ETC with Ethereum\'s Constantinople and Petersburg upgrades.',
@@ -155,7 +155,7 @@ export const forks: ForkData[] = [
   {
     name: 'Phoenix',
     block: 10_500_839,
-    date: '2020-06-01',
+    date: '2020-05-31',
     ecip: 'ECIP-1088',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1088',
     summary: 'Aligned ETC with Ethereum\'s Istanbul upgrade.',
@@ -171,7 +171,7 @@ export const forks: ForkData[] = [
   {
     name: 'MESS Default: On',
     block: 11_380_000,
-    date: '2020-10-09',
+    date: '2020-10-11',
     ecip: 'ECIP-1100',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1100',
     summary:
@@ -188,18 +188,17 @@ export const forks: ForkData[] = [
     date: '2020-11-28',
     ecip: 'ECIP-1099',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1099',
-    summary: 'Halved the DAG size epoch length, enabling consumer GPUs to continue mining ETC.',
+    summary: 'Doubled the DAG epoch length, halving the DAG\'s growth so consumer GPUs could keep mining ETC.',
     keyChanges: [
       'Etchash algorithm (modified Ethash)',
       'DAG epoch length doubled (30,000 → 60,000)',
-      'GPU mining accessibility preserved',
-      'ASIC resistance maintained',
+      'Slower DAG growth, keeping 3GB and 4GB GPUs mining longer',
     ],
   },
   {
     name: 'Magneto',
     block: 13_189_133,
-    date: '2021-07-23',
+    date: '2021-07-24',
     ecip: 'ECIP-1103',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1103',
     summary: 'Aligned ETC with Ethereum\'s Berlin upgrade.',
@@ -216,19 +215,19 @@ export const forks: ForkData[] = [
     date: '2022-02-12',
     ecip: 'ECIP-1104',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1104',
-    summary: 'Aligned ETC with Ethereum\'s London upgrade (excluding EIP-1559, EIP-3198, and EIP-3228).',
+    summary: 'Aligned ETC with Ethereum\'s London upgrade (excluding EIP-1559, EIP-3198 and EIP-3554).',
     keyChanges: [
       'EIP-3529 (reduced SELFDESTRUCT and SSTORE gas refunds)',
       'EIP-3541 (reject new 0xEF contracts)',
       'EIP-1559 deferred to Olympia (delivered by ECIP-1111)',
       'EIP-3198 deferred with it (BASEFEE opcode depends on EIP-1559)',
-      'EIP-3228 omitted (difficulty bomb already removed by ECIP-1041)',
+      'EIP-3554 omitted (difficulty bomb already removed by ECIP-1041)',
     ],
   },
   {
     name: 'Spiral',
     block: 19_250_000,
-    date: '2024-02-04',
+    date: '2024-02-05',
     ecip: 'ECIP-1109',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1109',
     summary: 'Aligned ETC with Ethereum\'s Shanghai upgrade (execution layer changes only).',
@@ -242,7 +241,7 @@ export const forks: ForkData[] = [
   {
     name: 'MESS Default: Off',
     block: 19_250_000,
-    date: '2024-02-04',
+    date: '2024-02-05',
     ecip: 'ECIP-1110',
     ecipUrl: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1110',
     summary:

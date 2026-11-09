@@ -5,7 +5,7 @@ const entry: CDCEntry = {
   title: 'Homestead',
   date: '2016-03-14',
   summary:
-    'First major planned upgrade — EIP-2, EIP-7, EIP-8. Transaction validity rules, DELEGATECALL opcode, and devp2p forward compatibility.',
+    'First major planned upgrade: EIP-2, EIP-7, EIP-8. Transaction validity rules, DELEGATECALL opcode, and devp2p forward compatibility.',
   content: `## Homestead Network Upgrade
 
 **Activation Block:** 1,150,000\\
@@ -28,13 +28,13 @@ Homestead was the first major planned hard fork of the Ethereum network, signali
 
 ### Technical Details
 
-- **EIP-2: Transaction validity changes** — Contract creation via transactions increased gas cost from 21,000 to 53,000, making it more expensive to deploy contracts but correctly accounting for the computation involved. Transaction signatures were tightened to accept only low-s values (s must be less than secp256k1n/2), eliminating a source of transaction malleability
-- **EIP-7: DELEGATECALL opcode** — A new opcode at \`0xf4\` that calls another contract's code while preserving the original caller's context (msg.sender and msg.value). This enabled proxy contract patterns and shared library contracts — foundational patterns for upgradeable smart contracts
-- **EIP-8: devp2p forward compatibility** — Modified the RLPx handshake and peer discovery protocols to tolerate future protocol extensions. Nodes would accept packets with additional fields rather than rejecting them, preventing network fragmentation during future upgrades
+- **EIP-2: Transaction validity changes**: Contract creation via transactions increased gas cost from 21,000 to 53,000, making it more expensive to deploy contracts but correctly accounting for the computation involved. Transaction signatures were tightened to accept only low-s values (s must be less than secp256k1n/2), eliminating a source of transaction malleability
+- **EIP-7: DELEGATECALL opcode**: A new opcode at \`0xf4\` that calls another contract's code while preserving the original caller's context (msg.sender and msg.value). This enabled proxy contract patterns and shared library contracts: foundational patterns for upgradeable smart contracts
+- **EIP-8: devp2p forward compatibility**: Modified the RLPx handshake and peer discovery protocols to tolerate future protocol extensions. Nodes would accept packets with additional fields rather than rejecting them, preventing network fragmentation during future upgrades
 
 ### Context
 
-Homestead represented a vote of confidence in the network's stability. The Frontier launch had been intentionally minimal — Homestead signaled that the Ethereum protocol was ready for broader adoption. The DELEGATECALL opcode in particular proved foundational, as it enabled the proxy upgrade patterns used by virtually all modern smart contract systems.
+Homestead represented a vote of confidence in the network's stability. The Frontier launch had been intentionally minimal: Homestead signaled that the Ethereum protocol was ready for broader adoption. The DELEGATECALL opcode in particular proved foundational, as it enabled the proxy upgrade patterns used by virtually all modern smart contract systems.
 
 ### Outcome
 

@@ -16,13 +16,13 @@ const entry: CDCEntry = {
 
 ### Overview
 
-Frontier Thawing was the first protocol upgrade to the network. It lifted the initial 5,000 gas limit, enabling meaningful transactions and smart contract deployment for the first time. It also introduced the difficulty bomb — an exponential increase in mining difficulty designed to force future protocol upgrades.
+Frontier Thawing was the first protocol upgrade to the network. It lifted the initial 5,000 gas limit, enabling meaningful transactions and smart contract deployment for the first time. It also introduced the difficulty bomb: an exponential increase in mining difficulty designed to force future protocol upgrades.
 
 ### Technical Details
 
-- **Gas limit increase** — The 5,000 gas limit was a temporary safety measure for the Frontier launch. After block 200,000, miners could vote to increase the gas limit through the standard gas limit voting mechanism, enabling contract deployment and complex transactions
-- **Difficulty bomb introduced** — An exponential difficulty increase that would gradually make mining impractical, intended to pressure the network toward future upgrades (later removed on ETC by ECIP-1041)
-- **Default gas limit target:** 3,141,592 gas per block — sufficient for basic smart contract interactions
+- **Gas limit increase**: The 5,000 gas limit was a temporary safety measure for the Frontier launch. After block 200,000, miners could vote to increase the gas limit through the standard gas limit voting mechanism, enabling contract deployment and complex transactions
+- **Difficulty bomb introduced**: An exponential difficulty increase that would gradually make mining impractical, intended to pressure the network toward future upgrades (later removed on ETC by ECIP-1041)
+- **Default gas limit target:** 3,141,592 gas per block, sufficient for basic smart contract interactions
 
 ### Context
 

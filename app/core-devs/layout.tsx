@@ -4,7 +4,7 @@ import { OG_BASE } from '@/lib/seo'
 export const metadata: Metadata = {
   title: {
     template: '%s | Ethereum Classic',
-    default: 'Core Developer Calls — Ethereum Classic',
+    default: 'Core Developer Calls | Ethereum Classic',
   },
   description:
     'Ethereum Classic\'s Core Developer Calls, where client teams discuss ECIPs and schedule network upgrades: the record of each call, and the next one\'s agenda.',

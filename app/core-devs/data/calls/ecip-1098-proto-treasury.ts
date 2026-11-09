@@ -12,7 +12,7 @@ const entry: CDCEntry = {
 
 **ECIP Status:** Withdrawn\\
 **Discussion Period:** 2020–2021\\
-**Outcome:** Withdrawn — IOHK and ETC Coop withdrew support
+**Outcome:** Withdrawn; IOHK and ETC Coop withdrew support
 
 ---
 
@@ -29,10 +29,10 @@ ECIP-1098 was IOHK's formal proposal for a protocol-level treasury system on Eth
 
 ### Key Issues
 
-- **Block reward diversion** — Like ECIP-1051, the proto treasury relied on diverting block rewards, conflicting with ECIP-1017's fixed monetary policy
-- **Governance complexity** — On-chain governance for fund allocation introduced centralization vectors that the community considered incompatible with ETC's principles
-- **Loss of development resources** — The withdrawal and subsequent Grothendieck wind-down reduced ETC's active development capacity
-- **Legacy** — The rejection of both ECIP-1051 and ECIP-1098 established that ETC would not implement block reward-funded treasuries. The Olympia treasury (ECIP-1112) took a fundamentally different approach: redirecting EIP-1559 basefee to the treasury instead of diverting block rewards, preserving the monetary policy
+- **Block reward diversion**: Like ECIP-1051, the proto treasury relied on diverting block rewards, conflicting with ECIP-1017's fixed monetary policy
+- **Governance complexity**: On-chain governance for fund allocation introduced centralization vectors that the community considered incompatible with ETC's principles
+- **Loss of development resources**: The withdrawal and subsequent Grothendieck wind-down reduced ETC's active development capacity
+- **Legacy**: The rejection of both ECIP-1051 and ECIP-1098 established that ETC would not implement block reward-funded treasuries. The Olympia treasury (ECIP-1112) took a fundamentally different approach: redirecting EIP-1559 basefee to the treasury instead of diverting block rewards, preserving the monetary policy
 
 ---
 

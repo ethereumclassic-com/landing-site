@@ -5,7 +5,7 @@ const entry: CDCEntry = {
   title: 'Agharta',
   date: '2020-01-12',
   summary:
-    'ECIP-1056 — Aligned ETC with Ethereum\'s Constantinople and Petersburg upgrades. Bitwise shifting, CREATE2, and EXTCODEHASH opcodes.',
+    'ECIP-1056: Aligned ETC with Ethereum\'s Constantinople and Petersburg upgrades. Bitwise shifting, CREATE2, and EXTCODEHASH opcodes.',
   content: `## Agharta (ECIP-1056) Network Upgrade
 
 **Activation Block:** 9,573,000\\
@@ -28,9 +28,9 @@ Agharta aligned ETC with Ethereum's Constantinople and Petersburg upgrades, addi
 
 ### Technical Details
 
-- **EIP-145: Bitwise shifting** — Added \`SHL\` (shift left), \`SHR\` (logical shift right), and \`SAR\` (arithmetic shift right) opcodes. Before these, bit shifting required expensive arithmetic operations (\`MUL\`/\`DIV\` with powers of 2). Native shift instructions are 3 gas vs. 5+ gas for the arithmetic equivalent, and enable efficient binary data manipulation
-- **EIP-1014: CREATE2** — Enables deployment of contracts to deterministic addresses computed from the deployer address, a salt value, and the creation bytecode hash. The address is known before deployment, enabling counterfactual instantiation — contracts can be referenced and receive funds before they exist on-chain. This is foundational for state channels, CREATE2 factory patterns, and the Olympia governance contracts
-- **EIP-1052: EXTCODEHASH** — Returns the keccak256 hash of an account's code. Before this opcode, checking contract code required \`EXTCODECOPY\` to copy the entire bytecode into memory and then hashing it — expensive for large contracts. \`EXTCODEHASH\` costs 700 gas regardless of code size, enabling efficient proxy pattern verification and contract identity checks
+- **EIP-145: Bitwise shifting**: Added \`SHL\` (shift left), \`SHR\` (logical shift right), and \`SAR\` (arithmetic shift right) opcodes. Before these, bit shifting required expensive arithmetic operations (\`MUL\`/\`DIV\` with powers of 2). Native shift instructions are 3 gas vs. 5+ gas for the arithmetic equivalent, and enable efficient binary data manipulation
+- **EIP-1014: CREATE2**: Enables deployment of contracts to deterministic addresses computed from the deployer address, a salt value, and the creation bytecode hash. The address is known before deployment, enabling counterfactual instantiation: contracts can be referenced and receive funds before they exist on-chain. This is foundational for state channels, CREATE2 factory patterns, and the Olympia governance contracts
+- **EIP-1052: EXTCODEHASH**: Returns the keccak256 hash of an account's code. Before this opcode, checking contract code required \`EXTCODECOPY\` to copy the entire bytecode into memory and then hashing it: expensive for large contracts. \`EXTCODEHASH\` costs 700 gas regardless of code size, enabling efficient proxy pattern verification and contract identity checks
 
 ### Context
 

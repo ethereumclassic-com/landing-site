@@ -5,7 +5,7 @@ const entry: CDCEntry = {
   title: 'Thanos',
   date: '2020-11-28',
   summary:
-    'ECIP-1099 — Halved the DAG size epoch length, enabling consumer GPUs to continue mining ETC. Introduced the Etchash algorithm.',
+    'ECIP-1099: Doubled the DAG epoch length, halving how fast the DAG grows, so consumer GPUs could keep mining ETC. Introduced the Etchash algorithm.',
   content: `## Thanos (ECIP-1099) Network Upgrade
 
 **Activation Block:** 11,700,000\\
@@ -16,7 +16,7 @@ const entry: CDCEntry = {
 
 ### Overview
 
-The Thanos upgrade introduced the Etchash algorithm — a modification to the Ethash mining algorithm that doubled the DAG epoch length from 30,000 to 60,000 blocks. This halved the rate of DAG growth, extending the mining viability of 4GB consumer GPUs by approximately three years. Without this change, consumer GPUs would have been obsoleted by late 2020, concentrating mining power among ASIC operators and large GPU farms.
+The Thanos upgrade introduced the Etchash algorithm: a modification to the Ethash mining algorithm that doubled the DAG epoch length from 30,000 to 60,000 blocks. This halved the rate of DAG growth, extending the mining viability of 4GB consumer GPUs by approximately three years. Without this change, consumer GPUs would have been obsoleted by late 2020, concentrating mining power among ASIC operators and large GPU farms.
 
 ### Included Changes
 
@@ -26,10 +26,10 @@ The Thanos upgrade introduced the Etchash algorithm — a modification to the Et
 
 ### Technical Details
 
-- **DAG epoch doubling** — The Ethash algorithm uses a Directed Acyclic Graph (DAG) that grows with each epoch. At epoch 30,000 blocks, the DAG size increases ~8MB per epoch. By doubling the epoch to 60,000 blocks, the DAG grows at half the rate, keeping it within the memory limits of 4GB GPUs for significantly longer
-- **Etchash algorithm** — The modified algorithm is called Etchash (distinct from Ethash). The core proof-of-work computation is identical — the only change is the epoch length parameter. This means existing mining hardware and software required only minor configuration changes
-- **GPU mining preservation** — At the time of the upgrade, the Ethash DAG was approaching the 4GB VRAM limit of consumer GPUs (GTX 1050 Ti, RX 570/580 4GB variants). These represent the majority of GPU miners worldwide. Without ECIP-1099, these miners would have been forced off the network
-- **Mining decentralization** — Preserving consumer GPU mining prevents concentration of hashpower among ASIC operators and mining farms with 8GB+ GPUs. A more distributed mining base strengthens the network's censorship resistance
+- **DAG epoch doubling**: The Ethash algorithm uses a Directed Acyclic Graph (DAG) that grows with each epoch. At epoch 30,000 blocks, the DAG size increases ~8MB per epoch. By doubling the epoch to 60,000 blocks, the DAG grows at half the rate, keeping it within the memory limits of 4GB GPUs for significantly longer
+- **Etchash algorithm**: The modified algorithm is called Etchash (distinct from Ethash). The core proof-of-work computation is identical: the only change is the epoch length parameter. This means existing mining hardware and software required only minor configuration changes
+- **GPU mining preservation**: At the time of the upgrade, the Ethash DAG was approaching the 4GB VRAM limit of consumer GPUs (GTX 1050 Ti, RX 570/580 4GB variants). These represent the majority of GPU miners worldwide. Without ECIP-1099, these miners would have been forced off the network
+- **Mining decentralization**: Preserving consumer GPU mining prevents concentration of hashpower among ASIC operators and mining farms with 8GB+ GPUs. A more distributed mining base strengthens the network's censorship resistance
 
 ### Context
 

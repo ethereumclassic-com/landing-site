@@ -72,7 +72,7 @@ interface CDCPostContentProps {
 
 export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostContentProps) {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0">
@@ -184,6 +184,6 @@ export default function CDCPostContent({ entry, prevEntry, nextEntry }: CDCPostC
           )}
         </div>
       </section>
-    </main>
+    </div>
   )
 }

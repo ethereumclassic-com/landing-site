@@ -5,7 +5,7 @@ const entry: CDCEntry = {
   title: 'Atlantis',
   date: '2019-09-12',
   summary:
-    'ECIP-1054 — Aligned ETC with Ethereum\'s Spurious Dragon and Byzantium upgrades. REVERT, STATICCALL, alt_bn128 precompiles, receipt status codes, and state trie clearing.',
+    'ECIP-1054: Aligned ETC with Ethereum\'s Spurious Dragon and Byzantium upgrades. REVERT, STATICCALL, alt_bn128 precompiles, receipt status codes, and state trie clearing.',
   metaDescription:
     'ECIP-1054 aligned ETC with Ethereum\'s Spurious Dragon and Byzantium: REVERT, STATICCALL, alt_bn128 precompiles, receipt status and state trie clearing.',
   content: `## Atlantis (ECIP-1054) Network Upgrade
@@ -37,15 +37,15 @@ Atlantis was a major compatibility upgrade that brought ETC's EVM up to parity w
 
 ### Technical Details
 
-- **EIP-140: REVERT** — Before \`REVERT\`, a failing contract consumed all remaining gas. \`REVERT\` allows contracts to abort execution, return an error message, and refund unused gas. This is essential for modern Solidity error handling (\`require()\`, \`revert()\`)
-- **EIP-196/197: alt_bn128 precompiles** — Precompiled contracts for elliptic curve addition, scalar multiplication, and pairing checks on the alt_bn128 curve. These enable efficient zk-SNARK verification on-chain — the cryptographic foundation for privacy protocols and Layer 2 scaling solutions
-- **EIP-214: STATICCALL** — A call variant that guarantees no state modifications. Enables contracts to safely call untrusted code for read-only operations. Critical for the \`view\` and \`pure\` function modifiers in Solidity
-- **EIP-658: Receipt status codes** — Replaced the intermediate state root in transaction receipts with a simple boolean status (1 = success, 0 = failure). This simplified transaction verification and enabled dApps to reliably detect failed transactions
-- **EIP-170: Contract code size limit** — Capped deployed contract bytecode at 24,576 bytes (24 KB). Prevents DoS through deployment of arbitrarily large contracts, which would bloat the state trie
+- **EIP-140: REVERT**: Before \`REVERT\`, a failing contract consumed all remaining gas. \`REVERT\` allows contracts to abort execution, return an error message, and refund unused gas. This is essential for modern Solidity error handling (\`require()\`, \`revert()\`)
+- **EIP-196/197: alt_bn128 precompiles**: Precompiled contracts for elliptic curve addition, scalar multiplication, and pairing checks on the alt_bn128 curve. These enable efficient zk-SNARK verification on-chain: the cryptographic foundation for privacy protocols and Layer 2 scaling solutions
+- **EIP-214: STATICCALL**: A call variant that guarantees no state modifications. Enables contracts to safely call untrusted code for read-only operations. Critical for the \`view\` and \`pure\` function modifiers in Solidity
+- **EIP-658: Receipt status codes**: Replaced the intermediate state root in transaction receipts with a simple boolean status (1 = success, 0 = failure). This simplified transaction verification and enabled dApps to reliably detect failed transactions
+- **EIP-170: Contract code size limit**: Capped deployed contract bytecode at 24,576 bytes (24 KB). Prevents DoS through deployment of arbitrarily large contracts, which would bloat the state trie
 
 ### Context
 
-By 2019, the gap between ETC's EVM and Ethereum's had grown significantly — Byzantium activated on ETH in October 2017, nearly two years prior. This gap meant that modern Solidity versions, development tools, and smart contracts could not be used on ETC. Atlantis closed this gap in a single upgrade, bringing ETC's EVM to Byzantium-level compatibility. The upgrade was coordinated across four Core Devs Calls (May–June 2019) with competing timeline proposals that were resolved through community consensus.
+By 2019, the gap between ETC's EVM and Ethereum's had grown significantly: Byzantium activated on ETH in October 2017, nearly two years prior. This gap meant that modern Solidity versions, development tools, and smart contracts could not be used on ETC. Atlantis closed this gap in a single upgrade, bringing ETC's EVM to Byzantium-level compatibility. The upgrade was coordinated across four Core Devs Calls (May–June 2019) with competing timeline proposals that were resolved through community consensus.
 
 ### Outcome
 

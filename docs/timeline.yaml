@@ -321,7 +321,7 @@ items:
     title: Gas Reprice Upgrade
     __dateText: ETCDEV
     __block: 2,500,000
-    __date: 2016-10-24
+    __date: 2016-10-25
     __color: blue
     __icon: angleDoubleUp
     __link: /blog/2016-10-17-gas-reprice-hard-fork
@@ -649,7 +649,7 @@ items:
     title: Phoenix Upgrade
     __dateText: ETC Labs and ETC Cooperative
     __block: 10,500,839
-    __date: 2020-06-01
+    __date: 2020-05-31
     __color: blue
     __icon: angleDoubleUp
     __link: /blog/2020-06-01-phoenix-hard-fork-upgrade/
@@ -709,14 +709,14 @@ items:
     __link: /blog/2020-11-27-thanos-hard-fork-upgrade/
     text: Ethereum Classic implements the Thanos Upgrade to recalibrate the epoch length used in DAG calculations.
   etchash:
-    title: ETChash
+    title: Etchash
     __dateText: Luke Williams and Cody Burns
     __block: 11,700,000
     __date: 2020-11-28
     __color: green
     __icon: cubes
     __link: /blog/2020-11-27-thanos-hard-fork-upgrade/
-    text: Ethereum Classic implements the Thanos Upgrade to adjust the mining algorithm from ETHash to ETCHash.
+    text: Ethereum Classic implements the Thanos Upgrade to adjust the mining algorithm from ETHash to Etchash.
   mantis-ETC-Support:
     title: Mantis ETC Client Revival
     __dateText: IOHK Grothendieck
@@ -761,7 +761,7 @@ items:
     title: Magneto Upgrade
     __dateText: ETC Labs and ETC Cooperative
     __block: 13,189,133
-    __date: 2021-07-23
+    __date: 2021-07-24
     __color: blue
     __icon: angleDoubleUp
     __link: https://ecips.ethereumclassic.org/ECIPs/ecip-1103
@@ -790,7 +790,7 @@ items:
     __color: green
     __icon: cubes
     __link: /blog/2022-03-18-etc-welcomes-ethash-miners
-    text: Ethereum Classic commits support to the ETChash mining algorithm and the current mining ecosystem. This positions Ethereum Classic as a network well positioned to absorb a majority of the disenfranchised Ethash miners with ETH network's move to proof of stake consensus.
+    text: Ethereum Classic commits support to the Etchash mining algorithm and the current mining ecosystem. This positions Ethereum Classic as a network well positioned to absorb a majority of the disenfranchised Ethash miners with ETH network's move to proof of stake consensus.
   era4:
     title: 5M20 Era 4
     __block: 15,000,001
@@ -798,7 +798,7 @@ items:
     __color: green
     __icon: coins
     __link: https://etcis.money
-    text: Ethereum Classic's block rewards are reduced by 20% to 2.56 ETC per block, as per the bitcoin-inspired 5M20 emission schedule. ETChash mining hashrate continues to turn over to ETC with the network reaching All-Time Highs.
+    text: Ethereum Classic's block rewards are reduced by 20% to 2.56 ETC per block, as per the bitcoin-inspired 5M20 emission schedule. Etchash mining hashrate continues to turn over to ETC with the network reaching All-Time Highs.
   sha3Withdrawn:
     title: SHA3 Proposal Withdrawn
     __dateText: Bob Summerwill
@@ -806,7 +806,7 @@ items:
     __color: orange
     __icon: timesCircle
     __link: https://github.com/ethereumclassic/ECIPs/pull/486
-    text: After more than three years of contentious debate, ECIP-1049 is withdrawn due to the likelihood of a contentious hardfork. Ethereum Classic remains well-positioned to thrive on ETChash in a post-merge world.
+    text: After more than three years of contentious debate, ECIP-1049 is withdrawn due to the likelihood of a contentious hardfork. Ethereum Classic remains well-positioned to thrive on Etchash in a post-merge world.
   vitalikEndorsesETC:
     title: Vitalik Buterin Endorses Ethereum Classic
     __date: 2022-07-22

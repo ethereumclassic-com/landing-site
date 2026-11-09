@@ -84,14 +84,14 @@ export const articles: Article[] = [
     excerpt:
       'Every step, with every command, for moving a Core-Geth node off the v1.12 line on Linux, macOS, Windows, containers or a build from source, with recordings of a real node making the move.',
     metaDescription: 'Every step and command for moving a Core-Geth node off the v1.12 line, on Linux, macOS, Windows, containers or source, with recordings of a real move.',
-    content: `Every Core-Geth node on a \`v1.12\` release should move to the \`v1.13\` line, published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest) in the \`ethereumclassic\` GitHub organization. The move happens in place: the chain data and the accounts stay, nothing resyncs, and the old binary is kept so the node can roll back. This guide walks through it, with the commands for Linux, macOS, Windows, containers and a build from source from [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), Core-Geth's download page.
+    content: `Every Core-Geth node on a \`v1.12\` release should move to the \`v1.13\` line, published from [ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth/releases/latest) in the \`ethereumclassic\` GitHub organization. From \`v1.12.17\` on, the move happens in place: the chain data stays, nothing resyncs, and the old binary is kept until the node is stable, so it can roll back. An older node resyncs instead, as the first section explains. This guide walks through it, with the commands for Linux, macOS, Windows, containers and a build from source from [Migrate Core-Geth](https://coregeth.com/guides/migrate/), coregeth.com's migration guide.
 
 > **At a glance**
-> - **Who moves:** every node on a \`v1.12\` release, \`v1.12.23\` included, whatever it serves: an exchange or custodian, a mining pool or solo miner, an RPC endpoint, an explorer, or a node you run for yourself.
+> - **Who moves:** every node on a \`v1.12\` release from \`v1.12.17\` to \`v1.12.23\`, whatever it serves: an exchange or custodian, a mining pool or solo miner, an RPC endpoint, an explorer, or a node you run for yourself.
 > - **When the node is down:** from the stop to the start. The download and its checks come first, while the node still runs.
 > - **What changes:** the node's P2P key, and with it the enode ID. MESS, which the move sets explicitly. And any discovery flags added on \`v1.12\`, which come out.
-> - **What stays:** the chain data, the account keystore, and the executable's name, \`geth\`, so units and scripts keep working.
-> - **Rolling back:** put the old binary back. The data directory works with both lines.
+> - **What stays:** the chain data, and the executable's name, \`geth\`, so units and scripts keep working.
+> - **Rolling back:** each tab keeps the old binary or container until the node is stable, and its rollback step puts it back. The data directory works with both lines. The last step deletes the old copy.
 
 ## Check what your node runs
 
@@ -105,11 +105,15 @@ Ask the node which release it runs. On Linux, macOS and Windows this asks the ru
 | a release older than \`v1.12.17\` | A separate case, set out under this table |
 | a \`v1.13\` release | Nothing: the node is on the \`v1.13\` line |
 
-A node on a release older than \`v1.12.17\` is a separate case. Those releases do not schedule the Spiral upgrade, so such a node left Ethereum Classic at block 19,250,000 and does not resume where it stopped.
+A node on a release older than \`v1.12.17\` is a separate case. Those releases do not schedule the Spiral upgrade, so such a node left Ethereum Classic at block 19,250,000, on February 5, 2024, and everything it has stored since belongs to an obsolete chain. It cannot move in place, and a resync is the only way back:
+
+1. Stop the node, and remove its chain database as [Resync from scratch](https://docs.coregeth.com/operate/maintenance/#resync-from-scratch) shows. That keeps the node key, which the next step renames.
+2. Rename the old node key, as the move below does: those releases also leak bits of it (CVE-2026-26315).
+3. Install the \`v1.13\` line with the [install steps](https://coregeth.com/downloads/#install). The node starts with a new key and syncs Ethereum Classic again from its peers.
 
 ## The move, step by step
 
-Choose the platform the node runs on. The steps below are the ones on [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), which also has the [install steps](https://coregeth.com/downloads/#install) for a new node and [how to verify a download](https://coregeth.com/downloads/#verify). They keep the node running until the release is downloaded and checked, keep the old binary or container so you can roll back, and rotate the node key before the node starts again. Every block has a copy button. Read the notes beside a block before you run it: they say what it must print, and what to change for your setup.
+Choose the platform the node runs on. The steps below are the ones in coregeth.com's [migration guide](https://coregeth.com/guides/migrate/#steps), and its download page has the [install steps](https://coregeth.com/downloads/#install) for a new node and [how to verify a download](https://coregeth.com/downloads/#verify). They keep the node running until the release is downloaded and checked, rotate the node key before the node starts again, and keep the old binary or container until the node is stable, so you can roll back, before the last step deletes it. Every block has a copy button. Read the notes beside a block before you run it: they say what it must print, and what to change for your setup.
 
 ::move-phases
 
@@ -123,11 +127,11 @@ Choose the platform the node runs on. The steps below are the ones on [coregeth.
 - **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. The \`v1.13.0\` release runs with MESS on by default, and a build from source of the main branch, \`v1.13.1-unstable\`, runs with it off. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
 - **Discovery settings added for v1.12 come out,** so the node reads the bootnodes and peer discovery lists its release ships with.
 - **A container keeps its chain only where its data is mounted.** The containers tab checks where the data is before the stop, and copies it out first when it is inside the container.
-- **The chain data and the accounts stay.** Nothing resyncs, and the account keystore is not touched.
+- **The chain data stays.** Nothing resyncs: the node starts again near the block it stopped at.
 
 ## If something goes wrong
 
-The rollback is the last step of the containers tab on [coregeth.com/downloads](https://coregeth.com/downloads/#upgrade), and the last section of the migration guides on docs.coregeth.com for [Linux](https://docs.coregeth.com/tutorials/migration/linux/#6-if-you-need-to-roll-back), [macOS](https://docs.coregeth.com/tutorials/migration/macos/#6-if-you-need-to-roll-back) and [Windows](https://docs.coregeth.com/tutorials/migration/windows/#6-if-you-need-to-roll-back). The data directory works with both lines, so rolling back puts the old binary back, or for a container the old container. The new key stays: rolling back does not make the old key safe.
+Every tab has a rollback step, before the step that deletes the old binary or container. The data directory works with both lines, so rolling back puts the old binary back, or for a container the old container, for as long as it takes to find what went wrong: every \`v1.12\` release carries the flaws the audits found. The new key stays: rolling back does not make the old key safe. Once the cause is fixed, the node moves again with the same steps, renaming the key again. [If a step goes wrong](https://coregeth.com/guides/migrate/#trouble) on coregeth.com covers a node whose enode ID did not change, one with no peers, and one whose block number went back.
 
 For a node that finds no peers or stops short of the network's head, [Troubleshooting](https://docs.coregeth.com/operate/troubleshooting/) works through the causes.
 
@@ -139,7 +143,7 @@ The \`v1.13\` line closes every client CVE the audits found in the \`v1.12\` cli
 
 ## A node that has to stay on v1.12
 
-A \`v1.12\` node that has to wait before it moves can add the \`--discovery.dns\` flag, which points it at the peer discovery lists published from the \`ethereumclassic\` organization, so it keeps finding peers after the lists \`v1.12\` releases read by default stop being updated. It is a small step that closes none of the flaws the audits found in the \`v1.12\` line. [coregeth.com](https://coregeth.com/downloads/#discovery-flag) has the flag for each network, and what changes for a node started from a config file or in a container.
+A \`v1.12\` node that has to wait before it moves can keep finding peers. [Keep a v1.12 node finding peers](https://coregeth.com/guides/discovery/) on coregeth.com points it at the peer discovery lists and bootnodes the \`v1.13\` line ships, with the steps for each platform and a config file, so it keeps finding peers after the lists a \`v1.12\` release reads stop being updated. The node goes on running its \`v1.12\` release, so this closes none of the flaws the audits found in the \`v1.12\` line. The same guide shows how to start a node on either line from the node records committed in \`ethereumclassic/discv4-dns-lists\`, if the lists and bootnodes ever go dark.
 
 ## Where releases come from
 
@@ -177,15 +181,15 @@ Core-Geth is maintained in the \`ethereumclassic\` organization by Ethereum Clas
 
 ## Included EIPs
 
-- **EIP-3651 — Warm COINBASE**: The block producer's address starts in the warm access set, reducing its first-touch cost from 2,600 to 100 gas. Benefits MEV-aware contracts and direct block-producer payments.
-- **EIP-3855 — PUSH0 Instruction**: New opcode (0x5f) that pushes zero onto the stack in 1 byte / 2 gas, replacing the previous PUSH1 0x00 (2 bytes / 3 gas). Zero is the most common constant in EVM bytecode, so this reduces deployed contract size network-wide.
-- **EIP-3860 — Limit and Meter Initcode**: Caps initcode at 49,152 bytes (twice the EIP-170 deployed-code limit) and charges 2 gas per 32-byte word. Prevents denial-of-service via arbitrarily large initcode payloads.
-- **EIP-6049 — Deprecate SELFDESTRUCT**: Formal deprecation notice. The opcode still functions but developers are warned not to depend on its state-clearing behavior. Follows EIP-3529 (Mystique) which already removed SELFDESTRUCT refunds.
+- **EIP-3651 (Warm COINBASE)**: The block producer's address starts in the warm access set, reducing its first-touch cost from 2,600 to 100 gas. Benefits MEV-aware contracts and direct block-producer payments.
+- **EIP-3855 (PUSH0 Instruction)**: New opcode (0x5f) that pushes zero onto the stack in 1 byte / 2 gas, replacing the previous PUSH1 0x00 (2 bytes / 3 gas). Zero is the most common constant in EVM bytecode, so this reduces deployed contract size network-wide.
+- **EIP-3860 (Limit and Meter Initcode)**: Caps initcode at 49,152 bytes (twice the EIP-170 deployed-code limit) and charges 2 gas per 32-byte word. Prevents denial-of-service via arbitrarily large initcode payloads.
+- **EIP-6049 (Deprecate SELFDESTRUCT)**: Formal deprecation notice. The opcode still functions but developers are warned not to depend on its state-clearing behavior. Follows EIP-3529 (Mystique) which already removed SELFDESTRUCT refunds.
 
 ## Omitted EIPs
 
-- **EIP-4399 (PREVRANDAO)**: Replaces DIFFICULTY with beacon chain randomness. PoS-only — not applicable to ETC's proof-of-work consensus.
-- **EIP-4895 (Beacon Chain Withdrawals)**: Enables validator withdrawals. PoS-only — not applicable.
+- **EIP-4399 (PREVRANDAO)**: Replaces DIFFICULTY with beacon chain randomness. PoS-only: not applicable to ETC's proof-of-work consensus.
+- **EIP-4895 (Beacon Chain Withdrawals)**: Enables validator withdrawals. PoS-only: not applicable.
 
 ## Client Requirements
 
@@ -210,7 +214,7 @@ Spiral represents ETC's current production EVM level, maintaining execution-laye
 
 ## The Migration
 
-When Ethereum completed "The Merge" on September 15, 2022, it ended proof-of-work mining on that network. Many miners who had invested in GPU hardware looked to alternative chains, with Ethereum Classic being a natural choice due to its use of the ETChash algorithm.
+When Ethereum completed "The Merge" on September 15, 2022, it ended proof-of-work mining on that network. Many miners who had invested in GPU hardware looked to alternative chains, with Ethereum Classic being a natural choice due to its use of the Etchash algorithm.
 
 ## Hashrate Growth
 
@@ -265,7 +269,7 @@ Ethereum's programming capability was Turing complete, meaning developers could 
 
 ## The Vision
 
-Created by Vitalik Buterin and a team of co-founders, Ethereum aimed to be a "world computer" — a decentralized platform for applications that run exactly as programmed without downtime, censorship, or third-party interference.
+Created by Vitalik Buterin and a team of co-founders, Ethereum aimed to be a "world computer": a decentralized platform for applications that run exactly as programmed without downtime, censorship, or third-party interference.
 
 ## From Ethereum to Ethereum Classic
 
@@ -290,7 +294,7 @@ The genesis block that was mined on this date remains block 0 on Ethereum Classi
 
 ## The DAO
 
-The DAO (Decentralized Autonomous Organization) launched in April 2016 as a smart-contract-governed venture fund. It raised approximately 12.7 million ETH (~$150 million at the time) — the largest crowdfunding campaign in history at that point.
+The DAO (Decentralized Autonomous Organization) launched in April 2016 as a smart-contract-governed venture fund. It raised approximately 12.7 million ETH (~$150 million at the time), the largest crowdfunding campaign in history at that point.
 
 ## The Exploit
 
@@ -299,15 +303,15 @@ On June 17, 2016, an attacker exploited a reentrancy vulnerability in The DAO's 
 ## The Fork Decision
 
 The Ethereum community debated three options:
-- **Do nothing** — let the code execute as written
-- **Soft fork** — blacklist the attacker's address
-- **Hard fork** — irregular state change to return funds to DAO token holders
+- **Do nothing**: let the code execute as written
+- **Soft fork**: blacklist the attacker's address
+- **Hard fork**: irregular state change to return funds to DAO token holders
 
 On July 20, 2016, the majority of the network implemented the hard fork at block 1,920,000, rewriting state to move The DAO's ETH to a recovery contract.
 
 ## The Original Chain Continues
 
-Not everyone agreed. Those who held that blockchain immutability was non-negotiable continued mining the original chain — the one where The DAO exploit remained in the transaction history. This chain became Ethereum Classic (ETC), while the forked chain continued as Ethereum (ETH).
+Not everyone agreed. Those who held that blockchain immutability was non-negotiable continued mining the original chain: the one where The DAO exploit remained in the transaction history. This chain became Ethereum Classic (ETC), while the forked chain continued as Ethereum (ETH).
 
 Supporters of the original chain argued:
 - **Immutability**: If transactions can be reversed by social consensus, the blockchain loses its value as a neutral ledger.
@@ -316,7 +320,7 @@ Supporters of the original chain argued:
 
 ## Early Challenges
 
-Ethereum Classic faced significant obstacles in its first months. Most developers and infrastructure followed the forked chain. The ETC community had to rebuild tooling, establish its own identity, and attract new contributors — but a dedicated community formed around the principles of immutability, decentralization, and censorship resistance.
+Ethereum Classic faced significant obstacles in its first months. Most developers and infrastructure followed the forked chain. The ETC community had to rebuild tooling, establish its own identity, and attract new contributors, but a dedicated community formed around the principles of immutability, decentralization, and censorship resistance.
 
 The chain that launched on July 30, 2015, continues unbroken on Ethereum Classic.`,
     date: '2016-07-20',
@@ -338,18 +342,18 @@ The chain that launched on July 30, 2015, continues unbroken on Ethereum Classic
 
 ## Included EIPs
 
-- **EIP-3529 — Alternative Refund Reduction**: Eliminated SELFDESTRUCT refund (24,000 → 0 gas) and capped SSTORE refunds at 20% of transaction gas. This change made gas token contracts (CHI, GST2) economically unviable, removing a long-standing abuse vector that complicated gas estimation.
-- **EIP-3541 — Reject New Contracts Starting with 0xEF**: New contract deployments with bytecode starting at 0xEF are rejected. Existing contracts are unaffected. This reserves the 0xEF prefix for the future EVM Object Format (EOF), preventing bytecode collisions.
+- **EIP-3529 (Alternative Refund Reduction)**: Eliminated SELFDESTRUCT refund (24,000 → 0 gas) and capped SSTORE refunds at 20% of transaction gas. This change made gas token contracts (CHI, GST2) economically unviable, removing a long-standing abuse vector that complicated gas estimation.
+- **EIP-3541 (Reject New Contracts Starting with 0xEF)**: New contract deployments with bytecode starting at 0xEF are rejected. Existing contracts are unaffected. This reserves the 0xEF prefix for the future EVM Object Format (EOF), preventing bytecode collisions.
 
 ## Omitted EIPs
 
-- **EIP-1559 (Fee Market Change)**: EIP-1559 burns the transaction basefee, permanently destroying tokens. This conflicts with ETC's fixed monetary policy under ECIP-1017 (~210.7M cap). The community chose to defer EIP-1559 adoption — the Olympia network upgrade redirects the basefee to a community treasury (ECIP-1112) instead of burning it, preserving the monetary policy while adopting the fee market mechanism.
+- **EIP-1559 (Fee Market Change)**: EIP-1559 burns the transaction basefee, permanently destroying tokens. This conflicts with ETC's fixed monetary policy under ECIP-1017 (~210.7M cap). The community chose to defer EIP-1559 adoption. The proposed Olympia upgrade would redirect the basefee to a protocol treasury (ECIP-1112) instead of burning it, preserving the monetary policy while adopting the fee market mechanism.
 - **EIP-3198 (BASEFEE Opcode)**: Depends on EIP-1559; without an active basefee, the opcode has no defined return value.
-- **EIP-3228 (Difficulty Bomb Delay)**: ETC permanently removed the difficulty bomb in ECIP-1041 (block 5,900,000). Not applicable.
+- **EIP-3554 (Difficulty Bomb Delay to December 2021)**: ETC permanently removed the difficulty bomb in ECIP-1041 (block 5,900,000). Not applicable.
 
 ## Client Requirements
 
-- Core-Geth v1.12.9 or later
+- Core-Geth v1.12.4 or later
 - Hyperledger Besu with ETC Mystique support`,
     date: '2022-02-12',
     category: 'Updates',
@@ -363,19 +367,19 @@ The chain that launched on July 30, 2015, continues unbroken on Ethereum Classic
     title: 'Magneto Network Upgrade Achieves Berlin Equivalence',
     metaTitle: 'Magneto Upgrade Brings Berlin to ETC',
     excerpt:
-      'Ethereum Classic activated Magneto at block 13,189,133 on July 23, 2021, introducing typed transactions, access lists, and the cold/warm state access model.',
-    content: `Ethereum Classic activated the Magneto network upgrade at block 13,189,133 on July 23, 2021, achieving Berlin EVM equivalence. Magneto was specified in ECIP-1103.
+      'Ethereum Classic activated Magneto at block 13,189,133 on July 24, 2021, introducing typed transactions, access lists, and the cold/warm state access model.',
+    content: `Ethereum Classic activated the Magneto network upgrade at block 13,189,133 on July 24, 2021, achieving Berlin EVM equivalence. Magneto was specified in ECIP-1103.
 
 ## Included EIPs
 
-- **EIP-2565 — ModExp Gas Cost**: Repriced the MODEXP precompile to reflect actual computational cost. Small inputs were previously overpriced; large inputs were underpriced. This made RSA signature verification and other cryptographic operations more affordable and accurately metered.
-- **EIP-2718 — Typed Transaction Envelope**: Introduced a transaction format where the first byte indicates the type. Type 0 = legacy transactions (unchanged). Type 1 = access list transactions (EIP-2930). This framework enables future transaction type extensions without breaking backward compatibility.
-- **EIP-2929 — Gas Cost Increases for State Access Opcodes**: Introduced the cold/warm access model. First access to an address or storage slot (cold) costs more; subsequent accesses in the same transaction (warm) cost less. SLOAD: 2,100 cold / 100 warm. CALL, BALANCE, EXT*: 2,600 cold / 100 warm. More accurately reflects I/O cost and mitigates state-access DoS vectors.
-- **EIP-2930 — Optional Access Lists (Type 1 Transactions)**: Transactions can declare upfront which addresses and storage slots they will access. Pre-declared slots receive the warm access price, providing gas savings for cross-contract calls with known state patterns.
+- **EIP-2565 (ModExp Gas Cost)**: Repriced the MODEXP precompile to reflect actual computational cost. Small inputs were previously overpriced; large inputs were underpriced. This made RSA signature verification and other cryptographic operations more affordable and accurately metered.
+- **EIP-2718 (Typed Transaction Envelope)**: Introduced a transaction format where the first byte indicates the type. Type 0 = legacy transactions (unchanged). Type 1 = access list transactions (EIP-2930). This framework enables future transaction type extensions without breaking backward compatibility.
+- **EIP-2929 (Gas Cost Increases for State Access Opcodes)**: Introduced the cold/warm access model. First access to an address or storage slot (cold) costs more; subsequent accesses in the same transaction (warm) cost less. SLOAD: 2,100 cold / 100 warm. CALL, BALANCE, EXT*: 2,600 cold / 100 warm. More accurately reflects I/O cost and mitigates state-access DoS vectors.
+- **EIP-2930, Optional Access Lists (Type 1 Transactions)**: Transactions can declare upfront which addresses and storage slots they will access. Pre-declared slots receive the warm access price, providing gas savings for cross-contract calls with known state patterns.
 
 ## Client Requirements
 
-- Core-Geth v1.12.1 or later
+- Core-Geth v1.12.0 or later
 - Hyperledger Besu with ETC Magneto support`,
     date: '2021-07-23',
     category: 'Updates',
@@ -389,17 +393,17 @@ The chain that launched on July 30, 2015, continues unbroken on Ethereum Classic
     title: 'Phoenix Network Upgrade Completes Istanbul Alignment',
     metaTitle: 'Phoenix Upgrade Completes Istanbul on ETC',
     excerpt:
-      'Ethereum Classic activated Phoenix at block 10,500,839 on June 1, 2020, achieving full Istanbul EVM equivalence after the Aztlan governance crisis.',
-    content: `Ethereum Classic activated the Phoenix network upgrade at block 10,500,839 on June 1, 2020, completing Istanbul EVM equivalence. Phoenix was specified in ECIP-1088, replacing the earlier failed Aztlan proposal.
+      'Ethereum Classic activated Phoenix at block 10,500,839 on May 31, 2020, achieving full Istanbul EVM equivalence after the Aztlan governance crisis.',
+    content: `Ethereum Classic activated the Phoenix network upgrade at block 10,500,839 on May 31, 2020, completing Istanbul EVM equivalence. Phoenix was specified in ECIP-1088, replacing the earlier failed Aztlan proposal.
 
 ## Included EIPs
 
-- **EIP-152 — Blake2b Compression Function F**: Added a precompile at address 0x09 for Blake2b compression. Enables efficient verification of Zcash block headers and Equihash proofs, supporting cross-chain interoperability.
-- **EIP-1108 — Reduce alt_bn128 Gas Costs**: Dramatically reduced elliptic curve precompile costs. ECADD: 500 → 150 gas. ECMUL: 40,000 → 6,000 gas. Made zk-SNARK verification economically practical on-chain.
-- **EIP-1344 — ChainID Opcode**: Returns the EIP-155 chain ID (61 for ETC) via a new opcode. Enables contracts to verify their execution chain at runtime, critical for cross-chain replay protection in multi-chain dApps.
-- **EIP-1884 — Trie-Size-Dependent Opcode Repricing**: Increased gas costs for state-access opcodes to reflect growing state trie size. SLOAD: 200 → 800 gas. BALANCE, EXT*: 400 → 700 gas. Mitigates DoS vectors from cheap state reads.
-- **EIP-2028 — Calldata Gas Cost Reduction**: Reduced non-zero calldata cost from 68 → 16 gas per byte. Significantly benefits data-heavy operations including multi-sig wallets, Layer 2 batch submissions, and large function calls.
-- **EIP-2200 — SSTORE Net Gas Metering**: Rebalanced SSTORE costs to account for the EIP-1884 SLOAD increase. Ensures multiple writes to the same storage slot in one transaction are not unfairly penalized.
+- **EIP-152 (Blake2b Compression Function F)**: Added a precompile at address 0x09 for Blake2b compression. Enables efficient verification of Zcash block headers and Equihash proofs, supporting cross-chain interoperability.
+- **EIP-1108 (Reduce alt_bn128 Gas Costs)**: Dramatically reduced elliptic curve precompile costs. ECADD: 500 → 150 gas. ECMUL: 40,000 → 6,000 gas. Made zk-SNARK verification economically practical on-chain.
+- **EIP-1344 (ChainID Opcode)**: Returns the EIP-155 chain ID (61 for ETC) via a new opcode. Enables contracts to verify their execution chain at runtime, critical for cross-chain replay protection in multi-chain dApps.
+- **EIP-1884 (Trie-Size-Dependent Opcode Repricing)**: Increased gas costs for state-access opcodes to reflect growing state trie size. SLOAD: 200 → 800 gas. BALANCE, EXT*: 400 → 700 gas. Mitigates DoS vectors from cheap state reads.
+- **EIP-2028 (Calldata Gas Cost Reduction)**: Reduced non-zero calldata cost from 68 → 16 gas per byte. Significantly benefits data-heavy operations including multi-sig wallets, Layer 2 batch submissions, and large function calls.
+- **EIP-2200 (SSTORE Net Gas Metering)**: Rebalanced SSTORE costs to account for the EIP-1884 SLOAD increase. Ensures multiple writes to the same storage slot in one transaction are not unfairly penalized.
 
 ## Background: Aztlan Crisis
 
@@ -407,7 +411,7 @@ Phoenix replaced the earlier Aztlan proposal (ECIP-1061), which included EIP-220
 
 ## Client Requirements
 
-- Core-Geth v1.11.16 or later
+- Core-Geth v1.11.0 or later
 - Hyperledger Besu with ETC Phoenix support`,
     date: '2020-06-01',
     category: 'Updates',
@@ -426,9 +430,9 @@ Phoenix replaced the earlier Aztlan proposal (ECIP-1061), which included EIP-220
 
 ## Included EIPs
 
-- **EIP-145 — Bitwise Shifting Instructions**: Added native SHL (shift left), SHR (logical shift right), and SAR (arithmetic shift right) opcodes. Before Agharta, bit shifting required expensive arithmetic (MUL/DIV with powers of 2) at 5+ gas. Native shifts cost 3 gas and enable efficient binary data manipulation.
-- **EIP-1014 — CREATE2**: Deploys contracts at deterministic addresses calculated as keccak256(0xff, deployer, salt, bytecode_hash). The address is known before deployment, enabling counterfactual instantiation — contracts can be referenced before they exist on-chain. Foundation for state channels, factory patterns, and governance contracts.
-- **EIP-1052 — EXTCODEHASH**: Returns the keccak256 hash of an account's code in a single opcode (700 gas flat). Previously required EXTCODECOPY to copy entire bytecode then hash it — cost scaled with code size. Enables efficient proxy pattern verification and contract identity checks.
+- **EIP-145 (Bitwise Shifting Instructions)**: Added native SHL (shift left), SHR (logical shift right), and SAR (arithmetic shift right) opcodes. Before Agharta, bit shifting required expensive arithmetic (MUL/DIV with powers of 2) at 5+ gas. Native shifts cost 3 gas and enable efficient binary data manipulation.
+- **EIP-1014 (CREATE2)**: Deploys contracts at deterministic addresses calculated as keccak256(0xff, deployer, salt, bytecode_hash). The address is known before deployment, enabling counterfactual instantiation: contracts can be referenced before they exist on-chain. Foundation for state channels, factory patterns, and governance contracts.
+- **EIP-1052 (EXTCODEHASH)**: Returns the keccak256 hash of an account's code in a single opcode (700 gas flat). Previously required EXTCODECOPY to copy entire bytecode then hash it: cost scaled with code size. Enables efficient proxy pattern verification and contract identity checks.
 
 ## Note on EIP-1283
 
@@ -436,7 +440,7 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
 
 ## Client Requirements
 
-- Core-Geth v1.11.6 or later
+- Multi-Geth v1.9.6 or later (the client now named Core-Geth)
 - Hyperledger Besu with ETC Agharta support`,
     date: '2020-01-12',
     category: 'Updates',
@@ -455,20 +459,20 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
 
 ## Included EIPs
 
-- **EIP-100 — Difficulty Adjustment for Uncles**: Modified difficulty calculation to target mean block time including uncle blocks, providing more stable block production.
-- **EIP-140 — REVERT Instruction**: Added the REVERT opcode, allowing contracts to stop execution, revert state changes, and return unused gas. Essential for Solidity's require() and revert() patterns — before Atlantis, failed contracts consumed all remaining gas.
-- **EIP-161 — State Trie Clearing**: Removes empty accounts from state. Cleans up accounts created during the 2016 Shanghai DoS attacks that bloated the state trie.
-- **EIP-170 — Contract Code Size Limit**: Caps deployed bytecode at 24,576 bytes. Prevents denial-of-service through arbitrarily large contract deployments.
-- **EIP-196 — alt_bn128 Addition and Scalar Multiplication**: Precompiles for elliptic curve operations on the BN128 curve. Foundation for zk-SNARK verification and privacy protocols.
-- **EIP-197 — alt_bn128 Pairing Check**: Precompile for bilinear pairing checks on BN128. Enables efficient on-chain verification of zero-knowledge proofs.
-- **EIP-198 — BIGINT Modular Exponentiation**: Precompile for modular exponentiation. Supports RSA signature verification and other cryptographic operations.
-- **EIP-211 — RETURNDATASIZE and RETURNDATACOPY**: Opcodes for accessing return data from external calls. Enables contracts to handle variable-length return data without pre-allocating memory.
-- **EIP-214 — STATICCALL**: A new call opcode that guarantees no state modifications. Critical for Solidity's view and pure function modifiers — callers can prove the called contract cannot change state.
-- **EIP-658 — Transaction Status Code in Receipts**: Replaced the intermediate state root in transaction receipts with a simple boolean (1 = success, 0 = failure). Enabled dApps to reliably detect failed transactions.
+- **EIP-100 (Difficulty Adjustment for Uncles)**: Modified difficulty calculation to target mean block time including uncle blocks, providing more stable block production.
+- **EIP-140 (REVERT Instruction)**: Added the REVERT opcode, allowing contracts to stop execution, revert state changes, and return unused gas. Essential for Solidity's require() and revert() patterns, before Atlantis, failed contracts consumed all remaining gas.
+- **EIP-161 (State Trie Clearing)**: Removes empty accounts from state. Cleans up accounts created during the 2016 Shanghai DoS attacks that bloated the state trie.
+- **EIP-170 (Contract Code Size Limit)**: Caps deployed bytecode at 24,576 bytes. Prevents denial-of-service through arbitrarily large contract deployments.
+- **EIP-196 (alt_bn128 Addition and Scalar Multiplication)**: Precompiles for elliptic curve operations on the BN128 curve. Foundation for zk-SNARK verification and privacy protocols.
+- **EIP-197 (alt_bn128 Pairing Check)**: Precompile for bilinear pairing checks on BN128. Enables efficient on-chain verification of zero-knowledge proofs.
+- **EIP-198 (BIGINT Modular Exponentiation)**: Precompile for modular exponentiation. Supports RSA signature verification and other cryptographic operations.
+- **EIP-211 (RETURNDATASIZE and RETURNDATACOPY)**: Opcodes for accessing return data from external calls. Enables contracts to handle variable-length return data without pre-allocating memory.
+- **EIP-214 (STATICCALL)**: A new call opcode that guarantees no state modifications. Critical for Solidity's view and pure function modifiers: callers can prove the called contract cannot change state.
+- **EIP-658 (Transaction Status Code in Receipts)**: Replaced the intermediate state root in transaction receipts with a simple boolean (1 = success, 0 = failure). Enabled dApps to reliably detect failed transactions.
 
 ## Client Requirements
 
-- Core-Geth v1.11.0 or later (Multi-Geth at the time)`,
+- Multi-Geth v1.9.2 or later (the client now named Core-Geth)`,
     date: '2019-09-12',
     updated: '2026-11-07',
     category: 'Updates',
@@ -486,7 +490,7 @@ EIP-1283 (net gas metering for SSTORE) was not included. Ethereum itself removed
     excerpt:
       'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. As hashrate grew after the Merge, ECBP-1110 later recommended shipping it off, and MESS stays in the client as a setting each node operator chooses.',
     metaDescription: 'Ethereum Classic implemented ECBP-1100 (MESS) in October 2020 to defend against 51% attacks. ECBP-1110 later recommended shipping it off; each operator chooses.',
-    content: `Following the August 2020 chain reorganization attacks, Ethereum Classic implemented ECBP-1100 — Modified Exponential Subjective Scoring (MESS) — a novel approach to enhancing chain security without introducing centralized checkpoints.
+    content: `Following the August 2020 chain reorganization attacks, Ethereum Classic implemented ECBP-1100, Modified Exponential Subjective Scoring (MESS), a novel approach to enhancing chain security without introducing centralized checkpoints.
 
 ## What is MESS?
 
@@ -503,7 +507,7 @@ Longer reorganizations require proportionally more work to succeed, making deep 
 
 ## Benefits
 
-- **Attack Resistance**: Made 51% attacks significantly more expensive — an attacker needs not just majority hashrate but exponentially more work for deeper reorgs
+- **Attack Resistance**: Made 51% attacks significantly more expensive; an attacker needs not just majority hashrate but exponentially more work for deeper reorgs
 - **No Centralization**: Does not rely on checkpoints, trusted parties, or finality gadgets
 - **Preserves PoW Model**: Transactions still achieve probabilistic finality through proof-of-work
 
@@ -540,7 +544,7 @@ Thanos doubled the DAG epoch from 30,000 to 60,000 blocks, halving the DAG growt
 
 ## Etchash Algorithm
 
-With the epoch length change, ETC's mining algorithm is now called Etchash to distinguish it from Ethereum's Ethash. The algorithms are identical in all other respects — the only difference is the epoch duration parameter. Existing mining software required only minor configuration updates.
+With the epoch length change, ETC's mining algorithm is now called Etchash to distinguish it from Ethereum's Ethash. The algorithms are identical in all other respects: the only difference is the epoch duration parameter. Existing mining software required only minor configuration updates.
 
 ## Mining Decentralization
 
@@ -548,7 +552,7 @@ The decision preserved mining accessibility for operators running consumer-grade
 
 ## Client Requirements
 
-- Core-Geth v1.11.22 or later
+- Core-Geth v1.11.15 or later
 - Hyperledger Besu with ETC Thanos support`,
     date: '2020-11-28',
     category: 'Updates',
@@ -590,7 +594,7 @@ For significant holdings, hardware wallets like Ledger or Trezor provide strong 
 ## Common Scams
 
 ### Red Flags
-- "Send X ETC, receive 2X back" — always a scam
+- "Send X ETC, receive 2X back": always a scam
 - Unsolicited messages about investments
 - Requests for your seed phrase or private keys
 - Promises of guaranteed returns
@@ -666,7 +670,7 @@ The Cooperative is funded through donations and grants, operating as a nonprofit
 ## The 5M20 Policy
 
 ECIP-1017 implements a disinflationary emission schedule:
-- Block rewards reduce by 20% every 5 million blocks (approximately every 2.5 years)
+- Block rewards reduce by 20% every 5 million blocks (a little over two years each)
 - Uncle and nephew rewards reduce at the same rate
 - Maximum supply is capped at approximately 210.7 million ETC
 
@@ -688,7 +692,7 @@ ECIP-1039 specified that when reward reductions produce sub-wei fractional amoun
 
 - **Predictability**: Miners and holders know the future issuance schedule with certainty
 - **Scarcity**: Supply cannot be arbitrarily inflated by protocol changes
-- **Sound Money**: Algorithmic, auditable monetary properties — contrasts with Ethereum's variable issuance
+- **Sound Money**: Algorithmic, auditable monetary properties (contrasts with Ethereum's variable issuance)
 
 ## Specifications
 
@@ -769,7 +773,7 @@ The team contributed work in:
 
 ## Legacy
 
-IOHK's involvement brought academic rigor to ETC development during a formative period. The treasury research — while not adopted at the time — established the conceptual groundwork for protocol-level funding mechanisms. The Mantis client proved that a non-Go client could maintain ETC consensus, validating the multi-client approach the network continues to pursue.`,
+IOHK's involvement brought academic rigor to ETC development during a formative period. The treasury research, while not adopted at the time, established the conceptual groundwork for protocol-level funding mechanisms. The Mantis client proved that a non-Go client could maintain ETC consensus, validating the multi-client approach the network continues to pursue.`,
     date: '2017-03-01',
     category: 'Ecosystem',
     subject: 'IOHK Grothendieck',
@@ -788,11 +792,11 @@ IOHK's involvement brought academic rigor to ETC development during a formative 
 
 ## What Changed
 
-The Frontier genesis launch deliberately set a 5,000 gas per block limit — enough for simple ETH transfers but too low for meaningful smart contract execution. Frontier Thawing unlocked this limit and set the default target to 3,141,592 gas per block, allowing miners to adjust the limit through the standard voting mechanism.
+The Frontier genesis launch deliberately set a 5,000 gas per block limit: enough for simple ETH transfers but too low for meaningful smart contract execution. Frontier Thawing unlocked this limit and set the default target to 3,141,592 gas per block, allowing miners to adjust the limit through the standard voting mechanism.
 
 ## Difficulty Bomb Introduced
 
-Frontier Thawing also introduced the exponential difficulty bomb — a mechanism that progressively increases mining difficulty to make block production impractical. The bomb was designed to force future protocol upgrades by making the chain unusable without them.
+Frontier Thawing also introduced the exponential difficulty bomb: a mechanism that progressively increases mining difficulty to make block production impractical. The bomb was designed to force future protocol upgrades by making the chain unusable without them.
 
 Ethereum Classic later removed the difficulty bomb permanently at block 5,900,000 (ECIP-1041), affirming its commitment to proof-of-work consensus. Ethereum delayed the bomb five times before transitioning to proof-of-stake in September 2022.
 
@@ -813,13 +817,13 @@ This upgrade marked the moment smart contract deployment became practical on the
     excerpt:
       'At block 1,150,000 on March 14, 2016, Homestead moved the network from beta to production with DELEGATECALL, tightened transaction rules, and P2P forward compatibility.',
     metaDescription: 'At block 1,150,000 on March 14, 2016, Homestead moved the network from beta to production with DELEGATECALL, tighter transaction rules and P2P upgrades.',
-    content: `At block 1,150,000 on March 14, 2016, the Homestead network upgrade activated — the first major planned hard fork, marking the network's transition from beta ("Frontier") to production status.
+    content: `At block 1,150,000 on March 14, 2016, the Homestead network upgrade activated: the first major planned hard fork, marking the network's transition from beta ("Frontier") to production status.
 
 ## Included EIPs
 
-- **EIP-2 — Homestead Hard-fork Changes**: Increased contract creation gas cost from 21,000 to 53,000 gas, preventing certain denial-of-service patterns. Tightened transaction signature rules to require low-s values only, eliminating transaction malleability — a class of attacks where valid transaction hashes could be altered without changing the transaction itself.
-- **EIP-7 — DELEGATECALL**: Added opcode 0xf4, which calls another contract's code while preserving the caller's context (msg.sender and msg.value). This is the foundation for proxy patterns and upgradeable contracts — the called contract's code executes as if it were the calling contract's own code.
-- **EIP-8 — devp2p Forward Compatibility**: Modified the peer-to-peer networking layer to accept packets with unknown future fields. Prevents network fragmentation during future protocol upgrades by ensuring older nodes don't disconnect from newer nodes advertising updated capabilities.
+- **EIP-2 (Homestead Hard-fork Changes)**: Increased contract creation gas cost from 21,000 to 53,000 gas, preventing certain denial-of-service patterns. Tightened transaction signature rules to require low-s values only, eliminating transaction malleability: a class of attacks where valid transaction hashes could be altered without changing the transaction itself.
+- **EIP-7 (DELEGATECALL)**: Added opcode 0xf4, which calls another contract's code while preserving the caller's context (msg.sender and msg.value). This is the foundation for proxy patterns and upgradeable contracts: the called contract's code executes as if it were the calling contract's own code.
+- **EIP-8 (devp2p Forward Compatibility)**: Modified the peer-to-peer networking layer to accept packets with unknown future fields. Prevents network fragmentation during future protocol upgrades by ensuring older nodes don't disconnect from newer nodes advertising updated capabilities.
 
 ## Significance
 
@@ -835,9 +839,9 @@ Homestead established the network as production-ready. DELEGATECALL enabled the 
     slug: 'gas-reprice-network-upgrade',
     title: 'Gas Reprice: Emergency Response to DoS Attacks',
     excerpt:
-      'At block 2,500,000 on October 24, 2016, the Gas Reprice upgrade (EIP-150) was activated as an emergency response to the Shanghai DoS attacks that had been crippling the network.',
-    metaDescription: 'At block 2,500,000 on October 24, 2016, the Gas Reprice upgrade (EIP-150) activated as an emergency response to the Shanghai DoS attacks on the network.',
-    content: `At block 2,500,000 on October 24, 2016, the Gas Reprice network upgrade activated EIP-150 in response to the Shanghai denial-of-service attacks that had been disrupting the network since September 2016. This upgrade was specified in ECIP-1015.
+      'At block 2,500,000 on October 25, 2016, the Gas Reprice upgrade (EIP-150) was activated as an emergency response to the Shanghai DoS attacks that had been crippling the network.',
+    metaDescription: 'At block 2,500,000 on October 25, 2016, the Gas Reprice upgrade (EIP-150) activated as an emergency response to the Shanghai DoS attacks on the network.',
+    content: `At block 2,500,000 on October 25, 2016, the Gas Reprice network upgrade activated EIP-150 in response to the Shanghai denial-of-service attacks that had been disrupting the network since September 2016. This upgrade was specified in ECIP-1015.
 
 ## The Shanghai DoS Attacks
 
@@ -862,7 +866,7 @@ EIP-150 also introduced the 63/64 gas forwarding rule: child calls receive at mo
 
 ## Significance
 
-The Gas Reprice was one of the few post-DAO-Fork security measures coordinated between Ethereum and Ethereum Classic, as both networks were vulnerable to the same attack vectors. The repricing established the principle that gas costs should reflect actual I/O and computation costs — a principle refined in later upgrades (EIP-1884 in Phoenix, EIP-2929 in Magneto).`,
+The Gas Reprice was one of the few post-DAO-Fork security measures coordinated between Ethereum and Ethereum Classic, as both networks were vulnerable to the same attack vectors. The repricing established the principle that gas costs should reflect actual I/O and computation costs: a principle refined in later upgrades (EIP-1884 in Phoenix, EIP-2929 in Magneto).`,
     date: '2016-10-24',
     category: 'Security',
     subject: 'Gas Reprice',
@@ -877,18 +881,18 @@ The Gas Reprice was one of the few post-DAO-Fork security measures coordinated b
     excerpt:
       'At block 3,000,000 on January 13, 2017, Die Hard established ETC\'s protocol sovereignty with replay protection (Chain ID 61), difficulty bomb delay, and state trie cleanup.',
     metaDescription: 'At block 3,000,000 on January 13, 2017, Die Hard gave ETC replay protection with chain ID 61, delayed the difficulty bomb and cleaned up the state trie.',
-    content: `At block 3,000,000 on January 13, 2017, the Die Hard network upgrade activated — the first network upgrade specific to Ethereum Classic, marking the network's protocol independence from Ethereum. Die Hard was specified in ECIP-1010.
+    content: `At block 3,000,000 on January 13, 2017, the Die Hard network upgrade activated: the first network upgrade specific to Ethereum Classic, marking the network's protocol independence from Ethereum. Die Hard was specified in ECIP-1010.
 
 ## Included Changes
 
-- **ECIP-1010 — Delay Difficulty Bomb**: Paused the exponential difficulty growth between blocks 3,000,000 and 5,000,000. The bomb formula (2^(floor(block/100000) - 2)) was producing noticeable block time increases. This delay bought time for the community to decide the bomb's permanent fate — it was later removed entirely in ECIP-1041.
-- **EIP-155 — Replay Protection (Chain ID 61)**: Added a chain identifier parameter to transaction signatures. Before Die Hard, a transaction signed on ETC could be replayed on ETH (and vice versa), since both chains shared the same transaction format. Chain ID 61 for ETC (vs. 1 for ETH) made transactions chain-specific, eliminating this persistent security risk.
-- **EIP-160 — EXP Cost Increase**: Increased the EXP opcode cost from 10 to 50 gas per byte of exponent. The original pricing underestimated the computational cost of large exponentiation operations.
-- **EIP-161 — State Trie Clearing**: Enabled removal of empty accounts from the state trie. Cleaned up accounts created during the 2016 Shanghai DoS attacks that had bloated state storage.
+- **ECIP-1010 (Delay Difficulty Bomb)**: Paused the exponential difficulty growth between blocks 3,000,000 and 5,000,000. The bomb formula (2^(floor(block/100000) - 2)) was producing noticeable block time increases. This delay bought time for the community to decide the bomb's permanent fate: it was later removed entirely in ECIP-1041.
+- **EIP-155, Replay Protection (Chain ID 61)**: Added a chain identifier parameter to transaction signatures. Before Die Hard, a transaction signed on ETC could be replayed on ETH (and vice versa), since both chains shared the same transaction format. Chain ID 61 for ETC (vs. 1 for ETH) made transactions chain-specific, eliminating this persistent security risk.
+- **EIP-160 (EXP Cost Increase)**: Increased the EXP opcode cost from 10 to 50 gas per byte of exponent. The original pricing underestimated the computational cost of large exponentiation operations.
+- **EIP-161 (State Trie Clearing)**: Enabled removal of empty accounts from the state trie. Cleaned up accounts created during the 2016 Shanghai DoS attacks that had bloated state storage.
 
 ## Significance
 
-Die Hard was a sovereignty decision. By implementing Chain ID 61, ETC established a permanent cryptographic boundary between itself and Ethereum. Replay protection eliminated the most urgent cross-chain security risk, and the difficulty bomb delay initiated the process that would eventually lead to ETC permanently removing the bomb — affirming proof-of-work as the network's consensus mechanism.`,
+Die Hard was a sovereignty decision. By implementing Chain ID 61, ETC established a permanent cryptographic boundary between itself and Ethereum. Replay protection eliminated the most urgent cross-chain security risk, and the difficulty bomb delay initiated the process that would eventually lead to ETC permanently removing the bomb, affirming proof-of-work as the network's consensus mechanism.`,
     date: '2017-01-13',
     category: 'Updates',
     subject: 'Die Hard',
@@ -905,7 +909,7 @@ Die Hard was a sovereignty decision. By implementing Chain ID 61, ETC establishe
 
 ## What Was the Difficulty Bomb?
 
-The difficulty bomb was an exponential term in the block difficulty formula: 2^(floor(block_number / 100,000) - 2). As block numbers increased, this term grew exponentially, eventually making block times so long that the chain became unusable. It was originally designed to force the network to upgrade — specifically, to transition to proof-of-stake.
+The difficulty bomb was an exponential term in the block difficulty formula: 2^(floor(block_number / 100,000) - 2). As block numbers increased, this term grew exponentially, eventually making block times so long that the chain became unusable. It was originally designed to force the network to upgrade: specifically, to transition to proof-of-stake.
 
 ## ECIP-1041: Complete Removal
 
@@ -919,7 +923,7 @@ Unlike Ethereum, which delayed the bomb five separate times (Byzantium, Constant
 
 ## Significance
 
-This was a deliberate sovereignty decision. By removing the bomb, ETC committed at the protocol level to proof-of-work consensus. The network's consensus mechanism is now a choice, not a deadline — upgrades happen because the community evaluates them as beneficial, not because inaction makes the chain unusable.`,
+This was a deliberate sovereignty decision. By removing the bomb, ETC committed at the protocol level to proof-of-work consensus. The network's consensus mechanism is now a choice, not a deadline: upgrades happen because the community evaluates them as beneficial, not because inaction makes the chain unusable.`,
     date: '2018-05-29',
     category: 'Updates',
     subject: 'Difficulty Bomb',
@@ -948,7 +952,7 @@ In each case, the attacker acquired sufficient hashrate to produce a longer comp
 
 ## Immediate Responses
 
-- Exchanges increased ETC confirmation requirements — some to 10,000+ confirmations
+- Exchanges increased ETC confirmation requirements: some to 10,000+ confirmations
 - Mining pools increased payout confirmation thresholds
 - The community began developing ECBP-1100 (MESS)
 
@@ -999,7 +1003,7 @@ Core-Geth processes the majority of ETC network traffic. It is used by:
 
 ## Multi-Client Future
 
-Running multiple independent client implementations provides consensus diversity — if one client has a bug, the others continue producing correct blocks, preventing a single point of failure from halting the network.`,
+Running multiple independent client implementations provides consensus diversity: if one client has a bug, the others continue producing correct blocks, preventing a single point of failure from halting the network.`,
     date: '2019-04-01',
     updated: '2026-11-07',
     category: 'Ecosystem',
@@ -1025,12 +1029,12 @@ Olympia brings Cancun execution-layer EIPs to ETC, maintaining the network's tra
 
 ### Multi-Client Activation
 Two independent client implementations are preparing for Olympia:
-- **Core-Geth** (Go) — primary reference client
-- **Fukuii** (Scala) — an alternative client, in development
+- **Core-Geth** (Go): primary reference client
+- **Fukuii** (Scala): an alternative client, in development
 
 ## Treasury Funding Mechanism
 
-The treasury is funded exclusively by the EIP-1559 basefee — not by block rewards. This preserves the ECIP-1017 emission schedule. The basefee amount varies with network demand, providing sustainable funding that scales with actual network usage.
+The treasury is funded exclusively by the EIP-1559 basefee, not by block rewards. This preserves the ECIP-1017 emission schedule. The basefee amount varies with network demand, providing sustainable funding that scales with actual network usage.
 
 ## Activation
 
@@ -1058,7 +1062,7 @@ Treasury fund allocation will be governed by the Olympia decentralized governanc
     title: 'The Crypto-Decentralist Manifesto',
     excerpt:
       'Arvicco publishes the Crypto-Decentralist Manifesto, articulating the philosophical principles that define the Ethereum Classic community.',
-    content: `On July 11, 2016 — just days before the contentious DAO fork — a document appeared that would define the philosophical core of Ethereum Classic. The Crypto-Decentralist Manifesto, written by Arvicco, articulated why decentralization matters and what a truly decentralized blockchain must protect.
+    content: `On July 11, 2016, just days before the contentious DAO fork, a document appeared that would define the philosophical core of Ethereum Classic. The Crypto-Decentralist Manifesto, written by Arvicco, articulated why decentralization matters and what a truly decentralized blockchain must protect.
 
 ## Core Principles
 
@@ -1068,14 +1072,14 @@ The manifesto argues that blockchains are most useful as decentralized systems, 
 The protocol rules must be fully transparent and open source. Anyone can run a node, send transactions, and verify the chain's state without permission from any authority.
 
 ### Neutrality
-The protocol must treat all participants equally. No transaction can be censored, no account can be frozen, and no rule change can be imposed by a minority — no matter how well-intentioned.
+The protocol must treat all participants equally. No transaction can be censored, no account can be frozen, and no rule change can be imposed by a minority, no matter how well-intentioned.
 
 ### Immutability
 The blockchain's history is inviolable. Completed transactions cannot be reversed, and the ledger cannot be rewritten. This is not merely a technical preference but a fundamental property that gives blockchains their value.
 
 ## Why It Mattered
 
-The manifesto was published during the most contentious period in Ethereum's history. The DAO had been exploited, and the community was debating whether to modify the blockchain to reverse the exploit's effects. The manifesto articulated why some community members believed that rewriting history — even to fix a clear wrong — would undermine the very properties that make blockchains valuable.
+The manifesto was published during the most contentious period in Ethereum's history. The DAO had been exploited, and the community was debating whether to modify the blockchain to reverse the exploit's effects. The manifesto articulated why some community members believed that rewriting history, even to fix a clear wrong, would undermine the very properties that make blockchains valuable.
 
 ## Legacy
 
@@ -1094,8 +1098,8 @@ The full text remains available at [ethereumclassic.com](https://ethereumclassic
     title: 'Code Is Law and the Genesis of Ethereum Classic',
     metaTitle: 'Code Is Law and the Genesis of ETC',
     excerpt:
-      'The principle that smart contracts should execute exactly as written — without external intervention — becomes the defining ethos of Ethereum Classic.',
-    content: `"Code is law" is the principle that smart contract outcomes should be determined solely by the code that was deployed and the transactions that were submitted — not by the decisions of any external authority. This idea predates Ethereum, but it became the defining principle of Ethereum Classic after the events of 2016.
+      'The principle that smart contracts should execute exactly as written, without external intervention, becomes the defining ethos of Ethereum Classic.',
+    content: `"Code is law" is the principle that smart contract outcomes should be determined solely by the code that was deployed and the transactions that were submitted, not by the decisions of any external authority. This idea predates Ethereum, but it became the defining principle of Ethereum Classic after the events of 2016.
 
 ## Origins
 
@@ -1103,7 +1107,7 @@ When Ethereum launched in 2015, its founding promise was a platform for "applica
 
 ## The Test
 
-In June 2016, The DAO — a smart contract holding roughly 14% of all ETH — was exploited through a recursive calling vulnerability. The exploit was legal within the rules of the smart contract: the code permitted the withdrawals. But the financial impact was enormous.
+In June 2016, The DAO, a smart contract holding roughly 14% of all ETH, was exploited through a recursive calling vulnerability. The exploit was legal within the rules of the smart contract: the code permitted the withdrawals. But the financial impact was enormous.
 
 The Ethereum community faced a choice: intervene to reverse the exploit (violating the principle that code determines outcomes) or accept the result (preserving the principle at significant financial cost).
 
@@ -1113,13 +1117,13 @@ On July 20, 2016, at block 1,920,000, the majority of the network chose to imple
 
 ## Ethereum Classic Continues
 
-Those who believed that "code is law" meant the blockchain should not be rewritten — regardless of the circumstances — continued mining and transacting on the original chain. This chain became Ethereum Classic.
+Those who believed that "code is law" meant the blockchain should not be rewritten, regardless of the circumstances, continued mining and transacting on the original chain. This chain became Ethereum Classic.
 
 The principle does not mean all smart contract outcomes are desirable. It means the blockchain itself should not be the mechanism for correcting them. Courts, insurance, and governance layers can address harms without modifying the immutable ledger.
 
 ## Significance
 
-"Code is law" is not a slogan — it is a design constraint. It means ETC's ledger has never been irregularly modified, and its history is a faithful record of every transaction since genesis block 0 on July 30, 2015.`,
+"Code is law" is not a slogan: it is a design constraint. It means ETC's ledger has never been irregularly modified, and its history is a faithful record of every transaction since genesis block 0 on July 30, 2015.`,
     date: '2016-09-15',
     category: 'Community',
     subject: 'Code Is Law',
@@ -1136,7 +1140,7 @@ The principle does not mean all smart contract outcomes are desirable. It means 
 
 ## The Statement
 
-Buterin stated that Ethereum Classic, as the continuation of the original unforked chain, had a right to exist. He recognized that the community members who rejected the irregular state change were acting on legitimate principles — specifically, the belief that blockchains should not have their history rewritten by any party, regardless of intent.
+Buterin stated that Ethereum Classic, as the continuation of the original unforked chain, had a right to exist. He recognized that the community members who rejected the irregular state change were acting on legitimate principles: specifically, the belief that blockchains should not have their history rewritten by any party, regardless of intent.
 
 ## Context
 
@@ -1169,7 +1173,7 @@ Both chains trace their genesis to July 30, 2015. The difference is purely in go
     excerpt:
       'ECIP-1017 introduces a fixed monetary policy for Ethereum Classic with a hard supply cap of approximately 210.7 million ETC and a 20% emission reduction every 5 million blocks.',
     metaDescription: 'ECIP-1017 gives Ethereum Classic a fixed monetary policy: a hard supply cap of about 210.7 million ETC and a 20% emission cut every 5 million blocks.',
-    content: `On March 1, 2017, the Ethereum Classic community formally adopted ECIP-1017, establishing a fixed monetary policy with a hard supply cap — differentiating ETC from Ethereum's uncapped supply model.
+    content: `On March 1, 2017, the Ethereum Classic community formally adopted ECIP-1017, establishing a fixed monetary policy with a hard supply cap, differentiating ETC from Ethereum's uncapped supply model.
 
 ## ECIP-1017: The Monetary Policy
 
@@ -1195,7 +1199,7 @@ The 20% reduction per era is ETC's equivalent of Bitcoin's halving events, thoug
 
 ## Uncle/Nephew Rewards
 
-ECIP-1017 also reduces uncle and nephew block rewards proportionally in each era, ensuring that all emission — including stale block rewards — follows the same schedule.
+ECIP-1017 also reduces uncle and nephew block rewards proportionally in each era, ensuring that all emission, including stale block rewards, follows the same schedule.
 
 ## Activation
 
@@ -1214,7 +1218,7 @@ The monetary policy was activated at block 5,000,000 (Era 2) via the Gotham hard
     title: 'Gotham Hard Fork: Monetary Policy Activated',
     excerpt:
       'At block 5,000,000, Ethereum Classic activates its fixed monetary policy via the Gotham hard fork, reducing block rewards from 5 ETC to 4 ETC.',
-    content: `On December 11, 2017, at block 5,000,000, the Ethereum Classic network activated the Gotham hard fork — implementing ECIP-1017's fixed monetary policy and beginning Era 2 of the emission schedule.
+    content: `On December 11, 2017, at block 5,000,000, the Ethereum Classic network activated the Gotham hard fork, implementing ECIP-1017's fixed monetary policy and beginning Era 2 of the emission schedule.
 
 ## What Changed
 
@@ -1225,7 +1229,7 @@ The monetary policy was activated at block 5,000,000 (Era 2) via the Gotham hard
 | Era | 1 | 2 |
 | Activation block | — | 5,000,000 |
 
-The 20% reduction from 5 ETC to 4 ETC per block marked the first "fifthing" — the beginning of ETC's deflationary emission curve.
+The 20% reduction from 5 ETC to 4 ETC per block marked the first "fifthing": the beginning of ETC's deflationary emission curve.
 
 ## Technical Details
 
@@ -1240,7 +1244,7 @@ ETC network upgrades are named after locations in fiction and mythology, disting
 
 ## Significance
 
-This was ETC's first monetary policy event — proving that the community could coordinate a protocol change through the ECIP process and activate it across the network without incident. Every ~2.5 years thereafter, the block reward reduces by another 20%.
+This was ETC's first monetary policy event, proving that the community could coordinate a protocol change through the ECIP process and activate it across the network without incident. Every ~2.5 years thereafter, the block reward reduces by another 20%.
 
 ## Era Timeline
 
@@ -1265,17 +1269,17 @@ This was ETC's first monetary policy event — proving that the community could 
     title: 'Mordor PoW Testnet Launched for ETC Development',
     metaTitle: 'Mordor PoW Testnet Launched for ETC',
     excerpt:
-      'Ethereum Classic launches Mordor, a dedicated proof-of-work testnet using the ETChash algorithm, providing developers with an accurate testing environment.',
-    content: `In October 2019, the Ethereum Classic community launched the Mordor testnet — a dedicated proof-of-work test network that mirrors ETC mainnet conditions.
+      'Ethereum Classic launches Mordor, a dedicated proof-of-work testnet using the Etchash algorithm, providing developers with an accurate testing environment.',
+    content: `In October 2019, the Ethereum Classic community launched the Mordor testnet: a dedicated proof-of-work test network that mirrors ETC mainnet conditions.
 
 ## Why Mordor
 
-Previous ETC testnets had limitations: some used proof-of-authority consensus (which behaves differently from proof-of-work), and others suffered from instability. Mordor was designed from the ground up as a proper PoW testnet using the same ETChash algorithm as ETC mainnet.
+Previous ETC testnets had limitations: some used proof-of-authority consensus (which behaves differently from proof-of-work), and others suffered from instability. Mordor was designed from the ground up as a proper PoW testnet using the same Etchash algorithm as ETC mainnet.
 
 ## Technical Details
 
 - **Chain ID**: 63 (0x3f)
-- **Consensus**: Proof-of-work (ETChash)
+- **Consensus**: Proof-of-work (Etchash)
 - **Block time**: ~13 seconds (matching mainnet)
 - **Network upgrades**: Activates upgrades before mainnet for testing
 
@@ -1302,7 +1306,7 @@ Mordor ETC has no monetary value. Developers can obtain testnet ETC from communi
 
 ## Ongoing Use
 
-Mordor continues to serve as ETC's primary testnet. All network upgrades — including Atlantis, Agharta, Phoenix, Magneto, Mystique, Thanos, and Spiral — were activated on Mordor before mainnet deployment. The upcoming Olympia upgrade will follow the same pattern.`,
+Mordor continues to serve as ETC's primary testnet. All network upgrades (including Atlantis, Agharta, Phoenix, Magneto, Mystique, Thanos, and Spiral) were activated on Mordor before mainnet deployment. The upcoming Olympia upgrade will follow the same pattern.`,
     date: '2019-10-03',
     category: 'Updates',
     subject: 'Mordor',
@@ -1315,7 +1319,7 @@ Mordor continues to serve as ETC's primary testnet. All network upgrades — inc
     title: 'Era 3 Block Reward Reduction to 3.2 ETC',
     excerpt:
       'At block 10,000,001, Ethereum Classic enters Era 3 of its monetary policy, reducing block rewards from 4 ETC to 3.2 ETC per block.',
-    content: `On March 17, 2020, at block 10,000,001, Ethereum Classic entered Era 3 of its fixed monetary policy under ECIP-1017. The block reward reduced from 4 ETC to 3.2 ETC — a 20% decrease.
+    content: `On March 17, 2020, at block 10,000,001, Ethereum Classic entered Era 3 of its fixed monetary policy under ECIP-1017. The block reward reduced from 4 ETC to 3.2 ETC: a 20% decrease.
 
 ## The Numbers
 
@@ -1328,17 +1332,17 @@ Mordor continues to serve as ETC's primary testnet. All network upgrades — inc
 
 ## Cumulative Supply
 
-By the start of Era 3, approximately 113.4 million ETC had been minted — just over half of the ~210.7 million maximum supply.
+By the start of Era 3, approximately 113.4 million ETC had been minted: just over half of the ~210.7 million maximum supply.
 
 ## What This Means
 
-The Era 3 reduction continued the predictable deflationary curve established by ECIP-1017. Each era lasts 5 million blocks (~2.5 years at 13-second block times), and each reduces the reward by exactly 20%.
+The Era 3 reduction continued the predictable deflationary curve established by ECIP-1017. Each era lasts 5 million blocks (about 2.1 years at 13-second block times), and each reduces the reward by exactly 20%.
 
 Unlike Bitcoin's abrupt halvings (50% reduction), ETC's fifthings are a gentler 20% reduction. This provides miners with a more gradual revenue adjustment while still ensuring the supply converges to a hard cap.
 
 ## Mining Economics
 
-The reduction to 3.2 ETC per block occurred during a period of relatively low ETC prices. Despite reduced block rewards, mining continued without disruption — miners had advance knowledge of the reduction schedule and could plan accordingly.
+The reduction to 3.2 ETC per block occurred during a period of relatively low ETC prices. Despite reduced block rewards, mining continued without disruption: miners had advance knowledge of the reduction schedule and could plan accordingly.
 
 ## Looking Ahead
 
@@ -1357,7 +1361,7 @@ Era 4 would arrive at block 15,000,001, reducing rewards further to 2.56 ETC per
     title: 'Era 4: Block Reward Reduces to 2.56 ETC',
     excerpt:
       'At block 15,000,001, Ethereum Classic enters Era 4 of its monetary policy, reducing block rewards from 3.2 ETC to 2.56 ETC per block.',
-    content: `On April 25, 2022, at block 15,000,001, Ethereum Classic entered Era 4 of its fixed monetary policy. The block reward reduced from 3.2 ETC to 2.56 ETC — the fourth era of ECIP-1017's 20% reduction schedule.
+    content: `On April 25, 2022, at block 15,000,001, Ethereum Classic entered Era 4 of its fixed monetary policy. The block reward reduced from 3.2 ETC to 2.56 ETC: the fourth era of ECIP-1017's 20% reduction schedule.
 
 ## The Numbers
 
@@ -1370,13 +1374,13 @@ Era 4 would arrive at block 15,000,001, reducing rewards further to 2.56 ETC per
 
 ## Cumulative Supply
 
-By the start of Era 4, approximately 131.1 million ETC had been minted — roughly 62% of the ~210.7 million maximum supply.
+By the start of Era 4, approximately 131.1 million ETC had been minted: roughly 62% of the ~210.7 million maximum supply.
 
 ## Context
 
 Era 4 began just five months before Ethereum's transition to proof-of-stake (The Merge, September 2022). The timing was significant: as ETC's emission rate decreased, a massive influx of hashrate from former Ethereum miners was about to arrive.
 
-The combination of reduced block rewards and dramatically increased hashrate meant miners earned less ETC per unit of computing power — but the network's security increased substantially.
+The combination of reduced block rewards and dramatically increased hashrate meant miners earned less ETC per unit of computing power, but the network's security increased substantially.
 
 ## The Emission Curve
 
@@ -1402,7 +1406,7 @@ The combination of reduced block rewards and dramatically increased hashrate mea
     metaTitle: 'Era 5 Fifthing: Reward Drops to 2.048 ETC',
     excerpt:
       'At block 20,000,001, Ethereum Classic enters its fifth monetary era, reducing block rewards from 2.56 ETC to 2.048 ETC per block.',
-    content: `On May 31, 2024, at block 20,000,001, Ethereum Classic entered Era 5 of its fixed monetary policy — the fifth "fifthing" since the ECIP-1017 emission schedule was established.
+    content: `On May 31, 2024, at block 20,000,001, Ethereum Classic entered Era 5 of its fixed monetary policy: the fifth "fifthing" since the ECIP-1017 emission schedule was established.
 
 ## The Numbers
 
@@ -1415,11 +1419,11 @@ The combination of reduced block rewards and dramatically increased hashrate mea
 
 ## Cumulative Supply
 
-By the start of Era 5, approximately 144.0 million ETC had been minted — roughly 68% of the ~210.7 million maximum supply. The remaining ~66.7 million ETC will be emitted over subsequent eras, with each era producing 20% fewer coins than the last.
+By the start of Era 5, approximately 144.0 million ETC had been minted: roughly 68% of the ~210.7 million maximum supply. The remaining ~66.7 million ETC will be emitted over subsequent eras, with each era producing 20% fewer coins than the last.
 
 ## Why "Fifthing"
 
-The ETC community uses the term "fifthing" because each era keeps four-fifths (80%) of the previous reward — or equivalently, reduces by one-fifth (20%). This distinguishes ETC's gentler reduction curve from Bitcoin's more aggressive halvings.
+The ETC community uses the term "fifthing" because each era keeps four-fifths (80%) of the previous reward, or equivalently, reduces by one-fifth (20%). This distinguishes ETC's gentler reduction curve from Bitcoin's more aggressive halvings.
 
 ## Network State at Era 5
 
@@ -1450,7 +1454,7 @@ The emission asymptotically approaches zero but never technically reaches it. In
     excerpt:
       'Following Ethereum\'s transition to proof-of-stake, Ethereum Classic becomes the primary destination for displaced GPU miners seeking proof-of-work opportunities.',
     metaDescription: 'After Ethereum moved to proof-of-stake, Ethereum Classic became the main destination for displaced GPU miners seeking proof-of-work.',
-    content: `On September 15, 2022, Ethereum completed its transition from proof-of-work to proof-of-stake — "The Merge." This ended PoW mining on the Ethereum network and displaced thousands of GPU miners worldwide. Ethereum Classic emerged as the natural home for this mining community.
+    content: `On September 15, 2022, Ethereum completed its transition from proof-of-work to proof-of-stake, "The Merge." This ended PoW mining on the Ethereum network and displaced thousands of GPU miners worldwide. Ethereum Classic emerged as the natural home for this mining community.
 
 ## The Migration
 
@@ -1460,13 +1464,13 @@ Within hours of The Merge, ETC's network hashrate began climbing dramatically:
 - **Peak post-Merge**: Over 200 TH/s (8x increase)
 - **Stabilized level**: Significantly above pre-Merge baseline
 
-The migration was driven by practical factors: ETC uses the ETChash algorithm (derived from Ethash), meaning existing GPU mining hardware and software required minimal reconfiguration.
+The migration was driven by practical factors: ETC uses the Etchash algorithm (derived from Ethash), meaning existing GPU mining hardware and software required minimal reconfiguration.
 
 ## Why ETC
 
 Several factors made Ethereum Classic the primary destination:
 
-- **Algorithm compatibility**: ETChash works with the same GPU hardware used for ETH mining
+- **Algorithm compatibility**: Etchash works with the same GPU hardware used for ETH mining
 - **Established network**: ETC has operated continuously since 2015 with an active ecosystem
 - **Proof-of-work commitment**: ETC's community has repeatedly affirmed its commitment to PoW consensus
 - **EVM compatibility**: Developers can deploy the same smart contracts and tools
@@ -1477,7 +1481,7 @@ The hashrate increase dramatically improved ETC's security posture. More hashrat
 
 ## Community Response
 
-The ETC community welcomed the influx of miners. Mining pools expanded capacity, and infrastructure providers ensured their nodes could handle increased network activity. The community emphasized that ETC's value proposition — proof-of-work security, immutability, and sound monetary policy — aligns with the priorities of miners who value decentralized consensus.
+The ETC community welcomed the influx of miners. Mining pools expanded capacity, and infrastructure providers ensured their nodes could handle increased network activity. The community emphasized that ETC's value proposition (proof-of-work security, immutability, and sound monetary policy) aligns with the priorities of miners who value decentralized consensus.
 
 ## A New Era
 
@@ -1501,10 +1505,10 @@ Post-Merge, Ethereum Classic became the largest proof-of-work smart contract pla
 
 Mystique implemented four EIPs from Ethereum's London upgrade:
 
-- **EIP-3529 — Reduced Refunds**: Removed gas refunds for SELFDESTRUCT and reduced SSTORE refunds. This eliminated gas token exploits that were distorting block gas usage.
-- **EIP-3541 — Reject 0xEF Bytecode**: Prevents deployment of contracts starting with the 0xEF byte, reserving the prefix for future EVM Object Format (EOF) standards.
-- **EIP-3198 — BASEFEE Opcode**: Makes the base fee accessible to smart contracts via a new opcode.
-- **EIP-3855 — PUSH0 Instruction**: Adds a zero-cost PUSH instruction for pushing the value 0 onto the stack, reducing gas costs for common operations.
+- **EIP-3529 (Reduced Refunds)**: Removed gas refunds for SELFDESTRUCT and reduced SSTORE refunds. This eliminated gas token exploits that were distorting block gas usage.
+- **EIP-3541 (Reject 0xEF Bytecode)**: Prevents deployment of contracts starting with the 0xEF byte, reserving the prefix for future EVM Object Format (EOF) standards.
+- **EIP-3198 (BASEFEE Opcode)**: Makes the base fee accessible to smart contracts via a new opcode.
+- **EIP-3855 (PUSH0 Instruction)**: Adds a zero-cost PUSH instruction for pushing the value 0 onto the stack, reducing gas costs for common operations.
 
 ## What Was Omitted
 
@@ -1538,24 +1542,24 @@ Mystique demonstrated ETC's approach to protocol upgrades: adopt proven EVM impr
     title: 'Spiral Upgrade: Six Months In Review',
     excerpt:
       'Six months after activation, the Spiral network upgrade has brought EVM parity with Ethereum\'s Shanghai execution layer to Ethereum Classic without incident.',
-    content: `Six months after its activation on February 5, 2024, the Spiral network upgrade has proven stable and successful — bringing Ethereum Classic's EVM to parity with Ethereum's Shanghai execution-layer improvements.
+    content: `Six months after its activation on February 5, 2024, the Spiral network upgrade has proven stable and successful, bringing Ethereum Classic's EVM to parity with Ethereum's Shanghai execution-layer improvements.
 
 ## What Spiral Delivered
 
 Spiral (ECIP-1109) implemented seven EIPs from Ethereum's Shanghai upgrade:
 
-- **EIP-3651 — Warm COINBASE**: Reduced gas cost for accessing the block producer's address from 2,600 to 100 gas. Benefits MEV and staking-related contracts.
-- **EIP-3855 — PUSH0**: New opcode that pushes zero onto the stack at minimal cost. Reduces bytecode size across all new deployments.
-- **EIP-3860 — Limit and Meter initcode**: Caps initcode size at 49,152 bytes and charges 2 gas per 32-byte word. Prevents oversized deployment transactions.
-- **EIP-4200 — Static Relative Jumps**: Introduces RJUMP, RJUMPI, and RJUMPV opcodes for more efficient control flow in EVM bytecode.
-- **EIP-6049 — Deprecate SELFDESTRUCT**: Formal deprecation notice for the SELFDESTRUCT opcode.
+- **EIP-3651 (Warm COINBASE)**: Reduced gas cost for accessing the block producer's address from 2,600 to 100 gas. Benefits MEV and staking-related contracts.
+- **EIP-3855 (PUSH0)**: New opcode that pushes zero onto the stack at minimal cost. Reduces bytecode size across all new deployments.
+- **EIP-3860 (Limit and Meter initcode)**: Caps initcode size at 49,152 bytes and charges 2 gas per 32-byte word. Prevents oversized deployment transactions.
+- **EIP-4200 (Static Relative Jumps)**: Introduces RJUMP, RJUMPI, and RJUMPV opcodes for more efficient control flow in EVM bytecode.
+- **EIP-6049 (Deprecate SELFDESTRUCT)**: Formal deprecation notice for the SELFDESTRUCT opcode.
 
 ## Omitted EIPs
 
 As with previous upgrades, ETC excluded PoS-specific changes:
 
-- **EIP-4399 (PREVRANDAO)**: Replaces DIFFICULTY with beacon chain randomness — only applicable to proof-of-stake
-- **EIP-4895 (Beacon Chain Withdrawals)**: Validator withdrawals — only applicable to proof-of-stake
+- **EIP-4399 (PREVRANDAO)**: Replaces DIFFICULTY with beacon chain randomness, only applicable to proof-of-stake
+- **EIP-4895 (Beacon Chain Withdrawals)**: Validator withdrawals, only applicable to proof-of-stake
 
 ## Network Impact
 
@@ -1590,18 +1594,18 @@ Spiral represents ETC's current production EVM level. The next planned upgrade, 
     metaTitle: 'Smart Contracts on ETC: An Overview',
     excerpt:
       'How smart contracts work on the EVM, from Solidity compilation to on-chain execution, and what makes ETC a reliable platform for immutable contract deployment.',
-    content: `Smart contracts are self-executing programs stored on the blockchain that run exactly as written. On Ethereum Classic, smart contracts benefit from the network's commitment to immutability — once deployed, a contract's code cannot be altered by any party.
+    content: `Smart contracts are self-executing programs stored on the blockchain that run exactly as written. On Ethereum Classic, smart contracts benefit from the network's commitment to immutability: once deployed, a contract's code cannot be altered by any party.
 
 ## How Smart Contracts Work
 
 ### Compilation
-Developers write contracts in high-level languages like Solidity or Vyper. The compiler translates this code into EVM bytecode — the low-level instruction set that the Ethereum Virtual Machine understands.
+Developers write contracts in high-level languages like Solidity or Vyper. The compiler translates this code into EVM bytecode: the low-level instruction set that the Ethereum Virtual Machine understands.
 
 ### Deployment
 The bytecode is included in a special transaction sent to the network. When miners include this transaction in a block, the contract is assigned an address and becomes part of the permanent blockchain state.
 
 ### Execution
-When a user sends a transaction to a contract's address, nodes execute the bytecode against the current state. Each operation consumes gas — a unit of computational effort that prevents infinite loops and ensures fair resource allocation.
+When a user sends a transaction to a contract's address, nodes execute the bytecode against the current state. Each operation consumes gas: a unit of computational effort that prevents infinite loops and ensures fair resource allocation.
 
 ### Determinism
 Every node executes the same bytecode with the same inputs and must arrive at the same result. This deterministic execution is what allows a decentralized network to agree on state without a central authority.
@@ -1643,10 +1647,10 @@ ETC's immutability guarantee means deployed contracts will execute as written in
 ## The Key Pair
 
 ### Private Key
-A private key is a randomly generated 256-bit number — essentially a number between 1 and approximately 1.158 × 10⁷⁷. This number must be kept secret. Anyone who knows a private key has full control over the associated account.
+A private key is a randomly generated 256-bit number: essentially a number between 1 and approximately 1.158 × 10⁷⁷. This number must be kept secret. Anyone who knows a private key has full control over the associated account.
 
 ### Public Key
-The public key is derived from the private key using elliptic curve multiplication on the secp256k1 curve — the same curve used by Bitcoin. This operation is computationally easy in one direction but infeasible to reverse. Given a public key, there is no known way to determine the private key.
+The public key is derived from the private key using elliptic curve multiplication on the secp256k1 curve: the same curve used by Bitcoin. This operation is computationally easy in one direction but infeasible to reverse. Given a public key, there is no known way to determine the private key.
 
 ### Address
 An ETC address is the last 20 bytes (160 bits) of the Keccak-256 hash of the public key, prefixed with "0x". For example: \`0x3b0952fB8eAAC74E56E176102eBA70BAB1C81537\`.
@@ -1695,7 +1699,7 @@ A replay attack occurs when a valid transaction from one blockchain is broadcast
 
 - Alice sends 10 ETC to Bob on the ETC chain
 - An attacker copies that signed transaction and broadcasts it on the ETH chain
-- Since the transaction format and signing scheme were identical, Alice also sends 10 ETH to Bob — unintentionally
+- Since the transaction format and signing scheme were identical, Alice also sends 10 ETH to Bob, unintentionally
 
 ## Why It Happened
 
@@ -1747,7 +1751,7 @@ A Merkle tree (or hash tree) is a data structure where every leaf node contains 
 
 1. **Leaf nodes**: Each transaction in a block is hashed individually
 2. **Pairing**: Adjacent hashes are concatenated and hashed together
-3. **Recursion**: This continues up the tree until a single hash remains — the Merkle root
+3. **Recursion**: This continues up the tree until a single hash remains, the Merkle root
 4. **Inclusion proof**: To prove a transaction is in a block, you only need the transaction, the sibling hashes along the path to the root, and the root itself
 
 ## Three Trees in Every Block
@@ -1759,7 +1763,7 @@ Contains all transactions in the block. The transaction root in the block header
 Contains the execution results (logs, gas used, status) for each transaction. The receipt root commits to every execution outcome.
 
 ### State Trie (Modified Merkle Patricia Trie)
-The most complex of the three. It maps every account address to its state (balance, nonce, storage root, code hash). ETC uses a Modified Merkle Patricia Trie — a combination of a Patricia trie (for key-based lookup) and a Merkle tree (for cryptographic verification).
+The most complex of the three. It maps every account address to its state (balance, nonce, storage root, code hash). ETC uses a Modified Merkle Patricia Trie: a combination of a Patricia trie (for key-based lookup) and a Merkle tree (for cryptographic verification).
 
 ## Why Merkle Trees Matter
 
@@ -1793,7 +1797,7 @@ When your wallet shows your ETC balance, it's ultimately verified against the st
 ## The 2016 Attacks
 
 ### Transaction Spam (September 2016)
-Attackers discovered that certain opcodes — particularly EXTCODESIZE and BALANCE — were priced far below their actual computational cost. By constructing transactions that called these opcodes thousands of times, attackers could force nodes to perform expensive I/O operations for minimal gas cost.
+Attackers discovered that certain opcodes, particularly EXTCODESIZE and BALANCE, were priced far below their actual computational cost. By constructing transactions that called these opcodes thousands of times, attackers could force nodes to perform expensive I/O operations for minimal gas cost.
 
 ### State Bloat (October 2016)
 A second wave targeted state growth. The CREATE opcode was used to generate millions of empty accounts, bloating the state trie that every full node must store. At peak, the attack added over 19 million empty accounts to the state.
@@ -1837,7 +1841,7 @@ The 2016 attacks demonstrated that gas pricing must accurately reflect actual re
     title: 'Accounts and State in Ethereum Classic',
     excerpt:
       'How the ETC world state works: externally owned accounts, contract accounts, the state trie, and how every transaction modifies the global state.',
-    content: `Ethereum Classic maintains a global "world state" — a mapping from every account address to its current state. Understanding this data model is key to understanding how the EVM works.
+    content: `Ethereum Classic maintains a global "world state": a mapping from every account address to its current state. Understanding this data model is key to understanding how the EVM works.
 
 ## Two Types of Accounts
 
@@ -1912,11 +1916,11 @@ The signed transaction is broadcast to the sender's connected peers. Each peer v
 
 ## 3. Mempool
 
-Each node maintains a transaction pool (mempool) of valid but unconfirmed transactions. The mempool is not consensus-critical — different nodes may have different views of pending transactions.
+Each node maintains a transaction pool (mempool) of valid but unconfirmed transactions. The mempool is not consensus-critical: different nodes may have different views of pending transactions.
 
 ## 4. Block Inclusion
 
-Miners select transactions from their mempool to include in the next block, typically prioritizing by gas price (higher price = higher priority). When a miner finds a valid proof-of-work nonce, the block — including the selected transactions — is broadcast to the network.
+Miners select transactions from their mempool to include in the next block, typically prioritizing by gas price (higher price = higher priority). When a miner finds a valid proof-of-work nonce, the block, including the selected transactions, is broadcast to the network.
 
 ## 5. Confirmation
 
@@ -1931,11 +1935,11 @@ Once included in a block, the transaction has one confirmation. Each subsequent 
 
 ## 6. Finality
 
-Unlike proof-of-stake chains with deterministic finality, ETC uses probabilistic finality. A transaction is never mathematically "final" — but after sufficient confirmations, the cost of reversing it exceeds any rational economic incentive.
+Unlike proof-of-stake chains with deterministic finality, ETC uses probabilistic finality. A transaction is never mathematically "final", but after sufficient confirmations, the cost of reversing it exceeds any rational economic incentive.
 
 ## Failed Transactions
 
-If a transaction runs out of gas during execution, it reverts — but the gas is still consumed and the transaction appears on-chain as failed. The sender pays for the computation even though the state change was rolled back.`,
+If a transaction runs out of gas during execution, it reverts, but the gas is still consumed and the transaction appears on-chain as failed. The sender pays for the computation even though the state change was rolled back.`,
     date: '2018-11-08',
     category: 'Development',
     subject: 'Transaction Lifecycle',
@@ -1956,7 +1960,7 @@ When your transaction is included in block N, it has one confirmation. When bloc
 
 ## Why Confirmations Matter
 
-In PoW, miners compete to extend the longest chain. Occasionally, two miners find valid blocks at nearly the same time, creating a temporary fork. The network resolves this by following the chain with more cumulative work — the "heaviest chain."
+In PoW, miners compete to extend the longest chain. Occasionally, two miners find valid blocks at nearly the same time, creating a temporary fork. The network resolves this by following the chain with more cumulative work: the "heaviest chain."
 
 Transactions in the shorter fork are returned to the mempool and may be re-included in a future block. This is a **chain reorganization** (reorg).
 
@@ -1987,7 +1991,7 @@ In 2020, following 51% attacks, ETC implemented MESS (Modified Exponential Subje
 
 ## Compared to PoS Finality
 
-Proof-of-stake chains like Ethereum offer deterministic finality — after a certain point, transactions cannot be reversed at all. PoW chains offer probabilistic finality — transactions become increasingly secure but are never mathematically irreversible. The tradeoff is that PoW finality requires no trusted validator set.`,
+Proof-of-stake chains like Ethereum offer deterministic finality: after a certain point, transactions cannot be reversed at all. PoW chains offer probabilistic finality: transactions become increasingly secure but are never mathematically irreversible. The tradeoff is that PoW finality requires no trusted validator set.`,
     date: '2019-02-07',
     updated: '2026-11-07',
     category: 'Security',
@@ -2103,11 +2107,11 @@ Describes a process surrounding ETC (like the ECIP process itself).
 
 ## Relationship to EIPs
 
-ECIPs often reference Ethereum Improvement Proposals (EIPs) when adopting upstream EVM changes. ETC evaluates each EIP independently — some are adopted (execution-layer improvements), while others are rejected (PoS-specific changes, EIP-1559 fee burning).
+ECIPs often reference Ethereum Improvement Proposals (EIPs) when adopting upstream EVM changes. ETC evaluates each EIP independently: some are adopted (execution-layer improvements), while others are rejected (PoS-specific changes, EIP-1559 fee burning).
 
 ## How to Participate
 
-The ECIP process is open to anyone. Proposals are submitted as pull requests to the ECIP repository. Discussion happens publicly on GitHub and in community channels. There is no permissioned committee — acceptance is based on technical merit and rough consensus.`,
+The ECIP process is open to anyone. Proposals are submitted as pull requests to the ECIP repository. Discussion happens publicly on GitHub and in community channels. There is no permissioned committee: acceptance is based on technical merit and rough consensus.`,
     date: '2019-08-15',
     updated: '2026-11-05',
     category: 'Development',
@@ -2120,7 +2124,7 @@ The ECIP process is open to anyone. Proposals are submitted as pull requests to 
     slug: 'reorg-mitigation',
     title: 'Chain Reorganization Mitigation on ETC',
     excerpt:
-      'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations — and later, as hashrate grew, ECBP-1110 recommended shipping it off while keeping it available to every node operator.',
+      'Following 51% attacks in 2020, Ethereum Classic implemented MESS (ECBP-1100) to penalize deep chain reorganizations, and later, as hashrate grew, ECBP-1110 recommended shipping it off while keeping it available to every node operator.',
     metaDescription: 'After the 2020 51% attacks, Ethereum Classic implemented MESS (ECBP-1100) against deep reorganizations; ECBP-1110 later recommended shipping it off.',
     content: `In August 2020, Ethereum Classic experienced multiple 51% attacks that resulted in deep chain reorganizations and double-spend attempts. The community responded with MESS (Modified Exponential Subjective Scoring), a novel defense mechanism.
 
@@ -2151,7 +2155,7 @@ ECBP-1100, known as MESS (Modified Exponential Subjective Scoring), was implemen
 
 ## The Merge Changes Everything
 
-When Ethereum transitioned to proof-of-stake in September 2022, GPU miners migrated to ETC in massive numbers. Network hashrate increased from ~25 TH/s to over 200 TH/s — an 8x increase.
+When Ethereum transitioned to proof-of-stake in September 2022, GPU miners migrated to ETC in massive numbers. Network hashrate increased from ~25 TH/s to over 200 TH/s: an 8x increase.
 
 This dramatically changed the economics of 51% attacks. The cost to rent sufficient hashrate to attack ETC became prohibitively expensive.
 
@@ -2184,7 +2188,7 @@ The 2020 attacks and MESS response demonstrated ETC's ability to:
     title: 'Hyperledger Besu Adds Ethereum Classic Support',
     excerpt:
       'The enterprise-grade Ethereum client Hyperledger Besu integrated native Ethereum Classic support, expanding multi-client diversity for the network.',
-    content: `Hyperledger Besu, the enterprise-grade Ethereum client maintained under the Linux Foundation's Hyperledger project, added native support for Ethereum Classic. The integration brought a fourth client implementation to the ETC network, strengthening client diversity — a critical factor in blockchain resilience.
+    content: `Hyperledger Besu, the enterprise-grade Ethereum client maintained under the Linux Foundation's Hyperledger project, added native support for Ethereum Classic. The integration brought a fourth client implementation to the ETC network, strengthening client diversity: a critical factor in blockchain resilience.
 
 ## Background
 
@@ -2192,7 +2196,7 @@ Besu was originally developed by ConsenSys under the name "Pantheon" before bein
 
 ## ETC Integration
 
-The integration added full support for Ethereum Classic's protocol rules, including the ETCHash mining algorithm and all ETC-specific hard forks. Running Besu on the ETC network requires a single configuration flag:
+The integration added full support for Ethereum Classic's protocol rules, including the Etchash mining algorithm and all ETC-specific hard forks. Running Besu on the ETC network requires a single configuration flag:
 
 \`\`\`
 besu --network=classic
@@ -2228,7 +2232,7 @@ Besu continues to track upstream Ethereum improvements while maintaining ETC com
 
 ## The Problem
 
-When Ethereum Classic forked from Ethereum in 2016, both chains initially shared the same derivation path (\`m/44'/60'/0'/0\`), where \`60\` is Ethereum's coin type registered in SLIP-0044. This meant hardware wallets and HD wallet implementations generated identical addresses for both chains — a significant security and usability concern.
+When Ethereum Classic forked from Ethereum in 2016, both chains initially shared the same derivation path (\`m/44'/60'/0'/0\`), where \`60\` is Ethereum's coin type registered in SLIP-0044. This meant hardware wallets and HD wallet implementations generated identical addresses for both chains: a significant security and usability concern.
 
 Users could accidentally send ETC to an ETH-derived address or vice versa. While the funds weren't technically lost (the same private key controls both), the confusion created real problems for wallet software and users managing assets on both chains.
 
@@ -2286,7 +2290,7 @@ Attackers created websites visually identical to popular DeFi interfaces, using 
 Some fraudulent dApps requested unlimited token approval permissions. While legitimate dApps may request approvals for specific amounts, scam sites exploited the ERC-20 approval mechanism to gain permanent access to a user's token balances, which could be drained at any time.
 
 ### Fake Token Contracts
-Scammers deployed token contracts designed to appear legitimate — complete with names, symbols, and even fake liquidity — but containing hidden mechanisms such as:
+Scammers deployed token contracts designed to appear legitimate (complete with names, symbols, and even fake liquidity) but containing hidden mechanisms such as:
 - Transfer taxes that route funds to the deployer
 - Mint functions allowing unlimited supply creation
 - Blacklist functions preventing token sales (honeypots)
@@ -2323,7 +2327,7 @@ Always verify before you interact. If a deal seems too good to be true, it almos
     excerpt:
       'After Ethereum transitioned to Proof of Stake in September 2022, Ethereum Classic reaffirmed its commitment to Proof of Work as the foundation of censorship resistance.',
     metaDescription: 'After Ethereum moved to Proof of Stake in September 2022, Ethereum Classic reaffirmed Proof of Work as the foundation of its censorship resistance.',
-    content: `When Ethereum completed its transition to Proof of Stake on September 15, 2022 — an event known as "The Merge" — Ethereum Classic became the largest Proof of Work smart contract platform. ETC's commitment to PoW was not a passive default but a deliberate choice rooted in the network's founding principles.
+    content: `When Ethereum completed its transition to Proof of Stake on September 15, 2022, an event known as "The Merge," Ethereum Classic became the largest Proof of Work smart contract platform. ETC's commitment to PoW was not a passive default but a deliberate choice rooted in the network's founding principles.
 
 ## The Merge and Its Implications
 
@@ -2341,7 +2345,7 @@ Proof of Work provides censorship resistance through physical decentralization:
 
 **Geographic distribution:** Mining operations are distributed globally, often in jurisdictions with minimal regulatory overlap. No single government can effectively control the majority of hash power.
 
-**Transaction inclusion guarantee:** In PoW, miners are economically incentivized to include all fee-paying transactions regardless of content. Excluding valid transactions means forgoing fee revenue — a direct economic cost.
+**Transaction inclusion guarantee:** In PoW, miners are economically incentivized to include all fee-paying transactions regardless of content. Excluding valid transactions means forgoing fee revenue: a direct economic cost.
 
 **No slashing risk:** PoW miners cannot have their equipment confiscated through protocol-level penalties. Validators in PoS systems face slashing, creating leverage for entities that can influence validator behavior.
 
@@ -2349,7 +2353,7 @@ Proof of Work provides censorship resistance through physical decentralization:
 
 Ethereum Classic's commitment to Proof of Work predates The Merge. The network's monetary policy (ECIP-1017), immutability principles, and resistance to irregular state changes all reflect the same philosophy: protocol rules should be enforced by physics and economics, not by social consensus among identifiable parties.
 
-After The Merge, ETC absorbed significant hash power from former Ethereum miners, further strengthening its security. The network continues to operate as a permissionless, censorship-resistant platform where transaction inclusion depends solely on paying the required fee — not on the sender's identity or the transaction's purpose.`,
+After The Merge, ETC absorbed significant hash power from former Ethereum miners, further strengthening its security. The network continues to operate as a permissionless, censorship-resistant platform where transaction inclusion depends solely on paying the required fee, not on the sender's identity or the transaction's purpose.`,
     date: '2022-10-15',
     category: 'Community',
     subject: 'Censorship Resistance',
@@ -2388,7 +2392,7 @@ The ETC Discord was organized to serve both technical and general community need
 
 ## Moderation
 
-The server implemented automated anti-spam and anti-phishing measures to protect users from scam links and impersonation attempts — a persistent problem across cryptocurrency communities. Moderation rules were published transparently, and moderation actions were logged for accountability.
+The server implemented automated anti-spam and anti-phishing measures to protect users from scam links and impersonation attempts: a persistent problem across cryptocurrency communities. Moderation rules were published transparently, and moderation actions were logged for accountability.
 
 ## Joining
 
@@ -2406,7 +2410,7 @@ The ETC Discord remains the primary real-time communication channel for the Ethe
     excerpt:
       'The Ethereum Classic community began formal review of the Olympia upgrade ECIPs, proposing EIP-1559 fee markets, a non-inflationary treasury, and on-chain governance.',
     metaDescription: 'The Ethereum Classic community began formal review of the Olympia ECIPs, proposing an EIP-1559 fee market, a non-inflationary treasury and on-chain governance.',
-    content: `The Ethereum Classic community opened formal review of the Olympia network upgrade — the most significant protocol change proposed for ETC since its founding. The upgrade introduces EIP-1559 dynamic fee markets, a non-inflationary treasury mechanism, and an on-chain governance framework.
+    content: `The Ethereum Classic community opened formal review of the Olympia network upgrade: the most significant protocol change proposed for ETC since its founding. The upgrade introduces EIP-1559 dynamic fee markets, a non-inflationary treasury mechanism, and an on-chain governance framework.
 
 ## The Olympia ECIPs
 
@@ -2416,17 +2420,17 @@ The upgrade is defined across multiple Ethereum Classic Improvement Proposals:
 The meta-ECIP that activates the upgrade at a specified block height. It bundles the individual protocol changes into a single coordinated activation, ensuring all nodes upgrade simultaneously.
 
 **ECIP-1112: Olympia Treasury Contract**
-Defines an immutable, non-custodial smart contract that receives redirected base fees from EIP-1559 transactions. Unlike the original EIP-1559 design where base fees are burned, Olympia redirects them to fund public goods development. The treasury contract has no admin keys and no upgrade mechanism — funds can only be disbursed through the governance process.
+Defines an immutable, non-custodial smart contract that receives redirected base fees from EIP-1559 transactions. Unlike the original EIP-1559 design where base fees are burned, Olympia redirects them to fund public goods development. The treasury contract has no admin keys and no upgrade mechanism: funds can only be disbursed through the governance process.
 
 **ECIP-1113: Olympia DAO Governance Framework**
 Establishes a modular on-chain governance system for managing treasury funds. The framework defines proposal submission, voting mechanisms, and execution processes. Governance decisions are enforced by smart contracts, not by social consensus among off-chain parties.
 
 **ECIP-1114: Olympia Funding Proposal Process (OFP)**
-Standardizes the lifecycle for funding proposals — from submission through review, voting, and disbursement. This creates a transparent, repeatable process for allocating treasury resources to development, infrastructure, and ecosystem growth.
+Standardizes the lifecycle for funding proposals: from submission through review, voting, and disbursement. This creates a transparent, repeatable process for allocating treasury resources to development, infrastructure, and ecosystem growth.
 
 ## Non-Inflationary Design
 
-A critical design decision: Olympia does not create new tokens. Miners continue to receive their full block rewards and priority fees (tips). Only the base fee — which EIP-1559 would otherwise burn — is redirected to the treasury. This means the monetary policy established by ECIP-1017 remains unchanged: the 210.7 million ETC supply cap is preserved.
+A critical design decision: Olympia does not create new tokens. Miners continue to receive their full block rewards and priority fees (tips). Only the base fee, which EIP-1559 would otherwise burn, is redirected to the treasury. This means the monetary policy established by ECIP-1017 remains unchanged: the 210.7 million ETC supply cap is preserved.
 
 ## Review Process
 
@@ -2449,7 +2453,7 @@ The upgrade targets deployment on the Mordor testnet before mainnet activation, 
     metaTitle: 'Gorgoroth Trials: Olympia Client Testing',
     excerpt:
       'The Gorgoroth Trials testing campaign launched to validate multi-client compatibility between Fukuii, Core-Geth, and Besu ahead of the Olympia network upgrade.',
-    content: `The Gorgoroth Trials — a structured testing campaign for the Olympia network upgrade — launched to validate multi-client compatibility across the three Ethereum Classic client implementations. Named after the volcanic plateau in Tolkien's Mordor, the trials serve as a proving ground for protocol changes before testnet and mainnet activation.
+    content: `The Gorgoroth Trials, a structured testing campaign for the Olympia network upgrade, launched to validate multi-client compatibility across the three Ethereum Classic client implementations. Named after the volcanic plateau in Tolkien's Mordor, the trials serve as a proving ground for protocol changes before testnet and mainnet activation.
 
 ## Three-Client Testing
 
@@ -2457,9 +2461,9 @@ The Olympia upgrade requires simultaneous support from all three ETC clients:
 
 - **Core-Geth:** The Go-based client derived from go-ethereum, maintained as the primary ETC implementation
 - **Hyperledger Besu:** The Java-based enterprise client maintained under the Linux Foundation
-- **Fukuii:** An Ethereum execution layer client in Scala 3 — native PoW for ETC and Mordor, Engine API V1–V4 for post-Merge Ethereum
+- **Fukuii:** An Ethereum execution layer client in Scala 3 (native PoW for ETC and Mordor, Engine API V1–V4 for post-Merge Ethereum)
 
-Testing across three independent implementations provides strong assurance that the protocol specification is unambiguous and correctly implemented. If all three clients — written in different languages by different teams — produce identical results, the specification is likely correct.
+Testing across three independent implementations provides strong assurance that the protocol specification is unambiguous and correctly implemented. If all three clients, written in different languages by different teams, produce identical results, the specification is likely correct.
 
 ## Test Configurations
 
@@ -2468,7 +2472,7 @@ The trials defined progressively complex network configurations:
 1. **Single-client baseline:** Three Fukuii nodes verifying internal consistency
 2. **Fukuii + Core-Geth:** Mixed network testing Go and Scala implementations
 3. **Fukuii + Besu:** Mixed network testing Scala and Java implementations
-4. **Full mixed network:** All three clients operating together — the ultimate compatibility test
+4. **Full mixed network:** All three clients operating together, the ultimate compatibility test
 
 Each configuration validated:
 - Block production and propagation across client boundaries
@@ -2487,7 +2491,7 @@ The Gorgoroth Trials specifically target Olympia protocol changes:
 
 ## From Testing to Activation
 
-The Gorgoroth Trials represent the first phase of a multi-stage testing process. Successful completion leads to Mordor testnet activation, where the upgrade runs on a public proof-of-work network before mainnet deployment. This methodical approach — private testing, public testnet, then mainnet — follows established blockchain upgrade best practices.`,
+The Gorgoroth Trials represent the first phase of a multi-stage testing process. Successful completion leads to Mordor testnet activation, where the upgrade runs on a public proof-of-work network before mainnet deployment. This methodical approach (private testing, public testnet, then mainnet) follows established blockchain upgrade best practices.`,
     date: '2026-02-15',
     category: 'Updates',
     subject: 'Gorgoroth Trials',
@@ -2500,7 +2504,7 @@ The Gorgoroth Trials represent the first phase of a multi-stage testing process.
     slug: 'olympia-upgrade-overview',
     title: 'The Olympia Upgrade: A Complete Overview',
     excerpt:
-      "Olympia is the most significant protocol upgrade in Ethereum Classic's history — delivering EIP-1559, Fusaka EVM parity, a protocol-native treasury, on-chain DAO governance, futarchy prediction markets, and miner distribution improvements in a single coordinated activation. This is a complete overview of what Olympia is, how it works, and why it matters.",
+      "Olympia is the most significant protocol upgrade in Ethereum Classic's history, delivering EIP-1559, Fusaka EVM parity, a protocol-native treasury, on-chain DAO governance, futarchy prediction markets, and miner distribution improvements in a single coordinated activation. This is a complete overview of what Olympia is, how it works, and why it matters.",
     metaDescription: 'The Olympia proposal as it stood in March 2026: a fee market, a treasury, on-chain governance and EVM alignment, before its ECIPs were revised as a set.',
     date: '2026-03-08',
     updated: '2026-11-07',
@@ -2513,55 +2517,55 @@ The Gorgoroth Trials represent the first phase of a multi-stage testing process.
     content: `> **Note, November 7, 2026**
 > - Olympia's ECIPs were revised as a set in September 2026. This article describes them as they stood when it was published, and [the Olympia hub](/olympia) describes the current proposal.
 
-Olympia is the most significant protocol upgrade Ethereum Classic has proposed since its founding. In a single coordinated activation, it delivers three things ETC has lacked: a protocol-native fee market, a self-sustaining on-chain treasury, and full EVM parity with the current Ethereum execution layer. Backed by ten coordinated ECIPs across five architectural layers, Olympia is not an experiment — it is a decade of principled stewardship translated into code.
+Olympia is the most significant protocol upgrade Ethereum Classic has proposed since its founding. In a single coordinated activation, it delivers three things ETC has lacked: a protocol-native fee market, a self-sustaining on-chain treasury, and full EVM parity with the current Ethereum execution layer. Backed by ten coordinated ECIPs across five architectural layers, Olympia is not an experiment: it is a decade of principled stewardship translated into code.
 
-No new tokens are minted. The ECIP-1017 supply cap of 210.7 million ETC is unchanged. Block rewards and priority fees go entirely to miners. The only value redirected is the BASEFEE — which EIP-1559 would otherwise destroy.
+No new tokens are minted. The ECIP-1017 supply cap of 210.7 million ETC is unchanged. Block rewards and priority fees go entirely to miners. The only value redirected is the BASEFEE, which EIP-1559 would otherwise destroy.
 
 ## The Five Layers
 
-Olympia is organized across five complementary layers. The consensus layer establishes the protocol primitives that everything else depends on. The contract layer builds the governance and compliance infrastructure on top. Prediction markets extend participation beyond the DAO membership tier. Miner distribution and protocol hardening mechanisms ensure long-term economic alignment.
+Olympia is organized across five complementary layers. The consensus layer establishes the protocol primitives that everything else depends on. The contract layer builds the governance and compliance infrastructure on top. Prediction markets extend participation beyond Olympia DAO's membership. Miner distribution and protocol hardening mechanisms ensure long-term economic alignment.
 
 ---
 
-## Consensus Layer — ECIP-1111, ECIP-1112, ECIP-1121
+## Consensus Layer: ECIP-1111, ECIP-1112, ECIP-1121
 
 These three ECIPs form the bedrock. Everything above them is built on what they establish.
 
 **ECIP-1111: EIP-1559 Fee Market**
 
-ECIP-1111 activates EIP-1559 dynamic base fee pricing and EIP-3198 (the BASEFEE opcode) on Ethereum Classic. Unlike Ethereum mainnet, where the BASEFEE is burned, ETC redirects it to the Olympia Treasury — the mechanism that funds open-source core development without any foundation or donor dependency. Legacy Type 0 transactions remain valid indefinitely; no changes are required for users, applications, or miners not interacting with the treasury. Miners retain 100% of block rewards and priority fees. The deferred London fee market, finally delivered.
+ECIP-1111 activates EIP-1559 dynamic base fee pricing and EIP-3198 (the BASEFEE opcode) on Ethereum Classic. Unlike Ethereum mainnet, where the BASEFEE is burned, ETC redirects it to the Olympia Treasury: the mechanism that funds open-source core development without any foundation or donor dependency. Legacy Type 0 transactions remain valid indefinitely; no changes are required for users, applications, or miners not interacting with the treasury. Miners retain 100% of block rewards and priority fees. The deferred London fee market, finally delivered.
 
 **ECIP-1112: Olympia Treasury Contract**
 
-ECIP-1112 defines the immutable, non-custodial smart contract that receives BASEFEE revenue redirected under ECIP-1111. The contract is deployed at a deterministic CREATE2 address — verifiable, predictable, and permanent. There are no admin keys, no upgrade mechanism, and no human signers. A single restricted withdrawal entry point is the only way funds leave the vault, and access is controlled exclusively by the governance executor defined in ECIP-1113. Voluntary on-chain donations from any stakeholder flow to the same address. The treasury model first identified during the Mystique upgrade (2022) — when EIP-1559 was deferred pending a decision on where the basefee should flow — is realized here.
+ECIP-1112 defines the immutable, non-custodial smart contract that receives BASEFEE revenue redirected under ECIP-1111. The contract is deployed at a deterministic CREATE2 address: verifiable, predictable, and permanent. There are no admin keys, no upgrade mechanism, and no human signers. A single restricted withdrawal entry point is the only way funds leave the vault, and access is controlled exclusively by the governance executor defined in ECIP-1113. Voluntary on-chain donations from any stakeholder flow to the same address. The treasury model first identified during the Mystique upgrade (2022), when EIP-1559 was deferred pending a decision on where the basefee should flow, is realized here.
 
 **ECIP-1121: Fusaka EVM Alignment**
 
-ECIP-1121 closes years of EVM divergence in a single fork, consolidating execution-layer improvements from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability. Key EIPs included: EIP-7702 (EOA code delegation), EIP-2537 (BLS12-381 cryptographic precompiles), EIP-6780 (SELFDESTRUCT restriction to deployment transaction), EIP-7951 (secp256r1 curve support for WebAuthn and passkeys), EIP-1153 (transient storage TSTORE/TLOAD), EIP-5656 (MCOPY memory copy), and EIP-2935 (historical block hashes in state). Blob-dependent EIPs (EIP-4844, EIP-7516) are explicitly deferred — Ethereum Classic is a pure execution layer and does not require blob-based data availability. After ECIP-1121, Solidity 0.8.x, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
+ECIP-1121 closes years of EVM divergence in a single fork, consolidating execution-layer improvements from Dencun, Pectra, and Fusaka that are independent of Proof-of-Stake and blob data availability. Key EIPs included: EIP-7702 (EOA code delegation), EIP-2537 (BLS12-381 cryptographic precompiles), EIP-6780 (SELFDESTRUCT restriction to deployment transaction), EIP-7951 (secp256r1 curve support for WebAuthn and passkeys), EIP-1153 (transient storage TSTORE/TLOAD), EIP-5656 (MCOPY memory copy), and EIP-2935 (historical block hashes in state). Blob-dependent EIPs (EIP-4844, EIP-7516) are explicitly deferred: Ethereum Classic is a pure execution layer and does not require blob-based data availability. After ECIP-1121, Solidity 0.8.x, Foundry, Hardhat, wagmi, viem, and ethers.js all work on ETC without modification, patching, or ETC-specific overrides. One codebase, every EVM chain.
 
 ---
 
-## Contract Layer — ECIP-1113, ECIP-1114, ECIP-1119
+## Contract Layer: ECIP-1113, ECIP-1114, ECIP-1119
 
-The contract layer makes the treasury usable — defining who can propose, how decisions are made, how funds flow, and how compliance is enforced.
+The contract layer makes the treasury usable, defining who can propose, how decisions are made, how funds flow, and how compliance is enforced.
 
 **ECIP-1113: Olympia DAO Governance Framework**
 
-ECIP-1113 establishes the on-chain governance system that acts as the sole authorized executor for treasury actions. The architecture follows OpenZeppelin Governor 5.x: proposals enter the Governor, pass through a configurable Timelock, and are executed by the Executor — no single party can bypass this pipeline. Voting uses non-transferable membership NFTs in a Sybil-resistant one-address-one-vote model. Any EVM developer worldwide can submit a proposal — no employment relationship, no preferred vendor status, no hiring manager required. Optional Emergency Pause and Execution Guard modules are available. No admin keys, no upgradeable patterns.
+ECIP-1113 establishes the on-chain governance system that acts as the sole authorized executor for treasury actions. The architecture follows OpenZeppelin Governor 5.x: proposals enter the Governor, pass through a configurable Timelock, and are executed by the Executor; no single party can bypass this pipeline. Voting uses non-transferable membership NFTs in a Sybil-resistant one-address-one-vote model. Any EVM developer worldwide can submit a proposal: no employment relationship, no preferred vendor status, no hiring manager required. Optional Emergency Pause and Execution Guard modules are available. No admin keys, no upgradeable patterns.
 
 **ECIP-1114: Olympia Funding Proposal Process (OFP)**
 
-ECIP-1114 defines the exclusive, standardized, permissionless process for requesting funds from the Olympia Treasury. The OFP lifecycle runs: Draft → Active → Approved → Executed. Each proposal is bound to a hash-verified execution tuple (ofpId, recipient, amount, metadataCID, chainid) — preventing substitution attacks and ensuring proposals execute exactly as written. Metadata is content-addressed on IPFS, creating an immutable proposal record. The process is open to all contributors; there is no gatekeeping and no preferred vendor list.
+ECIP-1114 defines the exclusive, standardized, permissionless process for requesting funds from the Olympia Treasury. The OFP lifecycle runs: Draft → Active → Approved → Executed. Each proposal is bound to a hash-verified execution tuple (ofpId, recipient, amount, metadataCID, chainid), preventing substitution attacks and ensuring proposals execute exactly as written. Metadata is content-addressed on IPFS, creating an immutable proposal record. The process is open to all contributors; there is no gatekeeping and no preferred vendor list.
 
 **ECIP-1119: Treasury Sanctions Compliance Oracle**
 
-ECIP-1119 introduces a multi-oracle sanctions compliance layer for all treasury disbursements. Rather than relying on a single centralized oracle — which creates both censorship risk and a single point of failure — ECIP-1119 establishes a competitive marketplace where oracle providers bid for DAO funding. A minimum of three providers participate, with stake-weighted consensus determining sanctions status. The Withdrawal Turnstile applies a checks-effects-interactions pattern: if a recipient is sanctioned, the transaction reverts atomically — funds never leave the vault. Data sources include OFAC SDN, the EU consolidated sanctions list, UN Security Council lists, and commercial providers updated every 15-60 minutes. Privacy is preserved through zkKYC attestation: non-sanctioned status is provable without identity disclosure. Compliance is verified only at withdrawal, not during market participation.
+ECIP-1119 introduces a multi-oracle sanctions compliance layer for all treasury disbursements. Rather than relying on a single centralized oracle, which creates both censorship risk and a single point of failure, ECIP-1119 establishes a competitive marketplace where oracle providers bid for Olympia DAO funding. A minimum of three providers participate, with stake-weighted consensus determining sanctions status. The Withdrawal Turnstile applies a checks-effects-interactions pattern: if a recipient is sanctioned, the transaction reverts atomically, funds never leave the vault. Data sources include OFAC SDN, the EU consolidated sanctions list, UN Security Council lists, and commercial providers updated every 15-60 minutes. Privacy is preserved through zkKYC attestation: non-sanctioned status is provable without identity disclosure. Compliance is verified only at withdrawal, not during market participation.
 
 ---
 
-## Futarchy Markets — ECIP-1117, ECIP-1118
+## Futarchy Markets: ECIP-1117, ECIP-1118
 
-Prediction markets extend governance participation beyond the DAO membership tier — opening financial participation to anyone without requiring membership, and generating basefee revenue that flows back to the treasury.
+Prediction markets extend governance participation beyond Olympia DAO's membership, opening financial participation to anyone without requiring membership, and generating basefee revenue that flows back to the treasury.
 
 **ECIP-1117: Futarchy Child-DAO Governance**
 
@@ -2569,29 +2573,29 @@ ECIP-1117 establishes a futarchy-based signal layer where prediction markets inf
 
 **ECIP-1118: Futarchy Funding and Streaming Disbursements**
 
-ECIP-1118 defines the economic infrastructure that makes futarchy governance self-sustaining. Rather than extracting trading fees — which measurably reduce market quality by 30-40% per percentage point — all market operations are funded through the basefee flywheel: prediction market activity generates transactions, transactions produce basefee revenue, basefee revenue flows to the treasury, and the treasury funds market infrastructure. Treasury capital is deployed across four channels: AMM liquidity provision (40-60%), market maker incentive programs (20-30%), infrastructure operations (15-25%), and strategic reserves (10-20%). Approved proposals receive streaming disbursements via Sablier v2 with milestone gating and clawback provisions — funds flow as work progresses, and governance can recover remaining funds from underperforming proposals.
+ECIP-1118 defines the economic infrastructure that makes futarchy governance self-sustaining. Rather than extracting trading fees, which measurably reduce market quality by 30-40% per percentage point, all market operations are funded through the basefee flywheel: prediction market activity generates transactions, transactions produce basefee revenue, basefee revenue flows to the treasury, and the treasury funds market infrastructure. Treasury capital is deployed across four channels: AMM liquidity provision (40-60%), market maker incentive programs (20-30%), infrastructure operations (15-25%), and strategic reserves (10-20%). Approved proposals receive streaming disbursements via Sablier v2 with milestone gating and clawback provisions: funds flow as work progresses, and governance can recover remaining funds from underperforming proposals.
 
 ---
 
-## Miner Distribution — ECIP-1115
+## Miner Distribution: ECIP-1115
 
 **ECIP-1115: L-Curve Smoothing for Long-Term Network Security**
 
-ECIP-1115 provides an optional governance-layer mechanism to smooth Treasury BASEFEE allocations over a future window — stabilizing miner revenue as ECIP-1017 block subsidies decline across eras. The mechanism applies a deterministic L-curve weighting function to a governance-selected fraction of BASEFEE held in the Treasury, distributing intended allocations across a governance-defined window length. All parameters — fraction, window length, weighting function — are exclusively governance-controlled through the OIP process. Smoothing defines intended allocations only; actual payouts still require explicit governance approval and execution through the ECIP-1113/1114 pipeline. The DAO may activate, adjust, suspend, or disable ECIP-1115 without a hard fork. No automatic entitlements are created; consensus-layer EIP-1559 behavior is unchanged.
+ECIP-1115 provides an optional governance-layer mechanism to smooth Treasury BASEFEE allocations over a future window, stabilizing miner revenue as ECIP-1017 block subsidies decline across eras. The mechanism applies a deterministic L-curve weighting function to a governance-selected fraction of BASEFEE held in the Treasury, distributing intended allocations across a governance-defined window length. All parameters (fraction, window length, weighting function) are exclusively governance-controlled through the OIP process. Smoothing defines intended allocations only; actual payouts still require explicit governance approval and execution through the ECIP-1113/1114 pipeline. Olympia DAO may activate, adjust, suspend, or disable ECIP-1115 without a hard fork. No automatic entitlements are created; consensus-layer EIP-1559 behavior is unchanged.
 
 ---
 
-## Protocol Hardening — ECIP-1116
+## Protocol Hardening: ECIP-1116
 
 **ECIP-1116: Base Fee Miner Distribution**
 
-ECIP-1116 applies a consensus-layer split to the BASEFEE at block finalization: 95% goes directly to the block producer (coinbase), 5% goes to the Olympia Treasury. Integer arithmetic is used to prevent rounding loss: treasury_basefee = basefee_revenue − (basefee_revenue × 95 / 100). Complete miner revenue becomes: Block_Reward(era) + (BaseFee × 0.95) + Priority_Fees. This replaces ECIP-1111's 100% treasury accumulation with an immediate, deterministic miner payment — eliminating any governance dependency for the miner's share. The 5% treasury portion is what ECIP-1115 smoothing applies to, independently of the 95% direct coinbase payment. ECIP-1116 is a hard fork modification: clients implementing ECIP-1111 without ECIP-1116 semantics will diverge at activation.
+ECIP-1116 applies a consensus-layer split to the BASEFEE at block finalization: 95% goes directly to the block producer (coinbase), 5% goes to the Olympia Treasury. Integer arithmetic is used to prevent rounding loss: treasury_basefee = basefee_revenue − (basefee_revenue × 95 / 100). Complete miner revenue becomes: Block_Reward(era) + (BaseFee × 0.95) + Priority_Fees. This replaces ECIP-1111's 100% treasury accumulation with an immediate, deterministic miner payment, eliminating any governance dependency for the miner's share. The 5% treasury portion is what ECIP-1115 smoothing applies to, independently of the 95% direct coinbase payment. ECIP-1116 is a hard fork modification: clients implementing ECIP-1111 without ECIP-1116 semantics will diverge at activation.
 
 ---
 
 ## Non-Inflationary by Design
 
-No new tokens are minted. Block rewards and priority fees go entirely to miners, unchanged. The only value redirected is the BASEFEE — a fee that EIP-1559 would otherwise destroy. ECIP-1017's 210.7 million ETC supply cap remains intact. Olympia is funded by activity, not issuance.
+No new tokens are minted. Block rewards and priority fees go entirely to miners, unchanged. The only value redirected is the BASEFEE: a fee that EIP-1559 would otherwise destroy. ECIP-1017's 210.7 million ETC supply cap remains intact. Olympia is funded by activity, not issuance.
 
 ---
 
@@ -2611,7 +2615,7 @@ All ten ECIPs are in Draft status and open for community review. Join the discus
     title: 'The EVM Ecosystem: From One Chain to Many',
     excerpt:
       'How the Ethereum Virtual Machine grew from a single blockchain into a multi-chain standard, and Ethereum Classic\'s role as the original EVM chain.',
-    content: `When the Ethereum blockchain split in July 2016 following the DAO fork, two chains emerged running the same virtual machine: Ethereum (the fork) and Ethereum Classic (the original chain). This was the first instance of the Ethereum Virtual Machine operating across multiple independent networks — a pattern that would eventually define an entire ecosystem.
+    content: `When the Ethereum blockchain split in July 2016 following the DAO fork, two chains emerged running the same virtual machine: Ethereum (the fork) and Ethereum Classic (the original chain). This was the first instance of the Ethereum Virtual Machine operating across multiple independent networks: a pattern that would eventually define an entire ecosystem.
 
 ## The EVM Standard
 
@@ -2641,7 +2645,7 @@ Ethereum Classic occupies a unique position in the EVM ecosystem:
 
 ## Developer Portability
 
-The shared EVM standard means developers can move between chains with near-zero switching costs. Tools like Hardhat, Foundry, and Remix work identically across EVM chains. ABIs, bytecode, and development patterns are universal. This portability benefits ETC directly — any developer experienced with Solidity on any EVM chain can build on ETC immediately.`,
+The shared EVM standard means developers can move between chains with near-zero switching costs. Tools like Hardhat, Foundry, and Remix work identically across EVM chains. ABIs, bytecode, and development patterns are universal. This portability benefits ETC directly: any developer experienced with Solidity on any EVM chain can build on ETC immediately.`,
     date: '2016-07-20',
     category: 'Ecosystem',
     subject: 'The EVM Ecosystem',
@@ -2655,7 +2659,7 @@ The shared EVM standard means developers can move between chains with near-zero 
     metaTitle: 'Shanghai and Dencun: What ETC Evaluates',
     excerpt:
       'A review of Ethereum\'s Shanghai and Dencun upgrades and which EVM improvements ETC evaluates for potential adoption.',
-    content: `Ethereum's Shanghai (April 2023) and Dencun (March 2024) upgrades introduced significant EVM changes. As the original EVM chain, Ethereum Classic actively monitors upstream improvements to evaluate which are beneficial for adoption — and which are irrelevant to a PoW chain.
+    content: `Ethereum's Shanghai (April 2023) and Dencun (March 2024) upgrades introduced significant EVM changes. As the original EVM chain, Ethereum Classic actively monitors upstream improvements to evaluate which are beneficial for adoption, and which are irrelevant to a PoW chain.
 
 ## Shanghai (April 2023)
 
@@ -2672,7 +2676,7 @@ ETC's Spiral upgrade (February 2024) adopted equivalent EVM improvements, keepin
 Dencun was primarily focused on Layer 2 scaling through blob transactions:
 
 - **EIP-4844 (Proto-danksharding):** Introduced blob-carrying transactions designed for rollup data availability. This is L2-specific infrastructure with limited relevance to ETC, which operates as a standalone L1.
-- **EIP-1153 (Transient storage):** Added TSTORE and TLOAD opcodes for storage that exists only during transaction execution, then is discarded. Useful for reentrancy locks and callback patterns — relevant to ETC smart contract development.
+- **EIP-1153 (Transient storage):** Added TSTORE and TLOAD opcodes for storage that exists only during transaction execution, then is discarded. Useful for reentrancy locks and callback patterns: relevant to ETC smart contract development.
 - **EIP-5656 (MCOPY instruction):** Added an efficient memory copy opcode, improving gas costs for memory-intensive operations. A pure EVM improvement.
 - **EIP-6780 (SELFDESTRUCT restriction):** Limited the SELFDESTRUCT opcode to only send funds without deleting contract storage (unless called in the same transaction as creation). Improves state management predictability.
 
@@ -2711,7 +2715,7 @@ Cross-chain bridges allow assets to move between ETC and other EVM chains. These
 
 Bridge usage enables ETC users to access DeFi protocols on other chains and allows users from other ecosystems to interact with ETC-native applications.
 
-**Security note:** Cross-chain bridges are high-value targets for attackers. Users should exercise caution, use established bridges with proven track records, and understand the trust assumptions involved. Not all bridges are created equal — some rely on multisig committees, others on optimistic verification, and others on zero-knowledge proofs.
+**Security note:** Cross-chain bridges are high-value targets for attackers. Users should exercise caution, use established bridges with proven track records, and understand the trust assumptions involved. Not all bridges are created equal: some rely on multisig committees, others on optimistic verification, and others on zero-knowledge proofs.
 
 ## Shared Development Tooling
 
@@ -2754,7 +2758,7 @@ ETC nodes expose the standard Ethereum JSON-RPC API, meaning wallets, dApps, and
     title: 'The L1 EVM Landscape: Where Ethereum Classic Fits',
     metaTitle: 'The L1 EVM Landscape: Where ETC Fits',
     excerpt:
-      'A factual survey of the Layer 1 EVM ecosystem — from Ethereum PoS to Avalanche, BSC, and rollups — and ETC\'s unique position as the PoW original.',
+      'A factual survey of the Layer 1 EVM ecosystem (from Ethereum PoS to Avalanche, BSC, and rollups) and ETC\'s unique position as the PoW original.',
     content: `The EVM ecosystem has grown from two chains in 2016 to dozens of Layer 1 blockchains and Layer 2 rollups. Each chain makes different trade-offs in consensus, decentralization, throughput, and governance. Understanding the landscape helps contextualize Ethereum Classic's position.
 
 ## Layer 1 EVM Chains
@@ -2795,7 +2799,7 @@ In the L1 landscape, ETC is differentiated by several factors:
 
 **No validator set:** There is no identifiable group of validators who can be compelled to filter transactions. Mining is permissionless and pseudonymous.
 
-These characteristics are not claims of superiority — they are factual trade-offs. Higher throughput chains sacrifice some decentralization. More decentralized chains may have lower throughput. ETC has chosen maximum resistance to censorship and state modification as its primary design goals.`,
+These characteristics are not claims of superiority: they are factual trade-offs. Higher throughput chains sacrifice some decentralization. More decentralized chains may have lower throughput. ETC has chosen maximum resistance to censorship and state modification as its primary design goals.`,
     date: '2024-01-15',
     category: 'Ecosystem',
     subject: 'The L1 Landscape',
@@ -2812,7 +2816,7 @@ These characteristics are not claims of superiority — they are factual trade-o
 
 ## EVM Object Format (EOF)
 
-The most substantial EVM change in Pectra was the introduction of the EVM Object Format — a structured container format for smart contract bytecode:
+The most substantial EVM change in Pectra was the introduction of the EVM Object Format: a structured container format for smart contract bytecode:
 
 - **Separation of code and data:** EOF separates executable code from static data within contract bytecode, enabling better analysis and optimization
 - **Explicit function definitions:** Contracts declare functions with typed inputs and outputs, enabling static validation before deployment
@@ -2821,14 +2825,14 @@ The most substantial EVM change in Pectra was the introduction of the EVM Object
 
 EOF is a pure EVM improvement with no dependency on Proof of Stake. It improves the execution environment for smart contracts regardless of the underlying consensus mechanism. This makes it a strong candidate for ETC evaluation.
 
-**Trade-off:** EOF is a complex change that introduces a dual-track execution environment — legacy bytecode and EOF bytecode must both be supported indefinitely. The implementation burden is significant across all client implementations.
+**Trade-off:** EOF is a complex change that introduces a dual-track execution environment; legacy bytecode and EOF bytecode must both be supported indefinitely. The implementation burden is significant across all client implementations.
 
 ## EIP-7702: Account Abstraction
 
 EIP-7702 introduced a new transaction type that allows externally owned accounts (EOAs) to temporarily delegate to smart contract code during a transaction:
 
 - Users can batch multiple operations into a single transaction
-- Gas sponsorship becomes possible — a third party can pay gas fees on behalf of a user
+- Gas sponsorship becomes possible: a third party can pay gas fees on behalf of a user
 - Custom validation logic (multi-sig, social recovery) can be applied to regular accounts
 
 Account abstraction improves user experience significantly, particularly for onboarding new users who may not hold native tokens for gas. This is a chain-agnostic improvement applicable to any EVM network.
@@ -2839,9 +2843,9 @@ For each Pectra component, ETC's evaluation criteria remain consistent:
 
 | Component | PoS Dependency | EVM Improvement | ETC Relevance |
 |-----------|---------------|-----------------|---------------|
-| EOF | None | Yes — structured bytecode | High — improves contract analysis |
-| EIP-7702 | None | Yes — account abstraction | High — improves UX |
-| Blob throughput increases | PoS/L2 specific | No | Low — ETC is standalone L1 |
+| EOF | None | Yes: structured bytecode | High, improves contract analysis |
+| EIP-7702 | None | Yes: account abstraction | High, improves UX |
+| Blob throughput increases | PoS/L2 specific | No | Low: ETC is standalone L1 |
 | Validator changes | PoS specific | No | None |
 
 ## Protocol Stewardship

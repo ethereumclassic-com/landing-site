@@ -10,7 +10,7 @@ export default function CoreDevsPage() {
   const upcomingEntry = archiveEntries[0]
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -113,7 +113,7 @@ export default function CoreDevsPage() {
             <p className="mt-2 text-[var(--color-text-muted)] leading-relaxed">
               CDCs are public meetings where ETC client developers coordinate protocol changes.
               Every network fork, from Frontier (2015) through Spiral, was discussed, debated and
-              settled through this process, and the proposed Olympia upgrade is next. Rejected proposals (ECIP-1049, 1051, 1098)
+              settled through this process, and the proposed Olympia upgrade is next. Proposals that were rejected or withdrawn (ECIP-1049, 1051 and 1098)
               are also documented here.
             </p>
             <p className="mt-4 text-[var(--color-text-muted)]">
@@ -178,6 +178,6 @@ export default function CoreDevsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
