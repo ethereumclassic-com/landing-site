@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function DirectoryDevelopersPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -32,7 +32,7 @@ export default function DirectoryDevelopersPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Developer Directory</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Everything you need to build on Ethereum Classic — networks, RPC endpoints, execution clients, development tools, and contract frameworks. The standard Ethereum toolchain works on ETC, with a legacy-transaction setting where a tool assumes EIP-1559.
+                Networks, RPC endpoints, execution clients, development tools and contract frameworks for building on Ethereum Classic. The standard Ethereum toolchain works on ETC; a tool that assumes EIP-1559 needs its legacy-transaction setting.
               </p>
             </div>
           </div>
@@ -171,6 +171,6 @@ export default function DirectoryDevelopersPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

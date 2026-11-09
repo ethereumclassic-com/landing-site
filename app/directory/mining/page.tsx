@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import { miningPools, miningHardware, miningSoftware } from '@/app/mining/data/mining'
+import { POOL_DIRECTORY } from '@/app/mining/data/pools'
 import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Mining',
   description:
-    'An index of Ethereum Classic mining: the pools that serve the network, GPU and ASIC hardware, and the mining software that supports ETCHash.',
+    'An index of Ethereum Classic mining: the pools that serve the network, GPU and ASIC hardware, and the mining software that supports Etchash.',
   alternates: { canonical: 'https://ethereumclassic.com/directory/mining' },
   openGraph: { ...OG_BASE },
 }
@@ -16,7 +17,7 @@ export default function DirectoryMiningPage() {
   const topASICs = miningHardware.filter((h) => h.type === 'ASIC').slice(0, 4)
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -48,11 +49,14 @@ export default function DirectoryMiningPage() {
         <div className="mx-auto max-w-6xl">
           <div>
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Mining Pools ({miningPools.length})</h2>
+              <h2 className="text-xl font-semibold text-[var(--text-primary)]">Mining Pools ({POOL_DIRECTORY.length})</h2>
               <Link href="/mining/pools" className="text-sm text-[var(--color-primary)] hover:underline">
                 View all pools →
               </Link>
             </div>
+            <p className="mb-4 text-sm text-[var(--color-text-muted)]">
+              The pools with a setup guide on this site. The pools page lists all {POOL_DIRECTORY.length}, with live shares.
+            </p>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {miningPools.map((pool) => (
                 <div
@@ -191,6 +195,6 @@ export default function DirectoryMiningPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

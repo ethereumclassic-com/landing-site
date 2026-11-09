@@ -30,7 +30,7 @@ const communityChannels = [
   },
   {
     name: 'Twitter / X',
-    description: 'News and announcements from the network.',
+    description: 'News and announcements.',
     url: 'https://x.com/ETC_Network',
     icon: (
       <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -54,7 +54,7 @@ const communityChannels = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
@@ -161,8 +161,11 @@ export default function ContactPage() {
                   <Link href="/community" className="block text-sm text-[var(--color-primary)] hover:underline">
                     Community Hub
                   </Link>
+                  <Link href="/ecosystem" className="block text-sm text-[var(--color-primary)] hover:underline">
+                    Ecosystem Directory
+                  </Link>
                   <Link href="/partners" className="block text-sm text-[var(--color-primary)] hover:underline">
-                    Partner Directory
+                    Partnerships
                   </Link>
                 </div>
               </div>
@@ -170,6 +173,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

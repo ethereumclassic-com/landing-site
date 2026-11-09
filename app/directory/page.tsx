@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { wallets } from '../wallet/data/wallets'
 import { exchanges } from '../buy/data/exchanges'
-import { miningPools } from '../mining/data/mining'
+import { POOL_DIRECTORY } from '@/app/mining/data/pools'
 import { nodeClients, devTools } from '../build/data/build'
 
 // Directory category data
@@ -34,7 +34,7 @@ const directories = [
     title: 'Mining',
     description: 'Mining pools, hardware, and software resources',
     href: '/directory/mining',
-    count: miningPools.length,
+    count: POOL_DIRECTORY.length,
     icon: (
       <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
@@ -66,14 +66,26 @@ const directories = [
     ),
     highlights: ['Discord', 'Twitter/X', 'Telegram', 'Forums'],
   },
+  {
+    title: 'Ecosystem',
+    description: 'Companies and products that support ETC, each checked before it is listed',
+    href: '/ecosystem',
+    count: null,
+    icon: (
+      <svg aria-hidden="true" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+      </svg>
+    ),
+    highlights: ['Wallets', 'Exchanges', 'Infrastructure', 'DeFi'],
+  },
 ]
 
 // Quick stats
 const stats = [
-  { label: 'Wallets', value: wallets.length, suffix: '+' },
-  { label: 'Exchanges', value: exchanges.length, suffix: '+' },
-  { label: 'Mining Pools', value: miningPools.length, suffix: '' },
-  { label: 'Dev Tools', value: nodeClients.length + devTools.length, suffix: '+' },
+  { label: 'Wallets', value: wallets.length },
+  { label: 'Exchanges', value: exchanges.length },
+  { label: 'Mining Pools', value: POOL_DIRECTORY.length },
+  { label: 'Dev Tools', value: nodeClients.length + devTools.length },
 ]
 
 function DirectoryIcon() {
@@ -94,7 +106,7 @@ function ArrowIcon() {
 
 export default function DirectoryPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary)]/5 via-transparent to-transparent" />
@@ -104,14 +116,14 @@ export default function DirectoryPage() {
           >
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-2 text-sm text-[var(--color-primary)]">
               <DirectoryIcon />
-              <span>Ecosystem Directory</span>
+              <span>Resource Directory</span>
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
               ETC Resource Directory
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Your comprehensive guide to the Ethereum Classic ecosystem. Find wallets, exchanges,
-              mining resources, development tools, and community channels all in one place.
+              Wallets, exchanges, mining resources, development tools and community channels for Ethereum Classic,
+              in one place.
             </p>
           </div>
 
@@ -125,7 +137,7 @@ export default function DirectoryPage() {
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4"
               >
                 <div className="text-2xl font-bold text-[var(--color-primary)]">
-                  {stat.value}{stat.suffix}
+                  {stat.value}
                 </div>
                 <div className="text-sm text-[var(--color-text-muted)]">{stat.label}</div>
               </div>
@@ -194,7 +206,7 @@ export default function DirectoryPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Quick Access</h2>
             <p className="mt-3 text-[var(--color-text-muted)]">
-              Jump directly to the most popular resources
+              Shortcuts to common starting points
             </p>
           </div>
 
@@ -203,7 +215,7 @@ export default function DirectoryPage() {
           >
             {/* Wallets Quick Links */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5">
-              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Popular Wallets</h3>
+              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Wallets</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/wallet" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
@@ -225,7 +237,7 @@ export default function DirectoryPage() {
 
             {/* Exchanges Quick Links */}
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5">
-              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Top Exchanges</h3>
+              <h3 className="mb-3 font-semibold text-[var(--text-primary)]">Exchanges</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="/exchanges" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)]">
@@ -302,8 +314,7 @@ export default function DirectoryPage() {
               Can&apos;t Find What You&apos;re Looking For?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-muted)]">
-              The Ethereum Classic ecosystem is constantly growing. If you know of a resource
-              that should be listed here, let us know.
+              If you know of a resource that should be listed here, let us know.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
@@ -323,6 +334,6 @@ export default function DirectoryPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

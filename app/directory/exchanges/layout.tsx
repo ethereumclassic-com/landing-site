@@ -4,7 +4,7 @@ import { fetchExchangeVolumes } from '@/lib/exchange-volume'
 
 export const metadata: Metadata = {
   title: 'Exchange Directory',
-  description: 'Complete directory of exchanges that list Ethereum Classic for trading.',
+  description: 'A directory of exchanges that list Ethereum Classic for trading.',
 }
 
 // The exchange pages order their listings by live volume, read here once for the whole section.

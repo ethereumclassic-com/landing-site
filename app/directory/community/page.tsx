@@ -26,7 +26,7 @@ const socialPlatforms = [
   },
   {
     name: 'X (Twitter)',
-    description: 'Official ETC Network account for news, updates, and ecosystem highlights',
+    description: 'The ETC Network account on X, for news, updates and ecosystem highlights',
     url: 'https://x.com/ETC_Network',
     category: 'Social',
   },
@@ -76,7 +76,7 @@ const communityResources = [
 
 export default function DirectoryCommunityPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -181,6 +181,6 @@ export default function DirectoryCommunityPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

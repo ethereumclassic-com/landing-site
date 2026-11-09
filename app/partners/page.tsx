@@ -1,395 +1,123 @@
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
-import { CONTACT_EMAILS } from '@/lib/social'
+import { CONTACT_EMAILS, SECURITY_CONTACT_EMAIL } from '@/lib/social'
 
-type PartnerCategory = 'all' | 'wallets' | 'exchanges' | 'infrastructure' | 'development' | 'mining' | 'defi'
+/**
+ * Partnerships: the way in for organizations that want to work with ethereumclassic.com. Real partners are
+ * listed here once a partnership is agreed; products that support ETC are listed at /ecosystem instead.
+ */
 
-interface Partner {
-  name: string
-  description: string
-  category: Exclude<PartnerCategory, 'all'>
-  url: string
-  logo?: string
-  featured?: boolean
-  partnerSince?: string
-}
-
-const partners: Partner[] = [
-  // Wallets
-  {
-    name: 'Trezor',
-    description: 'The original hardware wallet with full ETC support and open-source firmware.',
-    category: 'wallets',
-    url: 'https://trezor.io',
-    featured: true,
-    partnerSince: '2016',
-  },
-  {
-    name: 'Ledger',
-    description: 'Leading hardware wallet brand with secure element technology.',
-    category: 'wallets',
-    url: 'https://ledger.com',
-    featured: true,
-    partnerSince: '2017',
-  },
-  {
-    name: 'MetaMask',
-    description: 'The most popular browser extension wallet for EVM chains.',
-    category: 'wallets',
-    url: 'https://metamask.io',
-    featured: true,
-    partnerSince: '2018',
-  },
-  {
-    name: 'Trust Wallet',
-    description: 'Multi-chain mobile wallet with native ETC support.',
-    category: 'wallets',
-    url: 'https://trustwallet.com',
-    partnerSince: '2019',
-  },
-  {
-    name: 'Exodus',
-    description: 'Desktop and mobile wallet with beautiful interface.',
-    category: 'wallets',
-    url: 'https://exodus.com',
-    partnerSince: '2018',
-  },
-
-  // Exchanges
-  {
-    name: 'Binance',
-    description: 'World\'s largest cryptocurrency exchange by trading volume.',
-    category: 'exchanges',
-    url: 'https://binance.com',
-    featured: true,
-    partnerSince: '2017',
-  },
-  {
-    name: 'Coinbase',
-    description: 'US-based exchange with strong regulatory compliance.',
-    category: 'exchanges',
-    url: 'https://coinbase.com',
-    featured: true,
-    partnerSince: '2017',
-  },
-  {
-    name: 'Kraken',
-    description: 'Established exchange known for security and reliability.',
-    category: 'exchanges',
-    url: 'https://kraken.com',
-    featured: true,
-    partnerSince: '2016',
-  },
-  {
-    name: 'OKX',
-    description: 'Global exchange with comprehensive trading features.',
-    category: 'exchanges',
-    url: 'https://okx.com',
-    partnerSince: '2018',
-  },
-  {
-    name: 'Gate.io',
-    description: 'Long-standing exchange with diverse ETC trading pairs.',
-    category: 'exchanges',
-    url: 'https://gate.io',
-    partnerSince: '2017',
-  },
-
-  // Infrastructure
-  {
-    name: 'Blockscout',
-    description: 'Open-source block explorer powering ETC network visibility.',
-    category: 'infrastructure',
-    url: 'https://etc.blockscout.com',
-    featured: true,
-    partnerSince: '2019',
-  },
-  {
-    name: 'MiningPoolStats',
-    description: 'Mining pool statistics and network data.',
-    category: 'infrastructure',
-    url: 'https://miningpoolstats.stream',
-    partnerSince: '2019',
-  },
-
-  // Development
-  {
-    name: 'ETC Cooperative',
-    description: 'Non-profit that funded Ethereum Classic public goods from 2017, and is winding down.',
-    category: 'development',
-    url: 'https://etccooperative.org',
-    featured: true,
-    partnerSince: '2017',
-  },
-  {
-    name: 'Chippr Robotics',
-    description:
-      'Maintains Fukuii, an execution client in Scala 3 with native Proof-of-Work for Ethereum Classic.',
-    category: 'development',
-    url: 'https://github.com/chippr-robotics/fukuii',
-    partnerSince: '2024',
-  },
-
-  // Mining
-  {
-    name: 'F2Pool',
-    description: 'One of the largest ETC mining pools globally.',
-    category: 'mining',
-    url: 'https://f2pool.com',
-    featured: true,
-    partnerSince: '2018',
-  },
-  {
-    name: '2Miners',
-    description: 'Popular ETC mining pool with extensive statistics.',
-    category: 'mining',
-    url: 'https://2miners.com',
-    featured: true,
-    partnerSince: '2018',
-  },
-
-  // DeFi
-  {
-    name: 'ETCswap',
-    description: 'Native decentralized exchange for Ethereum Classic.',
-    category: 'defi',
-    url: 'https://etcswap.org',
-    featured: true,
-    partnerSince: '2022',
-  },
+const stakeholders = [
+  { title: 'Exchanges and custodians', detail: 'Trading venues, brokers and custody providers that list or hold ETC.' },
+  { title: 'Wallets and payments', detail: 'Wallets, on-ramps, cards and merchant services that support ETC.' },
+  { title: 'Mining', detail: 'Pools, mining operations, hardware makers and hosting providers.' },
+  { title: 'Infrastructure', detail: 'Node, RPC, indexing and explorer providers serving the network.' },
+  { title: 'Builders', detail: 'Teams shipping applications, tools or protocols on Ethereum Classic.' },
+  { title: 'Institutions and research', detail: 'Funds, issuers, researchers and analysts working on ETC.' },
+  { title: 'Media and events', detail: 'Publications, conferences and community organizers covering ETC.' },
 ]
 
-const categories: { id: PartnerCategory; label: string }[] = [
-  { id: 'all', label: 'All Partners' },
-  { id: 'wallets', label: 'Wallets' },
-  { id: 'exchanges', label: 'Exchanges' },
-  { id: 'infrastructure', label: 'Infrastructure' },
-  { id: 'development', label: 'Development' },
-  { id: 'mining', label: 'Mining' },
-  { id: 'defi', label: 'DeFi' },
+const elsewhere = [
+  { label: 'List a product in the Ecosystem Directory', href: '/ecosystem', note: `Listing requests go to ${CONTACT_EMAILS.listings}` },
+  { label: 'Submit an app', href: '/apps/submit', note: 'For applications built on Ethereum Classic' },
+  { label: 'Advertise on ethereumclassic.com', href: '/advertise', note: `Advertising goes to ${CONTACT_EMAILS.advertising}` },
+  { label: 'Other questions', href: '/contact', note: 'One address per topic, press included' },
 ]
 
 export default function PartnersPage() {
-  const [activeCategory, setActiveCategory] = useState<PartnerCategory>('all')
-
-  const filteredPartners = activeCategory === 'all'
-    ? partners
-    : partners.filter(p => p.category === activeCategory)
-
-  const featuredPartners = partners.filter(p => p.featured)
-
+  const mailto = `mailto:${CONTACT_EMAILS.partnerships}`
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-[var(--bg)]">
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
-        <div className="container relative mx-auto max-w-6xl px-4">
-          <div
-            className="mx-auto max-w-3xl text-center"
-          >
-            <h1
-              className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
+        <div className="container relative mx-auto max-w-4xl px-4 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary)]">
+            Partnerships
+          </span>
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
+            Work with ethereumclassic.com
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
+            Organizations across the Ethereum Classic ecosystem can propose a partnership: an integration, a
+            collaboration on content or research, an event, or anything else that serves people using ETC.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a
+              href={mailto}
+              className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
             >
-              Partner Directory
-            </h1>
-            <p
-              className="mt-4 text-lg text-[var(--color-text-secondary)]"
-            >
-              The wallets, exchanges, mining pools, infrastructure providers, and service companies that make up the Ethereum Classic ecosystem. These partners have verified ETC support and represent the operational backbone of the network for users, miners, and developers worldwide.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a
-                href={`mailto:${CONTACT_EMAILS.partnerships}`}
-                className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
-              >
-                Become a Partner
-              </a>
+              Write to {CONTACT_EMAILS.partnerships}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Who it is for */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Who This Is For</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {stakeholders.map((item) => (
+              <div key={item.title} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+                <h3 className="font-semibold text-[var(--text-primary)]">{item.title}</h3>
+                <p className="mt-2 text-sm text-[var(--color-text-muted)]">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How to reach the team */}
+      <section className="border-t border-[var(--border)] py-12 md:py-16">
+        <div className="container mx-auto max-w-3xl px-4">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">How to Reach Us</h2>
+          <p className="mt-4 text-[var(--color-text-secondary)]">
+            Write to{' '}
+            <a href={mailto} className="font-medium text-[var(--color-primary)] hover:underline">
+              {CONTACT_EMAILS.partnerships}
+            </a>{' '}
+            with:
+          </p>
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-[var(--color-text-secondary)]">
+            <li>who you are, and what your organization does</li>
+            <li>what you would like to do together, and how it serves people using Ethereum Classic</li>
+            <li>links to your project, and the best way to reach you</li>
+          </ul>
+          <p className="mt-4 text-[var(--color-text-secondary)]">
+            Partners are listed on this page once a partnership is agreed. Companies whose products support ETC are
+            listed in the{' '}
+            <Link href="/ecosystem" className="text-[var(--color-primary)] hover:underline">
+              Ecosystem Directory
+            </Link>
+            , which is separate and has its own checks.
+          </p>
+        </div>
+      </section>
+
+      {/* Elsewhere */}
+      <section className="border-t border-[var(--border)] bg-[var(--panel)] py-12 md:py-16">
+        <div className="container mx-auto max-w-5xl px-4">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Looking for Something Else?</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {elsewhere.map((item) => (
               <Link
-                href="/advertise"
-                className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--panel)]"
+                key={item.href}
+                href={item.href}
+                className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5 transition hover:border-[var(--color-primary)]/40"
               >
-                Advertise With Us
+                <p className="font-semibold text-[var(--text-primary)]">{item.label}</p>
+                <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.note}</p>
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Partners */}
-      <section className="border-b border-[var(--border)] py-12">
-        <div className="container mx-auto max-w-6xl px-4">
-          <h2 className="text-center text-lg font-semibold text-[var(--color-text-muted)]">
-            Featured Partners
-          </h2>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {featuredPartners.slice(0, 8).map((partner) => (
-              <a
-                key={partner.name}
-                href={partner.url}
-                target={partner.url.startsWith('http') ? '_blank' : undefined}
-                rel={partner.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="text-lg font-semibold text-[var(--color-text-muted)] transition hover:text-[var(--text-primary)]"
-              >
-                {partner.name}
-              </a>
             ))}
           </div>
+          <p className="mt-6 text-sm text-[var(--color-text-muted)]">
+            To report a vulnerability, write to{' '}
+            <a href={`mailto:${SECURITY_CONTACT_EMAIL}`} className="text-[var(--color-primary)] hover:underline">
+              {SECURITY_CONTACT_EMAIL}
+            </a>
+            , which one of Core-Geth&apos;s maintainers reads.
+          </p>
         </div>
       </section>
-
-      {/* Category Filter */}
-      <section className="border-b border-[var(--border)] py-6">
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  activeCategory === category.id
-                    ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
-                    : 'bg-[var(--panel)] text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partner Grid */}
-      <section className="py-12 md:py-20">
-        <div className="container mx-auto max-w-6xl px-4">
-          <div
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {filteredPartners.map((partner) => (
-              <div
-                key={partner.name}
-                className={`group rounded-xl border bg-[var(--panel)] p-6 transition hover:border-[var(--color-primary)]/50 ${
-                  partner.featured ? 'border-[var(--color-primary)]/30' : 'border-[var(--border)]'
-                }`}
-              >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-[var(--text-primary)]">{partner.name}</h3>
-                      {partner.featured && (
-                        <span className="rounded-full bg-[var(--color-primary)]/10 px-2 py-0.5 text-xs text-[var(--color-primary)]">
-                          Featured
-                        </span>
-                      )}
-                    </div>
-                    <span className="mt-1 inline-block text-xs capitalize text-[var(--color-text-muted)]">
-                      {partner.category}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
-                  {partner.description}
-                </p>
-
-                <div className="mt-4 flex items-center justify-between">
-                  {partner.partnerSince && (
-                    <span className="text-xs text-[var(--color-text-muted)]">
-                      Partner since {partner.partnerSince}
-                    </span>
-                  )}
-                  {partner.url.startsWith('http') ? (
-                    <a
-                      href={partner.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-[var(--color-primary)] transition hover:underline"
-                    >
-                      Visit Site
-                    </a>
-                  ) : (
-                    <Link
-                      href={partner.url}
-                      className="text-sm text-[var(--color-primary)] transition hover:underline"
-                    >
-                      Learn More
-                    </Link>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {filteredPartners.length === 0 && (
-            <div className="py-12 text-center">
-              <p className="text-[var(--color-text-muted)]">No partners found in this category.</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Become a Partner CTA */}
-      <section className="border-t border-[var(--border)] bg-[var(--panel)] py-16 md:py-20">
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="mx-auto max-w-2xl text-center">
-            <div
-            >
-              <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-                Interested in Partnering?
-              </h2>
-              <p className="mt-4 text-[var(--color-text-muted)]">
-                We are always looking to expand the ETC ecosystem. Whether you are a wallet provider, exchange, mining pool, or development team, we would love to hear from you.
-              </p>
-
-              <div className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-6">
-                <h3 className="font-semibold text-[var(--text-primary)]">Partnership Benefits</h3>
-                <ul className="mt-4 space-y-2 text-left text-sm text-[var(--color-text-secondary)]">
-                  <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Featured listing in our partner directory
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Promotion through our newsletter and social channels
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Integration with Ethereum Classic ecosystem products
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <svg aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Co-marketing opportunities
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <a
-                  href={`mailto:${CONTACT_EMAILS.partnerships}`}
-                  className="rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"
-                >
-                  Contact Us
-                </a>
-                <Link
-                  href="/apps/submit"
-                  className="rounded-xl border border-[var(--border)] px-6 py-3 font-semibold text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
-                >
-                  Submit Your App
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    </div>
   )
 }

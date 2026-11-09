@@ -379,7 +379,7 @@ export default function DirectoryExchangesPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary)]/5 via-transparent to-transparent" />
@@ -407,7 +407,7 @@ export default function DirectoryExchangesPage() {
                   ETC Exchanges
                 </h1>
                 <p className="mt-4 max-w-xl text-lg text-[var(--color-text-muted)]">
-                  Complete directory of exchanges supporting Ethereum Classic. Compare centralized,
+                  A directory of exchanges that support Ethereum Classic. Compare centralized,
                   decentralized, and P2P trading platforms.
                 </p>
               </div>
@@ -666,6 +666,6 @@ export default function DirectoryExchangesPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

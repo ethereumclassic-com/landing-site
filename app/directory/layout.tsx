@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: 'ETC Directory',
   },
   description:
-    'Comprehensive directory of Ethereum Classic wallets, exchanges, mining resources, and developer tools.',
+    'A directory of Ethereum Classic wallets, exchanges, mining resources and developer tools.',
 }
 
 export default function DirectoryLayout({ children }: { children: React.ReactNode }) {

@@ -306,7 +306,7 @@ export default function DirectoryWalletsPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--color-primary)]/5 via-transparent to-transparent" />
@@ -334,7 +334,7 @@ export default function DirectoryWalletsPage() {
                   ETC Wallets
                 </h1>
                 <p className="mt-4 max-w-xl text-lg text-[var(--color-text-muted)]">
-                  Complete directory of wallets supporting Ethereum Classic. Compare hardware,
+                  A directory of wallets that support Ethereum Classic. Compare hardware,
                   browser, mobile, and web wallet options.
                 </p>
               </div>
@@ -574,6 +574,6 @@ export default function DirectoryWalletsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

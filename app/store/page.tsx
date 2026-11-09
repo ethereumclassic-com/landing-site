@@ -2,9 +2,8 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { CONTACT_EMAILS } from '@/lib/social'
 
-type Category = 'all' | 'mining-hardware' | 'equipment' | 'network' | 'hardware-wallets' | 'apparel' | 'accessories'
+type Category = 'all' | 'mining-hardware' | 'equipment' | 'network' | 'hardware-wallets'
 
 // Products organized by professional e-commerce categories
 const products = [
@@ -14,7 +13,7 @@ const products = [
   {
     id: 'jasminer-x44p',
     name: 'Jasminer X44-P',
-    description: 'Most profitable ETChash ASIC. 23.4 GH/s @ 2550W. $11.80/day profit at current difficulty.',
+    description: 'High-hashrate Etchash ASIC: 23.4 GH/s at 2,550 W.',
     category: 'mining-hardware' as const,
     subcategory: 'ASIC',
     price: 8999,
@@ -28,7 +27,7 @@ const products = [
   {
     id: 'ipollo-v2',
     name: 'iPollo V2',
-    description: 'Excellent efficiency ASIC. 10 GH/s @ 1500W. Great ROI for medium-scale operations.',
+    description: 'Efficient Etchash ASIC: 10 GH/s at 1,500 W, sized for medium-scale operations.',
     category: 'mining-hardware' as const,
     subcategory: 'ASIC',
     price: 4500,
@@ -42,7 +41,7 @@ const products = [
   {
     id: 'bombax-ez100-pro',
     name: 'Bombax EZ100-PRO',
-    description: 'High hashrate ASIC. 15.5 GH/s @ 3100W. Powerful miner for industrial operations.',
+    description: 'High-hashrate Etchash ASIC: 15.5 GH/s at 3,100 W, for industrial operations.',
     category: 'mining-hardware' as const,
     subcategory: 'ASIC',
     price: 6500,
@@ -55,7 +54,7 @@ const products = [
   {
     id: 'bitmain-e11',
     name: 'Antminer E11',
-    description: 'Latest Bitmain ASIC. 9 GH/s @ 2340W. Reliable brand with excellent support.',
+    description: 'Bitmain Etchash ASIC: 9 GH/s at 2,340 W.',
     category: 'mining-hardware' as const,
     subcategory: 'ASIC',
     price: 3999,
@@ -68,7 +67,7 @@ const products = [
   {
     id: 'ipollo-v2h',
     name: 'iPollo V2H',
-    description: 'Compact efficient ASIC. 3.4 GH/s @ 475W. Home mining friendly, quiet operation.',
+    description: 'Compact Etchash ASIC: 3.4 GH/s at 475 W, quiet enough for home mining.',
     category: 'mining-hardware' as const,
     subcategory: 'ASIC',
     price: 1800,
@@ -83,7 +82,7 @@ const products = [
   {
     id: 'rtx-5090',
     name: 'NVIDIA RTX 5090',
-    description: 'Flagship GPU. 160 MH/s @ 290W. Best GPU hashrate available for ETChash.',
+    description: 'NVIDIA\'s flagship GPU: 160 MH/s at 290 W, the highest GPU hashrate in this list.',
     category: 'mining-hardware' as const,
     subcategory: 'GPU',
     price: 3720,
@@ -97,7 +96,7 @@ const products = [
   {
     id: 'rtx-5080',
     name: 'NVIDIA RTX 5080',
-    description: 'High performance GPU. 120 MH/s @ 200W. Excellent price-to-performance ratio.',
+    description: 'High-performance GPU: 120 MH/s at 200 W.',
     category: 'mining-hardware' as const,
     subcategory: 'GPU',
     price: 1301,
@@ -110,7 +109,7 @@ const products = [
   {
     id: 'rtx-5070-ti',
     name: 'NVIDIA RTX 5070 Ti',
-    description: 'Excellent efficiency. 88 MH/s @ 150W. Sweet spot for multi-GPU mining rigs.',
+    description: 'Efficient GPU: 88 MH/s at 150 W, suited to multi-GPU rigs.',
     category: 'mining-hardware' as const,
     subcategory: 'GPU',
     price: 880,
@@ -124,7 +123,7 @@ const products = [
   {
     id: 'rx-6600',
     name: 'AMD RX 6600',
-    description: 'Best efficiency GPU. 28.5 MH/s @ 60W. Budget-friendly entry point for GPU mining.',
+    description: 'Low-power GPU: 28.5 MH/s at 60 W, a budget-friendly entry point for GPU mining.',
     category: 'mining-hardware' as const,
     subcategory: 'GPU',
     price: 262,
@@ -138,7 +137,7 @@ const products = [
   {
     id: 'rx-6800-xt',
     name: 'AMD RX 6800 XT',
-    description: 'Top AMD performance. 62 MH/s @ 110W. Great for multi-GPU rig builds.',
+    description: 'AMD GPU: 62 MH/s at 110 W, suited to multi-GPU rigs.',
     category: 'mining-hardware' as const,
     subcategory: 'GPU',
     price: 640,
@@ -483,63 +482,22 @@ const products = [
     affiliateLink: 'https://shop.ledger.com/?r=bbf4d7f32e72',
     badge: 'Best Seller',
   },
-
-  // ═══════════════════════════════════════════════════════════════════
-  // APPAREL (Printful - Coming Soon)
-  // ═══════════════════════════════════════════════════════════════════
-  {
-    id: 'etc-tshirt-black',
-    name: 'ETC Classic Logo Tee',
-    description: 'Premium cotton t-shirt with embroidered Ethereum Classic logo.',
-    category: 'apparel' as const,
-    price: 29.99,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: ['Black', 'Navy', 'Forest Green'],
-  },
-  {
-    id: 'etc-hoodie',
-    name: 'ETC Proof-of-Work Hoodie',
-    description: 'Heavyweight hoodie with "Secured by Proof-of-Work" design.',
-    category: 'apparel' as const,
-    price: 59.99,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: ['Black', 'Charcoal'],
-  },
-  {
-    id: 'etc-cap',
-    name: 'ETC Snapback Cap',
-    description: 'Structured snapback with embroidered ETC logo.',
-    category: 'apparel' as const,
-    price: 24.99,
-    colors: ['Black', 'Green'],
-  },
-
-  // ═══════════════════════════════════════════════════════════════════
-  // ACCESSORIES (Printful - Coming Soon)
-  // ═══════════════════════════════════════════════════════════════════
-  {
-    id: 'etc-mug',
-    name: 'ETC Developer Mug',
-    description: 'Ceramic mug with "Building on ETC" design.',
-    category: 'accessories' as const,
-    price: 16.99,
-    colors: ['White', 'Black'],
-  },
-  {
-    id: 'etc-sticker-pack',
-    name: 'ETC Sticker Pack',
-    description: 'Set of 10 high-quality vinyl stickers with various ETC designs.',
-    category: 'accessories' as const,
-    price: 9.99,
-  },
-  {
-    id: 'etc-mousepad',
-    name: 'ETC Mining Mousepad',
-    description: 'Large desk mousepad with network visualization design.',
-    category: 'accessories' as const,
-    price: 19.99,
-  },
 ]
+
+/** The store each product link opens, named on the product's card. */
+const RETAILERS: Record<string, string> = {
+  'ebay.com': 'eBay',
+  'newegg.com': 'Newegg',
+  'shop.bitmain.com': 'Bitmain',
+  'parallelminer.com': 'Parallel Miner',
+  'affil.trezor.io': 'Trezor',
+  'shop.ledger.com': 'Ledger',
+}
+
+function retailerName(link: string): string {
+  const host = new URL(link).hostname.replace(/^www\./, '')
+  return RETAILERS[host] ?? host
+}
 
 const categories = [
   { id: 'all' as const, label: 'All Products', count: products.length },
@@ -547,8 +505,6 @@ const categories = [
   { id: 'equipment' as const, label: 'Equipment & Accessories', count: products.filter(p => p.category === 'equipment').length },
   { id: 'network' as const, label: 'Network Infrastructure', count: products.filter(p => p.category === 'network').length },
   { id: 'hardware-wallets' as const, label: 'Hardware Wallets', count: products.filter(p => p.category === 'hardware-wallets').length },
-  { id: 'apparel' as const, label: 'Apparel', count: products.filter(p => p.category === 'apparel').length },
-  { id: 'accessories' as const, label: 'Accessories', count: products.filter(p => p.category === 'accessories').length },
 ]
 
 // Get icon for category
@@ -588,7 +544,6 @@ function getCategoryIcon(category: string) {
 }
 
 function ProductCard({ product }: { product: typeof products[0] }) {
-  const isAffiliate = 'affiliate' in product && product.affiliate
   const hasBadge = 'badge' in product && product.badge
   const hasHashrate = 'hashrate' in product
   const hasSpecs = 'specs' in product
@@ -604,17 +559,12 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             {getCategoryIcon(product.category)}
           </div>
           <p className="mt-2 text-xs text-[var(--color-text-muted)]">
-            {'subcategory' in product ? product.subcategory : product.category.replace('-', ' ')}
+            {'subcategory' in product ? product.subcategory : categories.find((c) => c.id === product.category)?.label}
           </p>
         </div>
         {hasBadge && (
           <span className="absolute top-2 left-2 rounded-full bg-[var(--color-primary)]/20 px-2 py-0.5 text-xs font-medium text-[var(--color-primary)]">
             {product.badge}
-          </span>
-        )}
-        {isAffiliate && !hasBadge && (
-          <span className="absolute top-2 right-2 rounded-full bg-[var(--color-info)]/20 px-2 py-0.5 text-xs font-medium text-[var(--color-info)]">
-            Partner
           </span>
         )}
       </div>
@@ -650,38 +600,18 @@ function ProductCard({ product }: { product: typeof products[0] }) {
           </div>
         )}
 
-        {/* Apparel sizes */}
-        {'sizes' in product && product.sizes && (
-          <div className="mt-3 flex flex-wrap gap-1">
-            {product.sizes.map(size => (
-              <span key={size} className="rounded bg-[var(--bg)] px-2 py-0.5 text-xs text-[var(--color-text-muted)]">
-                {size}
-              </span>
-            ))}
-          </div>
-        )}
-
         <div className="mt-4 flex items-center justify-between">
           <span className="text-lg font-bold text-[var(--color-primary)]">
             {product.price >= 1000 ? `$${product.price.toLocaleString()}` : `$${product.price}`}
           </span>
-          {isAffiliate && 'affiliateLink' in product ? (
-            <a
-              href={product.affiliateLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg bg-[var(--color-info)]/20 px-4 py-2 text-sm font-medium text-[var(--color-info)] transition-colors hover:bg-[var(--color-info)]/30"
-            >
-              Shop Now
-            </a>
-          ) : (
-            <button
-              disabled
-              className="rounded-lg bg-[var(--color-primary)]/20 px-4 py-2 text-sm font-medium text-[var(--color-primary)]/50 cursor-not-allowed"
-            >
-              Coming Soon
-            </button>
-          )}
+          <a
+            href={product.affiliateLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg bg-[var(--color-info)]/20 px-4 py-2 text-sm font-medium text-[var(--color-info)] transition-colors hover:bg-[var(--color-info)]/30"
+          >
+            View on {retailerName(product.affiliateLink)}
+          </a>
         </div>
       </div>
     </div>
@@ -697,10 +627,12 @@ export default function StorePage() {
 
   // Stats for hero
   const totalProducts = products.length
-  const partnerCount = 8 // eBay, Newegg, Trezor, Ledger, Parallel Miner, etc.
+  const retailerCount = new Set(
+    products.flatMap((p) => ('affiliateLink' in p && p.affiliateLink ? [retailerName(p.affiliateLink)] : [])),
+  ).size
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -733,8 +665,8 @@ export default function StorePage() {
               </div>
               <div className="h-8 w-px bg-[var(--border)]" />
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-[var(--text-primary)]">{partnerCount}+</span>
-                <span className="text-[var(--color-text-muted)]">Partners</span>
+                <span className="text-2xl font-bold text-[var(--text-primary)]">{retailerCount}</span>
+                <span className="text-[var(--color-text-muted)]">Retailers</span>
               </div>
             </div>
           </div>
@@ -816,8 +748,8 @@ export default function StorePage() {
               <div>
                 <h3 className="font-medium text-[var(--color-primary)]">Mining Hardware</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                  ETChash ASICs and GPUs from manufacturers like Bitmain, iPollo, Jasminer, NVIDIA, and AMD.
-                  Links to eBay and Newegg for competitive pricing.
+                  Etchash ASICs and GPUs from manufacturers like Bitmain, iPollo, Jasminer, NVIDIA, and AMD,
+                  each linked to a retailer that sells it.
                 </p>
               </div>
               <div>
@@ -835,38 +767,11 @@ export default function StorePage() {
                 </p>
               </div>
               <div>
-                <h3 className="font-medium text-[var(--color-primary)]">Hardware Wallets & Merch</h3>
+                <h3 className="font-medium text-[var(--color-primary)]">Hardware Wallets</h3>
                 <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                  Trezor and Ledger hardware wallets via affiliate partnerships, and ETC-branded
-                  apparel and accessories printed through Printful.
+                  Trezor and Ledger hardware wallets, through their makers&apos; affiliate programs.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Community Designs CTA */}
-      <section className="px-6 pb-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <div
-            className="rounded-2xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-8 text-center"
-          >
-            <h2 className="text-2xl font-bold text-[var(--text-primary)]">Submit Your Design</h2>
-            <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
-              Have a great ETC design idea? We&apos;re looking for community submissions for official
-              merchandise. Selected designs earn royalties on each sale.
-            </p>
-            <div className="mt-6">
-              <a
-                href={`mailto:${CONTACT_EMAILS.store}`}
-                className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
-              >
-                Submit Design
-                <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </a>
             </div>
           </div>
         </div>
@@ -877,11 +782,11 @@ export default function StorePage() {
         <div className="mx-auto max-w-6xl">
           <p className="text-center text-xs text-[var(--color-text-muted)]">
             Hardware specs and pricing are sourced from WhatToMine and may change. Always verify current pricing and availability before purchasing.
-            Mining hardware links redirect to eBay or Newegg. Hardware wallet purchases are processed through official manufacturer stores.
-            EthereumClassic.com may receive affiliate commission on qualifying purchases. Not financial advice.
+            Each product link opens the retailer it names. Hardware wallets are sold through the manufacturers&apos; own stores.
+            ethereumclassic.com may receive affiliate commission on qualifying purchases. Not financial advice.
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
