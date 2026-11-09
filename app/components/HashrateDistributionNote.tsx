@@ -23,7 +23,7 @@ export function HashrateDistributionNote({ compact = false }: { compact?: boolea
         Proof-of-Work security comes from work being distributed across many independent operators,
         and miners set that distribution directly. Every pool choice either concentrates block
         production or spreads it, so pointing hashrate at a smaller established pool widens the base
-        the network rests on. The pools listed here pay out on published terms &mdash; which one you
+        the network rests on. The pools listed here pay out on published terms, so the one you
         join is a decentralization decision as much as a fee one.
       </p>
       <Link

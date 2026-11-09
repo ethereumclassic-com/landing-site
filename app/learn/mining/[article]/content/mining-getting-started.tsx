@@ -26,8 +26,8 @@ export default function MiningGettingStarted() {
         You&apos;ll need either a GPU (graphics card) or ASIC miner:
       </p>
       <ul>
-        <li><strong>GPUs:</strong> AMD and NVIDIA cards with at least 4GB VRAM</li>
-        <li><strong>ASICs:</strong> Purpose-built mining machines for ETCHash</li>
+        <li><strong>GPUs:</strong> AMD and NVIDIA cards with at least 6GB of VRAM, since the Etchash DAG is larger than 4GB</li>
+        <li><strong>ASICs:</strong> Purpose-built mining machines for Etchash</li>
       </ul>
       <p>
         GPUs offer more flexibility while ASICs provide better efficiency. Check our hardware guide for specific recommendations.
@@ -35,13 +35,13 @@ export default function MiningGettingStarted() {
 
       <h3>Software</h3>
       <p>
-        You&apos;ll need mining software compatible with ETCHash:
+        You&apos;ll need mining software compatible with Etchash:
       </p>
       <ul>
-        <li><strong>T-Rex:</strong> Popular for NVIDIA GPUs</li>
+        <li><strong>T-Rex:</strong> NVIDIA GPUs; no release since 2022</li>
         <li><strong>lolMiner:</strong> Works with both AMD and NVIDIA</li>
         <li><strong>TeamRedMiner:</strong> Optimized for AMD GPUs</li>
-        <li><strong>PhoenixMiner:</strong> Supports both GPU brands</li>
+        <li><strong>GMiner:</strong> Supports both GPU brands</li>
       </ul>
 
       <h3>ETC Wallet</h3>
@@ -61,7 +61,7 @@ export default function MiningGettingStarted() {
         <li>Install or update GPU drivers (latest stable version)</li>
         <li>Ensure adequate cooling, as mining generates significant heat</li>
         <li>Verify your power supply can handle the load</li>
-        <li>Check that GPU VRAM meets minimum requirements (4GB+)</li>
+        <li>Check that GPU VRAM meets the minimum (6GB or more)</li>
       </ul>
 
       <h3>2. Get a Wallet Address</h3>
@@ -85,7 +85,7 @@ export default function MiningGettingStarted() {
         Major ETC pools include:
       </p>
       <ul>
-        <li><strong>F2Pool:</strong> Largest ETC pool, daily payouts, 0.1 ETC minimum</li>
+        <li><strong>F2Pool:</strong> daily payouts, 0.1 ETC minimum</li>
         <li><strong>2Miners:</strong> Free ETC payouts, multiple payout options</li>
         <li><strong>K1Pool:</strong> Regional servers, competitive fees</li>
       </ul>

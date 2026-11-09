@@ -26,6 +26,10 @@ const payoutSchemeDescriptions: Record<PayoutScheme, { name: string; description
     name: 'Proportional',
     description: 'Each miner is paid proportionally based on their shares when a block is found. Simple and fair but has variance.',
   },
+  RBPPS: {
+    name: 'Round-Based Pay Per Share',
+    description: 'A pay-per-share scheme counted per round. K1Pool publishes how it values each share.',
+  },
   SOLO: {
     name: 'Solo Mining',
     description: 'You receive the full block reward when your shares find a block. High risk, high reward - best for large miners.',
@@ -94,7 +98,7 @@ export default function PoolPage({ params }: Props) {
   const otherPools = miningPools.filter((p) => p.id !== pool.id).slice(0, 3)
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -288,7 +292,7 @@ export default function PoolPage({ params }: Props) {
             <div className="rounded-lg bg-[var(--bg)] p-4 font-mono text-sm">
               <p className="text-[var(--color-text-muted)]"># Example for lolMiner (AMD/NVIDIA)</p>
               <p className="mt-2 text-[var(--text-primary)]">
-                lolminer --algo ETCHASH --pool {pool.servers[0].url}:{pool.servers[0].port} --user YOUR_WALLET_ADDRESS.WORKER_NAME
+                lolMiner --algo ETCHASH --pool {pool.servers[0].url}:{pool.servers[0].port} --user YOUR_WALLET_ADDRESS.WORKER_NAME
               </p>
               <p className="mt-4 text-[var(--color-text-muted)]"># Example for T-Rex (NVIDIA)</p>
               <p className="mt-2 text-[var(--text-primary)]">
@@ -399,6 +403,6 @@ export default function PoolPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

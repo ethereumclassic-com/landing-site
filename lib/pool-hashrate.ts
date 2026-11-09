@@ -1,52 +1,45 @@
 // Per-pool ETC hashrate — derived from recent block coinbase attribution
 //
-// Approach: fetch the last ~500 blocks from Blockscout, count blocks per miner
+// Approach: fetch the last 1,000 blocks from Blockscout, count blocks per miner
 // address, map known addresses to pool IDs, then scale by current network hashrate.
 //
 // ISR: revalidate every 3600s — matches the hashrate chart cadence.
 // On any failure → returns empty record; table displays "—" gracefully.
 
 import { fetchHashrateTHs } from '@/lib/hashrate'
+import poolAddresses from './pool-addresses.json'
 
 const BLOCKSCOUT = 'https://etc.blockscout.com/api/v2'
 
-// Known ETC mining pool payout addresses → pool_id
-// Verified from block coinbase samples
-const POOL_ADDRESSES: Record<string, string> = {
-  '0x406177b983c28eb720827985ef5953e8430d4e95': 'f2pool',
-  '0xa6e43e5d497ce1f4d28b4270630e97308eda8b3e': '2miners',
-  '0x5253b33c1313a4449bc5304a9c55b4cc2bdf2872': 'k1pool',
-  '0x981217f3fcc2cd5128e01bcffaa14f0c7e729bdc': 'antpool',
-  '0xfad4a236c87880035497043f24ea58d73c3e50de': 'gtpool',
-  '0x66b64504341874105e989d9a9402d8e2350d48fa': 'kryptex',
-  '0x6364c971f636b14fc7fdb5e3ccd0d8c396870328': 'binance',
-  '0x35aa26bbfe74714b38ef668e36f986daac80846a': '2miners',
-  '0x6e4f3f1c81b7016c3deb8b2d434209b926d21aa2': 'viabtc',
-  '0xbe0ab377a19dd1306c663420465659e111cd19eb': 'herominers',
-  '0xf35074bbd0a9aee46f4ea137971feec024ab704e': 'solopool',
-  '0x2021f0afb70029528a0a6bc0a054d82dc371fa73': '666pool',
-  '0x2f7cc3e6a842c591ec57a7079dfb6db2365b5b0f': 'baikalmine',
-}
+// Known ETC mining pool payout addresses → pool_id, in lib/pool-addresses.json so scripts/pool-history.mjs
+// reads the same list. A pool's address is the miner of the last block MiningPoolStats credits to it; a pool
+// that changes address drops out of the shares until it is added there.
+const POOL_ADDRESSES: Record<string, string> = poolAddresses
 
-const BLOCKS_TO_SAMPLE = 500
+const BLOCKS_TO_SAMPLE = 1000
+
+/** The share above which a miner no listed pool claims is reported, since it means an address is missing. */
+const UNMATCHED_WARNING_SHARE = 0.05
 
 interface BlockscoutBlocksPage {
   items: Array<{ miner?: { hash?: string } }>
-  next_page_params: { block_number: number; items_count: number } | null
+  /** Query parameters for the next page, passed through as given: their keys are Blockscout's. */
+  next_page_params: Record<string, string | number> | null
 }
 
 async function fetchMinerCounts(): Promise<Record<string, number>> {
   const counts: Record<string, number> = {}
-  let cursor: { block_number: number; items_count: number } | null = null
+  let cursor: Record<string, string | number> | null = null
   let total = 0
 
   while (total < BLOCKS_TO_SAMPLE) {
-    let url = `${BLOCKSCOUT}/blocks?type=block`
-    if (cursor) {
-      url += `&block_number=${cursor.block_number}&items_count=${cursor.items_count}`
+    const params = new URLSearchParams({ type: 'block' })
+    for (const [key, value] of Object.entries(cursor ?? {})) params.set(key, String(value))
+    const res = await fetch(`${BLOCKSCOUT}/blocks?${params}`, { next: { revalidate: 3600 } })
+    if (!res.ok) {
+      console.warn(`pool-hashrate: Blockscout answered ${res.status} after ${total} of ${BLOCKS_TO_SAMPLE} blocks`)
+      break
     }
-    const res = await fetch(url, { next: { revalidate: 3600 } })
-    if (!res.ok) break
     const page: BlockscoutBlocksPage = await res.json()
     for (const block of page.items ?? []) {
       const addr = block.miner?.hash?.toLowerCase()
@@ -76,6 +69,9 @@ export async function fetchPoolHashrates(): Promise<PoolHashrates> {
     const result: PoolHashrates = {}
     for (const [addr, count] of Object.entries(minerCounts)) {
       const poolId = POOL_ADDRESSES[addr]
+      if (!poolId && count / totalBlocks > UNMATCHED_WARNING_SHARE) {
+        console.warn(`pool-hashrate: ${addr} mined ${count} of ${totalBlocks} sampled blocks and matches no listed pool`)
+      }
       if (poolId) {
         const share = count / totalBlocks
         const ths = Math.round(share * networkTHs * 100) / 100

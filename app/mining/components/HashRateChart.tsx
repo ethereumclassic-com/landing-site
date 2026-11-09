@@ -2,34 +2,30 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import type { MiningPool } from '../data/mining'
 
 interface HashRateChartProps {
-  pools: MiningPool[]
   /**
-   * Live pool shares from Blockscout block attribution. When supplied these
-   * drive the chart; the static `pools` array only contributes ids for color
-   * stability. Without it the chart rendered a months-stale distribution —
-   * F2Pool at 41% against a live 68%, and two pools that had stopped mining.
+   * Live pool shares from Blockscout block attribution. Without them the chart says the shares are
+   * unavailable: it once fell back to typed shares, F2Pool at 41% against a live 68%, and two pools
+   * that had stopped mining.
    */
   livePools?: { name: string; share: number }[]
   className?: string
 }
 
 // Pool distribution pie chart
-export default function HashRateChart({ pools, livePools, className = '' }: HashRateChartProps) {
+export default function HashRateChart({ livePools, className = '' }: HashRateChartProps) {
   const [hoveredPool, setHoveredPool] = useState<string | null>(null)
 
   // Calculate total hashrate percentage for "Other" pools
-  const source = livePools?.length
-    ? livePools.filter((p) => p.name !== 'Others').map((p) => ({
-        id: p.name.toLowerCase().replace(/\s+/g, '-'),
-        name: p.name,
-        hashShare: p.share,
-      }))
-    : pools
+  const source = (livePools ?? []).filter((p) => p.name !== 'Others').map((p) => ({
+    id: p.name.toLowerCase().replace(/\s+/g, '-'),
+    name: p.name,
+    hashShare: p.share,
+  }))
   const listedHashrate = source.reduce((sum, pool) => sum + pool.hashShare, 0)
-  const otherHashrate = Math.max(0, 100 - listedHashrate)
+  // Rounded to one decimal, like the listed shares.
+  const otherHashrate = Math.max(0, Math.round((100 - listedHashrate) * 10) / 10)
 
   const colors = [
     'var(--brand-green)',       // ETC brand green (primary)
@@ -89,12 +85,21 @@ export default function HashRateChart({ pools, livePools, className = '' }: Hash
     }]
   }, [])
 
+  if (source.length === 0) {
+    return (
+      <div className={`rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 ${className}`}>
+        <h3 className="text-lg font-semibold text-[var(--text-primary)]">Network Hashrate Distribution</h3>
+        <p className="mt-2 text-sm text-[var(--color-text-muted)]">Pool shares are unavailable right now.</p>
+      </div>
+    )
+  }
+
   return (
     <div className={`rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 ${className}`}>
       <div className="mb-4">
         <h3 className="text-lg font-semibold text-[var(--text-primary)]">Network Hashrate Distribution</h3>
         <p className="text-sm text-[var(--color-text-muted)]">
-          Approximate pool share of ETC network hashrate
+          Each pool&apos;s approximate share of recent blocks
         </p>
       </div>
 
@@ -157,7 +162,7 @@ export default function HashRateChart({ pools, livePools, className = '' }: Hash
       </div>
 
       <p className="mt-4 text-center text-xs text-[var(--color-text-muted)]">
-        Data from{' '}
+        From Blockscout block data.{' '}
         <a
           href="https://miningpoolstats.stream/ethereumclassic"
           target="_blank"
@@ -165,7 +170,8 @@ export default function HashRateChart({ pools, livePools, className = '' }: Hash
           className="text-[var(--color-primary)] hover:underline"
         >
           MiningPoolStats
-        </a>
+        </a>{' '}
+        has a fuller breakdown by pool.
       </p>
     </div>
   )

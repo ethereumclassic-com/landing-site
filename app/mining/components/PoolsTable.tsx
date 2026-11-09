@@ -81,7 +81,7 @@ const PAYOUT_TYPES = [
   { type: 'FPPS',  label: 'Full Pay Per Share',        desc: 'PPS that includes an average of expected transaction fees in the per-share rate. Smooths fee income across all miners.' },
   { type: 'PPLNS', label: 'Pay Per Last N Shares',     desc: 'Payout proportional to shares submitted in the most recent window. Rewards consistent miners and discourages pool-hopping.' },
   { type: 'PROP',  label: 'Proportional',              desc: 'Block reward split proportionally among miners who contributed shares to that specific block. Simple, but earnings vary with block luck.' },
-  { type: 'RBPPS', label: 'Round-Based Pay Per Share', desc: 'PPS calculated per mining round (block-to-block). Combines the low-variance of PPS with round-scoped accounting.' },
+  { type: 'RBPPS', label: 'Round-Based Pay Per Share', desc: 'PPS calculated per mining round (block-to-block). Combines the low variance of PPS with round-scoped accounting.' },
   { type: 'SOLO',  label: 'Solo Mining via Pool',      desc: 'Miner receives the full block reward if they find a block; nothing if they don\'t. Pool provides infrastructure only. High variance.' },
 ]
 
@@ -142,7 +142,7 @@ export function PoolsTable({ pools, networkTHs }: { pools: PoolRow[]; networkTHs
       </div>
 
       <p className="mt-3 text-xs text-[var(--text-subtle)]">
-        Hashrate estimated from last ~500 blocks ·{' '}
+        Hashrate estimated from the last ~500 blocks on Blockscout. Pool list and fees:{' '}
         <a
           href="https://miningpoolstats.stream/ethereumclassic"
           target="_blank"
@@ -162,7 +162,7 @@ export function PoolsTable({ pools, networkTHs }: { pools: PoolRow[]; networkTHs
             <div key={type} className="flex gap-2 text-xs leading-relaxed">
               <dt className="shrink-0 font-mono font-semibold text-[var(--brand-green)]">{type}</dt>
               <dd className="text-[var(--text-subtle)]">
-                <span className="font-medium text-[var(--text-muted)]">{label} — </span>
+                <span className="font-medium text-[var(--text-muted)]">{label}:{' '}</span>
                 {desc}
               </dd>
             </div>

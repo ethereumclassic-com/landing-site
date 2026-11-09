@@ -3,7 +3,7 @@ import { CURRENT_ERA, getBlockRewardForEra } from '@/app/research/data/emission'
 // Pool data sourced from miningpoolstats.stream
 // Hardware data from WhatToMine and manufacturer specs
 
-export type PayoutScheme = 'PPS' | 'PPLNS' | 'PROP' | 'SOLO' | 'PPS+'
+export type PayoutScheme = 'PPS' | 'PPLNS' | 'PROP' | 'SOLO' | 'PPS+' | 'RBPPS'
 
 export interface MiningPool {
   id: string
@@ -11,7 +11,6 @@ export interface MiningPool {
   website: string
   fee: number // percentage
   minPayout: number // ETC
-  hashShare: number // approximate percentage of network hashrate
   payoutScheme: PayoutScheme[]
   servers: { region: string; url: string; port: number }[]
   features: string[]
@@ -65,7 +64,7 @@ export const hardwareManufacturers: HardwareManufacturer[] = [
     id: 'jasminer',
     name: 'Jasminer',
     website: 'https://jasminer.com/',
-    description: 'Manufacturer of ultra-efficient ASIC miners. The X44-P is the most profitable ETChash miner available (Jan 2026).',
+    description: 'Maker of efficient Etchash ASICs, including the X44-P, the highest-hashrate model in this guide.',
     type: 'ASIC',
     featured: true,
     products: ['Jasminer X44-P', 'Jasminer X16-Q Pro', 'Jasminer X16-QE', 'Jasminer X4'],
@@ -74,7 +73,7 @@ export const hardwareManufacturers: HardwareManufacturer[] = [
     id: 'bombax',
     name: 'Bombax',
     website: 'https://bombax-miner.com/',
-    description: 'High-performance ASIC manufacturer with the EZ100 series. Known for powerful mining hardware.',
+    description: 'Maker of the EZ100 series of Etchash ASICs.',
     type: 'ASIC',
     featured: true,
     products: ['Bombax EZ100-PRO', 'Bombax EZ100', 'Bombax EZ100-C'],
@@ -83,7 +82,7 @@ export const hardwareManufacturers: HardwareManufacturer[] = [
     id: 'ipollo',
     name: 'iPollo',
     website: 'https://ipollo.com/',
-    description: 'Innovative mining hardware company with excellent efficiency. The V2 series offers great ROI for ETChash mining.',
+    description: 'Maker of the V2 series of efficient Etchash ASICs.',
     type: 'ASIC',
     featured: true,
     products: ['iPollo V2', 'iPollo V2H', 'iPollo V2X', 'iPollo V1 Mini'],
@@ -92,7 +91,7 @@ export const hardwareManufacturers: HardwareManufacturer[] = [
     id: 'bitmain',
     name: 'Bitmain',
     website: 'https://shop.bitmain.com/',
-    description: 'Leading ASIC manufacturer producing the Antminer series. Known for reliability and global distribution.',
+    description: 'Maker of the Antminer series, sold worldwide.',
     type: 'ASIC',
     featured: true,
     products: ['Antminer E11', 'Antminer E9 Pro', 'Antminer E9'],
@@ -101,7 +100,7 @@ export const hardwareManufacturers: HardwareManufacturer[] = [
     id: 'innosilicon',
     name: 'Innosilicon',
     website: 'https://www.innosilicon.com/',
-    description: 'Premium ASIC manufacturer. Older A10/A11 models still used but less efficient than newer options.',
+    description: 'Maker of the A10 and A11 series, which still run but are less efficient than newer models.',
     type: 'ASIC',
     featured: false,
     products: ['A10 Pro', 'A11 Pro'],
@@ -111,7 +110,7 @@ export const hardwareManufacturers: HardwareManufacturer[] = [
     id: 'nvidia',
     name: 'NVIDIA',
     website: 'https://www.nvidia.com/en-us/geforce/',
-    description: 'Leading GPU manufacturer with GeForce RTX series. RTX 50 series offers best mining performance.',
+    description: 'Maker of the GeForce RTX series; the RTX 50 cards have the highest hashrates in this guide.',
     type: 'GPU',
     featured: true,
     products: ['RTX 5090', 'RTX 5080', 'RTX 5070 Ti', 'RTX 5070', 'RTX 5060 Ti', 'RTX 5060', 'RTX 4060 Ti', 'RTX 4060'],
@@ -120,31 +119,30 @@ export const hardwareManufacturers: HardwareManufacturer[] = [
     id: 'amd',
     name: 'AMD',
     website: 'https://www.amd.com/en/graphics/radeon-rx-graphics',
-    description: 'Major GPU manufacturer with Radeon RX series. RX 6600 series offers best efficiency for mining.',
+    description: 'Maker of the Radeon RX series; the RX 6600 cards draw the least power in this guide.',
     type: 'GPU',
     featured: true,
     products: ['RX 6600', 'RX 6650 XT', 'RX 6600 XT', 'RX 6700 XT', 'RX 6800', 'RX 7800 XT'],
   },
 ]
 
-// Mining Pools - ordered by approximate hashrate share
-// Data from miningpoolstats.stream for ETC
+// The pools with a setup guide at /mining/pools/<id>: stratum servers, ports and features. Every pool the
+// site lists, with its fee and payout scheme, is in data/pools.ts; shares are always live (lib/pool-hashrate).
 export const miningPools: MiningPool[] = [
   {
     id: 'f2pool',
     name: 'F2Pool',
-    website: 'https://www.f2pool.com/coin/etc',
-    fee: 3,
+    website: 'https://www.f2pool.com/coin/ethereum-classic',
+    fee: 1,
     minPayout: 0.1,
-    hashShare: 41,
-    payoutScheme: ['PPS+'],
+    payoutScheme: ['PPS'],
     servers: [
       { region: 'US', url: 'etc.f2pool.com', port: 8118 },
       { region: 'Asia', url: 'etc.f2pool.com', port: 8118 },
     ],
     features: ['Mobile app', 'Detailed statistics', 'Multiple payout options', 'Low minimum payout'],
     recommended: true,
-    notes: 'Largest ETC mining pool by hashrate',
+    notes: 'Account-based mining with PPS payouts, a mobile app and detailed statistics',
   },
   {
     id: '2miners',
@@ -152,7 +150,6 @@ export const miningPools: MiningPool[] = [
     website: 'https://etc.2miners.com/',
     fee: 1,
     minPayout: 0.1,
-    hashShare: 33,
     payoutScheme: ['PPLNS', 'SOLO'],
     servers: [
       { region: 'US', url: 'us-etc.2miners.com', port: 1010 },
@@ -161,20 +158,19 @@ export const miningPools: MiningPool[] = [
     ],
     features: ['Low fees', 'Detailed statistics', 'Email notifications', 'Solo mining option'],
     recommended: true,
-    notes: 'Popular choice with low fees and solo mining option',
+    notes: 'PPLNS payouts at a 1% fee, and solo mining at 1.5%',
   },
   {
     id: 'k1pool',
     name: 'K1Pool',
     website: 'https://k1pool.com/pool/etc',
-    fee: 0.9,
+    fee: 1,
     minPayout: 0.1,
-    hashShare: 13,
-    payoutScheme: ['PPLNS'],
+    payoutScheme: ['RBPPS', 'SOLO'],
     servers: [
       { region: 'Global', url: 'etc.k1pool.com', port: 6000 },
     ],
-    features: ['Very low fees', 'Simple interface', 'Fast payouts'],
+    features: ['Low fees', 'Simple interface', 'Fast payouts'],
   },
   {
     id: 'gtpool',
@@ -182,7 +178,6 @@ export const miningPools: MiningPool[] = [
     website: 'https://gtpool.io/',
     fee: 1,
     minPayout: 0.5,
-    hashShare: 3,
     payoutScheme: ['PPLNS'],
     servers: [
       { region: 'Global', url: 'etc.gtpool.io', port: 5000 },
@@ -216,7 +211,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.109, // 2550W / 23400 MH/s
     releaseYear: 2025,
     availability: 'available',
-    notes: 'Most profitable ETChash ASIC ($11.80/day profit at $0.10/kWh)',
+    notes: 'Highest hashrate and best efficiency in this list',
     buyLink: 'https://jasminer.com/',
   },
   {
@@ -229,7 +224,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.20,
     releaseYear: 2024,
     availability: 'available',
-    notes: 'High hashrate, $4.43/day profit at $0.10/kWh',
+    notes: 'High hashrate',
     buyLink: 'https://bombax-miner.com/',
   },
   {
@@ -242,7 +237,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.15,
     releaseYear: 2024,
     availability: 'available',
-    notes: 'Excellent efficiency, $4.06/day profit at $0.10/kWh',
+    notes: 'Efficient for its hashrate',
     buyLink: 'https://ipollo.com/',
   },
   {
@@ -255,7 +250,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.184,
     releaseYear: 2024,
     availability: 'available',
-    notes: '$4.05/day profit at $0.10/kWh',
+    notes: 'Bombax\'s mid-range model',
     buyLink: 'https://bombax-miner.com/',
   },
   {
@@ -268,7 +263,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.14,
     releaseYear: 2024,
     availability: 'available',
-    notes: 'Compact, efficient, $1.46/day profit',
+    notes: 'Compact and efficient',
     buyLink: 'https://ipollo.com/',
   },
   {
@@ -281,7 +276,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.26,
     releaseYear: 2025,
     availability: 'available',
-    notes: 'Latest Bitmain model, $1.28/day profit',
+    notes: 'Bitmain\'s successor to the E9 series',
     buyLink: 'https://shop.bitmain.com/',
   },
   {
@@ -294,7 +289,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.20,
     releaseYear: 2024,
     availability: 'available',
-    notes: 'Compact version, $1.09/day profit',
+    notes: 'Compact version of the EZ100',
     buyLink: 'https://bombax-miner.com/',
   },
   {
@@ -307,7 +302,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.1375,
     releaseYear: 2024,
     availability: 'available',
-    notes: 'Entry-level, most efficient, $0.52/day profit',
+    notes: 'Entry-level, with low power draw',
     buyLink: 'https://ipollo.com/',
   },
   {
@@ -320,7 +315,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.254,
     releaseYear: 2024,
     availability: 'available',
-    notes: 'Entry-level Jasminer, $0.32/day profit',
+    notes: 'Entry-level Jasminer',
     buyLink: 'https://jasminer.com/',
   },
   // ASICs - Break-even or older models
@@ -334,7 +329,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 0.314,
     releaseYear: 2024,
     availability: 'available',
-    notes: 'Near break-even at $0.10/kWh',
+    notes: 'Entry-level, with a lower hashrate',
     buyLink: 'https://jasminer.com/',
   },
   {
@@ -373,7 +368,7 @@ export const miningHardware: MiningHardware[] = [
     efficiency: 1.57,
     releaseYear: 2021,
     availability: 'discontinued',
-    notes: 'Outdated, unprofitable',
+    notes: 'Discontinued, with high power draw per hash',
     buyLink: 'https://www.innosilicon.com/',
   },
   // GPUs - NVIDIA RTX 50 Series (Latest)
@@ -416,7 +411,7 @@ export const miningHardware: MiningHardware[] = [
     msrp: 880,
     releaseYear: 2025,
     availability: 'available',
-    notes: 'Excellent efficiency for gaming GPU',
+    notes: 'Efficient for a gaming GPU',
     buyLink: 'https://www.nvidia.com/en-us/geforce/',
   },
   {
@@ -502,7 +497,7 @@ export const miningHardware: MiningHardware[] = [
     msrp: 262,
     releaseYear: 2021,
     availability: 'available',
-    notes: 'Best efficiency among GPUs',
+    notes: 'Low power draw',
     buyLink: 'https://www.amd.com/en/graphics/radeon-rx-graphics',
   },
   {
@@ -516,7 +511,7 @@ export const miningHardware: MiningHardware[] = [
     msrp: 330,
     releaseYear: 2022,
     availability: 'available',
-    notes: 'Excellent efficiency',
+    notes: 'Low power draw',
     buyLink: 'https://www.amd.com/en/graphics/radeon-rx-graphics',
   },
   {
@@ -586,7 +581,7 @@ export const miningHardware: MiningHardware[] = [
     msrp: 600,
     releaseYear: 2023,
     availability: 'available',
-    notes: 'Latest gen AMD',
+    notes: 'RDNA 3 card',
     buyLink: 'https://www.amd.com/en/graphics/radeon-rx-graphics',
   },
 ]
@@ -612,7 +607,7 @@ export const miningSoftware: MiningSoftware[] = [
     supports: ['AMD', 'NVIDIA'],
     fee: 0.7,
     opensource: false,
-    description: 'Popular cross-platform miner with excellent AMD support',
+    description: 'Cross-platform miner for AMD and NVIDIA GPUs, with regular releases',
   },
   {
     id: 'trex',
@@ -622,7 +617,7 @@ export const miningSoftware: MiningSoftware[] = [
     supports: ['NVIDIA'],
     fee: 1,
     opensource: false,
-    description: 'Optimized for NVIDIA GPUs with web interface',
+    description: 'NVIDIA miner with a web interface; no release since 2022',
   },
   {
     id: 'teamredminer',
@@ -632,7 +627,7 @@ export const miningSoftware: MiningSoftware[] = [
     supports: ['AMD'],
     fee: 1,
     opensource: false,
-    description: 'Best performance for AMD GPUs',
+    description: 'Miner built for AMD GPUs',
   },
   {
     id: 'gminer',

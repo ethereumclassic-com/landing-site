@@ -14,7 +14,6 @@ import { fetchMiningNetworkStats } from '@/lib/etc-rpc'
 import { fetchHashrateTHs, fetchAllHashrateHistories } from '@/lib/hashrate'
 import { fetchPoolDistribution } from '@/lib/pool-distribution'
 import {
-  miningPools,
   getRecommendedPools,
   miningResources,
 } from './data/mining'
@@ -34,7 +33,7 @@ export default async function MiningPage() {
   ])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient noise-overlay grid-overlay relative overflow-hidden px-6 pb-16 pt-6 md:px-10 md:pb-24 md:pt-8 lg:px-12 lg:pb-32 lg:pt-10">
         <div className="relative mx-auto max-w-4xl text-center">
@@ -44,7 +43,7 @@ export default async function MiningPage() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand-green)]" />
               </span>
-              Proof of Work · ETChash
+              Proof of Work · Etchash
             </span>
           </div>
 
@@ -54,10 +53,9 @@ export default async function MiningPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--text-secondary)]">
-            Ethereum Classic is the world&apos;s largest Proof-of-Work smart contract platform, secured by
-            GPU and ASIC miners using the ETChash algorithm. Whether you are setting up your first rig or
-            optimizing an existing operation, this section covers hardware selection, pool options, software
-            configuration, and profitability analysis.
+            Ethereum Classic is the only mature Proof-of-Work blockchain with native smart contracts, secured by
+            GPU and ASIC miners using the Etchash algorithm. This section covers hardware, pools, software and
+            profitability, for a first rig or an existing operation.
           </p>
 
           {/* Quick Actions */}
@@ -174,17 +172,17 @@ export default async function MiningPage() {
             <div>
               <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Pool Distribution</h2>
               <p className="mt-2 text-[var(--text-secondary)]">
-                Choose a pool to join based on hashrate share and features
+                How hashrate is spread across pools
               </p>
               <div className="mt-6">
-                <HashRateChart pools={miningPools} livePools={distribution.pools} />
+                <HashRateChart livePools={distribution.pools} />
               </div>
             </div>
 
             <div>
               <h3 className="mb-6 text-xl font-bold text-[var(--text-primary)]">Recommended Pools</h3>
               <p className="mt-1 text-sm text-[var(--text-muted)]">
-                Trusted pools with good hashrate and features
+                Established pools with published terms
               </p>
               <div className="mt-4 space-y-3">
                 {recommendedPools.map((pool, index) => (
@@ -472,6 +470,6 @@ export default async function MiningPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

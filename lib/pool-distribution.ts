@@ -11,17 +11,23 @@ import { fetchHashrateTHs } from './hashrate'
  * go back out over HTTP to its own API to get them.
  */
 
-const DISPLAY_NAMES: Record<string, string> = {
+/** Pool names as shown, by the ids lib/pool-addresses.json assigns. */
+export const POOL_DISPLAY_NAMES: Record<string, string> = {
   '2miners': '2Miners',
   '666pool': '666Pool',
   antpool: 'AntPool',
   baikalmine: 'BaikalMine',
   binance: 'Binance Pool',
+  cloverpool: 'CloverPool',
+  coolpool: 'Coolpool',
+  crazypool: 'CrazyPool',
   f2pool: 'F2Pool',
   gtpool: 'GTPool',
   herominers: 'HeroMiners',
   k1pool: 'K1Pool',
   kryptex: 'Kryptex',
+  molepool: 'Molepool',
+  okminer: 'OKMiner',
   solopool: 'Solopool',
   viabtc: 'ViaBTC',
 }
@@ -49,7 +55,7 @@ export async function fetchPoolDistribution(): Promise<PoolDistribution> {
   const identified = Object.entries(hashrates)
     .filter(([, ths]) => ths > 0)
     .map(([id, ths]) => ({
-      name: DISPLAY_NAMES[id] ?? id,
+      name: POOL_DISPLAY_NAMES[id] ?? id,
       hashrateTHs: ths,
       share: networkTHs ? Math.round((ths / networkTHs) * 1000) / 10 : 0,
     }))

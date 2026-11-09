@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = `${pool.name} mines Ethereum Classic at a ${pool.fee}% fee, paying out from ${pool.minPayout} ETC on ${pool.payoutScheme.join(' and ')}. Server regions, ports and setup.`
 
   return {
-    title: `${pool.name} — Ethereum Classic mining pool`,
+    title: `${pool.name}: Ethereum Classic Mining Pool`,
     description,
     alternates: { canonical: `https://ethereumclassic.com/mining/pools/${slug}` },
     openGraph: { ...OG_BASE },

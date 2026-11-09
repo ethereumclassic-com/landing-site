@@ -78,10 +78,9 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
   const [poolDistribution, setPoolDistribution] = useState<PoolShare[]>(initial.pools)
   const [poolsLoading, setPoolsLoading] = useState(initial.pools.length === 0)
   const [networkTHs, setNetworkTHs] = useState<number | null>(initial.networkTHs)
+  const namedPools = poolDistribution.filter((p) => p.name !== 'Others')
   const topTwoShare =
-    poolDistribution.length >= 2
-      ? poolDistribution.slice(0, 2).reduce((sum, p) => sum + p.share, 0)
-      : null
+    namedPools.length > 0 ? namedPools.slice(0, 2).reduce((sum, p) => sum + p.share, 0) : null
 
   useEffect(() => {
     if (initial.pools.length > 0) return   // already server-fetched
@@ -109,7 +108,9 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
     {
       name: 'Block Time',
       status: (stats?.avgBlockTime && (stats.avgBlockTime < 12 || stats.avgBlockTime > 15)) ? 'warning' as const : 'healthy' as const,
-      description: 'Average block time is within normal range',
+      description: stats?.avgBlockTime && (stats.avgBlockTime < 12 || stats.avgBlockTime > 15)
+        ? 'Average block time is outside its usual 12 to 15 seconds'
+        : 'Average block time is within its usual range',
       metric: formatted?.blockTime ?? `~${NOMINAL_BLOCK_TIME_SECONDS}s`,
     },
     {
@@ -123,8 +124,8 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
     {
       name: 'Pool Decentralization',
       status: topTwoShare !== null && topTwoShare >= 50 ? ('warning' as const) : ('healthy' as const),
-      description: 'Share of network hashrate held by the two largest pools',
-      metric: topTwoShare !== null ? `${topTwoShare.toFixed(1)}% top 2` : '—',
+      description: 'Share of network hashrate held by the largest identified pools',
+      metric: topTwoShare !== null ? `${topTwoShare.toFixed(1)}% ${namedPools.length >= 2 ? 'top 2' : 'top pool'}` : '—',
     },
     {
       name: 'Block Height',
@@ -141,7 +142,7 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
   ]
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -247,7 +248,7 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
             >
               <div className="flex items-center justify-between">
                 <span className="text-sm text-[var(--color-text-muted)]">Block Time</span>
-                <span className="text-xs text-[var(--color-text-muted)]">target: 13.5s</span>
+                <span className="text-xs text-[var(--color-text-muted)]">nominal: {NOMINAL_BLOCK_TIME_SECONDS}s</span>
               </div>
               <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">
                 {loading ? <span className="animate-pulse">...</span> : formatted?.blockTime ?? `${NOMINAL_BLOCK_TIME_SECONDS}s`}
@@ -494,6 +495,6 @@ export default function NetworkHealthClient({ initial }: { initial: NetworkHealt
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

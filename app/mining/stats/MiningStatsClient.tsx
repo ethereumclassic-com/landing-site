@@ -362,7 +362,7 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
         <div className="mx-auto max-w-6xl">
           <div
           >
-            <HashRateChart pools={miningPools} livePools={livePools} />
+            <HashRateChart livePools={livePools} />
           </div>
         </div>
       </section>
