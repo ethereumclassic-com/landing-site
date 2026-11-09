@@ -107,13 +107,13 @@ Ask the node which release it runs. On Linux, macOS and Windows this asks the ru
 
 A node on a release older than \`v1.12.17\` is a separate case. Those releases do not schedule the Spiral upgrade, so such a node left Ethereum Classic at block 19,250,000, on February 5, 2024, and everything it has stored since belongs to an obsolete chain. It cannot move in place, and a resync is the only way back, by the route coregeth.com's migration guide gives under [Check what your node runs](https://coregeth.com/guides/migrate/#check):
 
-1. Stop the node, and remove its chain database as [Resync from scratch](https://docs.coregeth.com/operate/maintenance/#resync-from-scratch) shows. That keeps the node key, which the next step renames.
+1. Stop the node, and remove its chain database as the documentation's [Resync from scratch](https://docs.coregeth.com/operate/maintenance/#resync-from-scratch) shows. That keeps the node key, which the next step renames.
 2. Rename the old node key, as the move below does: those releases also leak bits of it (CVE-2026-26315).
 3. Install and start the \`v1.13\` line with [Install Core-Geth](https://coregeth.com/guides/install/), coregeth.com's install guide. The node starts with a new key and syncs Ethereum Classic again from its peers.
 
 ## The move, step by step
 
-Choose the platform the node runs on. The steps below are the ones in coregeth.com's [migration guide](https://coregeth.com/guides/migrate/#steps), and its download page has the [install steps](https://coregeth.com/downloads/#install) for a new node and [how to verify a download](https://coregeth.com/downloads/#verify). They keep the node running until the release is downloaded and checked, rotate the node key before the node starts again, and keep the old binary or container until the node is stable, so you can roll back, before the last step deletes it. Every block has a copy button. Read the notes beside a block before you run it: they say what it must print, and what to change for your setup.
+Choose the platform the node runs on. The steps below are the ones in coregeth.com's [migration guide](https://coregeth.com/guides/migrate/#steps). Its [install guide](https://coregeth.com/guides/install/) has the steps for a new node, and its download page shows [how to verify a download](https://coregeth.com/downloads/#verify). They keep the node running until the release is downloaded and checked, rotate the node key before the node starts again, and keep the old binary or container until the node is stable, so you can roll back, before the last step deletes it. Every block has a copy button. Read the notes beside a block before you run it: they say what it must print, and what to change for your setup.
 
 ::move-phases
 
@@ -124,7 +124,7 @@ Choose the platform the node runs on. The steps below are the ones in coregeth.c
 ::enode-change
 
 - **The P2P node key rotates, and that is required,** because CVE-2026-26315, one of the \`v1.12\` flaws, leaks bits of the node key across repeated handshakes, and no fix can take back what already leaked. The move renames the old key file aside, and the node writes a new key on its next start, so its enode ID changes: give the new ID to every node that lists this one as a static or trusted peer, and to the monitoring and allowlists that name it. A key that has only ever run the \`v1.13\` line was never exposed. [Node key rotation](https://coregeth.com/security/2026-09-core-geth-v1.13.0-release-record/#node-key-rotation) on coregeth.com explains it.
-- **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. The \`v1.13.0\` release runs with MESS on by default, and a build from source of the main branch, \`v1.13.1-unstable\`, runs with it off. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
+- **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. The \`v1.13.0\` release runs with MESS on by default, and a build from source of the main branch, \`v1.13.1-unstable\`, runs with it off. Give every node you run the same setting. The documentation's [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
 - **Discovery settings added for v1.12 come out,** so the node reads the bootnodes and peer discovery lists its release ships with.
 - **A container keeps its chain only where its data is mounted.** The containers tab checks where the data is before the stop, and copies it out first when it is inside the container.
 - **The chain data stays.** From \`v1.12.17\` on, nothing resyncs: the node starts again near the block it stopped at. A node on an older release resyncs instead, as set out under Check what your node runs.
@@ -133,7 +133,7 @@ Choose the platform the node runs on. The steps below are the ones in coregeth.c
 
 Every tab has a rollback step, before the step that deletes the old binary or container. The data directory works with both lines, so rolling back puts the old binary back, or for a container the old container, for as long as it takes to find what went wrong: every \`v1.12\` release carries the flaws the audits found. The new key stays: rolling back does not make the old key safe. Once the cause is fixed, the node moves again with the same steps, renaming the key again. [If a step goes wrong](https://coregeth.com/guides/migrate/#trouble) on coregeth.com covers a node whose enode ID did not change, one with no peers, and one whose block number went back.
 
-For a node that finds no peers or stops short of the network's head, [Troubleshooting](https://docs.coregeth.com/operate/troubleshooting/) works through the causes.
+For a node that finds no peers or stops short of the network's head, the documentation's [Troubleshooting](https://docs.coregeth.com/operate/troubleshooting/) page works through the causes.
 
 ## Why move
 
@@ -157,7 +157,7 @@ No \`v1.12\` release archive is signed or attested. Every one rests on its publi
 - **Public JSON-RPC.** \`etc.rivet.link\` went offline in late August 2026. For a public endpoint, use the lists on ChainList for [Ethereum Classic](https://chainlist.org/chain/61) and [Mordor](https://chainlist.org/chain/63) while endpoints run from the \`ethereumclassic\` organization are stood up. Anything you depend on should run against a node you control.
 - **Security contact.** Pools, exchanges and service providers should use security@ethereumclassic.net. A person answers it: one of the core developers who maintain Core-Geth.
 
-[The ETC Cooperative transition](https://docs.coregeth.com/etc-cooperative-transition/) lists where each service continues.
+The documentation's [ETC Cooperative transition](https://docs.coregeth.com/etc-cooperative-transition/) page lists where each service continues.
 
 ## Who maintains and funds Core-Geth
 

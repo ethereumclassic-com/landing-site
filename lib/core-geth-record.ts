@@ -1,7 +1,7 @@
 /**
  * Core-Geth's security record, mirrored from coregeth.com so this site states the same facts.
  *
- * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit 8d21525, the
+ * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit a075018, the
  * published state of coregeth.com. Every statement below is that file's own text, copied whole
  * and in its order, so a sentence here reads exactly as it does on coregeth.com. Do not edit
  * the wording here: change it on coregeth.com first, then mirror it again.
@@ -165,7 +165,7 @@ export const UPGRADE_ANCHOR = "upgrade";
 
 export const MOVE_RECOMMENDATION = `Every node still on a \`${EXPOSED_LINE}\` release should move to the \`${RECOMMENDED_LINE}\` line.`;
 
-const MOVE_WHERE = `[Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) has the steps for each platform, including the required P2P node key rotation.`;
+const MOVE_WHERE = `[${GUIDE_PAGES.migrate.title}](${SITE_URL}${GUIDE_PAGES.migrate.href}) has the steps for each platform, including the required P2P node key rotation.`;
 
 export const UPGRADE_COST = `From \`${MOVE_FLOOR}\` on, your chain data carries over. Budget about twenty minutes for the steps; the node is down only between its stop and its start, and each of those takes seconds.`;
 
@@ -173,7 +173,7 @@ export const DISCOVERY_FLAG_STEP = `A \`${EXPOSED_LINE}\` node that cannot move 
 
 export const TRANSITION = {
   lede: "The ETC Cooperative is winding down, and the services it maintained are moving to the `ethereumclassic` GitHub organization: the peer discovery lists, the bootnodes and public JSON-RPC.",
-  advice: `Move a \`${EXPOSED_LINE}\` node to the \`${RECOMMENDED_LINE}\` line with the steps on [Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}), including the required P2P node key rotation. ${DISCOVERY_FLAG_STEP} Before you move a node, a pool or an application to a new source of software or data, confirm which organization publishes it.`,
+  advice: `Move a \`${EXPOSED_LINE}\` node to the \`${RECOMMENDED_LINE}\` line with the steps in [${GUIDE_PAGES.migrate.title}](${SITE_URL}${GUIDE_PAGES.migrate.href}), including the required P2P node key rotation. ${DISCOVERY_FLAG_STEP} Before you move a node, a pool or an application to a new source of software or data, confirm which organization publishes it.`,
 } as const;
 
 export const OPERATOR_ACTIONS: readonly {
@@ -438,7 +438,7 @@ export const NETWORK_RUNNING = {
    *  the release it measured, and the maintainer's recommendation to run one beside the current
    *  nodes before moving a whole fleet across. Each row says its own Go build, so this line does
    *  not. The trial node, optional and best practice, peers and syncs, but no RPC clients or miners
-   *  point at it: the migration guide asks for one MESS setting per fleet, and a release's MESS
+   *  point at it: the documentation's migration guide asks for one MESS setting per fleet, and a release's MESS
    *  default need not match the fleet's. Check all of it against the documentation whenever the
    *  recommended line changes. */
   lede: `The \`${RECOMMENDED_LINE}\` line patches every client CVE the audits found in the \`${EXPOSED_LINE}\` client code, bounds GraphQL queries, carries neither the \`eth_syncing\` regression nor the snap storage-range regression of the last \`${EXPOSED_LINE}\` releases, and is built with a supported Go version. As a best practice, first run one \`${RECOMMENDED_LINE}\` node on a machine of its own beside your current ones, with no RPC clients or miners pointed at it. Once it has caught up with the network and holds peers, move your whole fleet to the \`${RECOMMENDED_LINE}\` line.`,
@@ -548,7 +548,7 @@ const RELEASE_HISTORY: readonly HistoryEntry[] = [
     when: "May 2025",
     iso: "2025-05",
     title: "The Ethereum Classic DAO is formed",
-    body: "It took up Core-Geth's maintenance in February 2026 as the funder of last resort, with Ethereum Classic's core developers and open community contributions doing the day-to-day work.",
+    body: "The Ethereum Classic DAO took up Core-Geth's maintenance in February 2026 as the funder of last resort, with Ethereum Classic's core developers and open community contributions doing the day-to-day work.",
     link: { label: "ethereumclassicdao.org", href: "https://ethereumclassicdao.org" },
   },
   {
@@ -619,7 +619,7 @@ RELEASE_TIMELINE.forEach((entry, i, all) => {
 export const DISCLOSURE = {
   heading: "The fixes were disclosed before they were published",
   body: [
-    `Ethereum Classic core developers wrote the patches, reported them privately to the \`${PREVIOUS_REPO}\` maintainers in February and March 2026, and published them in \`${REPO.slug}\` as 27 individually scoped pull requests on March 20 and 21, 2026. \`${PREVIOUS_REPO}\` cut its emergency releases on March 18 and 28, 2026 by copying those patches into the \`${EXPOSED_LINE}\` line.`,
+    `Ethereum Classic core developers wrote the patches, reported them privately to the \`${PREVIOUS_REPO}\` maintainers in February and March 2026, and published them in \`${REPO.slug}\` as 27 individually scoped pull requests on March 20 and 21, 2026. \`${PREVIOUS_REPO}\` cut its emergency releases on March 18 and 28, 2026 from those patches.`,
     `Others had tried to get the same problems fixed there first, and the record of those attempts is public. Private security disclosures sent to \`${PREVIOUS_REPO}\` through 2025 got no response, and so did a public issue a security researcher at Ledger opened in February 2026 naming three of the CVEs. Seven pull requests that would have closed parts of the problem were closed without merging: four dependency updates Dependabot opened, and three from contributors, one of which carried both a Go upgrade and a CVE fix. Three of those were closed on the day \`v1.12.23\` was released, and at that tag \`go.mod\` still named the old versions. Writing the patches elsewhere and handing them over was what finally moved them.`,
     `\`${RECOMMENDED_LINE}.0\` shipped on September 14, 2026, nearly six months after the fixes were public. Operators still on \`${EXPOSED_LINE}\` got relief first, in that line's own emergency releases.`,
   ],

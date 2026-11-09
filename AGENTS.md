@@ -225,14 +225,17 @@ includes transaction fees, which vary per block.
   (coregeth.com's `MOVE_FLOOR`, which `lib/core-geth-record.ts` mirrors) never
   scheduled Spiral, so it has followed an obsolete chain since block 19,250,000:
   it resyncs from scratch and installs the v1.13 line, and does not move in
-  place. Links follow coregeth.com's own routing: a reader told to install a
-  node lands on coregeth.com/downloads/, a reader moving a node on its migration
+  place. Links follow coregeth.com's own routing: a reader installing a node
+  lands on its install guide, /guides/install/, a reader after a release's
+  files or checksums on /downloads/, a reader moving a node on the migration
   guide, /guides/migrate/, a node below that floor on the guide's check of what
   a node runs, /guides/migrate/#check, and a v1.12 node that has to wait on
-  /guides/discovery/ (`CORE_GETH_MIGRATE_GUIDE_URL`, `CORE_GETH_MOVE_CHECK_URL`
-  and `CORE_GETH_DISCOVERY_GUIDE_URL`, built from the `GUIDE_PAGES` that
-  `lib/core-geth-record.ts` mirrors). This site carries no copy of the install
-  commands. The move steps are mirrored, never written by hand:
+  /guides/discovery/ (`CORE_GETH_INSTALL_GUIDE_URL`,
+  `CORE_GETH_MIGRATE_GUIDE_URL`, `CORE_GETH_MOVE_CHECK_URL` and
+  `CORE_GETH_DISCOVERY_GUIDE_URL`, built from the `GUIDE_PAGES` that
+  `lib/core-geth-record.ts` mirrors). A sentence that links a docs.coregeth.com
+  page says it is the documentation's, as coregeth.com's own copy does. This
+  site carries no copy of the install commands. The move steps are mirrored, never written by hand:
   `lib/core-geth-moves.ts` is generated from the move tabs on coregeth.com's
   /downloads/, which renders the same steps as its migration guide, for this
   site's walkthrough article. Change a step on coregeth.com, then mirror the

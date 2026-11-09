@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { networks, getClientImplementations, executionPlugins, PLUGIN_POSITION } from '../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
-import { CORE_GETH_INSTALL_STEPS_URL, CORE_GETH_MIGRATE_GUIDE_URL } from '@/lib/core-geth'
+import { CORE_GETH_INSTALL_GUIDE_URL, CORE_GETH_MIGRATE_GUIDE_URL } from '@/lib/core-geth'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -477,7 +477,7 @@ export default function ClientsPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href={CORE_GETH_INSTALL_STEPS_URL}
+                href={CORE_GETH_INSTALL_GUIDE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-6 py-3 font-semibold text-[var(--brand-green-foreground)] transition hover:bg-[var(--color-primary-hover)]"

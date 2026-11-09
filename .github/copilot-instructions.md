@@ -90,10 +90,12 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   not native and not a plugin, recommended on its v1.13 line. A node older than
   v1.12.17 (coregeth.com's `MOVE_FLOOR`) never scheduled Spiral, so it resyncs
   from scratch instead of moving in place. Links follow coregeth.com's routing:
-  installing goes to coregeth.com/downloads/, moving a node to
+  installing goes to coregeth.com/guides/install/, a release's files and
+  checksums to coregeth.com/downloads/, moving a node to
   coregeth.com/guides/migrate/, a node below that floor to the guide's check,
   coregeth.com/guides/migrate/#check, and a v1.12 node that has to wait to
-  coregeth.com/guides/discovery/. Fukuii, an
+  coregeth.com/guides/discovery/. A sentence that links a docs.coregeth.com page
+  says it is the documentation's. Fukuii, an
   execution client in Scala 3 that Chippr Robotics LLC maintains as a
   continuation of IOHK's Mantis, is an alternative to try: its maintainers mark
   it alpha. fukuii.com and docs.fukuii.com lead its framing, and

@@ -6,6 +6,7 @@
 import {
   AUDITS,
   EXPOSED_LINE,
+  GUIDE_PAGES,
   NETWORK_RUNNING,
   OPERATOR_ACTIONS,
   PREVIOUS_NAMESPACE,
@@ -41,10 +42,17 @@ export function coreGethLlmsSection(): string {
   const audits = AUDITS.map(
     (doc) => `- [${doc.title}](${coregethHref(doc.href)}), ${doc.date.text}: ${absolute(doc.summary)}`
   )
+  const guides = [GUIDE_PAGES.install, GUIDE_PAGES.migrate, GUIDE_PAGES.discovery].map(
+    (guide) => `- [${guide.title}](${coregethHref(guide.href)}): ${absolute(guide.summary)}`
+  )
   return [
     `Core-Geth is maintained at ${SITE_URL}, which publishes its own machine-readable summary at ${CORE_GETH_LLMS_URL}. This section takes its figures and sentences from the same data, as coregeth.com publishes them.`,
     '',
     `Releases are published from ${REPO.releasesUrl}. ${PREVIOUS_NAMESPACE} The latest release is ${REPO.latestUrl}; a reader told to upgrade goes to ${SITE_URL}/downloads/, which has the commands.`,
+    '',
+    `${coregethHref(GUIDE_PAGES.index.href)} walks through installing a node, moving one to the \`${RECOMMENDED_LINE}\` line, and keeping a \`${EXPOSED_LINE}\` node finding peers until it moves, step by step:`,
+    '',
+    ...guides,
     '',
     absolute(TRANSITION.lede),
     '',

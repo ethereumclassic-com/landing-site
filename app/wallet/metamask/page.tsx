@@ -320,15 +320,17 @@ export default function MetaMaskPage() {
                 className="text-[var(--color-primary)] hover:underline"
               >
                 Chainlist
-              </a>. The endpoints the ETC Cooperative maintained are moving to the{' '}
+              </a>. The endpoints the ETC Cooperative maintained are moving to the ethereumclassic GitHub
+              organization, and the documentation&apos;s{' '}
               <a
                 href="https://docs.coregeth.com/etc-cooperative-transition/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:underline"
               >
-                ethereumclassic organization
-              </a>.
+                ETC Cooperative transition
+              </a>{' '}
+              page lists where each continues.
             </p>
           </div>
         </div>

@@ -26,19 +26,18 @@ export const CORE_GETH_SECURITY_POLICY_URL = `${CORE_GETH_REPO_URL}/blob/main/SE
 export const CORE_GETH_HOMEPAGE_URL = 'https://coregeth.com'
 
 /**
- * Where a reader told to install a node, or to verify a download, lands. Each fragment is a
- * section id on that page. Never link a `*-title` heading id or a tab id there: those are
+ * Where a reader who wants a release's files, or to verify a download, lands. Each fragment is a
+ * section id on that page. Never link a `*-title` heading id or a tab id on coregeth.com: those are
  * layout and can change.
  */
 export const CORE_GETH_DOWNLOADS_URL = `${CORE_GETH_HOMEPAGE_URL}/downloads/`
-export const CORE_GETH_INSTALL_STEPS_URL = `${CORE_GETH_DOWNLOADS_URL}#install`
 export const CORE_GETH_VERIFY_URL = `${CORE_GETH_DOWNLOADS_URL}#verify`
 /**
- * coregeth.com's guides, at the hrefs it gives them. A reader moving a node lands on the migration
- * guide, which walks through the same steps as /downloads/, and a v1.12 node that has to wait before
- * it moves goes to the discovery guide: coregeth.com's own routing. A node on a release before
- * MOVE_FLOOR goes to the migration guide's check of what a node runs, which gives its route: a resync,
- * then a fresh install with the install guide.
+ * coregeth.com's guides, at the hrefs it gives them, and its own routing: a reader installing a node
+ * lands on the install guide, a reader moving a node on the migration guide, which walks through the
+ * same steps as /downloads/, and a v1.12 node that has to wait before it moves on the discovery guide.
+ * A node on a release before MOVE_FLOOR goes to the migration guide's check of what a node runs, which
+ * gives its route: a resync, then a fresh install with the install guide.
  */
 export const CORE_GETH_GUIDES_URL = coregethHref(GUIDE_PAGES.index.href)
 export const CORE_GETH_MIGRATE_GUIDE_URL = coregethHref(GUIDE_PAGES.migrate.href)
@@ -65,7 +64,6 @@ export const CORE_GETH_ABOUT_URL = `${CORE_GETH_HOMEPAGE_URL}/about/`
 export const CORE_GETH_SPONSOR_URL = `${CORE_GETH_HOMEPAGE_URL}/sponsor/`
 
 export const CORE_GETH_DOCS_URL = 'https://docs.coregeth.com/'
-export const CORE_GETH_INSTALL_URL = `${CORE_GETH_DOCS_URL}getting-started/installation/`
 /**
  * Removing the chain database so a node syncs again from its peers: the step coregeth.com's migration
  * guide links for a node on a release before MOVE_FLOOR, which does not schedule Spiral and so has
@@ -97,8 +95,11 @@ export interface CoreGethTask {
 export const CORE_GETH_TASKS: CoreGethTask[] = [
   {
     title: 'Install and run a node',
-    body: 'The archive for each platform with its checksum, the container image, and the commands from download to a running node.',
-    links: [{ label: 'Install Core-Geth', href: CORE_GETH_INSTALL_STEPS_URL }],
+    body: 'Every step from a machine with nothing installed to a node that has caught up with the network, on Linux, macOS, Windows, in a container or built from source. Downloads has every file the latest release published, with its checksum.',
+    links: [
+      { label: GUIDE_PAGES.install.title, href: CORE_GETH_INSTALL_GUIDE_URL },
+      { label: 'Downloads', href: CORE_GETH_DOWNLOADS_URL },
+    ],
   },
   {
     title: 'Move a v1.12 node to the v1.13 line',
@@ -110,11 +111,11 @@ export const CORE_GETH_TASKS: CoreGethTask[] = [
   },
   {
     title: `A node on a release older than ${MOVE_FLOOR}`,
-    body: "Those releases do not schedule the Spiral upgrade, so the node has followed an obsolete chain since block 19,250,000 and cannot move in place. Remove its chain database as Resync from scratch shows, which keeps the node's P2P node key, rename that key as the move steps do, and then install and start the v1.13 line with the install guide, which syncs the chain again.",
+    body: "Those releases do not schedule the Spiral upgrade, so the node has followed an obsolete chain since block 19,250,000 and cannot move in place. Remove its chain database as the documentation's Resync from scratch shows, which keeps the node's P2P node key, rename that key as the move steps do, and then install and start the v1.13 line with the install guide, which syncs the chain again.",
     links: [
       { label: 'Check what your node runs', href: CORE_GETH_MOVE_CHECK_URL },
       { label: 'Resync from scratch', href: CORE_GETH_RESYNC_URL },
-      { label: 'Install guide', href: CORE_GETH_INSTALL_GUIDE_URL },
+      { label: GUIDE_PAGES.install.title, href: CORE_GETH_INSTALL_GUIDE_URL },
     ],
   },
   {
@@ -130,6 +131,6 @@ export const CORE_GETH_TASKS: CoreGethTask[] = [
   {
     title: 'Build from source',
     body: "A source build clones the main branch, where every change arrives through a pull request that needs an approving review and the project's required checks. A build of main reports v1.13.1-unstable, and like v1.13.1 it runs with MESS off by default.",
-    links: [{ label: 'Build from source', href: CORE_GETH_INSTALL_STEPS_URL }],
+    links: [{ label: 'Build from source', href: `${CORE_GETH_INSTALL_GUIDE_URL}#install` }],
   },
 ]
