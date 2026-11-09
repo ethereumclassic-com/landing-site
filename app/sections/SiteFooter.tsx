@@ -27,7 +27,7 @@ const footerLinks = {
     title: 'Learn',
     links: [
       { href: '/learn', label: 'Learning Hub' },
-      { href: '/learn/ethereum-classic', label: 'What is ETC?' },
+      { href: '/learn/basics/what-is-ethereum-classic', label: 'What is ETC?' },
       { href: '/why-classic', label: 'Why Classic' },
       { href: '/regulation', label: 'Regulation' },
       { href: '/faq', label: 'FAQ' },
@@ -144,13 +144,13 @@ export function SiteFooter() {
           <p className="text-xs text-[var(--text-muted)]">
             © {new Date().getFullYear()}{' '}
             <Link href="/" className="hover:text-[var(--text-primary)] transition-colors">
-              EthereumClassic.com
+              ethereumclassic.com
             </Link>
             .
           </p>
 
           <p className="text-center text-xs text-[var(--text-muted)]">
-            The original Ethereum Virtual Machine. Immutable infrastructure for global finance.
+            Immutable infrastructure for global finance.
           </p>
 
           <a

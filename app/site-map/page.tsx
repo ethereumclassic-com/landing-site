@@ -1,214 +1,138 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Container } from '../components/layout/Container'
+import sitemap from '../sitemap'
+import { SITE_SECTIONS, STATIC_ROUTES } from '@/lib/site-routes'
+import { walletReviews } from '../wallet/data/reviews'
+import { exchangeReviews } from '../buy/data/reviews'
+import { apps } from '../apps/data/apps'
+import { articles as learnArticles } from '../learn/data/articles'
+import { philosophyArticles } from '../why-classic/data/philosophy'
+import { articles as newsArticles, tagPath } from '../news/data/articles'
+import { cdcEntries } from '../core-devs/data/index'
+import { nodeClients, executionPlugins } from '../build/data/build'
+import { miningPools } from '../mining/data/mining'
 
 export const metadata: Metadata = {
-  title: 'Sitemap | Ethereum Classic',
-  description: 'Complete sitemap of EthereumClassic.com. Find all pages and resources.',
+  title: 'Site Map | Ethereum Classic',
+  description: 'Every page on ethereumclassic.com by section: guides, tools, research, news, reviews and the Olympia upgrade proposal.',
 }
 
-const siteStructure = [
-  {
-    title: 'Main',
-    links: [
-      { label: 'Home', href: '/' },
-      { label: 'About', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'Partners', href: '/partners' },
-      { label: 'Advertise', href: '/advertise' },
+interface SiteLink {
+  href: string
+  label: string
+}
+
+interface SiteGroup {
+  title: string
+  links: SiteLink[]
+}
+
+const staticLabel = (path: string) => STATIC_ROUTES.find((route) => route.path === path)?.label
+
+/** The pages generated from data, each under the section that holds their hub. */
+function generatedGroups(): Record<string, SiteGroup[]> {
+  const learnCategories = [...new Set(learnArticles.map((article) => article.category))]
+  const tags = [...new Set(newsArticles.flatMap((article) => article.tags ?? []))].sort((a, b) => a.localeCompare(b))
+  return {
+    Wallets: [{ title: 'Wallet reviews', links: walletReviews.map((r) => ({ href: `/wallet/reviews/${r.slug}`, label: r.name })) }],
+    'Buy and Sell': [{ title: 'Exchange reviews', links: exchangeReviews.map((r) => ({ href: `/buy/reviews/${r.slug}`, label: r.name })) }],
+    Apps: [{ title: 'Listed apps', links: apps.map((app) => ({ href: `/apps/${app.slug}`, label: app.name })) }],
+    Learn: learnCategories.map((category) => ({
+      title: staticLabel(`/learn/${category}`) ?? category,
+      links: learnArticles
+        .filter((article) => article.category === category)
+        .map((article) => ({ href: `/learn/${article.category}/${article.slug}`, label: article.title })),
+    })),
+    'Why Classic': [{ title: 'Articles', links: philosophyArticles.map((a) => ({ href: `/why-classic/${a.slug}`, label: a.title })) }],
+    News: [
+      {
+        title: 'Articles',
+        links: [...newsArticles]
+          .sort((a, b) => b.date.localeCompare(a.date))
+          .map((article) => ({ href: `/news/${article.slug}`, label: article.title })),
+      },
+      { title: 'Topics', links: tags.map((tag) => ({ href: tagPath(tag), label: tag })) },
     ],
-  },
-  {
-    title: 'Wallet',
-    links: [
-      { label: 'Wallet Hub', href: '/wallet' },
-      { label: 'MetaMask Setup', href: '/wallet/metamask' },
-      { label: 'Hardware Wallets', href: '/wallet/hardware' },
-      { label: 'Compare Wallets', href: '/wallet/compare' },
-      { label: 'Wallet Reviews', href: '/wallet/reviews' },
+    Mining: [{ title: 'Pool guides', links: miningPools.map((pool) => ({ href: `/mining/pools/${pool.id}`, label: pool.name })) }],
+    Build: [
+      {
+        title: 'Clients and plugins',
+        links: [...nodeClients, ...executionPlugins].map((entry) => ({ href: `/build/clients/${entry.id}`, label: entry.name })),
+      },
     ],
-  },
-  {
-    title: 'Buy & Sell',
-    links: [
-      { label: 'Buy ETC', href: '/buy' },
-      { label: 'Exchanges', href: '/buy/exchanges' },
-      { label: 'Instant Buy', href: '/buy/instant' },
-      { label: 'P2P Trading', href: '/buy/p2p' },
-      { label: 'Buy with Card', href: '/buy/card' },
-      { label: 'Buy with Bank', href: '/buy/bank' },
-      { label: 'ATM Locator', href: '/buy/atm' },
-      { label: 'Sell ETC', href: '/sell' },
+    'Network Upgrades': [
+      { title: 'Core Developer Calls', links: cdcEntries.map((entry) => ({ href: `/core-devs/${entry.slug}`, label: entry.title })) },
     ],
-  },
-  {
-    title: 'Exchanges',
-    links: [
-      { label: 'Exchange Directory', href: '/exchanges' },
-      { label: 'Exchange Reviews', href: '/exchanges/reviews' },
-      { label: 'Compare Exchanges', href: '/exchanges/compare' },
-      { label: 'Best for Beginners', href: '/exchanges/beginners' },
-      { label: 'Lowest Fees', href: '/exchanges/lowest-fees' },
-      { label: 'Most Secure', href: '/exchanges/most-secure' },
-      { label: 'Decentralized', href: '/exchanges/decentralized' },
-      { label: 'No KYC', href: '/exchanges/no-kyc' },
-      { label: 'US Friendly', href: '/exchanges/us-friendly' },
-    ],
-  },
-  {
-    title: 'Apps',
-    links: [
-      { label: 'Apps Directory', href: '/apps' },
-      { label: 'Featured Apps', href: '/apps/featured' },
-      { label: 'DeFi', href: '/apps/defi' },
-      { label: 'Payments', href: '/apps/payments' },
-      { label: 'Tools', href: '/apps/tools' },
-      { label: 'Infrastructure', href: '/apps/infrastructure' },
-      { label: 'Governance', href: '/apps/governance' },
-      { label: 'Submit an App', href: '/apps/submit' },
-    ],
-  },
-  {
-    title: 'Learn',
-    links: [
-      { label: 'Learning Center', href: '/learn' },
-      { label: 'What is Ethereum Classic?', href: '/learn/ethereum-classic' },
-      { label: 'ETC Basics', href: '/learn/basics' },
-      { label: 'Wallet Guides', href: '/learn/wallets' },
-      { label: 'Trading Guides', href: '/learn/trading' },
-      { label: 'DeFi on ETC', href: '/learn/defi' },
-      { label: 'Mining Guides', href: '/learn/mining' },
-      { label: 'Staking & Yield', href: '/learn/staking' },
-      { label: 'Security', href: '/learn/security' },
-      { label: 'Glossary', href: '/learn/glossary' },
-    ],
-  },
-  {
-    title: 'News',
-    links: [
-      { label: 'News Hub', href: '/news' },
-    ],
-  },
-  {
-    title: 'Markets',
-    links: [
-      { label: 'Markets Overview', href: '/markets' },
-      { label: 'ETC Price', href: '/price' },
-      { label: 'Price Converter', href: '/converter' },
-      { label: 'Investment Calculator', href: '/calculator' },
-    ],
-  },
-  {
-    title: 'Mining',
-    links: [
-      { label: 'Mining Hub', href: '/mining' },
-      { label: 'Getting Started', href: '/mining/getting-started' },
-      { label: 'Mining Pools', href: '/mining/pools' },
-      { label: 'Hardware Guide', href: '/mining/hardware' },
-      { label: 'Software Guide', href: '/mining/software' },
-      { label: 'Profitability Calculator', href: '/mining/profitability' },
-      { label: 'Network Stats', href: '/mining/stats' },
-    ],
-  },
-  {
-    title: 'Build',
-    links: [
-      { label: 'Developer Hub', href: '/build' },
-      { label: 'Getting Started', href: '/build/getting-started' },
-      { label: 'Documentation', href: '/build/docs' },
-      { label: 'Developer Tools', href: '/build/tools' },
-      { label: 'Node Clients', href: '/build/clients' },
-      { label: 'Network Info', href: '/build/networks' },
-      { label: 'Testnet Faucets', href: '/build/faucets' },
-      { label: 'Grants & Funding', href: '/build/grants' },
-    ],
-  },
-  {
-    title: 'Research',
-    links: [
-      { label: 'Research Hub', href: '/research' },
-      { label: 'Network Analysis', href: '/research/network' },
-      { label: 'Ecosystem', href: '/research/ecosystem' },
-    ],
-  },
-  {
-    title: 'Tools',
-    links: [
-      { label: 'Tools Hub', href: '/tools' },
-      { label: 'Price Converter', href: '/tools/converter' },
-      { label: 'Investment Calculator', href: '/tools/calculator' },
-      { label: 'Gas Tracker', href: '/tools/gas' },
-      { label: 'Block Explorers', href: '/tools/explorer' },
-      { label: 'Contract Verifier', href: '/tools/verify' },
-    ],
-  },
-  {
-    title: 'Directory',
-    links: [
-      { label: 'Directory Hub', href: '/directory' },
-      { label: 'Wallets', href: '/directory/wallets' },
-      { label: 'Exchanges', href: '/directory/exchanges' },
-      { label: 'Mining Resources', href: '/directory/mining' },
-      { label: 'Developer Resources', href: '/directory/developers' },
-      { label: 'Community Links', href: '/directory/community' },
-    ],
-  },
-  {
-    title: 'Community',
-    links: [
-      { label: 'Community Hub', href: '/community' },
-      { label: 'Social Media', href: '/community/social' },
-      { label: 'Events', href: '/community/events' },
-      { label: 'Contribute', href: '/community/contribute' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Terms of Service', href: '/legal' },
-      { label: 'Privacy Policy', href: '/privacy' },
-    ],
-  },
-]
+  }
+}
+
+/**
+ * Builds the map and checks it against the sitemap search engines read: a page listed there and missing
+ * here fails the build, so this page cannot fall behind the site again.
+ */
+function buildSiteMap() {
+  const generated = generatedGroups()
+  const sections = SITE_SECTIONS.map((section) => ({
+    title: section.title,
+    links: section.routes.map((route) => ({ href: route.path || '/', label: route.label })),
+    groups: generated[section.title] ?? [],
+  }))
+  const listed = new Set(sections.flatMap((s) => [...s.links, ...s.groups.flatMap((g) => g.links)]).map((l) => l.href))
+  const missing = sitemap()
+    .map((entry) => new URL(entry.url).pathname)
+    .filter((path) => !listed.has(path))
+  if (missing.length > 0) {
+    throw new Error(`/site-map is missing pages that app/sitemap.ts lists: ${missing.join(', ')}`)
+  }
+  return { sections, total: listed.size }
+}
+
+const linkClass = 'text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-primary)]'
 
 export default function SitemapPage() {
+  const { sections, total } = buildSiteMap()
   return (
-    <main className="min-h-screen py-20">
+    <div className="min-h-screen py-20">
       <Container size="xl">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-[var(--color-text-primary)] md:text-5xl">
-            Sitemap
-          </h1>
+          <h1 className="text-4xl font-bold text-[var(--color-text-primary)] md:text-5xl">Site Map</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Complete directory of all pages on EthereumClassic.com
+            All {total} pages on ethereumclassic.com, by section.
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {siteStructure.map((section) => (
-            <div
-              key={section.title}
-              className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
-            >
-              <h2 className="mb-4 text-lg font-semibold text-[var(--color-text-primary)]">
-                {section.title}
-              </h2>
-              <ul className="space-y-2">
+        <div className="space-y-8">
+          {sections.map((section) => (
+            <section key={section.title} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
+              <h2 className="mb-4 text-lg font-semibold text-[var(--color-text-primary)]">{section.title}</h2>
+              <ul className="grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {section.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-primary)]"
-                    >
+                    <Link href={link.href} className={linkClass}>
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+              {section.groups.map((group) => (
+                <div key={group.title} className="mt-6 border-t border-[var(--border)] pt-4">
+                  <h3 className="mb-3 text-sm font-semibold text-[var(--color-text-primary)]">{group.title}</h3>
+                  <ul className="grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                    {group.links.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href} className={linkClass}>
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </section>
           ))}
         </div>
       </Container>
-    </main>
+    </div>
   )
 }
