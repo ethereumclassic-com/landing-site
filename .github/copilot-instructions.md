@@ -42,12 +42,16 @@ pnpm is the package manager, pinned by `packageManager` in `package.json`.
 ## Key rules
 
 1. **Forward-looking positioning** — no fork debates, governance disputes, or
-   historical controversy.
+   historical controversy, except the research and history articles
+   (`/research/dao-fork`, `/why-classic/genesis`, `/olympia/history`), which
+   belong here.
 2. **Consumer gateway** — route visitors out to real activity; do not rebuild
    wallet, DEX, or governance functionality here.
 3. **Live data, never hardcoded** — the site fetches from Blockscout and
    CoinGecko server-side. Never hardcode a hashrate, block reward, or era number
-   that a derived value already provides.
+   that a derived value already provides. A figure no source supplies shows as
+   "—", never as a typed stand-in; Blockscout stands in for CoinGecko's ETC/USD
+   price, change and market cap.
 4. **Mobile-first responsive** — every page works on mobile.
 5. **Theme-aware** — use `var(--text-primary)`, `var(--brand-green)` and the rest
    of `app/styles/tokens.css`. Never hardcode `text-white` or `text-black`.
@@ -66,7 +70,14 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   titles come from `lib/olympia-ecips.ts` and every EIP list or count from
   `lib/olympia-eips.ts`. ECIP-1122, 1123 and 1124 are unpublished and never
   cited, nor are ECIP-1120 and ECIP-1130, other authors' proposals.
-- **The DAO and Olympia** — ECIP-1114 names Ethereum Classic DAO LLC as the legal
+- **Naming** — "The DAO" is only the 2016 organization behind the ETH/ETC
+  split, never Olympia DAO or Ethereum Classic DAO. Write "Ethereum Classic DAO";
+  its legal name, Ethereum Classic DAO LLC, only where its legal identity is the
+  point. The mining algorithm is "Etchash" in prose.
+- **The site's identity** — describe ethereumclassic.com by its domain, sources
+  and relationships, never as "official". `lib/site-identity.ts` and
+  `lib/site-facts.ts` feed the structured data, the About page and the llms files.
+- **Ethereum Classic DAO and Olympia** — ECIP-1114 names Ethereum Classic DAO LLC as the legal
   wrapper it contemplates for Olympia DAO, downstream of it in authority, with
   no role until Olympia DAO is operating. Ecosystem Growth DAOs (ECIP-1117) are
   funded by season and not governed by Olympia DAO; never "Child-DAO".
@@ -76,7 +87,11 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   as an ETF (it is a trust); Classic USD as "compliant" or "the first" (it is
   "aligned with"); and superlatives.
 - **Clients** — Core-Geth is the recommended client: a go-ethereum downstream,
-  not native and not a plugin, recommended on its v1.13 line. Fukuii, an
+  not native and not a plugin, recommended on its v1.13 line. A node older than
+  v1.12.17 never scheduled Spiral, so it resyncs from scratch instead of moving
+  in place. Links follow coregeth.com's routing: installing goes to
+  coregeth.com/downloads/, moving a node to coregeth.com/guides/migrate/, and a
+  v1.12 node that has to wait to coregeth.com/guides/discovery/. Fukuii, an
   execution client in Scala 3 that Chippr Robotics LLC maintains as a
   continuation of IOHK's Mantis, is an alternative to try: its maintainers mark
   it alpha. fukuii.com and docs.fukuii.com lead its framing, and
@@ -122,7 +137,12 @@ Olympia DAO.
 
 Never add an app, exchange, or product without maintainer approval; some are
 excluded by maintainer decision. Where a partner has an affiliate link, use the
-one already in the codebase rather than the direct product URL.
+one already in the codebase rather than the direct product URL. Every mining pool
+is in `app/mining/data/pools.ts`, the one list the mining pages read; shares are
+never stored, and blocks are matched to pools by `lib/pool-addresses.json`.
+`/ecosystem` is the Ecosystem Directory of products that support ETC; `/partners`
+is for real partners and the way to propose one; `/directory` is the Resource
+Directory.
 
 ## Protected
 

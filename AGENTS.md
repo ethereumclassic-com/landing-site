@@ -70,8 +70,14 @@ app/
 lib/                    → cross-section data fetching and helpers
 hooks/                  → client hooks
 docs/                   → contributor documentation and site content data
+scripts/                → data generators, run by hand (`node scripts/chain-history.mjs`, `node scripts/pool-history.mjs`)
 app/llms.txt/           → machine-readable site summary, generated from the data it cites
 ```
+
+**Every fixed URL is listed once, in `lib/site-routes.ts`, with its section and
+label.** `app/sitemap.ts` reads it for search engines and adds the pages built
+from data; `/site-map` reads both and fails its build if the sitemap lists a
+page it does not. A new page goes into `lib/site-routes.ts`.
 
 **Colocation rule:** section data lives in `app/<section>/data/*.ts` and is
 imported by that section's pages. Only cross-section data belongs in `lib/`.
@@ -85,10 +91,35 @@ The site fetches at request or build time; it is not fully static.
 | Source | Module | Provides |
 |---|---|---|
 | Blockscout ETC | `lib/hashrate.ts` | network hashrate + multi-timeframe history |
-| Blockscout ETC | `lib/pool-hashrate.ts` | per-pool share, from block attribution |
+| Blockscout ETC | `lib/pool-hashrate.ts` | per-pool share of the last 1,000 blocks, from block attribution |
 | Blockscout ETC | `lib/blockscout.ts` | blocks, chain statistics |
-| CoinGecko | `lib/` price helpers | market data |
+| Blockscout ETC | `lib/chain-history.ts` | monthly block time, difficulty, hashrate, transactions and fees since 2015 |
+| Blockscout ETC, NiceHash | `lib/network-security.ts` | the hashrate's rental cost, hourly block rewards, block production |
+| CoinGecko, then Blockscout | `lib/exchange-rates.ts` | prices and market data |
+| CoinGecko, Kraken | `lib/price-history.ts` | the price chart: CoinGecko up to a year back, Kraken weekly closes since 2016 |
 | CoinGecko | `lib/exchange-volume.ts` | each listed exchange's 24h ETC volume, which orders the exchange listings |
+
+**A figure no source supplies shows as "—", never as a typed stand-in.** When
+CoinGecko cannot be reached, Blockscout's `/stats` supplies ETC/USD, its 24h
+change and the market cap (it reads them from CoinGecko); anything else is null
+and the page shows it as unavailable. No price, volume, block height or count
+is kept in code for a page to fall back on.
+
+**The monthly chain history is generated, not fetched per render.**
+`app/research/data/chainHistory.ts` is written by `scripts/chain-history.mjs`,
+which reads Blockscout one request at a time (it rate-limits bursts, and its
+JSON-RPC takes at most five calls per batch). `lib/chain-history.ts` computes
+any later complete month live. Blockscout's monthly block counts are short
+about 133 hours of blocks in September 2023, so month boundaries are checked
+against block timestamps rather than taken from those counts.
+
+**Pool shares over time are generated the same way.**
+`app/mining/data/pool-history.json` is written by `scripts/pool-history.mjs`,
+which samples 50 consecutive blocks every 690 from Blockscout and records, for
+each day, the blocks each miner address found. `lib/pool-history.ts` names the
+addresses from `lib/pool-addresses.json` when the site builds, so an address
+added there re-attributes its history without another run. Run the script with
+no arguments to extend the file through yesterday (UTC).
 
 **Hashrate is derived, not reported.** Blockscout exposes no hashrate field: it
 is block difficulty ÷ Blockscout's own `average_block_time` from `/stats`. Never
@@ -144,7 +175,22 @@ includes transaction fees, which vary per block.
   facts and the `/build/clients/core-geth-security-audit` page, kept aligned to
   coregeth.com's restraint (document the facts, name no individual, attribute the
   work to Ethereum Classic's core developers), with the deeper narrative linked
-  out to coregeth.com and ethereumclassicdao.org rather than carried here.
+  out to coregeth.com and ethereumclassicdao.org rather than carried here. The
+  research and history articles are the other exception and belong here:
+  `/research/dao-fork`, `/why-classic/genesis` and `/olympia/history` stay, as
+  research and as the record of how the chain came to be (maintainer decision).
+- **Naming.** "The DAO" is the 2016 organization behind the ETH/ETC split and
+  nothing else: never write it for Olympia DAO or Ethereum Classic DAO. Name the
+  LLC "Ethereum Classic DAO"; its legal name, Ethereum Classic DAO LLC, appears
+  only where its legal identity is the point, as in ECIP-1114's naming of the
+  legal wrapper. The mining algorithm is "Etchash" in prose; `ETCHASH` and
+  `etchash` stay only where a miner's command line spells them.
+- **The site's identity.** Describe ethereumclassic.com by its domain, its
+  sources and its relationships, never as "official": Ethereum Classic is an
+  open network that no organization speaks for. `lib/site-identity.ts` (what the
+  site is and where its figures come from) and `lib/site-facts.ts` (facts other
+  sources often state wrongly) feed the structured data, the About page and both
+  llms files, so change them there.
 - **Olympia is a proposal.** Its ECIPs are drafts and its activation block is
   TBD, so every sentence about it is in proposal voice ("would", "proposed"),
   and its state shows as `OLYMPIA_STATUS`, "Proposed · Draft ECIPs ·
@@ -175,13 +221,21 @@ includes transaction fees, which vary per block.
   organization. Its core developers and community contributors do the work, and
   the Ethereum Classic DAO maintains and funds it today as its funder of last
   resort. coregeth.com leads its framing. Recommend the v1.13 line, never a
-  patch; the v1.12 line is vulnerable. A reader told to install a node lands on
-  coregeth.com/downloads/, and this site carries no copy of the install
+  patch; the v1.12 line is vulnerable. A node on a release older than v1.12.17
+  never scheduled Spiral, so it has followed an obsolete chain since block
+  19,250,000: it resyncs from scratch (`CORE_GETH_RESYNC_URL`) and installs the
+  v1.13 line, and does not move in place. Links follow coregeth.com's own routing:
+  a reader told to install a node lands on coregeth.com/downloads/, a reader
+  moving a node on its migration guide, /guides/migrate/, and a v1.12 node that
+  has to wait on /guides/discovery/ (`CORE_GETH_MIGRATE_GUIDE_URL` and
+  `CORE_GETH_DISCOVERY_GUIDE_URL`, built from the `GUIDE_PAGES` that
+  `lib/core-geth-record.ts` mirrors). This site carries no copy of the install
   commands. The move steps are mirrored, never written by hand:
-  `lib/core-geth-moves.ts` is generated from that page's move tabs for the
-  migration article. Change a step on coregeth.com, then mirror the published
-  page again; a step the article names by title that the mirror loses fails the
-  build. Core-Geth is not native and not a plugin. Fukuii, an execution client
+  `lib/core-geth-moves.ts` is generated from the move tabs on coregeth.com's
+  /downloads/, which renders the same steps as its migration guide, for this
+  site's walkthrough article. Change a step on coregeth.com, then mirror the
+  published page again; a step the article names by title that the mirror loses
+  fails the build. Core-Geth is not native and not a plugin. Fukuii, an execution client
   in Scala 3 that Chippr Robotics LLC maintains as a continuation of IOHK's
   Mantis, is an alternative to try: its maintainers mark it alpha, and it is not
   the recommended client and not Core-Geth's successor. fukuii.com and
@@ -209,14 +263,15 @@ includes transaction fees, which vary per block.
   credited "at block finalization", and futarchy as a "Child-DAO" or a "signal
   layer": ECIP-1117 specifies Ecosystem Growth DAOs, which Olympia DAO would
   fund by season and not govern. Protocol change stays with ECIP-1000.
-- **Ethereum Classic DAO LLC and Olympia:** the line ethereumclassicdao.org
-  settled, read from ECIP-1114 §"Off-Chain Legal Interface and Donations". The
-  LLC is the legal wrapper ECIP-1114 contemplates for Olympia DAO, downstream of
-  it in authority, with no on-chain role and no role in anything ECIP-1114
-  specifies until Olympia DAO is operating. `app/olympia/components/LegalWrapper.tsx`
-  carries the long form. What the DAO does today comes from coregeth.com: it
-  maintains and funds the public goods as their funder of last resort, and does
-  not control or lead Ethereum Classic.
+- **Ethereum Classic DAO and Olympia:** the line ethereumclassicdao.org
+  settled, read from ECIP-1114 §"Off-Chain Legal Interface and Donations".
+  Ethereum Classic DAO is the legal wrapper ECIP-1114 contemplates for Olympia
+  DAO, downstream of it in authority, with no on-chain role and no role in
+  anything ECIP-1114 specifies until Olympia DAO is operating.
+  `app/olympia/components/LegalWrapper.tsx` carries the long form. What
+  Ethereum Classic DAO does today comes from coregeth.com: it maintains and funds
+  the public goods as their funder of last resort, and does not control or lead
+  Ethereum Classic.
 - **Fee economics:** Ethereum Classic has no base fee before Olympia, so nothing
   is "discarded", and the base fee would go to the Treasury, so it does not
   "grow miner revenue". Observed fee figures come from Blockscout, never typed.
@@ -265,6 +320,19 @@ reputation alone.
 - Exchange listings are ordered by live 24h ETC volume, the measure of how much
   of ETC's market an exchange carries. `featured` is an editorial choice, not a
   volume rank, so do not re-derive it from the figures.
+- Every mining pool the site lists is in `app/mining/data/pools.ts`, the one
+  list the mining hub, `/mining/pools` and the directory read. Fees and payout
+  schemes are each pool's ETC terms as MiningPoolStats lists them, or as
+  minerstat lists a pool MiningPoolStats does not; shares are never stored, and
+  come from Blockscout block attribution. A pool's blocks are matched by its
+  address in `lib/pool-addresses.json`, the miner of the last block
+  MiningPoolStats credits to it; a pool that changes address drops out of the
+  shares until the new one is added. A pool that has closed comes off the list;
+  a new one needs approval like any listing.
+- `/ecosystem` is the Ecosystem Directory: products that support ETC, checked
+  before listing, with requests to the listings address. `/partners` is for real
+  partners only: listed there once a partnership is agreed, and otherwise the way
+  to reach the partnerships address. `/directory` is the Resource Directory.
 
 ## Boundaries
 
@@ -277,6 +345,8 @@ reputation alone.
 - `docs/ETC-KNOWLEDGE.md` — content source of truth; corrections must be
   authoritative, not inferred
 - `tsconfig.json`, `next.config.ts` — build configuration
+- `package.json` — scripts and dependencies; a dependency change also routes to
+  the `sentinel` agent (below)
 - `LICENSE` — this repo's licensing posture is deliberate. Do not add or change one.
 
 **Ask first**
