@@ -39,7 +39,7 @@ export default async function MinersPage() {
       color: 'var(--brand-green)',
     },
     {
-      label: 'Basefee Impact',
+      label: 'Base Fee Impact',
       value: fees ? `At most ${formatShare(fees.feeShare)}` : '—',
       note: fees
         ? `All fees together were this share of miner revenue over the last ${fees.days.length} days`
@@ -49,13 +49,13 @@ export default async function MinersPage() {
     {
       label: 'Priority Fee',
       value: 'Kept by miners',
-      note: 'Tips go directly to the miner',
+      note: 'The part of each fee above the base fee would go directly to the miner',
       color: 'var(--brand-green)',
     },
   ]
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-4xl text-center">
@@ -84,7 +84,7 @@ export default async function MinersPage() {
         <div className="mx-auto max-w-6xl">
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Revenue Impact</h2>
           <p className="mt-2 text-[var(--color-text-muted)]">
-            Olympia changes fee handling, not block rewards. Here&apos;s what miners keep.
+            Olympia would change fee handling, not block rewards. Here is what miners would keep.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -158,7 +158,7 @@ export default async function MinersPage() {
           <div className="mt-4 space-y-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
             <p>
               Olympia would add the EIP-1559 base fee to Ethereum Classic and credit it to the Olympia
-              Treasury, where Ethereum burns it. Treasury income would be small while blocks are nearly empty,
+              Treasury instead of burning it, as Ethereum does. Treasury income would be small while blocks are nearly empty,
               and would grow with use of the network.
             </p>
             <p>
@@ -193,7 +193,7 @@ export default async function MinersPage() {
         <div className="mx-auto max-w-6xl">
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">The Flywheel</h2>
           <p className="mt-2 text-[var(--color-text-muted)]">
-            A funded protocol creates a self-reinforcing loop. Each step enables the next.
+            A funded protocol would create a self-reinforcing loop, each step enabling the next.
           </p>
           <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {flywheelSteps.map((step, i) => (
@@ -221,8 +221,8 @@ export default async function MinersPage() {
           <p>
             Under Olympia, every transaction would pay a base fee to the Treasury and a priority fee to the
             miner who includes it.
-            A network whose transaction volume does not grow while its block reward keeps falling is not a
-            long-term security model. It is a slow exit.
+            A network whose transaction volume stays flat while its block reward keeps falling has no long-term
+            security model.
           </p>
           <p className="font-medium text-[var(--text-primary)]">
             Olympia would tie the funding of Ethereum Classic&apos;s development to the interests of the miners
@@ -240,15 +240,15 @@ export default async function MinersPage() {
             <a href={ecipUrl(1115)} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">
               ECIP-1115
             </a>{' '}
-            would do it through ordinary funding proposals, spreading what blocks&apos; base fees raised across a
-            window. No base fee is redirected by it, and nothing is owed to anyone until a proposal passes.
+            would do it through ordinary funding proposals, spreading the base fees each block raised over a
+            window of blocks. No base fee is redirected by it, and nothing is owed to anyone until a proposal passes.
           </p>
           <p>
             <a href={ecipUrl(1116)} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">
               ECIP-1116
             </a>{' '}
             would pay a smoothed share at the consensus layer instead. It is a separate hard fork after Olympia,
-            scheduled only once ECIP-1115 has demonstrated a curve.
+            scheduled only after a smoothing curve has been demonstrated through ECIP-1115.
           </p>
         </div>
       </section>
@@ -282,6 +282,6 @@ export default async function MinersPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

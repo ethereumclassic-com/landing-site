@@ -83,7 +83,7 @@ export const rpcEndpoints: RPCEndpoint[] = [
   {
     provider: 'Blockscout',
     url: 'https://etc.blockscout.com/api/eth-rpc',
-    notes: 'Official explorer RPC',
+    notes: 'Blockscout explorer RPC',
     network: 'mainnet',
   },
   // Testnet
@@ -98,7 +98,7 @@ export const rpcEndpoints: RPCEndpoint[] = [
 // Node Clients
 export interface SecurityAdvisory {
   cve: string
-  severity: 'Critical' | 'High' | 'Moderate' | 'Low'
+  severity: 'Critical' | 'High' | 'Medium' | 'Low'
   description: string
   commit?: string
 }
@@ -178,42 +178,42 @@ export const nodeClients: NodeClient[] = [
       {
         cve: 'CVE-2026-26313',
         severity: 'High',
-        description: 'P2P RLP item count memory exhaustion — crafted message header crashes node via OOM. Remote, no auth required.',
+        description: 'P2P RLP item count memory exhaustion: a crafted message header runs the node out of memory and crashes it. Remote, with no authentication.',
         commit: '7a4988919',
       },
       {
         cve: 'CVE-2026-22862',
         severity: 'High',
-        description: 'ECIES decrypt length undercheck (off-by-15) — undersized RLPx auth payload causes out-of-bounds read and remote crash.',
+        description: 'ECIES decrypt length undercheck (off by 15): an undersized RLPx auth payload causes an out-of-bounds read and a remote crash.',
         commit: 'c46834dd8',
       },
       {
         cve: 'CVE-2026-26315',
-        severity: 'Moderate',
-        description: 'ECIES GenerateShared missing public key validation — MAC-oracle attack can leak P2P node key bits via repeated unauthenticated handshakes.',
+        severity: 'Medium',
+        description: 'ECIES GenerateShared missing public key validation: a MAC-oracle attack can leak bits of the P2P node key through repeated unauthenticated handshakes.',
         commit: 'c19892395',
       },
       {
         cve: 'CVE-2026-26314',
         severity: 'High',
-        description: 'secp256k1 IsOnCurve field boundary bypass — out-of-field coordinates satisfy the naive curve equation and pass the validity gate.',
+        description: 'secp256k1 IsOnCurve field boundary bypass: out-of-field coordinates satisfy the naive curve equation and pass the validity check.',
         commit: 'c19892395',
       },
       {
         cve: 'CVE-2025-24883',
         severity: 'High',
-        description: 'UnmarshalPubkey missing IsOnCurve check — off-curve secp256k1 points pass deserialization and corrupt downstream crypto operations.',
+        description: 'UnmarshalPubkey missing IsOnCurve check: off-curve secp256k1 points pass deserialization and corrupt later cryptographic operations.',
         commit: '681c915f0',
       },
       {
         cve: 'CVE-2026-22868',
-        severity: 'Moderate',
-        description: 'KZG blob proof DoS — invalid proofs trigger full expensive verification without peer disconnect, enabling sustained CPU exhaustion.',
+        severity: 'Medium',
+        description: 'KZG blob proof DoS: an invalid proof triggers the full, expensive verification without disconnecting the peer, so the CPU can be kept busy.',
         commit: '9985c33fb',
       },
       {
         cve: 'GraphQL Depth DoS',
-        severity: 'Moderate',
+        severity: 'Medium',
         description: 'No query depth limit on the --graphql endpoint, so one deeply nested query exhausts CPU and memory. v1.13.0 caps query depth at 20.',
         commit: '6a046ee910',
       },
@@ -350,7 +350,7 @@ export const devTools: DevTool[] = [
     id: 'foundry',
     name: 'Foundry',
     website: 'https://book.getfoundry.sh/',
-    description: 'Blazing fast, portable, and modular toolkit for Ethereum application development written in Rust.',
+    description: 'A fast, portable and modular toolkit for Ethereum application development, written in Rust.',
     category: 'framework',
     languages: ['Solidity'],
     recommended: true,
@@ -365,14 +365,6 @@ export const devTools: DevTool[] = [
     recommended: true,
   },
   {
-    id: 'truffle',
-    name: 'Truffle Suite',
-    website: 'https://trufflesuite.com/',
-    description: 'Development framework with built-in testing, debugging, and deployment pipeline.',
-    category: 'framework',
-    languages: ['JavaScript', 'TypeScript'],
-  },
-  {
     id: 'ethersjs',
     name: 'ethers.js',
     website: 'https://docs.ethers.org/',
@@ -380,14 +372,6 @@ export const devTools: DevTool[] = [
     category: 'library',
     languages: ['JavaScript', 'TypeScript'],
     recommended: true,
-  },
-  {
-    id: 'web3js',
-    name: 'web3.js',
-    website: 'https://web3js.readthedocs.io/',
-    description: 'Collection of libraries for interacting with Ethereum nodes using HTTP, IPC, or WebSocket.',
-    category: 'library',
-    languages: ['JavaScript', 'TypeScript'],
   },
   {
     id: 'viem',
@@ -446,10 +430,10 @@ export interface DocResource {
 export const docResources: DocResource[] = [
   {
     id: 'etc-docs',
-    name: 'EthereumClassic.com',
+    name: 'Learning Hub',
     url: 'https://ethereumclassic.com/learn',
-    description: 'Ethereum Classic learning resources with protocol documentation and guides.',
-    category: 'official',
+    description: 'This site\'s guides to Ethereum Classic, from wallets and security to mining and DeFi.',
+    category: 'reference',
   },
   {
     id: 'solidity-docs',
@@ -497,21 +481,21 @@ export const docResources: DocResource[] = [
     id: 'openzeppelin-docs',
     name: 'OpenZeppelin Docs',
     url: 'https://docs.openzeppelin.com/contracts/',
-    description: 'Documentation for OpenZeppelin smart contract library.',
+    description: 'Documentation for the OpenZeppelin smart contract library.',
     category: 'tutorial',
   },
   {
     id: 'cryptozombies',
     name: 'CryptoZombies',
     url: 'https://cryptozombies.io/',
-    description: 'Interactive Solidity tutorial through building a game.',
+    description: 'An interactive Solidity tutorial in which you build a game.',
     category: 'tutorial',
   },
   {
     id: 'ethereum-book',
     name: 'Mastering Ethereum',
     url: 'https://github.com/ethereumbook/ethereumbook',
-    description: 'Comprehensive book on Ethereum development (open source).',
+    description: 'An open-source book on Ethereum development.',
     category: 'tutorial',
   },
 ]
@@ -530,7 +514,7 @@ export const explorerAPIs: ExplorerAPI[] = [
     name: 'Blockscout',
     url: 'https://etc.blockscout.com',
     apiUrl: 'https://etc.blockscout.com/api',
-    description: 'Official ETC block explorer with comprehensive API.',
+    description: 'The main ETC block explorer, with a full API.',
     network: 'mainnet',
   },
   {
@@ -543,7 +527,7 @@ export const explorerAPIs: ExplorerAPI[] = [
   {
     name: '3xpl',
     url: 'https://3xpl.com/ethereum-classic',
-    description: 'Universal blockchain explorer supporting ETC with clean interface and API access.',
+    description: 'A multi-chain explorer that supports ETC, with API access.',
     network: 'mainnet',
   },
   {
@@ -633,17 +617,21 @@ export const gettingStartedSteps: GettingStartedStep[] = [
     step: 1,
     title: 'Set Up Development Environment',
     description:
-      'Install Node.js, npm, and your preferred development framework (Hardhat or Foundry recommended).',
-    code: 'npm install --save-dev hardhat',
-    link: 'https://hardhat.org/getting-started',
-    linkText: 'Hardhat Setup Guide',
+      'Install Node.js, then create a Hardhat 2 project with OpenZeppelin\'s contracts. Foundry works too: its steps are in the Foundry book.',
+    code: 'npm install --save-dev hardhat@2 @openzeppelin/contracts\nnpx hardhat init',
+    link: 'https://v2.hardhat.org/hardhat-runner/docs/getting-started',
+    linkText: 'Hardhat 2 Setup Guide',
   },
   {
     step: 2,
     title: 'Configure for ETC',
     description:
-      'Add Ethereum Classic mainnet and Mordor testnet to your hardhat.config.js or foundry.toml configuration.',
+      'Add Ethereum Classic mainnet and the Mordor testnet to hardhat.config.js, and compile for the Shanghai EVM. With Foundry, set evm_version = "shanghai" in foundry.toml and pass --legacy when you deploy.',
     code: `// hardhat.config.js
+solidity: {
+  version: "0.8.24",
+  settings: { evmVersion: "shanghai" }
+},
 networks: {
   etc: {
     url: "https://etc.blockscout.com/api/eth-rpc",
@@ -659,15 +647,15 @@ networks: {
     step: 3,
     title: 'Get Testnet ETC',
     description:
-      'Request Mordor testnet ETC from a faucet to deploy and test your contracts without spending real funds.',
+      'Get Mordor testnet ETC, which has no monetary value, to deploy and test your contracts without spending real funds.',
     link: '/build/faucets',
-    linkText: 'Testnet Faucets',
+    linkText: 'Getting Mordor ETC',
   },
   {
     step: 4,
     title: 'Write Your Contract',
     description:
-      'Create a Solidity smart contract. ETC is fully EVM-compatible, so any Ethereum contract works on ETC.',
+      'Create a Solidity contract. ETC\'s EVM matches Ethereum\'s up to the Shanghai upgrade, which is why the configuration above sets evmVersion: Solidity 0.8.25 and later target newer upgrades by default, and code compiled for them can fail on ETC.',
     code: `// contracts/MyToken.sol
 pragma solidity ^0.8.20;
 
@@ -683,7 +671,7 @@ contract MyToken is ERC20 {
     step: 5,
     title: 'Deploy to Testnet',
     description:
-      'Deploy your contract to Mordor testnet first. Test thoroughly before deploying to mainnet.',
+      'Write a deploy script for your contract in scripts/deploy.js (the Hardhat guide shows the pattern), then run it against Mordor first. Test thoroughly before deploying to mainnet.',
     code: 'npx hardhat run scripts/deploy.js --network mordor',
     link: '/build/docs',
     linkText: 'Deployment Guide',
@@ -704,7 +692,7 @@ export const buildStats = {
   testnetChainId: 63,
   blockTime: '~13 seconds',
   evmVersion: 'Shanghai',
-  consensusAlgorithm: 'Proof of Work (ETChash)',
+  consensusAlgorithm: 'Proof of Work (Etchash)',
 }
 
 // Helper functions

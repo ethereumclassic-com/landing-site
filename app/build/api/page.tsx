@@ -105,7 +105,7 @@ export default function ApiDocsPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden border-b border-[var(--border)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-6xl">
@@ -120,9 +120,9 @@ export default function ApiDocsPage() {
               Connecting to Ethereum Classic
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-[var(--color-text-secondary)]">
-              ETC is EVM-native, so standard Ethereum tooling works unchanged —
-              point it at an ETC RPC endpoint. Below are the current mainnet and
-              Mordor endpoints, and the APIs to read chain and market data from.
+              ETC is EVM-native, so standard Ethereum tooling works once you point it at an ETC RPC endpoint; a
+              tool that assumes EIP-1559 needs legacy transactions. Below are the mainnet and Mordor endpoints,
+              and the APIs that serve chain and market data.
             </p>
           </div>
         </div>
@@ -166,9 +166,8 @@ export default function ApiDocsPage() {
           <h2 className="mb-2 text-2xl font-bold text-[var(--text-primary)]">Networks</h2>
           <p className="mb-6 max-w-3xl text-[var(--color-text-secondary)]">
             These RPC endpoints are operated by third parties, not by this site.
-            Rate limits and uptime are theirs and can change without notice — for
-            anything in production, run your own node or use a provider you have an
-            agreement with.
+            Rate limits and uptime are theirs and can change without notice. For anything in production, run
+            your own node or use a provider you have an agreement with.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             {networks.map((n) => (
@@ -222,8 +221,8 @@ export default function ApiDocsPage() {
           <h2 className="mb-2 text-2xl font-bold text-[var(--text-primary)]">Chain and market data</h2>
           <p className="mb-6 max-w-3xl text-[var(--color-text-secondary)]">
             This site does not publish a data API. It reads from the two sources
-            below, and so should you — they are authoritative, they are versioned,
-            and going direct means no intermediary can drift out of sync with them.
+            below, and you can too: they are authoritative and versioned, and reading them directly means no
+            intermediary can fall out of sync with them.
           </p>
           <div className="grid gap-4 md:grid-cols-2">
             {dataSources.map((s) => (
@@ -284,6 +283,6 @@ export default function ApiDocsPage() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   )
 }

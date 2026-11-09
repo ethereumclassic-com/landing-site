@@ -17,13 +17,13 @@ const fundingSources: FundingSource[] = [
     description: 'Community-driven funding for smaller projects, events, and initiatives. Proposals are reviewed by community members.',
     type: 'community',
     url: DISCORD_URL,
-    fundingRange: '$500 - $10K',
+    fundingRange: '$500 to $10K',
     status: 'periodic',
     focus: ['Community Events', 'Content Creation', 'Translations', 'Small Tools'],
   },
   {
     name: 'Gitcoin Grants',
-    description: 'Quadratic funding rounds where community donations are matched. Great for public goods and open-source projects.',
+    description: 'Quadratic funding rounds where community donations are matched. Suited to public goods and open-source projects.',
     type: 'grants',
     url: 'https://gitcoin.co',
     fundingRange: 'Variable',
@@ -118,7 +118,7 @@ const applicationSteps = [
 
 export default function BuildGrantsPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
@@ -145,7 +145,7 @@ export default function BuildGrantsPage() {
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Funding opportunities for builders on Ethereum Classic — grants and community-backed support for open-source development, tooling, and ecosystem infrastructure. The Olympia proposal would add a treasury funded by the network&apos;s own use, spent by funding proposals that Olympia DAO&apos;s members vote on.
+              Grants and community-backed funding for open-source development, tooling and infrastructure on Ethereum Classic. The Olympia proposal would add a treasury funded by the network&apos;s own use, spent by funding proposals that Olympia DAO&apos;s members vote on.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
@@ -357,6 +357,6 @@ export default function BuildGrantsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

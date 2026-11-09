@@ -24,16 +24,16 @@ const SECTIONS = [
     ecip: 1113,
     heading: 'Membership: CoreNFT',
     body: [
-      'Voting power would come from CoreNFT and nothing else: a soulbound token carrying one vote per member, which cannot be transferred, sold or delegated. There would be no fungible governance token, so there is nothing on which a market in votes could form.',
-      'The first members would be those who verifiably contributed to the Olympia ECIPs or their reference client implementations by a published cutoff date. After that, a contributor applies and the DAO votes on each admission; there would be no admissions committee and no account that can admit anyone alone. A member could resign at any time, and the DAO could revoke a seat by the same kind of vote.',
+      'Voting power would come from CoreNFT and nothing else: a soulbound token carrying one vote per member, which cannot be transferred, sold or delegated. There would be no fungible governance token, so no market in votes could form.',
+      'The first members would be those who verifiably contributed to the Olympia ECIPs or their reference client implementations by a published cutoff date. After that, contributors would apply and Olympia DAO would vote on each admission, with no admissions committee and no account that could admit anyone alone. A member could resign at any time, and Olympia DAO could revoke a seat by the same kind of vote.',
     ],
   },
   {
     ecip: 1114,
     heading: 'Funding proposals',
     body: [
-      'An Olympia Funding Proposal would be an ordinary Governor proposal that spends from the Treasury: a recipient, an amount, and a description in a shared convention. ECIP-1114 adds no contract: no registry, no submission contract, no gate. The Olympia DAO dashboard would compose the same proposal any author could compose themselves.',
-      'Each proposal declares one of five categories, which describes what it would fund and gates nothing.',
+      'An Olympia Funding Proposal would be an ordinary Governor proposal that spends from the Treasury: a recipient, an amount, and a description written to a shared convention. ECIP-1114 adds no contract: no registry, no submission contract and no gate. The Olympia DAO dashboard would build the same proposal any author could build alone.',
+      'Each proposal would declare one of five categories, which describes what it would fund and restricts nothing.',
     ],
     categories: true,
   },
@@ -41,7 +41,7 @@ const SECTIONS = [
     ecip: 1118,
     heading: 'Funding in tranches',
     body: [
-      'A larger commitment could be paid as a milestone program: each tranche its own funding proposal, decided on the work delivered behind it. Nothing would be held between tranches, so a program that stops delivering simply stops being funded.',
+      'A larger commitment could be paid as a milestone program: each tranche its own funding proposal, decided on the work delivered for it. Nothing would be held between tranches, so a program that stops delivering simply stops being funded.',
     ],
   },
   {
@@ -70,7 +70,7 @@ const WOULD_NOT = [
 
 export default function GovernancePage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-20 lg:px-12">
         <div className="relative mx-auto max-w-4xl">
@@ -84,9 +84,9 @@ export default function GovernancePage() {
             Olympia DAO Governance
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            As ECIP-1113 specifies it, Olympia DAO would be a Governor built from stock OpenZeppelin modules,
-            the Timelock behind the Treasury, and CoreNFT, the membership token voting power is read from. It
-            would be the only route by which the Treasury&rsquo;s balance could be spent.
+            Under ECIP-1113, Olympia DAO would be a Governor built from unmodified OpenZeppelin modules, the
+            Timelock behind the Treasury, and CoreNFT, the membership token that voting power is read from. It
+            would be the only way to spend the Treasury&rsquo;s balance.
           </p>
         </div>
       </section>
@@ -151,11 +151,11 @@ export default function GovernancePage() {
             </ul>
             <p className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-sm leading-relaxed text-[var(--color-text-muted)]">
               ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper Olympia DAO would use for the
-              off-chain acts an on-chain organization cannot perform, such as signing an audit engagement the DAO
-              has voted to fund. It would be downstream of Olympia DAO in authority, and it holds no role in
+              off-chain acts an on-chain organization cannot perform, such as signing an audit engagement Olympia
+              DAO has voted to fund. It would be downstream of Olympia DAO in authority, and it holds no role in
               Olympia until Olympia DAO is operating.{' '}
               <Link href="/olympia" className="font-medium text-[var(--brand-green)] hover:underline">
-                The LLC and Olympia, in full →
+                Ethereum Classic DAO and Olympia, in full →
               </Link>
             </p>
           </FadeIn>
@@ -183,6 +183,6 @@ export default function GovernancePage() {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -1,11 +1,13 @@
+import { GUIDE_PAGES } from './core-geth-record'
+
 /**
  * Core-Geth addresses and facts shared across the site.
  *
  * The commands to install a node, move a v1.12 node and verify a download are
- * coregeth.com's, on its /downloads/ page, which is kept in step with the
- * documentation's guides. This site links those sections rather than writing its
- * own: the one copy it carries, the move steps in its migration guide, is generated
- * from that page (lib/core-geth-moves.ts). So copy written here names no release: a
+ * coregeth.com's: its /downloads/ page and its guides render the same steps from one
+ * module. This site links those pages rather than writing its own: the one copy it
+ * carries, the move steps in its walkthrough, is generated from /downloads/
+ * (lib/core-geth-moves.ts). So copy written here names no release: a
  * recommendation names the line, and a link to the release itself is `releases/latest`.
  *
  * A version a fix first shipped in ("fixed in v1.13.0") is history, not the
@@ -24,15 +26,21 @@ export const CORE_GETH_SECURITY_POLICY_URL = `${CORE_GETH_REPO_URL}/blob/main/SE
 export const CORE_GETH_HOMEPAGE_URL = 'https://coregeth.com'
 
 /**
- * Where a reader told to install or move a node lands. Each fragment is a section
- * id on that page. Never link a `*-title` heading id or a tab id there: those are
+ * Where a reader told to install a node, or to verify a download, lands. Each fragment is a
+ * section id on that page. Never link a `*-title` heading id or a tab id there: those are
  * layout and can change.
  */
 export const CORE_GETH_DOWNLOADS_URL = `${CORE_GETH_HOMEPAGE_URL}/downloads/`
 export const CORE_GETH_INSTALL_STEPS_URL = `${CORE_GETH_DOWNLOADS_URL}#install`
-export const CORE_GETH_UPGRADE_STEPS_URL = `${CORE_GETH_DOWNLOADS_URL}#upgrade`
-export const CORE_GETH_DISCOVERY_FLAG_URL = `${CORE_GETH_DOWNLOADS_URL}#discovery-flag`
 export const CORE_GETH_VERIFY_URL = `${CORE_GETH_DOWNLOADS_URL}#verify`
+/**
+ * coregeth.com's guides, at the hrefs it gives them. A reader moving a node lands on the migration
+ * guide, which walks through the same steps as /downloads/, and a v1.12 node that has to wait before
+ * it moves goes to the discovery guide: coregeth.com's own routing.
+ */
+export const CORE_GETH_GUIDES_URL = coregethHref(GUIDE_PAGES.index.href)
+export const CORE_GETH_MIGRATE_GUIDE_URL = coregethHref(GUIDE_PAGES.migrate.href)
+export const CORE_GETH_DISCOVERY_GUIDE_URL = coregethHref(GUIDE_PAGES.discovery.href)
 /** The audits, the release record and what the network runs. */
 export const CORE_GETH_SECURITY_URL = `${CORE_GETH_HOMEPAGE_URL}/security/`
 /** MESS, and why v1.13.0 ships it on by default. */
@@ -54,8 +62,12 @@ export const CORE_GETH_SPONSOR_URL = `${CORE_GETH_HOMEPAGE_URL}/sponsor/`
 
 export const CORE_GETH_DOCS_URL = 'https://docs.coregeth.com/'
 export const CORE_GETH_INSTALL_URL = `${CORE_GETH_DOCS_URL}getting-started/installation/`
-/** The move from any v1.12.x release, with its required node key rotation. Named for v1.13.0, and the guide for the v1.13 line. */
-export const CORE_GETH_MIGRATION_URL = `${CORE_GETH_DOCS_URL}tutorials/v1.13.0-migration/`
+/**
+ * Removing the chain database so a node syncs again from its peers. A node on a release older than
+ * v1.12.17 needs it: those releases do not schedule Spiral, so the node followed an obsolete chain from
+ * block 19,250,000. The section exists on the docs' main branch and on pull request 57's head.
+ */
+export const CORE_GETH_RESYNC_URL = `${CORE_GETH_DOCS_URL}operate/maintenance/#resync-from-scratch`
 /** This site's walkthrough of the same move: coregeth.com's steps, with recordings of a real node making it. */
 export const CORE_GETH_MOVE_GUIDE_PATH = '/news/core-geth-v1-12-to-v1-13-migration'
 /** Where each service the ETC Cooperative maintained continues as it winds down. */
@@ -86,17 +98,24 @@ export const CORE_GETH_TASKS: CoreGethTask[] = [
   },
   {
     title: 'Move a v1.12 node to the v1.13 line',
-    body: 'One step at a time on each platform. Your chain data carries over, and the P2P node key is rotated, which is required because CVE-2026-26315 leaks bits of that key. The install steps are the wrong ones for this, because they start a node before its key changes.',
+    body: 'For a node on v1.12.17 or later, one step at a time on each platform, ending with deleting the v1.12 binary once the node is stable. Your chain data carries over, and the P2P node key is rotated, which is required because CVE-2026-26315 leaks bits of that key. The install steps are the wrong ones for this, because they start a node before its key changes.',
     links: [
-      { label: 'Steps for each platform', href: CORE_GETH_UPGRADE_STEPS_URL },
-      { label: 'Migration guide', href: CORE_GETH_MIGRATION_URL },
+      { label: 'Migration guide', href: CORE_GETH_MIGRATE_GUIDE_URL },
       { label: 'Walkthrough with recordings', href: CORE_GETH_MOVE_GUIDE_PATH },
     ],
   },
   {
+    title: 'A node on a release older than v1.12.17',
+    body: 'Those releases do not schedule Spiral, so since block 19,250,000 the node has followed an obsolete chain. It cannot move in place: remove its chain database, which keeps the keystore and the node key, rename the node key as the move does, and install the v1.13 line with the install steps. The node then syncs again from its peers.',
+    links: [
+      { label: 'Resync from scratch', href: CORE_GETH_RESYNC_URL },
+      { label: 'Install Core-Geth', href: CORE_GETH_INSTALL_STEPS_URL },
+    ],
+  },
+  {
     title: 'A v1.12 node that cannot move yet',
-    body: "Adding the --discovery.dns flag points it at the ethereumclassic GitHub organization's peer discovery lists. It is a small step that closes none of the flaws the audits found in the v1.12 line.",
-    links: [{ label: 'The discovery flag', href: CORE_GETH_DISCOVERY_FLAG_URL }],
+    body: 'It can read the peer discovery lists and bootnodes the v1.13 line ships until it moves. It goes on running its v1.12 release, so this closes none of the flaws the audits found in the v1.12 line.',
+    links: [{ label: GUIDE_PAGES.discovery.title, href: CORE_GETH_DISCOVERY_GUIDE_URL }],
   },
   {
     title: 'Verify a download',

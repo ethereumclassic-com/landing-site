@@ -17,9 +17,10 @@ import {
   CORE_GETH_ABOUT_URL,
   CORE_GETH_LATEST_RELEASE_URL,
   CORE_GETH_MESS_DEFAULT_URL,
-  CORE_GETH_MIGRATION_URL,
+  CORE_GETH_RESYNC_URL,
+  CORE_GETH_MIGRATE_GUIDE_URL,
+  CORE_GETH_MOVE_GUIDE_PATH,
   CORE_GETH_SPONSOR_URL,
-  CORE_GETH_UPGRADE_STEPS_URL,
   ETHEREUM_CLASSIC_DAO_URL,
 } from '@/lib/core-geth'
 import {
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Measured rather than assumed: the /build title template does not reach this
   // segment, because app/build/clients/layout.tsx sets a plain string title. So
   // this title carries its own context instead of relying on a suffix.
-  const label = `${entry.name} — Ethereum Classic ${client ? 'execution client' : 'execution plugin'}`
+  const label = `${entry.name}: Ethereum Classic ${client ? 'Execution Client' : 'Execution Plugin'}`
   const description = client?.metaDescription ?? entry.description
 
   return {
@@ -94,7 +95,7 @@ const languageColors: Record<string, { bg: string; text: string; label: string }
 const severityColors: Record<SecurityAdvisory['severity'], { bg: string; text: string; border: string }> = {
   Critical: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]', border: 'border-[var(--color-error-border)]' },
   High: { bg: 'bg-[var(--color-error-bg)]', text: 'text-[var(--color-error)]', border: 'border-[var(--color-error-border)]' },
-  Moderate: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]', border: 'border-[var(--color-warning)]/30' },
+  Medium: { bg: 'bg-[var(--color-warning-bg)]', text: 'text-[var(--color-warning)]', border: 'border-[var(--color-warning)]/30' },
   Low: { bg: 'bg-[var(--color-info-bg)]', text: 'text-[var(--color-info)]', border: 'border-[var(--color-info-border)]' },
 }
 
@@ -148,21 +149,19 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <a
-                  href={CORE_GETH_UPGRADE_STEPS_URL}
+                  href={CORE_GETH_MIGRATE_GUIDE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg bg-[var(--color-error)]/10 border border-[var(--color-error)]/30 px-4 py-2 text-sm font-medium text-[var(--color-error)] transition hover:bg-[var(--color-error)]/20"
                 >
-                  Steps for each platform →
-                </a>
-                <a
-                  href={CORE_GETH_MIGRATION_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
-                >
                   Migration guide →
                 </a>
+                <Link
+                  href={CORE_GETH_MOVE_GUIDE_PATH}
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition hover:bg-[var(--bg)]"
+                >
+                  Walkthrough with recordings →
+                </Link>
               </div>
             </div>
           </div>
@@ -198,7 +197,15 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
         <div className="rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-4">
           <p className="text-sm font-semibold text-[var(--color-primary)]">What the move to the v1.13 line changes</p>
           <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-[var(--color-text-muted)]">
-            <li>No resync: chain data carries over.</li>
+            <li>
+              From <code className="whitespace-nowrap">v1.12.17</code> or later, no resync: chain data carries over. An older
+              release does not schedule Spiral, so its node has followed an obsolete chain since block 19,250,000
+              and has to{' '}
+              <a href={CORE_GETH_RESYNC_URL} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-primary)] hover:underline">
+                resync from scratch
+              </a>{' '}
+              before it installs the <code className="whitespace-nowrap">v1.13</code> line.
+            </li>
             <li>
               <strong className="text-[var(--text-primary)]">Rotating the P2P node key is required</strong>, because
               CVE-2026-26315 leaks bits of it. With the node stopped, the old key is renamed rather than deleted. The
@@ -206,7 +213,7 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
             </li>
             <li>
               Because every v1.12 release still carried at least one known vulnerability when v1.13.0 was released,
-              v1.13.0 ships MESS (ECBP-1100) on by default, where v1.12.x releases carrying ECBP-1110 switch it off
+              v1.13.0 ships MESS (ECBP-1100) on by default, while v1.12.x releases carrying ECBP-1110 switch it off
               from block 19,250,000. v1.13.1 turns it off by default again, and a build from source of the main branch,
               v1.13.1-unstable, already does. A release sets its own default, so set it with{' '}
               <code className="whitespace-nowrap">--mess</code> or <code className="whitespace-nowrap">--mess=false</code>, and
@@ -231,21 +238,16 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
           </ul>
           <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <a
-              href={CORE_GETH_UPGRADE_STEPS_URL}
+              href={CORE_GETH_MIGRATE_GUIDE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-[var(--color-primary)] hover:underline"
             >
-              Steps for Linux, macOS, Windows, containers and source →
+              Migration guide: Linux, macOS, Windows, containers and source →
             </a>
-            <a
-              href={CORE_GETH_MIGRATION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-[var(--color-primary)] hover:underline"
-            >
-              Migration guide, with the rollback →
-            </a>
+            <Link href={CORE_GETH_MOVE_GUIDE_PATH} className="font-medium text-[var(--color-primary)] hover:underline">
+              Walkthrough with recordings →
+            </Link>
           </p>
         </div>
 
@@ -400,7 +402,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
   const langInfo = languageColors[client.language] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]', label: client.language }
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -466,9 +468,9 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                       className="font-medium text-[var(--color-primary)] hover:underline"
                     >
                       Ethereum Classic DAO
-                    </a>
-                    , the standing legal entity behind it, maintains and funds the client today as its funder of last
-                    resort.{' '}
+                    </a>{' '}
+                    is the standing legal entity that maintains and funds the client today, as its funder of
+                    last resort.{' '}
                     <a
                       href={CORE_GETH_SPONSOR_URL}
                       target="_blank"
@@ -629,7 +631,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
                 <div>
                   <p className="font-medium text-[var(--text-primary)]">Actively Maintained</p>
                   <p className="text-sm text-[var(--color-text-muted)]">
-                    This client is actively developed and receives regular updates.
+                    Its maintainers publish releases and security fixes on GitHub.
                   </p>
                 </div>
               </div>
@@ -667,7 +669,7 @@ function NodeClientPage({ client }: { client: NodeClient }) {
         </div>
       </section>
       <SiteFooter />
-    </main>
+    </div>
   )
 }
 
@@ -675,7 +677,7 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
   const langInfo = languageColors[plugin.language] || { bg: 'bg-[var(--bg-elevated)]', text: 'text-[var(--text-muted)]', label: plugin.language }
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -758,7 +760,7 @@ function PluginDetailPage({ plugin }: { plugin: ExecutionPlugin }) {
         </div>
       </section>
       <SiteFooter />
-    </main>
+    </div>
   )
 }
 

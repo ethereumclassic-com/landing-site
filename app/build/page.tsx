@@ -57,7 +57,7 @@ export default function BuildPage() {
   const testnet = networks.find((n) => n.type === 'testnet')!
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden border-b border-[var(--border)] px-6 pt-24 pb-16 md:pt-32 md:pb-24">
         <div className="mx-auto max-w-7xl">
@@ -72,12 +72,11 @@ export default function BuildPage() {
               Build on Ethereum Classic
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)] md:text-xl">
-              Ethereum Classic runs the EVM through the Shanghai set, so Hardhat, Foundry, wagmi, viem and
-              ethers.js work against it, with --legacy where a tool assumes EIP-1559. Deploy your contracts to a
-              network with
-              <span className="text-[var(--text-primary)]"> immutability</span>,
-              <span className="text-[var(--text-primary)]"> code is law</span>, and a continuous production record
-              since July 2015.
+              Ethereum Classic runs the EVM up to Ethereum&apos;s Shanghai upgrade, so Hardhat, Foundry, wagmi, viem
+              and ethers.js work against it; a tool that assumes EIP-1559 needs legacy transactions, such as
+              Foundry&apos;s --legacy. Deploy your contracts to an
+              <span className="text-[var(--text-primary)]"> immutable</span> network that has run without
+              interruption since July 2015.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
@@ -261,7 +260,7 @@ export default function BuildPage() {
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                  <code className="font-mono text-xs text-[var(--text-primary)]">etc-mordor.blockscout.com/api/eth-rpc</code>
+                  <code className="font-mono text-xs text-[var(--text-primary)]">https://etc-mordor.blockscout.com/api/eth-rpc</code>
                 </div>
                 <div className="flex justify-between rounded-lg bg-[var(--panel)] p-3">
                   <span className="text-[var(--color-text-muted)]">Explorer</span>
@@ -294,7 +293,7 @@ export default function BuildPage() {
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Recommended Tools</h2>
             <p className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
-              Industry-standard development tools that work seamlessly with ETC
+              Standard Ethereum development tools that work with ETC
             </p>
           </div>
 
@@ -355,7 +354,7 @@ export default function BuildPage() {
           >
             <h2 className="text-3xl font-bold text-[var(--text-primary)]">Node Clients</h2>
             <p className="mx-auto mt-2 max-w-2xl text-[var(--color-text-muted)]">
-              Run your own Ethereum Classic node for maximum decentralization
+              Run your own Ethereum Classic node
             </p>
           </div>
 
@@ -501,6 +500,6 @@ export default function BuildPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

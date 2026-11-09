@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { networks, getClientImplementations, executionPlugins, PLUGIN_POSITION } from '../data/build'
 import { SiteFooter } from '@/app/sections/SiteFooter'
 import { badgeStyle } from '@/lib/badge-theme'
-import { CORE_GETH_INSTALL_STEPS_URL, CORE_GETH_UPGRADE_STEPS_URL } from '@/lib/core-geth'
+import { CORE_GETH_INSTALL_STEPS_URL, CORE_GETH_MIGRATE_GUIDE_URL } from '@/lib/core-geth'
 
 // Icons
 const ChevronRightIcon = () => (
@@ -66,7 +66,7 @@ export default function ClientsPage() {
   const testnet = networks.find((n) => n.type === 'testnet')!
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Breadcrumb */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)] px-6 py-4">
         <div className="mx-auto max-w-7xl">
@@ -93,7 +93,7 @@ export default function ClientsPage() {
               ETC Node Clients
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Run your own Ethereum Classic node for maximum decentralization and independence.
+              Run your own Ethereum Classic node.
               Core-Geth (Go) is the recommended client to run. Fukuii (Scala), in alpha, is an alternative to try.
               ETC plugins, a planned framework, would add Ethereum Classic support to clients other projects maintain.
             </p>
@@ -115,15 +115,15 @@ export default function ClientsPage() {
                 },
                 {
                   title: 'Privacy',
-                  description: 'Your transactions and queries stay private - no external RPC provider sees your activity.',
+                  description: 'Your queries stay private: no outside RPC provider sees what you look up or which addresses are yours.',
                 },
                 {
                   title: 'Network Support',
-                  description: 'Help strengthen the ETC network by adding another independent node.',
+                  description: 'Each independent node adds to the network\'s resilience.',
                 },
                 {
                   title: 'Reliable Access',
-                  description: 'Never depend on external services for blockchain access - your node is always available.',
+                  description: 'Your access to the chain does not depend on an outside service.',
                 },
               ].map((benefit, i) => (
                 <div
@@ -203,7 +203,7 @@ export default function ClientsPage() {
                         <span className="text-sm text-[var(--color-text-muted)]">
                           v1.13.0 fixes 6 CVEs ·{' '}
                           <a
-                            href={CORE_GETH_UPGRADE_STEPS_URL}
+                            href={CORE_GETH_MIGRATE_GUIDE_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-medium text-[var(--color-primary)] hover:underline"
@@ -400,7 +400,7 @@ export default function ClientsPage() {
 
               {/* Recommended */}
               <div className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--bg)] p-6">
-                <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Recommended (Archive Node)</h3>
+                <h3 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Archive Node</h3>
                 <ul className="space-y-3 text-sm">
                   <li className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">CPU</span>
@@ -496,6 +496,6 @@ export default function ClientsPage() {
         </div>
       </section>
       <SiteFooter />
-    </main>
+    </div>
   )
 }

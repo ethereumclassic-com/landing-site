@@ -73,14 +73,14 @@ export default function ForkTimeline() {
         <a href={ecipUrl(1121)} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-[var(--text-primary)]">
           ECIP-1121
         </a>{' '}
-        adopts {adoptedCount} EIPs, an asterisk marking each one adopted with a modification another
-        Olympia ECIP states. {blocked.length} more are blocked by a dependency that is out of scope:
-        tracked, not rejected. {deferred.length} tied to blob data availability are deferred.{' '}
-        {excluded.length} are excluded:{' '}
+        adopts {adoptedCount} EIPs; an asterisk marks each one adopted with a modification that another
+        Olympia ECIP states. Another {blocked.length} are blocked by a dependency that is out of scope, which
+        leaves them tracked rather than rejected. The {deferred.length} tied to blob data availability are
+        deferred, and {excluded.length} are excluded:{' '}
         {[...new Set(excluded.map((e) => e.group))]
           .map((g) => `${excluded.filter((e) => e.group === g).length} ${EXCLUDED_REASON[g] ?? `as ${g}`}`)
           .join(' and ')}
-        . {inForce.length} were already in force before Olympia. Glamsterdam is included, and ECIP-1121
+        . A further {inForce.length} were already in force before Olympia. Glamsterdam is included, and ECIP-1121
         adopts part of its set.
       </p>
     </div>

@@ -8,7 +8,7 @@ const client = clients.find((c) => c.id === 'core-geth')!
 
 export default function CoreGethUpgradePage() {
   return (
-    <main className="min-h-screen px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
+    <div className="min-h-screen px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
       <div className="mx-auto max-w-3xl">
         <div className="mb-8">
           <Link
@@ -20,6 +20,6 @@ export default function CoreGethUpgradePage() {
         </div>
         <ClientUpgradeCard client={client} detail />
       </div>
-    </main>
+    </div>
   )
 }

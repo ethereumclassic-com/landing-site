@@ -161,7 +161,7 @@ export default function CoreGethSecurityAuditPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-16 pb-12 md:px-10 md:pt-20 lg:px-12">
           <div className="relative mx-auto max-w-6xl">
             <div className="mb-4 flex items-center gap-3">
@@ -529,7 +529,7 @@ export default function CoreGethSecurityAuditPage() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   )
 }

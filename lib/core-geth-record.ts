@@ -1,7 +1,7 @@
 /**
  * Core-Geth's security record, mirrored from coregeth.com so this site states the same facts.
  *
- * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit e63338c, the
+ * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit 58f6599, the
  * published state of coregeth.com. Every statement below is that file's own text, copied whole
  * and in its order, so a sentence here reads exactly as it does on coregeth.com. Do not edit
  * the wording here: change it on coregeth.com first, then mirror it again.
@@ -139,9 +139,27 @@ export const DOCS = {
   },
 } as const satisfies Record<string, DocPage>;
 
-export const UPGRADE_ANCHOR = "upgrade";
+export const GUIDE_PAGES = {
+  index: { href: "/guides/", title: "Guides" },
+  install: {
+    href: "/guides/install/",
+    title: "Install Core-Geth",
+    summary:
+      "from a machine with nothing installed to a node that has caught up with the Ethereum Classic network, on Linux, macOS, Windows, in a container or built from source.",
+  },
+  migrate: {
+    href: "/guides/migrate/",
+    title: "Migrate Core-Geth",
+    summary: `moves a node that runs a \`${EXPOSED_LINE}\` release to the \`${RECOMMENDED_LINE}\` line, with its chain data, gives it the new P2P node key the move requires, and ends by deleting the \`${EXPOSED_LINE}\` binary once the node is stable.`,
+  },
+  discovery: {
+    href: "/guides/discovery/",
+    title: `Keep a ${EXPOSED_LINE} node finding peers`,
+    summary: `points a node that cannot leave the \`${EXPOSED_LINE}\` line yet at the peer discovery lists and bootnodes the \`${RECOMMENDED_LINE}\` line ships, until it moves, and starts a node on either line from the node records committed in \`ethereumclassic/discv4-dns-lists\` if the lists and bootnodes go dark.`,
+  },
+} as const;
 
-export const DISCOVERY_FLAG_ANCHOR = "discovery-flag";
+export const UPGRADE_ANCHOR = "upgrade";
 
 export const MOVE_RECOMMENDATION = `Every node still on a \`${EXPOSED_LINE}\` release should move to the \`${RECOMMENDED_LINE}\` line.`;
 
@@ -150,7 +168,7 @@ const MOVE_WHERE = `[Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) has th
 export const UPGRADE_COST =
   "Your chain data carries over. Budget about twenty minutes for the steps; the node is down only between its stop and its start, and each of those takes seconds.";
 
-export const DISCOVERY_FLAG_STEP = `A \`${EXPOSED_LINE}\` node that cannot move yet can [add the \`--discovery.dns\` flag](${SITE_URL}/downloads/#${DISCOVERY_FLAG_ANCHOR}) to read the \`ethereumclassic\` GitHub organization's peer discovery lists, a small step that closes none of the flaws the audits found in the \`${EXPOSED_LINE}\` line.`;
+export const DISCOVERY_FLAG_STEP = `A \`${EXPOSED_LINE}\` node that cannot move yet can [read the peer discovery lists and bootnodes the \`${RECOMMENDED_LINE}\` line ships](${SITE_URL}${GUIDE_PAGES.discovery.href}), a small step that closes none of the flaws the audits found in the \`${EXPOSED_LINE}\` line.`;
 
 export const TRANSITION = {
   lede: "The ETC Cooperative is winding down, and the services it maintained are moving to the `ethereumclassic` GitHub organization: the peer discovery lists, the bootnodes and public JSON-RPC.",
@@ -165,13 +183,13 @@ export const OPERATOR_ACTIONS: readonly {
 }[] = [
   {
     text: `Upgrade to the ${RECOMMENDED_LINE} line`,
-    detail: `${UPGRADE_COST} Downloads has the steps for each platform.`,
-    href: `/downloads/#${UPGRADE_ANCHOR}`,
+    detail: `${UPGRADE_COST} The migration guide walks through the steps for each platform.`,
+    href: GUIDE_PAGES.migrate.href,
   },
   {
     text: "Rotate the P2P node key",
     detail: `Required if your node ran the \`${EXPOSED_LINE}\` line: one of the flaws in that line leaks bits of that key across repeated handshakes, and no fix can take back what already leaked. A key that has only ever run \`${RECOMMENDED_LINE}\` was never exposed, so a fresh install skips this step.`,
-    href: `/downloads/#${UPGRADE_ANCHOR}`,
+    href: `${GUIDE_PAGES.migrate.href}#steps`,
   },
   {
     text: "Track releases at ",

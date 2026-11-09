@@ -10,7 +10,7 @@ import { PLUGIN_POSITION_SHORT } from '@/app/build/data/build'
  */
 export default function OlympiaClientsPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-4xl text-center">
@@ -28,9 +28,9 @@ export default function OlympiaClientsPage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            No released client implements Olympia, which is a proposal. A client&apos;s Olympia readiness
-            is what its maintainers publish. Until then, run the current release: Core-Geth, on its v1.13
-            line, is the recommended client, and Fukuii is an alternative to try.
+            No released client implements Olympia, which is a proposal, and each client&apos;s Olympia readiness is
+            what its maintainers publish. Until a release implements it, run the current release: Core-Geth&apos;s
+            v1.13 line, the recommended client, or Fukuii, an alternative to try.
           </p>
 
           <p className="mt-6">
@@ -61,7 +61,7 @@ export default function OlympiaClientsPage() {
           </div>
 
           <p className="mt-8 max-w-3xl text-sm text-[var(--color-text-muted)]">
-            {PLUGIN_POSITION_SHORT} Plugins are therefore not part of a client&apos;s Olympia readiness. The
+            {PLUGIN_POSITION_SHORT}{' '}Plugins are therefore not part of a client&apos;s Olympia readiness. The
             plugin framework is described with the{' '}
             <Link
               href="/build/clients#plugins"
@@ -73,6 +73,6 @@ export default function OlympiaClientsPage() {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

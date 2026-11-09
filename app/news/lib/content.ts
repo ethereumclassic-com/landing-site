@@ -16,7 +16,8 @@
  * rather than rendering nothing.
  */
 
-import { ENODE_CAPTION, MOVE_PHASES, MOVE_SOURCE, PHASES_CAPTION, VERSION_CHECKS, panelFor } from './moves'
+import { CORE_GETH_MIGRATE_GUIDE_URL } from '@/lib/core-geth'
+import { ENODE_CAPTION, MOVE_PHASES, PHASES_CAPTION, VERSION_CHECKS, panelFor } from './moves'
 import { MOVE_RECORDINGS, recordingSrc } from './recordings'
 
 export type Inline =
@@ -297,7 +298,7 @@ function embedHtml(name: EmbedName): string {
         ].join(''),
       )
       return [
-        `<p>The Linux steps, as <a href="${escapeHtml(MOVE_SOURCE.page)}">coregeth.com/downloads</a> gives them. The same page has them for macOS, Windows, containers and a build from source.</p>`,
+        `<p>The Linux steps, as <a href="${escapeHtml(`${CORE_GETH_MIGRATE_GUIDE_URL}#steps`)}">coregeth.com's migration guide</a> gives them. The same guide has them for macOS, Windows, containers and a build from source.</p>`,
         ...steps,
       ].join('')
     }

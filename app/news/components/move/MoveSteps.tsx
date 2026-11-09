@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { Tabs } from '@/app/components/ui/Tabs'
 import { InlineText } from '../ArticleInline'
-import { MOVE_PANELS, MOVE_SOURCE, type MovePanel, type PanelId, type PhaseKey, stepPhases } from '../../lib/moves'
+import { CORE_GETH_MIGRATE_GUIDE_URL } from '@/lib/core-geth'
+import { MOVE_PANELS, type MovePanel, type PanelId, type PhaseKey, stepPhases } from '../../lib/moves'
 import { MOVE_RECORDINGS } from '../../lib/recordings'
 import CodeBlock from './CodeBlock'
 import { PHASE_STYLES } from './phase-styles'
@@ -63,12 +64,12 @@ function StepList({ panel, withRecordings }: { panel: MovePanel; withRecordings:
       </ol>
       <p className="mt-10 flex flex-wrap gap-x-8 gap-y-2">
         <a
-          href={MOVE_SOURCE.page}
+          href={`${CORE_GETH_MIGRATE_GUIDE_URL}#steps`}
           target="_blank"
           rel="noopener noreferrer"
           className="font-medium text-[var(--color-primary)] hover:underline"
         >
-          The same steps on coregeth.com/downloads →
+          The same steps in coregeth.com&apos;s migration guide →
         </a>
         {panel.guide && (
           <a

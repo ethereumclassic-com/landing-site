@@ -9,7 +9,6 @@ import {
   OLYMPIA_PLACEHOLDER_DATE_LABEL,
   OLYMPIA_PLACEHOLDER_ISO,
   OLYMPIA_STATUS,
-  OLYMPIA_TARGET,
 } from '../data/olympia'
 
 function getCountdownTo(target: Date) {
@@ -91,14 +90,12 @@ function TBDState({ variant, placeholderCd }: { variant: 'hero' | 'banner'; plac
       </div>
 
       <p className="mt-4 text-xs italic text-[var(--color-text-muted)]">
-        The countdown runs to <time dateTime={OLYMPIA_PLACEHOLDER_ISO}>{OLYMPIA_PLACEHOLDER_DATE_LABEL}</time>,
-        a placeholder target rather than an activation date, until the activation block is set.
+        Until the activation block is set, the countdown runs to{' '}
+        <time dateTime={OLYMPIA_PLACEHOLDER_ISO}>{OLYMPIA_PLACEHOLDER_DATE_LABEL}</time>, a placeholder target rather
+        than an activation date.
       </p>
       <p className="mt-4 text-sm font-medium text-[var(--brand-green)]">{OLYMPIA_STATUS}</p>
-      <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-        Olympia is {OLYMPIA_TARGET}. The activation blocks for Mordor and mainnet are decided at the
-        Olympia Core Devs Call and recorded in ECIP-1111.
-      </p>
+      
     </div>
   )
 }

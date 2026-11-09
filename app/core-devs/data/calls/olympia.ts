@@ -1,5 +1,5 @@
 import type { CDCEntry } from '../index'
-import { CORE_GETH_MOVE_GUIDE_PATH, CORE_GETH_RECOMMENDED_LINE, CORE_GETH_UPGRADE_STEPS_URL } from '@/lib/core-geth'
+import { CORE_GETH_MIGRATE_GUIDE_URL, CORE_GETH_MOVE_GUIDE_PATH, CORE_GETH_RECOMMENDED_LINE } from '@/lib/core-geth'
 import { OLYMPIA_ECIPS, ecipLabel, ecipUrl, type OlympiaEcipStage } from '@/lib/olympia-ecips'
 import { PLUGIN_POSITION_SHORT } from '@/app/build/data/build'
 
@@ -25,7 +25,7 @@ const entry: CDCEntry = {
 **When:** TBD · **Duration:** 120 min max
 **Where:** [Twitter/X Space, @ETC_Network](https://x.com/ETC_Network) (recorded)
 
-Olympia is a proposal: its ECIPs are drafts, and its activation blocks are TBD. ECIP-1121 says those blocks are decided at the Olympia Core Devs Call, and ECIP-1111 is the only document that records them.
+Olympia is a proposal: its ECIPs are drafts, and its activation blocks are TBD. ECIP-1121 says those blocks would be decided at the Olympia Core Devs Call, and ECIP-1111 is the only document that would record them.
 
 ---
 
@@ -35,15 +35,15 @@ At the activation block:
 
 ${ecipList('At the activation block')}
 
-Deployed and published before the activation block:
+To be deployed and published before the activation block:
 
 ${ecipList('Before the fork')}
 
-Processes on top of the governance contracts, changing no consensus rule:
+Processes that would run on the governance contracts, changing no consensus rule:
 
 ${ecipList('Process')}
 
-A separate hard fork after Olympia, scheduled on its own:
+A separate hard fork after Olympia, to be scheduled on its own:
 
 ${ecipList('A later hard fork')}
 
@@ -53,10 +53,10 @@ ECIP-1121 classifies every execution-layer EIP of Dencun, Pectra, Fusaka and Gla
 
 ## The Order the ECIPs Set
 
-1. The governance contracts deploy on Ethereum Classic as it runs today, in dependency order, with no address predicted or reserved (ECIP-1113 §"Deployment and Activation").
-2. Their security review and multi-client validation on Mordor complete before the activation block is scheduled, rehearsed while the Treasury holds nothing (ECIP-1113 §"Audit and Testnet Rollout").
-3. The Treasury's address is published, already in its final configuration, before the activation block is scheduled (ECIP-1112 §"Deployment and Publication").
-4. Cross-client equivalence is demonstrated on Mordor before a mainnet block is scheduled (ECIP-1111 §"Test Cases"), and both blocks are recorded in ECIP-1111 §Implementation.
+1. The governance contracts would be deployed on Ethereum Classic before the fork, in dependency order, with no address predicted or reserved (ECIP-1113 §"Deployment and Activation").
+2. Their security review and multi-client validation on Mordor would be complete before the activation block is scheduled, rehearsed while the Treasury holds nothing (ECIP-1113 §"Audit and Testnet Rollout").
+3. The Treasury's address would be published, already in its final configuration, before the activation block is scheduled (ECIP-1112 §"Deployment and Publication").
+4. Cross-client equivalence would be demonstrated on Mordor before a mainnet block is scheduled (ECIP-1111 §"Test Cases"), and both blocks would be recorded in ECIP-1111 §Implementation.
 
 ---
 
@@ -67,7 +67,7 @@ ECIP-1121 classifies every execution-layer EIP of Dencun, Pectra, Fusaka and Gla
 - The previous repository had no active maintainer: security disclosures went unanswered, and core development had no redundancy.
 - Core-Geth is released and maintained in the [ethereumclassic](https://github.com/ethereumclassic) GitHub organization.
 
-The full [Core-Geth security audit](/build/clients/core-geth-security-audit) is published. A node on any v1.12.x release should move to the Core-Geth ${CORE_GETH_RECOMMENDED_LINE} line now, by [the steps on coregeth.com](${CORE_GETH_UPGRADE_STEPS_URL}), with [the migration guide](${CORE_GETH_MOVE_GUIDE_PATH}) for the detail.
+The full [Core-Geth security audit](/build/clients/core-geth-security-audit) is published. A node on any v1.12.x release should move to the Core-Geth ${CORE_GETH_RECOMMENDED_LINE} line now, by [the steps on coregeth.com](${CORE_GETH_MIGRATE_GUIDE_URL}#steps), with [the migration guide](${CORE_GETH_MOVE_GUIDE_PATH}) for the detail.
 
 ---
 
@@ -86,17 +86,17 @@ ETC plugins, a planned framework, would add Ethereum Classic support to clients 
 
 ## Development Sustainability
 
-- **Who funds the work today.** Ethereum Classic's core developers and community contributors do the work. Ethereum Classic DAO LLC maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort, and it does not control or lead Ethereum Classic.
+- **Who funds the work today.** Ethereum Classic's core developers and community contributors do the work. Ethereum Classic DAO maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort, and it does not control or lead Ethereum Classic.
 - **The ETC Cooperative.** A US 501(c)(3) non-profit that funded Ethereum Classic's public goods from 2017. It entered maintenance mode at the end of 2024, and its board has communicated that it will dissolve.
-- **The legal wrapper.** ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper Olympia DAO would use for the off-chain acts an on-chain organization cannot perform, such as signing an audit engagement the DAO has voted to fund. It would be downstream of Olympia DAO in authority, and it holds no role in Olympia until Olympia DAO is operating.
+- **The legal wrapper.** ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper Olympia DAO would use for the off-chain acts an on-chain organization cannot perform, such as signing an audit engagement Olympia DAO has voted to fund. It would be downstream of Olympia DAO in authority, and it holds no role in Olympia until Olympia DAO is operating.
 - **On-chain contributions.** The Treasury would accept any asset at one address, so there would be one contribution address for every asset class (ECIP-1113).
 
 ---
 
 ## Regulatory Context
 
-- **CLARITY Act.** ETC is positioned for classification as a digital commodity under the CLARITY Act. The Senate Banking Committee cleared the bill 15-9 in May 2026, and it is pending in the Senate.
-- **GENIUS Act.** The GENIUS Act creates a pathway for regulated stablecoins on EVM-compatible platforms, and ETC's Proof-of-Work foundation positions it as a platform for them.
+- **CLARITY Act.** ETC is positioned for classification as a digital commodity under the CLARITY Act. The Senate Banking Committee cleared the bill, 15 to 9, in May 2026, and it is pending in the Senate.
+- **GENIUS Act.** The GENIUS Act sets a federal framework for payment stablecoins, and ETC is a Proof-of-Work EVM platform for them.
 - **Institutional access.** The Grayscale Ethereum Classic Trust (ETCG), a trust product, provides regulated securities exposure to ETC.
 
 ---

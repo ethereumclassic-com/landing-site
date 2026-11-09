@@ -119,11 +119,11 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       </div>
       <p className="text-sm text-[var(--color-text-muted)]">
         No released client implements Olympia, which is a proposal. When {client.name}&apos;s maintainers
-        publish a release that does, it is listed here; until then, run the current release.{' '}
+        publish a release that does, it will be listed here; until then, run the current release. See{' '}
         <Link href="/olympia/upgrade" className="font-medium text-[var(--brand-green)] hover:underline">
           Olympia for node operators
         </Link>{' '}
-        has what the upgrade would change for a node.
+        for what the upgrade would change for a node.
       </p>
 
       {/* Prerequisites */}

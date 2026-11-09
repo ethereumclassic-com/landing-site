@@ -122,7 +122,7 @@ export default function BuildToolsPage() {
   const categories: DevTool['category'][] = ['framework', 'library', 'ide', 'testing']
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -144,8 +144,7 @@ export default function BuildToolsPage() {
                 Developer Tools
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Essential tools for building on Ethereum Classic. Frameworks, libraries, IDEs, and security tools
-                to accelerate your development workflow.
+                Frameworks, libraries, IDEs and security tools for building on Ethereum Classic.
               </p>
             </div>
           </div>
@@ -167,8 +166,8 @@ export default function BuildToolsPage() {
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">Quick Start Recommendation</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  <strong className="text-[var(--color-violet)]">New to Solidity?</strong> Start with Remix IDE for browser-based development.{' '}
-                  <strong className="text-[var(--color-info)]">Production projects:</strong> Use Hardhat or Foundry for full development workflow.{' '}
+                  <strong className="text-[var(--color-violet)]">New to Solidity?</strong> Start with Remix IDE in the browser.{' '}
+                  <strong className="text-[var(--color-info)]">Production projects:</strong> use Hardhat or Foundry for the full development workflow.{' '}
                   <strong className="text-cyan-400">Frontend apps:</strong> Viem and ethers.js are the recommended libraries.
                 </p>
               </div>
@@ -197,16 +196,16 @@ export default function BuildToolsPage() {
               <div>
                 <h3 className="mb-2 font-medium text-[var(--color-primary)]">EVM Compatibility</h3>
                 <p className="text-sm text-[var(--color-text-muted)]">
-                  Ethereum Classic runs the EVM through the Shanghai set, so standard Ethereum tools work once
-                  pointed at its RPC endpoint and chain ID. A tool that assumes EIP-1559 needs a legacy
-                  transaction here: with Foundry, pass --legacy.
+                  Ethereum Classic runs the EVM up to Ethereum&apos;s Shanghai upgrade, so standard Ethereum tools work
+                  once pointed at its RPC endpoint and chain ID. Compile for the Shanghai EVM, and send legacy
+                  transactions from any tool that assumes EIP-1559: with Foundry, pass --legacy.
                 </p>
               </div>
               <div>
                 <h3 className="mb-2 font-medium text-[var(--color-primary)]">Network Configuration</h3>
                 <ul className="space-y-1 text-sm text-[var(--color-text-muted)]">
                   <li><strong>Mainnet Chain ID:</strong> 61</li>
-                  <li><strong>Mordor Testnet ID:</strong> 63</li>
+                  <li><strong>Mordor Testnet Chain ID:</strong> 63</li>
                   <li><strong>RPC:</strong> https://etc.blockscout.com/api/eth-rpc</li>
                   <li><strong>Testnet RPC:</strong> https://etc-mordor.blockscout.com/api/eth-rpc</li>
                 </ul>
@@ -227,18 +226,22 @@ export default function BuildToolsPage() {
                 <h4 className="mb-2 font-medium text-[var(--text-primary)]">Hardhat Configuration</h4>
                 <div className="rounded-lg bg-[var(--panel)] p-3 font-mono text-xs overflow-x-auto">
                   <pre className="text-[var(--color-text-muted)]">
-{`// hardhat.config.js
+{`// hardhat.config.js (Hardhat 2)
 module.exports = {
+  solidity: {
+    version: "0.8.24",
+    settings: { evmVersion: "shanghai" }
+  },
   networks: {
     etc: {
       url: "https://etc.blockscout.com/api/eth-rpc",
       chainId: 61,
-      accounts: [PRIVATE_KEY]
+      accounts: [process.env.PRIVATE_KEY]
     },
     mordor: {
       url: "https://etc-mordor.blockscout.com/api/eth-rpc",
       chainId: 63,
-      accounts: [PRIVATE_KEY]
+      accounts: [process.env.PRIVATE_KEY]
     }
   }
 }`}
@@ -254,12 +257,14 @@ module.exports = {
 src = "src"
 out = "out"
 libs = ["lib"]
+evm_version = "shanghai"
 
 [rpc_endpoints]
 etc = "https://etc.blockscout.com/api/eth-rpc"
 mordor = "https://etc-mordor.blockscout.com/api/eth-rpc"
 
-# Deploy: forge script Deploy --rpc-url etc`}
+# Deploy with legacy transactions:
+# forge script script/Deploy.s.sol --rpc-url etc --broadcast --legacy`}
                   </pre>
                 </div>
               </div>
@@ -298,6 +303,6 @@ mordor = "https://etc-mordor.blockscout.com/api/eth-rpc"
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -8,19 +8,19 @@ import OlympiaStatusBadge from './OlympiaStatusBadge'
  */
 const SEQUENCE: { step: string; cites: { ecip: number; cite: string }[] }[] = [
   {
-    step: 'The governance contracts would deploy on Ethereum Classic as it runs today, in dependency order, with no address predicted or reserved: the Timelock behind the Treasury proxy, then CoreNFT, then the Governor, which alone is granted the Timelock\'s roles to propose, execute and cancel.',
+    step: 'The governance contracts would be deployed on Ethereum Classic before the fork, in dependency order and with no address predicted or reserved: first the Timelock behind the Treasury proxy, then CoreNFT, then the Governor, the only contract granted the Timelock\'s roles to propose, execute and cancel.',
     cites: [{ ecip: 1113, cite: 'ECIP-1113 §"Deployment and Activation"' }],
   },
   {
-    step: 'Their security review and multi-client validation on the Mordor testnet complete before the activation block is scheduled, rehearsed while the Treasury holds nothing.',
+    step: 'Their security review and multi-client testing on the Mordor testnet would be finished before the activation block is scheduled, rehearsed while the Treasury still holds nothing.',
     cites: [{ ecip: 1113, cite: 'ECIP-1113 §"Audit and Testnet Rollout"' }],
   },
   {
-    step: 'The Treasury\'s address is published, already in its final configuration, before the activation block is scheduled, so the network commits to an address anyone could inspect first.',
+    step: 'The Treasury\'s address would be published in its final configuration before the activation block is scheduled, so the network commits only to an address anyone could inspect first.',
     cites: [{ ecip: 1112, cite: 'ECIP-1112 §"Deployment and Publication"' }],
   },
   {
-    step: 'The activation blocks for Mordor and for mainnet are set through open coordination, and ECIP-1111 is the only document that records them; both read TBD. Cross-client equivalence must be shown on Mordor before a mainnet block is scheduled.',
+    step: 'The activation blocks for Mordor and mainnet would be set through open coordination and recorded only in ECIP-1111, where both read TBD. Clients must be shown to behave identically on Mordor before a mainnet block is scheduled.',
     cites: [
       { ecip: 1111, cite: 'ECIP-1111 §Implementation' },
       { ecip: 1111, cite: 'ECIP-1111 §"Test Cases"' },
@@ -37,8 +37,7 @@ export default function ActivationOrder() {
     <div>
       <OlympiaStatusBadge />
       <p className="mt-4 max-w-3xl text-[var(--color-text-muted)]">
-        Olympia is a proposal, {OLYMPIA_TARGET}. Its activation blocks are TBD: ECIP-1121 says they are
-        decided at the Olympia Core Devs Call, and ECIP-1111 is the only document that records them.
+        Olympia is a proposal, {OLYMPIA_TARGET}, and its activation blocks are TBD. Under ECIP-1121, they would be decided at the Olympia Core Devs Call.
       </p>
       <h3 className="mt-10 text-lg font-semibold text-[var(--text-primary)]">The order the ECIPs set</h3>
       <ol className="mt-5 space-y-5">
@@ -67,8 +66,7 @@ export default function ActivationOrder() {
         ))}
       </ol>
       <p className="mt-8 max-w-3xl text-sm leading-relaxed text-[var(--color-text-muted)]">
-        ECIP-1116, which would pay block producers from base-fee revenue at the consensus layer, is a
-        separate hard fork after Olympia and is scheduled on its own.
+        ECIP-1116 is not part of this sequence: it would be a separate hard fork after Olympia, scheduled on its own.
       </p>
     </div>
   )

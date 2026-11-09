@@ -42,7 +42,7 @@ function FaucetCard({ faucet }: { faucet: Faucet }) {
 
 export default function BuildFaucetsPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -113,13 +113,11 @@ export default function BuildFaucetsPage() {
             ) : (
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 md:col-span-2">
                 <p className="font-semibold text-[var(--text-primary)]">
-                  No public Mordor faucet is currently listed.
+                  No public Mordor faucet is listed.
                 </p>
                 <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-                  The faucets previously listed here have gone offline. Rather than send you
-                  to a dead link, this stays empty until a working one is confirmed. Mordor
-                  test ETC has no monetary value — ask in the community channels, or run a
-                  Mordor node and mine it locally.
+                  Mordor ETC has no monetary value. To get some, ask in the community channels, or run a Mordor
+                  node and mine it locally.
                 </p>
                 <Link
                   href="/community"
@@ -192,7 +190,7 @@ export default function BuildFaucetsPage() {
           <div
             className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
           >
-            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">How to Use Testnet Faucets</h2>
+            <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">How to Get Mordor ETC</h2>
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-lg bg-[var(--bg)] p-4">
                 <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-sm font-bold text-[var(--color-primary)]">
@@ -216,9 +214,10 @@ export default function BuildFaucetsPage() {
                 <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-sm font-bold text-[var(--color-primary)]">
                   3
                 </div>
-                <h3 className="mb-2 font-medium text-[var(--text-primary)]">Request METC</h3>
+                <h3 className="mb-2 font-medium text-[var(--text-primary)]">Ask for METC or Mine It</h3>
                 <p className="text-sm text-[var(--color-text-muted)]">
-                  Visit a faucet, paste your address, and receive testnet ETC in a few seconds.
+                  Post your address in a community channel, or mine on your own Mordor node with your address
+                  as the coinbase.
                 </p>
               </div>
             </div>
@@ -243,13 +242,13 @@ export default function BuildFaucetsPage() {
                     <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
-                    <span>Faucets have rate limits. If one is empty, try another or wait a few hours.</span>
+                    <span>Mordor ETC works only on Mordor: it has no market and cannot be moved to mainnet.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
-                    <span>Make sure your wallet is connected to Mordor testnet (Chain ID 63) before requesting.</span>
+                    <span>Make sure your wallet is connected to the Mordor testnet (Chain ID 63) before you check your balance.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -261,7 +260,7 @@ export default function BuildFaucetsPage() {
                     <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
-                    <span>Check the block explorer to verify your transaction if tokens don&apos;t appear immediately.</span>
+                    <span>If tokens do not appear right away, look up your address on the Mordor block explorer.</span>
                   </li>
                 </ul>
               </div>
@@ -300,6 +299,6 @@ export default function BuildFaucetsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

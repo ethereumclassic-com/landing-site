@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Networks',
-  description: 'Ethereum Classic networks — mainnet (chain 61), Mordor testnet (chain 63), and RPC endpoints.',
+  description: 'Ethereum Classic\'s networks: mainnet (chain 61), the Mordor testnet (chain 63) and their RPC endpoints.',
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

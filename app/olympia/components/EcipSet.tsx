@@ -2,8 +2,8 @@ import { OLYMPIA_ECIPS, ecipUrl, type OlympiaEcipStage } from '@/lib/olympia-eci
 
 const STAGES: { stage: OlympiaEcipStage; lede: string }[] = [
   { stage: 'At the activation block', lede: 'Consensus changes at the Olympia activation block.' },
-  { stage: 'Before the fork', lede: 'Deployed and published on Ethereum Classic before the activation block.' },
-  { stage: 'Process', lede: 'Processes on top of the governance contracts, changing no consensus rule.' },
+  { stage: 'Before the fork', lede: 'Would be deployed and published on Ethereum Classic before the activation block.' },
+  { stage: 'Process', lede: 'Procedures that run on the governance contracts and change no consensus rule.' },
   { stage: 'A later hard fork', lede: 'A separate hard fork after Olympia, scheduled on its own.' },
 ]
 
@@ -41,9 +41,7 @@ export default function EcipSet() {
         )
       })}
       <p className="max-w-3xl text-xs leading-relaxed text-[var(--color-text-muted)]">
-        Each ECIP is a draft, and the ECIPs repository is the authority on what it specifies. The
-        published pages at ecips.ethereumclassic.org can show an earlier version until the next
-        publication round.
+        Each ECIP is a draft. The ECIPs repository holds its current text, and ecips.ethereumclassic.org can show an earlier version.
       </p>
     </div>
   )

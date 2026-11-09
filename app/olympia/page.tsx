@@ -16,15 +16,15 @@ const ECIPS_REPO_URL = 'https://github.com/ethereumclassic/ECIPs'
 const changes = [
   {
     label: 'EVM alignment (ECIP-1121)',
-    body: 'Advances the execution layer through Dencun, Pectra and Fusaka, and carries that work into Glamsterdam.',
+    body: 'Would advance the execution layer through Dencun, Pectra and Fusaka, and carry that work into Glamsterdam.',
   },
   {
     label: 'A base fee market (ECIP-1111)',
-    body: 'EIP-1559 and EIP-3198, with the base fee credited to a permanent address where Ethereum destroys it. Block rewards and priority-fee tips are unaffected.',
+    body: 'EIP-1559 and EIP-3198, with the base fee credited to a permanent address rather than destroyed, as it is on Ethereum. Block rewards and priority-fee tips would be unchanged.',
   },
   {
     label: 'A treasury and its governance (ECIP-1112, ECIP-1113)',
-    body: 'The Sovereignty Vault address, and Olympia DAO, the only route by which the balance there could be spent.',
+    body: 'The Sovereignty Vault, the address where the base fee would accumulate, and Olympia DAO, the only way to spend it.',
   },
 ]
 
@@ -33,7 +33,7 @@ const sites = [
   { href: olympiaLinks.governanceApp, name: 'app.olympiadao.org', body: 'The governance app, where proposals would be submitted and voted on once Olympia DAO is operating.' },
   { href: olympiaLinks.treasurySite, name: 'olympiatreasury.org', body: 'The treasury site.' },
   { href: olympiaLinks.olympiaGitHub, name: 'github.com/olympiadao', body: 'The source of the governance contracts.' },
-  { href: olympiaLinks.ethereumClassicDAO, name: 'ethereumclassicdao.org', body: 'Ethereum Classic DAO LLC, which maintains and funds Ethereum Classic’s public goods today as their funder of last resort.' },
+  { href: olympiaLinks.ethereumClassicDAO, name: 'ethereumclassicdao.org', body: 'Ethereum Classic DAO, which maintains and funds Ethereum Classic’s public goods today as their funder of last resort.' },
 ]
 
 const pages = [
@@ -48,7 +48,7 @@ const pages = [
 
 export default function OlympiaHubPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-20 lg:px-12">
         <div className="relative mx-auto max-w-4xl">
@@ -66,7 +66,7 @@ export default function OlympiaHubPage() {
             >
               the ECIPs repository
             </a>{' '}
-            is the authority on what it specifies.
+            holds their current text.
           </p>
           <ul className="mt-6 max-w-2xl space-y-3 text-sm text-[var(--color-text-muted)]">
             {changes.map((c) => (
@@ -110,7 +110,7 @@ export default function OlympiaHubPage() {
           <FadeIn>
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">The ECIPs</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              The Olympia proposal, under each ECIP&rsquo;s own title, by when each would take effect.
+              Each Olympia ECIP under its own title, grouped by when it would take effect.
             </p>
             <div className="mt-8">
               <EcipSet />
@@ -147,19 +147,13 @@ export default function OlympiaHubPage() {
             </a>
             <h2 className="mt-3 text-2xl font-bold text-[var(--text-primary)]">EVM Alignment</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Spiral, in 2024, brought Ethereum Classic&rsquo;s execution layer up to Ethereum&rsquo;s Shanghai
-              set, apart from what Proof-of-Stake requires and the London fee market Mystique omitted. ECIP-1111
-              would bring that fee market, and ECIP-1121 classifies every execution-layer EIP of the four Ethereum
-              upgrades since Shanghai, giving each one disposition.
+              Spiral, in 2024, brought Ethereum Classic&rsquo;s execution layer up to Ethereum&rsquo;s Shanghai upgrade, except for the Proof-of-Stake changes and the London fee market, which Mystique left out. ECIP-1111 would add that fee market, and ECIP-1121 classifies every execution-layer EIP of the four Ethereum upgrades since Shanghai, giving each a disposition.
             </p>
             <div className="mt-8">
               <ForkTimeline />
             </div>
             <div className="mt-8 max-w-3xl rounded-xl border border-[var(--border-brand)] bg-[var(--brand-green)]/5 p-5 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-              Tooling that assumes EIP-1559 needs a path of its own for Ethereum Classic today. ECIP-1111
-              records that Foundry sends a type-2 transaction to any chain its legacy registry does not name,
-              Ethereum Classic among them, so a deployment here passes <code className="font-mono">--legacy</code>.
-              Activating EIP-1559 would remove that path rather than document it.
+              Tools that assume EIP-1559 need an Ethereum Classic path of their own today. ECIP-1111 records that Foundry sends a type-2 (EIP-1559) transaction to any chain missing from its list of legacy chains, Ethereum Classic included, so a deployment here passes <code className="font-mono">--legacy</code>. Activating EIP-1559 would make that workaround unnecessary.
             </div>
             <p className="mt-6 text-sm">
               <Link href="/olympia/upgrade#eips" className="font-medium text-[var(--brand-green)] hover:underline">
@@ -178,11 +172,7 @@ export default function OlympiaHubPage() {
           <FadeIn>
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">The Treasury and Olympia DAO</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              The base fee would accumulate at one permanent address, the Sovereignty Vault, where a stock
-              OpenZeppelin proxy would hold it as the Olympia Treasury (ECIP-1112, ECIP-1113). Olympia DAO would
-              be the only route by which that balance could be spent: a funding proposal voted by its members,
-              queued in the Timelock and executed after a public delay. There would be no admin key, multisig or
-              committee.
+              The base fee would accumulate at one permanent address, the Sovereignty Vault, where an unmodified OpenZeppelin proxy would hold it as the Olympia Treasury (ECIP-1112, ECIP-1113). Only Olympia DAO could spend that balance, through a funding proposal its members vote on, queued in the Timelock and executed after a public delay. There would be no admin key, multisig or committee.
             </p>
             <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium">
               <Link href="/olympia/treasury" className="text-[var(--brand-green)] hover:underline">
@@ -201,7 +191,7 @@ export default function OlympiaHubPage() {
 
       <SectionDivider />
 
-      {/* The DAO's line */}
+      {/* Ethereum Classic DAO and Olympia, as ethereumclassicdao.org states it */}
       <section className="px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
@@ -275,6 +265,6 @@ export default function OlympiaHubPage() {
           }),
         }}
       />
-    </main>
+    </div>
   )
 }

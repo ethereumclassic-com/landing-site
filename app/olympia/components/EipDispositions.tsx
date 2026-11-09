@@ -45,7 +45,7 @@ const SECTIONS: { disposition: EipDisposition; heading: string; lede: string }[]
   {
     disposition: 'in-force',
     heading: 'Already in force before Olympia',
-    lede: 'Earlier EIPs that adopted ones depend on, listed so the dependency graph closes.',
+    lede: 'Earlier EIPs that the adopted ones depend on, listed so the dependency graph is complete.',
   },
 ]
 

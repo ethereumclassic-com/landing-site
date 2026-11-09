@@ -59,7 +59,7 @@ export default function GettingStartedPage() {
   const testnet = networks.find((n) => n.type === 'testnet')!
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Breadcrumb */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)] px-6 py-4">
         <div className="mx-auto max-w-7xl">
@@ -122,8 +122,8 @@ export default function GettingStartedPage() {
             <div className="grid gap-4 md:grid-cols-2">
               {[
                 {
-                  title: 'Node.js 18+',
-                  description: 'JavaScript runtime for development tools',
+                  title: 'Node.js 22+',
+                  description: 'A current LTS release of the JavaScript runtime',
                   link: 'https://nodejs.org/',
                 },
                 {
@@ -201,7 +201,7 @@ export default function GettingStartedPage() {
                       <div className="relative mb-4 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg)]">
                         <div className="flex items-center justify-between border-b border-[var(--border)] bg-[var(--panel)] px-4 py-2">
                           <span className="text-xs text-[var(--color-text-muted)]">
-                            {step.code.includes('//') ? 'JavaScript' : 'Terminal'}
+                            {step.code.includes('pragma solidity') ? 'Solidity' : step.code.includes('//') ? 'JavaScript' : 'Terminal'}
                           </span>
                           <button
                             onClick={() => navigator.clipboard.writeText(step.code!)}
@@ -265,7 +265,7 @@ export default function GettingStartedPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                    <code className="text-xs text-[var(--text-primary)]">etc.blockscout.com/api/eth-rpc</code>
+                    <code className="text-xs text-[var(--text-primary)]">https://etc.blockscout.com/api/eth-rpc</code>
                   </div>
                 </div>
               </div>
@@ -288,7 +288,7 @@ export default function GettingStartedPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">RPC URL</span>
-                    <code className="text-xs text-[var(--text-primary)]">etc-mordor.blockscout.com/api/eth-rpc</code>
+                    <code className="text-xs text-[var(--text-primary)]">https://etc-mordor.blockscout.com/api/eth-rpc</code>
                   </div>
                 </div>
                 <Link
@@ -307,6 +307,10 @@ export default function GettingStartedPage() {
                 <button
                   onClick={() => {
                     const config = `module.exports = {
+  solidity: {
+    version: "0.8.24",
+    settings: { evmVersion: "shanghai" }
+  },
   networks: {
     etc: {
       url: "https://etc.blockscout.com/api/eth-rpc",
@@ -331,6 +335,10 @@ export default function GettingStartedPage() {
               <pre className="overflow-x-auto p-4 text-sm">
                 <code className="text-[var(--color-text-muted)]">
 {`module.exports = {
+  solidity: {
+    version: `}<span className="text-[var(--color-primary)]">&quot;0.8.24&quot;</span>{`,
+    settings: { evmVersion: `}<span className="text-[var(--color-primary)]">&quot;shanghai&quot;</span>{` }
+  },
   networks: {
     etc: {
       url: `}<span className="text-[var(--color-primary)]">&quot;https://etc.blockscout.com/api/eth-rpc&quot;</span>{`,
@@ -465,6 +473,6 @@ export default function GettingStartedPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -85,7 +85,7 @@ export default function DocsPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Breadcrumb */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)] px-6 py-4">
         <div className="mx-auto max-w-7xl">
@@ -108,10 +108,9 @@ export default function DocsPage() {
               Developer Documentation
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Everything you need to build on Ethereum Classic — protocol specifications, JSON-RPC API
-              references, developer tutorials, and tooling documentation. The standard Ethereum toolchain
-              (Hardhat, Foundry, wagmi, viem, ethers.js) works on ETC, with a legacy-transaction setting where
-              a tool assumes EIP-1559.
+              Protocol specifications, JSON-RPC references, tutorials and tooling documentation for building on
+              Ethereum Classic. The standard Ethereum toolchain (Hardhat, Foundry, wagmi, viem, ethers.js) works
+              on ETC; a tool that assumes EIP-1559 needs its legacy-transaction setting.
             </p>
           </div>
         </div>
@@ -377,6 +376,6 @@ export default function DocsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

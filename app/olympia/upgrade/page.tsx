@@ -5,7 +5,7 @@ import {
   CORE_GETH_LATEST_RELEASE_URL,
   CORE_GETH_MOVE_GUIDE_PATH,
   CORE_GETH_RECOMMENDED_LINE,
-  CORE_GETH_UPGRADE_STEPS_URL,
+  CORE_GETH_MIGRATE_GUIDE_URL,
 } from '@/lib/core-geth'
 import { FUKUII_DOCS_URL, FUKUII_LATEST_RELEASE_URL, FUKUII_STATUS } from '@/lib/fukuii'
 import { ecipUrl } from '@/lib/olympia-ecips'
@@ -23,11 +23,11 @@ import { operatorFaqs } from '../data/olympia'
 const atTheBlock = [
   {
     ecip: 1111,
-    body: 'EIP-1559 and EIP-3198 would activate. Each transaction would pay a base fee, never below a permanent minimum, credited to the Sovereignty Vault address inside that transaction\'s own state transition. The miner keeps the priority fee, and block rewards are unchanged. Legacy and access-list transactions stay valid.',
+    body: 'EIP-1559 and EIP-3198 would activate. Each transaction would pay a base fee, never below a permanent minimum, credited to the Sovereignty Vault address inside that transaction\'s own state transition. The miner would keep the priority fee, and block rewards would not change. Legacy and access-list transactions would stay valid.',
   },
   {
     ecip: 1121,
-    body: 'The core EIPs ECIP-1121 adopts from Dencun, Pectra, Fusaka and Glamsterdam would take effect, and a client that omits one forks at that block. Its networking and interface EIPs are not tied to the block: peers negotiate protocol versions, and a client may add the JSON-RPC method before or after it.',
+    body: 'The core EIPs ECIP-1121 adopts from Dencun, Pectra, Fusaka and Glamsterdam would take effect, and a client that omitted one would fork at that block. Its networking and interface EIPs are not tied to the block: peers negotiate protocol versions, and a client may add the JSON-RPC method before or after it.',
   },
 ]
 
@@ -38,7 +38,7 @@ const beforeTheBlock = [
   },
   {
     ecip: 1113,
-    body: 'Olympia DAO\'s contracts would deploy beforehand too, then be reviewed and rehearsed on Mordor while the Treasury holds nothing. None of them changes what a node validates.',
+    body: 'Olympia DAO\'s contracts would be deployed beforehand too, then reviewed and rehearsed on Mordor while the Treasury still holds nothing. None of them would change what a node validates.',
   },
 ]
 
@@ -48,8 +48,8 @@ const clientRows = [
     role: 'Recommended',
     run: `Run its ${CORE_GETH_RECOMMENDED_LINE} line. A node on a v1.12 release moves to the ${CORE_GETH_RECOMMENDED_LINE} line first and rotates its P2P node key, which is required because CVE-2026-26315 leaks bits of that key.`,
     links: [
-      { label: 'Move a v1.12 node', href: CORE_GETH_UPGRADE_STEPS_URL },
-      { label: 'The migration guide', href: CORE_GETH_MOVE_GUIDE_PATH },
+      { label: 'Move a v1.12 node', href: CORE_GETH_MIGRATE_GUIDE_URL },
+      { label: 'Walkthrough with recordings', href: CORE_GETH_MOVE_GUIDE_PATH },
       { label: 'Latest release', href: CORE_GETH_LATEST_RELEASE_URL },
       { label: 'Documentation', href: CORE_GETH_DOCS_URL },
     ],
@@ -87,7 +87,7 @@ function EcipItems({ items }: { items: { ecip: number; body: string }[] }) {
 
 export default function UpgradeGuidePage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-20 lg:px-12">
         <div className="relative mx-auto max-w-4xl">
@@ -135,12 +135,12 @@ export default function UpgradeGuidePage() {
           <FadeIn>
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">What to Run Now</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              No released client implements Olympia. A client&rsquo;s Olympia readiness is what its maintainers
-              publish, and{' '}
+              Until a client release implements Olympia, run a current release. Each client&rsquo;s Olympia readiness is
+              what its maintainers publish, and{' '}
               <Link href="/olympia/clients" className="font-medium text-[var(--brand-green)] hover:underline">
                 client readiness
               </Link>{' '}
-              lists each one. Until then, run a current release.
+              lists each one.
             </p>
             <div className="mt-6 space-y-4">
               {clientRows.map((c) => (
@@ -233,6 +233,6 @@ export default function UpgradeGuidePage() {
           }),
         }}
       />
-    </main>
+    </div>
   )
 }

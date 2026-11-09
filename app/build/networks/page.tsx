@@ -95,7 +95,7 @@ export default function BuildNetworksPage() {
   const testnetEndpoints = getTestnetEndpoints()
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -117,8 +117,7 @@ export default function BuildNetworksPage() {
                 Network Information
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Ethereum Classic network configuration details. Chain IDs, RPC endpoints, and explorer links
-                for mainnet and testnet development.
+                Chain IDs, RPC endpoints and explorer links for Ethereum Classic mainnet and the Mordor testnet.
               </p>
             </div>
           </div>
@@ -145,7 +144,7 @@ export default function BuildNetworksPage() {
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
               <p className="text-xs text-[var(--color-text-muted)]">Algorithm</p>
-              <p className="text-xl font-bold text-[var(--text-primary)]">ETChash</p>
+              <p className="text-xl font-bold text-[var(--text-primary)]">Etchash</p>
             </div>
           </div>
         </div>
@@ -354,6 +353,6 @@ export default function BuildNetworksPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

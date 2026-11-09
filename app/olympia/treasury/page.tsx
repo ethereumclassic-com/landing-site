@@ -33,26 +33,26 @@ const PERMANENCE = [
 
 const CANNOT = [
   {
-    title: 'No key can move it',
+    title: 'No key could move it',
     body: 'There would be no admin key, multisig or committee. The Governor alone would hold the Timelock’s roles to propose, execute and cancel, and the Treasury itself would own the contract that upgrades it.',
   },
   {
-    title: 'No one off-chain can approve or veto',
-    body: 'No off-chain entity could unilaterally approve or veto a governance action. Ethereum Classic DAO LLC, the legal wrapper ECIP-1114 contemplates, would hold no on-chain role.',
+    title: 'No one off-chain could approve or veto',
+    body: 'No off-chain entity could unilaterally approve or veto a governance action. Ethereum Classic DAO, the legal wrapper ECIP-1114 contemplates, would hold no on-chain role.',
   },
   {
-    title: 'Its balance is the only ledger',
+    title: 'Its balance would be the only ledger',
     body: 'No implementation at the address may keep its own count of what it received, now or after any upgrade, so value credited by consensus can always be spent.',
   },
   {
-    title: 'It cannot mint',
-    body: 'It would hold and move what it receives and create nothing, so ECIP-1017 monetary policy is untouched.',
+    title: 'It could not mint',
+    body: 'It would hold and move what it receives and create nothing, so ECIP-1017\'s monetary policy would be untouched.',
   },
 ]
 
 export default function TreasuryPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <section className="px-6 pt-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
@@ -64,10 +64,9 @@ export default function TreasuryPage() {
               <OlympiaStatusBadge />
             </div>
             <p className="mt-4 max-w-2xl text-[var(--color-text-muted)]">
-              In the Olympia proposal, the Treasury would be the account at the Sovereignty Vault: the one
-              permanent address at which Ethereum Classic&apos;s base-fee revenue would accumulate. The address
-              would be permanent and the logic behind it repairable, and Olympia DAO would be the only route by
-              which its balance could be spent.
+              In the Olympia proposal, the Treasury would be the account at the Sovereignty Vault, the one permanent
+              address where Ethereum Classic&apos;s base-fee revenue would accumulate. The logic behind the address
+              could be repaired, and only Olympia DAO could spend its balance.
             </p>
           </FadeIn>
         </div>
@@ -98,23 +97,21 @@ export default function TreasuryPage() {
             <h2 className="text-2xl font-semibold text-[var(--text-primary)]">What would fund it</h2>
             <div className="mt-6 space-y-5 text-[var(--color-text-muted)]">
               <p>
-                The base fee is the protocol-directed source, and the only one. ECIP-1111 would credit each
-                transaction&apos;s base fee to the Sovereignty Vault address where Ethereum destroys it: inside
-                that transaction&apos;s own state transition, as a direct addition to the balance that runs no
-                contract code and cannot fail.
+                The base fee would be its only protocol-directed source. ECIP-1111 would credit each transaction&apos;s
+                base fee to the Sovereignty Vault address rather than destroying it, as Ethereum does. The credit
+                happens inside that transaction&apos;s own state transition, as a direct addition to the balance
+                that runs no contract code and cannot fail.
               </p>
               <p>
                 Anyone could add to it by choice. The address would accept any asset, so there would be one
                 contribution address for every asset class, and anything it holds could be moved by an ordinary
-                proposal. The one exception is an ERC-777 token, whose transfer to it reverts, so the sender
-                keeps it. A miner could also name the address as a block&apos;s coinbase, donating that
-                block&apos;s reward. Donations Ethereum Classic DAO LLC receives off-chain are its own, not the
+                proposal. The one exception is an ERC-777 token, whose transfer to it would revert, so the sender keeps it. A miner could also name the address as a block&apos;s coinbase, donating that
+                block&apos;s reward. Donations Ethereum Classic DAO receives off-chain are its own, not the
                 Treasury&apos;s, and are accounted for separately.
               </p>
               <p className="rounded-xl border border-[var(--border-default)] bg-[var(--panel)] p-4 text-sm">
                 <span className="font-semibold text-[var(--text-primary)]">Miner compensation would not change.</span>{' '}
-                Block rewards and priority-fee tips go to miners as before. Ethereum Classic has no base fee
-                today, so nothing is taken from what miners earn now.
+                Block rewards and priority-fee tips would still go to miners. Ethereum Classic has no base fee today, so nothing is taken from what miners earn now.
               </p>
             </div>
           </FadeIn>
@@ -129,9 +126,9 @@ export default function TreasuryPage() {
             <h2 className="text-2xl font-semibold text-[var(--text-primary)]">A permanent address, with repairable logic</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
               Every client would carry the address in its chain configuration, so redirecting the
-              network&apos;s revenue would take a coordinated hard fork. The account there would be a stock
-              OpenZeppelin transparent proxy, so its logic could take a security fix or a dependency migration
-              by an ordinary proposal while the address stands. Wyoming&apos;s DAO statute requires that every
+              network&apos;s revenue would take a coordinated hard fork. The account there would be an
+              unmodified OpenZeppelin transparent proxy, so an ordinary proposal could apply a security fix or a
+              dependency migration to its logic while the address stays the same. Wyoming&apos;s DAO statute requires that every
               smart contract a DAO uses can be upgraded, and this design meets it.
             </p>
             <div className="mt-6 overflow-x-auto rounded-xl border border-[var(--border-default)]">
@@ -156,8 +153,8 @@ export default function TreasuryPage() {
             </div>
             <p className="mt-4 max-w-3xl text-sm text-[var(--color-text-muted)]">
               One case cannot be repaired by a proposal: capture of the upgrade authority itself. The remedy
-              would be a hard fork pointing the address at a newly deployed account, which bounds the loss to
-              the balance held at the moment of capture and the revenue credited before the new block.
+              would be a hard fork that replaces the address with a newly deployed account, which limits the loss to
+              the balance held at the moment of capture plus the revenue credited before the fork block.
             </p>
           </FadeIn>
         </div>
@@ -170,8 +167,8 @@ export default function TreasuryPage() {
           <FadeIn>
             <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Who could spend it</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Only Olympia DAO, by a proposal that passes a vote of its members, is queued in the Timelock and
-              executes after its delay. Every step would be public and recorded in the contracts&apos; events.
+              Only Olympia DAO could spend it, by a proposal that passes a vote of its members, is queued in the
+              Timelock and executes after its delay. Every step would be public and recorded in the contracts&apos; events.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {CANNOT.map((c) => (
@@ -193,15 +190,15 @@ export default function TreasuryPage() {
             <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Deployed before the fork</h2>
             <div className="mt-6 space-y-5 text-[var(--color-text-muted)]">
               <p>
-                Every contract the revenue would pass through would be deployed on Ethereum Classic as it runs
-                today, in dependency order, with no address predicted or reserved. The Treasury&apos;s address
-                would be published, with the verified source of every contract at and beneath it, where upgrade
-                authority rests and its full role table, before the activation block is scheduled.
+                Every contract the revenue would pass through would be deployed on Ethereum Classic before the fork, in
+                dependency order, with no address predicted or reserved. Before the activation block is scheduled,
+                the Treasury&apos;s address would be published with the verified source of every contract at and
+                beneath it, where upgrade authority rests, and its full role table.
               </p>
               <p>
-                The fork would then commit to an address anyone could inspect first. Before that block the
-                balance is zero, and that window is where a change of Governor is rehearsed end to end, while
-                nothing is at stake.
+                The fork would then commit to an address anyone could inspect first. Before that block the balance would be
+                zero, and that window is when a change of Governor would be rehearsed end to end, with nothing at
+                stake.
               </p>
               <p className="text-sm">
                 <Link href="/olympia#activation" className="text-[var(--brand-green)] underline underline-offset-4">
@@ -255,6 +252,6 @@ export default function TreasuryPage() {
           </FadeIn>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

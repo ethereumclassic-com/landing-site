@@ -28,9 +28,9 @@ const threads: Array<{
     heading: 'From Olympic to Olympia',
     color: 'var(--brand-green)',
     body: [
-      'Olympic was the ninth and final Ethereum testnet — Ethereum 0.9, the last proving ground before Frontier launched on July 30, 2015. Application developers, data providers, and exchanges were incentivized to push it to its absolute limits: send maximum load, mine every block, find every vulnerability. It was not a soft launch. It was a deliberate stress test, designed to break things before they could break in production. The Ethereum chain that went live after Olympic is the direct ancestor of Ethereum Classic.',
-      "Olympia is not the same name. That's the point. Olympic was the trial — the proving ground, the gauntlet. Olympia is the destination — the sacred site the trial pointed toward all along. One is the test. The other is what you build once you've passed it.",
-      'The chain forged in the Olympic proving ground — preserved through the DAO fork, maintained through a decade without predictable resources — now arrives at Olympia. Not as a survivor. As the thing that persisted.',
+      'Olympic was the ninth and final Ethereum testnet: Ethereum 0.9, the last proving ground before Frontier launched on July 30, 2015. Application developers, data providers and exchanges were rewarded for pushing it to its limits: sending maximum load, mining every block, finding every vulnerability. It was a deliberate stress test, built to break things before they could break in production. The Ethereum chain that went live after Olympic is the direct ancestor of Ethereum Classic.',
+      "Olympia is a different name, and that is the point. Olympic was the trial: the proving ground, the gauntlet. Olympia is the destination: the sacred site the trial pointed toward all along. One is the test; the other is what you build once you have passed it.",
+      'The chain forged in the Olympic proving ground, preserved through the DAO fork and maintained through a decade without predictable resources, now arrives at Olympia as the thing that persisted.',
     ],
   },
   {
@@ -39,11 +39,11 @@ const threads: Array<{
     color: 'var(--color-warning)',
     body: [
       <>
-        {'In ancient Greece, Olympia was a sanctuary in the western Peloponnese — sacred ground dedicated to Zeus, held in common across rival city-states. Athens, Sparta, Corinth, Thebes — all sent competitors. None owned it. The site imposed the '}
+        {'In ancient Greece, Olympia was a sanctuary in the western Peloponnese: sacred ground dedicated to Zeus, held in common by rival city-states. Athens, Sparta, Corinth and Thebes all sent competitors, and none owned it. For each Panhellenic gathering, the site proclaimed the '}
         <em>ekecheiria</em>
-        {' — the sacred Olympic truce — for the duration of the Panhellenic gathering, hostilities ceased across all of Greece. Olympia was neutral not because everyone agreed to make it neutral, but because it was sovereign to none. What endured at Olympia endured because no one owned it.'}
+        {', the sacred Olympic truce, which protected everyone traveling to and from the games. Olympia was neutral because it was sovereign to none, and what endured there endured because no one owned it.'}
       </>,
-      "This is the parallel that matters for ETC. After a decade of being defined by what it endured — the DAO fork, hash wars, deprecation, the constant pressure to justify its existence — Olympia proposes the shift from a chain that survives to a chain with permanent infrastructure. A treasury funded by the network's own use. Development it would fund directly — no foundation required. Governance on-chain, in public. A legal wrapper downstream of that governance in authority, never above it. Permanent infrastructure on permanent ground.",
+      "This is the parallel that matters for ETC. After a decade defined by what it endured (the DAO fork, hash wars, deprecation, the constant pressure to justify its existence), Olympia proposes the shift from a chain that survives to a chain with permanent infrastructure: a treasury funded by the network's own use, development funded directly with no foundation required, governance on-chain and in public, and a legal wrapper downstream of that governance in authority, never above it.",
       'Ten years of conviction, put forward as shared infrastructure.',
     ],
   },
@@ -52,9 +52,9 @@ const threads: Array<{
     heading: 'The upgrade naming tradition',
     color: 'var(--color-purple)',
     body: [
-      "Ethereum Classic's network upgrades have always drawn from Marvel and comics: Phoenix, Magneto, Mystique, Spiral. The tradition is deliberate — these names carry meaning beyond the technical specs.",
-      "Olympia closes the Marvel arc with the Eternals — Marvel's oldest cosmic beings, immortal and unkillable since the beginning of time. Beings who predate civilizations, who cannot be destroyed, who persist across every conflict and catastrophe.",
-      "The alignment with ETC's own story is not accidental. The original chain that refused to die now enters its eternal phase — not because it won a fight, but because it was never going to end. Persistence as a property of the thing itself, not the outcome of a struggle.",
+      "Ethereum Classic's recent network upgrades take their names from Marvel comics: Phoenix, Thanos, Magneto, Mystique and Spiral. The tradition is deliberate; these names carry meaning beyond the technical specs.",
+      "Olympia would close the Marvel arc with the Eternals, Marvel's race of immortals who predate human civilization and persist across every conflict and catastrophe.",
+      "The match with ETC's own story is deliberate. The original chain that refused to die would enter its eternal phase, its persistence a property of the chain itself rather than the outcome of a struggle.",
     ],
   },
   {
@@ -62,8 +62,8 @@ const threads: Array<{
     heading: 'What Olympia receives',
     color: 'var(--color-info)',
     body: [
-      'Olympia is a place of inheritance. The flame, the rites, the records — what was built by predecessors held in trust and passed forward across generations. The sanctuary endured because each generation accepted custody of what the last had built.',
-      'ETC inherits more than code. It inherits the original social contract of Ethereum — immutability, neutrality, code is law — held intact through a decade when those principles were traded away elsewhere. Olympia proposes the point where that inheritance stops being a memory and becomes a working system: a treasury to fund the principles, clients to implement them, governance to defend them.',
+      'Olympia is a place of inheritance: the flame, the rites and the records, built by predecessors, held in trust and passed forward across generations. The sanctuary endured because each generation accepted custody of what the last had built.',
+      'ETC inherits more than code. It inherits Ethereum\'s original social contract (immutability, neutrality, code is law), held intact through a decade when those principles were traded away elsewhere. Olympia proposes the point where that inheritance becomes a working system: a treasury to fund the principles, clients to implement them and governance to defend them.',
       <>
         {'In '}
         <a
@@ -74,7 +74,7 @@ const threads: Array<{
         >
           August 2016
         </a>
-        {" — one month after the DAO fork — the earliest ETC core contributors held the chain's first public meetup in London. Sustainable funding and on-chain governance were named there as the two open administrative problems the network would need to solve. They remained the unfinished work of the next decade. Olympia proposes to conclude it: protocol-funded development and on-chain governance. The August 2016 question, answered in protocol."}
+        {", one month after the DAO fork, the earliest ETC core contributors held the chain's first public meetup in London. They named sustainable funding and on-chain governance as the two open administrative problems the network would need to solve, and those remained the unfinished work of the next decade. Olympia proposes to finish it with protocol-funded development and on-chain governance: the August 2016 question, answered in protocol."}
       </>,
     ],
   },
@@ -84,20 +84,20 @@ const threads: Array<{
     color: 'var(--color-purple)',
     body: [
       'Olympia is the latest move in a decade-long pattern.',
-      "In December 2016, when no major chain had committed to a deflationary monetary policy, ECIP-1017 set ETC's 5M20 schedule — a Bitcoin-style hard cap of 210,700,000 ETC, committed publicly thirteen months before activation. The position held. ETC has run on that policy for nearly a decade, and the broader market has since validated capped issuance as the property that makes a digital asset a credible store of value.",
-      "When Ethereum signaled its move to proof-of-stake, ETC's stewards committed harder to proof-of-work — and prepared infrastructure to absorb what Ethereum would leave behind. Thanos (ECIP-1099) shifted to ETChash in 2020, halving DAG growth so 3GB and 4GB GPUs would remain viable. The 51% attack risk had been signaled years earlier by ECIP-1043 (2018). When the Merge came in 2022, ETC was the only major proof-of-work chain with full EVM execution, ready to receive the displaced hashrate. The position was built before it was needed.",
-      "The pattern repeats at every layer. EVM upgrades have always been absorbed on ETC's own schedule — observed on Ethereum, evaluated empirically, then incorporated through the ECIP process. EVM alignment in Olympia is not a rush to catch up. It is the next disciplined increment.",
-      'Grayscale launched the ETCG trust in May 2018 — years before Bitcoin ETFs existed as a product category — and routed management fees into ETC Cooperative, which backed every hard fork from Atlantis through Spiral. The institutional access infrastructure was in place before the regulatory frameworks that would later make it valuable. GENIUS, MiCA, the FSA Green List, MAS, SFC — the frameworks finalized in the past two years land on properties ETC already has, and the CLARITY Act, still pending, positions it as a digital commodity candidate. The positioning was complete before the regulators arrived.',
-      "Olympia continues the pattern. Its treasury would take the base fee — the value Ethereum destroys — as permanent on-chain funding. The Wyoming DAO LLC that ECIP-1114 names as the wrapper it contemplates is registered because the statute now exists to receive it. The ETC Cooperative is winding down, and the PoW commitment hardens as nation-states begin treating proof-of-work as strategic energy infrastructure.",
-      'This is what good stewardship looks like. Read the conditions ahead. Position the network before the conditions arrive. Let the rest of the market discover, years later, that the work was already done.',
-      'The Eternals do not react. They position. Olympia is the latest move.',
+      "In December 2016, when no other major smart contract chain had capped its supply, ECIP-1017 set ETC's 5M20 schedule, a Bitcoin-style hard cap of 210,700,000 ETC, published thirteen months before it activated. The position held: ETC has run on that policy for nearly a decade, and the wider market has since come to treat capped issuance as a mark of a credible store of value.",
+      "When Ethereum signaled its move to proof-of-stake, ETC's stewards committed harder to proof-of-work and prepared to take on what Ethereum would leave behind. Thanos (ECIP-1099) moved ETC to Etchash in 2020, halving DAG growth so 3GB and 4GB GPUs would stay viable; ECIP-1043 had signaled the related 51% attack risk in 2018. When the Merge came in 2022, ETC was the only major proof-of-work chain with native EVM execution, ready to receive the displaced hashrate. The position was built before it was needed.",
+      "The pattern repeats at every layer. ETC has taken EVM upgrades on its own schedule: observed on Ethereum, evaluated empirically, then incorporated through the ECIP process. EVM alignment in Olympia would be the next increment in that discipline.",
+      'Grayscale formed the ETCG trust in 2017, and its shares have been publicly quoted since May 2018, years before Bitcoin ETFs existed as a product category. It sponsored ETC Cooperative with part of its management fees, and the Cooperative backed every hard fork from Atlantis through Spiral. That institutional access was in place before the regulatory frameworks that would make it valuable. GENIUS, MiCA, the JVCEA Green List and the MAS and SFC regimes, all in place by 2025, rest on properties ETC already had, and the pending CLARITY Act positions it as a digital commodity candidate.',
+      "Olympia would continue the pattern. Its treasury would take the base fee, the value Ethereum destroys, as permanent on-chain funding. The Wyoming DAO LLC that ECIP-1114 names as the wrapper it contemplates exists because Wyoming's statute now provides for one. The ETC Cooperative is winding down, and the commitment to proof-of-work hardens as some governments begin to treat it as strategic energy infrastructure.",
+      'Good stewardship reads the conditions ahead and positions the network before they arrive, so the rest of the market discovers, years later, that the work was already done.',
+      'The Eternals do not react; they position.',
     ],
   },
 ]
 
 export default function OlympiaNamePage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-4xl text-center">
@@ -124,14 +124,14 @@ export default function OlympiaNamePage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg font-semibold text-[var(--text-primary)]">
-            The Olympia network upgrade takes its name from where Ethereum Classic has been
-            pointing for a decade — and from one of the most enduring sites in the ancient world.
+            The proposed Olympia upgrade takes its name from where Ethereum Classic has been heading for a decade,
+              and from one of the most enduring sites of the ancient world.
           </p>
 
           <p className="mx-auto mt-4 max-w-3xl text-lg text-[var(--color-text-secondary)]">
             {'The ninth and final Ethereum testnet was named '}
             <strong>Olympic</strong>
-            {" — Ethereum 0.9, a gauntlet deliberately designed to break. Olympia is not the same name. It is where Olympic pointed all along: the Panhellenic sanctuary sovereign to none, the home of Marvel’s Eternals, the ground that endures because no one owns it. The chain forged in that proving ground — preserved through the DAO fork, maintained through a decade without predictable resources — now arrives at Olympia. Not as a survivor. As the thing that was never going to end."}
+            {", Ethereum 0.9, a gauntlet designed to break. Olympia is a different name, and the place Olympic pointed to all along: the Panhellenic sanctuary sovereign to none, the home of Marvel’s Eternals, the ground that endures because no one owns it."}
           </p>
         </div>
       </section>
@@ -193,8 +193,8 @@ export default function OlympiaNamePage() {
           </div>
 
           <p className="mt-8 text-sm text-[var(--color-text-muted)]">
-            ETC&apos;s network upgrades have always carried names that mean something beyond the
-            technical. Olympia closes the Marvel arc with the Eternals — and opens the second decade.
+            ETC&apos;s network upgrades have long carried names that mean something beyond the technical. Olympia
+              would close the Marvel arc with the Eternals and open the second decade.
           </p>
         </div>
       </section>
@@ -242,13 +242,13 @@ export default function OlympiaNamePage() {
             </Link>
           </div>
           <p className="mt-8 text-center text-sm text-[var(--color-text-muted)]">
-            The decade of history behind the name —{' '}
+            The decade of history behind the name:{' '}
             <Link href="/olympia/history" className="text-[var(--brand-green)] transition hover:text-[var(--brand-green)]/80">
               A Decade of Conviction →
             </Link>
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

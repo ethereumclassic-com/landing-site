@@ -39,7 +39,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (Core)',
     stage: 'At the activation block',
     summary:
-      'Activates EIP-1559 and EIP-3198. Where Ethereum destroys the base fee, Ethereum Classic would credit it, transaction by transaction, to a permanent address held in chain configuration. Block rewards and priority-fee tips are unaffected.',
+      'Would activate EIP-1559 and EIP-3198, crediting each transaction\'s base fee to a permanent address held in chain configuration rather than destroying it, as Ethereum does. Block rewards and priority-fee tips would be unchanged.',
   },
   {
     number: 1112,
@@ -48,7 +48,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (Core)',
     stage: 'Before the fork',
     summary:
-      'The permanent address at which base-fee revenue would accumulate: a stock OpenZeppelin transparent proxy, deployed and inspectable before the fork commits to it, whose logic can be repaired while the address stands.',
+      'The permanent address where base-fee revenue would accumulate: an unmodified OpenZeppelin transparent proxy, deployed and open to inspection before the fork commits to it. Its logic could be repaired while the address stays the same.',
   },
   {
     number: 1113,
@@ -57,7 +57,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (ECBP)',
     stage: 'Before the fork',
     summary:
-      'Olympia DAO: a Governor built from stock OpenZeppelin modules, the Timelock behind the Treasury proxy, and CoreNFT, a soulbound token carrying one non-delegable vote per member. It would be the only route by which the balance at the Sovereignty Vault address could be spent.',
+      'Olympia DAO: a Governor built from unmodified OpenZeppelin modules, the Timelock behind the Treasury proxy, and CoreNFT, a soulbound token that gives each member one vote they cannot delegate. It would be the only way to spend the balance at the Sovereignty Vault address.',
   },
   {
     number: 1114,
@@ -66,7 +66,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (ECBP)',
     stage: 'Process',
     summary:
-      'A funding proposal is an ordinary Governor proposal that spends from the Treasury, with five categories and a description convention, and no contract of its own.',
+      'Defines a funding proposal: an ordinary Governor proposal that spends from the Treasury, filed under one of five categories and written to a description convention, with no contract of its own.',
   },
   {
     number: 1115,
@@ -75,7 +75,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (ECBP)',
     stage: 'Process',
     summary:
-      'Funding proposals that would pay block producers from the base-fee revenue their blocks generated, spread across a window. No base fee is redirected, and nothing is owed until a proposal passes.',
+      'Funding proposals that would pay block producers from the base-fee revenue their blocks generated, spread over a window of blocks. No base fee is redirected, and nothing is owed until a proposal passes.',
   },
   {
     number: 1116,
@@ -84,7 +84,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (Core)',
     stage: 'A later hard fork',
     summary:
-      'Would pay block producers a smoothed share of base-fee revenue at the consensus layer. It is a separate hard fork after Olympia, scheduled only once ECIP-1115 has demonstrated a curve.',
+      'Would pay block producers a smoothed share of base-fee revenue at the consensus layer. It is a separate hard fork after Olympia, scheduled only after a smoothing curve has been demonstrated through ECIP-1115.',
   },
   {
     number: 1117,
@@ -93,7 +93,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (ECBP)',
     stage: 'Process',
     summary:
-      'Bodies scoped to growing what is built on Ethereum Classic and open to anyone, each funded one season at a time by a funding proposal. Client development, network security and critical infrastructure stay with Olympia DAO.',
+      'Bodies open to anyone that would grow what is built on Ethereum Classic, each funded one season at a time by a funding proposal. Client development, network security and critical infrastructure stay with Olympia DAO.',
   },
   {
     number: 1118,
@@ -102,7 +102,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (ECBP)',
     stage: 'Process',
     summary:
-      'A funding commitment paid in tranches, each its own funding proposal and decided on the work behind it. Nothing is held between tranches.',
+      'A funding commitment paid in tranches, each tranche its own funding proposal, decided on the work delivered for it. Nothing is held in reserve between tranches.',
   },
   {
     number: 1119,
@@ -111,7 +111,7 @@ export const OLYMPIA_ECIPS: readonly OlympiaEcip[] = [
     type: 'Standards Track (ECBP)',
     stage: 'Process',
     summary:
-      'The interface a member votes through screens a proposal\'s recipients against a sanctions list and shows the result, with no way to vote in favor of a designated address. No contract, oracle or role is involved.',
+      'The interface members vote through would screen a proposal\'s recipients against a sanctions list and show the result, with no way to vote for a designated address. No contract, oracle or role is involved.',
   },
   {
     number: 1121,

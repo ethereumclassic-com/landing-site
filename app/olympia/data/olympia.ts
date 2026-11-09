@@ -166,7 +166,7 @@ export const governanceSteps: GovernanceStep[] = [
   {
     title: 'Propose',
     description:
-      'A proposal names the calls it would make and carries a description no contract reads. It is submitted to the Governor through its standard propose function.',
+      'A proposal lists the calls it would make, with a description for voters that no contract reads. It is submitted through the Governor\'s standard propose function.',
   },
   {
     title: 'Vote',
@@ -210,32 +210,32 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'When would Olympia activate?',
     answer:
-      'It is targeted for mainnet activation in 2027. The activation blocks for Mordor and mainnet are decided at the Olympia Core Devs Call and recorded in ECIP-1111, and both read TBD. Before an activation block is scheduled, the governance contracts are deployed, reviewed and rehearsed on Mordor, and the Treasury\'s address is published.',
+      'It is targeted for mainnet activation in 2027. The activation blocks for Mordor and mainnet would be decided at the Olympia Core Devs Call and recorded in ECIP-1111, where both read TBD. Before an activation block is scheduled, the governance contracts would be deployed, reviewed and rehearsed on Mordor, and the Treasury\'s address published.',
   },
   {
     question: 'What would Olympia change?',
     answer:
-      'At the activation block, ECIP-1111 would activate EIP-1559 and EIP-3198, crediting each transaction\'s base fee to a permanent address where Ethereum destroys it, and ECIP-1121 would align the EVM with Ethereum\'s upgrades through Dencun, Pectra and Fusaka, carrying that work into Glamsterdam. Before the fork, the Treasury at that address and Olympia DAO, the only route by which its balance could be spent, would be deployed and published (ECIP-1112 and ECIP-1113).',
+      'At the activation block, ECIP-1111 would activate EIP-1559 and EIP-3198, crediting each transaction\'s base fee to a permanent address rather than destroying it, as Ethereum does, and ECIP-1121 would align the EVM with Ethereum\'s upgrades through Dencun, Pectra and Fusaka, carrying that work into Glamsterdam. Before the fork, the Treasury at that address and Olympia DAO, the only way to spend its balance, would be deployed and published (ECIP-1112 and ECIP-1113).',
   },
   {
     question: 'How would the base fee reach the Treasury?',
     answer:
-      'ECIP-1111 activates EIP-1559 and credits each transaction\'s base fee to the Sovereignty Vault address, inside that transaction\'s own state transition, where Ethereum destroys it. The credit runs no contract code. Ethereum Classic has no base fee today, so nothing is taken from what miners earn now.',
+      'ECIP-1111 would activate EIP-1559 and credit each transaction\'s base fee to the Sovereignty Vault address within that transaction\'s own state transition, at the point where Ethereum destroys the fee. The credit runs no contract code. Ethereum Classic has no base fee today, so nothing is taken from what miners earn now.',
   },
   {
     question: 'Would miner rewards change?',
     answer:
-      'No. ECIP-1111 leaves block rewards and priority-fee tips unaffected, and the base fee it introduces goes to the Treasury rather than to miners. Paying miners from base-fee revenue is the subject of ECIP-1115, through ordinary funding proposals, and of ECIP-1116, a separate hard fork after Olympia.',
+      'No. ECIP-1111 leaves block rewards and priority-fee tips unchanged, and the base fee it introduces would go to the Treasury rather than to miners. Paying miners from base-fee revenue is the subject of ECIP-1115, through ordinary funding proposals, and of ECIP-1116, a separate hard fork after Olympia.',
   },
   {
     question: 'Who could spend from the Treasury?',
     answer:
-      'Only Olympia DAO, by a funding proposal that passes a vote of CoreNFT members, is queued in the Timelock and executes after its delay. The Governor is the Timelock\'s sole executor, and there is no admin key, multisig or committee. The Treasury\'s address is permanent, and the logic behind it can be repaired by a proposal.',
+      'Only Olympia DAO, by a funding proposal that passes a vote of CoreNFT members, waits in the Timelock and executes after its delay. The Governor would be the Timelock\'s sole executor, with no admin key, multisig or committee. The Treasury\'s address would be permanent, and the logic behind it could be repaired by a proposal.',
   },
   {
     question: 'Who would vote?',
     answer:
-      'Core Contributors holding CoreNFT, a soulbound token that carries one vote per member and cannot be transferred or delegated (ECIP-1113). The first members are the people who verifiably contributed to the Olympia ECIPs or their reference client implementations by a published cutoff date. After that, a contributor applies, and the DAO votes on each admission.',
+      'Core Contributors holding CoreNFT, a soulbound token that carries one vote per member and cannot be transferred or delegated (ECIP-1113). The first members would be the people who verifiably contributed to the Olympia ECIPs or their reference client implementations by a published cutoff date. After that, contributors would apply, and Olympia DAO would vote on each admission.',
   },
   {
     question: 'Would Olympia DAO decide protocol upgrades?',
@@ -245,17 +245,17 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'What are Ecosystem Growth DAOs?',
     answer:
-      'Bodies ECIP-1117 specifies for growing what is built on Ethereum Classic, open to anyone. Olympia DAO would decide, one season at a time, whether to seed one and with how much; once seeded, the body\'s own published model chooses among the destinations the seeding proposal named, and a conditional market is one model it may use. Client development, network security and critical infrastructure stay with Olympia DAO.',
+      'Bodies that ECIP-1117 specifies for growing what is built on Ethereum Classic, open to anyone. Each season, Olympia DAO would decide whether to seed one and with how much. A seeded body would then use its own published model, a conditional market among them, to choose among the destinations the seeding proposal named. Client development, network security and critical infrastructure stay with Olympia DAO.',
   },
   {
-    question: 'What would Ethereum Classic DAO LLC do?',
+    question: 'What would Ethereum Classic DAO do?',
     answer:
-      'ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper it contemplates for Olympia DAO, for the off-chain acts an on-chain organization cannot perform, without acquiring authority over it. Once Olympia DAO is operating, the LLC would carry out the off-chain obligations a passed proposal has fixed, such as signing the engagement for a security audit the DAO voted to fund. It is downstream of Olympia DAO in authority, holds no on-chain role and no position in the ECIP process, and holds no role in anything ECIP-1114 specifies until Olympia DAO is operating.',
+      'ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper it contemplates for Olympia DAO, for the off-chain acts an on-chain organization cannot perform, without acquiring authority over it. Once Olympia DAO is operating, Ethereum Classic DAO would carry out the off-chain obligations a passed proposal has fixed, such as signing the engagement for a security audit Olympia DAO voted to fund. It is downstream of Olympia DAO in authority, holds no on-chain role and no position in the ECIP process, and holds no role in anything ECIP-1114 specifies until Olympia DAO is operating.',
   },
   {
     question: 'Who funds Ethereum Classic\'s development today?',
     answer:
-      'Ethereum Classic\'s core developers and community contributors do the work. Ethereum Classic DAO LLC maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort, and it does not control or lead Ethereum Classic. The ETC Cooperative funded much of it from 2017 and is winding down. Olympia proposes a source the network would raise from its own use.',
+      'Ethereum Classic\'s core developers and community contributors do the work. Ethereum Classic DAO maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort, and it does not control or lead Ethereum Classic. The ETC Cooperative funded much of it from 2017 and is winding down. Olympia proposes a source the network would raise from its own use.',
   },
   {
     question: 'Does Olympia adopt all of Glamsterdam?',
@@ -269,22 +269,22 @@ export const operatorFaqs: OlympiaFAQ[] = [
   {
     question: 'Do I need to do anything now?',
     answer:
-      'Run a current release. Core-Geth, the recommended client, runs on its v1.13 line, and a node still on a v1.12 release should move to v1.13 now, following coregeth.com/downloads. Fukuii, which its maintainers mark alpha, is an alternative to try. Olympia asks nothing more of a node until a client publishes a release that implements it.',
+      'Run a current release. For Core-Geth, the recommended client, that is the v1.13 line: a node still on a v1.12 release should move to v1.13 now, following coregeth.com/downloads. Fukuii, which its maintainers mark alpha, is an alternative to try. Olympia asks nothing more of a node until a client publishes a release that implements it.',
   },
   {
     question: 'Which client releases implement Olympia?',
     answer:
-      'None yet: Olympia is a proposal, and no released client implements it. A client\'s Olympia readiness is what its maintainers publish, and the client readiness page lists each one.',
+      'None. Olympia is a proposal, and no released client implements it. Each client\'s Olympia readiness is what its maintainers publish, and the client readiness page lists them.',
   },
   {
     question: 'What happens to a node that does not upgrade?',
     answer:
-      'Once the activation blocks are set and client releases implement them, a node that has not moved to such a release by the activation block stops following the chain at that block. Operators move by the steps their client\'s maintainers publish.',
+      'Once the activation blocks are set and client releases implement them, a node that has not moved to such a release by the activation block would stop following the chain at that block. Operators move by the steps their client\'s maintainers publish.',
   },
   {
     question: 'Would Olympia change the transactions my node accepts?',
     answer:
-      'It would add to them. ECIP-1111 adds the EIP-1559 transaction type and the BASEFEE opcode, and legacy and access-list transactions stay valid. Every transaction would pay a base fee, with at least 1 gwei per unit of gas as its floor, and the miner keeps the priority fee.',
+      'It would add to them. ECIP-1111 would add the EIP-1559 transaction type and the BASEFEE opcode, while legacy and access-list transactions would stay valid. Every transaction would pay a base fee, with a floor of 1 gwei per unit of gas, and the miner would keep the priority fee.',
   },
 ]
 
