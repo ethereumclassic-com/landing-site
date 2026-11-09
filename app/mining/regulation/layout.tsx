@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'crypto mining policy',
     'ETC mining USA',
     'ETC mining EU',
-    'ETChash regulation',
+    'Etchash regulation',
     'mining digital commodity',
     'CFTC mining',
     'made in America crypto mining',

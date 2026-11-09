@@ -57,7 +57,7 @@ export default function SecurityPage() {
   const securityArticles = getArticlesByCategory('security')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         {/* Background gradient */}
@@ -246,6 +246,6 @@ export default function SecurityPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

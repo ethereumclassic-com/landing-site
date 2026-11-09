@@ -47,7 +47,7 @@ export default function PaymentsPage() {
   const paymentApps = getAppsByCategory('Payments')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -87,7 +87,7 @@ export default function PaymentsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            The payment layer connecting Ethereum Classic to everyday commerce — buy, sell, spend, and accept payments using ETC and Classic USD. Classic USD, issued by Brale and aligned with MiCA and the GENIUS Act, brings stablecoin payments to a Proof-of-Work network.
+            The payment layer that connects Ethereum Classic to everyday commerce: buy, sell, spend and accept payments in ETC and Classic USD. Classic USD, issued by Brale and aligned with MiCA and the GENIUS Act, brings stablecoin payments to a Proof-of-Work network.
           </p>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function PaymentsPage() {
           <div
             className="mb-8 text-center"
           >
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">The ClassicUSD Flow</h2>
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">The Classic USD Flow</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
               How the ETC payment ecosystem works together
             </p>
@@ -197,7 +197,7 @@ export default function PaymentsPage() {
             Ready to Get Started?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Start buying ETC or ClassicUSD today. Use Brale to fund your wallet, then swap or spend as you wish.
+            Start buying ETC or Classic USD today. Use Brale to fund your wallet, then swap or spend as you wish.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
@@ -212,7 +212,7 @@ export default function PaymentsPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-6 py-3 font-medium text-[var(--text-primary)] transition-all hover:border-[var(--color-success-border)] hover:bg-[var(--color-success-bg)]"
             >
-              Get ClassicUSD
+              Get Classic USD
               <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
@@ -220,6 +220,6 @@ export default function PaymentsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

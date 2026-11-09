@@ -10,9 +10,9 @@ const regions = [
     effective: 'Jul 2025 · Senate floor 2026',
     keyRules: [
       'Stablecoin reserves 1:1 liquid assets (GENIUS Act, signed Jul 18, 2025)',
-      'SEC/CFTC jurisdictional perimeter clarified for digital commodities (CLARITY Act — Senate Banking passed May 2026; floor vote pending)',
+      'CLARITY Act would draw the SEC/CFTC line for digital commodities (passed Senate Banking in May 2026; floor vote pending)',
       'OCC approved national trust bank charters for digital asset custody',
-      'Mined in America Act: voluntary federal certification for domestic PoW mining; NIST support for US ASIC manufacturing',
+      'Mined in America Act (proposed): voluntary federal certification for US Proof-of-Work mining, and NIST support for US ASIC manufacturing',
       'FDIC framework for bank-issued payment stablecoins under development',
     ],
   },
@@ -25,8 +25,8 @@ const regions = [
       '14 regulated CASP activities requiring EU authorization',
       'E-Money Tokens (EMTs): 1:1 fiat backing, par-value redemption',
       'Asset-Referenced Tokens (ARTs): reserve asset requirements',
-      'ETC qualifies as a decentralized asset, exempt from ART/EMT issuer obligations',
-      '€5M minimum fine or 3–12.5% of annual turnover for violations',
+      'ETC has no issuer, so the rules for asset-referenced and e-money tokens do not apply to it',
+      'Fines for violations can reach €5M, or 3% to 12.5% of annual turnover',
     ],
   },
   {
@@ -48,7 +48,7 @@ const regions = [
     framework: 'Japan PSA · South Korea FSC/FSS · Hong Kong SFC · Singapore MAS · Taiwan FSC',
     effective: '2024–2026',
     keyRules: [
-      'Japan: only banks, fund transfer providers, and trust companies may issue stablecoins (PSA amendment 2023); FSA Green List includes ETC',
+      'Japan: only banks, fund transfer providers and trust companies may issue stablecoins (PSA amendment, 2023); the JVCEA Green List includes ETC',
       'South Korea: Virtual Asset User Protection Act in force Jul 2024; FSC/FSS VASP registration enforced',
       'Hong Kong: Stablecoins Ordinance effective Aug 1, 2025; SFC VASP licensing regime fully operational',
       'Singapore: MAS Payment Services Act; VASP licensing deadline Jun 30, 2025; stablecoin framework 2026',
@@ -76,7 +76,7 @@ const regions = [
     keyRules: [
       '30% flat tax on all crypto gains + 1% TDS on transactions above ₹10,000 (Finance Act 2022)',
       'SEBI regulates crypto asset services; RBI maintains oversight of fiat on/off ramps',
-      'India hosted G20 presidency in 2023 and led development of the FSB/IMF global crypto policy framework',
+      'India held the G20 presidency in 2023, when the FSB and IMF delivered the G20 crypto policy framework',
       'No blanket ban. Crypto is legal to hold and trade under compliance obligations.',
       '1.4 billion population with one of the world\'s largest and most active retail crypto markets',
     ],
@@ -90,7 +90,7 @@ const regions = [
       'CIRO (formerly IIROC/MFDA) oversees crypto trading platform registration and compliance',
       'CSA (Canadian Securities Administrators): provincial securities oversight for crypto asset trading platforms',
       'FINTRAC: all crypto exchanges must register as Money Services Businesses (MSBs)',
-      'Canada approved the world\'s first Bitcoin and Ethereum ETFs in 2021, setting global precedent',
+      'Canada approved the world\'s first Bitcoin and Ethereum ETFs in 2021',
       'Coinbase, Kraken, and major exchanges operate under full Canadian regulatory registration',
     ],
   },
@@ -128,7 +128,7 @@ const regions = [
       'South Africa: 300+ CASP licenses issued; Travel Rule enforcement active; FSCA oversight',
       'Nigeria: Investments and Securities Act 2025 classifies digital assets as securities; SEC oversight',
       'Kenya: VASP Act signed Oct 2025; dual CBK/CMA regulatory structure',
-      'Mauritius: FSC sandbox framework active; among Africa\'s most advanced crypto regulatory environments',
+      'Mauritius: FSC sandbox framework active',
     ],
   },
   {
@@ -158,11 +158,11 @@ const regions = [
   {
     region: 'Turkey',
     flag: '🇹🇷',
-    framework: 'Capital Markets Law 2024 · CMB/SPK · FATF Grey List Exit',
+    framework: 'Capital Markets Law 2024 · CMB/SPK · FATF Gray List Exit',
     effective: '2024–present',
     keyRules: [
       'Capital Markets Law amendments 2024: crypto exchanges require CMB/SPK (Capital Markets Board) authorization',
-      'AML/CFT regulations aligned to FATF standards. Turkey exited the FATF Grey List in June 2024.',
+      'AML/CFT regulations aligned to FATF standards. Turkey exited the FATF gray list in June 2024.',
       'ETC/TRY fiat pair active on Turkish exchanges with significant local retail trading volume',
       'Istanbul-based exchanges serve as a bridge between EU and Middle East crypto markets',
     ],
@@ -198,15 +198,7 @@ export function GlobalFrameworksSection() {
               The Regulatory Wave
             </h2>
             <p className="mt-3 text-base text-[var(--text-muted)]">
-              Virtually every major jurisdiction has finalized or is actively
-              implementing crypto regulation. For exchanges, this means
-              compliant listing requirements. For custodians, it means
-              jurisdictional clarity on what assets they can hold. For
-              investment product issuers, it means commodity versus security
-              resolution. ETC&apos;s regulatory profile travels well: a digital
-              commodity candidate in commodity-first frameworks, a decentralized
-              asset in MiCA, and a stablecoin platform under payment-focused
-              legislation. The same asset, with the same properties, under each.
+              Most major jurisdictions have passed crypto rules or are putting them in place. For exchanges, that means listing requirements; for custodians, clarity on which assets they may hold; for investment product issuers, a ruling on commodity or security. ETC&apos;s profile carries across them: a digital commodity candidate where commodity frameworks apply, an asset with no issuer under MiCA, and home to a stablecoin aligned with payment stablecoin laws.
             </p>
           </FadeIn>
 
@@ -247,10 +239,7 @@ export function GlobalFrameworksSection() {
 
           <FadeIn>
             <p className="mt-10 border-l-2 border-[var(--brand-green)] pl-4 text-sm text-[var(--text-subtle)]">
-              ETC&apos;s regulatory surface spans two distinct trajectories: the digital
-              commodity classification path that Proof-of-Work networks established,
-              and the programmable finance frameworks being built around smart contract
-              platforms. It qualifies under both.
+              Rules and dates change as frameworks are finalized. Check with the regulator in your jurisdiction before relying on any entry here.
             </p>
           </FadeIn>
         </div>

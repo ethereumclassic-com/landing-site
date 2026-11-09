@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Mining Software',
   description:
-    'Download mining software for Ethereum Classic. ETCHash-compatible miners.',
+    'Download mining software for Ethereum Classic. Etchash-compatible miners.',
 }
 
 export default function SoftwareLayout({ children }: { children: React.ReactNode }) {

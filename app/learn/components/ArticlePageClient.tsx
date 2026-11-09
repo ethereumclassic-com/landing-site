@@ -44,7 +44,7 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
     .slice(0, 3)
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <motion.div
@@ -194,6 +194,6 @@ export default function ArticlePageClient({ article, content }: ArticlePageClien
           </div>
         </section>
       )}
-    </main>
+    </div>
   )
 }

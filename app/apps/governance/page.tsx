@@ -47,7 +47,7 @@ export default function GovernancePage() {
   const governanceApps = getAppsByCategory('Governance')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -87,7 +87,7 @@ export default function GovernancePage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Participate in decentralized governance on Ethereum Classic. Vote on proposals, manage treasuries, and shape the future of the ecosystem.
+            Governance applications on Ethereum Classic, including Olympia DAO, the proposed governance of the Olympia Treasury.
           </p>
         </div>
       </section>
@@ -174,6 +174,6 @@ export default function GovernancePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

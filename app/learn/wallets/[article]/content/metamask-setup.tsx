@@ -16,7 +16,7 @@ export default function MetaMaskSetup() {
         <li>Click the MetaMask icon to begin setup</li>
       </ol>
       <p>
-        <strong>Important:</strong> Only download MetaMask from the official website or your browser&apos;s official extension store. Never install from third-party sources.
+        <strong>Important:</strong>{' '}Only download MetaMask from the official website or your browser&apos;s official extension store. Never install from third-party sources.
       </p>
 
       <h2>Creating a New Wallet</h2>
@@ -105,7 +105,7 @@ export default function MetaMaskSetup() {
         <li>Your ETC balance will appear</li>
       </ol>
       <p>
-        <strong>Note:</strong> Make sure you&apos;re on the correct network before sending transactions. ETC and ETH use the same address format but are separate networks.
+        <strong>Note:</strong>{' '}Make sure you&apos;re on the correct network before sending transactions. ETC and ETH use the same address format but are separate networks.
       </p>
 
       <h2>Receiving ETC</h2>
@@ -172,7 +172,7 @@ export default function MetaMaskSetup() {
       <h2>Security Tips</h2>
       <ul>
         <li>Lock your wallet when not in use</li>
-        <li>Set a auto-lock timer in settings</li>
+        <li>Set an auto-lock timer in settings</li>
         <li>Only connect to trusted dApps</li>
         <li>Review all transaction requests before signing</li>
         <li>Revoke unused dApp connections periodically</li>

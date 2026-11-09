@@ -47,7 +47,7 @@ export default function DeFiPage() {
   const defiApps = getAppsByCategory('DeFi')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -87,7 +87,7 @@ export default function DeFiPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Decentralized exchanges, stablecoins, lending protocols, and yield opportunities on Ethereum Classic. The ETC DeFi stack includes Classic USD, a stablecoin issued by Brale and aligned with MiCA, alongside AMM exchanges, CLMM DEXes, and a token launchpad, all running on immutable infrastructure.
+            Decentralized exchanges, a stablecoin and liquidity pools on Ethereum Classic. The ETC DeFi stack includes Classic USD, a stablecoin issued by Brale and aligned with MiCA, alongside AMM exchanges, CLMM DEXes and a token launchpad.
           </p>
         </div>
       </section>
@@ -159,6 +159,6 @@ export default function DeFiPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

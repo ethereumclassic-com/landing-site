@@ -53,7 +53,7 @@ export default function FeaturedAppsPage() {
   const toolsApps = featuredApps.filter(app => app.category === 'Tools')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -94,7 +94,7 @@ export default function FeaturedAppsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Hand-picked applications representing the best of the Ethereum Classic ecosystem — quality-vetted DeFi protocols, infrastructure tools, and governance systems. Each featured app has been reviewed for security, activity, and usefulness to ETC participants.
+            Hand-picked applications from across the Ethereum Classic ecosystem: DeFi protocols, infrastructure tools and governance systems, each reviewed for security, activity and usefulness before it is featured.
           </p>
         </div>
       </section>
@@ -265,7 +265,7 @@ export default function FeaturedAppsPage() {
             Want to Be Featured?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-            Submit your quality ETC application for review. Featured apps are selected based on community impact, code quality, and active development.
+            Submit your ETC application for review. Featured apps are selected based on community impact, code quality, and active development.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
@@ -286,6 +286,6 @@ export default function FeaturedAppsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

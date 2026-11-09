@@ -9,7 +9,7 @@ export default function WalletPage() {
   const categories = ['Hardware', 'Browser', 'Mobile', 'Web'] as const
 
   return (
-    <main>
+    <div>
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -27,7 +27,7 @@ export default function WalletPage() {
           <h1
             className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
           >
-            Wallets & Interface for
+            Wallets for
             <br />
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
               Ethereum Classic
@@ -149,7 +149,7 @@ export default function WalletPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   )
 }
 

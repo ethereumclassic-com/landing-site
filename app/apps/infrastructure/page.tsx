@@ -47,7 +47,7 @@ export default function InfrastructurePage() {
   const infraApps = getAppsByCategory('Infrastructure')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -87,7 +87,7 @@ export default function InfrastructurePage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            The core infrastructure that powers Ethereum Classic — execution clients, RPC providers, block explorers, and essential network services. This layer supports developers, miners, and node operators who need reliable access to the ETC network.
+            The software and services that run Ethereum Classic: execution clients, RPC providers, block explorers and other network services. This layer supports developers, miners, and node operators who need reliable access to the ETC network.
           </p>
         </div>
       </section>
@@ -159,6 +159,6 @@ export default function InfrastructurePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

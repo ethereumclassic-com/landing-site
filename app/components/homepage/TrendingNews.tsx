@@ -58,7 +58,7 @@ export default function TrendingNews() {
           </p>
           <h2 className="mt-2 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Protocol Updates</h2>
           <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-            Coverage of the Ethereum Classic protocol spans core client development, critical network infrastructure, and the security model that has protected the chain through a decade of uninterrupted operation. As adoption expands across institutional, regulatory, and developer communities worldwide, this section tracks the technical milestones and governance decisions that shape the network&apos;s trajectory.
+            The latest news on Ethereum Classic&apos;s client releases, network security and protocol upgrades.
           </p>
         </FadeIn>
 

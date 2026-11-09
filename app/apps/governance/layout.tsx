@@ -4,7 +4,7 @@ import { OG_BASE } from '@/lib/seo'
 export const metadata: Metadata = {
   title: 'Governance & DAO Apps',
   description:
-    'On-chain governance and DAO applications on Ethereum Classic. Basefee-funded treasury, membership voting, and proposal lifecycle management.',
+    'Governance and DAO applications on Ethereum Classic, including Olympia DAO, the proposed governance of a treasury that the base fee would fund.',
   alternates: {
     canonical: 'https://ethereumclassic.com/apps/governance',
   },

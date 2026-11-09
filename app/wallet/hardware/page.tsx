@@ -4,10 +4,10 @@ const hardwareWallets = [
   {
     name: 'Trezor',
     models: ['Model One', 'Model T', 'Safe 3', 'Safe 5'],
-    description: 'The original hardware wallet with fully open-source firmware, transparent security, and no data breaches.',
+    description: 'The original hardware wallet, with fully open-source firmware and transparent security.',
     recommended: true,
     pros: [
-      'Fully open-source firmware - fully auditable',
+      'Fully open-source firmware that anyone can audit',
       'No history of data breaches',
       'Strong privacy - minimal data collection',
       'Supports 1,000+ assets including ETC',
@@ -48,7 +48,7 @@ const hardwareWallets = [
       'Works with ETC applications via MetaMask',
     ],
     cons: [
-      'Closed-source firmware - cannot be fully audited',
+      'Closed-source firmware that cannot be fully audited',
       'History of customer data breaches (2020)',
       'Premium pricing',
       'Requires Ledger Live for setup',
@@ -151,7 +151,7 @@ const bestPractices = [
 
 export default function HardwarePage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-warning)]/10 via-transparent to-transparent" />
@@ -526,6 +526,6 @@ export default function HardwarePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -2,18 +2,18 @@ import type { Metadata } from 'next'
 import { OG_BASE } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Regulatory Framework — Ethereum Classic',
+  title: 'Regulatory Framework | Ethereum Classic',
   description:
-    'Where Ethereum Classic stands: a digital commodity candidate under the pending CLARITY Act, a decentralized asset under MiCA, a GENIUS Act stablecoin platform.',
+    'Where ETC stands: a digital commodity candidate under the pending CLARITY Act, an asset with no issuer under MiCA, and home to a GENIUS Act-aligned stablecoin.',
   keywords: [
     'CLARITY Act',
     'MiCA',
     'GENIUS Act',
     'ETC regulation',
     'digital commodity',
-    'decentralized asset',
+    'no issuer',
     'Classic USD',
-    'ETChash',
+    'Etchash',
     'PoW blockchain regulation',
     'Ethereum Classic regulatory',
     'CFTC digital commodity',

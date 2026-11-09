@@ -9,7 +9,7 @@ export default function DefiRisks() {
 
       <h2>Impermanent Loss</h2>
       <p>
-        Impermanent loss occurs when the price ratio of tokens in a liquidity pool changes after you deposit. If one token rises significantly while the other stays flat, the AMM rebalances your position&mdash;you end up with more of the cheaper token and less of the expensive one.
+        Impermanent loss occurs when the price ratio of tokens in a liquidity pool changes after you deposit. If one token rises significantly while the other stays flat, the AMM rebalances your position, and you end up with more of the cheaper token and less of the expensive one.
       </p>
       <p>
         For example, if you deposit ETC and USC into a pool and ETC doubles in price, you would have earned more by simply holding both tokens. The &ldquo;loss&rdquo; is impermanent because it reverses if prices return to the original ratio. However, if you withdraw while prices are diverged, the loss becomes permanent.
@@ -34,7 +34,7 @@ export default function DefiRisks() {
         Warning signs to watch for:
       </p>
       <ul>
-        <li>Liquidity is not burned or locked&mdash;the deployer can withdraw it at any time</li>
+        <li>Liquidity is not burned or locked, so the deployer can withdraw it at any time</li>
         <li>Token contract has owner-only functions like minting unlimited tokens or pausing transfers</li>
         <li>Anonymous team with no verifiable track record</li>
         <li>Unrealistic yield promises or aggressive marketing</li>

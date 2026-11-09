@@ -112,7 +112,7 @@ export default function InstantBuyPage() {
     },
     {
       name: 'Binance',
-      description: 'World\'s largest exchange with multiple instant buy options',
+      description: 'Global exchange with several instant buy options',
       paymentMethods: ['Visa', 'Mastercard', 'Apple Pay', 'Google Pay'],
       processingTime: 'Instant',
       fees: '~2%',
@@ -122,7 +122,7 @@ export default function InstantBuyPage() {
     },
     {
       name: 'Kraken',
-      description: 'Secure exchange with instant ACH and card purchases',
+      description: 'US exchange with instant ACH and card purchases',
       paymentMethods: ['Debit Card', 'ACH', 'Wire'],
       processingTime: 'Instant (Card)',
       fees: '~1.5%',
@@ -152,7 +152,7 @@ export default function InstantBuyPage() {
     },
     {
       name: 'Bybit',
-      description: 'Fast-growing exchange with instant buy via third parties',
+      description: 'Exchange with instant buy through third-party providers',
       paymentMethods: ['Visa', 'Mastercard', 'Simplex', 'MoonPay'],
       processingTime: 'Instant',
       fees: '~3-5%',
@@ -206,7 +206,7 @@ export default function InstantBuyPage() {
   ]
 
   return (
-    <main>
+    <div>
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -245,7 +245,7 @@ export default function InstantBuyPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            The fastest way to buy Ethereum Classic — card, mobile payment, or one-click exchange with no order books or trading interface. Most providers complete the purchase in under five minutes, with funds available immediately in your connected wallet or exchange account.
+            The quickest way to buy Ethereum Classic: card, mobile payment or one-click purchase, with no order book or trading interface. Most providers complete the purchase in under five minutes, with funds available immediately in your connected wallet or exchange account.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -412,7 +412,7 @@ export default function InstantBuyPage() {
                 <div>
                   <h4 className="font-semibold text-[var(--text-primary)]">Compare Fees</h4>
                   <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                    Instant buy fees vary significantly between providers - compare before buying
+                    Instant buy fees vary widely between providers, so compare before buying
                   </p>
                 </div>
               </div>
@@ -490,6 +490,6 @@ export default function InstantBuyPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

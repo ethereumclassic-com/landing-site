@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: {
     template: '%s | Ethereum Classic',
-    default: 'ETC Wallets — Download & Compare',
+    default: 'ETC Wallets: Download & Compare',
   },
   description:
     'Download wallets for Ethereum Classic. Compare MetaMask, hardware wallets and mobile wallets for secure ETC storage.',

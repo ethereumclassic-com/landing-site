@@ -175,7 +175,7 @@ const journeys: Record<JourneyType, {
 const benefits = [
   {
     title: 'No CEX Required',
-    description: 'Skip centralized exchanges entirely. Go from your bank account to ETC using only decentralized infrastructure.',
+    description: 'Go from your bank account to ETC without a crypto exchange account: Brale issues the USC, and ETCswap makes the swap.',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
@@ -184,7 +184,7 @@ const benefits = [
   },
   {
     title: 'Self-Custody',
-    description: 'Your funds never leave your control. From USC issuance to ETC, everything happens in your own wallet.',
+    description: 'Once Brale issues USC to your wallet, every later step happens in your own wallet.',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
@@ -193,7 +193,7 @@ const benefits = [
   },
   {
     title: 'Deep Liquidity',
-    description: 'USC connects to USDC and USDP via Brale, giving you access to multi-billion dollar stablecoin liquidity.',
+    description: 'Brale converts USC to and from USDC and USDP, which links it to the wider stablecoin market.',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
@@ -202,7 +202,7 @@ const benefits = [
   },
   {
     title: 'Multi-Chain Ready',
-    description: 'USC works across 22+ chains via Brale. Bridge your stablecoin wherever you need it.',
+    description: 'Through Brale, USC converts to stablecoins on the other chains Brale supports.',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -226,7 +226,7 @@ export default function OnRampGuidePage() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
@@ -403,9 +403,8 @@ export default function OnRampGuidePage() {
           >
             <h3 className="text-xl font-bold text-[var(--text-primary)]">About Classic USD (USC)</h3>
             <p className="mt-3 text-[var(--color-text-muted)]">
-              Classic USD (USC) is the native stablecoin for Ethereum Classic, issued by Brale.
-              It maintains a 1:1 peg with USD and is redeemable for fiat or interoperable with
-              major stablecoins like USDC and USDP.
+              Classic USD (USC) is a stablecoin issued natively on Ethereum Classic by Brale. It holds a 1:1
+              peg with USD and can be redeemed for fiat or converted to major stablecoins such as USDC and USDP.
             </p>
             <div className="mt-4 grid gap-4 md:grid-cols-3">
               <div className="rounded-lg bg-[var(--border-subtle)] p-3 text-center">
@@ -413,8 +412,8 @@ export default function OnRampGuidePage() {
                 <p className="text-xs text-[var(--color-text-muted)]">USD Peg</p>
               </div>
               <div className="rounded-lg bg-[var(--border-subtle)] p-3 text-center">
-                <p className="text-2xl font-bold text-[var(--color-warning)]">22+</p>
-                <p className="text-xs text-[var(--color-text-muted)]">Supported Chains</p>
+                <p className="text-2xl font-bold text-[var(--color-warning)]">ETC</p>
+                <p className="text-xs text-[var(--color-text-muted)]">Home Network</p>
               </div>
               <div className="rounded-lg bg-[var(--border-subtle)] p-3 text-center">
                 <p className="text-2xl font-bold text-[var(--color-warning)]">USC</p>
@@ -474,7 +473,7 @@ export default function OnRampGuidePage() {
           >
             <h3 className="text-xl font-bold text-[var(--text-primary)]">Alternative Methods</h3>
             <p className="mt-2 text-[var(--color-text-muted)]">
-              While the USC flow is the most decentralized option, you can also buy ETC through traditional methods:
+              Besides the USC route, you can buy ETC through traditional methods:
             </p>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               <Link
@@ -528,11 +527,11 @@ export default function OnRampGuidePage() {
         <div className="mx-auto max-w-4xl">
           <p className="text-center text-xs text-[var(--color-text-muted)]">
             This guide is for educational purposes. Always verify current requirements and fees with each
-            service provider. EthereumClassic.com is not responsible for transactions made through third-party
-            services. Stablecoins carry their own risks - do your own research.
+            service provider. ethereumclassic.com is not responsible for transactions made through third-party
+            services. Stablecoins carry their own risks, so do your own research.
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

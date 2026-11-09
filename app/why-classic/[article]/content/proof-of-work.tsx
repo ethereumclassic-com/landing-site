@@ -2,17 +2,16 @@ export default function ProofOfWork() {
   return (
     <>
       <p>
-        Ethereum Classic uses proof of work as its consensus mechanism. This is not a
-        legacy decision or a failure to upgrade. It is a deliberate, ongoing commitment
-        based on what proof of work provides that other consensus mechanisms do not.
+        Ethereum Classic uses proof of work as its consensus mechanism by choice, for what it
+        provides that other consensus mechanisms do not.
       </p>
 
       <h2>Physical Security</h2>
       <p>
         Proof of work ties blockchain security to real-world energy expenditure. To attack
-        the network, an adversary must acquire and operate mining hardware at scale,
-        consuming electricity continuously for the duration of the attack. This creates a
-        tangible, ongoing cost that cannot be circumvented through financial engineering.
+        the network, an adversary must buy or rent mining hardware at scale and run it, consuming
+        electricity continuously for the duration of the attack. That is a real cost, paid for
+        as long as the attack lasts.
       </p>
       <p>
         In proof-of-stake systems, the cost of an attack is denominated in the network&apos;s
@@ -23,9 +22,9 @@ export default function ProofOfWork() {
         security.
       </p>
       <p>
-        Proof of work breaks this circularity. The cost of mining is external to the
-        system &mdash; electricity, hardware, cooling, and physical space are priced in
-        the real economy, not in the blockchain&apos;s native token.
+        Proof of work breaks this circularity. The cost of mining is external to the system: electricity, hardware, cooling and
+        physical space are priced in the real economy, not in the blockchain&apos;s native
+        token.
       </p>
 
       <h2>Permissionless Participation</h2>
@@ -39,31 +38,22 @@ export default function ProofOfWork() {
         This stands in contrast to proof-of-stake systems, where block production
         requires holding a minimum amount of the network&apos;s native token. This
         creates a barrier to entry: new participants must first acquire tokens from
-        existing holders. Over time, staking rewards compound, concentrating block
-        production rights among early and wealthy participants.
-      </p>
-      <p>
-        Proof of work does not have this compounding effect. Mining hardware depreciates.
-        Electricity must be purchased continuously. There is no mechanism by which today&apos;s
-        miners automatically become tomorrow&apos;s dominant miners.
+        existing holders.
       </p>
 
       <h2>Censorship Resistance</h2>
       <p>
-        In proof of work, miners select which transactions to include in a block. If one
-        miner censors a transaction, another miner will include it in the next block. The
-        censoring miner gains nothing, and the transaction proceeds with minimal delay.
+        In proof of work, miners select which transactions to include in a block. If one miner censors a transaction, another can include it in a later block. The
+        censoring miner forgoes the fee, and the transaction goes through after a short delay.
       </p>
       <p>
         Proof-of-stake systems introduce a different dynamic. Validators can be identified
         by their staked addresses and potentially subjected to legal or political pressure
-        to censor specific transactions. Validators who include censored transactions risk
-        having their stake slashed by a majority coalition. The slashing mechanism, designed
-        to punish misbehavior, can be repurposed as a censorship enforcement tool.
+        to censor specific transactions. And their stake sits inside the protocol, where slashing, designed to punish
+        misbehavior, can reach it.
       </p>
       <p>
-        Proof-of-work miners cannot be &ldquo;slashed.&rdquo; Their investment is in
-        hardware and electricity, which cannot be confiscated remotely by the protocol.
+        Proof-of-work miners cannot be &ldquo;slashed.&rdquo; Their investment is in hardware and electricity, which the protocol cannot confiscate.
       </p>
 
       <h2>Why ETC Stayed on Proof of Work</h2>
@@ -72,10 +62,9 @@ export default function ProofOfWork() {
         an event called &ldquo;The Merge.&rdquo; Ethereum Classic did not follow.
       </p>
       <p>
-        The decision was consistent with ETC&apos;s broader philosophy. The community
-        evaluated proof of stake against the network&apos;s core commitments &mdash;
-        immutability, decentralization, and censorship resistance &mdash; and concluded
-        that proof of work better serves those commitments.
+        The decision was consistent with ETC&apos;s broader philosophy. The community weighed proof of stake against the network&apos;s core commitments
+        (immutability, decentralization and censorship resistance) and concluded that proof of
+        work serves them better.
       </p>
       <p>
         Specifically, the community identified these concerns with proof of stake:
@@ -99,22 +88,22 @@ export default function ProofOfWork() {
         </li>
       </ul>
 
-      <h2>The ETCHash Algorithm</h2>
+      <h2>The Etchash Algorithm</h2>
       <p>
-        Ethereum Classic uses ETCHash, a modified version of Ethash. The primary
+        Ethereum Classic uses Etchash, a modified version of Ethash. The primary
         modification is an extended DAG epoch length: where Ethash increases the DAG
-        (directed acyclic graph) size every 30,000 blocks, ETCHash uses a 60,000-block
+        (directed acyclic graph) size every 30,000 blocks, Etchash uses a 60,000-block
         epoch. This doubles the time before the DAG outgrows a given GPU&apos;s memory
         capacity.
       </p>
       <p>
-        The design intent is to keep mining accessible to consumer-grade GPUs for as long
-        as possible. When mining requires specialized, expensive hardware (ASICs), the
-        barrier to entry rises and mining centralizes among fewer, larger operations.
-        ETCHash delays this centralization pressure.
+        The intent was to keep consumer GPUs mining for as long as possible, since mining that
+        requires specialized, expensive hardware (ASICs) raises the barrier to entry and tends
+        to concentrate among fewer, larger operations. Etchash ASICs now mine alongside GPUs,
+        and the slower DAG growth keeps cards with 6GB or more of memory mining.
       </p>
 
-      <h2>No Validator Cartel Risk</h2>
+      <h2>Concentration Does Not Compound</h2>
       <p>
         Proof-of-stake systems are susceptible to a specific centralization failure mode:
         a small number of large validators can accumulate enough stake to control block
@@ -122,16 +111,16 @@ export default function ProofOfWork() {
         concentration tends to increase over time rather than decrease.
       </p>
       <p>
-        Proof of work does not have this feedback loop. Mining profitability depends on
-        hardware efficiency and electricity costs, both of which are subject to market
-        competition. No miner can leverage today&apos;s block rewards into a permanent
-        advantage in tomorrow&apos;s block production.
+        Proof of work has no such feedback loop. Mining hardware depreciates and electricity
+        must be bought continuously, both at prices set by market competition, so no miner can
+        turn today&apos;s block rewards into a permanent advantage in tomorrow&apos;s block
+        production. Hashrate can still concentrate in mining pools, but a pool directs only the
+        hashrate its miners point at it, and they can move to another pool at any time.
       </p>
       <p>
-        Ethereum Classic&apos;s commitment to proof of work preserves the security model
-        that has protected proof-of-work blockchains since Bitcoin&apos;s launch in 2009.
-        The model is battle-tested, well-understood, and grounded in physical reality
-        rather than game-theoretic assumptions about rational economic actors.
+        Ethereum Classic&apos;s commitment to proof of work keeps the security model that has
+        protected Bitcoin since 2009: attacking the chain costs hardware and energy bought in
+        the real economy.
       </p>
     </>
   )

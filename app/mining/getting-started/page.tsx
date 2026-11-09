@@ -10,7 +10,7 @@ export default async function MiningGettingStartedPage() {
   const recommendedPools = getRecommendedPools()
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -41,7 +41,10 @@ export default async function MiningGettingStartedPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            A step-by-step walkthrough for setting up your first Ethereum Classic mining operation — from choosing hardware and configuring the ETChash algorithm to selecting a pool and optimizing for profitability. ETC absorbed a significant share of Ethereum&apos;s former Ethash hashrate after the 2022 Merge, making it one of the most established GPU mining ecosystems available.
+            A step-by-step guide to setting up your first Ethereum Classic mining operation: choosing hardware,
+            joining a pool, installing software and checking profitability. ETC took on a large share of
+            Ethereum&apos;s former Ethash hashrate after the 2022 Merge, and it is one of the most established GPU
+            mining ecosystems.
           </p>
         </div>
       </section>
@@ -52,7 +55,7 @@ export default async function MiningGettingStartedPage() {
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
               <p className="text-sm text-[var(--color-text-muted)]">Algorithm</p>
-              <p className="text-lg font-bold text-[var(--text-primary)]">ETChash</p>
+              <p className="text-lg font-bold text-[var(--text-primary)]">Etchash</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4 text-center">
               <p className="text-sm text-[var(--color-text-muted)]">Block Reward</p>
@@ -144,7 +147,7 @@ export default async function MiningGettingStartedPage() {
               </div>
               <h3 className="text-lg font-semibold text-[var(--text-primary)]">Mining Hardware</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                GPU with 4GB+ VRAM (AMD RX 6600 XT or NVIDIA RTX 3060 Ti recommended) or an ASIC miner designed for ETChash algorithm.
+                A GPU with 6GB or more of VRAM, since the Etchash DAG is larger than 4GB (AMD RX 6600 XT or NVIDIA RTX 3060 Ti recommended), or an ASIC built for Etchash.
               </p>
               <Link href="/mining/hardware" className="mt-4 inline-block text-sm text-[var(--color-primary)] hover:underline">
                 View hardware guide →
@@ -213,7 +216,7 @@ export default async function MiningGettingStartedPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)] md:text-3xl">Recommended Pools</h2>
             <p className="mt-2 text-[var(--color-text-secondary)]">
-              Trusted mining pools with good uptime and fair fees
+              Established pools with published terms
             </p>
           </div>
 
@@ -373,6 +376,6 @@ export default async function MiningGettingStartedPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

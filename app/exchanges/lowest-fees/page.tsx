@@ -33,7 +33,7 @@ export default function LowestFeesExchangesPage() {
   const standardFees = sortedExchanges.filter((ex) => parseFeePercent(ex.tradingFee) > 0.2)
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Breadcrumbs */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
@@ -313,6 +313,6 @@ export default function LowestFeesExchangesPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

@@ -46,20 +46,18 @@ export function StrandedEnergySection() {
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
             Proof-of-Work mining is one of the few industries that can physically relocate to where
-            energy is stranded. The traditional alternative &mdash; building transmission
-            infrastructure &mdash; costs hundreds of millions of dollars per mile and takes years to
-            permit. Mining hardware can be containerized, shipped, and operational in weeks. Remote
-            hydro with no transmission line, gas that would be flared at the wellhead, renewables
-            that overproduce at night: PoW mining converts all of it into economic output without
-            laying a single cable.
+            energy is stranded. The traditional alternative, building transmission lines, costs millions of dollars per mile and
+              takes years to permit. Mining hardware can be containerized, shipped and running in weeks. Remote
+              hydro with no transmission line, gas that would be flared at the wellhead, wind that overproduces
+              at night: Proof-of-Work mining turns all of it into economic output without laying a single
+              cable.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
             The thesis applies to any PoW network with three properties: deep enough liquidity to
             offer confident price discovery in local currencies, accessible enough hardware that
             small and large deployments are both viable, and a long enough operating history that
-            energy project financiers can model mining revenue as a predictable cash flow. ETC has
-            reached that stage &mdash; ten years of continuous operation, fiat pairs across major
-            energy markets, and GPU-to-ASIC hardware coverage from pilot scale to industrial.
+            energy project financiers can model mining revenue as a predictable cash flow. ETC has all three: continuous operation since 2015, fiat pairs in major energy markets, and hardware
+              from GPUs at pilot scale to ASICs at industrial scale.
           </p>
         </FadeIn>
 

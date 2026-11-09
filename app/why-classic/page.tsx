@@ -3,7 +3,7 @@ import { philosophyArticles } from './data/philosophy'
 
 export default function WhyClassicPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
 
@@ -26,9 +26,8 @@ export default function WhyClassicPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Ethereum Classic emerged from the 2016 DAO fork as a commitment to one principle: code is law. When the
-            broader Ethereum community reversed a transaction by changing the protocol, ETC held the original chain
-            and the original rules. Understanding why matters as much as understanding what ETC is.
+            Ethereum Classic emerged from the 2016 DAO fork as a commitment to one principle: code is law. When the broader Ethereum community changed the chain&apos;s state to return the funds in The DAO, ETC kept the
+            original chain and its rules. The articles below explain the principles behind that choice.
           </p>
         </div>
       </section>
@@ -70,6 +69,6 @@ export default function WhyClassicPage() {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   )
 }

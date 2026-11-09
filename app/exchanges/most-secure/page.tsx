@@ -27,7 +27,7 @@ export default function MostSecureExchangesPage() {
   const globalSecure = secureExchanges.filter((ex) => !ex.regions.includes('US') || ex.kycRequired !== true)
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Breadcrumbs */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
@@ -335,6 +335,6 @@ export default function MostSecureExchangesPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

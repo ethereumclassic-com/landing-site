@@ -6,7 +6,7 @@ const items = [
     icon: Zap,
     title: 'Grid Stabilization',
     description:
-      'Miners are uniquely flexible electricity consumers. They can ramp up or curtail in seconds. Grid operators increasingly contract with miners as demand-response resources, turning intermittent renewable output into reliable grid-balancing power.',
+      'Miners are unusually flexible electricity consumers: they can ramp up or curtail in seconds. Grid operators increasingly contract with miners as demand-response resources, which helps balance intermittent renewable output.',
   },
   {
     icon: Anchor,
@@ -40,20 +40,18 @@ export function POWEnergyEconomicsSection() {
             How PoW Transforms Energy Markets
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            Proof-of-Work mining is not an energy consumer &mdash; it is an energy market
-            participant. The difference is structural. Traditional industrial consumers sign
-            long-term offtake agreements, build fixed infrastructure, and require stable,
-            predictable delivery. Miners are different: hardware is modular, operations are
-            relocatable, and curtailment is near-instantaneous. They respond to real-time price
-            signals the way no other industrial consumer can.
+            Proof-of-Work mining takes part in energy markets as well as drawing on them. Traditional
+            industrial consumers sign long-term offtake agreements, build fixed infrastructure and require
+            stable, predictable delivery. Miners are different: hardware is modular, operations can
+            relocate, and curtailment is nearly instantaneous, so they can respond to real-time price
+            signals as few other industrial consumers can.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            This flexibility creates value that extends beyond the miner. Renewable projects that
-            previously struggled to secure financing &mdash; because curtailment periods made unit
-            economics unpredictable &mdash; now have a buyer willing to absorb exactly the output
-            that the grid cannot. The miner&rsquo;s indifference to energy source means PoW demand
-            is available wherever power is generated, not just where it is most convenient to
-            deliver.
+            This flexibility creates value beyond the miner. Renewable projects that struggle to secure
+            financing, because curtailment makes their unit economics unpredictable, gain a buyer for the
+            output the grid cannot absorb. Because miners are indifferent to the energy source,
+            Proof-of-Work demand is available wherever power is generated, not only where it is convenient
+            to deliver.
           </p>
         </FadeIn>
 

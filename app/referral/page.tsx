@@ -119,7 +119,7 @@ export default function ReferralPage() {
 
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl text-center">
@@ -349,6 +349,6 @@ export default function ReferralPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

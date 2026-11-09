@@ -1,3 +1,5 @@
+import { CURRENT_ERA, generateEraSchedule } from '@/app/research/data/emission'
+
 export default function SoundMoney() {
   return (
     <>
@@ -11,22 +13,18 @@ export default function SoundMoney() {
 
       <h2>ECIP-1017: The Monetary Policy</h2>
       <p>
-        In December 2017, the Ethereum Classic network adopted <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">ECIP-1017</a>, which
-        established a fixed emission schedule with era-based reward reductions. Before
-        ECIP-1017, ETC had the same uncapped emission model as early Ethereum: a flat 5
-        ETC per block with no planned reduction or supply cap.
-      </p>
-      <p>
-        <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">ECIP-1017</a> introduced two changes:
+        <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">ECIP-1017</a>, proposed in
+        November 2016, took effect at block 5,000,000 in December 2017. Before it, ETC had the
+        same uncapped emission as early Ethereum: a flat 5 ETC per block, with no planned
+        reduction and no supply cap. ECIP-1017 changed that in two ways:
       </p>
       <ul>
         <li>
-          Block rewards reduce by 20% every 5,000,000 blocks (approximately every 2.5
-          years at average block times).
+          Block rewards fall by 20% every 5,000,000 blocks, a little over two years at recent
+          block times.
         </li>
         <li>
-          The cumulative effect of these reductions produces an asymptotic maximum supply
-          of approximately 210.7 million ETC.
+          Those reductions bound total supply, which approaches a maximum of 210.7 million ETC.
         </li>
       </ul>
 
@@ -35,43 +33,33 @@ export default function SoundMoney() {
         The reward structure follows a simple, predictable pattern:
       </p>
       <ul>
-        <li>
-          <strong>Era 1</strong> (blocks 0 &ndash; 5,000,000): 5 ETC per block
-        </li>
-        <li>
-          <strong>Era 2</strong> (blocks 5,000,001 &ndash; 10,000,000): 4 ETC per block
-        </li>
-        <li>
-          <strong>Era 3</strong> (blocks 10,000,001 &ndash; 15,000,000): 3.2 ETC per
-          block
-        </li>
-        <li>
-          <strong>Era 4</strong> (blocks 15,000,001 &ndash; 20,000,000): 2.56 ETC per
-          block
-        </li>
-        <li>
-          <strong>Era 6</strong> (blocks 25,000,001 &ndash; 30,000,000): 1.6384 ETC per
-          block
-        </li>
+        {generateEraSchedule(CURRENT_ERA).map((era) => (
+          <li key={era.number}>
+            <strong>Era {era.number}</strong>{' '}(blocks {era.startBlock.toLocaleString('en-US')} to{' '}
+            {era.endBlock.toLocaleString('en-US')}): {era.blockReward} ETC per block
+          </li>
+        ))}
       </ul>
       <p>
-        Each subsequent era reduces the per-block reward by 20% from the previous era.
-        This pattern continues indefinitely, with rewards approaching but never reaching
-        zero.
+        Era {CURRENT_ERA} is the current era. Each era reduces the per-block reward by 20% from
+        the one before, and the pattern continues indefinitely, with rewards approaching but
+        never reaching zero.
       </p>
 
       <h2>Maximum Supply</h2>
       <p>
-        The 20% reduction per era creates a geometric series. The sum converges to
-        approximately 210.7 million ETC. This is not an estimate or a governance target
-        &mdash; it is a mathematical consequence of the emission formula encoded in the
-        protocol.
+        The 20% reduction per era makes issuance a geometric series, so total supply converges
+        instead of growing without limit. ECIP-1017 sets out the bounds, counting the 72 million
+        ETC in the genesis block: total supply will not exceed 210.7 million ETC, a ceiling that
+        assumes two uncles in every block, and at the uncle rate of the network&apos;s first era
+        it comes to no less than 198.5 million. Both figures follow from the emission formula
+        encoded in the protocol, not from a governance target.
       </p>
       <p>
         No additional ETC can be created outside of this schedule. There is no mechanism
         for minting, no treasury allocation from block rewards, and no inflationary
-        funding for development teams. Every ETC in existence was produced by a miner
-        solving a valid proof-of-work block, at the reward rate defined for that
+        funding for development teams. Apart from the 72 million ETC in the genesis block, every ETC in existence was produced
+        by a miner solving a valid proof-of-work block, at the reward rate set for that
         block&apos;s era.
       </p>
 
@@ -81,7 +69,7 @@ export default function SoundMoney() {
       </p>
       <ul>
         <li>
-          Both have a fixed maximum supply (Bitcoin: 21 million BTC; ETC: ~210.7 million
+          Both have a maximum supply (Bitcoin: 21 million BTC; ETC: at most 210.7 million
           ETC).
         </li>
         <li>
@@ -93,8 +81,8 @@ export default function SoundMoney() {
           issuance.
         </li>
         <li>
-          Both are deflationary in the long run: as rewards approach zero, the rate of new
-          supply creation decreases continuously.
+          Both issue less over time: each reduction lowers the rate of new supply, which
+          approaches zero.
         </li>
       </ul>
       <p>
@@ -106,8 +94,8 @@ export default function SoundMoney() {
 
       <h2>Why Predictable Monetary Policy Matters</h2>
       <p>
-        A fixed supply schedule allows participants to make long-term decisions with full
-        information. Miners can project future revenues. Holders can assess scarcity.
+        A fixed supply schedule lets participants plan for the long term knowing how supply
+        will grow. Miners can project future revenues. Holders can assess scarcity.
         Developers can build applications that depend on the token&apos;s economic
         properties without worrying that those properties will change.
       </p>
@@ -119,27 +107,26 @@ export default function SoundMoney() {
         rewards to a treasury?
       </p>
       <p>
-        On Ethereum Classic, these questions have definitive answers embedded in the
-        protocol. The supply curve is not a policy preference. It is a consensus rule,
-        enforced by every node on the network.
+        On Ethereum Classic, the protocol answers these questions: the supply curve is a
+        consensus rule, enforced by every node on the network.
       </p>
 
       <h2>No Inflation Surprises</h2>
       <p>
-        Every ETC that will ever exist is accounted for in the emission schedule. There
+        Every ETC that will ever exist is accounted for, in the genesis block or the emission
+        schedule. There
         are no hidden minting functions, no emergency issuance mechanisms, and no
         governance proposals that can create new tokens outside the defined schedule.
       </p>
       <p>
-        The monetary policy is defined in code, verified by every node, and immutable
-        under the same &ldquo;code is law&rdquo; principle that governs all other aspects
-        of the Ethereum Classic protocol. Changing it would require a hard fork that the
-        network&apos;s participants accept &mdash; and the community has consistently
-        demonstrated that it will not accept changes to the monetary policy.
+        The monetary policy is defined in code and verified by every node. Changing it would
+        take a hard fork that the network&apos;s participants accept. Proposals to divert part
+        of the block reward to a treasury were rejected (ECIP-1051) or withdrawn (ECIP-1098),
+        and the proposed Olympia upgrade would leave block rewards untouched.
       </p>
       <p>
-        For detailed supply data including current circulating supply, era progress, and
-        emission projections, see the{' '}
+        For detailed supply data, including circulating supply, era progress and emission
+        projections, see the{' '}
         <a href="/research/supply" className="text-[var(--color-primary)] hover:underline">
           live supply tracker
         </a>.

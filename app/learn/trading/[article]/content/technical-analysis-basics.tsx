@@ -16,7 +16,7 @@ export default function TechnicalAnalysisBasics() {
         <li><strong>Close:</strong> The price at the end of the period</li>
       </ul>
       <p>
-        A green (or hollow) candle means the close was higher than the open &mdash; the price went up. A red (or filled) candle means the close was lower &mdash; the price went down. The thin lines extending above and below the body are called wicks, showing the high and low extremes.
+        A green (or hollow) candle means the close was higher than the open: the price went up. A red (or filled) candle means the close was lower: the price went down. The thin lines extending above and below the body are called wicks, showing the high and low extremes.
       </p>
 
       <h2>Timeframes</h2>

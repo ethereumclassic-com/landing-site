@@ -155,7 +155,7 @@ export default function ExchangeDirectoryPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden hero-gradient-light noise-overlay grid-overlay border-b border-[var(--border)] px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24">
         <div
@@ -173,8 +173,9 @@ export default function ExchangeDirectoryPage() {
           <p
             className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]"
           >
-            {cexCount} centralized exchanges and {dexCount} decentralized exchanges support Ethereum Classic.
-            Compare fees, features, and find the best exchange for you.
+            {cexCount} centralized {cexCount === 1 ? 'exchange' : 'exchanges'} and {dexCount} decentralized{' '}
+            {dexCount === 1 ? 'exchange' : 'exchanges'} support Ethereum Classic. Compare fees and features to find the
+            one that suits you.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -710,7 +711,7 @@ export default function ExchangeDirectoryPage() {
                 <ul className="mt-2 space-y-1 text-sm text-[var(--color-text-muted)]">
                   <li>Always verify you&apos;re on the official exchange website before logging in</li>
                   <li>Enable two-factor authentication (2FA) on all exchange accounts</li>
-                  <li>Withdraw to your own wallet for long-term storage - not your keys, not your coins</li>
+                  <li>Withdraw to your own wallet for long-term storage: not your keys, not your coins</li>
                   <li>Start with small amounts when using a new exchange</li>
                 </ul>
               </div>
@@ -718,6 +719,6 @@ export default function ExchangeDirectoryPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

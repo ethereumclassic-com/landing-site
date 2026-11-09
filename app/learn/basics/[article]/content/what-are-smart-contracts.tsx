@@ -33,7 +33,7 @@ export default function WhatAreSmartContracts() {
       <ul>
         <li>Every node reaches the same result for every computation</li>
         <li>Contracts behave predictably regardless of who runs them</li>
-        <li>Code written for Ethereum can run on ETC (and vice versa)</li>
+        <li>Code compiled for an EVM version both chains support runs on either</li>
       </ul>
 
       <h2>Gas and Execution</h2>
@@ -58,7 +58,6 @@ export default function WhatAreSmartContracts() {
         <li>Swap tokens on decentralized exchanges like <ETCswapLink /></li>
         <li>Provide liquidity and earn trading fees</li>
         <li>Use stablecoins like <ClassicUSDLink /> (USC)</li>
-        <li>Access lending and borrowing protocols</li>
       </ul>
 
       <h3>Token Creation</h3>
@@ -80,7 +79,7 @@ export default function WhatAreSmartContracts() {
       <ul>
         <li><strong>Trustless execution:</strong> Code runs exactly as written, every time</li>
         <li><strong>Transparency:</strong> Contract code is publicly auditable</li>
-        <li><strong>Immutability:</strong> Deployed contracts cannot be changed (by design)</li>
+        <li><strong>Immutability:</strong> Deployed code cannot be changed, though a contract can be built to be upgradeable</li>
         <li><strong>Permissionless:</strong> Anyone can deploy or interact with contracts</li>
         <li><strong>Composability:</strong> Contracts can interact with other contracts</li>
       </ul>

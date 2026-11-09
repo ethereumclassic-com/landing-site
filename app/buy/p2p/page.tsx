@@ -100,7 +100,7 @@ export default function P2PPage() {
   const platforms: P2PPlatformProps[] = [
     {
       name: 'Binance P2P',
-      description: 'World\'s largest P2P marketplace with escrow protection and verified merchants',
+      description: 'Large P2P marketplace with escrow protection and verified merchants',
       paymentMethods: ['Bank Transfer', 'PayPal', 'Venmo', 'Zelle', 'Cash App', 'Revolut'],
       fees: '0%',
       kycRequired: true,
@@ -110,7 +110,7 @@ export default function P2PPage() {
     },
     {
       name: 'KuCoin P2P',
-      description: 'Fast-growing P2P platform with competitive rates and global coverage',
+      description: 'P2P platform with competitive rates and global coverage',
       paymentMethods: ['Bank Transfer', 'PayPal', 'Wise', 'Revolut', 'Skrill'],
       fees: '0%',
       kycRequired: false,
@@ -130,7 +130,7 @@ export default function P2PPage() {
     },
     {
       name: 'Bybit P2P',
-      description: 'Growing P2P marketplace with 0% fees and fast trades',
+      description: 'P2P marketplace with 0% fees and fast trades',
       paymentMethods: ['Bank Transfer', 'PayPal', 'Wise', 'Zelle', 'Cash App'],
       fees: '0%',
       kycRequired: false,
@@ -231,7 +231,7 @@ export default function P2PPage() {
     {
       number: 3,
       title: 'Start Trade',
-      description: 'Initiate the trade - seller\'s ETC is locked in escrow',
+      description: 'Start the trade, and the seller\'s ETC is locked in escrow',
     },
     {
       number: 4,
@@ -246,7 +246,7 @@ export default function P2PPage() {
   ]
 
   return (
-    <main>
+    <div>
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -285,7 +285,7 @@ export default function P2PPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Trade Ethereum Classic directly with other users at rates you negotiate — no exchange spread, no percentage fees. P2P platforms support hundreds of payment methods including bank transfer, PayPal, cash, and mobile money, with platform escrow protecting both sides of every trade.
+            Trade Ethereum Classic directly with other users, at rates you agree between you. P2P platforms support hundreds of payment methods, including bank transfer, PayPal, cash and mobile money, with platform escrow protecting both sides of each trade.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -521,6 +521,6 @@ export default function P2PPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

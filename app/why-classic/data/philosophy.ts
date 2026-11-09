@@ -17,28 +17,28 @@ export const philosophyArticles: PhilosophyArticle[] = [
     slug: 'code-is-law',
     title: 'Code Is Law',
     description:
-      'Why immutability matters and what it means for blockchain to be truly neutral infrastructure.',
+      'Why immutability matters, and what it takes for a blockchain to be neutral infrastructure.',
     icon: '⚖️',
   },
   {
     slug: 'decentralism',
     title: 'Decentralism',
     description:
-      'How Ethereum Classic maximizes decentralization through protocol design and governance minimization.',
+      'How protocol design and minimal governance keep Ethereum Classic decentralized.',
     icon: '🌐',
   },
   {
     slug: 'proof-of-work',
     title: 'Proof of Work',
     description:
-      'Why ETC chose to remain on proof-of-work as a philosophical and security commitment.',
+      'Why Ethereum Classic stayed on proof of work, as a commitment of both principle and security.',
     icon: '⛏️',
   },
   {
     slug: 'sound-money',
     title: 'Sound Money',
     description:
-      'The fixed supply cap, emission schedule, and monetary policy that make ETC a scarce digital asset.',
+      'The supply cap and emission schedule that make ETC a scarce digital asset.',
     icon: '💎',
   },
 ]

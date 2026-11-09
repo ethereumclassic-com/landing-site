@@ -230,7 +230,7 @@ the proposal at `/olympia/history`. The first Olympia ECIPs were published on Ju
 
 #### Thanos (November 2020)
 - ECIP-1099: Calibrate Epoch Duration
-- Introduced ETChash algorithm
+- Introduced Etchash algorithm
 - Reduced DAG size growth rate
 - Enabled continued GPU mining
 
@@ -338,7 +338,7 @@ Block-Reward Split" sets out the differences.
 
 ## Mining & Consensus
 
-### ETChash Algorithm
+### Etchash Algorithm
 
 **Introduced**: Thanos upgrade (November 2020)
 **ECIP**: ECIP-1099
@@ -349,7 +349,7 @@ Block-Reward Split" sets out the differences.
 - Epoch length: 30,000 blocks (reduced from original 30,000)
 - Current DAG size: ~5.2 GB
 
-**Why ETChash?**:
+**Why Etchash?**:
 - Original Ethash DAG was growing too large for consumer GPUs
 - Thanos calibrated epoch duration to slow DAG growth
 - Maintained ASIC resistance while extending GPU mining viability

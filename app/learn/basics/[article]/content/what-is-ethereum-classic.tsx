@@ -16,22 +16,22 @@ export default function WhatIsEthereumClassic() {
 
       <h3>Proof-of-Work Security</h3>
       <p>
-        ETC uses the ETChash mining algorithm, a proof-of-work system that secures the network through computational power. This makes Ethereum Classic one of the largest proof-of-work smart contract platforms, providing robust security and true decentralization.
+        ETC uses the Etchash mining algorithm, a proof-of-work system that secures the network through computational power. Ethereum Classic is the only mature proof-of-work blockchain with native smart contracts.
       </p>
 
       <h3>Smart Contract Platform</h3>
       <p>
-        Like Ethereum, ETC supports the Ethereum Virtual Machine (EVM), allowing developers to deploy and execute smart contracts. This means existing Ethereum dApps can be easily deployed on Ethereum Classic with minimal modifications.
+        Like Ethereum, ETC supports the Ethereum Virtual Machine (EVM), allowing developers to deploy and execute smart contracts. Most Ethereum dApps can be deployed on Ethereum Classic with few changes, provided they are compiled for an EVM version ETC supports.
       </p>
 
       <h3>Fixed Monetary Policy</h3>
       <p>
-        Ethereum Classic has a known, fixed monetary policy with a maximum supply cap. The emission schedule follows a deflationary model, with block rewards reducing by 20% every 5 million blocks. This predictable supply makes ETC a sound money alternative in the smart contract space.
+        Ethereum Classic has a known, fixed monetary policy with a maximum supply cap. The emission schedule reduces block rewards by 20% every 5 million blocks. This predictable supply makes ETC a sound money alternative in the smart contract space.
       </p>
 
       <h3>Immutability</h3>
       <p>
-        The core principle of Ethereum Classic is that the blockchain should be immutable. Transactions that have been confirmed on the network cannot be reversed or altered. This principle ensures that applications running on ETC operate exactly as programmed, without interference.
+        The core principle of Ethereum Classic is that the blockchain should be immutable: no one rewrites confirmed transactions by decree, so applications on ETC run exactly as programmed, without interference.
       </p>
 
       <h2>Why Proof-of-Work Matters</h2>
@@ -72,7 +72,7 @@ export default function WhatIsEthereumClassic() {
           <tbody>
             <tr>
               <td className="font-semibold">Consensus</td>
-              <td>Proof-of-Work (ETChash)</td>
+              <td>Proof-of-Work (Etchash)</td>
             </tr>
             <tr>
               <td className="font-semibold">Block Time</td>
@@ -100,7 +100,7 @@ export default function WhatIsEthereumClassic() {
 
       <h2>Summary</h2>
       <p>
-        Ethereum Classic represents the continuation of the original Ethereum vision: a decentralized world computer secured by proof-of-work. With its commitment to immutability, sound monetary policy, and EVM compatibility, ETC provides a unique platform for building unstoppable applications.
+        Ethereum Classic represents the continuation of the original Ethereum vision: a decentralized world computer secured by proof-of-work. With its commitment to immutability, sound monetary policy, and EVM compatibility, ETC is a platform for applications that run as written.
       </p>
     </>
   )

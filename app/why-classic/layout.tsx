@@ -4,10 +4,10 @@ import { OG_BASE } from '@/lib/seo'
 export const metadata: Metadata = {
   title: {
     template: '%s | Ethereum Classic',
-    default: 'Why Classic — Ethereum Classic Philosophy',
+    default: 'Why Classic: The Philosophy of Ethereum Classic',
   },
   description:
-    'The principles behind Ethereum Classic — genesis, code is law, decentralism, proof of work, and sound money.',
+    'The principles behind Ethereum Classic: its genesis, code is law, decentralism, proof of work and sound money.',
   openGraph: { ...OG_BASE },
 }
 

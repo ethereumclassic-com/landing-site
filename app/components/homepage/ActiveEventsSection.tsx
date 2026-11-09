@@ -48,14 +48,14 @@ function DigitBox({ value, label, loading }: { value: number; label: string; loa
 }
 
 const olympiaPoints = [
-  'EVM alignment (ECIP-1121): advances the execution layer through Dencun, Pectra and Fusaka, and carries that work into Glamsterdam',
-  'A base fee market (ECIP-1111): EIP-1559, with the base fee credited to a treasury rather than destroyed, and block rewards and tips unaffected',
-  'A treasury and its governance (ECIP-1112, ECIP-1113): Olympia DAO, the only route by which that balance could be spent',
+  'EVM alignment (ECIP-1121): would advance the execution layer through Dencun, Pectra and Fusaka, and carry that work into Glamsterdam',
+  'A base fee market (ECIP-1111): EIP-1559, with the base fee credited to a treasury instead of burned, and block rewards and tips unchanged',
+  'A treasury and its governance (ECIP-1112, ECIP-1113): Olympia DAO would be the only way to spend from it',
 ]
 
 const fifthingPoints = [
   'Fixed monetary policy with no governance vote or override, enforced at the protocol level',
-  'Raises stock-to-flow ratio, reducing annual inflation toward Bitcoin-tier scarcity',
+  'Raises the stock-to-flow ratio and lowers annual issuance',
 ]
 
 export default function ActiveEventsSection() {
@@ -95,7 +95,7 @@ export default function ActiveEventsSection() {
             Upcoming Protocol Events
           </h2>
           <p className="mt-2 text-sm text-[var(--text-muted)]">
-            Two milestones are approaching on Ethereum Classic: the next protocol upgrade continuing parity with the greater EVM ecosystem, and a scheduled block reward reduction defined by the network&apos;s fixed emission schedule.
+            Two events lie ahead for Ethereum Classic: the next block reward reduction, set by its fixed emission schedule, and Olympia, a proposed upgrade that would bring its EVM in line with Ethereum&apos;s recent upgrades.
           </p>
         </FadeIn>
 
@@ -231,8 +231,7 @@ export default function ActiveEventsSection() {
                 Olympia: A Proposed Upgrade
               </h3>
               <p className="mt-2 text-sm text-[var(--text-muted)]">
-                Olympia is a proposed upgrade to Ethereum Classic, {OLYMPIA_TARGET}. Its ECIPs are drafts, and
-                its activation block is TBD.
+                Olympia is a proposed upgrade to Ethereum Classic, {OLYMPIA_TARGET}.
               </p>
 
               <ul className="mt-4 space-y-2.5">
@@ -287,12 +286,12 @@ export default function ActiveEventsSection() {
                     {olympiaStatus === 'tbd' && (
                       <div className="mt-2.5 space-y-2">
                         <p className="text-[10px] italic text-[var(--text-muted)] opacity-60">
-                          * The countdown runs to <time dateTime={OLYMPIA_PLACEHOLDER_ISO}>{OLYMPIA_PLACEHOLDER_DATE_LABEL}</time>,
-                          a placeholder target rather than an activation date, until the activation block is set
+                          * Until the activation block is set, the countdown runs to{' '}
+                          <time dateTime={OLYMPIA_PLACEHOLDER_ISO}>{OLYMPIA_PLACEHOLDER_DATE_LABEL}</time>, a placeholder target
+                          rather than an activation date
                         </p>
                         <p className="text-xs text-[var(--text-muted)] opacity-60">
-                          The activation blocks for Mordor and mainnet are decided at the Olympia Core Devs Call and
-                          recorded in ECIP-1111.
+                          The activation blocks for Mordor and mainnet would be decided at the Olympia Core Devs Call and recorded in ECIP-1111.
                         </p>
                       </div>
                     )}

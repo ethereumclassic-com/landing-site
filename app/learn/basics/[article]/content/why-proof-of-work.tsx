@@ -2,7 +2,7 @@ export default function WhyProofOfWork() {
   return (
     <>
       <p>
-        Ethereum Classic is the largest proof-of-work smart contract platform in the world. This design choice delivers security, decentralization, and censorship resistance that no other consensus mechanism can match.
+        Ethereum Classic is the only mature proof-of-work blockchain with native smart contracts. Proof-of-work gives it security, decentralization and censorship resistance that rest on physical resources rather than on token holdings.
       </p>
 
       <h2>What is Proof-of-Work?</h2>
@@ -19,8 +19,8 @@ export default function WhyProofOfWork() {
       </p>
       <ul>
         <li><strong>Attack cost is real:</strong> Attempting to attack the network requires massive ongoing energy expenditure</li>
-        <li><strong>Objective finality:</strong> The longest chain represents the most accumulated work, providing clear consensus</li>
-        <li><strong>Geographic distribution:</strong> Mining operations spread globally, making coordinated attacks logistically impractical</li>
+        <li><strong>Objective consensus:</strong> The chain with the most accumulated work is the valid one, which any node can check</li>
+        <li><strong>Geographic distribution:</strong> Mining is spread around the world, so no single government or operator controls block production</li>
       </ul>
 
       <h2>Censorship Resistance</h2>
@@ -41,9 +41,9 @@ export default function WhyProofOfWork() {
         <li><strong>Permissionless entry:</strong> Anyone with hardware can participate without approval</li>
       </ul>
 
-      <h2>The ETCHash Algorithm</h2>
+      <h2>The Etchash Algorithm</h2>
       <p>
-        Ethereum Classic uses ETCHash, a memory-intensive mining algorithm. This means miners need both computational power and memory, which helps maintain decentralization across different hardware types.
+        Ethereum Classic uses Etchash, a memory-intensive mining algorithm. This means miners need both computational power and memory, which helps maintain decentralization across different hardware types.
       </p>
       <p>
         ETC is compatible with GPU and ASIC mining hardware, giving miners flexibility in how they participate in network security.
@@ -51,7 +51,7 @@ export default function WhyProofOfWork() {
 
       <h2>Network Hashrate</h2>
       <p>
-        ETC benefits from being the dominant GPU-minable smart contract platform. This massive hashrate makes 51% attacks economically impractical. An attacker would need to acquire and operate more mining hardware than the entire rest of the network combined.
+        ETC is the largest smart contract platform that GPUs and ASICs can mine, and its hashrate sets the cost of an attack: an attacker would need more hashrate than the rest of the network combined. ETC suffered 51% attacks in 2019 and 2020, when its hashrate was a small fraction of what it has been since the Merge.
       </p>
 
       <h2>Comparison with Proof-of-Stake</h2>

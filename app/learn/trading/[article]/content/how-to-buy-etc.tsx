@@ -38,7 +38,7 @@ export default function HowToBuyEtc() {
       <ul>
         <li>Set up MetaMask and add the Ethereum Classic network (Chain ID 61, RPC: https://etc.blockscout.com/api/eth-rpc)</li>
         <li>Connect your wallet to ETCswap</li>
-        <li>Select the token you want to swap from (e.g., ClassicUSD or WETC)</li>
+        <li>Select the token you want to swap from (e.g., Classic USD (USC) or WETC)</li>
         <li>Enter the amount and review the swap details including price impact and slippage</li>
         <li>Confirm the transaction in your wallet</li>
       </ul>

@@ -139,7 +139,7 @@ export default function SellExchangesPage() {
     },
     {
       name: 'Binance',
-      description: 'World\'s largest exchange by volume with extensive withdrawal options.',
+      description: 'Global exchange with deep liquidity and many withdrawal options.',
       tradingFee: '0.1%',
       withdrawalFee: 'Varies',
       minWithdrawal: 'Varies',
@@ -209,7 +209,7 @@ export default function SellExchangesPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-error)]/5 via-transparent to-transparent" />
@@ -233,7 +233,7 @@ export default function SellExchangesPage() {
               Sell ETC on Exchanges
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-              Compare the best exchanges for selling Ethereum Classic. Find the lowest fees and fastest payouts to your bank account.
+              Compare exchanges for selling Ethereum Classic by fees and payout times to your bank account.
             </p>
           </div>
         </div>
@@ -383,7 +383,7 @@ export default function SellExchangesPage() {
               Try the Native Off-Ramp Path
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-              Convert ETC to ClassicUSD (USC) on ETCswap, then redeem for USD via Brale - no centralized exchange needed
+              Convert ETC to Classic USD (USC) on ETCswap, then redeem it for USD through Brale, with no crypto exchange account
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
@@ -407,6 +407,6 @@ export default function SellExchangesPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

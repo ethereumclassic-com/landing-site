@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'Ethereum Classic difficulty',
     'ETC difficulty chart',
     'ETC difficulty adjustment',
-    'ETChash difficulty',
+    'Etchash difficulty',
     'ETC block time',
     'ETC mining difficulty',
     'network difficulty history',

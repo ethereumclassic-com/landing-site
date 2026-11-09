@@ -327,7 +327,7 @@ Reserved endpoint for future in-house mining pool:
 /mining/pools/ethereumclassic-com
 ```
 
-This will integrate with Fukuii development and serve as an ETChash mining hub.
+This will integrate with Fukuii development and serve as an Etchash mining hub.
 Related projects: FairWins, ClearPath, TokenMint, Prediction DAO research.
 
 ---

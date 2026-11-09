@@ -50,7 +50,7 @@ export default function MiningProfitability() {
       <ul>
         <li><strong>Measured in:</strong> MH/s per watt (MH/W)</li>
         <li><strong>Modern GPUs:</strong> Typically 0.3-0.5 MH/W</li>
-        <li><strong>ASICs:</strong> Can exceed 1+ MH/W for ETCHash</li>
+        <li><strong>ASICs:</strong> About 4 to 9 MH/W on current models</li>
       </ul>
 
       <h3>4. Network Difficulty</h3>
@@ -82,7 +82,7 @@ export default function MiningProfitability() {
 
       <h3>Example Calculation</h3>
       <p>
-        For a {EXAMPLE.gpuMHs} MH/s GPU (typical single card), taking a network hashrate of {EXAMPLE.networkTHs} TH/s and an
+        For a {EXAMPLE.gpuMHs} MH/s rig of several GPUs, taking a network hashrate of {EXAMPLE.networkTHs} TH/s and an
         ETC price of ${EXAMPLE.etcUSD} for the example:
       </p>
       <ul>
@@ -125,7 +125,7 @@ export default function MiningProfitability() {
           <strong>Network Hashrate:</strong> moves with miner activity; the{' '}
           <Link href="/mining/hashrate" className="text-[var(--color-primary)] hover:underline">current figure</Link> is derived live from Blockscout
         </li>
-        <li><strong>Algorithm:</strong> ETCHash (memory-intensive)</li>
+        <li><strong>Algorithm:</strong> Etchash (memory-intensive)</li>
       </ul>
       <p className="mt-4 text-sm text-[var(--color-text-muted)]">
         Check live stats at <a href="https://etc.blockscout.com/stats" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">Blockscout</a> or WhatToMine for current values.

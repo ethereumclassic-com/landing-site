@@ -19,9 +19,9 @@ export default function UnderstandingExchanges() {
 
       <h3>Popular CEX Options for ETC</h3>
       <ul>
-        <li><strong>Coinbase:</strong> Regulated, insured, beginner-friendly. Supports ETC/USD trading pairs.</li>
+        <li><strong>Coinbase:</strong> Regulated in the US and beginner-friendly. Supports ETC/USD trading pairs.</li>
         <li><strong>Kraken:</strong> Strong security history, proof-of-reserves, advanced trading tools.</li>
-        <li><strong>Binance:</strong> Highest liquidity globally, low fees, wide range of trading pairs.</li>
+        <li><strong>Binance:</strong> Deep liquidity, low fees, wide range of trading pairs.</li>
       </ul>
 
       <h3>CEX Advantages</h3>
@@ -35,7 +35,7 @@ export default function UnderstandingExchanges() {
       <h3>CEX Disadvantages</h3>
       <ul>
         <li>KYC/identity verification required</li>
-        <li>Custodial &mdash; the exchange holds your private keys</li>
+        <li>Custodial: the exchange holds your private keys</li>
         <li>Vulnerable to hacks, freezes, or insolvency</li>
         <li>Can restrict access based on jurisdiction</li>
       </ul>
@@ -52,10 +52,10 @@ export default function UnderstandingExchanges() {
 
       <h3>DEX Advantages</h3>
       <ul>
-        <li>Non-custodial &mdash; you control your funds at all times</li>
+        <li>Non-custodial: you control your funds at all times</li>
         <li>No KYC or identity verification</li>
-        <li>Permissionless &mdash; anyone can trade or list tokens</li>
-        <li>Transparent &mdash; all trades and liquidity are on-chain</li>
+        <li>Permissionless: anyone can trade or list tokens</li>
+        <li>Transparent: all trades and liquidity are on-chain</li>
       </ul>
 
       <h3>DEX Disadvantages</h3>

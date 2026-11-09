@@ -45,7 +45,7 @@ const primaryFrameworks = [
     jurisdiction: 'United States',
     badge: 'badge-pending' as const,
     badgeLabel: 'Pending',
-    desc: 'Would place digital commodities under CFTC jurisdiction, separate from securities oversight, and ETC is positioned as a candidate',
+    desc: 'Would place digital commodities under CFTC jurisdiction, separate from securities oversight. ETC is positioned as a candidate.',
   },
   {
     flag: '🇺🇸',
@@ -53,7 +53,7 @@ const primaryFrameworks = [
     jurisdiction: 'United States',
     badge: 'badge-available' as const,
     badgeLabel: '2025',
-    desc: 'Federal stablecoin framework signed into law; ETC qualifies as a neutral proof-of-work settlement rail',
+    desc: 'Federal framework for payment stablecoins, signed into law in July 2025. Classic USD on ETC is aligned with it.',
   },
   {
     flag: '🇪🇺',
@@ -61,7 +61,7 @@ const primaryFrameworks = [
     jurisdiction: 'European Union',
     badge: 'badge-available' as const,
     badgeLabel: '2024',
-    desc: 'ETC classified as a decentralized asset, exempt from issuer obligations across all EU member states',
+    desc: 'Applies across the EU. ETC has no issuer, and authorized crypto-asset service providers can offer it in every member state.',
   },
   {
     flag: '🇺🇸',
@@ -69,28 +69,28 @@ const primaryFrameworks = [
     jurisdiction: 'United States',
     badge: 'badge-pending' as const,
     badgeLabel: 'Pending',
-    desc: 'Voluntary federal certification for domestic proof-of-work mining operations and ASIC manufacturing',
+    desc: 'A proposed voluntary federal certification for US proof-of-work mining operations and ASIC manufacturing.',
   },
 ]
 
 const secondaryJurisdictions = [
   [
-    { flag: '🇯🇵', label: 'Japan', value: 'FSA Green List', desc: 'ETC on the JVCEA recognized list, enabling compliant listing across all regulated Japanese exchanges without additional review', date: '2022' },
-    { flag: '🇬🇧', label: 'United Kingdom', value: 'FSMA Recognized', desc: 'FCA cryptoasset regulations under FSMA 2026; ETC qualifies as a recognized cryptoasset under the incoming framework', date: '2027' },
-    { flag: '🇨🇦', label: 'Canada', value: 'CIRO Registered', desc: 'CIRO-registered exchanges can list ETC under CSA provincial oversight and mandatory FINTRAC MSB registration', date: '2023' },
-    { flag: '🇰🇷', label: 'South Korea', value: 'FSC/FSS Listed', desc: 'Virtual Asset User Protection Act in force Jul 2024; ETC/KRW pairs active on FSC-registered exchanges under formal VASP oversight', date: '2024' },
+    { flag: '🇯🇵', label: 'Japan', value: 'JVCEA Green List', desc: 'ETC is on the Green List of the Japan Virtual and Crypto assets Exchange Association, which streamlines listing it on registered Japanese exchanges.', date: '2022' },
+    { flag: '🇬🇧', label: 'United Kingdom', value: 'FCA Cryptoasset Regime', desc: 'The FCA\'s cryptoasset regime under FSMA starts in October 2027 and brings trading platforms and custody under FCA authorization.', date: '2027' },
+    { flag: '🇨🇦', label: 'Canada', value: 'CSA and CIRO', desc: 'Crypto trading platforms register with the provincial securities regulators and CIRO, and with FINTRAC as money services businesses. ETC trades on registered platforms.', date: '2023' },
+    { flag: '🇰🇷', label: 'South Korea', value: 'User Protection Act', desc: 'The Virtual Asset User Protection Act has been in force since July 2024. ETC/KRW pairs trade on exchanges registered with the FSC.', date: '2024' },
   ],
   [
-    { flag: '🇦🇺', label: 'Australia', value: 'AFSL Compliant', desc: 'Digital Assets Framework Bill enacted Apr 2026; ETC accessible through ASIC-licensed platforms under the new AFSL digital asset regime', date: '2026' },
-    { flag: '🇧🇷', label: 'Brazil', value: 'BCB Regulated', desc: 'BCB designated as crypto regulator under the Virtual Assets Law; ETC/BRL pairs active on BCB-authorized exchanges', date: '2023' },
-    { flag: '🇦🇪', label: 'United Arab Emirates', value: 'VARA Compliant', desc: 'VARA Dubai Rulebook governs virtual asset service providers; ETC accessible through licensed exchanges operating under the comprehensive Dubai framework', date: '2022' },
-    { flag: '🇸🇬', label: 'Singapore', value: 'MAS Licensed', desc: 'Payment Services Act DPT framework with expanded VASP licensing scope from 2024; ETC available through MAS-licensed exchanges', date: '2024' },
+    { flag: '🇦🇺', label: 'Australia', value: 'Digital Assets Framework', desc: 'Passed in April 2026, it brings digital asset platforms under ASIC\'s financial services licensing. ETC is available through ASIC-licensed platforms.', date: '2026' },
+    { flag: '🇧🇷', label: 'Brazil', value: 'Virtual Assets Law', desc: 'The Central Bank of Brazil regulates virtual asset service providers under the Virtual Assets Law. ETC/BRL pairs trade on Brazilian exchanges.', date: '2023' },
+    { flag: '🇦🇪', label: 'United Arab Emirates', value: 'VARA Rulebook', desc: 'Dubai\'s Virtual Assets Regulatory Authority licenses virtual asset service providers under its Rulebook. ETC is available through VARA-licensed exchanges.', date: '2022' },
+    { flag: '🇸🇬', label: 'Singapore', value: 'Payment Services Act', desc: 'The Monetary Authority of Singapore licenses digital payment token services under the Payment Services Act, with a wider scope from 2024. ETC is available through MAS-licensed exchanges.', date: '2024' },
   ],
   [
-    { flag: '🇭🇰', label: 'Hong Kong', value: 'SFC Recognized', desc: 'SFC VASP licensing regime operational since Jun 2023; ETC available on licensed platforms under Hong Kong\'s standalone virtual asset framework', date: '2023' },
-    { flag: '🇨🇭', label: 'Switzerland', value: 'FINMA Compliant', desc: 'DLT Act 2021 provides a principles-based legal framework; ETC traded and held across FINMA-regulated Crypto Valley entities in Zug', date: '2021' },
-    { flag: '🇹🇷', label: 'Turkey', value: 'CMB Listed', desc: 'Capital Markets Law No. 7518 mandates CMB/SPK exchange authorization; ETC/TRY pairs active following Turkey\'s FATF grey list exit in 2024', date: '2024' },
-    { flag: '🇿🇦', label: 'South Africa', value: 'CASP Registered', desc: 'FSCA-supervised CASP registration in force since 2023; ETC accessible through licensed providers under Africa\'s most developed crypto regulatory framework', date: '2023' },
+    { flag: '🇭🇰', label: 'Hong Kong', value: 'SFC Licensing', desc: 'The Securities and Futures Commission has licensed virtual asset trading platforms since June 2023. ETC is available on licensed platforms.', date: '2023' },
+    { flag: '🇨🇭', label: 'Switzerland', value: 'DLT Act', desc: 'The DLT Act (2021) gives distributed ledger assets a legal framework under FINMA\'s principles-based supervision. FINMA-regulated firms trade and hold ETC.', date: '2021' },
+    { flag: '🇹🇷', label: 'Turkey', value: 'Capital Markets Law', desc: 'Law No. 7518 (2024) requires crypto exchanges to be authorized by the Capital Markets Board (CMB/SPK). ETC/TRY pairs trade on Turkish exchanges.', date: '2024' },
+    { flag: '🇿🇦', label: 'South Africa', value: 'FSCA Licensing', desc: 'Crypto asset service providers have needed an FSCA license since 2023. ETC is available through licensed providers.', date: '2023' },
   ],
 ]
 
@@ -103,10 +103,10 @@ export default function RegulatoryOverviewSection() {
             Regulatory Position
           </p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">
-            Global Regulatory Clarity
+            Regulation Around the World
           </h2>
           <p className="mt-2 text-sm text-[var(--text-muted)]">
-            Ethereum Classic&apos;s proof-of-work consensus and decentralized structure position it favorably across every major regulatory framework. This is by design, not by accident.
+            Ethereum Classic has no issuer and no controlling entity, the profile that frameworks for digital commodities look for. Here is where it stands under the major frameworks, with pending ones marked.
           </p>
         </FadeIn>
 
@@ -148,13 +148,13 @@ export default function RegulatoryOverviewSection() {
         <FadeIn>
           <div className="mt-10 space-y-4 border-t border-[var(--border-default)] pt-8">
             <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-              Ethereum Classic inherits two distinct regulatory trajectories: the commodity classification path that Proof-of-Work networks established, and the programmable finance frameworks being built around smart contract platforms. Its regulatory surface is additive. ETC is positioned as a digital commodity candidate under the pending CLARITY Act, a decentralized asset under MiCA, and the only Proof-of-Work EVM with a live GENIUS Act-aligned stablecoin.
+              How an asset is classified decides who can use it. Exchanges need a classification to list ETC, custodians and banks to hold it, investment product issuers to build on it, and corporate treasuries to carry it on a balance sheet.
             </p>
             <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-              Exchanges listing ETC require asset classification clarity. Custodians settling ETC transactions require settlement finality guarantees. Investment product issuers require commodity status. ETF sponsors require CFTC commodity futures markets and SEC classification clarity for spot product approval. Corporate treasuries require auditable reserve proof and accounting treatment clarity before holding digital assets on balance sheet. Banks offering custody require prudential capital treatment under Basel III crypto asset rules, which depend directly on commodity classification. Regulated stablecoin issuers require an immutable, neutral settlement rail. dApp and DeFi protocol developers require an unmodifiable EVM execution layer as a credible neutrality guarantee. Miners and hardware manufacturers require protocol stability, a fixed monetary policy, no proof-of-stake transition risk, and asset acceptance in their operating jurisdictions. These are the conditions that permit continued capital allocation without shutdown risk.
+              Stablecoin issuers and DeFi developers need a settlement network that no party can alter. Miners and hardware makers need a fixed monetary policy and a protocol that will not move to proof-of-stake.
             </p>
             <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-              Governments adopting digital assets face a distinct requirement set. Sovereign wealth funds and central bank reserves require commodity-classified assets with auditable, proven security models. National digital finance strategies require settlement rails that cannot be censored or modified by external parties. Public infrastructure mandates require open-source, permissionless networks with no controlling entity. Ethereum Classic satisfies each condition through its proof-of-work consensus, fixed monetary policy, and unbroken immutability record since 2015.
+              Governments and public institutions weighing digital assets look for the same properties: open-source software, permissionless access and no controlling entity. Ethereum Classic offers them through Proof-of-Work consensus, a fixed monetary policy and continuous operation since 2015.
             </p>
           </div>
         </FadeIn>

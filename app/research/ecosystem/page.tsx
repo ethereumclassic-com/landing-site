@@ -4,7 +4,7 @@ import { OG_BASE } from '@/lib/seo'
 import { apps } from '@/app/apps/data/apps'
 import { nodeClients } from '@/app/build/data/build'
 import { exchanges } from '@/app/buy/data/exchanges'
-import { miningPools } from '@/app/mining/data/mining'
+import { POOL_DIRECTORY } from '@/app/mining/data/pools'
 import { wallets } from '@/app/wallet/data/wallets'
 
 export const metadata: Metadata = {
@@ -20,14 +20,14 @@ const ecosystemStats = [
   { label: 'dApps', value: apps.length, description: 'Listed applications', href: '/apps' },
   { label: 'Wallets', value: wallets.length, description: 'Supporting ETC', href: '/wallet' },
   { label: 'Exchanges', value: exchanges.length, description: 'Trading venues', href: '/buy' },
-  { label: 'Mining Pools', value: miningPools.length, description: 'Listed pools', href: '/mining/pools' },
+  { label: 'Mining Pools', value: POOL_DIRECTORY.length, description: 'Listed pools', href: '/mining/pools' },
 ]
 
 const ecosystemSections = [
   {
     title: 'DeFi',
-    description: 'Decentralized exchanges, lending, stablecoins, and yield opportunities on Ethereum Classic.',
-    items: ['ETCswap, the leading DEX with liquidity pools', 'ClassicUSD, the native stablecoin', 'HeightFi for lending and borrowing'],
+    description: 'Decentralized exchanges, a token launchpad and a USD stablecoin on Ethereum Classic.',
+    items: ['ETCswap, a DEX with V2 and V3 liquidity pools', 'ETCswap Launchpad, for launching tokens on a bonding curve', 'Classic USD (USC), a USD-backed stablecoin issued on ETC'],
     href: '/apps/defi',
   },
   {
@@ -42,21 +42,21 @@ const ecosystemSections = [
   },
   {
     title: 'Governance',
-    description: 'The proposed Olympia DAO: governance of a treasury the EIP-1559 base fee would fund, with CoreNFT membership voting and Ecosystem Growth DAOs.',
-    items: ['A treasury funded by the base fee', 'CoreNFT membership voting', 'Ecosystem Growth DAOs'],
+    description: 'The proposed Olympia DAO would govern a treasury funded by the EIP-1559 base fee, with one CoreNFT vote per member, and would fund Ecosystem Growth DAOs one season at a time.',
+    items: ['A treasury funded by the base fee', 'CoreNFT membership voting', 'Ecosystem Growth DAOs, funded by season'],
     href: '/olympia/governance',
   },
   {
     title: 'Mining',
     description: 'Etchash proof-of-work mining ecosystem with GPU and ASIC support.',
-    items: ['Live network hashrate and pool shares', `${miningPools.length} mining pools listed`, 'GPU + ASIC compatible'],
+    items: ['Live network hashrate and pool shares', `${POOL_DIRECTORY.length} mining pools listed`, 'GPU + ASIC compatible'],
     href: '/mining',
   },
 ]
 
 export default function ResearchEcosystemPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -75,8 +75,7 @@ export default function ResearchEcosystemPage() {
             <div>
               <h1 className="text-3xl font-bold text-[var(--text-primary)] md:text-4xl lg:text-5xl">Ecosystem Overview</h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                A snapshot of the Ethereum Classic ecosystem spanning DeFi, infrastructure,
-                governance, and mining across the network.
+                A snapshot of the Ethereum Classic ecosystem: DeFi, infrastructure, governance and mining.
               </p>
             </div>
           </div>
@@ -154,6 +153,6 @@ export default function ResearchEcosystemPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

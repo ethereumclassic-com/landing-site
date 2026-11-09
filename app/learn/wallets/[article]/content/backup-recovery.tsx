@@ -5,7 +5,7 @@ export default function BackupRecovery() {
         Backing up your wallet properly is essential for cryptocurrency security. If you lose access to your device, a proper backup is the only way to recover your funds.
       </p>
 
-      <h2>What You Need to Backup</h2>
+      <h2>What You Need to Back Up</h2>
       <p>
         The most critical piece of information is your <strong>seed phrase</strong> (also called recovery phrase or mnemonic). This is typically 12 or 24 words that can regenerate your entire wallet, including all accounts and private keys.
       </p>
@@ -18,7 +18,7 @@ export default function BackupRecovery() {
         <li>Access your funds even if you lose your device</li>
       </ul>
 
-      <h2>How to Backup Your Seed Phrase</h2>
+      <h2>How to Back Up Your Seed Phrase</h2>
 
       <h3>Finding Your Seed Phrase</h3>
       <p>
@@ -93,7 +93,7 @@ export default function BackupRecovery() {
         <li>Select &ldquo;Import using Secret Recovery Phrase&rdquo;</li>
         <li>Enter your 12 or 24 words in order</li>
         <li>Create a new password</li>
-        <li>Your accounts and balances will restore</li>
+        <li>Your accounts and balances are restored</li>
       </ol>
 
       <h3>On Mobile Wallets</h3>
@@ -130,7 +130,7 @@ export default function BackupRecovery() {
       <ul>
         <li>Check if the wallet uses a non-standard path</li>
         <li>Some wallets let you specify the derivation path manually</li>
-        <li>ETC typically uses the same path as ETH: m/44&apos;/60&apos;/0&apos;/0</li>
+        <li>MetaMask uses Ethereum&apos;s path, m/44&apos;/60&apos;/0&apos;/0, on every network, while hardware wallets such as Ledger and Trezor use ETC&apos;s own, m/44&apos;/61&apos;/0&apos;/0. If an ETC balance is missing after recovery, try the other path</li>
       </ul>
 
       <h2>Testing Your Backup</h2>

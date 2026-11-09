@@ -2,7 +2,8 @@
 // the research pages cite.
 
 import { executionPlugins, explorerAPIs, nodeClients } from '@/app/build/data/build'
-import { miningHardware, miningPools } from '@/app/mining/data/mining'
+import { miningHardware } from '@/app/mining/data/mining'
+import { POOL_DIRECTORY } from '@/app/mining/data/pools'
 import { ETC_RPC_ENDPOINTS } from '@/lib/rpc-endpoints'
 
 export interface EcosystemStat {
@@ -26,7 +27,7 @@ export const ecosystemStats: EcosystemStat[] = [
     href: '/build',
     stats: [
       { label: 'Node clients', value: nodeClients.length },
-      { label: 'Execution plugins', value: executionPlugins.length },
+      { label: 'Planned execution plugins', value: executionPlugins.filter((plugin) => plugin.status === 'planned').length },
       { label: 'Public RPC endpoints', value: ETC_RPC_ENDPOINTS.length },
       { label: 'Block explorers', value: explorerAPIs.filter((explorer) => explorer.network !== 'testnet').length },
     ],
@@ -35,7 +36,7 @@ export const ecosystemStats: EcosystemStat[] = [
     category: 'Mining',
     href: '/mining',
     stats: [
-      { label: 'Mining pools', value: miningPools.length },
+      { label: 'Mining pools', value: POOL_DIRECTORY.length },
       { label: 'ASIC models', value: miningHardware.filter((hardware) => hardware.type === 'ASIC').length },
       { label: 'GPU models', value: miningHardware.filter((hardware) => hardware.type === 'GPU').length },
     ],
@@ -53,7 +54,7 @@ export const dataSources: DataSource[] = [
   {
     name: 'Blockscout',
     url: 'https://etc.blockscout.com',
-    description: 'Official ETC block explorer with comprehensive on-chain data',
+    description: 'The main ETC block explorer, with full on-chain data',
     type: 'explorer',
   },
   {

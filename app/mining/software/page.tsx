@@ -93,7 +93,7 @@ function ConfigExample({ title, command, description }: { title: string; command
 
 export default function MiningSoftwarePage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -115,7 +115,7 @@ export default function MiningSoftwarePage() {
                 Mining Software Guide
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Choose the best mining software for Ethereum Classic. All miners listed support the ETChash
+                Compare mining software for Ethereum Classic. All miners listed support the Etchash
                 algorithm used by ETC.
               </p>
             </div>
@@ -138,9 +138,11 @@ export default function MiningSoftwarePage() {
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">Quick Recommendation</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  <strong className="text-[var(--color-success)]">NVIDIA GPU:</strong> T-Rex Miner offers the best performance and stability.{' '}
-                  <strong className="text-[var(--color-error)]">AMD GPU:</strong> TeamRedMiner provides optimal hashrates for AMD cards.{' '}
-                  <strong className="text-[var(--color-info)]">Mixed rig:</strong> lolMiner supports both with good performance.
+                  <strong className="text-[var(--color-info)]">Any rig:</strong> lolMiner supports AMD and NVIDIA GPUs and has
+                  regular releases.{' '}
+                  <strong className="text-[var(--color-error)]">AMD GPU:</strong> TeamRedMiner is built for AMD cards.{' '}
+                  <strong className="text-[var(--color-success)]">NVIDIA GPU:</strong> T-Rex still mines Etchash, but has had no
+                  release since 2022.
                 </p>
               </div>
             </div>
@@ -266,7 +268,7 @@ export default function MiningSoftwarePage() {
               <ConfigExample
                 title="TeamRedMiner (AMD)"
                 command="teamredminer -a etchash -o stratum+tcp://POOL_ADDRESS:POOL_PORT -u WALLET_ADDRESS.worker1 -p x"
-                description="Best performance on AMD GPUs. Supports RX and RDNA series."
+                description="Built for AMD GPUs, including the RX and RDNA series."
               />
               <ConfigExample
                 title="GMiner (AMD/NVIDIA)"
@@ -351,8 +353,8 @@ export default function MiningSoftwarePage() {
                 <h3 className="font-semibold text-[var(--text-primary)]">Security Notice</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
                   Only download mining software from official sources linked above. Mining software may trigger
-                  antivirus warnings due to its nature - these are typically false positives but always verify
-                  checksums when available. Never download miners from unofficial sources as they may contain malware.
+                  antivirus warnings because of what it does. These are usually false positives, but always verify checksums when they are
+              available. Never download miners from unofficial sources as they may contain malware.
                 </p>
               </div>
             </div>
@@ -390,6 +392,6 @@ export default function MiningSoftwarePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

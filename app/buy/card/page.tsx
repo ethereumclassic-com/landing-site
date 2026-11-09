@@ -97,7 +97,7 @@ export default function CardPage() {
     },
     {
       name: 'Kraken',
-      description: 'Secure exchange with instant card purchases in select regions',
+      description: 'US exchange with instant card purchases in some regions',
       cardTypes: ['Visa', 'Mastercard'],
       processingTime: 'Instant',
       fees: '~1.5%',
@@ -171,7 +171,7 @@ export default function CardPage() {
   ]
 
   return (
-    <main>
+    <div>
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -210,7 +210,7 @@ export default function CardPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Buy Ethereum Classic instantly using a credit card, debit card, Apple Pay, or Google Pay. Card purchases process immediately with no waiting period, making this the fastest option for getting ETC — fees typically range from 1.5% to 4% depending on the provider and card type.
+            Buy Ethereum Classic instantly using a credit card, debit card, Apple Pay, or Google Pay. Card purchases go through immediately, which makes this the quickest way to get ETC. Fees typically range from 1.5% to 4%, depending on the provider and card type.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -360,22 +360,22 @@ export default function CardPage() {
               <tbody className="text-sm">
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 font-medium text-[var(--text-primary)]">Processing Fee</td>
-                  <td className="py-4 text-center text-[var(--color-text-muted)]">1.5% - 4%</td>
+                  <td className="py-4 text-center text-[var(--color-text-muted)]">1.5% to 4%</td>
                   <td className="py-4 text-[var(--color-text-muted)]">Charged by the exchange for card processing</td>
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 font-medium text-[var(--text-primary)]">Network Fee</td>
-                  <td className="py-4 text-center text-[var(--color-text-muted)]">$0.50 - $2</td>
+                  <td className="py-4 text-center text-[var(--color-text-muted)]">$0.50 to $2</td>
                   <td className="py-4 text-[var(--color-text-muted)]">Card network fees (Visa/Mastercard)</td>
                 </tr>
                 <tr className="border-b border-[var(--border)]/50">
                   <td className="py-4 font-medium text-[var(--text-primary)]">Foreign Transaction</td>
-                  <td className="py-4 text-center text-[var(--color-text-muted)]">0% - 3%</td>
+                  <td className="py-4 text-center text-[var(--color-text-muted)]">0% to 3%</td>
                   <td className="py-4 text-[var(--color-text-muted)]">May apply if exchange is in different country</td>
                 </tr>
                 <tr>
                   <td className="py-4 font-medium text-[var(--text-primary)]">Cash Advance Fee</td>
-                  <td className="py-4 text-center text-[var(--color-warning)]">3% - 5%</td>
+                  <td className="py-4 text-center text-[var(--color-warning)]">3% to 5%</td>
                   <td className="py-4 text-[var(--color-text-muted)]">Some banks treat crypto as cash advance (credit cards)</td>
                 </tr>
               </tbody>
@@ -508,6 +508,6 @@ export default function CardPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

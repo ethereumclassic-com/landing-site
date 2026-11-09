@@ -80,7 +80,7 @@ export default function AppsPage() {
   const featuredApps = getFeaturedApps()
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -107,9 +107,8 @@ export default function AppsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Explore the growing ecosystem of DeFi protocols, developer tools, governance systems, and infrastructure
-            built on Ethereum Classic. From Classic USD, a stablecoin issued by Brale and aligned with MiCA, to AMM
-            exchanges and launchpads.
+            DeFi protocols, developer tools, governance systems and infrastructure built on Ethereum Classic, from
+            Classic USD, a stablecoin issued by Brale and aligned with MiCA, to AMM exchanges and launchpads.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -168,7 +167,7 @@ export default function AppsPage() {
               Top Apps on Ethereum Classic
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
-              These flagship applications represent the best of what the ETC ecosystem has to offer
+              Featured applications on Ethereum Classic
             </p>
           </div>
 
@@ -267,6 +266,6 @@ export default function AppsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

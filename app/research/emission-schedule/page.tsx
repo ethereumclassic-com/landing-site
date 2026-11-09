@@ -41,7 +41,7 @@ export default function EmissionSchedulePage() {
   const expectedDate = getExpectedFifthingDate(blocksRemaining)
 
   return (
-    <main className="min-h-screen bg-[var(--background)] pb-16 pt-24">
+    <div className="min-h-screen bg-[var(--background)] pb-16 pt-24">
       {/* Breadcrumb */}
       <div className="px-6 pb-2 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -204,6 +204,6 @@ export default function EmissionSchedulePage() {
           </p>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

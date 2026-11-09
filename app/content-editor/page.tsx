@@ -136,8 +136,8 @@ Wrap up your article with a conclusion.`,
             Content Editor
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Create and edit MDX articles for EthereumClassic.com. Fill in the form below to generate
-            an MDX file ready for the content directory.
+            Draft news articles for ethereumclassic.com. Fill in the form to generate the article, then add it to
+            the site&apos;s news data as described below.
           </p>
         </div>
 
@@ -341,16 +341,17 @@ Wrap up your article with a conclusion.`,
                 </h3>
                 <ol className="space-y-2 text-sm text-[var(--color-text-secondary)]">
                   <li>
-                    1. Download or copy the MDX file above
+                    1. Download or copy the generated article above
                   </li>
                   <li>
-                    2. Save to <code className="rounded bg-[var(--panel)] px-1.5 py-0.5">/content/news/</code> directory
+                    2. Add it as an entry in <code className="rounded bg-[var(--panel)] px-1.5 py-0.5">app/news/data/articles.ts</code>: the
+                    front-matter fields become the entry&apos;s fields, and the body becomes its content
                   </li>
                   <li>
-                    3. Commit and push to the repository
+                    3. Run lint, typecheck and build, then commit and push
                   </li>
                   <li>
-                    4. The article will appear on the News page automatically
+                    4. The article appears on the News page once the site deploys
                   </li>
                 </ol>
               </div>

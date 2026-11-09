@@ -36,7 +36,7 @@ interface AppDetailClientProps {
 
 export default function AppDetailClient({ app }: AppDetailClientProps) {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -233,6 +233,6 @@ export default function AppDetailClient({ app }: AppDetailClientProps) {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

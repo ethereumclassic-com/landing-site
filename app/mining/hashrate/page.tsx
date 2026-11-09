@@ -15,7 +15,7 @@ export default async function HashratePage() {
   ])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <section className="px-6 pt-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
@@ -28,7 +28,7 @@ export default async function HashratePage() {
             <p className="mt-4 max-w-2xl text-[var(--color-text-muted)]">
               Hashrate is the total computational work securing Ethereum Classic.
               It is the clearest single measure of how expensive the chain is to
-              attack — and it is an estimate, not a reading.
+              attack, and it is an estimate rather than a reading.
             </p>
           </FadeIn>
         </div>
@@ -61,7 +61,7 @@ export default async function HashratePage() {
             <div className="mt-6 space-y-6 text-[var(--color-text-muted)]">
               <div>
                 <h3 className="text-base font-semibold text-[var(--text-primary)]">
-                  Nobody measures it — everybody estimates it
+                  Nobody measures it; everybody estimates it
                 </h3>
                 <p className="mt-2">
                   There is no way to count the hashes miners try. Failed attempts
@@ -78,7 +78,7 @@ export default async function HashratePage() {
                 <p className="mt-2">
                   Difficulty states how much work a block is expected to take.
                   Average block time states how long blocks are actually taking.
-                  Divide one by the other and you get work per second — the
+                  Divide one by the other and you get work per second: the
                   hashrate. This site uses{' '}
                   <span className="font-mono text-[var(--text-primary)]">
                     difficulty ÷ average block time
@@ -93,7 +93,7 @@ export default async function HashratePage() {
                   Which is why short-window numbers are noisy
                 </h3>
                 <p className="mt-2">
-                  Block times vary randomly even at constant hashrate — mining is a
+                  Block times vary randomly even at constant hashrate, because mining is a
                   memoryless process, so a run of fast or slow blocks is ordinary
                   luck rather than a change in participation. A figure computed
                   over a short window inherits that noise. Longer timeframes on the
@@ -103,10 +103,10 @@ export default async function HashratePage() {
 
               <div>
                 <h3 className="text-base font-semibold text-[var(--text-primary)]">
-                  ETChash, and what hardware qualifies
+                  Etchash, and what hardware qualifies
                 </h3>
                 <p className="mt-2">
-                  ETC mines with ETChash (ECIP-1099), which uses a smaller DAG than
+                  ETC mines with Etchash (ECIP-1099), which uses a smaller DAG than
                   Ethash did. That keeps the chain mineable on GPUs with less
                   memory, alongside ASICs built for it. Hashrate figures are
                   therefore a mix of both classes of hardware.
@@ -127,10 +127,8 @@ export default async function HashratePage() {
                 </h3>
                 <p className="mt-2">
                   Rewriting confirmed history requires out-pacing the honest
-                  network, so the cost of an attack scales with hashrate. This is
-                  the sense in which hashrate is a security budget rather than a
-                  performance statistic — it is what an attacker would have to
-                  rent or buy.
+                  network, so the cost of an attack scales with hashrate. This is the sense in which hashrate is a security budget rather than a
+                  performance statistic: it is what an attacker would have to rent or buy.
                 </p>
                 <p className="mt-2">
                   Concentration matters alongside the total. A high figure spread
@@ -210,7 +208,7 @@ export default async function HashratePage() {
                 {
                   href: '/mining/hardware',
                   title: 'Hardware',
-                  body: 'GPUs and ASICs that mine ETChash, with efficiency.',
+                  body: 'GPUs and ASICs that mine Etchash, with efficiency.',
                 },
                 {
                   href: '/mining/getting-started',
@@ -231,6 +229,6 @@ export default async function HashratePage() {
           </FadeIn>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

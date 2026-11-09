@@ -4,7 +4,7 @@ export default function ClassicusdGuide() {
   return (
     <>
       <p>
-        <ClassicUSDLink /> (USC) is the native stablecoin of the Ethereum Classic ecosystem. Pegged 1:1 to the US dollar and backed by real assets, USC provides a stable store of value on-chain without the volatility of ETC. It is not an algorithmic stablecoin&mdash;every USC is redeemable for one US dollar.
+        <ClassicUSDLink />{' '}(USC) is the native stablecoin of the Ethereum Classic ecosystem. Pegged 1:1 to the US dollar and backed by real assets, USC provides a stable store of value on-chain without the volatility of ETC. It is not an algorithmic stablecoin: every USC is redeemable for one US dollar.
       </p>
 
       <h2>What Makes USC Different</h2>
@@ -12,7 +12,7 @@ export default function ClassicusdGuide() {
         USC is issued by Brale, a regulated stablecoin infrastructure provider. Each USC token is fully backed by reserve assets held in regulated financial institutions. This asset-backed model avoids the risks associated with algorithmic stablecoins, which rely on complex mechanisms to maintain their peg and have historically failed under market stress.
       </p>
       <p>
-        USC is interoperable across 22+ blockchain networks, but its native home is Ethereum Classic. This means you can move USC between chains while maintaining the same backing and redeemability.
+        USC is minted on Ethereum Classic, its home network, and on Polygon, and the Brale platform moves value between it and stablecoins on other chains. Every USC carries the same backing and redemption, whichever chain it is on.
       </p>
 
       <h2>How to Get USC</h2>
@@ -57,7 +57,7 @@ export default function ClassicusdGuide() {
 
       <h2>Redeeming USC</h2>
       <p>
-        USC is redeemable 1:1 for US dollars through Brale. To redeem, send your USC tokens back to Brale and receive the equivalent dollar amount via ACH transfer to your linked bank account. This redeemability is what maintains the peg&mdash;if USC ever trades below $1, arbitrageurs can buy it cheaply and redeem for a full dollar.
+        USC is redeemable 1:1 for US dollars through Brale. To redeem, send your USC tokens back to Brale and receive the equivalent dollar amount via ACH transfer to your linked bank account. This redeemability is what maintains the peg: if USC ever trades below $1, arbitrageurs can buy it cheaply and redeem for a full dollar.
       </p>
 
       <h2>Security Considerations</h2>
@@ -70,7 +70,7 @@ export default function ClassicusdGuide() {
 
       <h2>Getting Started</h2>
       <p>
-        To start using <ClassicUSDLink />, choose your preferred on-ramp&mdash;Brale for direct fiat conversion or <ETCswapLink /> if you already hold ETC. Having USC in your wallet gives you a stable asset for trading, payments, and DeFi participation on Ethereum Classic.
+        To start using <ClassicUSDLink />, choose your preferred on-ramp: Brale for direct fiat conversion or <ETCswapLink /> if you already hold ETC. Having USC in your wallet gives you a stable asset for trading, payments, and DeFi participation on Ethereum Classic.
       </p>
     </>
   )

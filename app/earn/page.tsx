@@ -4,14 +4,14 @@ import { Button } from "../components/Button";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Earn ETC — Ethereum Classic",
+    title: "Earn ETC | Ethereum Classic",
     description:
         "Earn ETC through Proof-of-Work mining on the Ethereum Classic network.",
 };
 
 export default function EarnPage() {
     return (
-        <main>
+        <div>
             <Section>
                 <FadeIn>
                     <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
@@ -76,6 +76,6 @@ export default function EarnPage() {
                     </div>
                 </FadeIn>
             </Section>
-        </main>
+        </div>
     );
 }

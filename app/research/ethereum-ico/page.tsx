@@ -12,7 +12,7 @@ export const revalidate = 600
 export const metadata: Metadata = {
   title: 'Ethereum 2014 ICO: Presale Data',
   description:
-    'The Ethereum 2014 presale in figures: $18.5M raised and 72,009,991 ETH issued at $0.308, the genesis tokens Ethereum Classic carries today.',
+    'The Ethereum 2014 presale in figures: $18.5M raised at $0.308 per ETH, and the 72,009,990 ETH genesis supply Ethereum Classic carries today.',
   keywords: [
     'Ethereum ICO',
     'ETH presale 2014',
@@ -42,20 +42,20 @@ const ORIGIN_EVENTS = [
   {
     title: 'Ethereum 2014 ICO',
     date: 'Jul–Sep 2014',
-    description: '42-day public presale collects ~31,529 BTC (~$18.5M) at a starting rate of 2,000 ETH per BTC, declining linearly to 1,337 ETH/BTC by day 42. A total of 72,009,991 ETH was minted as the entire initial supply. 83.33% went to crowdsale participants and 16.67% to the Ethereum Foundation and early contributors.',
-    tags: ['72,009,991 ETH minted', '~31,529 BTC raised', '$18.5M USD equivalent', '83.33% / 16.67% split'],
+    description: '42-day public presale collects ~31,529 BTC (~$18.5M) at a starting rate of 2,000 ETH per BTC, declining linearly to 1,337 ETH/BTC by day 42. The genesis block would mint 72,009,990 ETH in all: 83.33% for presale participants and 16.67% for the Ethereum Foundation and early contributors.',
+    tags: ['72,009,990 ETH at genesis', '~31,529 BTC raised', '$18.5M USD equivalent', '83.33% / 16.67% split'],
   },
   {
     title: 'Ethereum Mainnet Launch',
     date: 'Jul 30, 2015',
-    description: 'The Frontier genesis block. All 72,009,991 ICO tokens activate on the live chain.',
-    tags: ['Frontier genesis', '72,009,991-token initial supply'],
+    description: 'The Frontier genesis block. All 72,009,990 genesis tokens activate on the live chain.',
+    tags: ['Frontier genesis', '72,009,990-token initial supply'],
   },
   {
     title: '2016 DAO Hard Fork',
     date: 'Jul 20, 2016',
-    description: 'The Ethereum Foundation executes a hard fork to reverse the DAO hack, creating two chains from the same genesis. The forked chain retains the ETH name and ticker. The original unmodified chain continues as Ethereum Classic, carrying all 72,009,991 ICO token balances forward unchanged.',
-    tags: ['Chain split', 'ETC — original chain', 'ETH — fork chain', 'Same genesis supply'],
+    description: 'The Ethereum Foundation executes a hard fork to reverse the DAO hack, creating two chains from the same genesis. The forked chain retains the ETH name and ticker. The original unmodified chain continues as Ethereum Classic, carrying every genesis balance forward unchanged.',
+    tags: ['Chain split', 'ETC: original chain', 'ETH: forked chain', 'Same genesis supply'],
   },
 ] as const
 
@@ -63,7 +63,7 @@ export default async function EthereumIcoPage() {
   const rates = await fetchExchangeRates()
 
   return (
-    <main className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
+    <div className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
 
       {/* Hero */}
       <FadeIn>
@@ -82,7 +82,7 @@ export default async function EthereumIcoPage() {
               Ethereum 2014 ICO
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-[var(--text-secondary)]">
-              In July 2014, the Ethereum Foundation ran a 42-day public presale that raised ~31,529 BTC (roughly $18.5 million) and issued 72,009,991 ETH tokens at a starting rate of 2,000 ETH per BTC. Combined with the 16.67% reserved for the Ethereum Foundation and early contributors, these tokens formed the entire genesis supply that activated when the Ethereum mainnet launched on July 30, 2015. After the Ethereum Foundation&apos;s 2016 hard fork, the original unmodified chain carried all ICO token balances forward and continued under the name Ethereum Classic.
+              In July 2014, the Ethereum Foundation ran a 42-day public presale that raised ~31,529 BTC (roughly $18.5 million), selling about 60 million ETH at a starting rate of 2,000 ETH per BTC. With the 16.67% reserved for the Ethereum Foundation and early contributors, that made the 72,009,990 ETH genesis supply, which activated when the Ethereum mainnet launched on July 30, 2015. After the Ethereum Foundation&apos;s 2016 hard fork, the original unmodified chain carried every genesis balance forward and continued under the name Ethereum Classic.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               <span className="inline-flex items-center rounded-full border border-[var(--border-default)] bg-[var(--bg-elevated)] px-3 py-1 text-xs font-medium text-[var(--text-muted)]">
@@ -114,7 +114,7 @@ export default async function EthereumIcoPage() {
                 The {ETH_ICO.icoTokenSupply.toLocaleString()} tokens issued here are the{' '}
                 <span className="font-medium text-[var(--text-primary)]">original Ethereum genesis supply</span>.
                 In 2016, the Ethereum Foundation forked the chain and applied the ETH name and ticker to the new chain.
-                The original chain carried this supply unaltered and was recognized by the global community as Ethereum Classic.
+                The original chain carried this supply unaltered and continued as Ethereum Classic.
               </p>
               <IcoPriceChart />
             </div>
@@ -137,7 +137,10 @@ export default async function EthereumIcoPage() {
           <div className="mx-auto max-w-6xl">
             <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
               <h2 className="mb-1 text-lg font-semibold text-[var(--text-primary)]">Token Distribution</h2>
-              <p className="mb-5 text-xs text-[var(--text-muted)]">In July 2014, the Ethereum Foundation ran a 42-day public presale that issued 72,009,991 ETH tokens across two tranches: 83.33% to crowdsale participants and 16.67% reserved for the Foundation and early contributors. These genesis tokens formed the entire initial supply that activated on the Ethereum mainnet on July 30, 2015, and are carried today, unmodified, by Ethereum Classic.</p>
+              <p className="mb-5 text-xs text-[var(--text-muted)]">The 72,009,990 ETH genesis supply had two parts: 83.33% sold to participants in the 42-day
+              presale of July to September 2014, and 16.67% reserved for the Ethereum Foundation and early
+              contributors. It activated when the Ethereum mainnet launched on July 30, 2015, and Ethereum
+              Classic carries it today, unmodified.</p>
               {/* Stacked bar */}
               <div className="flex h-5 overflow-hidden rounded-full">
                 {ETH_ICO_TOKENOMICS.map((seg) => (
@@ -208,10 +211,10 @@ export default async function EthereumIcoPage() {
             >
               <div>
                 <p className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--brand-green)]">
-                  The 2016 DAO Fork — How Ethereum Classic Got Its Name
+                  The 2016 DAO Fork: How Ethereum Classic Got Its Name
                 </p>
                 <p className="mt-0.5 text-sm text-[var(--text-muted)]">
-                  How the Ethereum Foundation created a new chain, applied the ETH ticker to it, and the original chain survived
+                  How the Ethereum Foundation created a new chain and applied the ETH ticker to it, and how the original chain survived
                 </p>
               </div>
               <svg className="ml-4 h-5 w-5 shrink-0 text-[var(--text-muted)] transition-colors group-hover:text-[var(--brand-green)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -263,6 +266,6 @@ export default async function EthereumIcoPage() {
         </section>
       </FadeIn>
 
-    </main>
+    </div>
   )
 }

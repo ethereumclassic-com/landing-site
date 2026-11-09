@@ -5,13 +5,13 @@ export default function MiningHardware() {
         Choosing the right hardware is crucial for profitable ETC mining. This guide covers GPU and ASIC options, their tradeoffs, and key factors to consider.
       </p>
 
-      <h2>ETCHash Algorithm</h2>
+      <h2>Etchash Algorithm</h2>
       <p>
-        Ethereum Classic uses the ETCHash algorithm, a memory-intensive proof-of-work system. Key characteristics:
+        Ethereum Classic uses the Etchash algorithm, a memory-intensive proof-of-work system. Key characteristics:
       </p>
       <ul>
-        <li>Requires minimum 4GB GPU VRAM (8GB+ recommended)</li>
-        <li>Compatible with ETHash hardware (former Ethereum miners)</li>
+        <li>Needs at least 6GB of GPU VRAM, since the DAG is larger than 4GB (8GB+ recommended)</li>
+        <li>Compatible with Ethash hardware (former Ethereum miners)</li>
         <li>Supported by both GPUs and ASICs</li>
         <li>DAG file grows over time, affecting older hardware</li>
       </ul>
@@ -63,7 +63,7 @@ export default function MiningHardware() {
         For ETC mining, consider these factors when selecting GPUs:
       </p>
       <ul>
-        <li><strong>VRAM:</strong> 8GB minimum recommended (6GB+ currently works)</li>
+        <li><strong>VRAM:</strong> 8GB recommended; 6GB works while the DAG stays under 6GB</li>
         <li><strong>Memory type:</strong> GDDR6X and HBM2 are most efficient</li>
         <li><strong>Power efficiency:</strong> Hash per watt matters for profitability</li>
         <li><strong>Availability:</strong> New vs used market options</li>
@@ -73,7 +73,7 @@ export default function MiningHardware() {
       <ul>
         <li><strong>RTX 3060 Ti / 3070:</strong> Excellent efficiency, widely available</li>
         <li><strong>RTX 3080:</strong> High hashrate, good for larger operations</li>
-        <li><strong>RTX 4070/4080:</strong> Newer gen, very efficient but higher cost</li>
+        <li><strong>RTX 4070/4080:</strong> Very efficient, but at a higher cost</li>
         <li><strong>GTX 1660 Super:</strong> Budget option, still profitable with cheap power</li>
       </ul>
 
@@ -110,9 +110,9 @@ export default function MiningHardware() {
         <li><strong>ROI period:</strong> Typically longer than GPUs</li>
       </ul>
 
-      <h3>Popular ETCHash ASICs</h3>
+      <h3>Popular Etchash ASICs</h3>
       <p>
-        Several manufacturers produce ETCHash-compatible ASICs:
+        Several manufacturers produce Etchash-compatible ASICs:
       </p>
       <div className="overflow-x-auto">
         <table className="w-full">
@@ -126,22 +126,28 @@ export default function MiningHardware() {
           </thead>
           <tbody>
             <tr>
-              <td>Bitmain Antminer E9</td>
-              <td>2,400 MH/s</td>
-              <td>1,920W</td>
-              <td>0.80 J/MH</td>
+              <td>Jasminer X44-P</td>
+              <td>23,400 MH/s</td>
+              <td>2,550W</td>
+              <td>0.11 J/MH</td>
             </tr>
             <tr>
-              <td>Innosilicon A11 Pro</td>
-              <td>1,500 MH/s</td>
-              <td>2,350W</td>
-              <td>1.57 J/MH</td>
+              <td>Bombax EZ100-PRO</td>
+              <td>15,500 MH/s</td>
+              <td>3,100W</td>
+              <td>0.20 J/MH</td>
             </tr>
             <tr>
-              <td>Jasminer X4</td>
-              <td>2,500 MH/s</td>
-              <td>1,200W</td>
-              <td>0.48 J/MH</td>
+              <td>iPollo V2</td>
+              <td>10,000 MH/s</td>
+              <td>1,500W</td>
+              <td>0.15 J/MH</td>
+            </tr>
+            <tr>
+              <td>Bitmain Antminer E11</td>
+              <td>9,000 MH/s</td>
+              <td>2,340W</td>
+              <td>0.26 J/MH</td>
             </tr>
           </tbody>
         </table>
@@ -206,7 +212,7 @@ export default function MiningHardware() {
 
       <h3>Memory Overclocking</h3>
       <p>
-        ETCHash benefits from memory speed:
+        Etchash benefits from memory speed:
       </p>
       <ul>
         <li>Increase memory clock for higher hashrate</li>
@@ -254,7 +260,7 @@ export default function MiningHardware() {
       <h2>Summary</h2>
       <ul>
         <li>GPUs offer flexibility; ASICs offer efficiency</li>
-        <li>Minimum 4GB VRAM required, 8GB+ recommended</li>
+        <li>At least 6GB of VRAM, since the Etchash DAG is larger than 4GB; 8GB or more gives headroom as it grows</li>
         <li>Power and cooling infrastructure are critical</li>
         <li>Undervolting improves efficiency significantly</li>
         <li>Calculate profitability before purchasing</li>

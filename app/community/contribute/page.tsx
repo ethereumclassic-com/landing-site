@@ -31,7 +31,7 @@ const contributionAreas = [
     title: 'Mining & Infrastructure',
     description: 'Secure the network by running nodes and mining ETC.',
     items: [
-      { label: 'Run a Node', detail: 'Full node, archive node, or light client', href: '/build/clients' },
+      { label: 'Run a Node', detail: 'A full node or an archive node', href: '/build/clients' },
       { label: 'Mine ETC', detail: 'GPU/ASIC mining with Etchash algorithm', href: '/mining' },
       { label: 'RPC Providers', detail: 'Operate public or private RPC endpoints', href: '/build' },
     ],
@@ -46,7 +46,7 @@ const contributionAreas = [
     title: 'Governance & ECIPs',
     description: 'Participate in protocol governance and improvement proposals.',
     items: [
-      { label: 'Olympia DAO', detail: 'The proposed governance of the Olympia Treasury: membership voting and funding proposals', href: '/olympia/governance' },
+      { label: 'Olympia DAO', detail: 'The proposed governance of the Olympia Treasury, by members voting on funding proposals', href: '/olympia/governance' },
       { label: 'ECIPs', detail: 'Write, review, and discuss improvement proposals', href: 'https://ecips.ethereumclassic.org' },
       { label: 'Core Dev Calls', detail: 'The calls where each network upgrade is discussed and scheduled', href: '/core-devs' },
     ],
@@ -76,7 +76,7 @@ const contributionAreas = [
 
 export default function CommunityContributePage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -190,6 +190,6 @@ export default function CommunityContributePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

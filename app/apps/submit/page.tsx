@@ -67,7 +67,7 @@ const SUBMIT_ISSUE_URL = `https://github.com/ethereumclassic-com/landing-site/is
 
 export default function SubmitAppPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -107,7 +107,7 @@ export default function SubmitAppPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Submit your Ethereum Classic application for inclusion in our ecosystem directory. Each submission is reviewed for quality, security, and relevance to the ETC community — approved applications are listed across wallet, DeFi, infrastructure, and tools categories.
+            Submit your Ethereum Classic application for inclusion in our ecosystem directory. Each submission is reviewed for quality, security and relevance to the ETC community, and approved applications are listed in the wallet, DeFi, infrastructure and tools categories.
           </p>
         </div>
       </section>
@@ -253,6 +253,6 @@ export default function SubmitAppPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -6,25 +6,24 @@ const archColumns = [
   {
     icon: Cpu,
     heading: 'From Proof-of-Work',
-    subheading: "Bitcoin's regulatory trajectory",
+    subheading: "Bitcoin's regulatory path",
     points: [
-      'No pre-mine, no foundation controlling the protocol, no issuer.',
-      'Mining hardware is globally distributed and permissionless to acquire.',
-      'Block rewards and tips go to miners; the proposed Olympia treasury would be funded by the base fee, not by inflation.',
+      'No issuer and no foundation controlling the protocol. Every coin created after the genesis block was mined.',
+      'Anyone can buy mining hardware, and miners operate around the world.',
+      'Block rewards and transaction fees go to miners. Under the Olympia proposal, a new base fee would fund a treasury, with no added issuance.',
       'Positioned for classification as a digital commodity under the pending CLARITY Act, with the same Proof-of-Work profile as Bitcoin.',
-      'Energy demand that co-locates with any power source, anywhere in the world.',
+      'Mining can sit beside any power source, anywhere in the world.',
     ] as React.ReactNode[],
   },
   {
     icon: Code2,
     heading: 'From the EVM',
-    subheading: "Ethereum's regulatory trajectory",
+    subheading: "Ethereum's regulatory path",
     points: [
-      'Solidity and the EVM through the Shanghai set, so standard Ethereum tools work here, with a legacy-transaction setting where a tool assumes EIP-1559.',
-      <><ClassicUSDLink>Classic USD ($USC)</ClassicUSDLink> by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain.</>,
-      'Stablecoin infrastructure aligned with the GENIUS Act, on a Proof-of-Work network.',
-      <><ETCswapLink>ETCswap</ETCswapLink> V2 and V3 provide on-chain liquidity for composable DeFi with a regulated stable base.</>,
-      'MiCA decentralized asset classification: exempt from ART/EMT issuer obligations.',
+      'Solidity and the EVM up to Ethereum\'s Shanghai upgrade, so standard Ethereum tools work. A tool that assumes EIP-1559 needs its legacy-transaction setting.',
+      <><ClassicUSDLink>Classic USD ($USC)</ClassicUSDLink>, issued by Brale: a 1:1 USD-backed stablecoin aligned with the GENIUS Act, live on Ethereum Classic.</>,
+      <><ETCswapLink>ETCswap</ETCswapLink> V2 and V3 provide on-chain liquidity, including pools paired with Classic USD.</>,
+      'Under MiCA, ETC has no issuer, and authorized crypto-asset service providers can offer it across the EU.',
     ] as React.ReactNode[],
   },
 ]
@@ -38,16 +37,14 @@ export default function NetworkArchitectureSection() {
             Network Architecture
           </p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">
-            The Only Proof-of-Work EVM
+            Proof-of-Work and the EVM
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            Ethereum Classic is not simply a Proof-of-Work network or simply a smart contract
-            platform. It sits at the intersection of both, inheriting the commodity classification
-            path that Bitcoin established and the programmable finance frameworks that Ethereum
-            established. Bitcoin has PoW without programmability. Ethereum has the EVM without PoW.
-            ETC has both, and its regulatory surface is additive, not exclusive. In a regulatory
-            landscape that forces most networks to pick a lane, ETC occupies two, not by design
-            after the fact, but by continuous, uninterrupted operation since 2015.
+            Ethereum Classic is both a Proof-of-Work network and a smart contract platform.
+            Bitcoin has Proof-of-Work without general-purpose smart contracts, and Ethereum has the
+            EVM without Proof-of-Work. ETC has had both since 2015, which puts it on two regulatory
+            paths at once: the commodity path Bitcoin set, and the rules taking shape for smart
+            contract platforms such as Ethereum.
           </p>
         </FadeIn>
 
@@ -88,7 +85,7 @@ export default function NetworkArchitectureSection() {
               href="/mining"
               className="text-xs font-medium text-[var(--brand-green)] underline-offset-4 hover:underline"
             >
-              PoW as energy infrastructure →
+              Mining on ETC →
             </Link>
             <Link
               href="/regulation"

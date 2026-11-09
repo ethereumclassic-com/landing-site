@@ -14,7 +14,7 @@ export const metadata: Metadata = {
  */
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)]">Privacy Policy</h1>
@@ -24,7 +24,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">Overview</h2>
               <p className="mt-3">
-                EthereumClassic.com is an informational website about the Ethereum Classic blockchain. It has no
+                ethereumclassic.com is an informational website about the Ethereum Classic blockchain. It has no
                 accounts, no logins and no forms. It collects no personal data, sets no cookies, and uses no
                 advertising pixels or cross-site tracking.
               </p>
@@ -137,6 +137,6 @@ export default function PrivacyPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

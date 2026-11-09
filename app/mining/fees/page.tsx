@@ -78,7 +78,7 @@ export default async function NetworkFeesPage() {
   const nextReward = getBlockRewardForEra(CURRENT_ERA + 1)
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <section className="px-6 pt-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
@@ -161,7 +161,7 @@ export default async function NetworkFeesPage() {
             </p>
             <p className="mt-4">
               A network upgrade can change how fees are set and who receives them. The changes Olympia
-              makes are described in the{' '}
+              would make are described in the{' '}
               <Link href="/olympia/miners" className="font-medium text-[var(--brand-green)] hover:underline">
                 Olympia hub
               </Link>
@@ -253,6 +253,6 @@ export default async function NetworkFeesPage() {
           </FadeIn>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

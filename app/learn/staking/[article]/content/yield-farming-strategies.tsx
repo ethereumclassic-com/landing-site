@@ -36,7 +36,7 @@ export default function YieldFarmingStrategies() {
 
       <h3>V2: Set and Forget</h3>
       <p>
-        ETCswap V2 positions require no management after deposit. Your liquidity covers the entire price range, so you earn fees regardless of where the price moves. This is ideal if you don&apos;t want to actively monitor positions. The tradeoff is lower capital efficiency&mdash;most of your liquidity sits in unused price ranges.
+        ETCswap V2 positions require no management after deposit. Your liquidity covers the entire price range, so you earn fees regardless of where the price moves. This is ideal if you don&apos;t want to actively monitor positions. The tradeoff is lower capital efficiency: most of your liquidity sits in unused price ranges.
       </p>
 
       <h3>V3: Active Management</h3>
@@ -57,7 +57,7 @@ export default function YieldFarmingStrategies() {
         <li><strong>Don&apos;t LP your entire portfolio:</strong> Keep a portion of your ETC in a standard wallet for flexibility and security. A common allocation is 60-70% held, 30-40% in LP positions.</li>
         <li><strong>Diversify across pools:</strong> Spread liquidity across multiple pairs and fee tiers rather than concentrating in a single pool.</li>
         <li><strong>Monitor regularly:</strong> Check positions at least weekly. Use ETCswap&apos;s position dashboard to track performance, fees earned, and current IL.</li>
-        <li><strong>Set exit criteria:</strong> Decide in advance when you&apos;ll withdraw&mdash;whether based on IL thresholds, time horizons, or target returns.</li>
+        <li><strong>Set exit criteria:</strong> Decide in advance when you&apos;ll withdraw, whether based on IL thresholds, time horizons, or target returns.</li>
       </ul>
 
       <p>

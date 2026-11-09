@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
+import { CURRENT_ERA, getBlockRewardForEra } from '@/app/research/data/emission'
 
 interface GlossaryTerm {
   term: string
@@ -58,7 +59,7 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'Fork',
-    definition: 'A change to the blockchain protocol. Hard forks are not backward-compatible, while soft forks are. ETC split from ETH due to a hard fork after The DAO incident.',
+    definition: 'A change to the blockchain protocol. Hard forks are not backward-compatible, while soft forks are. Ethereum (ETH) and Ethereum Classic (ETC) separated at the 2016 DAO hard fork: ETC is the chain that did not adopt it.',
     category: 'blockchain',
   },
   {
@@ -73,7 +74,7 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'Immutability',
-    definition: 'The principle that once data is recorded on the blockchain, it cannot be altered or deleted. A core value of Ethereum Classic.',
+    definition: 'The principle that recorded transactions are never altered or deleted by decree, whoever asks. A core value of Ethereum Classic.',
     category: 'blockchain',
   },
   {
@@ -128,13 +129,13 @@ const glossaryTerms: GlossaryTerm[] = [
     category: 'mining',
   },
   {
-    term: 'ETChash',
-    definition: 'The mining algorithm used by Ethereum Classic. A modified version of Ethash designed to be ASIC-friendly while maintaining security.',
+    term: 'Etchash',
+    definition: 'The mining algorithm used by Ethereum Classic: Ethash with a doubled epoch length (ECIP-1099), which slows the growth of the DAG miners hold in memory. Both GPUs and ASICs mine it.',
     category: 'mining',
   },
   {
     term: 'Block Reward',
-    definition: 'The amount of cryptocurrency given to a miner for successfully adding a block to the blockchain. Currently about 2 ETC per block.',
+    definition: `The amount of cryptocurrency given to a miner for successfully adding a block to the blockchain. On ETC it is ${getBlockRewardForEra(CURRENT_ERA)} ETC per block in era ${CURRENT_ERA}, reduced 20% every 5 million blocks under ECIP-1017.`,
     category: 'mining',
   },
 
@@ -180,7 +181,7 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'Stablecoin',
-    definition: 'A cryptocurrency designed to maintain a stable value, usually pegged to a fiat currency like USD. ClassicUSD (USC) is the native stablecoin on ETC.',
+    definition: 'A cryptocurrency designed to maintain a stable value, usually pegged to a fiat currency like USD. Classic USD (USC) is a stablecoin issued natively on ETC.',
     category: 'defi',
   },
   {
@@ -237,7 +238,7 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'Market Cap',
-    definition: 'Market capitalization - the total value of all coins in circulation, calculated by multiplying price by circulating supply.',
+    definition: 'Market capitalization: the total value of all coins in circulation, calculated by multiplying price by circulating supply.',
     category: 'trading',
   },
 
@@ -265,7 +266,7 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'Seed Phrase',
-    definition: 'A series of 12-24 words that can be used to recover your wallet. Store this securely offline - it controls access to all your funds.',
+    definition: 'A series of 12 to 24 words that can be used to recover your wallet. Store it securely offline: it controls access to all your funds.',
     category: 'wallet',
   },
   {
@@ -312,7 +313,7 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'dApp',
-    definition: 'Decentralized Application - an application built on a blockchain that operates autonomously through smart contracts.',
+    definition: 'Decentralized application: an application built on a blockchain that operates autonomously through smart contracts.',
     category: 'general',
   },
   {
@@ -327,22 +328,22 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'NFT',
-    definition: 'Non-Fungible Token - a unique digital asset that represents ownership of a specific item, artwork, or collectible.',
+    definition: 'Non-fungible token: a unique digital asset that represents ownership of a specific item, artwork, or collectible.',
     category: 'general',
   },
   {
     term: 'DAO',
-    definition: 'Decentralized Autonomous Organization - an organization governed by smart contracts and token holder voting rather than centralized management.',
+    definition: 'Decentralized autonomous organization: an organization governed by smart contracts and token holder voting rather than centralized management.',
     category: 'general',
   },
   {
     term: 'KYC',
-    definition: 'Know Your Customer - identity verification required by centralized exchanges to comply with regulations.',
+    definition: 'Know Your Customer: identity verification required by centralized exchanges to comply with regulations.',
     category: 'general',
   },
   {
     term: 'DYOR',
-    definition: 'Do Your Own Research - a reminder to thoroughly investigate before investing in any cryptocurrency or project.',
+    definition: 'Do Your Own Research: a reminder to thoroughly investigate before investing in any cryptocurrency or project.',
     category: 'general',
   },
   {
@@ -367,7 +368,7 @@ const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: 'RPC',
-    definition: 'Remote Procedure Call - a protocol that allows applications to communicate with blockchain nodes to read data or submit transactions.',
+    definition: 'Remote procedure call: a protocol that allows applications to communicate with blockchain nodes to read data or submit transactions.',
     category: 'general',
   },
 ]
@@ -426,7 +427,7 @@ export default function GlossaryPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -457,7 +458,7 @@ export default function GlossaryPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            Your comprehensive guide to cryptocurrency and blockchain terminology. Learn the language of Ethereum Classic.
+            Cryptocurrency and blockchain terms, as they apply to Ethereum Classic.
           </p>
         </div>
       </section>
@@ -634,6 +635,6 @@ export default function GlossaryPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -86,7 +86,7 @@ export default function ExchangesPage() {
   const cexCount = exchanges.filter((ex) => ex.type === 'CEX').length
 
   return (
-    <main>
+    <div>
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -116,8 +116,9 @@ export default function ExchangesPage() {
           <p
             className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]"
           >
-            {cexCount} centralized exchanges and {dexCount} decentralized exchange support Ethereum Classic trading.
-            Compare fees, payment methods, and find the best exchange for you.
+            {cexCount} centralized {cexCount === 1 ? 'exchange' : 'exchanges'} and {dexCount} decentralized{' '}
+            {dexCount === 1 ? 'exchange' : 'exchanges'} support Ethereum Classic trading. Compare fees and payment methods
+            to find the one that suits you.
           </p>
 
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -406,7 +407,7 @@ export default function ExchangesPage() {
               Trade Without KYC on ETCswap
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-[var(--color-text-secondary)]">
-              ETCswap is Ethereum Classic&apos;s native DEX. Trade directly from your wallet with no account required - non-custodial, permissionless, and censorship-resistant.
+              ETCswap is Ethereum Classic&apos;s native DEX. Trade directly from your wallet, with no account: it is non-custodial, permissionless and censorship-resistant.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <a
@@ -451,7 +452,7 @@ export default function ExchangesPage() {
                 <ul className="mt-2 space-y-1 text-sm text-[var(--color-text-muted)]">
                   <li>Always verify you&apos;re on the official exchange website before logging in</li>
                   <li>Enable two-factor authentication (2FA) on all exchange accounts</li>
-                  <li>Withdraw to your own wallet for long-term storage - not your keys, not your coins</li>
+                  <li>Withdraw to your own wallet for long-term storage: not your keys, not your coins</li>
                   <li>Start with small amounts when using a new exchange</li>
                 </ul>
               </div>
@@ -459,6 +460,6 @@ export default function ExchangesPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

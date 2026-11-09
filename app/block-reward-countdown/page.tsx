@@ -37,10 +37,11 @@ export default async function BlockRewardCountdownPage() {
     inflationRate: getAnnualInflationRate(currentBlock, networkStats?.avgBlockTime),
     nextInflationRate: getNextEraInflationRate(currentBlock, networkStats?.avgBlockTime),
     progress: supply.percentThroughEra,
+    avgBlockTime: networkStats?.avgBlockTime ?? null,
   }
 
   return (
-    <main className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
+    <div className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
 
       {/* Hero heading — server-rendered for SEO */}
       <FadeIn>
@@ -96,13 +97,13 @@ export default async function BlockRewardCountdownPage() {
                 <p>
                   Each era lasts approximately 2 years at 13s average block time. The 20% reduction
                   compounds across eras: Era 1 started at 5 ETC per block, and each era is exactly
-                  80% of the previous. The total ETC supply asymptotically approaches ~210.7M ETC,
+                  80% of the previous. Total supply can never exceed about 210.7M ETC,
                   a fixed, knowable ceiling.
                 </p>
                 <p>
                   Unlike Bitcoin&apos;s 50% halving, ETC&apos;s gentler 20% reduction extends
                   miner viability longer while still enforcing scarcity. The emission schedule is
-                  encoded directly in the protocol. It is immutable and automatic.
+                  encoded directly in the protocol. It runs automatically, and changing it would take a hard fork.
                 </p>
               </div>
               <div className="mt-5 flex flex-wrap gap-3">
@@ -151,6 +152,6 @@ export default async function BlockRewardCountdownPage() {
         </section>
       </FadeIn>
 
-    </main>
+    </div>
   )
 }

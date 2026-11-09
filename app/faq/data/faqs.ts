@@ -1,3 +1,8 @@
+import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
+
+const eraStart = (getEraEndBlock(CURRENT_ERA - 1) + 1).toLocaleString('en-US')
+const eraEnd = getEraEndBlock(CURRENT_ERA).toLocaleString('en-US')
+
 export interface FAQ {
   question: string
   answer: string
@@ -21,7 +26,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What is Ethereum Classic (ETC)?',
         answer:
-          'Ethereum Classic is the original Ethereum blockchain that maintained the unaltered transaction history after the 2016 DAO fork. It is a decentralized, Proof of Work smart contract platform with a fixed monetary policy capping supply at approximately 210.7 million ETC. ETC runs the Ethereum Virtual Machine (EVM), meaning it supports the same smart contracts and developer tooling as Ethereum and other EVM-compatible chains.',
+          'Ethereum Classic is the original Ethereum blockchain that maintained the unaltered transaction history after the 2016 DAO fork. It is a decentralized, Proof of Work smart contract platform with a fixed monetary policy capping supply at approximately 210.7 million ETC. ETC runs the Ethereum Virtual Machine (EVM), so it supports the smart contracts and developer tooling of Ethereum and other EVM chains, up to Ethereum\'s Shanghai upgrade.',
       },
       {
         question: 'How do I add ETC to MetaMask?',
@@ -41,7 +46,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'How do I buy ETC?',
         answer:
-          'ETC is available on major exchanges including Coinbase, Kraken, Binance, and OKX. You can also use decentralized exchanges like ETCswap directly on the ETC network. For fiat on-ramps, Brale offers ACH bank transfers to purchase ClassicUSD (USC), which you can then swap for ETC on ETCswap.',
+          'ETC is available on major exchanges including Coinbase, Kraken, Binance, and OKX. You can also use decentralized exchanges like ETCswap directly on the ETC network. For fiat on-ramps, Brale offers ACH bank transfers to purchase Classic USD (USC), which you can then swap for ETC on ETCswap.',
       },
       {
         question: 'Which wallets support Ethereum Classic?',
@@ -51,7 +56,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What dApps are available on ETC?',
         answer:
-          'The ETC ecosystem includes ETCswap (V2 and V3 decentralized exchanges), ETCswap Launchpad (token launch platform), Classic USD (USC stablecoin), WrappedEther.org (WETC), and other economic dashboard). All approved dApps are listed on the Apps page at ethereumclassic.com/apps.',
+          'The ETC ecosystem includes ETCswap (V2 and V3 decentralized exchanges), ETCswap Launchpad (a token launch platform), Classic USD (USC, a stablecoin) and WETC (wrapped ETC, from WrappedEther.org). Every approved dApp is listed on the Apps page at ethereumclassic.com/apps.',
       },
       {
         question: 'Is there DeFi on Ethereum Classic?',
@@ -61,22 +66,22 @@ export const faqSections: FAQSection[] = [
       {
         question: 'Can I stake ETC?',
         answer:
-          'No. Ethereum Classic uses Proof of Work consensus, not Proof of Stake. There is no native staking mechanism. However, you can earn yield by providing liquidity on ETCswap — depositing token pairs into liquidity pools to earn a share of trading fees. This is sometimes called "liquidity mining" but it is fundamentally different from PoS staking.',
+          'No. Ethereum Classic uses Proof of Work consensus, not Proof of Stake. There is no native staking mechanism. However, you can earn yield by providing liquidity on ETCswap: depositing token pairs into liquidity pools to earn a share of trading fees. This is sometimes called "liquidity mining", but it is different from PoS staking.',
       },
       {
         question: 'Has ETC been 51% attacked? Is it safe now?',
         answer:
-          'ETC experienced 51% attacks in 2020, which led to the adoption of ECBP-1100 (Modified Exponential Subjective Scoring, or MESS), a client-side defense against deep chain reorganizations. Network hashrate grew significantly after Ethereum miners migrated to ETC following the September 2022 Merge, and Core-Geth v1.12.x releases carrying ECBP-1110 switched MESS off by default from the Spiral block in 2024. Because every v1.12 release still carried at least one known vulnerability when Core-Geth v1.13.0 was released, v1.13.0 ships MESS on by default. v1.13.1 turns it off by default again, and a build from source of the main branch already does. Each release sets its own default, and a node operator can set it either way with --mess or --mess=false. Current network hashrate makes 51% attacks economically prohibitive.',
+          'ETC experienced 51% attacks in 2019 and 2020, which led to the adoption of ECBP-1100 (Modified Exponential Subjective Scoring, or MESS), a client-side defense against deep chain reorganizations. Network hashrate grew significantly after Ethereum miners migrated to ETC following the September 2022 Merge, and Core-Geth v1.12.x releases carrying ECBP-1110 switched MESS off by default from the Spiral block in 2024. Because every v1.12 release still carried at least one known vulnerability when Core-Geth v1.13.0 was released, v1.13.0 ships MESS on by default. v1.13.1 turns it off by default again, and a build from source of the main branch already does. Each release sets its own default, and a node operator can set it either way with --mess or --mess=false. Today\'s hashrate, many times what it was in 2020, makes such an attack far more expensive.',
       },
       {
         question: 'How many confirmations do I need for ETC deposits?',
         answer:
-          'Confirmation requirements vary by service. Most exchanges require 40,000+ confirmations for ETC deposits (approximately 6 days) as a security measure. For peer-to-peer transactions with known parties, 20-50 confirmations (~5-12 minutes) provides reasonable security. Higher-value transactions warrant more confirmations.',
+          'Requirements vary by service: each exchange sets its own, so check its deposit page. For peer-to-peer transactions with known parties, 20 to 50 confirmations (about 5 to 12 minutes) gives reasonable security. Higher-value transactions warrant more confirmations.',
       },
       {
         question: 'What is gas on Ethereum Classic?',
         answer:
-          'Gas is the unit measuring computational work required to execute transactions and smart contract operations on ETC. Every operation (sending ETC, interacting with contracts, deploying code) costs a specific amount of gas. You pay for gas in ETC at a price you set — higher gas prices incentivize miners to include your transaction faster. A simple ETC transfer costs 21,000 gas.',
+          'Gas is the unit measuring computational work required to execute transactions and smart contract operations on ETC. Every operation (sending ETC, interacting with contracts, deploying code) costs a specific amount of gas. You pay for gas in ETC at a price you set, and a higher gas price gives miners a reason to include your transaction sooner. A simple ETC transfer costs 21,000 gas.',
       },
       {
         question: 'What is the difference between ETC and ETH?',
@@ -99,22 +104,22 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What is the ETC monetary policy?',
         answer:
-          'ECIP-1017, adopted in March 2017, established a Bitcoin-like fixed monetary policy. Block rewards reduce by 20% every 5 million blocks (~2.5 years). The emission schedule produces a hard cap of approximately 210.7 million ETC. Current era (Era 6, starting block 25,000,001) rewards miners 1.6384 ETC per block. This fixed, predictable supply schedule cannot be altered by governance.',
+          `ECIP-1017, proposed in November 2016 and in force since block 5,000,000 in December 2017, set a Bitcoin-like fixed monetary policy. Block rewards fall by 20% every 5 million blocks (a little over two years), and the emission schedule caps supply at approximately 210.7 million ETC. The current era (Era ${CURRENT_ERA}, from block ${eraStart}) pays miners ${getBlockRewardForEra(CURRENT_ERA)} ETC per block. No governance vote can alter this schedule.`,
       },
       {
         question: 'What is the elevator pitch for ETC?',
         answer:
-          'Ethereum Classic is the original Ethereum blockchain — a Proof of Work smart contract platform with a fixed supply cap, an immutable transaction history, and permissionless access. It combines Bitcoin\'s monetary principles (fixed supply, PoW security) with Ethereum\'s programmability (EVM, smart contracts). It is the largest Proof of Work EVM chain.',
+          'Ethereum Classic is the original Ethereum blockchain: a Proof of Work smart contract platform with a fixed supply cap, an immutable transaction history, and permissionless access. It combines Bitcoin\'s monetary principles (fixed supply, PoW security) with Ethereum\'s programmability (EVM, smart contracts). It is the largest Proof of Work EVM chain.',
       },
       {
         question: 'What makes ETC different from other cryptocurrencies?',
         answer:
-          'ETC occupies a unique intersection: it has the programmability of Ethereum (the EVM, through the Shanghai set) with the monetary properties of Bitcoin (fixed supply, Proof of Work). Unlike Ethereum, ETC never performed an irregular state change — the ledger is immutable. Unlike Bitcoin, ETC supports smart contracts. No other major cryptocurrency combines all three properties: PoW security, EVM programmability, and ledger immutability.',
+          'ETC occupies a unique intersection: it has the programmability of Ethereum (the EVM, up to Ethereum\'s Shanghai upgrade) with the monetary properties of Bitcoin (fixed supply, Proof of Work). Unlike Ethereum, ETC never performed an irregular state change, so the ledger is immutable. Unlike Bitcoin, ETC supports smart contracts. No other major cryptocurrency combines all three properties: PoW security, EVM programmability, and ledger immutability.',
       },
       {
         question: 'Is ETC a good investment?',
         answer:
-          'EthereumClassic.com does not provide investment advice. Cryptocurrency investments carry significant risk including potential total loss. ETC\'s fixed monetary policy, Proof of Work security model, and EVM compatibility are objective protocol properties — their relevance to investment decisions is for each individual to assess. Always do your own research and consult a financial advisor.',
+          'ethereumclassic.com does not provide investment advice. Cryptocurrency investments carry significant risk including potential total loss. ETC\'s fixed monetary policy, Proof of Work security model, and EVM compatibility are objective protocol properties; their relevance to an investment decision is for each person to assess. Always do your own research and consult a financial advisor.',
       },
     ],
   },
@@ -127,22 +132,22 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What hardware do I need to mine ETC?',
         answer:
-          'ETC uses the ETCHash algorithm, which is compatible with both GPUs (4GB+ VRAM for current DAG size) and ASIC miners. Popular GPUs include NVIDIA RTX 3060/3070/3080 and AMD RX 6600/6700/6800. ASIC options include iPollo V1 Mini, Jasminer X4, and Bitmain E9. ASICs offer higher efficiency but less flexibility than GPUs. See our Mining Hardware guide for detailed comparisons.',
+          'ETC uses the Etchash algorithm, which runs on GPUs (6GB or more of VRAM, since the DAG is larger than 4GB) and on ASIC miners. Popular GPUs include NVIDIA RTX 3060/3070/3080 and AMD RX 6600/6700/6800. ASIC options include the Jasminer X44-P, iPollo V2 and Bitmain Antminer E11. ASICs offer higher efficiency but less flexibility than GPUs. See our Mining Hardware guide for detailed comparisons.',
       },
       {
         question: 'What mining software works with ETC?',
         answer:
-          'Popular miners include lolMiner (AMD + NVIDIA), T-Rex (NVIDIA), TeamRedMiner (AMD), and GMiner (NVIDIA). All support the ETCHash algorithm. Configure your miner with your pool\'s stratum address, your wallet address, and worker name. Most miners auto-detect the ETCHash algorithm when connecting to an ETC pool.',
+          'Popular miners include lolMiner (AMD + NVIDIA), TeamRedMiner (AMD), GMiner (AMD + NVIDIA) and T-Rex (NVIDIA, with no release since 2022). All support the Etchash algorithm. Configure your miner with your pool\'s stratum address, your wallet address and a worker name, and set the algorithm to etchash.',
       },
       {
         question: 'I was mining ETH. How do I switch to ETC?',
         answer:
-          'Since Ethereum moved to Proof of Stake in September 2022, your ETH mining hardware can mine ETC with minimal reconfiguration. Change your mining software\'s pool address to an ETC pool, update your wallet address to an ETC address, and ensure ETCHash (not ETHash) is selected. The DAG size is similar, so hardware that mined ETH should work for ETC.',
+          'Since Ethereum moved to Proof of Stake in September 2022, your ETH mining hardware can mine ETC with minimal reconfiguration. Change your mining software\'s pool address to an ETC pool, update your wallet address to an ETC address, and select Etchash rather than Ethash. A card that mined ETH works on ETC if it has 6GB or more of VRAM.',
       },
       {
         question: 'What is a mining pool?',
         answer:
-          'A mining pool combines the hash power of multiple miners to find blocks more frequently, then distributes rewards proportionally to each miner\'s contributed hash rate. Solo mining requires significant hash power to find blocks regularly — pools provide more consistent (but smaller) payouts. Pools typically charge a 1-2% fee on rewards.',
+          'A mining pool combines the hash power of multiple miners to find blocks more frequently, then distributes rewards proportionally to each miner\'s contributed hash rate. Solo mining requires significant hash power to find blocks regularly, while pools provide more consistent, smaller payouts. Pools typically charge a 1-2% fee on rewards.',
       },
       {
         question: 'Which pools support ETC mining?',
@@ -152,7 +157,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'How do I choose the best mining pool?',
         answer:
-          'Consider: fee rate (typically 1-2%), payout method (PPS for consistent payouts, PPLNS for potentially higher but variable payouts), minimum payout threshold, server proximity (lower latency = fewer stale shares), and pool hashrate relative to total network (avoid pools with >40% of network hash). Check the Mining Pools page for current options.',
+          'Consider: fee rate (typically 1% to 2%), payout method (PPS for consistent payouts, PPLNS for potentially higher but variable payouts), minimum payout threshold, server proximity (lower latency = fewer stale shares), and pool hashrate relative to total network (avoid pools with >40% of network hash). Check the Mining Pools page for current options.',
       },
       {
         question: 'Is mining ETC profitable?',
@@ -160,24 +165,24 @@ export const faqSections: FAQSection[] = [
           'Profitability depends on your hardware efficiency, electricity cost, ETC price, and network difficulty. Use our Profitability Calculator to estimate returns based on your specific setup. Key factors: electricity cost below $0.10/kWh is generally needed for GPU profitability, ASICs are more efficient per watt, and network difficulty adjusts with total hash power.',
       },
       {
-        question: 'What is the ETCHash algorithm?',
+        question: 'What is the Etchash algorithm?',
         answer:
-          'ETCHash is a modified version of ETHash (Ethereum\'s original mining algorithm). The modification, introduced via ECIP-1099 (Thanos fork, November 2020), reduced the DAG epoch length to keep the DAG size manageable for 4GB GPUs. This ensures broader hardware accessibility for mining while maintaining the same security properties as ETHash.',
+          'Etchash is a modified version of Ethash, Ethereum\'s original mining algorithm. ECIP-1099 (the Thanos fork, November 2020) doubled its epoch length from 30,000 to 60,000 blocks, which halved the DAG\'s growth and kept 3GB and 4GB GPUs mining for longer; the DAG has since grown past 4GB. Its security properties are those of Ethash.',
       },
       {
         question: 'What is the current block reward?',
         answer:
-          'As of Era 6 (starting block 25,000,001), the block reward is 1.6384 ETC per block. Rewards decrease by 20% every 5 million blocks under ECIP-1017. The next reduction, to 1.31072 ETC, occurs at block 30,000,000. Visit our Supply page for the full emission schedule and countdown to the next reduction.',
+          `In Era ${CURRENT_ERA} (from block ${eraStart}), the block reward is ${getBlockRewardForEra(CURRENT_ERA)} ETC per block. Rewards decrease by 20% every 5 million blocks under ECIP-1017; the next reduction, to ${getBlockRewardForEra(CURRENT_ERA + 1)} ETC, lands at block ${eraEnd}. Visit our Supply page for the full emission schedule and a countdown to the next reduction.`,
       },
       {
         question: 'Should I use ASICs or GPUs for ETC mining?',
         answer:
-          'ASICs (like iPollo V1 Mini or Jasminer X4) offer higher hashrate per watt, meaning better efficiency and potentially higher profit margins. GPUs are more flexible — you can mine other coins or repurpose them. For dedicated ETC mining with low electricity costs, ASICs typically have better ROI. For miners who want hardware flexibility, GPUs are the safer choice.',
+          'ASICs (such as the Jasminer X44-P or iPollo V2) offer more hashrate per watt, meaning better efficiency and potentially higher profit margins. GPUs are more flexible: you can mine other coins or repurpose them. For dedicated ETC mining with low electricity costs, ASICs typically have better ROI. For miners who want hardware flexibility, GPUs are the safer choice.',
       },
       {
         question: 'Will ETC ever switch to Proof of Stake?',
         answer:
-          'No. Ethereum Classic\'s commitment to Proof of Work is a foundational principle, not a temporary technical choice. The network explicitly chose to maintain PoW when Ethereum transitioned to PoS. ETC\'s security model, censorship resistance properties, and permissionless participation all depend on Proof of Work. There are no proposals to change this.',
+          'No. Ethereum Classic\'s commitment to Proof of Work is a foundational principle. The network explicitly chose to maintain PoW when Ethereum transitioned to PoS. ETC\'s security model, censorship resistance properties, and permissionless participation all depend on Proof of Work. There are no proposals to change this.',
       },
     ],
   },
@@ -190,17 +195,17 @@ export const faqSections: FAQSection[] = [
       {
         question: 'What kinds of applications can I build on ETC?',
         answer:
-          'Anything you can build on Ethereum or any EVM chain. ETC runs the same Ethereum Virtual Machine, supporting Solidity and Vyper smart contracts. This includes DeFi protocols, NFT platforms, DAOs, token systems, on-chain games, and any other smart contract application. The full EVM toolchain (Hardhat, Foundry, Remix, OpenZeppelin) works on ETC.',
+          'Most of what you can build on Ethereum or another EVM chain. ETC runs the Ethereum Virtual Machine up to Ethereum\'s Shanghai upgrade, with Solidity and Vyper smart contracts: DeFi protocols, NFT platforms, DAOs, token systems, on-chain games and other smart contract applications. The standard EVM toolchain (Hardhat, Foundry, Remix, OpenZeppelin) works on ETC.',
       },
       {
         question: 'What are the differences between developing for ETH vs ETC?',
         answer:
-          'Minimal. Both use the same EVM, same smart contract languages, same development tools, and same ABI encoding. Key differences: ETC uses Chain ID 61 (vs ETH\'s 1), the RPC endpoint is different (etc.blockscout.com/api/eth-rpc), and ETC does not include some PoS-specific EIPs. Your existing Solidity contracts can be deployed on ETC by simply changing the network configuration.',
+          'Minimal. Both use the same EVM, same smart contract languages, same development tools, and same ABI encoding. Key differences: ETC uses Chain ID 61 (vs ETH\'s 1), the RPC endpoint is different (etc.blockscout.com/api/eth-rpc), ETC does not include Proof-of-Stake EIPs, and its EVM matches Ethereum\'s up to the Shanghai upgrade. Compile for that EVM version (Solidity 0.8.25 and later target newer upgrades by default), and use legacy transactions where a tool assumes EIP-1559.',
       },
       {
         question: 'How do I deploy a smart contract to ETC?',
         answer:
-          'Configure your development framework (Hardhat, Foundry, or Remix) with Chain ID 61 and RPC URL https://etc.blockscout.com/api/eth-rpc. Deploy using the same workflow as any EVM chain. For testing, use the Mordor testnet (Chain ID 63, RPC: https://etc-mordor.blockscout.com/api/eth-rpc). Get test ETC from the Mordor faucet. Verify your contract on etc.blockscout.com after deployment.',
+          'Configure your development framework (Hardhat, Foundry, or Remix) with Chain ID 61 and RPC URL https://etc.blockscout.com/api/eth-rpc. Deploy using the same workflow as any EVM chain. For testing, use the Mordor testnet (Chain ID 63, RPC: https://etc-mordor.blockscout.com/api/eth-rpc). Get Mordor ETC from the community or by mining on a Mordor node. Verify your contract on etc.blockscout.com after deployment.',
       },
       {
         question: 'What public RPC endpoints are available?',
@@ -210,7 +215,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'Are there grants or funding available for ETC development?',
         answer:
-          'The grants page at /build/grants lists the funding sources open to builders today. Ethereum Classic DAO LLC maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort. The Olympia proposal would add a treasury funded by the EIP-1559 base fee, spent only by funding proposals Olympia DAO\'s members vote on; its ECIPs are drafts and its activation block is TBD.',
+          'The grants page at /build/grants lists the funding sources open to builders today. Ethereum Classic DAO maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort. The Olympia proposal would add a treasury funded by the EIP-1559 base fee, spent only by funding proposals Olympia DAO\'s members vote on; its ECIPs are drafts and its activation block is TBD.',
       },
       {
         question: 'How does the ECIP process work?',
@@ -253,7 +258,7 @@ export const faqSections: FAQSection[] = [
       {
         question: 'How do I suggest changes to the ETC protocol?',
         answer:
-          'Write an Ethereum Classic Improvement Proposal (ECIP). Fork the ECIPs repository, create your proposal following the template, and submit a pull request. ECIPs are discussed in community channels and reviewed during Core Developer Calls. Anyone can author an ECIP — there are no gatekeepers. The process is transparent and documented in the repository.',
+          'Write an Ethereum Classic Improvement Proposal (ECIP). Fork the ECIPs repository, create your proposal following the template, and submit a pull request. ECIPs are discussed in community channels and reviewed during Core Developer Calls. Anyone can author an ECIP; there are no gatekeepers. The process is transparent and documented in the repository.',
       },
       {
         question: 'Are there ETC community events?',

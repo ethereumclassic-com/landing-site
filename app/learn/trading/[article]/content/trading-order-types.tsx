@@ -10,7 +10,7 @@ export default function TradingOrderTypes() {
         A market order executes immediately at the best available price. You specify the amount of ETC you want to buy or sell, and the exchange fills it right away using existing orders in the order book.
       </p>
       <ul>
-        <li><strong>Speed:</strong> Instant execution &mdash; your order fills immediately</li>
+        <li><strong>Speed:</strong> Instant execution; your order fills immediately</li>
         <li><strong>Price:</strong> You get the current market price, which may shift slightly during execution</li>
         <li><strong>Best for:</strong> Quick purchases or sales when timing matters more than getting the exact price</li>
       </ul>
@@ -23,8 +23,8 @@ export default function TradingOrderTypes() {
         A limit order lets you set a specific price at which you want to buy or sell. The order only executes if the market reaches your target price. If it doesn&apos;t, the order remains open until filled or canceled.
       </p>
       <ul>
-        <li><strong>Buy limit:</strong> Set below the current price &mdash; &ldquo;I want to buy ETC if it drops to $25&rdquo;</li>
-        <li><strong>Sell limit:</strong> Set above the current price &mdash; &ldquo;I want to sell ETC if it rises to $40&rdquo;</li>
+        <li><strong>Buy limit:</strong> Set below the current price, as in &ldquo;I want to buy ETC if it drops to $25&rdquo;</li>
+        <li><strong>Sell limit:</strong> Set above the current price, as in &ldquo;I want to sell ETC if it rises to $40&rdquo;</li>
         <li><strong>Best for:</strong> Patient traders who want price precision over speed</li>
       </ul>
       <p>

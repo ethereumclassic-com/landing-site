@@ -10,23 +10,23 @@ const gpuFeatures = [
 ]
 
 const asicFeatures = [
-  { title: 'Peak ETChash efficiency', desc: 'Purpose-built silicon achieves hashrates impossible with GPUs at equivalent power draw.' },
+  { title: 'Peak Etchash efficiency', desc: 'Purpose-built silicon achieves hashrates impossible with GPUs at equivalent power draw.' },
   { title: 'Lower power per MH/s', desc: 'Industrial ASIC operations have dramatically lower electricity cost per unit of security produced.' },
   { title: 'Predictable output', desc: 'ASICs run one algorithm at a fixed rate. No driver issues, no gaming workload competition.' },
   { title: 'Datacenter-ready form factor', desc: 'Rack-mountable units designed for density. Purpose-built for 24/7 continuous operation.' },
-  { title: 'Manufacturers on ETC', desc: 'Bitmain, Jasminer, iPollo, and Innosilicon all produce ETChash-compatible ASICs.' },
+  { title: 'Manufacturers on ETC', desc: 'Bitmain, Jasminer, iPollo, Bombax and Innosilicon all make Etchash ASICs.' },
 ]
 
 const manufacturers = [
-  { name: 'Bitmain', models: 'E9 series', algo: 'ETChash', notes: 'Largest ASIC manufacturer globally' },
-  { name: 'Jasminer', models: 'X16-Q, X4-Q', algo: 'ETChash', notes: 'High-efficiency low-noise form factors' },
-  { name: 'iPollo', models: 'V1 Mini, V1 Classic', algo: 'ETChash', notes: 'Consumer-friendly entry-level units' },
-  { name: 'Innosilicon', models: 'A11 Pro', algo: 'ETChash', notes: 'High-density rack configurations' },
+  { name: 'Bitmain', models: 'Antminer E9 and E11', algo: 'Etchash', notes: 'Large ASIC maker with worldwide distribution' },
+  { name: 'Jasminer', models: 'X44-P, X16-Q series', algo: 'Etchash', notes: 'Efficient, low-noise form factors' },
+  { name: 'iPollo', models: 'V2 series', algo: 'Etchash', notes: 'Compact units, including entry-level models' },
+  { name: 'Innosilicon', models: 'A11 Pro', algo: 'Etchash', notes: 'High-density rack configurations' },
 ]
 
 export default function MiningApproachesPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-4xl">
@@ -50,7 +50,7 @@ export default function MiningApproachesPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            ETC supports both GPU and ASIC mining via the ETChash algorithm. Every scale of operation has a valid entry point, from a single home rig to grid-scale industrial deployment.
+            ETC supports both GPU and ASIC mining via the Etchash algorithm. Every scale of operation has a valid entry point, from a single home rig to grid-scale industrial deployment.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -118,7 +118,7 @@ export default function MiningApproachesPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-[var(--text-primary)]">ASIC Mining</h3>
-                  <p className="text-sm text-[var(--color-text-muted)]">ETChash-dedicated silicon</p>
+                  <p className="text-sm text-[var(--color-text-muted)]">Etchash-dedicated silicon</p>
                 </div>
               </div>
               <ul className="space-y-4">
@@ -144,15 +144,15 @@ export default function MiningApproachesPage() {
       {/* ASIC Manufacturers */}
       <section className="border-t border-[var(--border)] bg-[var(--panel)]/50 px-6 py-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-2xl font-bold text-[var(--text-primary)]">ETChash ASIC Manufacturers</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Etchash ASIC Manufacturers</h2>
           <p className="mt-2 text-[var(--color-text-secondary)]">
-            These manufacturers produce hardware purpose-built for ETChash.
+            These manufacturers produce hardware purpose-built for Etchash.
           </p>
           <div className="mt-8">
             <OverviewTable
               heading="ASIC Manufacturers"
               rows={manufacturers.map((m) => ({
-                label: `${m.name} — ${m.models}`,
+                label: `${m.name}: ${m.models}`,
                 value: m.notes,
               }))}
             />
@@ -240,7 +240,7 @@ export default function MiningApproachesPage() {
             <OverviewTable
               heading="GPU"
               rows={[
-                { label: 'ETChash Efficiency', value: 'Moderate' },
+                { label: 'Etchash Efficiency', value: 'Moderate' },
                 { label: 'Capital Cost', value: 'Low–Medium' },
                 { label: 'Flexibility', value: 'High (multi-algorithm)' },
                 { label: 'Resale Value', value: 'Strong' },
@@ -253,9 +253,9 @@ export default function MiningApproachesPage() {
             <OverviewTable
               heading="ASIC"
               rows={[
-                { label: 'ETChash Efficiency', value: 'Peak', color: 'green' },
+                { label: 'Etchash Efficiency', value: 'Peak', color: 'green' },
                 { label: 'Capital Cost', value: 'High' },
-                { label: 'Flexibility', value: 'None (ETChash only)' },
+                { label: 'Flexibility', value: 'None (Etchash only)' },
                 { label: 'Resale Value', value: 'Low outside crypto' },
                 { label: 'Setup Complexity', value: 'Low–Medium' },
                 { label: 'Minimum Scale', value: 'Single unit' },
@@ -298,6 +298,6 @@ export default function MiningApproachesPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

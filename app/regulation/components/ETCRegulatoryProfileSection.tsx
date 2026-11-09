@@ -14,11 +14,11 @@ const profiles = [
     badgeLabel: 'Senate Floor Pending',
     tagline: 'Digital Commodity Profile',
     points: [
-      "Longest-running EVM: original Ethereum codebase, launched July 2015",
-      "No pre-mine, no foundation controlling protocol direction",
+      "Continues the original Ethereum chain, running since July 2015",
+      "No issuer and no foundation controlling the protocol",
       "Proof-of-Work consensus matches Bitcoin's commodity profile",
-      "No central issuer or controlling entity, distributed globally",
-      "CFTC jurisdiction for derivatives; spot markets governed by existing law",
+      "Miners and nodes spread around the world, with no controlling entity",
+      "Would bring spot markets for digital commodities under CFTC oversight",
       "House passage July 17, 2025; Senate Banking Committee passed 15-9 on May 14, 2026",
     ],
   },
@@ -32,14 +32,14 @@ const profiles = [
     jurisdiction: 'European Union',
     badge: 'badge-available' as const,
     badgeLabel: 'In Force Dec 2024',
-    tagline: 'Decentralized Asset',
+    tagline: 'No Issuer',
     points: [
-      "No central issuer → exempt from ART and EMT issuer obligations",
-      "MiCA-licensed CASPs may offer ETC without per-asset regulatory approval",
-      "Decentralized PoW eliminates single point of regulatory or operational failure",
-      "Token issuance originated from community fork, with no foundation and no ICO",
-      "Qualifies for trading on all 27 EU member state CASP-authorized platforms",
-      "Hard cutoff July 1, 2026. ETC is tradable by compliant entities from day one.",
+      "No issuer, so the rules for asset-referenced and e-money tokens do not apply",
+      "Authorized crypto-asset service providers can offer ETC without a separate approval for the asset",
+      "Proof-of-Work leaves no single operator to regulate or to fail",
+      "Carries Ethereum's 2014 genesis allocation; every coin since has been mined",
+      "Can trade on authorized platforms in all 27 member states",
+      "The transitional period for service providers ran to July 1, 2026",
     ],
   },
   {
@@ -54,12 +54,12 @@ const profiles = [
     badgeLabel: 'Signed Jul 18, 2025',
     tagline: 'Live Stablecoin Platform',
     points: [
-      "Classic USD ($USC) deployed on ETC mainnet, a stablecoin aligned with the GENIUS Act",
+      "Classic USD ($USC), a stablecoin aligned with the GENIUS Act, is live on ETC mainnet",
       "Issued by Brale Inc. (NMLS #2376957) under US money transmission licensing",
       "Reserves held 1:1 in segregated, regulated US bank accounts",
       "Third-party reserve attestations and SOC 2 compliance",
-      "OCC national trust bank charters approved for EVM asset custody (2025–2026)",
-      "ETC's EVM is a proven platform for regulated, fiat-backed token issuance",
+      "The OCC approved national trust bank charters for digital asset custody in 2025 and 2026",
+      "Shows ETC's EVM carrying a regulated, fiat-backed token",
     ],
   },
 ]
@@ -81,8 +81,7 @@ export function ETCRegulatoryProfileSection() {
               ETC&apos;s Regulatory Profile
             </h2>
             <p className="mt-3 text-base text-[var(--text-muted)]">
-              Ethereum Classic is uniquely positioned across every major
-              regulatory classification, by design, not by accident.
+              Where ETC stands under each of the three frameworks, and why.
             </p>
           </FadeIn>
 

@@ -25,7 +25,7 @@ export default function LiquidityPools() {
 
       <h2>Trading Fees and LP Revenue</h2>
       <p>
-        Every swap on <ETCswapLink /> incurs a small trading fee (typically 0.3% on V2). This fee is added to the pool&apos;s reserves, increasing the value of all LP tokens proportionally. As a liquidity provider, you earn a share of every trade that passes through your pool.
+        Every swap on <ETCswapLink />{' '}incurs a small trading fee (typically 0.3% on V2). This fee is added to the pool&apos;s reserves, increasing the value of all LP tokens proportionally. As a liquidity provider, you earn a share of every trade that passes through your pool.
       </p>
       <p>
         Your earnings depend on two factors: the pool&apos;s trading volume and your share of the pool. A pool with high volume and your portion being significant means more fees flowing to you.
@@ -35,7 +35,7 @@ export default function LiquidityPools() {
 
       <h3>V2: Full-Range Liquidity</h3>
       <p>
-        In <ETCswapLink /> V2, your liquidity is spread across the entire price range from zero to infinity. You deposit equal value of both tokens. This is simpler to manage but less capital-efficient&mdash;most of your liquidity sits in price ranges where trading never occurs.
+        In <ETCswapLink />{' '}V2, your liquidity is spread across the entire price range from zero to infinity. You deposit equal value of both tokens. This is simpler to manage but less capital-efficient: most of your liquidity sits in price ranges where trading never occurs.
       </p>
 
       <h3>V3: Concentrated Liquidity</h3>
@@ -48,7 +48,7 @@ export default function LiquidityPools() {
 
       <h2>Pool Ratios and Rebalancing</h2>
       <p>
-        As trades occur, the ratio of tokens in the pool shifts. If many traders buy ETC from an ETC/USC pool, the pool accumulates more USC and less ETC. This rebalancing is continuous and automatic. When you withdraw liquidity, you receive the current ratio of tokens&mdash;not necessarily the same ratio you deposited.
+        As trades occur, the ratio of tokens in the pool shifts. If many traders buy ETC from an ETC/USC pool, the pool accumulates more USC and less ETC. This rebalancing is continuous and automatic. When you withdraw liquidity, you receive the current ratio of tokens, which may differ from the ratio you deposited.
       </p>
 
       <h2>Impermanent Loss</h2>

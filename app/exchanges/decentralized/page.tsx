@@ -17,7 +17,7 @@ export default function DecentralizedExchangesPage() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Breadcrumbs */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
@@ -79,7 +79,7 @@ export default function DecentralizedExchangesPage() {
             <h2 className="mb-6 text-2xl font-bold text-[var(--text-primary)]">
               Available DEXs
               <span className="ml-2 text-sm font-normal text-[var(--color-text-muted)]">
-                {dexExchanges.length} options
+                {dexExchanges.length} {dexExchanges.length === 1 ? 'option' : 'options'}
               </span>
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -178,6 +178,6 @@ export default function DecentralizedExchangesPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

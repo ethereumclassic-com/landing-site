@@ -12,9 +12,9 @@ export default function SafeDefiPractices() {
         Before connecting your wallet to any dApp or approving a transaction, verify the contract address on Blockscout at etc.blockscout.com. Look for:
       </p>
       <ul>
-        <li><strong>Verified source code</strong> &mdash; the contract&apos;s Solidity source should be published and verified on the block explorer</li>
-        <li><strong>Transaction history</strong> &mdash; established contracts have a long history of interactions from many addresses</li>
-        <li><strong>Known deployer</strong> &mdash; the deploying address should be traceable to the project team</li>
+        <li><strong>Verified source code:</strong> the contract&apos;s Solidity source should be published and verified on the block explorer</li>
+        <li><strong>Transaction history:</strong> established contracts have a long history of interactions from many addresses</li>
+        <li><strong>Known deployer:</strong> the deploying address should be traceable to the project team</li>
       </ul>
       <p>
         If a contract is unverified or newly deployed with no transaction history, treat it with extreme caution.
@@ -25,9 +25,9 @@ export default function SafeDefiPractices() {
         When you interact with a DeFi protocol, it typically asks you to approve a token spending allowance. This grants the contract permission to move tokens from your wallet on your behalf.
       </p>
       <ul>
-        <li><strong>Unlimited approvals</strong> are convenient but dangerous &mdash; a compromised or malicious contract can drain your entire token balance at any time</li>
+        <li><strong>Unlimited approvals</strong> are convenient but dangerous: a compromised or malicious contract can drain your entire token balance at any time</li>
         <li><strong>Limited approvals</strong> restrict the contract to spending only the amount you specify for the current transaction</li>
-        <li><strong>Revoke old approvals</strong> regularly &mdash; approvals persist indefinitely unless explicitly revoked. Review and revoke unused approvals, especially for contracts you no longer use.</li>
+        <li><strong>Revoke old approvals</strong> regularly, since approvals persist indefinitely unless explicitly revoked. Review and revoke unused approvals, especially for contracts you no longer use.</li>
       </ul>
 
       <h2>Start Small</h2>
@@ -42,7 +42,7 @@ export default function SafeDefiPractices() {
 
       <h2>Use Only Verified dApps</h2>
       <p>
-        Stick to established, community-verified protocols on Ethereum Classic. <ETCswapLink /> is the primary decentralized exchange, and Classic USD provides a stablecoin mechanism. Be wary of unfamiliar protocols offering unusually high yields &mdash; these may be short-lived, poorly audited, or intentionally malicious.
+        Stick to established, community-verified protocols on Ethereum Classic. <ETCswapLink />{' '}is the primary decentralized exchange, and Classic USD provides a stablecoin mechanism. Be wary of unfamiliar protocols offering unusually high yields, which may be short-lived, poorly audited, or intentionally malicious.
       </p>
 
       <h2>Watch for Flash Loan Attacks</h2>

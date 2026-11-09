@@ -20,8 +20,7 @@ const attributes = [
         >
           Brale Inc. (NMLS #2376957)
         </a>
-        , a licensed money transmitter operating under US Bank Secrecy Act and state money
-        transmission regulations. Compliant with GENIUS Act stablecoin issuance requirements.
+        , a licensed money transmitter operating under the US Bank Secrecy Act and state money transmission rules, and aligned with the GENIUS Act&apos;s requirements for stablecoin issuers.
       </>
     ),
     link: undefined as { label: string; href: string } | undefined,
@@ -45,7 +44,7 @@ const attributes = [
     ),
     title: 'Redeemable at Par',
     description:
-      'USC redeems 1:1 for USD, USDC (Circle), or USDP (Paxos) via the Brale platform. Deposits via ACH (1–3 business days) or wire (same-day). No slippage. Perfect 1:1 conversion.',
+      'USC redeems 1:1 for USD, USDC (Circle) or USDP (Paxos) on the Brale platform, with deposits by ACH (one to three business days) or wire (same day). Conversion is at par, with no slippage.',
     link: { label: 'Mint or Redeem on the Brale Platform', href: 'https://app.brale.xyz' },
   },
   {
@@ -56,16 +55,15 @@ const attributes = [
     ),
     title: 'Smart Contract Security',
     description:
-      'ERC-20 standard with transparent proxy pattern (ERC-1967). Role-based access control, pause mechanism, multi-signature requirements, and timelock delays for all significant protocol changes.',
+      'ERC-20 standard with transparent proxy pattern (ERC-1967). Role-based access control, pause mechanism, multi-signature requirements, and timelock delays for significant contract changes.',
     link: undefined as { label: string; href: string } | undefined,
   },
 ]
 
 const whyItMatters = [
-  "Proves ETC's EVM handles regulated financial instruments at production scale",
-  'Enables composable DeFi with a USD-stable base (ETCswap V2/V3 integration)',
-  'Its deployment shows ETC as a stablecoin platform aligned with the GENIUS Act',
-  "Brale's API-accessible platform is a pathway for additional fiat-backed issuers on ETC",
+  "Shows ETC's EVM running a regulated financial instrument in production",
+  'Gives DeFi on ETC a dollar-stable asset, with pools on ETCswap V2 and V3',
+  "Brale's issuance platform gives other businesses a way to launch fiat-backed tokens on ETC",
 ]
 
 export function ClassicUSDSection() {
@@ -85,23 +83,13 @@ export function ClassicUSDSection() {
               id="classic-usd-heading"
               className="mt-2 text-3xl font-bold tracking-tight"
             >
-              Classic USD: The Definitive Regulated Stablecoin on Ethereum Classic
+              Classic USD: A Regulated Stablecoin on Ethereum Classic
             </h2>
             <p className="mt-3 text-base text-[var(--text-muted)]">
-              Classic USD ($USC) is the first fiat-backed stablecoin issued natively on
-              Ethereum Classic. It is a 1:1 USD-backed ERC-20 token issued by Brale Inc. under US
-              money transmission licensing, with reserves held in segregated regulated US bank
-              accounts and independently attested. It is not a bridged asset or a wrapped
-              version of a token from another chain. It was designed for ETC and deployed on
-              ETC mainnet.
+              Classic USD ($USC) is a 1:1 USD-backed ERC-20 stablecoin issued natively on Ethereum Classic by Brale Inc., a licensed US money transmitter. Its reserves are held in segregated, regulated US bank accounts and attested independently. It is issued directly on ETC mainnet, not bridged or wrapped from another chain.
             </p>
             <p className="mt-3 text-base text-[var(--text-muted)]">
-              The GENIUS Act, signed July 18, 2025, established the first federal framework for
-              payment stablecoin issuance in the United States. Classic USD meets those
-              requirements: licensed issuer, 1:1 liquid reserves, par-value redemption, and
-              third-party attestations. Its existence on ETC demonstrates that a Proof-of-Work
-              EVM can serve as compliant infrastructure for regulated financial instruments,
-              not in theory but in production.
+              The GENIUS Act, signed July 18, 2025, set the first federal framework for payment stablecoins in the United States. Classic USD is aligned with its core requirements: a licensed issuer, 1:1 liquid reserves, redemption at par and third-party attestations. It shows a Proof-of-Work EVM carrying a regulated financial instrument in production.
             </p>
           </FadeIn>
 

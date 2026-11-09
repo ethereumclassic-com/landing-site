@@ -278,7 +278,7 @@ export const wallets: Wallet[] = [
   {
     name: 'Exodus',
     type: 'Mobile',
-    description: 'Beautiful multi-asset wallet with built-in exchange',
+    description: 'Multi-asset wallet with a built-in exchange',
     link: 'https://www.exodus.com',
     platforms: ['iOS', 'Android', 'Desktop', 'Browser'],
     features: {

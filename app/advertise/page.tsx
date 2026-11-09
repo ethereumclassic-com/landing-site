@@ -47,7 +47,7 @@ const guidelines = [
 
 export default function AdvertisePage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-[var(--border)] bg-gradient-to-b from-[var(--panel)] to-[var(--bg)] py-16 md:py-24">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--color-primary-rgb),0.1),transparent_70%)]" />
@@ -58,12 +58,12 @@ export default function AdvertisePage() {
             <h1
               className="text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl"
             >
-              Advertise on EthereumClassic.com
+              Advertise on ethereumclassic.com
             </h1>
             <p
               className="mt-4 text-lg text-[var(--color-text-secondary)]"
             >
-              Reach the Ethereum Classic community directly — a technically sophisticated audience of miners, developers, DeFi users, and long-term holders. Promote your wallet, exchange, mining pool, or blockchain product to one of the most engaged Proof-of-Work communities in the industry.
+              Reach the Ethereum Classic community directly: miners, developers, DeFi users and long-term holders. Promote your wallet, exchange, mining pool or blockchain product to the people who use ETC.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
@@ -234,7 +234,7 @@ export default function AdvertisePage() {
               },
               {
                 title: 'High Engagement',
-                description: 'Our community is active and engaged. Real users making real decisions.',
+                description: 'Visitors come here to compare wallets, exchanges, pools and tools.',
                 icon: (
                   <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -265,6 +265,6 @@ export default function AdvertisePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

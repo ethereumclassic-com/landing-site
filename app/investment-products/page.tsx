@@ -3,8 +3,9 @@ import Link from 'next/link'
 const fundFacts = [
   { label: 'Ticker', value: 'ETCG' },
   { label: 'Market', value: 'OTCQX Best Market' },
-  { label: 'Inception', value: 'May 10, 2018' },
-  { label: 'ETC per Share', value: '0.785' },
+  { label: 'Inception', value: 'April 2017' },
+  { label: 'Quoted on OTCQX', value: 'Since May 2018' },
+  { label: 'ETC per Share', value: '0.7802 (Mar 31, 2026)' },
   { label: 'Shares Outstanding', value: '13,993,800' },
   { label: 'Custodian', value: 'Coinbase Custody' },
   { label: 'Sponsor', value: 'Grayscale Investments' },
@@ -30,8 +31,8 @@ const dataProviders = [
 const thesisPoints = [
   {
     number: '01',
-    title: 'Regulatory Clarity',
-    body: 'ETC inherits the commodity classification path that Proof-of-Work networks established and the programmable finance frameworks being built around smart contract platforms. Its regulatory surface spans both trajectories: digital commodity candidate (CLARITY Act), decentralized asset (MiCA), stablecoin platform (GENIUS Act).',
+    title: 'Regulatory Position',
+    body: 'ETC\'s Proof-of-Work profile positions it for digital commodity classification, and its EVM places it within the frameworks being built around smart contract platforms: a digital commodity candidate under the pending CLARITY Act, an asset with no issuer under MiCA, and a stablecoin platform aligned with the GENIUS Act.',
   },
   {
     number: '02',
@@ -46,18 +47,18 @@ const thesisPoints = [
   {
     number: '04',
     title: 'Proven Track Record',
-    body: 'The original Ethereum Virtual Machine, running continuously since July 2015. Zero protocol-level failures. Immutable ledger. The longest continuously operating smart contract platform in production.',
+    body: 'The original Ethereum chain, producing blocks continuously since July 2015, with no irregular state change in its history.',
   },
   {
     number: '05',
-    title: 'Deepest PoW Smart Contract Liquidity',
-    body: '300+ exchanges, 11 fiat currency pairs, accessible GPU mining hardware at retail, and institutional ASIC infrastructure. The only Proof-of-Work network with native smart contract capability at this depth of market access.',
+    title: 'Broad Market Access',
+    body: 'ETC trades on exchanges worldwide against major fiat currencies, and both retail GPUs and institutional ASICs mine it. It is the only mature Proof-of-Work blockchain with native smart contracts.',
   },
 ]
 
 export default function InvestmentProductsPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -78,20 +79,18 @@ export default function InvestmentProductsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-base text-[var(--color-text-secondary)]"
           >
-            ETC has had regulated investment product exposure since May 2018 — before most institutional
+            ETC has had a publicly traded investment product since May 2018, before most institutional
             digital asset infrastructure existed. The Grayscale Ethereum Classic Trust was among the
             earliest digital asset grantor trusts, applying the same structure Grayscale used for GBTC
-            (2013) and ETHE (2017) to Ethereum Classic. It predated the ETF era and has traded as an
-            SEC-reporting security for over six years.
+            (2013) and ETHE (2017) to Ethereum Classic. It predated the ETF era: Grayscale formed it in April 2017, its shares have been quoted on OTCQX
+            since May 2018, and it has filed reports with the SEC since 2021.
           </p>
           <p
             className="mx-auto mt-4 max-w-2xl text-base text-[var(--color-text-secondary)]"
           >
-            The product landscape is now expanding. GBTC converted to a spot Bitcoin ETF in January 2024.
-            ETHE followed in July 2024. Regulatory precedent for the trust-to-ETF conversion path is
-            established, and every issuer that built infrastructure for BTC and ETH investment products
-            already has the custody relationships, legal framework, and distribution agreements needed for
-            an ETC product.
+            GBTC converted to a spot Bitcoin ETF in January 2024, and ETHE followed in July 2024, so the
+            trust-to-ETF conversion path has precedent. Issuers that built BTC and ETH investment products
+            already have much of the custody, legal and distribution infrastructure an ETC product would use.
           </p>
         </div>
       </section>
@@ -110,7 +109,7 @@ export default function InvestmentProductsPage() {
               Grayscale Ethereum Classic Trust
             </h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
-              ETCG · OTCQX Best Market · Established May 10, 2018
+              ETCG · OTCQX Best Market · Quoted since May 2018
             </p>
 
             <div className="mt-8 grid gap-6 md:grid-cols-2">
@@ -148,12 +147,12 @@ export default function InvestmentProductsPage() {
                   {
                     title: 'Custody',
                     description:
-                      'Coinbase Custody Trust Company, LLC. Institutional-grade cold storage, insured. One of the largest digital asset custodians by AUM globally.',
+                      'Coinbase Custody Trust Company, LLC: institutional-grade cold storage, from one of the largest digital asset custodians by assets held.',
                   },
                   {
                     title: 'Premium / Discount',
                     description:
-                      'ETCG trades on OTCQX without an active redemption program. Share price deviates from NAV. Historical max premium: 458%. No active redemption mechanism.',
+                      'ETCG trades on OTCQX without an active redemption program, so its share price can move away from its net asset value. Its largest recorded premium was 458%.',
                   },
                 ].map((item) => (
                   <div
@@ -183,9 +182,8 @@ export default function InvestmentProductsPage() {
           </h2>
           <p className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
             Grayscale has established a repeatable three-stage path from private placement to broadly
-            accessible exchange-listed product. GBTC completed all three stages. ETHE followed. ETCG
-            has completed the first two. Conversion is a function of Grayscale&apos;s prioritization
-            and SEC application timing, not product eligibility.
+            accessible exchange-listed product. GBTC completed all three stages. ETHE followed. ETCG has completed the first two. A conversion would depend on Grayscale&apos;s decision to
+            apply and on SEC approval.
           </p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -203,7 +201,7 @@ export default function InvestmentProductsPage() {
                 stage: '02',
                 title: 'SEC Reporting',
                 subtitle: 'Institutional adoption',
-                badge: 'ETCG complete · since ~2021',
+                badge: 'ETCG complete · since 2021',
                 complete: true,
                 description:
                   'Annual 10-K and quarterly 10-Q filings with the SEC. Full public reporting establishes the regulatory track record required for exchange-listed product consideration.',
@@ -263,7 +261,7 @@ export default function InvestmentProductsPage() {
                 </tr>
                 <tr>
                   <td className="px-5 py-3 font-mono font-semibold text-[var(--color-warning)]">ETCG</td>
-                  <td className="px-5 py-3 text-[var(--color-text-muted)]">May 2018</td>
+                  <td className="px-5 py-3 text-[var(--color-text-muted)]">Apr 2017</td>
                   <td className="px-5 py-3 text-[var(--color-text-muted)]">Pending</td>
                   <td className="px-5 py-3 text-[var(--color-text-muted)]">—</td>
                 </tr>
@@ -293,7 +291,7 @@ export default function InvestmentProductsPage() {
               ETC in Traditional Finance
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">
-              ETCG is an OTCQX-listed grantor trust. Search the ticker at your existing brokerage. It trades alongside equities and ETFs and is IRA-eligible at major full-service platforms.
+              ETCG is a grantor trust quoted on OTCQX. Search the ticker at your existing brokerage. It trades alongside equities and ETFs and is IRA-eligible at major full-service platforms.
             </p>
 
             {/* Brokerage grid */}
@@ -352,8 +350,7 @@ export default function InvestmentProductsPage() {
               The ETC Investment Case
             </h2>
             <p className="mt-2 text-[var(--color-text-muted)]">
-              Five structural properties that distinguish Ethereum Classic in the 2025–2026
-              institutional digital asset landscape.
+              Five structural properties that distinguish Ethereum Classic for institutional investors.
             </p>
 
             <div className="mt-8 space-y-4">
@@ -392,6 +389,6 @@ export default function InvestmentProductsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

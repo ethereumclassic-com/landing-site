@@ -48,7 +48,7 @@ const atmProviders = [
     verificationRequired: 'Account required',
     fees: '4-11%',
     features: ['Walmart locations', 'Low fees', 'Wide availability'],
-    description: 'Available at Walmart and other retailers. Currently supports BTC only - swap to ETC after.',
+    description: 'Available at Walmart and other retailers. Supports BTC only, so swap it for ETC afterward.',
   },
   {
     id: 'libertyx',
@@ -102,7 +102,7 @@ const atmAggregators = [
   {
     name: 'CoinATMRadar',
     website: 'https://coinatmradar.com',
-    description: 'The most comprehensive Bitcoin ATM map. Filter by cryptocurrency to find ETC-supporting ATMs.',
+    description: 'A widely used Bitcoin ATM map. Filter by cryptocurrency to find ATMs that support ETC.',
     icon: '🗺️',
   },
   {
@@ -213,7 +213,7 @@ export default function ATMPage() {
   const etcSupportedCount = atmProviders.filter((p) => p.supportsETC).length
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -283,11 +283,7 @@ export default function ATMPage() {
                   <strong className="text-[var(--color-success)]">Direct ETC:</strong> Some ATM networks support Ethereum Classic directly.
                   Simply select ETC at the machine and provide your wallet address.{' '}
                   <strong className="text-[var(--color-warning)]">BTC Only:</strong> If an ATM only supports Bitcoin, buy BTC and then
-                  swap to ETC on an exchange like{' '}
-                  <a href="https://etcswap.org" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
-                    ETCswap
-                  </a>
-                  {' '}or{' '}
+                  swap it for ETC on an exchange or a cross-chain swap service such as{' '}
                   <a href="https://changenow.io" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
                     ChangeNOW
                   </a>.
@@ -445,7 +441,7 @@ export default function ATMPage() {
                   <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
-                  <span>Check operating hours - many ATMs are in stores</span>
+                  <span>Check operating hours: many ATMs are in stores</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -520,6 +516,6 @@ export default function ATMPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

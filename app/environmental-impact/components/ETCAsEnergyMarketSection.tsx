@@ -12,7 +12,7 @@ const mechanics = [
   },
   {
     label: '24/7 price discovery',
-    detail: 'ETC markets never close across 300+ exchanges in every time zone. Energy futures halt on weekends.',
+    detail: 'ETC markets never close, in any time zone. Energy futures halt on weekends.',
   },
   {
     label: 'Local currency signals',
@@ -21,7 +21,7 @@ const mechanics = [
 ]
 
 const signals = [
-  { pair: 'ETC/USD', flag: '🇺🇸', note: 'Primary global energy proxy' },
+  { pair: 'ETC/USD', flag: '🇺🇸', note: 'Global reference pair' },
   { pair: 'ETC/EUR', flag: '🇪🇺', note: 'European energy transition market' },
   { pair: 'ETC/JPY', flag: '🇯🇵', note: 'Major LNG importing economy' },
   { pair: 'ETC/GBP', flag: '🇬🇧', note: 'North Sea & offshore wind market' },
@@ -29,11 +29,9 @@ const signals = [
   { pair: 'ETC/KRW', flag: '🇰🇷', note: 'High-density industrial energy market' },
   { pair: 'ETC/SGD', flag: '🇸🇬', note: 'Asia-Pacific LNG trading hub' },
   { pair: 'ETC/TWD', flag: '🇹🇼', note: 'High-tech manufacturing energy demand' },
-  { pair: 'ETC/INR', flag: '🇮🇳', note: "World's fastest-growing energy market" },
+  { pair: 'ETC/INR', flag: '🇮🇳', note: 'Fast-growing energy market' },
   { pair: 'ETC/BRL', flag: '🇧🇷', note: 'Brazilian hydropower market' },
   { pair: 'ETC/TRY', flag: '🇹🇷', note: 'Emerging market energy signal' },
-  { pair: 'ETC/AED', flag: '🇦🇪', note: 'Gulf oil-producing economy' },
-  { pair: 'ETC/THB', flag: '🇹🇭', note: 'Regional energy growth market' },
   { pair: 'ETC/UAH', flag: '🇺🇦', note: 'Eastern European energy infrastructure' },
   { pair: 'ETC/IDR', flag: '🇮🇩', note: 'Coal & geothermal energy market' },
   { pair: 'ETC/NZD', flag: '🇳🇿', note: 'Renewable energy pioneer' },
@@ -49,23 +47,20 @@ export function ETCAsEnergyMarketSection() {
             Price Discovery
           </p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">
-            ETC/USD: A Global 24/7 Energy Proxy
+            ETC/USD: A Market That Never Closes
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            Mining profitability is a direct function of ETC price, block reward, and energy cost.
-            This creates a tight arbitrage: miners enter when energy is cheap relative to ETC price,
-            exit when it is not. ETC financial markets are therefore a continuous, real-time signal
-            about energy value worldwide. ETC/USD is the first always-open, globally accessible energy
-            commodity market.
+            Mining profitability is a direct function of ETC&apos;s price, the block reward and energy cost.
+              That creates a tight arbitrage: miners enter when energy is cheap relative to ETC&apos;s price and
+              exit when it is not, so ETC&apos;s hashrate and markets respond continuously to energy prices around
+              the world.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            Energy futures markets close on weekends. Regional electricity spot markets are
-            balkanized by jurisdiction, settlement rules, and transmission constraints. ETC/USD
-            trades 24/7, in every time zone, across major global currencies, on over 300 exchanges.
-            An energy producer in Norway, a wellhead operator in Texas, and a hydro developer in
-            Malawi are all pricing their output against the same continuous global signal. That is
-            not a feature of traditional commodity markets. It is a consequence of
-            permissionless, decentralized infrastructure.
+            Energy futures markets close on weekends, and regional electricity spot markets are divided by
+              jurisdiction, settlement rules and transmission constraints. ETC trades around the clock, in every
+              time zone and against major currencies, so an energy producer in Norway, a wellhead operator in
+              Texas and a hydro developer in Malawi can all weigh their output against the same continuous
+              price.
           </p>
         </FadeIn>
 
@@ -131,10 +126,9 @@ export function ETCAsEnergyMarketSection() {
         <FadeIn>
           <div className="mt-6 rounded-xl border border-[var(--brand-green)] bg-[var(--brand-green-subtle)] p-6">
             <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-              As global energy markets mature toward 24/7 marginal-cost pricing, Proof-of-Work
-              networks represent the first fully liquid, globally accessible, always-open energy
-              commodity market. ETC/USD spot markets have operated continuously since 2016, making
-              them one of the longest-running fiat price discovery mechanisms in the asset class.
+              As energy markets move toward round-the-clock marginal-cost pricing, Proof-of-Work networks offer
+                a liquid, globally accessible market that never closes. ETC/USD has traded continuously since
+                July 2016.
             </p>
             <div className="mt-4">
               <Link

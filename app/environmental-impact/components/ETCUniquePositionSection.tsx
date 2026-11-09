@@ -14,9 +14,9 @@ const columns = [
     heading: 'From Proof-of-Work',
     subheading: "Bitcoin's regulatory trajectory",
     points: [
-      'No pre-mine, no foundation controlling the protocol, no issuer.',
-      'Mining hardware is globally distributed, permissionless to acquire.',
-      'Block rewards and tips go to miners; the proposed Olympia treasury would be funded by the base fee, not by inflation.',
+      'No issuer and no foundation controlling the protocol; every coin created after the genesis block was mined.',
+      'Mining hardware is sold worldwide, and anyone can buy it.',
+      'Block rewards and transaction fees go to miners; the proposed Olympia Treasury would be funded by the base fee, not by inflation.',
       'Positioned for classification as a digital commodity under the pending CLARITY Act, with the same Proof-of-Work profile as Bitcoin.',
       'Energy demand that can co-locate with any power source, anywhere in the world.',
     ],
@@ -29,7 +29,7 @@ const columns = [
       'Solidity and the EVM through the Shanghai set, so standard Ethereum tools work here, with a legacy-transaction setting where a tool assumes EIP-1559.',
       'Classic USD ($USC) by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain.',
       'Stablecoin infrastructure aligned with the GENIUS Act, on a Proof-of-Work network.',
-      'ETCswap V2 and V3 provide on-chain liquidity for composable DeFi with a regulated stable base.',
+      'ETCswap V2 and V3 provide on-chain liquidity for DeFi, with Classic USD as a stable base.',
       'Smart contracts enable programmable settlement for energy transactions on-chain.',
     ],
   },
@@ -50,22 +50,21 @@ export async function ETCUniquePositionSection() {
             Unique Position
           </p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-[var(--text-primary)] md:text-3xl">
-            The Largest Proof-of-Work Network with Native Smart Contracts
+            The Only Mature Proof-of-Work Blockchain with Native Smart Contracts
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            ETC is not simply a PoW network or simply a smart contract platform. It sits at the
-            intersection of both, inheriting the commodity classification path that Bitcoin
-            established and the programmable finance frameworks that Ethereum established. No other
-            active blockchain occupies this position. Bitcoin has PoW without
-            programmability, Ethereum has the EVM without PoW. ETC has both.
+            ETC sits at the intersection of Proof of Work and smart contracts. It shares Bitcoin&apos;s
+              Proof-of-Work profile, which positions it for digital commodity classification, and it runs the
+              EVM that Ethereum&apos;s programmable finance is built on. Bitcoin has Proof of Work without
+              general programmability, and Ethereum has the EVM without Proof of Work. Among mature networks,
+              only ETC has both.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
-            For energy markets, this intersection has a specific consequence: the same network that
-            provides a global 24/7 energy demand signal also supports programmable contracts for
-            energy settlement. ETC/USD price is a function of energy cost, block reward, and
-            hardware efficiency. Mining activity continuously arbitrages between energy markets and crypto
-            markets. The EVM layer means those contracts can be settled on the same
-            chain that prices them.
+            For energy markets, this intersection has a specific consequence: the network that draws on
+              energy around the clock can also run the contracts that settle energy transactions. Mining
+              profitability depends on ETC&apos;s price, the block reward, energy cost and hardware efficiency,
+              so mining moves continuously between energy markets and crypto markets, and the EVM lets the
+              contracts settle on the same chain.
           </p>
         </FadeIn>
 

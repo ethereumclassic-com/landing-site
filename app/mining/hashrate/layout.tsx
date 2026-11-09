@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     'ETC network hashrate',
     'Ethereum Classic hashrate',
     'ETC hashrate chart',
-    'ETChash',
+    'Etchash',
     'ETC mining hashrate',
     'network hashrate history',
     'ETC hashrate calculation',

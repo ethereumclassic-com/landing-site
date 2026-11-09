@@ -11,7 +11,7 @@ import {
   formatSupply,
   formatBlockReward,
   formatBlockNumber,
-  type SupplyStats, CURRENT_ERA_REFERENCE_BLOCK } from '../data/emission'
+  type SupplyStats, CURRENT_ERA, CURRENT_ERA_REFERENCE_BLOCK } from '../data/emission'
 
 // Supply Stats Cards
 function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isLoading: boolean }) {
@@ -39,7 +39,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
     {
       label: 'Genesis Supply',
       value: formatSupply(EMISSION_CONSTANTS.GENESIS_SUPPLY) + ' ETC',
-      description: 'From Ethereum fork',
+      description: 'In the July 2015 genesis block',
       icon: (
         <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-info)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
@@ -85,7 +85,7 @@ function SupplyStatsCards({ stats, isLoading }: { stats: SupplyStats | null; isL
 }
 
 // Era Schedule Table
-function EraScheduleTable() {
+function EraScheduleTable({ currentEra }: { currentEra: number }) {
   const [showAll, setShowAll] = useState(false)
   const displayedEras = showAll ? eraSchedule : eraSchedule.slice(0, 8)
 
@@ -113,9 +113,8 @@ function EraScheduleTable() {
           </thead>
           <tbody>
             {displayedEras.map((era) => {
-              // Current era is 5 (blocks 20M-25M)
-              const isCurrent = era.number === 5
-              const isPast = era.number < 5
+              const isCurrent = era.number === currentEra
+              const isPast = era.number < currentEra
 
               return (
                 <tr
@@ -175,7 +174,7 @@ function EraScheduleTable() {
 }
 
 // Emission Milestones Timeline
-function EmissionMilestones() {
+function EmissionMilestones({ currentEra }: { currentEra: number }) {
   return (
     <div
       className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -184,8 +183,8 @@ function EmissionMilestones() {
 
       <div className="space-y-4">
         {emissionMilestones.map((milestone, idx) => {
-          const isPast = milestone.era < 5
-          const isCurrent = milestone.era === 5
+          const isPast = milestone.era < currentEra
+          const isCurrent = milestone.era === currentEra
 
           return (
             <div
@@ -244,7 +243,7 @@ export default function SupplyTrackerPage() {
         const response = await fetch('/api/network')
         if (response.ok) {
           const data = await response.json()
-          const blockHeight = data.totalBlocks || CURRENT_ERA_REFERENCE_BLOCK
+          const blockHeight = data.blockHeight || CURRENT_ERA_REFERENCE_BLOCK
           setStats(calculateSupplyStats(blockHeight))
         } else {
           // Use fallback block height
@@ -261,8 +260,10 @@ export default function SupplyTrackerPage() {
     fetchBlockHeight()
   }, [])
 
+  const currentEra = stats?.currentEra ?? CURRENT_ERA
+
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -310,14 +311,14 @@ export default function SupplyTrackerPage() {
           >
             Emission Schedule
           </h2>
-          <EraScheduleTable />
+          <EraScheduleTable currentEra={currentEra} />
         </div>
       </section>
 
       {/* Milestones */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl grid gap-6 lg:grid-cols-2">
-          <EmissionMilestones />
+          <EmissionMilestones currentEra={currentEra} />
 
           {/* About ECIP-1017 */}
           <div
@@ -326,7 +327,7 @@ export default function SupplyTrackerPage() {
             <h3 className="font-semibold text-[var(--text-primary)] mb-4">About ECIP-1017</h3>
             <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
               <p>
-                <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">ECIP-1017</a> established Ethereum Classic&apos;s monetary
+                <a href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--brand-green)] hover:underline">ECIP-1017</a>{' '}established Ethereum Classic&apos;s monetary
                 policy, implementing a disinflationary emission schedule inspired by Bitcoin&apos;s halving model.
               </p>
               <div className="rounded-lg bg-[var(--bg)] p-4 space-y-2">
@@ -348,8 +349,8 @@ export default function SupplyTrackerPage() {
                 </div>
               </div>
               <p>
-                The &quot;Fifthing&quot; (20% reduction, or keeping 4/5ths) occurs approximately every 2.5 years,
-                gradually reducing new supply entering circulation.
+                The &quot;Fifthing&quot; (a 20% reduction, keeping four-fifths of the reward) comes a little over
+                every two years, gradually reducing the new supply entering circulation.
               </p>
               <a
                 href="https://ecips.ethereumclassic.org/ECIPs/ecip-1017"
@@ -389,7 +390,7 @@ export default function SupplyTrackerPage() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Frequency</span>
-                    <span className="text-[var(--text-primary)]">~2.5 years</span>
+                    <span className="text-[var(--text-primary)]">~2.2 years</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-[var(--color-text-muted)]">Max Supply</span>
@@ -450,10 +451,11 @@ export default function SupplyTrackerPage() {
             >
               ECIP-1017
             </a>
-            . Countdown updates in real-time based on average 13-second block time.
+            . The countdown estimates time left from Blockscout&apos;s average block time. Supply figures
+            count block rewards and exclude uncle rewards.
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -154,8 +154,8 @@ export default function SellPage() {
       badge: 'Recommended',
     },
     {
-      name: 'ClassicUSD via Brale',
-      description: 'Convert ETC to USC (ClassicUSD) on ETCswap, then redeem USC for USD via Brale\'s ACH off-ramp.',
+      name: 'Classic USD via Brale',
+      description: 'Convert ETC to USC (Classic USD) on ETCswap, then redeem USC for USD via Brale\'s ACH off-ramp.',
       features: [
         'ETC-native stablecoin path',
         'Direct USD redemption',
@@ -202,13 +202,13 @@ export default function SellPage() {
     {
       name: 'Rain Cards',
       description: 'Spend your ETC or USC directly at any point-of-sale terminal with an on-chain wallet-funded debit card.',
-      useCase: 'Spend your ETC holdings without selling - Rain Card handles the conversion at checkout.',
+      useCase: 'Spend your ETC with no separate sell step: the card converts it at checkout.',
       website: 'https://rain.xyz',
       badge: 'Spend ETC',
     },
     {
       name: '1Konto',
-      description: 'OTC desk for ClassicUSD providing institutional-grade liquidity for large ETC transactions.',
+      description: 'OTC desk for Classic USD providing institutional-grade liquidity for large ETC transactions.',
       useCase: 'Move institutional liquidity on and off Ethereum Classic with personalized service and competitive rates.',
       website: 'https://1konto.com',
       badge: 'Institutional',
@@ -226,7 +226,7 @@ export default function SellPage() {
     {
       number: 1,
       title: 'Swap ETC for USC',
-      description: 'Use ETCswap to convert your ETC to ClassicUSD (USC) stablecoin at market rates.',
+      description: 'Use ETCswap to convert your ETC to Classic USD (USC) stablecoin at market rates.',
     },
     {
       number: 2,
@@ -241,7 +241,7 @@ export default function SellPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-[var(--bg)]">
+    <div className="min-h-screen bg-[var(--bg)]">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-error)]/5 via-transparent to-transparent" />
@@ -303,10 +303,10 @@ export default function SellPage() {
               ETC Native
             </span>
             <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-              ClassicUSD Off-Ramp Path
+              Classic USD Off-Ramp Path
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
-              Convert ETC to USD without using centralized exchanges using the native ClassicUSD (USC) stablecoin and Brale integration
+              Convert ETC to USD without a crypto exchange: swap it for Classic USD (USC) on ETCswap, then redeem through Brale
             </p>
           </div>
 
@@ -467,7 +467,7 @@ export default function SellPage() {
               Looking to Buy ETC Instead?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-              Check out our comprehensive buying guides with step-by-step instructions for every method
+              Our buying guides cover every method, step by step
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
@@ -489,6 +489,6 @@ export default function SellPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

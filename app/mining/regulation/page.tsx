@@ -7,16 +7,16 @@ const jurisdictions = [
     flag: '🇺🇸',
     status: 'badge-pending' as const,
     statusLabel: 'Senate Floor Pending',
-    headline: 'CLARITY Act — Digital Commodity Candidate',
-    body: "Passed the US House on July 17, 2025. Passed the Senate Banking Committee 15-9 on May 14, 2026 — a bipartisan milestone. Now advances to the Senate floor, where it must be reconciled with the Senate Agriculture Committee's version and clear a 60-vote threshold. Senate floor vote expected in 2026, subject to scheduling. ETC's PoW consensus and decentralized issuance profile positions it as a digital commodity under CFTC jurisdiction. US miners operate in a legal commodity market, not a securities market. State spotlight: Texas, Wyoming, and Kentucky are favorable; New York remains restrictive.",
+    headline: 'CLARITY Act: Digital Commodity Candidate',
+    body: "Passed the US House on July 17, 2025, and the Senate Banking Committee, 15 to 9, on May 14, 2026. On the Senate floor it must be reconciled with the Senate Agriculture Committee's version and clear a 60-vote threshold. ETC's Proof-of-Work consensus and decentralized issuance position it as a digital commodity candidate, which would bring it under CFTC jurisdiction. Mining itself is legal across the US. State spotlight: Texas, Wyoming and Kentucky are favorable; New York remains restrictive.",
   },
   {
     region: 'European Union',
     flag: '🇪🇺',
     status: 'badge-available' as const,
     statusLabel: 'In Force',
-    headline: 'MiCA — No Mining-Specific Restrictions',
-    body: "MiCA (fully applied December 30, 2024) does not regulate PoW mining operations directly. ETChash GPU and ASIC mining is legal across all 27 member states. Energy disclosure requirements are emerging under MiCA and the EU taxonomy framework. Some member states (Sweden, Norway) have pushed for renewable energy requirements for miners, but no EU-wide mandate exists. Mining income is treated as business income in most jurisdictions.",
+    headline: 'MiCA: No Mining-Specific Restrictions',
+    body: "MiCA (fully applied December 30, 2024) does not regulate PoW mining operations directly. Etchash GPU and ASIC mining is legal across all 27 member states. Energy disclosure requirements are emerging under MiCA and the EU taxonomy framework. Some European governments, Sweden's and Norway's among them, have pushed for renewable energy requirements for miners, but no EU-wide mandate exists. Mining income is treated as business income in most jurisdictions.",
   },
   {
     region: 'Central Asia & Russia',
@@ -32,7 +32,7 @@ const jurisdictions = [
     status: 'badge-available' as const,
     statusLabel: 'Province-Dependent',
     headline: 'Province-by-Province Regulatory Landscape',
-    body: "Alberta is the most favorable province. Its oil-adjacent stranded gas and deregulated power markets make it attractive for flexible load miners. Quebec restricts new mining connections to protect low-cost hydroelectric power for industrial users. British Columbia is neutral with no specific mining restrictions. Federal treatment of mining income is consistent: proceeds are business income or capital gains depending on intent and frequency.",
+    body: "Alberta is among the most favorable provinces. Its oil-adjacent stranded gas and deregulated power markets make it attractive for flexible load miners. Quebec restricts new mining connections to protect low-cost hydroelectric power for industrial users. British Columbia is neutral with no specific mining restrictions. Federal treatment of mining income is consistent: proceeds are business income or capital gains depending on intent and frequency.",
   },
   {
     region: 'Asia-Pacific',
@@ -48,13 +48,13 @@ const jurisdictions = [
     status: 'badge-available' as const,
     statusLabel: 'Emerging',
     headline: 'UAE Leading, Others Developing',
-    body: "UAE and Dubai lead the region under VARA (Virtual Assets Regulatory Authority), which explicitly permits mining as a licensed activity. Bahrain and Oman are developing frameworks with generally permissive stances. Saudi Arabia is cautious, with no formal ban but significant ambiguity. Qatar maintains a restrictive posture. The region's energy abundance (particularly in non-UAE Gulf states) makes it structurally attractive for large-scale mining once regulatory clarity develops.",
+    body: "The UAE leads the region: in Dubai, VARA (the Virtual Assets Regulatory Authority) permits mining as a licensed activity. Bahrain and Oman are developing frameworks with generally permissive stances. Saudi Arabia is cautious, with no formal ban but significant ambiguity. Qatar maintains a restrictive posture. The region's energy abundance (particularly in non-UAE Gulf states) makes it structurally attractive for large-scale mining once regulatory clarity develops.",
   },
 ]
 
 export default function MiningRegulationPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-4xl">
@@ -78,10 +78,10 @@ export default function MiningRegulationPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            PoW mining is increasingly a legally defined activity. Where you mine, how you power it, and how your proceeds are taxed differs by jurisdiction. ETC&apos;s profile is favorable across all major frameworks.
+            Proof-of-Work mining is increasingly a legally defined activity. Where you mine, how you power it and how your proceeds are taxed differ by jurisdiction; this page summarizes the major ones for ETC miners.
           </p>
           <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
-            ETC&apos;s PoW consensus and decentralized issuance are precisely the technical properties that regulators have chosen as the bar for &ldquo;digital commodity&rdquo; status. These properties were established in 2015, long before any regulatory framework existed.
+            ETC&apos;s Proof-of-Work consensus and decentralized issuance are the properties that proposed digital commodity frameworks, such as the pending CLARITY Act, look for. ETC has had them since 2015, long before those frameworks were written.
           </p>
         </div>
       </section>
@@ -144,15 +144,15 @@ export default function MiningRegulationPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Energy Policy Context</h2>
           <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
-            Across all jurisdictions, the regulatory trend is moving toward treating flexible mining load as a positive grid participant, not a burden. Miners that curtail during peak demand, absorb stranded renewables, or co-locate with otherwise-wasted energy sources are increasingly recognized as grid services providers.
+            In many jurisdictions, regulators increasingly treat flexible mining load as a grid participant rather than a burden. Miners that curtail during peak demand, absorb stranded renewables, or co-locate with otherwise-wasted energy sources are increasingly recognized as grid services providers.
           </p>
           <p className="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)]">
-            ETC mining is a 24/7 dispatchable load. It can be turned on and off in response to energy price signals faster than most industrial processes. This makes it structurally compatible with the energy policy goals of every major jurisdiction, including those that have been restrictive toward speculative crypto assets.
+            ETC mining is a dispatchable load: it can be switched off and on in response to energy price signals faster than most industrial processes. That fits the energy policy goals of many jurisdictions, including some that have been restrictive toward crypto assets.
           </p>
           <div className="mt-8 rounded-xl border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/5 p-6">
             <p className="text-sm font-medium text-[var(--color-primary)]">The regulatory argument for ETC mining</p>
             <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-              ETC has no central issuer, no foundation, no pre-mine. The network was not launched to enrich a team. It is a pure PoW system where miners are the only participants that earn new issuance. This is the same property that regulators in the US, EU, and UAE are using to classify assets as commodities rather than securities, and it applies directly to mining operations.
+              ETC has no central issuer and no foundation controlling it, and every coin since the genesis block has been mined: miners are the only participants who earn new issuance. Frameworks that separate digital commodities from securities, such as the pending CLARITY Act, look for exactly that property, and it applies directly to mining operations.
             </p>
           </div>
         </div>
@@ -175,6 +175,6 @@ export default function MiningRegulationPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

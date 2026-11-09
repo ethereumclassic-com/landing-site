@@ -27,7 +27,7 @@ export default function WhatIsBlockchain() {
 
       <h3>Immutability</h3>
       <p>
-        Once data is recorded on the blockchain, it cannot be altered or deleted. Each block is cryptographically linked to the previous one, so changing historical data would require re-computing every subsequent block. This is a practically impossible task.
+        Once data is recorded on the blockchain, it is very hard to alter or delete. Each block is cryptographically linked to the previous one, so changing historical data would mean recomputing every block after it, which grows harder with every block added.
       </p>
 
       <h3>Permissionless</h3>
@@ -74,9 +74,9 @@ export default function WhatIsBlockchain() {
       </p>
       <ul>
         <li>A secure foundation for decentralized applications</li>
-        <li>Full EVM (Ethereum Virtual Machine) compatibility</li>
+        <li>EVM (Ethereum Virtual Machine) compatibility, up to Ethereum&apos;s Shanghai upgrade</li>
         <li>A fixed monetary policy with known supply</li>
-        <li>Maximum decentralization through proof-of-work consensus</li>
+        <li>Decentralization through proof-of-work consensus</li>
       </ul>
 
       <h2>Next Steps</h2>

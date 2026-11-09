@@ -24,7 +24,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
 export default function IcoPriceChart() {
   return (
     <div className="mt-8">
-      <h3 className="mb-1 text-sm font-semibold text-[var(--text-primary)]">ICO Sale Rate — Jul 22 to Sep 2, 2014</h3>
+      <h3 className="mb-1 text-sm font-semibold text-[var(--text-primary)]">ICO Sale Rate, Jul 22 to Sep 2, 2014</h3>
       <p className="mb-4 text-xs text-[var(--text-muted)]">
         ~31,529 BTC raised over 42 days. Early bird rate (days 1–14): 2,000 ETH per BTC, then linearly declining to 1,337 ETH per BTC by the final day.
       </p>

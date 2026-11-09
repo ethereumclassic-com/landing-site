@@ -3,64 +3,10 @@
 import Link from 'next/link'
 import { DISCORD_URL } from '@/lib/social'
 
-const upcomingEvents = [
-  {
-    title: 'ETC Community Call',
-    description: 'Monthly community call to discuss development updates, ecosystem news, and community initiatives.',
-    date: 'Every 3rd Thursday',
-    time: '3:00 PM UTC',
-    location: 'Discord Voice Channel',
-    type: 'online',
-    link: DISCORD_URL,
-  },
-  {
-    title: 'ETC Developer Sync',
-    description: 'Bi-weekly technical meeting for core developers and contributors to coordinate development efforts.',
-    date: 'Every 2nd & 4th Tuesday',
-    time: '2:00 PM UTC',
-    location: 'Discord Voice Channel',
-    type: 'online',
-    link: DISCORD_URL,
-  },
-  {
-    title: 'Mining Community Q&A',
-    description: 'Open forum for miners to discuss network security, pool updates, and mining optimization.',
-    date: 'First Friday of the month',
-    time: '4:00 PM UTC',
-    location: 'Telegram',
-    type: 'online',
-    link: 'https://t.me/ethclassic',
-  },
-]
-
-const pastEvents = [
-  {
-    title: 'ETC Summit 2024',
-    description: 'Annual flagship conference bringing together the global ETC community for talks, workshops, and networking.',
-    date: 'November 2024',
-    location: 'Barcelona, Spain',
-    type: 'conference',
-  },
-  {
-    title: 'ETH Denver 2024',
-    description: 'ETC community presence at ETH Denver with booth, presentations, and hackathon participation.',
-    date: 'February 2024',
-    location: 'Denver, CO',
-    type: 'conference',
-  },
-  {
-    title: 'Asia Crypto Week',
-    description: 'ETC meetups and presentations during Asia Crypto Week events.',
-    date: 'September 2024',
-    location: 'Singapore',
-    type: 'meetup',
-  },
-]
-
 const eventTypes = [
   {
-    name: 'Community Calls',
-    description: 'Regular online meetings open to everyone',
+    name: 'Developer Calls',
+    description: 'Public calls on protocol changes',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -103,7 +49,7 @@ const eventTypes = [
 
 export default function EventsPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -125,8 +71,8 @@ export default function EventsPage() {
                 Events
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Connect with the Ethereum Classic community at events around the world.
-                From online calls to global conferences, there&apos;s always a way to participate.
+                Where the Ethereum Classic community meets, from public developer calls online to conferences
+                and local meetups.
               </p>
             </div>
           </div>
@@ -159,100 +105,36 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Recurring Events */}
+      {/* Calls and calendars */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <h2
-            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
-          >
-            Recurring Events
-          </h2>
-          <div
-            className="grid gap-4 md:grid-cols-3"
-          >
-            {upcomingEvents.map((event) => (
-              <div
-                key={event.title}
-                className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-5"
-              >
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="rounded-full bg-[var(--color-info)]/20 px-2.5 py-0.5 text-xs font-medium text-[var(--color-info)]">
-                    {event.type === 'online' ? 'Online' : 'In Person'}
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-[var(--text-primary)]">{event.title}</h3>
-                <p className="mt-2 text-sm text-[var(--color-text-muted)]">{event.description}</p>
-                <div className="mt-4 space-y-2 text-sm">
-                  <div className="flex items-center gap-2 text-[var(--color-text-muted)]">
-                    <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                    </svg>
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-[var(--color-text-muted)]">
-                    <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{event.time}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-[var(--color-text-muted)]">
-                    <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                    </svg>
-                    <span>{event.location}</span>
-                  </div>
-                </div>
-                <a
-                  href={event.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
-                >
-                  Join Event
-                  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                  </svg>
-                </a>
-              </div>
-            ))}
+        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2">
+          <div className="rounded-xl border border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 p-5">
+            <h2 className="text-lg font-bold text-[var(--text-primary)]">Core Developer Calls</h2>
+            <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+              Public calls where Ethereum Classic&apos;s client developers coordinate protocol changes. They are
+              scheduled as upgrades need them, and the Core Developer Calls page records each one.
+            </p>
+            <Link
+              href="/core-devs"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--brand-green-foreground)] transition-colors hover:bg-[var(--color-primary-hover)]"
+            >
+              View the Calls
+            </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Past Events */}
-      <section className="px-6 pb-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <h2
-            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
-          >
-            Past Events
-          </h2>
-          <div
-            className="grid gap-4 md:grid-cols-3"
-          >
-            {pastEvents.map((event) => (
-              <div
-                key={event.title}
-                className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5"
-              >
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="rounded-full bg-[var(--bg)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-text-muted)]">
-                    {event.type === 'conference' ? 'Conference' : 'Meetup'}
-                  </span>
-                  <span className="text-xs text-[var(--color-text-muted)]">{event.date}</span>
-                </div>
-                <h3 className="font-bold text-[var(--text-primary)]">{event.title}</h3>
-                <p className="mt-2 text-sm text-[var(--color-text-muted)]">{event.description}</p>
-                <div className="mt-3 flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                  <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                  </svg>
-                  <span>{event.location}</span>
-                </div>
-              </div>
-            ))}
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+            <h2 className="text-lg font-bold text-[var(--text-primary)]">Community Events</h2>
+            <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+              ethereumclassic.org, the community site, keeps the calendar of meetups and conferences, past ETC
+              Summits included. Upcoming gatherings are announced on Discord.
+            </p>
+            <a
+              href="https://ethereumclassic.org/community/events"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-2 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary)]/30"
+            >
+              Open the Calendar
+            </a>
           </div>
         </div>
       </section>
@@ -265,9 +147,8 @@ export default function EventsPage() {
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Want to Host an Event?</h2>
             <p className="text-sm text-[var(--color-text-muted)]">
-              The ETC community supports local organizers who want to host meetups, workshops, or
-              educational events. Whether you&apos;re planning an in-person gathering or an online webinar,
-              we can help with resources and promotion.
+              Planning a meetup, a workshop or an online session about Ethereum Classic? Discord is where to find
+              co-organizers and speakers and to tell the community about it.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <a
@@ -297,8 +178,8 @@ export default function EventsPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Never Miss an Event</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
-              Follow ETC on social media and join our Discord to stay updated on all upcoming
-              events and community activities.
+              Follow ETC on social media and join the Discord to hear about upcoming events and community
+              activities.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <a
@@ -322,6 +203,6 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -243,46 +243,36 @@ export function getOrdinalSuffix(n: number): string {
 // Pre-generated era schedule for display
 export const eraSchedule = generateEraSchedule(15)
 
-// Key milestones for the emission schedule
-export const emissionMilestones = [
-  {
-    era: 1,
-    block: 5_000_000,
-    event: 'First Fifthing',
-    date: 'Dec 2017',
-    rewardBefore: 5,
-    rewardAfter: 4,
-  },
-  {
-    era: 2,
-    block: 10_000_000,
-    event: 'Second Fifthing',
-    date: 'Mar 2020',
-    rewardBefore: 4,
-    rewardAfter: 3.2,
-  },
-  {
-    era: 3,
-    block: 15_000_000,
-    event: 'Third Fifthing',
-    date: 'Apr 2022',
-    rewardBefore: 3.2,
-    rewardAfter: 2.56,
-  },
-  {
-    era: 4,
-    block: 20_000_000,
-    event: 'Fourth Fifthing',
-    date: 'May 2024',
-    rewardBefore: 2.56,
-    rewardAfter: 2.048,
-  },
-  {
-    era: 5,
-    block: 25_000_000,
-    event: 'Fifth Fifthing',
-    date: '~Jul 2026',
-    rewardBefore: 2.048,
-    rewardAfter: 1.6384,
-  },
-]
+const FIFTHING_ORDINALS = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth', 'Eleventh', 'Twelfth']
+
+/** Month each fifthing landed: the timestamp of block era × 5,000,000 on Blockscout. */
+const FIFTHING_LANDED: Record<number, string> = {
+  1: 'Dec 2017',
+  2: 'Mar 2020',
+  3: 'Apr 2022',
+  4: 'May 2024',
+  5: 'Jul 2026',
+}
+
+/** Block 25,000,000, the fifth fifthing, was mined at 2026-07-22 17:12:59 UTC. */
+const FIFTH_FIFTHING_MS = Date.UTC(2026, 6, 22, 17, 12, 59)
+
+/** Projected date of the fifthing that ends `era`, counted from the fifth at the nominal block time. */
+export function projectFifthingDate(era: number): Date {
+  const blocks = getEraEndBlock(era) - getEraEndBlock(5)
+  return new Date(FIFTH_FIFTHING_MS + blocks * EMISSION_CONSTANTS.AVG_BLOCK_TIME_SECONDS * 1000)
+}
+
+// Every fifthing so far, and the one that ends the current era.
+export const emissionMilestones = Array.from({ length: CURRENT_ERA }, (_, i) => {
+  const era = i + 1
+  const projected = projectFifthingDate(era).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })
+  return {
+    era,
+    block: getEraEndBlock(era),
+    event: `${FIFTHING_ORDINALS[i] ?? `Era ${era}`} Fifthing`,
+    date: FIFTHING_LANDED[era] ?? `~${projected}`,
+    rewardBefore: getBlockRewardForEra(era),
+    rewardAfter: getBlockRewardForEra(era + 1),
+  }
+})

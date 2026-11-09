@@ -9,7 +9,7 @@ export default function WrappedEtc() {
 
       <h2>Why WETC Exists</h2>
       <p>
-        Native ETC is the base currency of the Ethereum Classic blockchain. It&apos;s used to pay gas fees and transfer value. However, native ETC predates the ERC-20 token standard and doesn&apos;t conform to it. Smart contracts that work with ERC-20 tokens&mdash;including DEXs, liquidity pools, and lending protocols&mdash;can&apos;t interact with native ETC directly.
+        Native ETC is the base currency of the Ethereum Classic blockchain. It&apos;s used to pay gas fees and transfer value. However, native ETC predates the ERC-20 token standard and doesn&apos;t conform to it. Smart contracts that work with ERC-20 tokens, including DEXs, liquidity pools and lending protocols, can&apos;t interact with native ETC directly.
       </p>
       <p>
         WETC solves this by wrapping native ETC in an ERC-20 contract. When you wrap ETC, you deposit native ETC into the WETC contract and receive an equal amount of WETC tokens. These tokens follow the ERC-20 standard, making them compatible with any DeFi protocol.
@@ -39,10 +39,10 @@ export default function WrappedEtc() {
 
       <h2>Wrapping and Unwrapping on <ETCswapLink /></h2>
       <p>
-        <ETCswapLink /> handles wrapping automatically in most cases. When you swap ETC for another token, the interface wraps your ETC into WETC behind the scenes before executing the swap. You don&apos;t need to wrap manually for standard swaps.
+        <ETCswapLink />{' '}handles wrapping automatically in most cases. When you swap ETC for another token, the interface wraps your ETC into WETC behind the scenes before executing the swap. You don&apos;t need to wrap manually for standard swaps.
       </p>
       <p>
-        If you need WETC explicitly&mdash;for example, to interact with a contract that requires it&mdash;you can wrap ETC directly through the WETC contract or use the <ETCswapLink /> interface to swap ETC for WETC. The reverse works the same way.
+        If you need WETC explicitly, for example to interact with a contract that requires it, you can wrap ETC directly through the WETC contract or use the <ETCswapLink /> interface to swap ETC for WETC. The reverse works the same way.
       </p>
 
       <h2>Is WETC Safe?</h2>

@@ -8,14 +8,14 @@ import { MiningHardwareSection } from './components/MiningHardwareSection'
 import { GlobalHashrateSection } from './components/GlobalHashrateSection'
 
 export const metadata: Metadata = {
-  title: 'Environmental Impact & Energy Infrastructure — Ethereum Classic',
+  title: 'Environmental Impact & Energy Infrastructure | Ethereum Classic',
   description:
     'Ethereum Classic mining as demand for stranded and excess energy: remote hydro, flared wellhead gas, curtailed renewables and off-peak industrial power.',
   keywords: [
     'ETC mining energy',
     'stranded energy crypto',
     'proof of work sustainability',
-    'ETChash energy infrastructure',
+    'Etchash energy infrastructure',
     'grid stabilization mining',
     'methane conversion mining',
     'sustainable proof of work',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function EnvironmentalImpactPage() {
   return (
-    <main>
+    <div>
       <EnergyHeroSection />
       <POWEnergyEconomicsSection />
       <ETCUniquePositionSection />
@@ -33,6 +33,6 @@ export default function EnvironmentalImpactPage() {
       <ETCAsEnergyMarketSection />
       <MiningHardwareSection />
       <GlobalHashrateSection />
-    </main>
+    </div>
   )
 }

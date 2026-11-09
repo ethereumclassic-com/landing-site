@@ -44,7 +44,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Apr 30 – May 27, 2016',
     type: 'action',
     description:
-      "Slock.it deploys The DAO smart contract; members of the public send it ETH in exchange for DAO tokens. The crowdsale closes on May 27 raising $150 million, the world's largest crowdfund at the time. Approximately 14% of all circulating ETH becomes locked in a single contract. When the Ethereum Foundation created a new chain in July 2016, this ETH remained on the original chain, intact and in its pre-exploit state.",
+      "Slock.it deploys The DAO smart contract; members of the public send it ETH in exchange for DAO tokens. The crowdsale closes on May 27 raising $150 million, the world's largest crowdfund at the time. Approximately 14% of all circulating ETH becomes locked in a single contract. When the Ethereum Foundation created a new chain in July 2016, this ETH stayed on the original chain as the exploit and the rescue had left it.",
     tags: ['$150M raised', '~14% of all ETH locked', 'DAO token holders', 'Slock.it'],
   },
   {
@@ -56,12 +56,12 @@ const FORK_EVENTS: ForkEvent[] = [
     tags: ['~14% of circulating ETH at risk', 'RHG child DAO formed', 'Recursive call exploit'],
   },
   {
-    title: 'The Hard Fork — The Ethereum Foundation Creates a New Chain',
+    title: 'The Hard Fork: The Ethereum Foundation Creates a New Chain',
     date: 'Jul 20, 2016',
     type: 'defining',
     description:
-      "The Ethereum Foundation implements an irregular state change, creating a new chain that reverses the DAO exploit. The Foundation applies the Ethereum name, brand, and ETH ticker to this new chain. The original chain had operated continuously and unmodified since the July 2015 genesis block; it retained the full original state, including the 72,009,991-token genesis supply and the RHG's child DAO position. The global community names the original chain Ethereum Classic; exchanges assign it the ETC ticker.",
-    tags: ['New chain created — takes ETH name & ticker', 'Original chain retains genesis supply', 'ETC = original unmodified chain', 'Code is Law'],
+      "The Ethereum Foundation implements an irregular state change, creating a new chain that reverses the DAO exploit. The Foundation applies the Ethereum name, brand, and ETH ticker to this new chain. The original chain had operated continuously and unmodified since the July 2015 genesis block; it retained the full original state, including the 72,009,990 ETC genesis supply and the RHG's child DAO position. The global community names the original chain Ethereum Classic; exchanges assign it the ETC ticker.",
+    tags: ['New chain created, taking the ETH name and ticker', 'Original chain retains genesis supply', 'ETC = original unmodified chain', 'Code is Law'],
   },
   {
     title: 'Poloniex Lists ETC',
@@ -84,15 +84,15 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Jul–Aug 2016',
     type: 'action',
     description:
-      'Lefteris Karapetsas (Ethereum core developer) sends a direct message on July 28 asking a Reddit user to delete a comment explaining the contract being used, noting "the zero hour to attack the DAO...is really close." Griff Green (Slockit community manager) separately messages the same user to delete posts "especially about the paid out and similar things." Both messages are screenshotted and published.',
+      'Lefteris Karapetsas (Ethereum core developer) sends a direct message on July 28 asking a Reddit user to delete a comment explaining the contract being used, noting "the zero hour to attack the DAO...is really close." Griff Green (Slock.it community manager) separately messages the same user to delete posts "especially about the paid out and similar things." Both messages are screenshotted and published.',
     tags: ['Lefteris Karapetsas DM (Jul 28)', 'Griff Green DM', 'Published as contemporaneous record'],
   },
   {
-    title: '51Pool — Coordinated Hashrate Attack',
+    title: '51Pool: A Coordinated Hashrate Attack',
     date: 'Jul 31, 2016',
     type: 'action',
     description:
-      'ETH-aligned participants form a mining pool called 51Pool.org with the stated intent to destroy the ETC network through a sustained 51% hashrate attack. The pool fails to accumulate sufficient hashrate as ETHash miners instead commit resources to mining ETC. By August 1, the mining pools publicly declare they will not attack ETC.',
+      'ETH-aligned participants form a mining pool called 51Pool.org with the stated intent to destroy the ETC network through a sustained 51% hashrate attack. The pool fails to gather enough hashrate as Ethash miners commit their hardware to mining ETC instead. By August 1, the mining pools publicly declare they will not attack ETC.',
     tags: ['51Pool.org formed', 'Goal: destroy ETC via 51% attack', 'Miners commit to ETC instead', 'Attack abandoned Aug 1'],
   },
   {
@@ -110,7 +110,7 @@ const FORK_EVENTS: ForkEvent[] = [
     description:
       'Approximately 2,987,009 ETC is transferred from the White Hat multisig (0x1ac729d2db43103faf213cb9371d6b42ea7a830f) through a distribution contract to Poloniex, Kraken, Bittrex, and Yunbi. Poloniex and Kraken freeze the deposits. The ETC reaching Bittrex and Yunbi is sold via market orders on August 10, contributing to a sharp price decline that day.',
     tags: ['~2,987,009 ETC transferred', 'Poloniex & Kraken: froze deposits', 'Bittrex & Yunbi: market sells', 'ETC price declined sharply'],
-    link: { href: 'https://medium.com/@WhalePanda/ethereum-chain-of-liars-thieves-b04aaa0762cb', label: 'Contemporaneous reporting — Aug 16, 2016 ↗' },
+    link: { href: 'https://medium.com/@WhalePanda/ethereum-chain-of-liars-thieves-b04aaa0762cb', label: 'Contemporaneous reporting, Aug 16, 2016 ↗' },
   },
   {
     title: 'RHG Follow-Up Statement',
@@ -125,7 +125,7 @@ const FORK_EVENTS: ForkEvent[] = [
     date: 'Aug 31, 2016',
     type: 'action',
     description:
-      "Beyond the RHG's child DAO position, millions of additional ETC held by DAO token holders and the original attacker become accessible as the DAO's splitting mechanism completes on ETC. Large sell pressure hits the market. ETC's price holds remarkably well despite the sustained dumping across August, demonstrating sufficient buy-side demand to absorb the concentrated institutional sell-offs.",
+      "Beyond the RHG's child DAO position, millions of additional ETC held by DAO token holders and the original attacker become accessible as the DAO's splitting mechanism completes on ETC. Heavy selling follows. ETC's price holds through the selling across August, as buyers absorb the concentrated sales.",
     tags: ['DAO token holder ETC unlocks', "Attacker's position also unlocks", 'ETC price holds through sell pressure', 'Buy-side absorbs distribution'],
   },
   {
@@ -137,35 +137,35 @@ const FORK_EVENTS: ForkEvent[] = [
     tags: ['ETCG inception Apr 2017', 'OTCQX public quotation May 2018', '$89.31M AUM (Mar 2026)', '2.50% annual management fee', 'Coinbase Custody cold storage'],
   },
   {
-    title: 'ETC Cooperative Founded — Core Development Funded',
+    title: 'The ETC Cooperative Is Founded',
     date: '2017',
     type: 'institutional',
     description:
-      "The ETC Cooperative is established as a US 501(c)(3) non-profit by Ethereum Classic's earliest core contributors. Under its arrangement with Grayscale, a third of the fees Grayscale collected on its Ethereum Classic Trust were contributed to the Cooperative, the last of them in March 2022, making Grayscale the primary institutional funder of ETC's core development. The Cooperative backed every hard fork, every client release, and every cross-client coordination effort from the Atlantis upgrade through Spiral, and entered maintenance mode at the end of 2024.",
-    tags: ['US 501(c)(3) non-profit', '1/3 of ETCG fees, to March 2022', 'Every hard fork from Atlantis to Spiral funded', 'Millions contributed to client teams'],
+      "The ETC Cooperative is established as a US 501(c)(3) non-profit by Ethereum Classic's earliest core contributors. Under its arrangement with Grayscale, a third of the fees Grayscale collected on its Ethereum Classic Trust were contributed to the Cooperative, the last of them in March 2022, making Grayscale the primary institutional funder of ETC's core development. From January 2022 it funded and maintained Core-Geth through the Mystique and Spiral upgrades, and it entered maintenance mode at the end of 2024.",
+    tags: ['US 501(c)(3) non-profit', '1/3 of ETCG fees, to March 2022', 'Core-Geth from January 2022 through Spiral'],
   },
   {
-    title: 'DAO Hacker Identified — Toby Hoenisch',
+    title: 'An Investigation Names the Likely DAO Hacker',
     date: 'Feb 22, 2022',
     type: 'action',
     description:
       "Journalist Laura Shin, in a joint investigation with Chainalysis, identifies Austrian programmer Toby Hoenisch, co-founder and former CEO of TenX, as the likely perpetrator of the 2016 DAO hack. The investigation traced the stolen ETH to Bitcoin, through Wasabi Wallet mixing, de-mixed by Chainalysis to four exchanges, then converted to Grin (a privacy coin) and withdrawn to a non-custodial node named 'grin.toby.ai', hosted on the same IP address as a node named 'TenX.' Hoenisch had previously written blog posts warning about the DAO's vulnerability before the hack. He denied the allegations, stating Shin's conclusion was 'factually inaccurate.' The investigation was published in Shin's book The Cryptopians.",
     tags: ['Toby Hoenisch (TenX co-founder) accused', 'Laura Shin + Chainalysis investigation', 'ETH → BTC → Wasabi Wallet → Grin trail', '"grin.toby.ai" node on same IP as "TenX"', 'Hoenisch denies: "factually inaccurate"', 'The Cryptopians published Feb 2022'],
-    link: { href: 'https://decrypt.co/93547/crypto-ceo-denies-11-billion-ethereum-dao-hack', label: 'Decrypt coverage — Feb 22, 2022 ↗' },
+    link: { href: 'https://decrypt.co/93547/crypto-ceo-denies-11-billion-ethereum-dao-hack', label: 'Decrypt coverage, Feb 22, 2022 ↗' },
   },
   {
-    title: '"The DAO is back" — Unclaimed Funds Repurposed for Security',
+    title: '"The DAO Is Back": Unclaimed Funds Repurposed for Security',
     date: 'Jan 29, 2026',
     type: 'legacy',
     description:
-      "Griff Green announces that approximately 70,500 ETH from the ExtraBalance Withdrawal contract and ~4,600 ETH from TheDAO's Curator Multisig (funds with \"no clear claimants\") will be deployed as TheDAO Security Fund, part of the Ethereum Foundation's Trillion Dollar Security initiative. About 20% of the original refund pool was never claimed; that ~$6M in 2016 is now estimated at ~$200 million. The funds will be staked, with revenue directed to Ethereum security grants via quadratic funding and retroactive mechanisms. Named curators include Vitalik Buterin and Jordi Baylina, the same Baylina who posted the 2016 follow-up acknowledging the ETC had been converted to ETH \"to support Ethereum projects.\"",
+      "Griff Green announces that approximately 70,500 ETH from the ExtraBalance Withdrawal contract and ~4,600 ETH from TheDAO's Curator Multisig (funds with \"no clear claimants\") will be deployed as TheDAO Security Fund, part of the Ethereum Foundation's Trillion Dollar Security initiative. About 20% of the original refund pool was never claimed: some $6M in 2016, estimated at about $200 million when the fund was announced. The funds will be staked, with revenue directed to Ethereum security grants via quadratic funding and retroactive mechanisms. Named curators include Vitalik Buterin and Jordi Baylina, the same Baylina who posted the 2016 follow-up acknowledging the ETC had been converted to ETH \"to support Ethereum projects.\"",
     tags: ['70,500 ETH from ExtraBalance contract', '~4,600 ETH from Curator Multisig', '~$200M estimated value', 'Part of EF Trillion Dollar Security initiative', 'Jordi Baylina named curator', 'Funds staked, yield funds operations'],
   },
 ]
 
 export default function DaoForkPage() {
   return (
-    <main className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
+    <div className="hero-gradient noise-overlay grid-overlay relative min-h-screen overflow-hidden pb-16 pt-12">
 
       {/* Hero */}
       <FadeIn>
@@ -317,6 +317,6 @@ export default function DaoForkPage() {
         </section>
       </FadeIn>
 
-    </main>
+    </div>
   )
 }

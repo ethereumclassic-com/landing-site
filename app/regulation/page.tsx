@@ -8,7 +8,7 @@ import { ETCDecentralizationSection } from './components/ETCDecentralizationSect
 
 export default function RegulationPage() {
   return (
-    <main>
+    <div>
       <RegulationHeroSection />
       <GlobalFrameworksSection />
       <ETCRegulatoryProfileSection />
@@ -16,6 +16,6 @@ export default function RegulationPage() {
       <ETCMarketDepthSection />
       <NetworkSecuritySection />
       <ETCDecentralizationSection />
-    </main>
+    </div>
   )
 }

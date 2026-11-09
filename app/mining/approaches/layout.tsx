@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: [
     'ETC GPU mining',
     'ETC ASIC mining',
-    'ETChash',
+    'Etchash',
     'Bitmain ETC',
     'Jasminer',
     'iPollo',

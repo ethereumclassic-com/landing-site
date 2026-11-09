@@ -14,7 +14,7 @@ export default async function DifficultyPage() {
   ])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <section className="px-6 pt-16 md:px-10 lg:px-12">
         <div className="mx-auto max-w-5xl">
           <FadeIn>
@@ -70,10 +70,8 @@ export default async function DifficultyPage() {
                 <p className="mt-2">
                   Mining a block means finding a hash below a threshold. Difficulty
                   sets that threshold. A difficulty of {now.difficultyPH.toFixed(2)}{' '}
-                  PH means the network expects roughly{' '}
-                  {(now.difficultyPH * 1e15).toExponential(2)} hash attempts before
-                  one succeeds. Nobody chooses this number directly — the protocol
-                  adjusts it.
+                  PH means the network expects roughly {now.difficultyPH.toFixed(2)} quadrillion hash
+                  attempts before one succeeds. Nobody chooses this number directly; the protocol adjusts it.
                 </p>
               </div>
 
@@ -95,7 +93,7 @@ export default async function DifficultyPage() {
                   Hashrate is derived from it
                 </h3>
                 <p className="mt-2">
-                  Network hashrate cannot be measured directly — no one can count
+                  Network hashrate cannot be measured directly, because no one can count
                   the hashes every miner tries. It is inferred: difficulty divided
                   by average block time. That is why the hashrate figure on this
                   site moves with difficulty, and why the two charts share a shape.
@@ -201,6 +199,6 @@ export default async function DifficultyPage() {
           </FadeIn>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

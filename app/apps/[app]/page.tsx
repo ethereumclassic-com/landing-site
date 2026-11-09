@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     // The section template adds " | Ethereum Classic", so the title carries the app alone.
-    title: `${app.name} — ${app.category}`,
+    title: `${app.name}: ${app.category}`,
     description: app.description,
     alternates: {
       canonical: `https://ethereumclassic.com/apps/${app.slug}`,

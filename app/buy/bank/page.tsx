@@ -128,7 +128,7 @@ export default function BankPage() {
   const bankMethods: BankMethodProps[] = [
     {
       name: 'ACH Transfer',
-      description: 'Automated Clearing House - standard US bank transfers between accounts',
+      description: 'Automated Clearing House: standard US bank transfers between accounts',
       processingTime: '1-3 business days',
       fees: 'Free - $1',
       limits: 'Up to $50,000/day',
@@ -137,7 +137,7 @@ export default function BankPage() {
     },
     {
       name: 'SEPA Transfer',
-      description: 'Single Euro Payments Area - fast euro transfers across Europe',
+      description: 'Single Euro Payments Area: fast euro transfers across Europe',
       processingTime: '1-2 business days',
       fees: 'Free - €1',
       limits: 'Up to €100,000/day',
@@ -146,7 +146,7 @@ export default function BankPage() {
     },
     {
       name: 'Wire Transfer',
-      description: 'International bank wire - available globally for larger amounts',
+      description: 'International bank wire: available worldwide for larger amounts',
       processingTime: '1-5 business days',
       fees: '$10 - $50',
       limits: 'Up to $1,000,000+',
@@ -176,7 +176,7 @@ export default function BankPage() {
     },
     {
       name: 'Kraken',
-      description: 'Secure exchange with multiple wire options and low trading fees',
+      description: 'US exchange with several wire options and low trading fees',
       bankMethods: ['ACH', 'Wire', 'SEPA', 'Faster Payments'],
       fees: 'Free - $5',
       processingTime: '1-5 days',
@@ -236,7 +236,7 @@ export default function BankPage() {
     {
       number: 5,
       title: 'Wait for Confirmation',
-      description: 'Funds appear in your exchange account (1-5 business days)',
+      description: 'Funds appear in your exchange account in one to five business days',
     },
     {
       number: 6,
@@ -246,7 +246,7 @@ export default function BankPage() {
   ]
 
   return (
-    <main>
+    <div>
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -285,7 +285,7 @@ export default function BankPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Bank transfers offer the lowest fees for purchasing Ethereum Classic — often free for ACH and SEPA, with no percentage-based charges. Funds typically arrive within one to three business days, making this the preferred method for larger purchases where cost matters more than speed.
+            Bank transfers usually cost the least: ACH and SEPA deposits are often free, with no percentage-based charge. Funds typically arrive within one to five business days, which makes this the usual choice for larger purchases, where cost matters more than speed.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -329,7 +329,7 @@ export default function BankPage() {
             {[
               {
                 title: 'Lowest Fees',
-                description: 'Bank transfers typically have 0-1% fees compared to 2-5% for card purchases',
+                description: 'Bank transfers typically cost 0% to 1%, against 1.5% to 4% for card purchases',
                 icon: (
                   <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -561,6 +561,6 @@ export default function BankPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

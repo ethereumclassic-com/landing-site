@@ -5,7 +5,7 @@ export default function FAQPage() {
   const sections = getAllFAQSections()
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -28,8 +28,8 @@ export default function FAQPage() {
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             Common questions about Ethereum Classic answered for users, investors, miners, and developers.
-            Topics cover ETC&apos;s history and philosophy, how to buy and store ETC, mining and staking,
-            and the Olympia upgrade.
+            Topics cover ETC&apos;s history and philosophy, buying and storing ETC, mining, development and the
+            community.
           </p>
         </div>
       </section>
@@ -67,6 +67,6 @@ export default function FAQPage() {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   )
 }

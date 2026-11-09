@@ -64,7 +64,7 @@ export default function PrivateKeyManagement() {
 
       <h2>Not Your Keys, Not Your Coins</h2>
       <p>
-        When you hold ETC on an exchange, the exchange controls the private keys. If the exchange is hacked, freezes withdrawals, or shuts down, you may lose access to your funds. Self-custody through proper key management gives you sovereign control over your assets &mdash; and the full responsibility that comes with it.
+        When you hold ETC on an exchange, the exchange controls the private keys. If the exchange is hacked, freezes withdrawals, or shuts down, you may lose access to your funds. Self-custody through proper key management gives you sovereign control over your assets, and the full responsibility that comes with it.
       </p>
     </>
   )

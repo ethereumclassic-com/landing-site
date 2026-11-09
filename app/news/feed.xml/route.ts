@@ -49,7 +49,7 @@ export async function GET() {
       <title>Ethereum Classic News</title>
       <link>${baseUrl}/news</link>
     </image>
-    <copyright>Copyright ${new Date().getFullYear()} EthereumClassic.com</copyright>
+    <copyright>Copyright ${new Date().getFullYear()} ethereumclassic.com</copyright>
     <ttl>60</ttl>
     ${recentArticles
       .map(

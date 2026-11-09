@@ -66,7 +66,7 @@ export const articles: Article[] = [
   {
     title: 'What is Ethereum Classic?',
     slug: 'what-is-ethereum-classic',
-    description: 'Discover Ethereum Classic - the original Ethereum blockchain with proof-of-work consensus, immutability, and smart contract capabilities.',
+    description: 'Discover Ethereum Classic: the original Ethereum blockchain, with proof-of-work consensus, immutability and smart contracts.',
     category: 'basics',
     readTime: 8,
     featured: true,
@@ -107,7 +107,7 @@ export const articles: Article[] = [
   {
     title: 'What are Smart Contracts?',
     slug: 'what-are-smart-contracts',
-    description: 'Understand smart contracts - self-executing code on the blockchain that powers DeFi and dApps.',
+    description: 'Understand smart contracts: self-executing code on the blockchain that powers DeFi and dApps.',
     category: 'basics',
     readTime: 6,
     tags: ['Smart Contracts', 'EVM', 'Development'],
@@ -163,7 +163,7 @@ export const articles: Article[] = [
   {
     title: 'Backup and Recovery',
     slug: 'backup-recovery',
-    description: 'Learn how to properly backup your wallet and recover access if you lose your device.',
+    description: 'How to back up your wallet properly, and recover access if you lose your device.',
     category: 'wallets',
     readTime: 6,
     tags: ['Backup', 'Recovery', 'Seed Phrase'],
@@ -364,9 +364,9 @@ export const articles: Article[] = [
     order: 4,
   },
   {
-    title: 'ClassicUSD Stablecoin',
+    title: 'Classic USD Stablecoin',
     slug: 'classicusd-guide',
-    description: 'Understanding ClassicUSD (USC) - the native stablecoin of ETC. How to acquire, use, and redeem USC.',
+    description: 'Understanding Classic USD (USC), the USD-backed stablecoin issued natively on ETC: how to acquire, use and redeem it.',
     category: 'defi',
     readTime: 6,
     tags: ['Stablecoin', 'USC', 'Fiat'],

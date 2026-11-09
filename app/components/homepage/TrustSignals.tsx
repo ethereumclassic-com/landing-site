@@ -66,7 +66,7 @@ export default function TrustSignals() {
     },
     {
       title: 'Security',
-      description: 'PoW-secured, battle-tested since 2015',
+      description: 'Secured by Proof-of-Work mining',
       icon: <ShieldIcon />,
       href: '/mining',
     },
@@ -78,7 +78,7 @@ export default function TrustSignals() {
     },
     {
       title: 'EVM Compatible',
-      description: 'Ethereum tooling works on ETC',
+      description: 'Most Ethereum tools work on ETC',
       icon: <CubeIcon />,
       href: '/build',
     },

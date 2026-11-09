@@ -40,7 +40,7 @@ const sampleReferralLinks = [
 
 export default function ReferralDashboardPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Header */}
       <section className="px-6 pb-8 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -241,6 +241,6 @@ export default function ReferralDashboardPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

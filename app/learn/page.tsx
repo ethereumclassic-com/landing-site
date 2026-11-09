@@ -90,7 +90,7 @@ export default function LearnPage() {
   const featuredArticles = getFeaturedArticles()
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
 
@@ -118,9 +118,8 @@ export default function LearnPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Your comprehensive guide to Ethereum Classic — from what ETC is and how to buy it, to running nodes,
-            writing smart contracts, and participating in DeFi. Whether you are a first-time user or an experienced
-            developer, every topic is covered with accurate, up-to-date detail.
+            Guides to Ethereum Classic, from what ETC is and how to buy it to wallets, DeFi, mining and security,
+            for first-time users and experienced ones alike.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -273,7 +272,7 @@ export default function LearnPage() {
               className="group rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 transition-colors hover:border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/5"
             >
               <p className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Ethereum 2014 ICO</p>
-              <p className="mt-1.5 text-sm text-[var(--color-text-muted)]">Presale data, ROI history, tokenomics, and how 72M ICO tokens became ETC&apos;s genesis supply.</p>
+              <p className="mt-1.5 text-sm text-[var(--color-text-muted)]">Presale data, ROI history, tokenomics, and how Ethereum&apos;s 72M-coin genesis supply became ETC&apos;s.</p>
             </Link>
             <Link
               href="/research/emission-schedule"
@@ -333,6 +332,6 @@ export default function LearnPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

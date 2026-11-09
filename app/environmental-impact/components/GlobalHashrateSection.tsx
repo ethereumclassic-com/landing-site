@@ -22,18 +22,15 @@ export async function GlobalHashrateSection() {
             <p className="text-sm leading-relaxed text-[var(--text-muted)]">
               Hashrate is the direct measure of the energy Ethereum Classic&rsquo;s mining network
               consumes globally. Every terahash per second represents real electricity, real
-              hardware, and real capital deployed by independent actors across every time zone. When
-              hashrate rises, the network is absorbing more energy from the global supply &mdash; by
-              choice, at market price, wherever that energy is cheapest. When it falls, miners
+              hardware, and real capital deployed by independent actors across every time zone. When hashrate rises, the network is absorbing more energy from the global supply, by choice and at
+              market price, wherever that energy is cheapest. When it falls, miners
               curtail and that capacity returns to the grid.
             </p>
             <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-              Ethereum&rsquo;s 2022 transition to Proof-of-Stake redirected its entire mining
-              network &mdash; hundreds of millions of dollars in GPU and ASIC hardware &mdash;
-              toward Ethereum Classic. The hashrate chart below reflects that absorption: a
-              discrete, measurable event that permanently changed the scale of ETC&rsquo;s energy
-              footprint and security budget. No other smart contract platform retained
-              Proof-of-Work consensus to receive that infrastructure.
+              Ethereum&rsquo;s 2022 move to Proof-of-Stake sent much of its mining hardware, worth hundreds of
+              millions of dollars, to Ethereum Classic. The hashrate chart below shows that jump: a discrete,
+              measurable event that changed the scale of ETC&rsquo;s energy footprint and security budget.
+              Among mature smart contract platforms, only ETC had kept Proof-of-Work consensus to receive it.
             </p>
           </div>
         </FadeIn>
@@ -50,7 +47,7 @@ export async function GlobalHashrateSection() {
                 Current Network Hashrate
               </p>
               <p className="mt-0.5 text-xs text-[var(--text-subtle)]">
-                Updated hourly · Source: 2miners
+                Updated hourly · Derived from Blockscout block data
               </p>
             </div>
           </div>
@@ -64,8 +61,8 @@ export async function GlobalHashrateSection() {
         {/* Source note */}
         <FadeIn delay={260}>
           <p className="mt-6 text-xs italic text-[var(--text-subtle)]">
-            Hashrate data sourced from 2miners pool API. Historical data calculated from on-chain
-            block difficulty and block time via Blockscout.
+            Hashrate is derived from block difficulty and Blockscout&apos;s average block time, and its history
+            from on-chain block difficulty and block times, also via Blockscout.
           </p>
         </FadeIn>
       </div>

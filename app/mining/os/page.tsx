@@ -6,7 +6,7 @@ const miningOSPlatforms = [
     id: 'hiveos',
     name: 'HiveOS',
     website: 'https://hiveos.farm',
-    description: 'The most popular mining OS with a comprehensive web dashboard, mobile app, and extensive pool/coin support.',
+    description: 'A widely used mining OS with a web dashboard, a mobile app and broad pool and coin support.',
     logo: '🐝',
     pricing: [
       { tier: 'Free', workers: '1 rig', features: 'All features included' },
@@ -23,9 +23,9 @@ const miningOSPlatforms = [
       'Dual mining support',
     ],
     supportsETC: true,
-    etcNotes: 'Full ETChash support with all major miners pre-installed.',
+    etcNotes: 'Full Etchash support with all major miners pre-installed.',
     supported: ['NVIDIA', 'AMD', 'ASIC'],
-    popularity: 'Most Popular',
+    popularity: 'Widely Used',
   },
   {
     id: 'minerstat',
@@ -48,7 +48,7 @@ const miningOSPlatforms = [
       'Scheduled operations',
     ],
     supportsETC: true,
-    etcNotes: 'ETChash algorithm supported with automatic profit switching.',
+    etcNotes: 'Etchash algorithm supported with automatic profit switching.',
     supported: ['NVIDIA', 'AMD', 'ASIC'],
     popularity: 'Professional Choice',
   },
@@ -176,7 +176,7 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
           {os.pricing.map((price, index) => (
             <div key={index} className="rounded-lg bg-[var(--bg)] px-3 py-1.5 text-xs">
               <span className="font-medium text-[var(--text-primary)]">{price.tier}:</span>{' '}
-              <span className="text-[var(--color-text-muted)]">{price.workers} - {price.features}</span>
+              <span className="text-[var(--color-text-muted)]">{price.workers}: {price.features}</span>
             </div>
           ))}
         </div>
@@ -237,7 +237,7 @@ function OSCard({ os }: { os: typeof miningOSPlatforms[0] }) {
 
 export default function MiningOSPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -285,7 +285,7 @@ export default function MiningOSPage() {
                   Mining operating systems are stripped-down Linux distributions optimized for mining. They offer:
                   web-based remote management, pre-installed mining software, automatic overclocking profiles,
                   watchdog monitoring for stability, and multi-rig management from a single dashboard.
-                  Much easier than managing Windows installations on multiple machines.
+                  That is much simpler than managing Windows installations on several machines.
                 </p>
               </div>
             </div>
@@ -407,8 +407,8 @@ export default function MiningOSPage() {
               <div className="mb-3 text-2xl">🏆</div>
               <h3 className="font-semibold text-[var(--color-success)]">Best Overall</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                <strong className="text-[var(--text-primary)]">HiveOS</strong> - Most features, best community support,
-                and the widest range of supported hardware including ASICs.
+                <strong className="text-[var(--text-primary)]">HiveOS</strong>: a broad feature set, a large community and
+                support for a wide range of hardware, including ASICs.
               </p>
             </div>
 
@@ -416,7 +416,7 @@ export default function MiningOSPage() {
               <div className="mb-3 text-2xl">💼</div>
               <h3 className="font-semibold text-[var(--color-info)]">Professional Use</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                <strong className="text-[var(--text-primary)]">minerstat</strong> - Advanced analytics, enterprise features,
+                <strong className="text-[var(--text-primary)]">minerstat</strong>: advanced analytics, enterprise features,
                 and sophisticated profit switching for larger operations.
               </p>
             </div>
@@ -425,8 +425,8 @@ export default function MiningOSPage() {
               <div className="mb-3 text-2xl">💰</div>
               <h3 className="font-semibold text-[var(--color-warning)]">Budget Option</h3>
               <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                <strong className="text-[var(--text-primary)]">RaveOS</strong> - Unlimited free rigs when using partner pools.
-                Great for beginners and cost-conscious miners.
+                <strong className="text-[var(--text-primary)]">RaveOS</strong>: unlimited free rigs when you mine to partner
+                pools, which suits beginners and cost-conscious miners.
               </p>
             </div>
           </div>
@@ -442,7 +442,7 @@ export default function MiningOSPage() {
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Need Mining Software Instead?</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
               If you prefer to run Windows or your own Linux installation, check out our mining software guide
-              for standalone miners like T-Rex, lolMiner, and TeamRedMiner.
+              for standalone miners such as lolMiner, TeamRedMiner and T-Rex.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
@@ -464,6 +464,6 @@ export default function MiningOSPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

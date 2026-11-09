@@ -25,7 +25,7 @@ const defiFeatures = [
   },
   {
     title: 'Stablecoins',
-    description: 'Use ClassicUSD (USC) for stable value',
+    description: 'Use Classic USD (USC) for stable value',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -57,7 +57,7 @@ const defiProtocols = [
     badge: 'DEX',
   },
   {
-    name: 'ClassicUSD',
+    name: 'Classic USD',
     description: 'Native ETC stablecoin',
     link: 'https://classicusd.com',
     badge: 'Stablecoin',
@@ -69,7 +69,7 @@ export default function DeFiPage() {
   const defiArticles = getArticlesByCategory('defi')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         {/* Background gradient */}
@@ -264,6 +264,6 @@ export default function DeFiPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

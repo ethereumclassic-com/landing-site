@@ -30,7 +30,7 @@ export default function BeginnersExchangesPage() {
   const globalOnly = beginnerExchanges.filter((ex) => !ex.regions.includes('US'))
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Breadcrumbs */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
@@ -356,6 +356,6 @@ export default function BeginnersExchangesPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

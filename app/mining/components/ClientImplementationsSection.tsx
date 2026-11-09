@@ -57,11 +57,9 @@ export function ClientImplementationsSection() {
             Client Implementations
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-            Multi-client architecture eliminates single points of failure at the protocol layer.
-            Independent implementations in distinct languages, maintained by separate teams, ensure
-            the network can withstand the discontinuation or compromise of any single codebase.
-            Core-Geth, the recommended client, and Fukuii, an alternative to try, provide
-            implementation diversity. ETC plugins, a planned framework for Besu, Erigon, Ethrex,
+            Independent clients in different languages, maintained by separate teams, protect a network from any one
+            codebase&apos;s bugs or discontinuation. Core-Geth is the recommended client; Fukuii, an independent client in
+            Scala that its maintainers mark alpha, is an alternative to try. ETC plugins, a planned framework for Besu, Erigon, Ethrex,
             Go-Ethereum, Nethermind and Reth, would widen where Ethereum Classic runs, but each
             plugin&apos;s codebase stays with the project that maintains it, so a plugin adds no
             implementation of its own.

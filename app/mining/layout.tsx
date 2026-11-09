@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: 'Mine Ethereum Classic',
   },
   description:
-    'Mine ETC with ETCHash. Pools, hardware, software, profitability calculators, and getting-started guides.',
+    'Mine ETC with Etchash: pools, hardware, software, profitability calculators and getting-started guides.',
 }
 
 export default function MiningLayout({ children }: { children: React.ReactNode }) {

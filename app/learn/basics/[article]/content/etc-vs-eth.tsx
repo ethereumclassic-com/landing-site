@@ -4,7 +4,7 @@ export default function ETCvsETH() {
   return (
     <>
       <p>
-        Ethereum Classic (ETC) and Ethereum (ETH) share the same technical origins and remain compatible at the smart contract level. However, they differ significantly in consensus mechanism, monetary policy, and philosophy.
+        Ethereum Classic (ETC) and Ethereum (ETH) share the same technical origins and stay largely compatible at the smart contract level, since both run the EVM. However, they differ significantly in consensus mechanism, monetary policy, and philosophy.
       </p>
 
       <h2>Key Differences at a Glance</h2>
@@ -20,7 +20,7 @@ export default function ETCvsETH() {
           <tbody>
             <tr>
               <td>Consensus</td>
-              <td>Proof-of-Work (ETCHash)</td>
+              <td>Proof-of-Work (Etchash)</td>
               <td>Proof-of-Stake</td>
             </tr>
             <tr>
@@ -51,14 +51,14 @@ export default function ETCvsETH() {
 
       <h3>ETC: Proof-of-Work</h3>
       <p>
-        Ethereum Classic uses proof-of-work consensus with the ETCHash mining algorithm. Miners compete to solve computational puzzles, with successful miners earning block rewards in ETC.
+        Ethereum Classic uses proof-of-work consensus with the Etchash mining algorithm. Miners compete to solve computational puzzles, with successful miners earning block rewards in ETC.
       </p>
       <p>
         Benefits of PoW for ETC:
       </p>
       <ul>
         <li>Security derived from external resources (energy)</li>
-        <li>Maximum censorship resistance</li>
+        <li>Strong censorship resistance</li>
         <li>Permissionless block production</li>
         <li>Fair coin distribution to contributors</li>
       </ul>
@@ -93,8 +93,8 @@ export default function ETCvsETH() {
         Both chains run the Ethereum Virtual Machine (EVM), which means:
       </p>
       <ul>
-        <li>Smart contracts written for one chain work on the other</li>
-        <li>Development tools like Solidity, Hardhat, and web3.js work with both</li>
+        <li>Smart contracts compiled for an EVM version both chains support run on either</li>
+        <li>Development tools such as Solidity, Hardhat, Foundry and ethers.js work with both</li>
         <li>Wallet addresses are identical (but balances are network-specific)</li>
         <li>Token standards (ERC-20, ERC-721) are compatible</li>
       </ul>
@@ -113,7 +113,7 @@ export default function ETCvsETH() {
 
       <h3>ETH Ecosystem</h3>
       <p>
-        Ethereum has a larger ecosystem due to greater liquidity and longer post-fork history. However, ETC&apos;s ecosystem is growing, and many applications can deploy to both chains.
+        Ethereum has a larger ecosystem, with greater liquidity and adoption. However, ETC&apos;s ecosystem is growing, and many applications can deploy to both chains.
       </p>
 
       <h2>Which Should You Use?</h2>
@@ -141,7 +141,7 @@ export default function ETCvsETH() {
         Many users hold and use both ETC and ETH. Since wallets like MetaMask support multiple networks, you can easily switch between them. Just make sure you&apos;re connected to the correct network before sending transactions.
       </p>
       <p>
-        Remember: ETC and ETH are separate networks with separate balances. Sending ETC to an ETH address on the wrong network can result in lost funds.
+        Remember: ETC and ETH are separate networks with separate balances. Sending ETC to an exchange&apos;s ETH deposit address, or on the wrong network, can lose your funds.
       </p>
 
       <h2>Get Started</h2>

@@ -227,7 +227,7 @@ export default function WalletReviewsPage() {
   }, [])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-warning)]/10 via-transparent to-transparent" />
@@ -479,6 +479,6 @@ export default function WalletReviewsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

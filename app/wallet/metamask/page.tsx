@@ -119,7 +119,7 @@ export default function MetaMaskPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -286,7 +286,7 @@ export default function MetaMaskPage() {
                 // so it needs an operator on the hook for uptime. Not hypothetical —
                 // of the three etc-network.info endpoints this repo referenced,
                 // geth-de is now NXDOMAIN and besu-at answers "invalid host specified".
-                { name: 'Blockscout RPC', url: 'https://etc.blockscout.com/api/eth-rpc', note: 'Official explorer' },
+                { name: 'Blockscout RPC', url: 'https://etc.blockscout.com/api/eth-rpc', note: 'From the Blockscout explorer' },
               ].map((rpc) => (
                 <div
                   key={rpc.name}
@@ -436,6 +436,6 @@ export default function MetaMaskPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

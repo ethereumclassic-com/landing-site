@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'US-Friendly Exchanges',
-  description: 'Buy and trade Ethereum Classic on US-regulated exchanges. FDIC-insured deposits, bank transfers, and full regulatory compliance.',
+  description: 'Buy and trade Ethereum Classic on exchanges that serve US customers, with bank transfers, US tax forms and FinCEN registration.',
 }
 
 export default function USFriendlyLayout({ children }: { children: React.ReactNode }) {

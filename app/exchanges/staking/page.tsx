@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function StakingExchangesPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Breadcrumbs */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
@@ -38,7 +38,7 @@ export default function StakingExchangesPage() {
               Staking on Exchanges
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-              Yield opportunities for Ethereum Classic holders — exchange staking programs, DeFi lending protocols, and liquidity provision on ETCswap. ETC is a Proof-of-Work network with no native staking, so exchange-based yield and DeFi are the primary paths to earning returns on your holdings.
+              ETC is a Proof-of-Work network with no native staking. Holders can earn by mining or by providing liquidity on ETCswap; an exchange offer called &ldquo;ETC staking&rdquo; is a lending or yield product, with the risks described below.
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export default function StakingExchangesPage() {
                   </div>
                 </div>
                 <p className="mb-4 text-sm text-[var(--color-text-muted)]">
-                  Contribute computing power to secure the network and earn block rewards. ETChash algorithm supports GPU mining.
+                  Contribute computing power to secure the network and earn block rewards. Etchash algorithm supports GPU mining.
                 </p>
                 <ul className="mb-4 space-y-2 text-sm">
                   <li className="flex items-center gap-2 text-[var(--color-text-secondary)]">
@@ -221,9 +221,9 @@ export default function StakingExchangesPage() {
                   Any service offering &quot;ETC staking&quot; with guaranteed returns is either:
                 </p>
                 <ul className="mt-2 space-y-1 text-sm text-[var(--color-text-muted)]">
-                  <li>• A lending/borrowing platform (your ETC goes to borrowers - carries credit risk)</li>
-                  <li>• A centralized yield product (your ETC is used by the exchange - carries counterparty risk)</li>
-                  <li>• A potential scam (if returns seem too good to be true)</li>
+                  <li>A lending platform: your ETC goes to borrowers, which carries credit risk</li>
+                  <li>A centralized yield product: the exchange uses your ETC, which carries counterparty risk</li>
+                  <li>A potential scam, if the returns seem too good to be true</li>
                 </ul>
                 <p className="mt-3 text-sm text-[var(--color-text-secondary)]">
                   Always understand <strong className="text-[var(--text-primary)]">where your yield comes from</strong> before depositing your ETC.
@@ -251,6 +251,6 @@ export default function StakingExchangesPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

@@ -97,12 +97,10 @@ export function NetworkConfigSection() {
             Network Configuration
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-            Production RPC endpoints, chain IDs, and explorer URLs for ETC
-            Mainnet (Chain 61) and Mordor Testnet (Chain 63). Drop-in
-            configuration for MetaMask, Hardhat, Foundry, and any
-            EVM-compatible toolchain. Both networks run Proof-of-Work consensus
-            under the Spiral EVM specification, with the Olympia upgrade pending
-            activation.
+            RPC endpoints, chain IDs and explorer URLs for ETC mainnet (chain 61) and the Mordor testnet (chain 63),
+            for MetaMask, Hardhat, Foundry and other EVM toolchains. Both networks run Proof-of-Work consensus with
+            the EVM as of the Spiral upgrade, which matches Ethereum&apos;s Shanghai. Olympia, a proposed upgrade, would
+            align it further.
           </p>
         </FadeIn>
 
@@ -149,7 +147,7 @@ export function NetworkConfigSection() {
                   </Row>
                   <div className="flex items-center justify-between gap-4">
                     <dt className="font-mono text-xs uppercase tracking-wider text-[var(--text-subtle)]">
-                      Next Upgrade
+                      Proposed Upgrade
                     </dt>
                     <dd className="text-right font-mono text-sm font-semibold text-[var(--text-primary)]">
                       <EvmLabel versions={net.nextUpgrade} />

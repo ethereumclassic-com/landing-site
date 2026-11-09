@@ -2,10 +2,9 @@ export default function Decentralism() {
   return (
     <>
       <p>
-        Decentralization is not a marketing term. It is a measurable property of a
-        network: the degree to which no single entity can control, censor, or alter the
-        system&apos;s operation. Ethereum Classic treats decentralization as a design
-        constraint that informs every protocol decision.
+        Decentralization is a property of a network that can be checked: the degree to which no
+        single entity can control, censor or alter how the system runs. Ethereum Classic treats
+        it as a design constraint on every protocol decision.
       </p>
 
       <h2>Three Pillars</h2>
@@ -29,9 +28,8 @@ export default function Decentralism() {
         </li>
       </ul>
       <p>
-        These are not aspirational goals. They are testable properties. If a network
-        fails any of these conditions, it offers weaker guarantees than a network that
-        satisfies all three.
+        Each of these can be tested, and a network that fails any of them offers weaker
+        guarantees than one that meets all three.
       </p>
 
       <h2>Governance Minimization</h2>
@@ -47,8 +45,8 @@ export default function Decentralism() {
         surface area available for capture.
       </p>
       <p>
-        This does not mean there is no coordination. It means coordination happens
-        through a process that requires broad consensus rather than executive authority.
+        There is still coordination, through a process that requires broad consensus rather
+        than executive authority.
       </p>
 
       <h2>The ECIP Process</h2>
@@ -59,8 +57,8 @@ export default function Decentralism() {
         node operators, miners, developers, and the broader community.
       </p>
       <p>
-        The ECIP process is deliberately slow and conservative. Speed of development is
-        not a priority. Stability and backward compatibility are. A protocol change that
+        The ECIP process is deliberately slow and conservative: it puts stability and backward
+        compatibility ahead of speed. A protocol change that
         breaks existing contracts or alters economic parameters faces a high bar for
         adoption.
       </p>
@@ -72,8 +70,7 @@ export default function Decentralism() {
       <h2>Client Diversity</h2>
       <p>
         A blockchain with only one client implementation has a single point of failure: a
-        bug in that client affects the entire network. Ethereum Classic is supported by
-        multiple independent client implementations:
+        bug in that client affects the entire network. Ethereum Classic has two independent client implementations:
       </p>
       <ul>
         <li>
@@ -82,54 +79,54 @@ export default function Decentralism() {
           ethereumclassic GitHub organization, and the recommended client to run.
         </li>
         <li>
-          <strong>Fukuii:</strong> An execution client in Scala 3, maintained by Chippr
+          <strong>Fukuii:</strong>{' '}An execution client in Scala 3, maintained by Chippr
           Robotics as a continuation of IOHK&apos;s Mantis, with native Proof-of-Work for
           Ethereum Classic and Mordor and the Engine API for post-Merge Ethereum. Its
           maintainers mark it alpha, so it is an alternative to try.
         </li>
       </ul>
       <p>
-        Client diversity means that a critical bug in one implementation does not
-        compromise the entire network. Nodes running unaffected clients continue to
-        produce and validate blocks normally.
+        Diversity protects a network as far as its nodes spread across clients: a critical bug
+        in one implementation leaves the nodes running the other unaffected, so the network
+        keeps producing and validating blocks.
       </p>
 
       <h2>Mining Decentralization</h2>
       <p>
         Ethereum Classic uses proof of work, which means block production is open to
-        anyone with the appropriate hardware. There is no validator set, no minimum stake
-        requirement, and no delegation mechanism that concentrates block production rights
-        among a small group.
+        anyone with the appropriate hardware. There is no validator set, no minimum stake requirement and no delegation mechanism in
+        the protocol that concentrates block production rights among a small group.
       </p>
       <p>
         Miners compete to find valid blocks by expending computational resources. This
         competition is permissionless: new miners can join at any time without registering
-        with any authority. The ETCHash algorithm is designed to remain accessible to GPU
-        miners, preventing the concentration of mining power in specialized ASIC hardware.
+        with any authority. The Etchash algorithm grows its memory requirement slowly, so GPUs with enough memory
+        still mine alongside Etchash ASICs. Mining pools do concentrate hashrate, but each miner
+        can switch pools at any time, so a pool keeps its share only while its miners choose to
+        stay.
       </p>
 
       <h2>The Declaration of Independence</h2>
       <p>
-        On August 13, 2016, the Ethereum Classic community published a Declaration of
-        Independence. The document articulated the community&apos;s decision to maintain
-        the original, unforked Ethereum blockchain and to operate independently of the
-        Ethereum Foundation&apos;s governance model.
-      </p>
-      <p>
-        The declaration established several principles that continue to guide the
-        network:
+        On August 13, 2016, the Ethereum Classic community published{' '}
+        <a href="https://ethereumclassic.org/blog/2016-08-13-declaration-of-independence/" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">The Ethereum Classic Declaration of Independence</a>.
+        It explained the community&apos;s decision to continue the original, unforked Ethereum
+        blockchain independently of the Ethereum Foundation, and set out a code of principles
+        that still guides the network. Among them:
       </p>
       <ul>
         <li>
-          The blockchain&apos;s transaction history is inviolable and cannot be altered by
-          any party.
+          Code is law: no change to Ethereum Classic may violate immutability, fungibility or
+          the sanctity of the ledger, and transactions and ledger history are never to be
+          reversed or modified.
         </li>
         <li>
-          The protocol serves all participants equally, without privileged access or
-          differential treatment.
+          Forks and other protocol changes are permitted only to update or upgrade the
+          technology Ethereum Classic runs on.
         </li>
         <li>
-          Development governance is distributed and requires broad consensus for changes.
+          Anyone may propose improvements, and anyone may use the platform to build
+          applications, hold crowdsales or create autonomous organizations, for any purpose.
         </li>
       </ul>
 
@@ -137,14 +134,13 @@ export default function Decentralism() {
       <p>
         A blockchain that can be controlled by a small group offers no advantage over a
         traditional database managed by a trusted institution. The entire purpose of
-        running a distributed, replicated ledger across thousands of independent nodes is
+        running a distributed, replicated ledger across many independent nodes is
         to remove the need for trust in any single party.
       </p>
       <p>
-        Every compromise on decentralization is a compromise on the fundamental value
-        proposition. Ethereum Classic&apos;s position is that decentralization is not a
-        feature to be optimized alongside other features. It is the prerequisite that
-        makes all other features meaningful.
+        Every compromise on decentralization is a compromise on that purpose. Ethereum
+        Classic treats decentralization as the prerequisite that makes every other feature
+        meaningful, rather than one feature to trade against the rest.
       </p>
     </>
   )

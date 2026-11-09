@@ -23,7 +23,7 @@ const categoryIcons: Record<string, React.ReactNode> = {
 
 export default function ResearchPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -115,7 +115,7 @@ export default function ResearchPage() {
                 {categoryIcons.ecosystem}
               </div>
               <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Ecosystem</h3>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">DeFi, infrastructure, and community growth</p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">DeFi, infrastructure, governance and mining</p>
             </Link>
             <Link
               href="/mining/stats"
@@ -208,7 +208,7 @@ export default function ResearchPage() {
           >
             <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Data Sources</h2>
             <p className="mb-4 text-sm text-[var(--color-text-muted)]">
-              Access raw data and analytics from these trusted sources:
+              Raw data and analytics for Ethereum Classic are available from these sources:
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {dataSources.map((source) => (
@@ -263,6 +263,6 @@ export default function ResearchPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

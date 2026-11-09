@@ -3,12 +3,12 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Legal & Terms | Ethereum Classic',
-  description: 'Terms of service and legal information for EthereumClassic.com.',
+  description: 'Terms of service and legal information for ethereumclassic.com.',
 }
 
 export default function LegalPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)]">Terms of Service</h1>
@@ -18,7 +18,7 @@ export default function LegalPage() {
             <section>
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">Acceptance of Terms</h2>
               <p className="mt-3">
-                By accessing and using EthereumClassic.com, you agree to these terms of service. If you do not agree with
+                By accessing and using ethereumclassic.com, you agree to these terms of service. If you do not agree with
                 any part of these terms, please do not use this website.
               </p>
             </section>
@@ -26,7 +26,7 @@ export default function LegalPage() {
             <section>
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">Informational Purpose Only</h2>
               <p className="mt-3">
-                All content on EthereumClassic.com is provided for informational and educational purposes only. Nothing on
+                All content on ethereumclassic.com is provided for informational and educational purposes only. Nothing on
                 this website constitutes:
               </p>
               <ul className="mt-3 list-inside list-disc space-y-1">
@@ -85,7 +85,7 @@ export default function LegalPage() {
             <section>
               <h2 className="text-xl font-semibold text-[var(--text-primary)]">Limitation of Liability</h2>
               <p className="mt-3">
-                To the maximum extent permitted by law, EthereumClassic.com and its contributors shall not be liable for any
+                To the maximum extent permitted by law, ethereumclassic.com and its contributors shall not be liable for any
                 direct, indirect, incidental, consequential, or punitive damages arising from your use of this website or
                 reliance on any information provided herein.
               </p>
@@ -110,6 +110,6 @@ export default function LegalPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -37,7 +37,7 @@ export default function GettingStarted() {
 
       <h2>Step 2: Acquire ETC</h2>
       <p>
-        Ethereum Classic is listed on virtually every major cryptocurrency exchange. You can acquire ETC through several methods:
+        Ethereum Classic is listed on most major cryptocurrency exchanges. You can acquire ETC through several methods:
       </p>
 
       <h3>Cryptocurrency Exchanges</h3>
@@ -52,7 +52,7 @@ export default function GettingStarted() {
 
       <h3>Mining</h3>
       <p>
-        If you have a modern graphics card, you can mine ETC and earn it as block rewards. Check our mining guides for details.
+        If you have a graphics card with 6GB or more of memory, you can mine ETC and earn it as block rewards. Check our mining guides for details.
       </p>
 
       <h2>Step 3: Secure Your Wallet</h2>
@@ -60,7 +60,7 @@ export default function GettingStarted() {
         Security is paramount in cryptocurrency. Follow these essential practices:
       </p>
 
-      <h3>Backup Your Seed Phrase</h3>
+      <h3>Back Up Your Seed Phrase</h3>
       <p>
         Your seed phrase (usually 12 or 24 words) is the master key to your wallet. Write it down on paper and store it securely offline. Never share it with anyone or store it digitally.
       </p>
@@ -87,7 +87,7 @@ export default function GettingStarted() {
 
       <h3>dApps</h3>
       <p>
-        Ethereum Classic supports the same smart contracts as Ethereum, meaning many Ethereum applications can run on ETC. Browse our apps section for available services.
+        Ethereum Classic runs the EVM, so many Ethereum applications can run on ETC. Browse our apps section for available services.
       </p>
 
       <h3>NFTs</h3>
@@ -109,7 +109,7 @@ export default function GettingStarted() {
 
       <h3>Block Explorers</h3>
       <p>
-        You can view your transactions and account balance on Blockscout, the most popular Ethereum Classic block explorer, at etc.blockscout.com.
+        You can view your transactions and account balance on Blockscout, the main Ethereum Classic block explorer, at etc.blockscout.com.
       </p>
 
       <h2>Getting Help</h2>
@@ -125,7 +125,7 @@ export default function GettingStarted() {
 
       <h2>Summary</h2>
       <p>
-        Getting started with Ethereum Classic is straightforward: get a wallet, acquire some ETC, secure your keys, and start exploring. As a community-driven project with no central authority, ETC offers a truly decentralized platform for building and using unstoppable applications.
+        Getting started with Ethereum Classic is straightforward: get a wallet, acquire some ETC, secure your keys, and start exploring. ETC is a community-driven network with no central authority.
       </p>
     </>
   )

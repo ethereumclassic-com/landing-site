@@ -17,7 +17,7 @@ export default function HowToSellEtc() {
         <li>Log in to your exchange account (Coinbase, Kraken, Binance, or similar)</li>
         <li>Navigate to your ETC wallet and select &ldquo;Deposit&rdquo; to get your deposit address</li>
         <li>Send ETC from your personal wallet to the exchange deposit address</li>
-        <li>Wait for the required number of network confirmations (typically 40,000+ for ETC on major exchanges)</li>
+        <li>Wait for the confirmations your exchange requires; for ETC these vary widely between exchanges, so check its deposit page</li>
         <li>Place a sell order (market for instant, limit for a target price)</li>
         <li>Withdraw fiat to your linked bank account</li>
       </ul>
@@ -39,7 +39,7 @@ export default function HowToSellEtc() {
         <li>To convert USC to USD in your bank account, use Brale&apos;s redemption service</li>
       </ul>
       <p>
-        This two-step approach (ETC to USC on <ETCswapLink />, then USC to USD via Brale) gives you a fully on-chain off-ramp. You maintain custody of your funds until the final fiat conversion.
+        This two-step approach (ETC to USC on <ETCswapLink />, then USC to USD via Brale) gives you an off-ramp that stays on-chain until the last step. You maintain custody of your funds until the final fiat conversion.
       </p>
 
       <h2>Option 3: Spend ETC Directly</h2>
@@ -63,7 +63,7 @@ export default function HowToSellEtc() {
         <li>Capital gains tax may apply on the difference between your purchase price and sale price</li>
         <li>Short-term and long-term holding periods often have different tax rates</li>
         <li>Swapping ETC for USC on a DEX is generally also a taxable event</li>
-        <li>Record-keeping is your responsibility &mdash; track dates, amounts, and prices for each transaction</li>
+        <li>Record-keeping is your responsibility: track dates, amounts, and prices for each transaction</li>
       </ul>
       <p>
         Consult a tax professional or refer to your local tax authority&apos;s guidance on cryptocurrency. Tax laws vary significantly between jurisdictions and are subject to change.

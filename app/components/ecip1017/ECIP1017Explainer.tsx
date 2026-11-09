@@ -16,9 +16,9 @@ export default function ECIP1017Explainer() {
             ECIP-1017
           </a>{' '}
           is the Ethereum Classic Improvement Proposal that defines the monetary policy for ETC. Adopted in 2017,
-          it establishes a predictable, deflationary emission schedule: every 5,000,000 blocks (approximately
-          2–2.5 years), the block reward is reduced by 20%. This creates a known supply ceiling and eliminates
-          arbitrary monetary policy.
+          it sets a predictable, decreasing emission schedule: every 5,000,000 blocks (a little over two years),
+          the block reward falls by 20%. That gives supply a known ceiling and leaves no room for discretionary
+          monetary policy.
         </p>
 
         {/* How it works — numbered steps */}
@@ -27,7 +27,7 @@ export default function ECIP1017Explainer() {
             {
               n: '1',
               title: 'Fixed Era Length',
-              body: 'Each era spans exactly 5,000,000 blocks. At an average of 13 seconds per block, an era lasts roughly 2–2.5 years.',
+              body: 'Each era spans exactly 5,000,000 blocks. At about 13 seconds per block, an era lasts a little over two years.',
             },
             {
               n: '2',
@@ -37,7 +37,7 @@ export default function ECIP1017Explainer() {
             {
               n: '3',
               title: 'Converging Supply',
-              body: 'The geometric series converges. Including the 72M ETC genesis supply, total ETC supply approaches ~199–210M. No arbitrary inflation is ever possible.',
+              body: 'The geometric series converges. Including the 72M ETC genesis supply, total ETC supply approaches roughly 199M to 210.7M, depending on uncle rewards. The schedule allows no other issuance.',
             },
           ].map((step) => (
             <div key={step.n} className="flex gap-4">
@@ -80,7 +80,7 @@ export default function ECIP1017Explainer() {
             <tbody className="divide-y divide-[var(--border-subtle)]">
               {[
                 { metric: 'Reward reduction', etc: '20% (×0.8)', btc: '50% (×0.5)' },
-                { metric: 'Era / cycle length', etc: '5,000,000 blocks (~2–2.5 yrs)', btc: '210,000 blocks (~4 yrs)' },
+                { metric: 'Era / cycle length', etc: '5,000,000 blocks (~2.2 yrs)', btc: '210,000 blocks (~4 yrs)' },
                 { metric: 'Starting reward', etc: '5 ETC (Era 1)', btc: '50 BTC (Cycle 1)' },
                 { metric: 'Genesis / pre-mine', etc: '72,009,990 ETC (inherited)', btc: 'None' },
                 { metric: 'Max supply (est.)', etc: '~199–210M ETC', btc: '21,000,000 BTC' },
@@ -103,7 +103,7 @@ export default function ECIP1017Explainer() {
             <Link href="/research/ethereum-ico" className="text-[var(--brand-green)] hover:underline">
               Ethereum 2014 ICO
             </Link>
-            {'. '}ETC is the original chain. In 2016 the Ethereum Foundation forked away and applied the ETH name and ticker to the new chain. Leaked internal chat logs confirm that Foundation insiders and associates coordinated a campaign to sell ETC and buy ETH, deliberately depressing the original chain&apos;s price while elevating the new one. The Foundation&apos;s 16.67% ICO allocation was dumped into the open market at pennies. There is no premine on ETC; much of that allocation was distributed to open-market buyers via legacy centralized exchanges.{' '}
+            {'. '}Ethereum Classic is the original chain: when Ethereum forked in 2016, the ETH name and ticker went to the new chain, and every genesis balance stayed on the original. Ethereum Classic has no issuer, and every ETC created since the genesis block was mined.{' '}
             <Link href="/research/dao-fork" className="text-[var(--brand-green)] hover:underline">
               Full story →
             </Link>

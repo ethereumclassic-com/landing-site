@@ -4,7 +4,7 @@ export default function WhatIsDefi() {
   return (
     <>
       <p>
-        Decentralized finance, or DeFi, refers to financial services built on blockchain smart contracts rather than traditional intermediaries like banks, brokerages, or exchanges. DeFi protocols are permissionless, non-custodial, and transparent&mdash;anyone can use them, no one holds your funds, and the code is publicly auditable.
+        Decentralized finance, or DeFi, refers to financial services built on blockchain smart contracts rather than traditional intermediaries like banks, brokerages, or exchanges. DeFi protocols are permissionless, non-custodial and transparent: anyone can use them, no one holds your funds, and the code is publicly auditable.
       </p>
 
       <h2>Core Principles</h2>
@@ -21,7 +21,7 @@ export default function WhatIsDefi() {
 
       <h3>Transparent and Composable</h3>
       <p>
-        Every DeFi protocol runs on open-source smart contracts. Anyone can read the code, audit the logic, and verify on-chain state through a block explorer like Blockscout. Protocols are also composable&mdash;they can be combined like building blocks to create more complex financial tools.
+        Every DeFi protocol runs on open-source smart contracts. Anyone can read the code, audit the logic, and verify on-chain state through a block explorer like Blockscout. Protocols are also composable: they can be combined like building blocks to create more complex financial tools.
       </p>
 
       <h2>How DeFi Works: AMMs vs Order Books</h2>

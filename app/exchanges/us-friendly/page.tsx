@@ -23,7 +23,7 @@ export default function USFriendlyExchangesPage() {
   const otherUsExchanges = usExchanges.filter((ex) => ex.kycRequired !== true)
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Breadcrumbs */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
@@ -92,7 +92,7 @@ export default function USFriendlyExchangesPage() {
               <div>
                 <h3 className="font-semibold text-[var(--text-primary)]">US Regulatory Compliance</h3>
                 <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
-                  These exchanges are registered with FinCEN and comply with US regulations. They require KYC (Know Your Customer) verification but offer FDIC-insured USD deposits and robust consumer protections.
+                  These exchanges are registered with FinCEN and comply with US regulations. They require KYC (Know Your Customer) verification, and some hold customers&apos; USD at FDIC-insured banks. Crypto holdings are not FDIC-insured.
                 </p>
               </div>
             </div>
@@ -227,8 +227,8 @@ export default function USFriendlyExchangesPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-medium text-[var(--text-primary)]">FDIC Insurance</h3>
-                  <p className="mt-1 text-sm text-[var(--color-text-muted)]">USD deposits are typically insured up to $250,000</p>
+                  <h3 className="font-medium text-[var(--text-primary)]">FDIC Pass-Through</h3>
+                  <p className="mt-1 text-sm text-[var(--color-text-muted)]">USD held at an FDIC-insured bank may be covered up to $250,000; crypto is not</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -283,6 +283,6 @@ export default function USFriendlyExchangesPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

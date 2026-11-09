@@ -3,9 +3,9 @@ import { FadeIn } from '@/app/components/ui'
 
 const stats = [
   {
-    value: 'Largest PoW',
+    value: 'Only mature PoW',
     label: 'with native smart contracts',
-    detail: 'Full Solidity EVM on PoW consensus',
+    detail: 'Solidity and the EVM on PoW consensus',
   },
   {
     value: '24/7',
@@ -36,26 +36,22 @@ export function EnergyHeroSection() {
             <span className="text-[var(--brand-green)]">Energy Infrastructure</span>
           </h1>
           <p className="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
-            Mining is not waste &mdash; it is programmable demand. The distinction matters because
-            it changes the frame entirely: PoW mining is the only industrial electricity consumer
-            that ships to the energy rather than requiring the energy to ship to it. A solar farm in
-            a remote valley, a gas well with no pipeline, a hydro installation with no transmission
-            line &mdash; all of them are stranded. Proof-of-Work mining turns stranded into
-            productive.
+            Proof-of-Work mining is programmable demand for electricity. Unlike most industrial consumers,
+            a mining operation can move to the energy instead of waiting for the energy to be delivered to
+            it. A solar farm in a remote valley, a gas well with no pipeline and a hydro plant with no
+            transmission line all produce stranded power, and mining can put that power to productive use.
           </p>
           <p className="mt-3 text-base leading-relaxed text-[var(--text-muted)]">
-            Unlike every other industrial electricity consumer, miners respond to price in seconds.
-            When power is cheap and abundant, they ramp up. When the grid needs capacity, they
-            curtail &mdash; faster than any conventional demand-response program. This flexibility is
-            what grid operators increasingly value: not just a buyer, but an elastic buyer that
-            improves grid economics for every other participant.
+            Miners also respond to price in seconds. When power is cheap and abundant, they ramp up; when the
+            grid needs capacity, they curtail, faster than most conventional demand-response programs. Grid
+            operators increasingly value that flexibility: an elastic buyer can improve grid economics for
+            every other participant.
           </p>
           <p className="mt-3 text-base leading-relaxed text-[var(--text-muted)]">
-            Ethereum Classic is the only Proof-of-Work network with full EVM execution. The same
-            network that functions as a global energy demand signal also settles programmable
-            financial contracts denominated across major global currencies on 300+ exchanges. That
-            combination &mdash; PoW energy economics layered with smart contract infrastructure
-            &mdash; is what distinguishes ETC as an energy platform, not just an energy consumer.
+            Ethereum Classic is the only mature Proof-of-Work blockchain with native smart contracts. The
+            network that draws on energy around the world also runs programmable financial contracts, and
+            ETC trades against major currencies on exchanges worldwide. That combination of Proof-of-Work
+            energy economics and smart contracts makes ETC an energy platform as well as an energy consumer.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link

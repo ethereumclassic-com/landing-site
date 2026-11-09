@@ -53,7 +53,7 @@ export default function TypesOfWallets() {
       </ul>
       <h3>Considerations</h3>
       <ul>
-        <li>Phone theft or loss is a risk (backup your seed phrase!)</li>
+        <li>Phone theft or loss is a risk, so back up your seed phrase</li>
         <li>Limited dApp interaction compared to browser wallets</li>
         <li>Performance depends on phone security</li>
       </ul>
@@ -61,7 +61,7 @@ export default function TypesOfWallets() {
       <ul>
         <li><strong>Trust Wallet:</strong> User-friendly with ETC support</li>
         <li><strong>Coinomi:</strong> Supports many cryptocurrencies</li>
-        <li><strong>Exodus:</strong> Beautiful interface with built-in exchange</li>
+        <li><strong>Exodus:</strong> Desktop and mobile wallet with a built-in exchange</li>
       </ul>
 
       <h2>Hardware Wallets</h2>
@@ -84,7 +84,7 @@ export default function TypesOfWallets() {
       <h3>Popular Options</h3>
       <ul>
         <li><strong>Ledger:</strong> Ledger Nano S Plus and Nano X support ETC</li>
-        <li><strong>Trezor:</strong> Model One and Model T with ETC support</li>
+        <li><strong>Trezor:</strong> Model One, Model T and the Safe series support ETC</li>
       </ul>
 
       <h2>Desktop Wallets</h2>
@@ -100,7 +100,7 @@ export default function TypesOfWallets() {
       <h3>Considerations</h3>
       <ul>
         <li>Security depends on your computer</li>
-        <li>Must backup wallet files</li>
+        <li>Wallet files must be backed up</li>
         <li>Limited dApp integration</li>
       </ul>
 
@@ -122,7 +122,6 @@ export default function TypesOfWallets() {
       </ul>
       <h3>Popular Options</h3>
       <ul>
-        <li><strong>MyCrypto:</strong> Open-source interface for managing ETC</li>
         <li><strong>MyEtherWallet:</strong> Long-standing web wallet with ETC support</li>
       </ul>
 

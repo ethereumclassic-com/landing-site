@@ -33,7 +33,6 @@ const cryptoPairs = [
   { pair: 'ETC/UNI', symbol: 'UNI' },
   { pair: 'ETC/LTC', symbol: 'LTC' },
   { pair: 'CAKE/ETC', symbol: 'CAKE' },
-  { pair: 'ETC/BUSD', symbol: 'BUSD' },
   { pair: 'ETC/FDUSD', symbol: 'FDUSD' },
   { pair: 'ETC/USC', symbol: 'USC' },
 ]
@@ -46,8 +45,8 @@ const stats = [
       </svg>
     ),
     value: '300+',
-    label: 'Active Exchanges',
-    detail: 'Global coverage',
+    label: 'Exchange Markets',
+    detail: 'Trading pairs worldwide',
   },
   {
     icon: (
@@ -55,7 +54,7 @@ const stats = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
       </svg>
     ),
-    value: '17',
+    value: String(fiatPairs.length),
     label: 'Fiat Pairs',
     detail: 'Major currencies',
   },
@@ -65,7 +64,7 @@ const stats = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
       </svg>
     ),
-    value: '13',
+    value: String(cryptoPairs.length),
     label: 'Crypto Cross-Pairs',
     detail: 'BTC, ETH, stablecoins',
   },
@@ -88,21 +87,10 @@ export function ETCMarketDepthSection() {
               ETC as a Global Payment Network
             </h2>
             <p className="mt-3 text-base text-[var(--text-muted)]">
-              A stablecoin is only as useful as the network it runs on. For a stablecoin to
-              function as a global payment rail, the underlying asset must be tradeable against
-              local currencies in every jurisdiction where the stablecoin is used. ETC has
-              continuous fiat price discovery across 17 major currencies and 300+ active
-              exchange markets: ETC/USD, ETC/EUR, ETC/JPY, ETC/KRW, ETC/INR, and coverage
-              across Latin America, Southeast Asia, the Middle East, and Eastern Europe.
-              Classic USD ($USC) settles on the same network that these markets are pricing.
+              A payment network needs a native asset people can buy and sell in their own currency, because every transaction pays its fee in that asset. ETC trades against {fiatPairs.length} fiat currencies across more than 300 exchange markets, from USD, EUR, JPY, KRW and INR to coverage across Latin America, Southeast Asia, the Middle East and Eastern Europe. Classic USD ($USC) settles on the same network.
             </p>
             <p className="mt-3 text-base text-[var(--text-muted)]">
-              ETC/USD spot markets have operated continuously since 2016. This is one of the
-              longest-running fiat price discovery mechanisms in digital assets. That track
-              record is what OTC desks, custodians, and compliance teams look for when
-              evaluating whether a network can support institutional-scale stablecoin
-              settlement. Deep liquidity is not a marketing claim; it is a prerequisite for
-              every counterparty in the payment chain.
+              ETC/USD spot markets have traded continuously since 2016, one of the longest fiat price records in digital assets. OTC desks, custodians and compliance teams look for that record, and for deep liquidity, when they judge whether a network can carry stablecoin settlement at institutional scale.
             </p>
           </FadeIn>
 

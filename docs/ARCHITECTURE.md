@@ -523,7 +523,7 @@ Data source: miningpoolstats.stream/ethereumclassic
 **Future: EthereumClassic.com Mining Pool**
 
 Reserved for in-house mining pool integrated with Fukuii client development.
-- ETChash mining hub
+- Etchash mining hub
 - Integration with FairWins, ClearPath, TokenMint
 - Prediction DAO research applications
 - GitHub: chippr-robotics/fukuii, prediction-dao-research

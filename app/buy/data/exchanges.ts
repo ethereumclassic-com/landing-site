@@ -61,7 +61,7 @@ export const exchanges: Exchange[] = [
     tradingFee: '0.1%',
     withdrawalFee: '0.01 ETC',
     kycRequired: true,
-    description: 'World\'s largest crypto exchange by volume with extensive trading pairs and features.',
+    description: 'Global exchange with deep liquidity and many ETC trading pairs.',
   },
   {
     name: 'MEXC',
@@ -75,7 +75,7 @@ export const exchanges: Exchange[] = [
     tradingFee: '0.2%',
     withdrawalFee: '0.01 ETC',
     kycRequired: false,
-    description: 'Fast-growing exchange with 0% maker fees and extensive altcoin selection.',
+    description: 'Exchange with 0% maker fees and a wide altcoin selection.',
   },
   {
     name: 'Upbit',
@@ -89,7 +89,7 @@ export const exchanges: Exchange[] = [
     tradingFee: '0.05%',
     withdrawalFee: '0.01 ETC',
     kycRequired: true,
-    description: 'South Korea\'s leading crypto exchange with high KRW liquidity.',
+    description: 'Major South Korean exchange with deep KRW liquidity.',
   },
   {
     name: 'Gate.io',
@@ -131,7 +131,7 @@ export const exchanges: Exchange[] = [
     tradingFee: '0.6%',
     withdrawalFee: 'Network fee',
     kycRequired: true,
-    description: 'US-based regulated exchange with strong security and insurance.',
+    description: 'Regulated, publicly traded US exchange.',
   },
   {
     name: 'KuCoin',
@@ -187,7 +187,7 @@ export const exchanges: Exchange[] = [
     tradingFee: '0.1%',
     withdrawalFee: '0.01 ETC',
     kycRequired: false,
-    description: 'Fast-growing exchange with copy trading and derivatives.',
+    description: 'Exchange with copy trading and derivatives.',
   },
 
   // Additional CEXs

@@ -15,7 +15,7 @@ export default function ETCTokenomics() {
 
       <h2>Emission Schedule</h2>
       <p>
-        ETC follows a deflationary emission model where block rewards decrease by 20% every 5 million blocks (roughly every 2.5 years). This is known as the &ldquo;5M20&rdquo; policy.
+        ETC follows a decreasing emission model in which block rewards fall by 20% every 5 million blocks (a little over two years). This is known as the &ldquo;5M20&rdquo; policy.
       </p>
 
       <div className="overflow-x-auto">
@@ -31,37 +31,37 @@ export default function ETCTokenomics() {
           <tbody>
             <tr>
               <td>Era 1</td>
-              <td>1 - 5M</td>
+              <td>1–5M</td>
               <td>5 ETC</td>
               <td>25M ETC</td>
             </tr>
             <tr>
               <td>Era 2</td>
-              <td>5M - 10M</td>
+              <td>5M–10M</td>
               <td>4 ETC</td>
               <td>20M ETC</td>
             </tr>
             <tr>
               <td>Era 3</td>
-              <td>10M - 15M</td>
+              <td>10M–15M</td>
               <td>3.2 ETC</td>
               <td>16M ETC</td>
             </tr>
             <tr>
               <td>Era 4</td>
-              <td>15M - 20M</td>
+              <td>15M–20M</td>
               <td>2.56 ETC</td>
               <td>12.8M ETC</td>
             </tr>
             <tr>
               <td>Era 5</td>
-              <td>20M - 25M</td>
+              <td>20M–25M</td>
               <td>2.048 ETC</td>
               <td>10.24M ETC</td>
             </tr>
             <tr>
               <td>Era 6</td>
-              <td>25M - 30M</td>
+              <td>25M–30M</td>
               <td>1.6384 ETC</td>
               <td>8.192M ETC</td>
             </tr>
@@ -85,7 +85,7 @@ export default function ETCTokenomics() {
         <li><strong>Portability:</strong> Transfer any amount globally in minutes</li>
       </ul>
 
-      <h2>No Treasury or Pre-Mine</h2>
+      <h2>No Treasury Allocation</h2>
       <p>
         Unlike many newer projects, Ethereum Classic:
       </p>
@@ -95,7 +95,7 @@ export default function ETCTokenomics() {
         <li>Maintains strict neutrality in coin distribution</li>
       </ul>
       <p>
-        A treasury proposal was rejected by the community in 2021, demonstrating the commitment to fair distribution.
+        Proposals that would have taken a share of block rewards for a treasury did not pass: ECIP-1051, proposed in 2018, was rejected in 2020, and ECIP-1098, proposed in 2020, was withdrawn in 2021. The proposed Olympia upgrade would fund a treasury from the EIP-1559 base fee instead, leaving block rewards with miners.
       </p>
 
       <h2>Inflation Rate Over Time</h2>
@@ -133,7 +133,6 @@ export default function ETCTokenomics() {
         <li><strong>Store of value:</strong> Fixed supply provides inflation hedge</li>
         <li><strong>Medium of exchange:</strong> Pay for goods, services, and network operations</li>
         <li><strong>Gas for computation:</strong> Required for smart contract execution</li>
-        <li><strong>DeFi collateral:</strong> Use as collateral in lending protocols</li>
         <li><strong>Liquidity provision:</strong> Pair with other tokens for trading</li>
       </ul>
 

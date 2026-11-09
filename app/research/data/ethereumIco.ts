@@ -1,10 +1,12 @@
+import { EMISSION_CONSTANTS } from './emission'
+
 // Total tokens created at genesis (crowdsale + foundation allocations)
-export const ETH_ICO_GENESIS_SUPPLY = 72_009_991
+export const ETH_ICO_GENESIS_SUPPLY = EMISSION_CONSTANTS.GENESIS_SUPPLY
 
 // Absolute token counts from the ICO allocation
 export const ETH_ICO_ALLOCATION = {
-  crowdsale: Math.round(72_009_991 * 0.8333),    // ~60,001,121
-  foundation: Math.round(72_009_991 * 0.1667),   // ~12,008,870
+  crowdsale: Math.round(ETH_ICO_GENESIS_SUPPLY * 0.8333),
+  foundation: Math.round(ETH_ICO_GENESIS_SUPPLY * 0.1667),
 } as const
 
 export const ETH_ICO = {
@@ -20,7 +22,7 @@ export const ETH_ICO = {
   fundingCap: 'Unlimited',
   fundsRaised: '$18,500,000',
   fundsRaisedBtc: '~31,529 BTC',
-  icoTokenSupply: 72_009_991,
+  icoTokenSupply: ETH_ICO_GENESIS_SUPPLY,
   tokenSupplyAfterIco: 'Increases',
 } as const
 

@@ -137,11 +137,11 @@ export default function SupplyPieCharts({ ethSupply, etcSupply }: Props) {
     <div className="mt-8">
       <h3 className="mb-1 text-sm font-semibold text-[var(--text-primary)]">Today&apos;s Circulating Supply</h3>
       <p className="mb-5 text-xs text-[var(--text-muted)]">
-        Both chains share the same ICO genesis allocation. Post-genesis emissions diverge because they follow different monetary policies. ETH removed its supply cap after The Merge; ETC follows ECIP-1017&apos;s declining block reward schedule toward a ~210.7M cap.
+        Both chains share the same genesis allocation; what each has issued since follows its own monetary policy. Ethereum has no supply cap, and since The Merge its supply moves with staking issuance and the fees it burns. ETC follows ECIP-1017&apos;s declining block reward schedule toward a cap of at most 210.7M.
       </p>
       <div className="grid gap-8 sm:grid-cols-2">
         <SinglePie
-          label="Ethereum Classic — ETC Token Supply Composition"
+          label="Ethereum Classic: ETC Token Supply Composition"
           sublabel={[
             'Original chain · Created Jul 30, 2015',
             `${fmt(etcSupply.circulating)} ETC circulating / ${fmt(etcMax)} ETC cap`,
@@ -150,7 +150,7 @@ export default function SupplyPieCharts({ ethSupply, etcSupply }: Props) {
           ticker="ETC"
         />
         <SinglePie
-          label="Ethereum — ETH Token Supply Composition"
+          label="Ethereum: ETH Token Supply Composition"
           sublabel={[
             'Fork chain · Created Jul 20, 2016',
             `${fmt(ethSupply.circulating)} ETH circulating · uncapped`,

@@ -9,7 +9,7 @@ interface MiningOverviewSectionProps {
 export function MiningOverviewSection({ hashrateTHs }: MiningOverviewSectionProps) {
   const stats = [
     { value: hashrateTHs !== null ? hashrateTHs.toFixed(1) : '—', unit: hashrateTHs !== null ? 'TH/s' : undefined, label: 'Network Hashrate' },
-    { value: 'ETChash', label: 'Mining Algorithm' },
+    { value: 'Etchash', label: 'Mining Algorithm' },
     { value: 'GPU + ASIC', label: 'Compatible Hardware' },
   ]
 
@@ -46,10 +46,9 @@ export function MiningOverviewSection({ hashrateTHs }: MiningOverviewSectionProp
         <FadeIn delay={300}>
           <div className="mt-8">
             <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-              Ethereum Classic is the only EVM-compatible chain secured by Proof-of-Work. When
-              Ethereum transitioned to Proof-of-Stake, ETC absorbed the majority of the ETHash
-              mining ecosystem, including established ASIC manufacturers like Bitmain and
-              Jasminer. ETChash supports both ASIC efficiency for commercial-grade operations and
+              Ethereum Classic is the only mature EVM chain secured by Proof-of-Work. When Ethereum moved to
+              Proof-of-Stake, a large share of its Ethash hardware moved to ETC, and ASIC makers such as Bitmain
+              and Jasminer build for Etchash. Etchash supports both ASIC efficiency for commercial-grade operations and
               GPU accessibility for global participation, decentralizing hashrate across
               geographies and reducing supply chain risk. Run{' '}
               <Link

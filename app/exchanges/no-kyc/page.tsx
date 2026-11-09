@@ -23,7 +23,7 @@ export default function NoKYCExchangesPage() {
   const cexExchanges = noKycExchanges.filter((ex) => ex.type === 'CEX')
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Breadcrumbs */}
       <div className="border-b border-[var(--border)] bg-[var(--panel)]">
         <div className="mx-auto max-w-6xl px-6 py-3">
@@ -232,6 +232,6 @@ export default function NoKYCExchangesPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

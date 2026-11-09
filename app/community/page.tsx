@@ -92,15 +92,15 @@ const waysToContribute = [
 ]
 
 const quickLinks = [
-  { label: 'Social Media', href: '/community/social', description: 'All official channels' },
-  { label: 'Events', href: '/community/events', description: 'Upcoming gatherings' },
+  { label: 'Social Media', href: '/community/social', description: 'Discord, X, Telegram and more' },
+  { label: 'Events', href: '/community/events', description: 'Calls, conferences and meetups' },
   { label: 'News', href: '/news', description: 'Latest updates' },
   { label: 'Learn', href: '/learn', description: 'Educational resources' },
 ]
 
 export default function CommunityPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -255,7 +255,8 @@ export default function CommunityPage() {
                 <div>
                   <h3 className="font-medium text-[var(--text-primary)]">Immutability</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
-                    Transaction history cannot be altered. Your assets are permanent.
+                    No one rewrites confirmed transaction history by decision, and no authority can freeze or move
+                    what you hold.
                   </p>
                 </div>
               </div>
@@ -310,6 +311,6 @@ export default function CommunityPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

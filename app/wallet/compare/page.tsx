@@ -206,7 +206,7 @@ export default function ComparePage() {
   }, [filterType, sortBy])
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative overflow-hidden px-6 py-16 md:px-10 lg:px-12">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[var(--color-info)]/10 via-transparent to-transparent" />
@@ -250,7 +250,7 @@ export default function ComparePage() {
           <p
             className="mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Find the perfect wallet for your needs. Compare features, security levels, and platform support
+            Find a wallet that fits how you use ETC. Compare features, security levels and platform support
             across all Ethereum Classic compatible wallets.
           </p>
         </div>
@@ -449,6 +449,6 @@ export default function ComparePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

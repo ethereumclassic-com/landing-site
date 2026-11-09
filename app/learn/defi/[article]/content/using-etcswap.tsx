@@ -76,7 +76,7 @@ export default function UsingEtcswap() {
 
       <h2>ETCswap Launchpad</h2>
       <p>
-        The Launchpad enables fair token launches using a bonding curve. New tokens start at a low price that increases as people buy. Once the bonding curve fills, the token &ldquo;graduates&rdquo; to a full V3 liquidity pool with the accumulated liquidity burned&mdash;meaning it can never be removed. This protects against rug pulls.
+        The Launchpad enables fair token launches using a bonding curve. New tokens start at a low price that increases as people buy. Once the bonding curve fills, the token &ldquo;graduates&rdquo; to a full V3 liquidity pool with the accumulated liquidity burned, so it can never be removed. This protects against rug pulls.
       </p>
 
       <h2>Tips for Safe Trading</h2>

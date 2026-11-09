@@ -16,9 +16,9 @@ const asicMiners: Equipment[] = [
 ]
 
 const gpuManufacturers: Equipment[] = [
-  { name: 'NVIDIA', detail: 'GeForce RTX series, high-performance ETChash mining with CUDA cores',  href: 'https://www.nvidia.com' },
-  { name: 'AMD',    detail: 'Radeon RX series, competitive ETChash performance and efficiency',       href: 'https://www.amd.com' },
-  { name: 'Intel',  detail: 'Arc series GPUs, with emerging ETChash support',                        href: 'https://www.intel.com' },
+  { name: 'NVIDIA', detail: 'GeForce RTX series, high-performance Etchash mining with CUDA cores',  href: 'https://www.nvidia.com' },
+  { name: 'AMD',    detail: 'Radeon RX series, competitive Etchash performance and efficiency',       href: 'https://www.amd.com' },
+  { name: 'Intel',  detail: 'Arc series GPUs, with emerging Etchash support',                        href: 'https://www.intel.com' },
 ]
 
 function EquipmentCard({ item, icon: Icon }: { item: Equipment; icon: typeof Cpu }) {
@@ -57,10 +57,8 @@ export function MiningEquipmentSection() {
             Mining Equipment
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
-            ETChash supports dedicated ASIC hardware and consumer GPU rigs, distributing hashrate
-            across a broad base of independent operators. ASIC efficiency enables
-            commercial-scale operations; GPU accessibility brings in global retail miners,
-            together diversifying the security budget and reducing single-vendor supply chain risk.
+            Etchash runs on dedicated ASICs and on consumer GPU rigs. ASICs suit commercial-scale operations, and
+            GPUs let anyone mine from home, which spreads hashrate across many independent operators.
           </p>
         </FadeIn>
 

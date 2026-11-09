@@ -5,7 +5,7 @@ const officialChannels = [
   {
     name: 'Twitter / X',
     handle: '@ETC_Network',
-    description: 'Official ETC news, updates, and announcements',
+    description: 'ETC news, updates and announcements',
     url: 'https://x.com/ETC_Network',
     icon: (
       <svg aria-hidden="true" className="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
@@ -76,15 +76,6 @@ const officialChannels = [
   },
 ]
 
-const regionalChannels = [
-  { name: 'ETC China', language: 'Chinese', url: 'https://t.me/etcchina', platform: 'Telegram' },
-  { name: 'ETC Korea', language: 'Korean', url: 'https://t.me/etckorea', platform: 'Telegram' },
-  { name: 'ETC Japan', language: 'Japanese', url: 'https://t.me/etcjapan', platform: 'Telegram' },
-  { name: 'ETC Russia', language: 'Russian', url: 'https://t.me/etcrussia', platform: 'Telegram' },
-  { name: 'ETC Spain', language: 'Spanish', url: 'https://t.me/etcspain', platform: 'Telegram' },
-  { name: 'ETC Germany', language: 'German', url: 'https://t.me/etcgermany', platform: 'Telegram' },
-]
-
 const guidelines = [
   'Be respectful and constructive in all discussions',
   'No spam, scams, or promotional content without approval',
@@ -95,7 +86,7 @@ const guidelines = [
 
 export default function SocialPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -117,21 +108,21 @@ export default function SocialPage() {
                 Social Media
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Connect with Ethereum Classic across all major platforms. Follow official channels
-                for news, join discussions, and become part of the global ETC community.
+                Ethereum Classic on the major platforms: follow the main channels for news, and join the
+                discussion.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Official Channels */}
+      {/* Main Channels */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
-            Official Channels
+            Main Channels
           </h2>
           <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
@@ -167,55 +158,6 @@ export default function SocialPage() {
         </div>
       </section>
 
-      {/* Regional Communities */}
-      <section className="px-6 pb-12 md:px-10 lg:px-12">
-        <div className="mx-auto max-w-6xl">
-          <h2
-            className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
-          >
-            Regional Communities
-          </h2>
-          <div
-            className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden"
-          >
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-[var(--bg)]">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-[var(--color-text-muted)]">Community</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-[var(--color-text-muted)]">Language</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-[var(--color-text-muted)]">Platform</th>
-                    <th className="px-4 py-3 text-right text-sm font-medium text-[var(--color-text-muted)]">Link</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[var(--border)]">
-                  {regionalChannels.map((channel) => (
-                    <tr key={channel.name} className="hover:bg-[var(--bg)]/50">
-                      <td className="px-4 py-3 font-medium text-[var(--text-primary)]">{channel.name}</td>
-                      <td className="px-4 py-3 text-[var(--color-text-muted)]">{channel.language}</td>
-                      <td className="px-4 py-3 text-[var(--color-text-muted)]">{channel.platform}</td>
-                      <td className="px-4 py-3 text-right">
-                        <a
-                          href={channel.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm text-[var(--color-primary)] hover:underline"
-                        >
-                          Join
-                          <svg aria-hidden="true" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                          </svg>
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Community Guidelines */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -245,8 +187,7 @@ export default function SocialPage() {
           >
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">Stay Connected</h2>
             <p className="mx-auto mt-2 max-w-xl text-[var(--color-text-muted)]">
-              Follow official channels to never miss important updates, participate in governance,
-              and be part of ETC&apos;s future.
+              Follow these channels for news and updates, and join the discussion on Discord.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <a
@@ -270,6 +211,6 @@ export default function SocialPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

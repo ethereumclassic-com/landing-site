@@ -64,7 +64,7 @@ export default function NewsPage() {
   const currentMonthYear = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
 
       {/* Masthead */}
       <header className="border-b border-[var(--border)] px-6 py-4 md:px-10 lg:px-12">
@@ -322,6 +322,6 @@ export default function NewsPage() {
         </div>
       </section>
 
-    </main>
+    </div>
   )
 }

@@ -4,6 +4,7 @@ import {
   emissionMilestones,
   calculateSupplyStats,
   getEraForBlock,
+  projectFifthingDate,
   CURRENT_ERA,
 } from './emission'
 
@@ -154,7 +155,6 @@ export function getEraTableData(currentBlock?: number | null): EraRow[] {
     currentBlock && currentBlock > 0 ? getEraForBlock(currentBlock) : CURRENT_ERA
   return schedule.slice(0, 12).map((era) => {
     const milestone = emissionMilestones.find((m) => m.era === era.number)
-    const projectedYear = 2017 + (era.number - 1) * 2.5
     return {
       number: era.number,
       startBlock: era.startBlock,
@@ -162,7 +162,7 @@ export function getEraTableData(currentBlock?: number | null): EraRow[] {
       blockReward: era.blockReward,
       eraSupply: era.eraSupply,
       totalSupply: era.totalSupply,
-      date: milestone?.date ?? `~${Math.round(projectedYear)}`,
+      date: milestone?.date ?? `~${projectFifthingDate(era.number).getUTCFullYear()}`,
       event: milestone?.event ?? null,
       isPast: era.number < activeEra,
       isCurrent: era.number === activeEra,

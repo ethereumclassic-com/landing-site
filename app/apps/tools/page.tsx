@@ -47,7 +47,7 @@ export default function ToolsPage() {
   const toolsApps = getAppsByCategory('Tools')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -87,7 +87,7 @@ export default function ToolsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Essential utilities for working with Ethereum Classic — portfolio trackers, mining dashboards, RPC endpoints, block explorers, and developer automation tools. These utilities support both everyday ETC users and infrastructure operators who need reliable, real-time network data.
+            Utilities for working with Ethereum Classic: portfolio trackers, mining dashboards, RPC endpoints, block explorers and developer automation tools. These utilities support both everyday ETC users and infrastructure operators who need reliable, real-time network data.
           </p>
         </div>
       </section>
@@ -174,6 +174,6 @@ export default function ToolsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

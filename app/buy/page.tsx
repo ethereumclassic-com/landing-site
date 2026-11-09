@@ -157,7 +157,7 @@ export default function BuyPage() {
   ]
 
   return (
-    <main>
+    <div>
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 text-center md:px-10 md:pt-32 md:pb-24 lg:px-12">
 
@@ -262,7 +262,7 @@ export default function BuyPage() {
                 Trade on Decentralized Exchange
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[var(--color-text-secondary)]">
-                ETCswap is Ethereum Classic&apos;s native DEX - trade directly from your wallet with no KYC required
+                ETCswap is Ethereum Classic&apos;s native DEX: trade directly from your wallet, with no KYC
               </p>
             </div>
             <ExchangeCard exchange={dex} index={0} />
@@ -306,10 +306,10 @@ export default function BuyPage() {
               ETC Native
             </span>
             <h2 className="mt-4 text-2xl font-bold text-[var(--text-primary)] md:text-3xl">
-              Buy ETC via ClassicUSD
+              Buy ETC with Classic USD
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[var(--color-text-secondary)]">
-              Use Brale to purchase ClassicUSD (USC) with ACH bank transfer, then swap to ETC on ETCswap - no centralized exchange needed
+              Buy Classic USD (USC) from Brale by ACH bank transfer, then swap it for ETC on ETCswap, with no crypto exchange account
             </p>
           </div>
 
@@ -318,7 +318,7 @@ export default function BuyPage() {
               {
                 step: 1,
                 title: 'Fund via Brale',
-                description: 'Connect your bank and purchase ClassicUSD (USC) stablecoin via ACH transfer.',
+                description: 'Connect your bank and buy the Classic USD (USC) stablecoin by ACH transfer.',
               },
               {
                 step: 2,
@@ -328,7 +328,7 @@ export default function BuyPage() {
               {
                 step: 3,
                 title: 'Hold in Wallet',
-                description: 'Your ETC is now in your wallet - no exchange custody needed.',
+                description: 'Your ETC is in your own wallet, with no exchange holding it.',
               },
             ].map((item) => (
               <div
@@ -518,8 +518,8 @@ export default function BuyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[var(--text-primary)]">Verified Exchanges</span>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">All listed exchanges verified</p>
+              <span className="text-sm font-medium text-[var(--text-primary)]">Vetted Listings</span>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">Every exchange is reviewed before it is listed</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center">
               <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -527,8 +527,8 @@ export default function BuyPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[var(--text-primary)]">No Hidden Fees</span>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">Transparent pricing always</p>
+              <span className="text-sm font-medium text-[var(--text-primary)]">Compare Fees</span>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">Trading fees side by side on the compare page</p>
             </div>
             <div className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 text-center">
               <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -537,11 +537,11 @@ export default function BuyPage() {
                 </svg>
               </div>
               <span className="text-sm font-medium text-[var(--text-primary)]">Global Access</span>
-              <p className="mt-1 text-xs text-[var(--color-text-muted)]">Available worldwide</p>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">Options for most countries</p>
             </div>
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

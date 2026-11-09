@@ -13,7 +13,7 @@ const frameworks = [
     status: 'badge-pending' as const,
     statusLabel: 'Pending Senate',
     description:
-      "Passed the US House in July 2025. ETC's PoW consensus and decentralized issuance profile positions it as a digital commodity candidate, subject to CFTC jurisdiction for derivatives, with spot markets open under existing law.",
+      "Passed the US House in July 2025 and awaits the Senate. ETC's Proof-of-Work consensus and mined issuance position it as a digital commodity candidate under CFTC oversight.",
   },
   {
     icon: (
@@ -23,11 +23,11 @@ const frameworks = [
     ),
     act: 'MiCA',
     jurisdiction: 'European Union',
-    label: 'Decentralized Asset',
+    label: 'No Issuer',
     status: 'badge-available' as const,
     statusLabel: 'In Force',
     description:
-      'Fully applied December 30, 2024. ETC qualifies as a decentralized asset exempt from ART/EMT issuer obligations. MiCA-licensed CASPs may offer ETC without per-asset approval. This is the most favorable classification under the regulation.',
+      'Fully applied since December 30, 2024. ETC has no issuer, so the rules for asset-referenced and e-money tokens do not apply to it, and authorized crypto-asset service providers can offer it without a separate approval for the asset.',
   },
   {
     icon: (
@@ -41,7 +41,7 @@ const frameworks = [
     status: 'badge-available' as const,
     statusLabel: 'Signed July 2025',
     description:
-      'Signed into law July 18, 2025. Classic USD ($USC) by Brale is live on ETC mainnet: a 1:1 USD-backed stablecoin issued under US money transmission licensing. ETC is a demonstrated stablecoin platform aligned with the GENIUS Act.',
+      'Signed into law July 18, 2025. Classic USD ($USC), a 1:1 USD-backed stablecoin issued by Brale under US money transmitter licenses, is live on ETC mainnet and aligned with the GENIUS Act.',
   },
 ]
 
@@ -58,27 +58,13 @@ export function RegulationHeroSection() {
             <span className="text-[var(--brand-green)]">Regulated Era</span>
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-[var(--text-muted)]">
-            ETC sits at the intersection of three major global frameworks, each
-            defined by landmark 2025 legislation: digital commodity candidate
-            under the CLARITY Act, decentralized asset under MiCA, and live
-            stablecoin platform under the GENIUS Act.
+            Three frameworks shape how Ethereum Classic is treated in the United States and Europe. The pending CLARITY Act would bring digital commodities under the CFTC, and ETC is positioned as a candidate. MiCA, in force across the EU, covers ETC as a crypto-asset with no issuer. The GENIUS Act sets federal rules for payment stablecoins, and Classic USD on ETC is aligned with it.
           </p>
           <p className="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
-            Most digital assets qualify under one of these frameworks. ETC
-            qualifies under all three simultaneously. Its Proof-of-Work
-            consensus satisfies the decentralization criteria regulators use to
-            classify assets as commodities. Its EVM compatibility makes it a
-            live platform for regulated stablecoin issuance. These are not
-            separate positioning choices. They are the same technical
-            properties expressed from different regulatory vantage points. Its
-            regulatory surface is additive, not exclusive.
+            The same properties place ETC in all three. Proof-of-Work consensus with no controlling entity is the profile that commodity frameworks look for, and the EVM lets regulated issuers deploy stablecoins on it.
           </p>
           <p className="mt-4 text-base leading-relaxed text-[var(--text-muted)]">
-            The global regulatory frameworks that define ETC&apos;s position were
-            enacted in 2024 and 2025. ETC&apos;s technical profile was built in
-            2015 and 2016. It was not retrofitted to match regulators. The
-            network arrived at this moment as it was designed: open, immutable,
-            and without a central issuer.
+            ETC&apos;s design predates all three. It has been open, immutable and without a central issuer since 2015, years before these rules were written.
           </p>
         </FadeIn>
       </div>

@@ -5,6 +5,7 @@ import { FadeIn } from '@/app/components/ui/FadeIn'
 import FifthingCountdown from '@/app/components/FifthingCountdown'
 import EraHistoryTable from '@/app/components/ecip1017/EraHistoryTable'
 import { useFifthing } from '@/app/hooks/useFifthing'
+import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 
 function ChartSkeleton() {
   return <div className="h-[360px] animate-pulse rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)]" />
@@ -33,6 +34,8 @@ export interface InitialFifthingData {
   daysSinceLastFifthing: number
   inflationRate: number
   nextInflationRate: number
+  /** Blockscout's average block time when the page was built, in seconds; null when it was unavailable. */
+  avgBlockTime: number | null
   progress: number
 }
 
@@ -57,6 +60,7 @@ export default function BlockRewardCountdownClient({ initial }: { initial: Initi
   const prog = loading ? initial.progress : (progress ?? initial.progress)
 
   const expectedDate = loading ? initial.expectedDate : getExpectedFifthingDate(remaining, avgBlockTime ?? undefined)
+  const blockTimeUsed = (loading ? initial.avgBlockTime : (avgBlockTime ?? initial.avgBlockTime)) ?? NOMINAL_BLOCK_TIME_SECONDS
   const daysSince = loading ? initial.daysSinceLastFifthing : getDaysSinceLastFifthing(block, avgBlockTime ?? undefined)
   const inflationRate = loading ? initial.inflationRate : getAnnualInflationRate(block, avgBlockTime ?? undefined)
   const nextInflationRate = loading ? initial.nextInflationRate : getNextEraInflationRate(block, avgBlockTime ?? undefined)
@@ -78,10 +82,10 @@ export default function BlockRewardCountdownClient({ initial }: { initial: Initi
           <div className="mx-auto max-w-6xl">
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               <StatCell label="Current Block" value={block.toLocaleString()} sub="live from Blockscout" />
-              <StatCell label="Current Era" value={`Era ${era}`} sub="of infinite eras" />
+              <StatCell label="Current Era" value={`Era ${era}`} sub="20% less reward each era" />
               <StatCell label="Block Reward" value={`${reward} ETC`} sub={`→ ${rewardNext} ETC next era`} />
-              <StatCell label="Expected Date" value={expectedDate} sub="at 13s avg block time" />
-              <StatCell label="Days in Era" value={`${daysSince.toLocaleString()}d`} sub="since last fifthing" />
+              <StatCell label="Expected Date" value={expectedDate} sub={`at ${blockTimeUsed.toFixed(1)}s avg block time`} />
+              <StatCell label="Days in Era" value={`${daysSince.toLocaleString()}d`} sub="estimated from blocks mined" />
               <StatCell label="Annual Inflation" value={`${inflationRate}%`} sub={`${nextInflationRate}% next era`} />
             </div>
           </div>
