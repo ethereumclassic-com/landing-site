@@ -216,7 +216,7 @@ const timeline = [
   { year: '2022', events: 'Mystique defers EIP-1559 · Ethereum Merge · ETC takes on displaced Ethash hashrate' },
   { year: '2024', events: 'Spiral brings partial Shanghai parity · ETC Cooperative reserves near exhaustion' },
   { year: '2025', events: 'Olympia ECIPs published (July 4) · GENIUS Act signed (July 18) · Classic USD live on ETC mainnet' },
-  { year: '2027', events: 'Olympia mainnet activation targeted, as a proposal · EVM alignment through Glamsterdam · EIP-1559 · Olympia DAO' },
+  { year: '2027', events: 'Olympia mainnet activation targeted, as a proposal · EVM alignment through Fusaka and into Glamsterdam · EIP-1559 · Olympia DAO' },
 ]
 
 export default function OlympiaHistoryPage() {

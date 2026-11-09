@@ -27,8 +27,9 @@ export default function UpgradesPage() {
             className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
             Every ETC network upgrade follows the same process: ECIP specification, independent client
-            implementation, testnet validation, and mainnet activation. Olympia, a proposal, would bring EVM
-            alignment through Glamsterdam, with EIPs from London, Dencun, Pectra, Fusaka and Glamsterdam.
+            implementation, testnet validation, and mainnet activation. Olympia, a proposal, would draw its EIPs
+            from London, Dencun, Pectra, Fusaka and Glamsterdam, carrying EVM alignment through Fusaka and into
+            Glamsterdam.
           </p>
         </div>
       </section>

@@ -261,7 +261,7 @@ export const forks: ForkData[] = [
     // The ECIPs that change consensus or are carried by clients; the rest of the suite is listed at /olympia.
     ecips: [1111, 1112, 1121].map((n) => ({ name: `ECIP-${n}`, url: ecipUrl(n) })),
     summary:
-      'A proposal, targeted for mainnet activation in 2027, with draft ECIPs and the activation block TBD: EVM alignment through Glamsterdam, and an EIP-1559 base fee credited to a treasury.',
+      'A proposal, targeted for mainnet activation in 2027, with draft ECIPs and the activation block TBD: EVM alignment through Fusaka and into Glamsterdam, and an EIP-1559 base fee credited to a treasury.',
     keyChanges: [
       'EIP-1559 and EIP-3198, with the base fee credited to the Sovereignty Vault address (ECIP-1111)',
       'The Treasury at that address, and Olympia DAO to govern it, deployed before the fork (ECIP-1112, ECIP-1113)',

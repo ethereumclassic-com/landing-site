@@ -67,10 +67,11 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   `OLYMPIA_STATUS` from `app/olympia/data/olympia.ts`, where the countdown's
   placeholder date also lives. It advances the execution layer through Dencun,
   Pectra and Fusaka and carries that work into Glamsterdam; ECIP-1121 adopts
-  part of Glamsterdam's set, so full Glamsterdam parity is never claimed. ECIP
-  titles come from `lib/olympia-ecips.ts` and every EIP list or count from
-  `lib/olympia-eips.ts`. ECIP-1122, 1123 and 1124 are unpublished and never
-  cited, nor are ECIP-1120 and ECIP-1130, other authors' proposals.
+  part of Glamsterdam's set, so full Glamsterdam parity is never claimed, nor
+  "EVM alignment through Glamsterdam": write "through Fusaka and into
+  Glamsterdam". ECIP titles come from `lib/olympia-ecips.ts` and every EIP list
+  or count from `lib/olympia-eips.ts`. ECIP-1122, 1123 and 1124 are unpublished
+  and never cited, nor are ECIP-1120 and ECIP-1130, other authors' proposals.
 - **Naming** — "The DAO" is only the 2016 organization behind the ETH/ETC
   split, never Olympia DAO or Ethereum Classic DAO. Write "Ethereum Classic DAO"
   in full every time, never "the LLC"; its legal name, Ethereum Classic DAO LLC,

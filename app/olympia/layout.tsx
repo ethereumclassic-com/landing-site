@@ -4,10 +4,10 @@ import { OG_BASE } from '@/lib/seo'
 export const metadata: Metadata = {
   title: {
     template: '%s | Ethereum Classic',
-    default: 'Olympia: EVM Alignment Through Glamsterdam | Ethereum Classic',
+    default: 'Olympia: EVM Alignment Into Glamsterdam | Ethereum Classic',
   },
   description:
-    'Olympia is a proposed Ethereum Classic upgrade, targeted for 2027: EVM alignment through Glamsterdam and an EIP-1559 base fee credited to a treasury.',
+    'A proposed Ethereum Classic upgrade, targeted for 2027: EVM alignment through Fusaka and into Glamsterdam, and an EIP-1559 base fee credited to a treasury.',
   keywords: [
     'Olympia upgrade',
     'Olympia proposal',

@@ -221,7 +221,8 @@ includes transaction fees, which vary per block.
   table and count comes from `lib/olympia-eips.ts`, generated from ECIP-1121's
   rows, and the one fork timeline is `app/olympia/components/ForkTimeline.tsx`.
   ECIP-1121 adopts part of Glamsterdam's set, so full Glamsterdam parity is
-  never claimed.
+  never claimed, and neither is "EVM alignment through Glamsterdam", which
+  reads as parity: write "through Fusaka and into Glamsterdam".
 - **Tooling:** never write that Ethereum tools work "without modification", or
   of "full JSON-RPC parity". ECIP-1111 §Motivation records that tooling assuming
   EIP-1559 needs an ETC-specific path today: Foundry passes `--legacy`.
