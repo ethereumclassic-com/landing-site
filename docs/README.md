@@ -17,31 +17,13 @@ Commercial/consumer gateway for the Ethereum Classic ecosystem.
 
 ---
 
-## Project Status
-
-| Phase | Milestones | Complete | Status |
-|-------|------------|----------|--------|
-| Phase 1 | 7 | 7 | 100% |
-| Phase 2 | 5 | 5 | 100% |
-| Phase 3 | 10 | 10 | 100% |
-| Phase 4 | 12 | 12 | 100% |
-| Phase 5 | 7 | 7 | 100% |
-| Phase 6 | 23 | 23 | 100% |
-| Phase 7 | 19 | 0 | 0% (QA & Content Review) |
-| Phase 8 | 11 | 0 | 0% (Human-only) |
-| **Total** | **94** | **71** | **76%** |
-
-**Current:** Phase 7 - Comprehensive QA & Content Review
-
----
-
 ## Product Purpose
 
 EthereumClassic.com is the **commercial gateway** for Ethereum Classic:
 
 ```
-EthereumClassic.com (THIS SITE) → docs.coregeth.com → github.com/ethereumclassic/core-geth
-   (awareness + products)         (consideration)    (conversion)
+EthereumClassic.com (THIS SITE) → coregeth.com    → github.com/ethereumclassic/core-geth
+   (awareness + products)         (consideration)   (conversion)
 ```
 
 **Goal:** Drive adoption of Ethereum Classic through:
@@ -127,36 +109,13 @@ Ethereum Classic is:
 
 ## Development
 
-See the root [README.md](../README.md) and [CONTRIBUTING.md](../CONTRIBUTING.md) for development setup and guidelines.
+See [CONTRIBUTING.md](../CONTRIBUTING.md) and [AGENTS.md](../AGENTS.md) for development setup and guidelines.
 
 ### Quick Start
 
 ```bash
-npm install
+pnpm install
 pnpm dev
 pnpm build
 pnpm lint
 ```
-
----
-
-## Current Phase: QA & Content Review (Phase 7)
-
-Comprehensive file-by-file review of the codebase:
-- Remove obsolete/unused files
-- Align documentation with current reality
-- Elevate copy from placeholder to professional standard
-- Complete stub pages or document blockers
-- Final cleanup and verification
-
-## Phase 8: Human-Required Work
-
-The following require human intervention:
-- Domain setup and DNS configuration
-- Exchange/affiliate API keys and signups
-- Manual accessibility testing
-- Mobile device testing
-- Content accuracy review
-- Data source research for live APIs
-
-See [MILESTONES.md](MILESTONES.md) for complete details.

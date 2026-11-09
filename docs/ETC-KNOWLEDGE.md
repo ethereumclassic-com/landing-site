@@ -68,6 +68,9 @@ Plugin upstream repositories (link these; every `github.com/ethereumclassic/<plu
 
 ### Core-Geth
 
+**Website**: https://coregeth.com, the project's landing page: downloads at /downloads/, guides at /guides/ for
+installing a node, moving one to the v1.13 line and keeping a v1.12 node finding peers, and the audits and what
+the network is running at /security/
 **Repository**: https://github.com/ethereumclassic/core-geth
 **Docs**: https://docs.coregeth.com
 **Releases**: https://github.com/ethereumclassic/core-geth/releases
