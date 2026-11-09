@@ -5,9 +5,13 @@ import { CONTACT_EMAILS, DISCORD_URL } from '@/lib/social'
  * (app/components/JsonLd.tsx), the About page and both llms files, so search engines, AI systems and
  * readers are told the same thing. lib/site-facts.ts holds the facts most often stated wrongly elsewhere.
  *
- * The site describes itself by its domain, its sources and its relationships, never as "official":
- * Ethereum Classic is an open network that no one organization speaks for. Authority here comes from
- * linking every claim to its primary source.
+ * The site takes the position bitcoin.com takes for Bitcoin, with ethereumclassic.org as its bitcoin.org: it is
+ * the home of Ethereum Classic and says so. The maintainer's descriptor, "immutable infrastructure, programmable
+ * global finance", plays the part of bitcoin.com's "Bitcoin for Everyone": it leads the home page's description
+ * and fills the hero badge, the footer, the llms summary and the network's structured data, while the title
+ * names the original Ethereum Virtual Machine. It never calls itself "official", as bitcoin.com does not:
+ * Ethereum Classic is an open network that no one organization speaks for, and the community site says there is
+ * "no official anything". The site's standing comes from linking every claim to its source.
  */
 
 export const SITE_URL = 'https://ethereumclassic.com'
@@ -21,7 +25,7 @@ export const COMMUNITY_SITE_URL = 'https://ethereumclassic.org'
 export const CORRECTIONS_EMAIL = CONTACT_EMAILS.website
 
 export const SITE_DESCRIPTION =
-  'Ethereum Classic at its namesake domain: wallets, exchanges, apps, mining, development and research, with network figures read from the chain and each specification linked to its source.'
+  'The home of Ethereum Classic: wallets, exchanges, apps, mining, development and research, with network figures read from the chain and each specification linked to its source.'
 
 /** Pages that identify the Ethereum Classic network itself, for structured data's sameAs. */
 export const ETC_IDENTITY_URLS = [

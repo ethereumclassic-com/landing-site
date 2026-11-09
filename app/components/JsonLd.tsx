@@ -40,7 +40,7 @@ export function SiteJsonLd() {
         name: 'Ethereum Classic',
         alternateName: 'ETC',
         description:
-          'Ethereum Classic is the original Ethereum blockchain, producing blocks continuously since July 30, 2015: a Proof-of-Work network with native smart contracts and a fixed monetary policy.',
+          'Ethereum Classic is the original Ethereum blockchain and immutable infrastructure for programmable global finance: a Proof-of-Work network with native smart contracts and a fixed monetary policy, producing blocks continuously since July 30, 2015.',
         sameAs: ETC_IDENTITY_URLS,
       },
       {

@@ -12,7 +12,8 @@ mining, developer tools, markets, news, research, and the Olympia upgrade. It
 routes visitors to real ETC activity rather than reimplementing it.
 
 ethereumclassic.org is the community and protocol-docs site. This is the consumer
-gateway. Keep the split.
+gateway, the home of Ethereum Classic, in the relationship bitcoin.com has to
+bitcoin.org. Keep the split.
 
 **Success is downstream clicks, not time on site.**
 
@@ -71,11 +72,17 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   `lib/olympia-eips.ts`. ECIP-1122, 1123 and 1124 are unpublished and never
   cited, nor are ECIP-1120 and ECIP-1130, other authors' proposals.
 - **Naming** — "The DAO" is only the 2016 organization behind the ETH/ETC
-  split, never Olympia DAO or Ethereum Classic DAO. Write "Ethereum Classic DAO";
-  its legal name, Ethereum Classic DAO LLC, only where its legal identity is the
-  point. The mining algorithm is "Etchash" in prose.
-- **The site's identity** — describe ethereumclassic.com by its domain, sources
-  and relationships, never as "official". `lib/site-identity.ts` and
+  split, never Olympia DAO or Ethereum Classic DAO. Write "Ethereum Classic DAO"
+  in full every time, never "the LLC"; its legal name, Ethereum Classic DAO LLC,
+  only where its legal identity is the point. The mining algorithm is "Etchash" in prose.
+- **The site's identity** — ethereumclassic.com is the home of Ethereum Classic,
+  bitcoin.com's position beside bitcoin.org, with ethereumclassic.org in
+  bitcoin.org's place. Its descriptor, "immutable infrastructure, programmable
+  global finance", leads the home page's description and fills the hero badge,
+  footer, llms summary and network structured data; the title stays "Ethereum
+  Classic: The Original Ethereum Virtual Machine". Never "official", as
+  bitcoin.com is not; nothing contradicts ethereumclassic.org's "no official
+  anything". `lib/site-identity.ts` and
   `lib/site-facts.ts` feed the structured data, the About page and the llms files.
 - **Ethereum Classic DAO and Olympia** — ECIP-1114 names Ethereum Classic DAO LLC as the legal
   wrapper it contemplates for Olympia DAO, downstream of it in authority, with
@@ -85,7 +92,8 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   JSON-RPC parity" (ECIP-1111 §Motivation: Foundry needs `--legacy` today); the
   CLARITY Act as settled (it is pending: "positioned for", "candidate"); ETCG
   as an ETF (it is a trust); Classic USD as "compliant" or "the first" (it is
-  "aligned with"); and superlatives.
+  "aligned with"); and superlatives, apart from the site's own "the home of
+  Ethereum Classic".
 - **Clients** — Core-Geth is the recommended client: a go-ethereum downstream,
   not native and not a plugin, recommended on its v1.13 line. A node older than
   v1.12.17 (coregeth.com's `MOVE_FLOOR`) never scheduled Spiral, so it resyncs
@@ -121,9 +129,10 @@ references, or roadmap terminology in rendered content.
 
 **Write timeless.** No "coming soon", "not yet", "planned post-X". Describe what a
 thing is; put mutable status in a badge or status property so changing it later is
-one edit. Never type the version of a client's current release: name the line a
-recommendation needs, and link the release itself as `releases/latest`. A version
-a fix first shipped in is history and stays.
+one edit. Never type the version of a client's newest release: name the line a
+recommendation needs, and link the release itself as `releases/latest`, labeled
+"Latest release"; the site's copy never says "current release". A version a fix
+first shipped in is history and stays.
 
 ## Three paths
 

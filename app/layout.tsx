@@ -21,9 +21,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
-  title: "Ethereum Classic: Immutable Infrastructure for Global Finance",
+  title: "Ethereum Classic: The Original Ethereum Virtual Machine",
   description:
-    "The only mature Proof-of-Work blockchain with native smart contracts: permissionless, censorship-resistant, and operating continuously since 2015.",
+    "Immutable infrastructure, programmable global finance: the only mature Proof-of-Work blockchain with native smart contracts, operating continuously since 2015.",
   keywords: [
     "Ethereum Classic",
     "ETC",

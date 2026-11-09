@@ -45,13 +45,13 @@ export default function Hero({ hashrate }: { hashrate?: HashrateChartData }) {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-green)] opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--brand-green)]" />
             </span>
-            The Leading Smart Contract Platform secured by Proof-of-Work
+            Immutable infrastructure, programmable global finance
           </span>
         </div>
 
         {/* Subheading */}
         <p className="mx-auto mt-6 max-w-4xl text-lg text-[var(--text-secondary)] md:text-xl">
-          Ethereum Classic is immutable infrastructure for global finance. As the only mature Proof-of-Work blockchain with native smart contracts, it is permissionless and censorship-resistant, and dedicated miners have secured it continuously since 2015.
+          As the only mature Proof-of-Work blockchain with native smart contracts, Ethereum Classic is permissionless and censorship-resistant, and dedicated miners have secured it continuously since 2015.
         </p>
 
         {/* Hashrate chart */}

@@ -8,7 +8,8 @@ routes visitors to real ETC activity rather than reimplementing it.
 - **Repo:** `ethereumclassic-com/landing-site` (public)
 - **Branch:** work on `main`; it deploys.
 - **Companion site:** ethereumclassic.org is the community and protocol-docs
-  site. This one is the consumer gateway. Keep the split.
+  site. This one is the consumer gateway, the home of Ethereum Classic, in the
+  relationship bitcoin.com has to bitcoin.org. Keep the split.
 
 ---
 
@@ -180,17 +181,26 @@ includes transaction fees, which vary per block.
   `/research/dao-fork`, `/why-classic/genesis` and `/olympia/history` stay, as
   research and as the record of how the chain came to be (maintainer decision).
 - **Naming.** "The DAO" is the 2016 organization behind the ETH/ETC split and
-  nothing else: never write it for Olympia DAO or Ethereum Classic DAO. Name the
-  LLC "Ethereum Classic DAO"; its legal name, Ethereum Classic DAO LLC, appears
-  only where its legal identity is the point, as in ECIP-1114's naming of the
-  legal wrapper. The mining algorithm is "Etchash" in prose; `ETCHASH` and
+  nothing else: never write it for Olympia DAO or Ethereum Classic DAO. Write
+  "Ethereum Classic DAO" in full every time, a second mention included, and
+  never "the LLC", nor an "it" that could read as Olympia DAO; its legal name,
+  Ethereum Classic DAO LLC, appears only where its legal identity is the point,
+  as in ECIP-1114's naming of the legal wrapper. The mining algorithm is "Etchash" in prose; `ETCHASH` and
   `etchash` stay only where a miner's command line spells them.
-- **The site's identity.** Describe ethereumclassic.com by its domain, its
-  sources and its relationships, never as "official": Ethereum Classic is an
-  open network that no organization speaks for. `lib/site-identity.ts` (what the
-  site is and where its figures come from) and `lib/site-facts.ts` (facts other
-  sources often state wrongly) feed the structured data, the About page and both
-  llms files, so change them there.
+- **The site's identity.** ethereumclassic.com takes the position bitcoin.com
+  takes for Bitcoin, with ethereumclassic.org as its bitcoin.org (maintainer
+  decision): it is the home of Ethereum Classic and says so. The maintainer's
+  descriptor, "immutable infrastructure, programmable global finance", plays the
+  part of bitcoin.com's "Bitcoin for Everyone": it leads the home page's
+  description and fills the hero badge, the footer, the llms summary and the
+  network's structured data, while the title stays the hero headline, "Ethereum
+  Classic: The Original Ethereum Virtual Machine". It never calls itself
+  "official", as bitcoin.com does not, and nothing here contradicts
+  ethereumclassic.org's "no official anything": Ethereum Classic is an open
+  network that no organization speaks for. `lib/site-identity.ts` (what the site is and where its figures
+  come from) and `lib/site-facts.ts` (facts other sources often state wrongly)
+  feed the structured data, the About page and both llms files, so change them
+  there.
 - **Olympia is a proposal.** Its ECIPs are drafts and its activation block is
   TBD, so every sentence about it is in proposal voice ("would", "proposed"),
   and its state shows as `OLYMPIA_STATUS`, "Proposed · Draft ECIPs ·
@@ -285,7 +295,8 @@ includes transaction fees, which vary per block.
   trust product, never an ETF. Classic USD is issued by Brale and "aligned with"
   MiCA and the GENIUS Act, never "compliant" and never "the first".
 - **No hype and no superlatives:** not "most significant", "unmatched", "the
-  premier" or "gold standard".
+  premier" or "gold standard". The one primacy claim is the site's own, "the
+  home of Ethereum Classic" (the site's identity, above).
 
 **Consumer copy.** Everything a visitor reads is consumer-facing; internal and
 development language must not reach the UI.
@@ -303,10 +314,12 @@ milestone numbers, phase references, or roadmap terminology in rendered content.
 **Write timeless.** No "future work", "coming soon", "planned post-X", "not yet".
 Describe what a thing is; put mutable status in a structured field such as a
 badge or status property, so changing it later is one edit rather than a prose
-hunt. A client's current release is mutable status too, and no field keeps up
+hunt. A client's newest release is mutable status too, and no field keeps up
 with it: never type its version. Name the line where a recommendation needs one
 (`CORE_GETH_RECOMMENDED_LINE`), and link the release itself as
-`releases/latest`. A version a fix first shipped in is history and stays.
+`releases/latest`, labeled "Latest release", as ethereumclassicdao.org labels
+it; the site's copy never says "current release". A version a fix first
+shipped in is history and stays.
 
 ## Listing apps, exchanges, and pools
 

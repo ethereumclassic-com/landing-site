@@ -41,7 +41,7 @@ const moveGuide = listedArticle('core-geth-v1-12-to-v1-13-migration')
 export function GET() {
   const body = `# Ethereum Classic (ETC)
 
-> Ethereum Classic is immutable infrastructure for global finance: the only mature Proof-of-Work blockchain with native smart contracts, permissionless and censorship-resistant, and secured by dedicated miners continuously since 2015.
+> Ethereum Classic is immutable infrastructure for programmable global finance: the only mature Proof-of-Work blockchain with native smart contracts, permissionless and censorship-resistant, and secured by dedicated miners continuously since 2015.
 
 Full context for AI agents: https://ethereumclassic.com/llms-full.txt
 

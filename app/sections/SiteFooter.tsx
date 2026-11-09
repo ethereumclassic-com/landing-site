@@ -150,7 +150,7 @@ export function SiteFooter() {
           </p>
 
           <p className="text-center text-xs text-[var(--text-muted)]">
-            Immutable infrastructure for global finance.
+            Immutable infrastructure, programmable global finance.
           </p>
 
           <a

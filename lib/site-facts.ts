@@ -71,7 +71,7 @@ export const COMMONLY_MISSTATED: MisstatedFact[] = [
 /** The "About this site" paragraph for the llms files. */
 export function siteAboutText(): string {
   const sources = SITE_SOURCES.map((s) => `- ${s.subject}: ${s.detail} (${s.href})`).join('\n')
-  return `ethereumclassic.com is the Ethereum Classic portal at the network's namesake domain. It follows the ethereumclassic GitHub organization (${ETC_GITHUB_URL}), where the reference client and the ECIPs are maintained, and links each claim to its primary source:
+  return `ethereumclassic.com is the home of Ethereum Classic. It follows the ethereumclassic GitHub organization (${ETC_GITHUB_URL}), where the reference client and the ECIPs are maintained, and links each claim to its primary source:
 
 ${sources}
 

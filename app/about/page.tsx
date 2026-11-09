@@ -28,10 +28,9 @@ export default function AboutPage() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            ethereumclassic.com is the Ethereum Classic portal at the network&apos;s namesake domain. It covers
-            Ethereum Classic, the only mature Proof-of-Work blockchain with native smart contracts, producing blocks
-            since July 2015: its wallets, exchanges, apps, mining and developer tools, with news and research, for
-            users, developers, miners and institutions.
+            ethereumclassic.com is the home of Ethereum Classic, the only mature Proof-of-Work blockchain with
+            native smart contracts, producing blocks since July 2015: its wallets, exchanges, apps, mining and
+            developer tools, with news and research, for users, developers, miners and institutions.
           </p>
         </div>
       </section>
