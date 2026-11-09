@@ -2,16 +2,17 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Cpu, Code2, Shield, Building2, Scale } from 'lucide-react'
 import { DISCORD_URL } from '@/lib/social'
+import { COMMUNITY_SITE_URL, CORRECTIONS_EMAIL, ETC_GITHUB_URL, SITE_REPO_URL, SITE_SOURCES } from '@/lib/site-identity'
 
 export const metadata: Metadata = {
   title: 'About | Ethereum Classic',
   description:
-    'About EthereumClassic.com, a guide to Ethereum Classic: the wallets, exchanges, apps, mining and developer tools on the network, with news and research.',
+    'About ethereumclassic.com: what it covers, where its figures and specifications come from, and how to report a correction.',
 }
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div className="relative mx-auto max-w-4xl text-center">
@@ -20,16 +21,17 @@ export default function AboutPage() {
           </span>
 
           <h1 className="mt-6 text-4xl font-bold tracking-tight text-[var(--text-primary)] md:text-5xl">
-            The Primary Website for{' '}
+            About{' '}
             <span className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-success)] bg-clip-text text-transparent">
-              Ethereum Classic
+              ethereumclassic.com
             </span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]">
-            EthereumClassic.com is the comprehensive resource for Ethereum Classic — the world&apos;s largest
-            Proof-of-Work smart contract platform, running continuously since July 2015. Covering news, education,
-            developer tools, mining resources, and ecosystem applications for users, developers, miners, and institutions.
+            ethereumclassic.com is the Ethereum Classic portal at the network&apos;s namesake domain. It covers
+            Ethereum Classic, the only mature Proof-of-Work blockchain with native smart contracts, producing blocks
+            since July 2015: its wallets, exchanges, apps, mining and developer tools, with news and research, for
+            users, developers, miners and institutions.
           </p>
         </div>
       </section>
@@ -42,7 +44,7 @@ export default function AboutPage() {
             {[
               { title: 'News', description: 'Protocol updates, ecosystem developments, and EVM industry analysis.', href: '/news' },
               { title: 'Learn', description: 'Guides for users, traders, developers, and security-conscious participants.', href: '/learn' },
-              { title: 'Apps', description: 'Verified dApps and infrastructure built on Ethereum Classic.', href: '/apps' },
+              { title: 'Apps', description: 'Reviewed dApps and infrastructure built on Ethereum Classic.', href: '/apps' },
               { title: 'Mining', description: 'Hardware, software, pools, and profitability for ETC miners.', href: '/mining' },
               { title: 'Build', description: 'Developer documentation, RPC endpoints, and smart contract tools.', href: '/build' },
               { title: 'Research', description: 'Network statistics, supply data, fee analysis, and ecosystem reports.', href: '/research' },
@@ -66,17 +68,59 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Our Mission</h2>
           <div className="mt-6 space-y-4 text-[var(--color-text-secondary)]">
             <p>
-              Ethereum Classic is the original, unaltered Ethereum blockchain. It is secured by proof-of-work, governed by a
+              Ethereum Classic is the original, unaltered Ethereum blockchain. It is secured by Proof-of-Work, governed by a
               fixed monetary policy, and committed to the principle that code is law.
             </p>
             <p>
-              This website exists to provide accurate, up-to-date information about the ETC ecosystem. We cover protocol
-              developments, review dApps, publish educational guides, and maintain developer resources, all without
-              gatekeeping or editorial bias.
+              This website exists to provide accurate, up-to-date information about the ETC ecosystem. We cover
+              protocol developments, review dApps, publish educational guides and maintain developer resources, and
+              every listing is reviewed before it appears.
             </p>
             <p>
-              Every piece of content on this site is factual and verifiable. We do not provide financial advice, endorse
-              specific investments, or make price predictions.
+              Content here is written to be factual and verifiable; if something is wrong or out of date, write to{' '}
+              <a href={`mailto:${CORRECTIONS_EMAIL}`} className="text-[var(--color-primary)] hover:underline">
+                {CORRECTIONS_EMAIL}
+              </a>
+              . We do not provide financial advice, endorse specific investments or make price predictions.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Sources */}
+      <section className="border-t border-[var(--border)] px-6 py-16 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-2xl font-bold text-[var(--text-primary)]">Where the Figures Come From</h2>
+          <p className="mt-2 text-[var(--color-text-secondary)]">
+            Figures on this site are read from the sources below, and pages link the specification or project they
+            describe.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {SITE_SOURCES.map((item) => (
+              <div key={item.subject} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+                <p className="text-sm font-semibold text-[var(--text-primary)]">{item.subject}</p>
+                <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--color-primary)] hover:underline">
+                  {item.source}
+                </a>
+                <p className="mt-2 text-sm text-[var(--color-text-muted)]">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 space-y-4 text-[var(--color-text-secondary)]">
+            <p>
+              Ethereum Classic&apos;s reference client and its improvement proposals are maintained in the{' '}
+              <a href={ETC_GITHUB_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
+                ethereumclassic GitHub organization
+              </a>
+              , and this site follows them. The site&apos;s own source is public on{' '}
+              <a href={SITE_REPO_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
+                GitHub
+              </a>
+              , so anyone can see how a figure is computed and propose a correction.{' '}
+              <a href={COMMUNITY_SITE_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
+                ethereumclassic.org
+              </a>{' '}
+              is the community site, with the network&apos;s history, blog and documentation.
             </p>
           </div>
         </div>
@@ -87,7 +131,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">Why Ethereum Classic</h2>
           <p className="mt-2 text-[var(--color-text-secondary)]">
-            Three structural properties that define ETC&apos;s position in the 2025–2026 institutional landscape.
+            Three structural properties that define ETC&apos;s position for institutions.
           </p>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
@@ -96,10 +140,9 @@ export default function AboutPage() {
               </div>
               <h3 className="font-semibold text-[var(--text-primary)]">Proof-of-Work Security</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                The only EVM-compatible blockchain secured by Proof-of-Work. Following Ethereum&apos;s
-                transition to Proof-of-Stake, Ethereum Classic absorbed significant mining infrastructure
-                and stands alone at the intersection of Bitcoin&apos;s security model and Ethereum&apos;s
-                programmability.
+                The only mature EVM blockchain secured by Proof-of-Work. After Ethereum moved to Proof-of-Stake,
+                Ethereum Classic absorbed significant mining infrastructure, and among mature networks it alone combines
+                Bitcoin&apos;s security model with Ethereum&apos;s programmability.
               </p>
             </div>
 
@@ -109,11 +152,9 @@ export default function AboutPage() {
               </div>
               <h3 className="font-semibold text-[var(--text-primary)]">Institutional Infrastructure</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                Listed on all major global exchanges with 300+ active markets. Institutional-grade custody
-                from leading digital asset custodians. Regulated securities exposure via the Grayscale
-                Ethereum Classic Trust (ETCG), trading on OTCQX since 2018 and positioned for ETF
-                conversion, following Grayscale&apos;s established trust-to-ETF precedent with Bitcoin and
-                Ethereum.
+                Listed on major exchanges worldwide, with institutional-grade custody from leading digital asset
+                custodians. The Grayscale Ethereum Classic Trust (ETCG) has traded on OTCQX since 2018, and Grayscale&apos;s
+                conversions of its Bitcoin and Ethereum trusts give it a precedent for becoming an ETF.
               </p>
               <Link
                 href="/investment-products"
@@ -127,13 +168,11 @@ export default function AboutPage() {
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10">
                 <Scale className="h-5 w-5 text-[var(--color-primary)]" />
               </div>
-              <h3 className="font-semibold text-[var(--text-primary)]">Regulatory Clarity</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">Regulatory Position</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                ETC straddles two regulatory trajectories — digital commodity candidate under the CLARITY
-                Act and decentralized asset under MiCA — recognized across leading global regulatory
-                frameworks in the US, EU, UK, Japan, and UAE. The Grayscale Ethereum Classic Trust
-                positions ETC as a second-wave ETF candidate, the only Proof-of-Work smart contract
-                platform in that pipeline.
+                ETC sits on two regulatory paths: a digital commodity candidate under the pending CLARITY Act, and
+                an asset with no issuer under MiCA. The regulation page sets out where it stands in the US, EU, UK,
+                Japan and the UAE.
               </p>
               <Link
                 href="/regulation"
@@ -151,8 +190,8 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-2xl font-bold text-[var(--text-primary)]">The Only Proof-of-Work EVM</h2>
           <p className="mt-2 text-[var(--color-text-secondary)]">
-            Ethereum Classic sits at the intersection of two independent regulatory and institutional
-            trajectories — combining properties from each without belonging entirely to either.
+            Ethereum Classic sits where two regulatory and institutional paths meet, combining properties from
+            each without belonging entirely to either.
           </p>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
@@ -166,9 +205,9 @@ export default function AboutPage() {
                 </div>
               </div>
               <ul className="space-y-2 text-sm text-[var(--color-text-secondary)]">
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>No pre-mine, no foundation controlling the protocol, no issuer.</li>
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Mining hardware is globally distributed and permissionless to acquire.</li>
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Block rewards and tips go to miners; the proposed Olympia treasury would be funded by the base fee, not by inflation.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>No issuer and no foundation controlling the protocol; every coin created after the genesis block was mined.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Mining hardware is sold worldwide, and anyone can buy it.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Block rewards and transaction fees go to miners; the proposed Olympia Treasury would be funded by the base fee, not by inflation.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Positioned for classification as a digital commodity under the pending CLARITY Act, with the same Proof-of-Work profile as Bitcoin.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Energy demand that co-locates with any power source, anywhere in the world.</li>
               </ul>
@@ -188,8 +227,8 @@ export default function AboutPage() {
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Solidity and the EVM through the Shanghai set, so standard Ethereum tools work here, with a legacy-transaction setting where a tool assumes EIP-1559.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Classic USD ($USC) by Brale: a live, 1:1 USD-backed stablecoin on a PoW chain.</li>
                 <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>Stablecoin infrastructure aligned with the GENIUS Act, on a Proof-of-Work network.</li>
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>ETCswap V2 and V3 provide on-chain liquidity for composable DeFi with a regulated stable base.</li>
-                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>MiCA decentralized asset classification: exempt from ART/EMT issuer obligations.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>ETCswap V2 and V3 provide on-chain liquidity for DeFi, with Classic USD as a stable base.</li>
+                <li className="flex gap-2"><span className="mt-1 shrink-0 text-[var(--color-primary)]">·</span>No issuer under MiCA, so the rules for asset-referenced and e-money tokens do not apply.</li>
               </ul>
             </div>
           </div>
@@ -233,13 +272,13 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
           <h3 className="font-semibold text-[var(--text-primary)]">Disclaimer</h3>
           <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-            EthereumClassic.com provides information for educational purposes only. Nothing on this website constitutes
+            ethereumclassic.com provides information for educational purposes only. Nothing on this website constitutes
             financial advice, investment guidance, or a recommendation to buy, sell, or hold any cryptocurrency.
             Cryptocurrency involves significant risk. Always do your own research and consult qualified professionals
             before making financial decisions.
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

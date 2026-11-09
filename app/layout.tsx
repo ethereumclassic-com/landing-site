@@ -5,7 +5,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import { Providers } from "./providers";
-import { OrganizationJsonLd, WebsiteJsonLd, CryptocurrencyJsonLd } from "./components/JsonLd";
+import { SiteJsonLd } from "./components/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ethereumclassic.com"),
-  title: "Ethereum Classic — Immutable Infrastructure for Global Finance",
+  title: "Ethereum Classic: Immutable Infrastructure for Global Finance",
   description:
     "The only mature Proof-of-Work blockchain with native smart contracts: permissionless, censorship-resistant, and operating continuously since 2015.",
   keywords: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "mining",
     "DeFi",
     "dApps",
-    "ETCHash",
+    "Etchash",
     "Olympia",
     "ECIP-1111",
     "ECIP-1112",
@@ -50,10 +50,9 @@ export const metadata: Metadata = {
     "CLARITY Act",
     "GENIUS Act",
     "MiCA",
-    "FSA Green List",
+    "JVCEA Green List",
     "digital commodity",
-    "decentralized asset",
-    "regulated stablecoin",
+    "Classic USD",
     "Japan crypto-asset",
   ],
   authors: [{ name: "Ethereum Classic" }],
@@ -69,7 +68,7 @@ export const metadata: Metadata = {
     siteName: "Ethereum Classic",
     locale: "en_US",
     type: "website",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ethereum Classic — Proof-of-Work Smart Contracts", type: "image/png" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Ethereum Classic: Proof-of-Work Smart Contracts", type: "image/png" }],
   },
   // The card type only. Next fills a page's twitter title, description and
   // image from that page's own openGraph whenever they are unset, so setting
@@ -133,9 +132,7 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <OrganizationJsonLd />
-        <WebsiteJsonLd />
-        <CryptocurrencyJsonLd />
+        <SiteJsonLd />
       </head>
       <body className="relative isolate min-h-dvh antialiased">
         <ThemeProvider

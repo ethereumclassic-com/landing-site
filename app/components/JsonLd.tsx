@@ -2,81 +2,69 @@
  * JSON-LD Structured Data Components
  * Provides rich snippets for search engines and LLM crawlers
  */
-import { DISCORD_URL } from '@/lib/social'
+import { CORRECTIONS_EMAIL, ETC_IDENTITY_URLS, SITE_DESCRIPTION, SITE_REPO_URL, SITE_URL } from '@/lib/site-identity'
 
-// Organization schema for the website
-export function OrganizationJsonLd() {
+const PUBLISHER_ID = `${SITE_URL}/#publisher`
+const NETWORK_ID = `${SITE_URL}/#ethereum-classic`
+const CONTRIBUTORS_ID = `${SITE_URL}/#contributors`
+// The generated 512px mark, the asset the favicons and PWA icons are cut from (`pnpm brand:icons`).
+const LOGO_URL = `${SITE_URL}/icons/icon-512.png`
+
+/**
+ * The site's structured data, one graph on every page: the website, the network it is about, who
+ * publishes it and who contributes to it, the shape ethereum.org uses. The network is a Thing linked to
+ * the pages that identify it (Wikidata, Wikipedia, its GitHub organization, the community site and the
+ * price trackers), not an Organization: no organization is Ethereum Classic, and nothing here says this
+ * site speaks for it. The site's standing comes from linking every claim to its source (lib/site-identity).
+ */
+export function SiteJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Ethereum Classic',
-    alternateName: 'ETC',
-    url: 'https://ethereumclassic.com',
-    // /etc-logo.png never existed in public/, so this was a 404 — and a 404 here
-    // is silent: Google just shows no logo in the knowledge panel and rich
-    // results rather than reporting an error. Pointed at the generated 512px
-    // mark, which is the same asset the favicons and PWA icons are cut from, so
-    // search results and the browser tab now agree. Regenerate with
-    // `pnpm brand:icons`.
-    logo: 'https://ethereumclassic.com/icons/icon-512.png',
-    description:
-      'Ethereum Classic is the original Ethereum blockchain, maintaining proof-of-work consensus and smart contract capabilities.',
-    foundingDate: '2016-07-20',
-    sameAs: [
-      'https://x.com/ETC_Network',
-      'https://github.com/ethereumclassic',
-      DISCORD_URL,
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`,
+        url: `${SITE_URL}/`,
+        name: 'Ethereum Classic',
+        alternateName: ['ethereumclassic.com', 'ETC'],
+        description: SITE_DESCRIPTION,
+        inLanguage: 'en',
+        about: { '@id': NETWORK_ID },
+        publisher: { '@id': PUBLISHER_ID },
+        contributor: { '@id': CONTRIBUTORS_ID },
+        // No SearchAction: the site has no /search route for one to point at.
+      },
+      {
+        '@type': 'Thing',
+        '@id': NETWORK_ID,
+        name: 'Ethereum Classic',
+        alternateName: 'ETC',
+        description:
+          'Ethereum Classic is the original Ethereum blockchain, producing blocks continuously since July 30, 2015: a Proof-of-Work network with native smart contracts and a fixed monetary policy.',
+        sameAs: ETC_IDENTITY_URLS,
+      },
+      {
+        '@type': 'Organization',
+        '@id': PUBLISHER_ID,
+        name: 'ethereumclassic.com',
+        url: `${SITE_URL}/`,
+        logo: LOGO_URL,
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'editorial',
+          email: CORRECTIONS_EMAIL,
+          url: `${SITE_URL}/contact`,
+        },
+        sameAs: ['https://github.com/ethereumclassic-com'],
+      },
+      {
+        '@type': 'Organization',
+        '@id': CONTRIBUTORS_ID,
+        name: 'Ethereum Classic community',
+        description: 'The open-source contributors to ethereumclassic.com.',
+        url: `${SITE_REPO_URL}/graphs/contributors`,
+      },
     ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'customer support',
-      url: 'https://ethereumclassic.com/contact',
-    },
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  )
-}
-
-// Website schema for search features
-export function WebsiteJsonLd() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Ethereum Classic',
-    url: 'https://ethereumclassic.com',
-    description:
-      'The official resource for Ethereum Classic. Get wallets, buy ETC, explore apps, and learn about the proof-of-work blockchain.',
-    // No SearchAction: the site has no /search route for one to point at.
-  }
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  )
-}
-
-// Cryptocurrency schema for ETC
-export function CryptocurrencyJsonLd() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FinancialProduct',
-    name: 'Ethereum Classic',
-    alternateName: 'ETC',
-    description:
-      'Ethereum Classic (ETC) is a decentralized, proof-of-work cryptocurrency and smart contract platform.',
-    category: 'Cryptocurrency',
-    url: 'https://ethereumclassic.com',
-    provider: {
-      '@type': 'Organization',
-      name: 'Ethereum Classic Network',
-    },
   }
 
   return (
@@ -147,10 +135,11 @@ export function ArticleJsonLd({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'EthereumClassic.com',
+      '@id': PUBLISHER_ID,
+      name: 'ethereumclassic.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://ethereumclassic.com/icons/icon-512.png',
+        url: LOGO_URL,
       },
     },
     ...(image && {
