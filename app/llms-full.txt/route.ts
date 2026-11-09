@@ -298,7 +298,7 @@ ${coreGethLlmsSection()}
 ## Regulatory Summary
 
 United States:
-- CLARITY Act (pending): ETC is positioned as a digital commodity candidate under CFTC jurisdiction
+- CLARITY Act (pending; a Senate cloture vote failed, 49 to 50, on September 15, 2026): ETC is positioned as a digital commodity candidate under CFTC jurisdiction
 - GENIUS Act (signed July 18, 2025): a framework for regulated stablecoins, under which ETC is a Proof-of-Work EVM platform for them, such as Classic USD
 
 European Union:

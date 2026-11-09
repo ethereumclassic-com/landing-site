@@ -6,9 +6,9 @@ const jurisdictions = [
     region: 'United States',
     flag: '🇺🇸',
     status: 'badge-pending' as const,
-    statusLabel: 'Senate Floor Pending',
+    statusLabel: 'Stalled in the Senate',
     headline: 'CLARITY Act: Digital Commodity Candidate',
-    body: "Passed the US House on July 17, 2025, and the Senate Banking Committee, 15 to 9, on May 14, 2026. On the Senate floor it must be reconciled with the Senate Agriculture Committee's version and clear a 60-vote threshold. ETC's Proof-of-Work consensus and decentralized issuance position it as a digital commodity candidate, which would bring it under CFTC jurisdiction. Mining itself is legal across the US. State spotlight: Texas, Wyoming and Kentucky are favorable; New York remains restrictive.",
+    body: "Passed the US House on July 17, 2025, and the Senate Banking Committee, 15 to 9, on May 14, 2026. On September 15, 2026, a Senate cloture vote failed, 49 to 50, short of the 60 votes needed. ETC's Proof-of-Work consensus and decentralized issuance position it as a digital commodity candidate, which would bring it under CFTC jurisdiction. Mining itself is legal across the US. State spotlight: Texas, Wyoming and Kentucky are favorable; New York remains restrictive.",
   },
   {
     region: 'European Union',

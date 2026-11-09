@@ -11,7 +11,7 @@ const profiles = [
     act: 'CLARITY Act',
     jurisdiction: 'United States',
     badge: 'badge-pending' as const,
-    badgeLabel: 'Senate Floor Pending',
+    badgeLabel: 'Stalled in the Senate',
     tagline: 'Digital Commodity Profile',
     points: [
       "Continues the original Ethereum chain, running since July 2015",
@@ -19,7 +19,7 @@ const profiles = [
       "Proof-of-Work consensus matches Bitcoin's commodity profile",
       "Miners and nodes spread around the world, with no controlling entity",
       "Would bring spot markets for digital commodities under CFTC oversight",
-      "House passage July 17, 2025; Senate Banking Committee passed 15-9 on May 14, 2026",
+      "House passage July 17, 2025; Senate Banking Committee passed 15-9 on May 14, 2026; Senate cloture vote failed 49-50 on September 15, 2026",
     ],
   },
   {

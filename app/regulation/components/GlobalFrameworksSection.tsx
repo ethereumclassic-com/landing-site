@@ -7,10 +7,10 @@ const regions = [
     region: 'United States',
     flag: '🇺🇸',
     framework: 'GENIUS Act · CLARITY Act · OCC Trust Charters · Mined in America Act',
-    effective: 'Jul 2025 · Senate floor 2026',
+    effective: 'GENIUS Jul 2025 · CLARITY stalled',
     keyRules: [
       'Stablecoin reserves 1:1 liquid assets (GENIUS Act, signed Jul 18, 2025)',
-      'CLARITY Act would draw the SEC/CFTC line for digital commodities (passed Senate Banking in May 2026; floor vote pending)',
+      'CLARITY Act would draw the SEC/CFTC line for digital commodities (passed Senate Banking in May 2026; Senate cloture vote failed in September 2026)',
       'OCC approved national trust bank charters for digital asset custody',
       'Mined in America Act (proposed): voluntary federal certification for US Proof-of-Work mining, and NIST support for US ASIC manufacturing',
       'FDIC framework for bank-issued payment stablecoins under development',

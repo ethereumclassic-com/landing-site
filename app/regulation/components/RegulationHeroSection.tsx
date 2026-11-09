@@ -11,9 +11,9 @@ const frameworks = [
     jurisdiction: 'United States',
     label: 'Digital Commodity Profile',
     status: 'badge-pending' as const,
-    statusLabel: 'Pending Senate',
+    statusLabel: 'Stalled in the Senate',
     description:
-      "Passed the US House in July 2025 and awaits the Senate. ETC's Proof-of-Work consensus and mined issuance position it as a digital commodity candidate under CFTC oversight.",
+      "Passed the US House in July 2025, and a Senate cloture vote failed, 49 to 50, in September 2026. ETC's Proof-of-Work consensus and mined issuance position it as a digital commodity candidate under CFTC oversight.",
   },
   {
     icon: (

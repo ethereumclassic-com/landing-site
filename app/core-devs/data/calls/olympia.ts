@@ -95,7 +95,7 @@ ETC plugins, a planned framework, would add Ethereum Classic support to clients 
 
 ## Regulatory Context
 
-- **CLARITY Act.** ETC is positioned for classification as a digital commodity under the CLARITY Act. The Senate Banking Committee cleared the bill, 15 to 9, in May 2026, and it is pending in the Senate.
+- **CLARITY Act.** ETC is positioned for classification as a digital commodity under the CLARITY Act. The Senate Banking Committee cleared the bill, 15 to 9, in May 2026, and a Senate cloture vote failed, 49 to 50, on September 15, 2026.
 - **GENIUS Act.** The GENIUS Act sets a federal framework for payment stablecoins, and ETC is a Proof-of-Work EVM platform for them.
 - **Institutional access.** The Grayscale Ethereum Classic Trust (ETCG), a trust product, provides regulated securities exposure to ETC.
 

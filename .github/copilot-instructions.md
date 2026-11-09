@@ -90,10 +90,11 @@ contracts, live since 2015, EVM-native and interoperable with Ethereum.
   funded by season and not governed by Olympia DAO; never "Child-DAO".
 - **Claims to avoid** — tooling that works "without modification" or "full
   JSON-RPC parity" (ECIP-1111 §Motivation: Foundry needs `--legacy` today); the
-  CLARITY Act as settled (it is pending: "positioned for", "candidate"); ETCG
-  as an ETF (it is a trust); Classic USD as "compliant" or "the first" (it is
-  "aligned with"); and superlatives, apart from the site's own "the home of
-  Ethereum Classic".
+  CLARITY Act as settled (it is pending: "positioned for", "candidate"; its
+  status fields read "Stalled in the Senate" since a cloture vote failed, 49 to
+  50, on September 15, 2026); ETCG as an ETF (it is a trust); Classic USD as
+  "compliant" or "the first" (it is "aligned with"); and superlatives, apart
+  from the site's own "the home of Ethereum Classic".
 - **Clients** — Core-Geth is the recommended client: a go-ethereum downstream,
   not native and not a plugin, recommended on its v1.13 line. A node older than
   v1.12.17 (coregeth.com's `MOVE_FLOOR`) never scheduled Spiral, so it resyncs

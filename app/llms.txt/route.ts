@@ -136,7 +136,7 @@ ${coreGethLlmsSection()}
 
 ## Regulatory Positioning
 
-- United States: a digital commodity candidate under the pending CLARITY Act, which passed the House in July 2025 and the Senate Banking Committee, 15 to 9, in May 2026; enacted, it would give the CFTC jurisdiction over digital commodity spot markets
+- United States: a digital commodity candidate under the pending CLARITY Act, which passed the House in July 2025 and the Senate Banking Committee, 15 to 9, in May 2026, and failed a Senate cloture vote, 49 to 50, on September 15, 2026; enacted, it would give the CFTC jurisdiction over digital commodity spot markets
 - United States: a Proof-of-Work EVM platform for stablecoins issued under the GENIUS Act
 - European Union: no issuer under MiCA (Markets in Crypto-Assets Regulation), so the rules for asset-referenced and e-money tokens do not apply, and authorized crypto-asset service providers can offer ETC without a separate approval for the asset
 - Japan: on the JVCEA Green List, which lets regulated Japanese exchanges list ETC without the association's prior review

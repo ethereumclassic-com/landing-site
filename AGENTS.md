@@ -291,7 +291,9 @@ includes transaction fees, which vary per block.
   is "discarded", and the base fee would go to the Treasury, so it does not
   "grow miner revenue". Observed fee figures come from Blockscout, never typed.
 - **Regulation:** the CLARITY Act is pending, so ETC is "positioned for"
-  classification or a "candidate", never "classified" or "qualifies". ETCG is a
+  classification or a "candidate", never "classified" or "qualifies". A Senate
+  cloture vote on it failed, 49 to 50, on September 15, 2026, and its status
+  fields read "Stalled in the Senate", as ethereumclassicdao.org's do. ETCG is a
   trust product, never an ETF. Classic USD is issued by Brale and "aligned with"
   MiCA and the GENIUS Act, never "compliant" and never "the first".
 - **No hype and no superlatives:** not "most significant", "unmatched", "the
