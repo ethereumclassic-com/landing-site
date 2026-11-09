@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useAllPrices } from '@/app/hooks/usePrice'
 import { getPopularPairs } from '../markets/data/markets'
 import type { PriceData } from '@/app/hooks/usePrice'
@@ -14,10 +13,11 @@ export default function LivePricePairs({ initialData }: { initialData?: PriceDat
   const { prices, loading } = useAllPrices({ initialData })
 
   const formatPairPrice = (quote: string): string => {
-    if (loading || !prices) return '...'
-    const currency = quote.toLowerCase()
-    const price = prices[currency]
-    if (!price) return '...'
+    if (loading && !prices) return '...'
+    // The dollar stablecoins trade within a fraction of a cent of $1, so they take the USD price.
+    const currency = quote === 'USDT' || quote === 'USDC' ? 'usd' : quote.toLowerCase()
+    const price = prices?.[currency]
+    if (!price) return '—'
 
     switch (quote) {
       case 'USD':
@@ -36,16 +36,12 @@ export default function LivePricePairs({ initialData }: { initialData?: PriceDat
   return (
     <div className="flex flex-wrap justify-center gap-4">
       {popularPairs.map((pair) => (
-        <Link
-          key={pair.id}
-          href={`/price/${pair.id}`}
-          className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2 transition-all hover:border-[var(--color-primary)]/30"
-        >
+        <div key={pair.id} className="rounded-lg border border-[var(--border)] bg-[var(--panel)] px-4 py-2">
           <p className="text-xs text-[var(--color-text-muted)]">{pair.displayName}</p>
           <p className="font-semibold text-[var(--text-primary)]">
             {formatPairPrice(pair.quote)}
           </p>
-        </Link>
+        </div>
       ))}
     </div>
   )

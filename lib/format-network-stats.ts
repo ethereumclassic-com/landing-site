@@ -46,15 +46,18 @@ export function formatNetworkStatsForDisplay(
   stats: FormattableStats | null | undefined,
 ): FormattedNetworkStats | null {
   if (!stats) return null
+  // A missing or zero figure is one no source supplied: it shows as "—", never as a typed stand-in.
+  const known = (value: number | undefined, format: (n: number) => string) => (value && value > 0 ? format(value) : '—')
+  const change = stats.priceChange24h ?? 0
   return {
-    price: `$${(stats.price ?? 0).toFixed(2)}`,
-    priceChange: `${(stats.priceChange24h ?? 0) >= 0 ? '+' : ''}${(stats.priceChange24h ?? 0).toFixed(2)}%`,
-    marketCap: formatLargeNumber(stats.marketCap ?? 0, '$'),
-    blockHeight: (stats.totalBlocks ?? 0).toLocaleString(),
-    transactions: formatLargeNumber(stats.totalTransactions ?? 0),
-    addresses: formatLargeNumber(stats.totalAddresses ?? 0),
+    price: known(stats.price, (n) => `$${n.toFixed(2)}`),
+    priceChange: stats.price && stats.price > 0 ? `${change >= 0 ? '+' : ''}${change.toFixed(2)}%` : '—',
+    marketCap: known(stats.marketCap, (n) => formatLargeNumber(n, '$')),
+    blockHeight: known(stats.totalBlocks, (n) => n.toLocaleString()),
+    transactions: known(stats.totalTransactions, (n) => formatLargeNumber(n)),
+    addresses: known(stats.totalAddresses, (n) => formatLargeNumber(n)),
     blockTime: `${(stats.avgBlockTime ?? NOMINAL_BLOCK_TIME_SECONDS).toFixed(1)}s`,
     blockReward: `${(stats.avgBlockReward ?? getBlockRewardForEra(CURRENT_ERA)).toFixed(2)} ETC`,
-    gasPrice: `${(stats.gasPrice?.average ?? 2).toFixed(2)} Gwei`,
+    gasPrice: known(stats.gasPrice?.average, (n) => `${n.toFixed(2)} Gwei`),
   }
 }

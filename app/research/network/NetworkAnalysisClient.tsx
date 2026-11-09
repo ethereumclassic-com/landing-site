@@ -4,6 +4,13 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { dataSources } from '../data/research'
 import { cachedFetchJson } from '@/lib/client-fetch'
+import type { NetworkSecurity } from '@/lib/network-security'
+import {
+  CURRENT_ERA_REFERENCE_BLOCK,
+  getBlockRewardForEra,
+  getEraEndBlock,
+  getEraForBlock,
+} from '../data/emission'
 
 // Types for API response
 interface NetworkStats {
@@ -33,48 +40,59 @@ interface NetworkStats {
   nextRefresh?: string
 }
 
-// Chain parameters (static)
-const chainMetrics = [
-  {
-    category: 'Blockchain',
-    metrics: [
-      { label: 'Algorithm', value: 'ETChash' },
-      { label: 'Epoch Length', value: '30,000 blocks' },
-      { label: 'DAG Size', value: '~5.2 GB' },
-      { label: 'Gas Limit', value: '8M gas' },
-    ],
-  },
-  {
-    category: 'Economics',
-    metrics: [
-      { label: 'Emission Schedule', value: '20% reduction / 5M blocks' },
-      { label: 'Next Reduction', value: 'Block 30,000,000' },
-      { label: 'Maximum Supply', value: '~210.7M ETC' },
-      { label: 'Current Supply', value: '~147M ETC' },
-    ],
-  },
-  {
-    category: 'Network',
-    metrics: [
-      { label: 'Chain ID', value: '61' },
-      { label: 'Genesis Block', value: 'Jul 30, 2015' },
-      { label: 'The DAO Fork', value: 'Jul 20, 2016' },
-      { label: 'Node Clients', value: 'Core-Geth, Fukuii' },
-    ],
-  },
-]
+/** Etchash DAG size at a height, in GiB: 1 GiB plus 8 MiB for each 60,000-block epoch (ECIP-1099). */
+function dagSizeGiB(blockHeight: number): number {
+  return 1 + Math.floor(blockHeight / 60_000) / 128
+}
+
+// Chain parameters. Values that depend on the height read the live block height when there is one.
+function buildChainMetrics(stats: NetworkStats | null) {
+  const height = stats?.blockHeight || CURRENT_ERA_REFERENCE_BLOCK
+  return [
+    {
+      category: 'Blockchain',
+      metrics: [
+        { label: 'Algorithm', value: 'Etchash' },
+        { label: 'Epoch Length', value: '60,000 blocks' },
+        { label: 'DAG Size', value: `~${dagSizeGiB(height).toFixed(1)} GB` },
+        { label: 'Gas Limit', value: '8M gas' },
+      ],
+    },
+    {
+      category: 'Economics',
+      metrics: [
+        { label: 'Emission Schedule', value: '20% reduction / 5M blocks' },
+        { label: 'Next Reduction', value: `Block ${getEraEndBlock(getEraForBlock(height)).toLocaleString('en-US')}` },
+        { label: 'Maximum Supply', value: 'Up to 210.7M ETC' },
+        {
+          label: 'Circulating Supply',
+          value: stats && stats.price > 0 ? `~${(stats.marketCap / stats.price / 1e6).toFixed(1)}M ETC` : '—',
+        },
+      ],
+    },
+    {
+      category: 'Network',
+      metrics: [
+        { label: 'Chain ID', value: '61' },
+        { label: 'Genesis Block', value: 'Jul 30, 2015' },
+        { label: 'The DAO Fork', value: 'Jul 20, 2016' },
+        { label: 'Node Clients', value: 'Core-Geth, Fukuii' },
+      ],
+    },
+  ]
+}
 
 const historicalMilestones = [
   { date: 'Jul 2015', event: 'Ethereum mainnet launch' },
-  { date: 'Jul 2016', event: 'The DAO fork - ETC preserves original chain' },
-  { date: 'Mar 2017', event: 'Monetary policy: 5M block reduction schedule' },
+  { date: 'Jul 2016', event: 'The DAO fork: ETC keeps the original chain' },
+  { date: 'Mar 2017', event: 'Consensus on ECIP-1017: 20% less every 5M blocks' },
   { date: 'Dec 2017', event: 'Block reward reduced to 4 ETC' },
   { date: 'Mar 2020', event: 'Block reward reduced to 3.2 ETC' },
-  { date: 'Nov 2020', event: 'Thanos hard fork (ETChash algorithm)' },
+  { date: 'Nov 2020', event: 'Thanos hard fork (Etchash algorithm)' },
   { date: 'Apr 2022', event: 'Block reward reduced to 2.56 ETC' },
-  { date: 'Sep 2022', event: 'ETH merge - GPU miners migrate to ETC' },
+  { date: 'Sep 2022', event: 'Ethereum\'s Merge: GPU miners move to ETC' },
   { date: 'May 2024', event: 'Block reward reduced to 2.048 ETC' },
-  { date: 'Jul 2026', event: 'Fifth fifthing — block reward reduced to 1.6384 ETC' },
+  { date: 'Jul 2026', event: 'Block reward reduced to 1.6384 ETC' },
 ]
 
 // Simple bar chart component
@@ -132,7 +150,11 @@ export interface NetworkAnalysisInitial {
   stats: NetworkStats | null
   hashrateDisplay: string
   pools: { name: string; share: number }[]
+  security: NetworkSecurity
 }
+
+const usd = (n: number) => `$${Math.round(n).toLocaleString('en-US')}`
+const percent = (share: number) => (share < 0.001 ? `${(share * 100).toFixed(3)}%` : share < 0.1 ? `${(share * 100).toFixed(2)}%` : `${(share * 100).toFixed(0)}%`)
 
 /**
  * Server-seeded: the page reads Blockscout once per ISR window and passes the
@@ -145,6 +167,16 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
   const [isLoading, setIsLoading] = useState(initial.stats === null)
   const [error, setError] = useState<string | null>(null)
   const [hashrateDisplay, setHashrateDisplay] = useState<string>(initial.hashrateDisplay)
+  // Read on the server when the page was built (hourly), and labeled with that time.
+  const security = initial.security
+  const rental = security.rental
+  const production = security.production
+  const reorgWindow = production
+    ? production.reorgWindowHours < 72
+      ? `${production.reorgWindowHours} hours`
+      : `${Math.round(production.reorgWindowHours / 24)} days`
+    : ''
+  const readAt = `${new Date(production?.readAt ?? security.readAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' })} UTC`
 
   useEffect(() => {
     async function fetchStats() {
@@ -187,7 +219,7 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
   }))
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -216,8 +248,7 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
               )}
             </div>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Real-time network metrics and statistics from the Ethereum Classic blockchain.
-              Data sourced from{' '}
+              Network metrics and statistics for the Ethereum Classic blockchain, sourced from{' '}
               <a href="https://etc.blockscout.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
                 Blockscout
               </a>.
@@ -291,14 +322,14 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Time</p>
                 <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.avgBlockTimeFormatted}</p>
-                <p className="mt-1 text-xs text-[var(--color-text-muted)]">Average confirmation</p>
+                <p className="mt-1 text-xs text-[var(--color-text-muted)]">Average time between blocks</p>
               </div>
 
               {/* Block Reward */}
               <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
                 <p className="text-xs text-[var(--color-text-muted)]">Block Reward</p>
-                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{stats.blockRewardFormatted}</p>
-                <p className="mt-1 text-xs text-[var(--color-text-muted)]">Per block mined</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">{getBlockRewardForEra(getEraForBlock(stats.blockHeight || CURRENT_ERA_REFERENCE_BLOCK))} ETC</p>
+                <p className="mt-1 text-xs text-[var(--color-text-muted)]">Protocol subsidy per block</p>
               </div>
 
               {/* Gas Price */}
@@ -328,7 +359,7 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
             <p
               className="mt-4 text-xs text-[var(--color-text-muted)]"
             >
-              Data is cached for 24 hours to minimize API calls. Last updated:{' '}
+              Figures refresh about every 10 minutes. Last updated:{' '}
               {new Date(stats.lastUpdated).toLocaleString()}.
               {stats.nextRefresh && (
                 <> Next refresh: {new Date(stats.nextRefresh).toLocaleString()}.</>
@@ -361,7 +392,7 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
           <div
             className="grid gap-6 md:grid-cols-3"
           >
-            {chainMetrics.map((section) => (
+            {buildChainMetrics(stats).map((section) => (
               <div
                 key={section.category}
                 className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6"
@@ -395,11 +426,11 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
             <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6">
               <BarChart data={miningPools} label="Top Mining Pools" />
               <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-                * Approximate distribution based on recent blocks. See{' '}
+                * Approximate shares of recent blocks, from Blockscout block data. See{' '}
                 <a href="https://miningpoolstats.stream/ethereumclassic" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">
                   MiningPoolStats
                 </a>{' '}
-                for live data.
+                for a fuller breakdown by pool.
               </p>
             </div>
 
@@ -412,20 +443,38 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
                   <p className="mt-1 text-xs text-[var(--color-text-muted)]">Total computational power</p>
                 </div>
                 <div className="rounded-lg bg-[var(--bg)] p-4">
-                  <p className="text-xs text-[var(--color-text-muted)]">Estimated 51% Attack Cost</p>
-                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">$50,000+ / hour</p>
-                  <p className="mt-1 text-xs text-[var(--color-text-muted)]">Based on hashrate and hardware costs</p>
-                </div>
-                <div className="rounded-lg bg-[var(--color-success-bg)] p-4">
-                  <div className="flex items-center gap-2">
-                    <svg aria-hidden="true" className="h-5 w-5 text-[var(--color-success)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                    </svg>
-                    <span className="font-medium text-[var(--color-success)]">Network Healthy</span>
-                  </div>
-                  <p className="mt-2 text-xs text-[var(--color-text-muted)]">
-                    No recent reorganizations or security incidents detected.
+                  <p className="text-xs text-[var(--color-text-muted)]">Cost to Rent the Network&apos;s Hashrate</p>
+                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">
+                    {rental ? `${usd(rental.usdPerHour)} / hour` : '—'}
                   </p>
+                  <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                    {rental
+                      ? `At NiceHash's highest Etchash price, ${rental.btcPerThsDay.toFixed(4)} BTC per TH/s per day. NiceHash's Etchash market carries about ${percent(rental.nicehashShare)} of the network's hashrate, so it could not supply a majority.`
+                      : 'NiceHash or the price could not be read when this page was built.'}
+                  </p>
+                </div>
+                <div className="rounded-lg bg-[var(--bg)] p-4">
+                  <p className="text-xs text-[var(--color-text-muted)]">Block Rewards per Hour</p>
+                  <p className="mt-1 text-xl font-bold text-[var(--text-primary)]">
+                    {security.hourlyRewardUsd !== null ? usd(security.hourlyRewardUsd) : '—'}
+                  </p>
+                  <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                    The block reward at the current block time and price, before fees: what the hashrate securing the
+                    chain is paid.
+                  </p>
+                </div>
+                <div className={`rounded-lg p-4 ${production?.normal ? 'bg-[var(--color-success-bg)]' : 'bg-[var(--bg)]'}`}>
+                  <div className="flex items-center gap-2">
+                    <span className={`h-2.5 w-2.5 rounded-full ${production ? (production.normal ? 'bg-[var(--color-success)]' : 'bg-[var(--color-warning)]') : 'bg-[var(--color-text-muted)]'}`} />
+                    <span className={`font-medium ${production?.normal ? 'text-[var(--color-success)]' : 'text-[var(--text-primary)]'}`}>
+                      {!production ? 'Block production unavailable' : production.normal ? 'Producing blocks normally' : production.issues.join(' · ')}
+                    </span>
+                  </div>
+                  {production && (
+                    <p className="mt-2 text-xs text-[var(--color-text-muted)]">
+                      {`Latest block ${Math.round(production.latestBlockAge)} seconds old. Average block time ${production.avgBlockTime.toFixed(1)} seconds. Deepest reorganization in the last ${reorgWindow}: ${production.deepestReorg} ${production.deepestReorg === 1 ? 'block' : 'blocks'}. From Blockscout, ${readAt}.`}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -526,6 +575,6 @@ export default function NetworkAnalysisClient({ initial }: { initial: NetworkAna
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -42,7 +42,7 @@ function ManufacturerCard({ manufacturer }: { manufacturer: typeof hardwareManuf
 
       {relatedHardware.length > 0 && (
         <div className="border-t border-[var(--border-subtle)] pt-4">
-          <p className="mb-2 text-xs font-medium text-[var(--color-text-muted)]">ETChash-Compatible Products:</p>
+          <p className="mb-2 text-xs font-medium text-[var(--color-text-muted)]">Etchash-Compatible Products:</p>
           <div className="flex flex-wrap gap-2">
             {relatedHardware.map(hw => (
               <span
@@ -64,7 +64,7 @@ export default function HardwareBuyPage() {
   const gpuManufacturers = hardwareManufacturers.filter(m => m.type === 'GPU')
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -83,7 +83,7 @@ export default function HardwareBuyPage() {
               Buy Mining Hardware
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-              Purchase ETChash-compatible mining hardware directly from official manufacturer stores.
+              Purchase Etchash-compatible mining hardware directly from official manufacturer stores.
               Compare ASIC and GPU options for Ethereum Classic mining.
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function HardwareBuyPage() {
             ASIC Manufacturers
           </h2>
           <p className="mb-6 text-[var(--color-text-muted)]">
-            Purpose-built miners designed specifically for ETChash. Highest efficiency and hashrate, but single-purpose hardware.
+            Purpose-built miners designed specifically for Etchash. Highest efficiency and hashrate, but single-purpose hardware.
           </p>
           <div className="grid gap-6 md:grid-cols-2">
             {asicManufacturers.map(manufacturer => (
@@ -180,7 +180,7 @@ export default function HardwareBuyPage() {
               <div>
                 <p className="font-medium text-[var(--color-primary)]">Verify Specs</p>
                 <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                  Confirm ETChash support and actual hashrate specifications. Some miners are optimized for specific algorithms.
+                  Confirm Etchash support and actual hashrate specifications. Some miners are optimized for specific algorithms.
                 </p>
               </div>
               <div>
@@ -232,12 +232,12 @@ export default function HardwareBuyPage() {
       <section className="px-6 pt-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <p className="text-center text-xs text-[var(--color-text-muted)]">
-            Links direct to official manufacturer websites. EthereumClassic.com is not affiliated with
+            Links direct to official manufacturer websites. ethereumclassic.com is not affiliated with
             these manufacturers and does not receive commission on purchases. Always do your own research
             before making hardware purchases.
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

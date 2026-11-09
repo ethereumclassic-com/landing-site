@@ -13,11 +13,15 @@ const presets = [
 ]
 
 export default function ToolsCalculatorPage() {
-  const { price: etcPrice, change24h, loading } = usePrice('usd')
+  const { price: etcPrice, change24h, loading, source } = usePrice('usd')
   const [investment, setInvestment] = useState(1000)
   const [buyPrice, setBuyPrice] = useState('')
 
-  const livePrice = etcPrice ?? 25
+  // NaN carries "no live price" through the arithmetic, and fmt shows it as a dash.
+  const livePrice = etcPrice ?? NaN
+  const fmt = (n: number, format: (v: number) => string) => (Number.isFinite(n) ? format(n) : '—')
+  const usd = (v: number) => `$${v.toFixed(2)}`
+  const signedUsd = (v: number) => `${v >= 0 ? '+' : ''}$${v.toFixed(2)}`
   const entryPrice = buyPrice ? parseFloat(buyPrice) : livePrice
   const etcAmount = investment / entryPrice
   const currentValue = etcAmount * livePrice
@@ -25,7 +29,7 @@ export default function ToolsCalculatorPage() {
   const roi = investment > 0 ? ((currentValue - investment) / investment) * 100 : 0
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -107,7 +111,7 @@ export default function ToolsCalculatorPage() {
                       type="number"
                       value={buyPrice}
                       onChange={(e) => setBuyPrice(e.target.value)}
-                      placeholder={livePrice.toFixed(2)}
+                      placeholder={fmt(livePrice, (v) => v.toFixed(2))}
                       className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-4 py-3 pl-8 text-lg font-medium text-[var(--text-primary)] placeholder:text-[var(--color-text-muted)]/50 outline-none transition-colors focus:border-[var(--color-primary)]"
                       min="0.01"
                       step="0.01"
@@ -124,16 +128,16 @@ export default function ToolsCalculatorPage() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">ETC Amount</span>
-                    <span className="text-lg font-bold text-[var(--text-primary)]">{etcAmount.toFixed(4)} ETC</span>
+                    <span className="text-lg font-bold text-[var(--text-primary)]">{fmt(etcAmount, (v) => `${v.toFixed(4)} ETC`)}</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">Entry Price</span>
-                    <span className="font-medium text-[var(--text-primary)]">${entryPrice.toFixed(2)}</span>
+                    <span className="font-medium text-[var(--text-primary)]">{fmt(entryPrice, usd)}</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">Current Price</span>
                     <span className="font-medium text-[var(--text-primary)]">
-                      ${livePrice.toFixed(2)}
+                      {fmt(livePrice, usd)}
                       {change24h !== null && (
                         <span className={`ml-2 text-sm ${change24h >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
                           {change24h >= 0 ? '+' : ''}{change24h.toFixed(2)}%
@@ -143,16 +147,16 @@ export default function ToolsCalculatorPage() {
                   </div>
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
                     <span className="text-[var(--color-text-muted)]">Current Value</span>
-                    <span className="text-xl font-bold text-[var(--text-primary)]">${currentValue.toFixed(2)}</span>
+                    <span className="text-xl font-bold text-[var(--text-primary)]">{fmt(currentValue, usd)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[var(--color-text-muted)]">P&L</span>
                     <div className="text-right">
                       <span className={`text-xl font-bold ${pnl >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
-                        {pnl >= 0 ? '+' : ''}${pnl.toFixed(2)}
+                        {fmt(pnl, signedUsd)}
                       </span>
                       <span className={`ml-2 text-sm ${roi >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
-                        ({roi >= 0 ? '+' : ''}{roi.toFixed(1)}%)
+                        {fmt(roi, (v) => `(${v >= 0 ? '+' : ''}${v.toFixed(1)}%)`)}
                       </span>
                     </div>
                   </div>
@@ -171,7 +175,11 @@ export default function ToolsCalculatorPage() {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-success)] opacity-75" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-success)]" />
                     </span>
-                    Live price from CoinGecko, refreshes every 60s
+                    {source === 'blockscout'
+                      ? 'Live price from Blockscout, standing in for CoinGecko'
+                      : source === 'coingecko'
+                        ? 'Live price from CoinGecko, updated about every 10 minutes'
+                        : 'The live price is unavailable right now'}
                   </span>
                 )}
               </div>
@@ -207,7 +215,7 @@ export default function ToolsCalculatorPage() {
                       return (
                         <tr key={multiplier} className={isCurrent ? 'bg-[var(--color-primary)]/5' : 'hover:bg-[var(--bg)]/50'}>
                           <td className="px-4 py-3">
-                            <span className="font-medium text-[var(--text-primary)]">${scenarioPrice.toFixed(2)}</span>
+                            <span className="font-medium text-[var(--text-primary)]">{fmt(scenarioPrice, usd)}</span>
                             {isCurrent && (
                               <span className="ml-2 rounded bg-[var(--color-primary)]/20 px-1.5 py-0.5 text-xs text-[var(--color-primary)]">
                                 current
@@ -220,13 +228,13 @@ export default function ToolsCalculatorPage() {
                             )}
                           </td>
                           <td className="px-4 py-3 text-right font-mono text-sm text-[var(--text-primary)]">
-                            ${scenarioValue.toFixed(2)}
+                            {fmt(scenarioValue, usd)}
                           </td>
                           <td className={`px-4 py-3 text-right font-mono text-sm ${scenarioPnl >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
-                            {scenarioPnl >= 0 ? '+' : ''}${scenarioPnl.toFixed(2)}
+                            {fmt(scenarioPnl, signedUsd)}
                           </td>
                           <td className={`px-4 py-3 text-right font-mono text-sm ${scenarioRoi >= 0 ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
-                            {scenarioRoi >= 0 ? '+' : ''}{scenarioRoi.toFixed(1)}%
+                            {fmt(scenarioRoi, (v) => `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`)}
                           </td>
                         </tr>
                       )
@@ -234,6 +242,48 @@ export default function ToolsCalculatorPage() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dollar-cost averaging */}
+      <section className="px-6 pb-12 md:px-10 lg:px-12">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-xl font-semibold text-[var(--text-primary)]">Dollar-Cost Averaging</h2>
+          <p className="mt-2 mb-6 text-sm text-[var(--color-text-muted)]">
+            The ETC a fixed monthly amount buys over time, at a constant{' '}
+            {Number.isFinite(entryPrice) ? `$${entryPrice.toFixed(2)} per ETC` : 'price'}. Actual results vary
+            with the price.
+          </p>
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-[var(--bg)]">
+                  <tr className="border-b border-[var(--border)]">
+                    <th className="px-4 py-3 text-left text-sm font-semibold text-[var(--text-primary)]">Monthly</th>
+                    <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">6 Months</th>
+                    <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">1 Year</th>
+                    <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">2 Years</th>
+                    <th className="px-4 py-3 text-right text-sm font-semibold text-[var(--text-primary)]">5 Years</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[50, 100, 250, 500, 1000].map((monthly) => {
+                    const monthlyEtc = monthly / entryPrice
+                    const etc = (months: number) => fmt(monthlyEtc * months, (v) => `${v.toFixed(2)} ETC`)
+                    return (
+                      <tr key={monthly} className="border-b border-[var(--border)]/50 last:border-0">
+                        <td className="px-4 py-3 font-medium text-[var(--text-primary)]">${monthly}/mo</td>
+                        <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">{etc(6)}</td>
+                        <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">{etc(12)}</td>
+                        <td className="px-4 py-3 text-right text-[var(--color-text-secondary)]">{etc(24)}</td>
+                        <td className="px-4 py-3 text-right text-[var(--color-primary)]">{etc(60)}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -269,6 +319,6 @@ export default function ToolsCalculatorPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

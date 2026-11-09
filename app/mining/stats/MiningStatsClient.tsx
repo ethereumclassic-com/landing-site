@@ -175,7 +175,7 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
   const rpc = miningStats?.source === 'rpc' ? miningStats : null
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -340,13 +340,17 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">Algorithm</p>
-                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">ETChash</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">Etchash</p>
                 <p className="text-xs text-[var(--color-text-muted)]">ASIC and GPU mineable</p>
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text-muted)]">ETC Price</p>
-                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">${liveStats.etcPriceUSD.toFixed(2)}</p>
-                <p className="text-xs text-[var(--color-text-muted)]">From Blockscout</p>
+                <p className="mt-1 text-2xl font-bold text-[var(--text-primary)]">
+                  {liveStats.etcPriceUSD !== null ? `$${liveStats.etcPriceUSD.toFixed(2)}` : '—'}
+                </p>
+                <p className="text-xs text-[var(--color-text-muted)]">
+                  {liveStats.etcPriceUSD === null ? 'Unavailable right now' : liveStats.source === 'live' ? 'From Blockscout' : 'From CoinGecko'}
+                </p>
               </div>
             </div>
           </div>
@@ -486,7 +490,7 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
       <section className="px-6 pt-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
           <p className="text-center text-xs text-[var(--color-text-muted)]">
-            Hashrate and difficulty from ETC RPC. Block rewards from{' '}
+            Hashrate and difficulty derived from{' '}
             <a
               href="https://etc.blockscout.com/stats"
               target="_blank"
@@ -495,7 +499,8 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
             >
               Blockscout
             </a>
-            . Data cached for 24 hours. Additional resources:{' '}
+            &apos;s difficulty and average block time; latest-block detail from ETC RPC. Data refreshes hourly.
+            Additional resources:{' '}
             <a
               href="https://2miners.com/etc-network-hashrate"
               target="_blank"
@@ -525,6 +530,6 @@ export default function MiningStatsClient({ livePools }: { livePools: LivePool[]
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

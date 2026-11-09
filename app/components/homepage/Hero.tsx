@@ -51,7 +51,7 @@ export default function Hero({ hashrate }: { hashrate?: HashrateChartData }) {
 
         {/* Subheading */}
         <p className="mx-auto mt-6 max-w-4xl text-lg text-[var(--text-secondary)] md:text-xl">
-          Ethereum Classic is immutable infrastructure for global finance. As the only mature Proof-of-Work blockchain with native smart contracts, it is permissionless, censorship-resistant, and secured by dedicated mining infrastructure operating continuously since 2015.
+          Ethereum Classic is immutable infrastructure for global finance. As the only mature Proof-of-Work blockchain with native smart contracts, it is permissionless and censorship-resistant, and dedicated miners have secured it continuously since 2015.
         </p>
 
         {/* Hashrate chart */}

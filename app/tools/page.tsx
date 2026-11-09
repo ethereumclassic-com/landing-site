@@ -3,8 +3,8 @@ import Link from 'next/link'
 const tools = [
   {
     name: 'Price Converter',
-    description: 'Convert ETC to USD, EUR, BTC, and 15+ other currencies instantly',
-    href: '/markets/converter',
+    description: 'Convert ETC to and from USD, EUR, BTC and other currencies',
+    href: '/tools/converter',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -15,8 +15,8 @@ const tools = [
   },
   {
     name: 'Investment Calculator',
-    description: 'Calculate potential returns with price targets, ROI projections, and DCA strategies',
-    href: '/markets/calculator',
+    description: 'See what an ETC position is worth now, across price scenarios, and bought monthly',
+    href: '/tools/calculator',
     icon: (
       <svg aria-hidden="true" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z" />
@@ -63,13 +63,13 @@ const tools = [
 const externalTools = [
   {
     name: 'Blockscout Explorer',
-    description: 'Official ETC block explorer with full transaction history',
+    description: 'The main ETC block explorer, with full transaction history',
     url: 'https://etc.blockscout.com',
     icon: '🔍',
   },
   {
     name: 'WhatToMine',
-    description: 'Mining profitability calculator for ETChash',
+    description: 'Mining profitability calculator for Etchash',
     url: 'https://whattomine.com/coins/162-etc-etchash',
     icon: '⛏️',
   },
@@ -89,7 +89,7 @@ const externalTools = [
 
 export default function ToolsPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -99,8 +99,8 @@ export default function ToolsPage() {
                 Tools
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Essential tools for Ethereum Classic users. Price converters, investment calculators,
-                gas trackers, and block explorers to enhance your ETC experience.
+                Tools for Ethereum Classic users: a price converter, an investment calculator, a gas tracker,
+                block explorers and contract verification.
               </p>
             </div>
           </div>
@@ -249,6 +249,6 @@ export default function ToolsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

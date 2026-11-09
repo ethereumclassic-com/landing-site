@@ -50,19 +50,20 @@ export default function GasTrackerPage() {
   ]
 
   const [selectedGas, setSelectedGas] = useState(average?.toFixed(2) ?? '2') // Standard by default
-  const liveEtcPrice = etcPrice ?? 25 // Fallback to reference price
+  const liveEtcPrice = etcPrice
 
   const calculateCost = (gasLimit: number, gweiPrice: string) => {
     const gasPriceEth = parseFloat(gweiPrice) / 1e9
     const costEtc = gasLimit * gasPriceEth
-    const costUsd = costEtc * liveEtcPrice
-    return { costEtc: costEtc.toFixed(8), costUsd: costUsd.toFixed(6) }
+    // No USD cost without a live price: an old price would show a wrong one.
+    const costUsd = liveEtcPrice !== null ? (costEtc * liveEtcPrice).toFixed(6) : null
+    return { costEtc: costEtc.toFixed(8), costUsd }
   }
 
   const isLoading = gasLoading || priceLoading
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -84,8 +85,8 @@ export default function GasTrackerPage() {
                 Gas Tracker
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Monitor Ethereum Classic gas prices and optimize your transaction costs.
-                ETC typically has very low gas fees compared to other networks.
+                Current Ethereum Classic gas prices, and what common transactions cost at them. Gas on ETC
+                is usually inexpensive.
               </p>
             </div>
           </div>
@@ -199,7 +200,7 @@ export default function GasTrackerPage() {
                           {costEtc}
                         </td>
                         <td className="px-4 py-3 text-right font-mono text-sm text-[var(--color-success)]">
-                          ${costUsd}
+                          {costUsd !== null ? `$${costUsd}` : '—'}
                         </td>
                       </tr>
                     )
@@ -208,11 +209,16 @@ export default function GasTrackerPage() {
               </table>
             </div>
             <div className="border-t border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-xs text-[var(--color-text-muted)]">
-              Costs calculated at {selectedGas} Gwei gas price and ${liveEtcPrice.toFixed(2)} ETC{' '}
-              {etcPrice ? (
-                <span className="text-[var(--color-success)]">(live)</span>
+              {liveEtcPrice !== null ? (
+                <>
+                  Costs calculated at {selectedGas} Gwei and ${liveEtcPrice.toFixed(2)} per ETC{' '}
+                  <span className="text-[var(--color-success)]">(live)</span>
+                </>
               ) : (
-                <span className="text-[var(--color-warning)]">(reference)</span>
+                <>
+                  Costs calculated at {selectedGas} Gwei.{' '}
+                  <span className="text-[var(--color-warning)]">The live ETC price is unavailable, so USD costs are not shown.</span>
+                </>
               )}
             </div>
           </div>
@@ -262,7 +268,7 @@ export default function GasTrackerPage() {
                 <div>
                   <h3 className="font-medium text-[var(--text-primary)]">Set Gas Limits Correctly</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
-                    Do not overset gas limits. Unused gas is refunded but wallet estimates can be high.
+                    Use your wallet&apos;s estimate. Unused gas is refunded, but a limit set too low makes the transaction fail, and a failed transaction still costs gas.
                   </p>
                 </div>
               </div>
@@ -275,7 +281,7 @@ export default function GasTrackerPage() {
                 <div>
                   <h3 className="font-medium text-[var(--text-primary)]">Verify Contract Interactions</h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
-                    Review transaction details before confirming. Failed transactions still cost gas.
+                    Review transaction details before confirming, especially the contract you are calling.
                   </p>
                 </div>
               </div>
@@ -297,7 +303,7 @@ export default function GasTrackerPage() {
                 <div className="text-sm text-[var(--color-text-muted)]">Typical transfer cost</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-[var(--color-primary)]">13.5s</div>
+                <div className="text-2xl font-bold text-[var(--color-primary)]">~13s</div>
                 <div className="text-sm text-[var(--color-text-muted)]">Average block time</div>
               </div>
               <div>
@@ -306,8 +312,8 @@ export default function GasTrackerPage() {
               </div>
             </div>
             <p className="mt-4 text-sm text-[var(--color-text-muted)]">
-              Ethereum Classic maintains low gas prices due to its efficient block production and lower network
-              congestion compared to Ethereum. This makes ETC ideal for frequent transactions and DeFi activities.
+              Gas prices on Ethereum Classic stay low because there is little competition for block space,
+              which keeps frequent transactions and DeFi use inexpensive.
             </p>
           </div>
         </div>
@@ -348,6 +354,6 @@ export default function GasTrackerPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

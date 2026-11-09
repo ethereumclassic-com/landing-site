@@ -27,6 +27,14 @@ export default function LiveKeyMetrics({ initialPrice }: { initialPrice?: PriceD
     )
   }
 
+  const change = data?.change24h ?? null
+  const changeStr = change !== null ? `${change >= 0 ? '+' : ''}${change.toFixed(2)}%` : undefined
+  const changeDirection: 'up' | 'down' | undefined = change !== null ? (change >= 0 ? 'up' : 'down') : undefined
+  // A figure the price sources did not supply shows as unavailable, never as an estimate.
+  const shown = (value: number | null | undefined, format: (n: number) => string) =>
+    value === null || value === undefined ? '—' : format(value)
+  const dollars = (n: number) => `$${n.toFixed(2)}`
+
   const stats: Array<{
     label: string
     value: string
@@ -35,35 +43,20 @@ export default function LiveKeyMetrics({ initialPrice }: { initialPrice?: PriceD
     tooltip?: string
   }> = data
     ? [
-        {
-          label: 'Price',
-          value: `$${data.price.toFixed(2)}`,
-          change: `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}%`,
-          changeDirection: data.change24h >= 0 ? 'up' : 'down',
-        },
+        { label: 'Price', value: shown(data.price, dollars), change: changeStr, changeDirection },
         {
           label: 'Market Cap',
-          value: formatMarketCap(data.marketCap),
-          change: `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}%`,
-          changeDirection: data.change24h >= 0 ? 'up' : 'down',
+          value: shown(data.marketCap, formatMarketCap),
+          change: changeStr,
+          changeDirection,
           tooltip: 'Circulating supply × current price',
         },
-        {
-          label: '24h Volume',
-          value: formatMarketCap(data.volume24h),
-          tooltip: 'Trading volume in the last 24 hours',
-        },
-        {
-          label: '24h High',
-          value: `$${data.high24h.toFixed(2)}`,
-        },
-        {
-          label: '24h Low',
-          value: `$${data.low24h.toFixed(2)}`,
-        },
+        { label: '24h Volume', value: shown(data.volume24h, formatMarketCap), tooltip: 'Trading volume in the last 24 hours' },
+        { label: '24h High', value: shown(data.high24h, dollars) },
+        { label: '24h Low', value: shown(data.low24h, dollars) },
         {
           label: 'Circulating Supply',
-          value: '148.3M ETC',
+          value: shown(data.price && data.marketCap ? data.marketCap / data.price : null, (n) => `~${(n / 1e6).toFixed(1)}M ETC`),
           tooltip: 'Total ETC in circulation',
         },
       ]

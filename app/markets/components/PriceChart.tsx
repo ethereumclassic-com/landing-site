@@ -1,106 +1,95 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-
-type TimeRange = '24h' | '7d' | '30d' | '90d' | '1y' | 'all'
+import type { ChartRange, PriceSeries } from '@/lib/price-history'
 
 interface PriceChartProps {
   className?: string
 }
 
-// Sample data points for visual demonstration
-// In production, this would be fetched from an API
-const sampleData: Record<TimeRange, { time: string; price: number }[]> = {
-  '24h': [
-    { time: '00:00', price: 17.8 },
-    { time: '04:00', price: 17.95 },
-    { time: '08:00', price: 18.1 },
-    { time: '12:00', price: 18.25 },
-    { time: '16:00', price: 18.15 },
-    { time: '20:00', price: 18.35 },
-    { time: 'Now', price: 18.42 },
-  ],
-  '7d': [
-    { time: 'Mon', price: 17.2 },
-    { time: 'Tue', price: 17.5 },
-    { time: 'Wed', price: 17.8 },
-    { time: 'Thu', price: 18.1 },
-    { time: 'Fri', price: 17.9 },
-    { time: 'Sat', price: 18.2 },
-    { time: 'Sun', price: 18.42 },
-  ],
-  '30d': [
-    { time: 'Week 1', price: 16.5 },
-    { time: 'Week 2', price: 17.2 },
-    { time: 'Week 3', price: 17.8 },
-    { time: 'Week 4', price: 18.42 },
-  ],
-  '90d': [
-    { time: 'Oct', price: 15.0 },
-    { time: 'Nov', price: 16.5 },
-    { time: 'Dec', price: 17.8 },
-    { time: 'Jan', price: 18.42 },
-  ],
-  '1y': [
-    { time: 'Jan', price: 14.0 },
-    { time: 'Mar', price: 16.0 },
-    { time: 'May', price: 20.0 },
-    { time: 'Jul', price: 18.0 },
-    { time: 'Sep', price: 15.0 },
-    { time: 'Nov', price: 17.0 },
-    { time: 'Jan', price: 18.42 },
-  ],
-  all: [
-    { time: '2016', price: 0.75 },
-    { time: '2017', price: 15.0 },
-    { time: '2018', price: 35.0 },
-    { time: '2019', price: 5.0 },
-    { time: '2020', price: 8.0 },
-    { time: '2021', price: 120.0 },
-    { time: '2022', price: 25.0 },
-    { time: '2023', price: 20.0 },
-    { time: '2024', price: 25.0 },
-    { time: '2025', price: 18.42 },
-  ],
+const RANGES: { label: string; value: ChartRange }[] = [
+  { label: '24H', value: '24h' },
+  { label: '7D', value: '7d' },
+  { label: '30D', value: '30d' },
+  { label: '90D', value: '90d' },
+  { label: '1Y', value: '1y' },
+  { label: 'All', value: 'all' },
+]
+
+/** An axis label for a point, at the precision its range needs. Dates are UTC, as the data is. */
+function tickLabel(t: number, range: ChartRange): string {
+  const d = new Date(t)
+  if (range === '24h') return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' })
+  if (range === 'all') return String(d.getUTCFullYear())
+  if (range === '1y') return d.toLocaleDateString('en-US', { month: 'short', year: '2-digit', timeZone: 'UTC' })
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
 }
 
+function pointLabel(t: number, range: ChartRange): string {
+  const d = new Date(t)
+  if (range === '24h') return `${tickLabel(t, range)} UTC`
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+}
+
+const usd = (n: number) => `$${n.toFixed(n < 1 ? 3 : 2)}`
+
+/**
+ * ETC/USD price history: CoinGecko up to a year back, Kraken's weekly closes for the full history
+ * (lib/price-history). It draws only recorded prices, and says so when a source cannot be reached.
+ */
 export default function PriceChart({ className = '' }: PriceChartProps) {
-  const [timeRange, setTimeRange] = useState<TimeRange>('7d')
+  const [range, setRange] = useState<ChartRange>('7d')
+  const [series, setSeries] = useState<PriceSeries | null>(null)
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
+  const [hover, setHover] = useState<number | null>(null)
 
-  const data = sampleData[timeRange]
-  const maxPrice = Math.max(...data.map((d) => d.price))
-  const minPrice = Math.min(...data.map((d) => d.price))
-  const priceRange = maxPrice - minPrice || 1
+  useEffect(() => {
+    let active = true
+    queueMicrotask(() => {
+      if (!active) return
+      setStatus('loading')
+      setHover(null)
+    })
+    fetch(`/api/price/chart?range=${range}`)
+      .then((response) => (response.ok ? (response.json() as Promise<PriceSeries>) : Promise.reject(response.status)))
+      .then((data) => {
+        if (!active) return
+        setSeries(data)
+        setStatus('ready')
+      })
+      .catch(() => {
+        if (active) setStatus('error')
+      })
+    return () => {
+      active = false
+    }
+  }, [range])
 
-  // Calculate chart path for SVG
   const chartWidth = 600
   const chartHeight = 200
   const padding = 20
-
-  const points = data.map((d, i) => {
-    const x = padding + (i / (data.length - 1)) * (chartWidth - padding * 2)
-    const y = chartHeight - padding - ((d.price - minPrice) / priceRange) * (chartHeight - padding * 2)
-    return { x, y, ...d }
-  })
-
-  const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
-  const areaPathD = `${pathD} L ${points[points.length - 1].x} ${chartHeight - padding} L ${padding} ${chartHeight - padding} Z`
-
-  // Calculate if price is up or down
-  const priceChange = data[data.length - 1].price - data[0].price
-  const isUp = priceChange >= 0
+  const points = status === 'ready' && series ? series.points : []
+  const prices = points.map((p) => p.price)
+  const maxPrice = prices.length ? Math.max(...prices) : 0
+  const minPrice = prices.length ? Math.min(...prices) : 0
+  const priceRange = maxPrice - minPrice || 1
+  const plotted = points.map((p, i) => ({
+    x: padding + (i / Math.max(points.length - 1, 1)) * (chartWidth - padding * 2),
+    y: chartHeight - padding - ((p.price - minPrice) / priceRange) * (chartHeight - padding * 2),
+  }))
+  const pathD = plotted.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
+  const areaPathD = plotted.length
+    ? `${pathD} L ${plotted[plotted.length - 1].x} ${chartHeight - padding} L ${padding} ${chartHeight - padding} Z`
+    : ''
+  const first = points[0]?.price ?? 0
+  const last = points[points.length - 1]?.price ?? 0
+  const change = last - first
+  const isUp = change >= 0
   const strokeColor = isUp ? 'var(--color-success)' : 'var(--color-error)'
   const fillColor = isUp ? 'var(--color-success-bg)' : 'var(--color-error-bg)'
-
-  const timeRanges: { label: string; value: TimeRange }[] = [
-    { label: '24H', value: '24h' },
-    { label: '7D', value: '7d' },
-    { label: '30D', value: '30d' },
-    { label: '90D', value: '90d' },
-    { label: '1Y', value: '1y' },
-    { label: 'All', value: 'all' },
-  ]
+  const ticks = points.length ? [0, 0.25, 0.5, 0.75, 1].map((f) => points[Math.round(f * (points.length - 1))]) : []
+  const hovered = hover !== null ? points[hover] : null
 
   return (
     <div className={`rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-4 md:p-6 ${className}`}>
@@ -109,100 +98,105 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
         <div>
           <h3 className="text-lg font-semibold text-[var(--text-primary)]">Price Chart</h3>
           <p className="text-sm text-[var(--color-text-muted)]">
-            ETC/USD historical price data
+            {hovered
+              ? `${usd(hovered.price)} on ${pointLabel(hovered.t, range)}`
+              : range === 'all'
+                ? 'ETC/USD since July 2016, weekly closes on Kraken'
+                : 'ETC/USD from CoinGecko'}
           </p>
         </div>
         <div className="flex rounded-lg border border-[var(--border)] bg-[var(--bg)] p-1">
-          {timeRanges.map((range) => (
+          {RANGES.map((option) => (
             <button
-              key={range.value}
-              onClick={() => setTimeRange(range.value)}
+              key={option.value}
+              onClick={() => setRange(option.value)}
               className={`rounded px-3 py-1.5 text-sm font-medium transition ${
-                timeRange === range.value
+                range === option.value
                   ? 'bg-[var(--color-primary)] text-[var(--brand-green-foreground)]'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--text-primary)]'
               }`}
             >
-              {range.label}
+              {option.label}
             </button>
           ))}
         </div>
       </div>
 
       {/* Chart */}
-      <motion.div
-        key={timeRange}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="relative"
-      >
-        <svg aria-hidden="true"
-          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-          className="h-48 w-full md:h-64"
-          preserveAspectRatio="none"
-        >
-          {/* Grid lines */}
-          {[0.25, 0.5, 0.75].map((ratio) => (
-            <line
-              key={ratio}
-              x1={padding}
-              y1={padding + ratio * (chartHeight - padding * 2)}
-              x2={chartWidth - padding}
-              y2={padding + ratio * (chartHeight - padding * 2)}
-              stroke="var(--border)"
-              strokeDasharray="4 4"
-            />
-          ))}
-
-          {/* Area fill */}
-          <path d={areaPathD} fill={fillColor} />
-
-          {/* Line */}
-          <path d={pathD} fill="none" stroke={strokeColor} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-
-          {/* Data points */}
-          {points.map((point, i) => (
-            <circle key={i} cx={point.x} cy={point.y} r={4} fill={strokeColor} className="opacity-0 transition-opacity hover:opacity-100" />
-          ))}
-        </svg>
-
-        {/* X-axis labels */}
-        <div className="mt-2 flex justify-between px-5 text-xs text-[var(--color-text-muted)]">
-          {data.map((d, i) => (
-            <span key={i} className={i !== 0 && i !== data.length - 1 ? 'hidden sm:inline' : ''}>
-              {d.time}
-            </span>
-          ))}
+      {status !== 'ready' ? (
+        <div className="flex h-48 items-center justify-center rounded-lg bg-[var(--bg)] md:h-64">
+          <p className={`text-sm text-[var(--color-text-muted)] ${status === 'loading' ? 'animate-pulse' : ''}`}>
+            {status === 'loading' ? 'Loading price history…' : 'Price history is unavailable right now.'}
+          </p>
         </div>
+      ) : (
+        <motion.div key={range} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="relative">
+          <svg
+            aria-label={`ETC/USD price, ${tickLabel(points[0].t, range)} to ${tickLabel(points[points.length - 1].t, range)}`}
+            role="img"
+            viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+            className="h-48 w-full md:h-64"
+            preserveAspectRatio="none"
+            onMouseMove={(event) => {
+              const box = event.currentTarget.getBoundingClientRect()
+              const x = ((event.clientX - box.left) / box.width) * chartWidth
+              const ratio = (x - padding) / (chartWidth - padding * 2)
+              setHover(Math.min(points.length - 1, Math.max(0, Math.round(ratio * (points.length - 1)))))
+            }}
+            onMouseLeave={() => setHover(null)}
+          >
+            {[0.25, 0.5, 0.75].map((ratio) => (
+              <line
+                key={ratio}
+                x1={padding}
+                y1={padding + ratio * (chartHeight - padding * 2)}
+                x2={chartWidth - padding}
+                y2={padding + ratio * (chartHeight - padding * 2)}
+                stroke="var(--border)"
+                strokeDasharray="4 4"
+              />
+            ))}
+            <path d={areaPathD} fill={fillColor} />
+            <path d={pathD} fill="none" stroke={strokeColor} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+            {hover !== null && plotted[hover] && (
+              <line x1={plotted[hover].x} y1={padding} x2={plotted[hover].x} y2={chartHeight - padding} stroke="var(--color-text-muted)" strokeDasharray="2 3" vectorEffect="non-scaling-stroke" />
+            )}
+          </svg>
 
-        {/* Price range labels */}
-        <div className="absolute left-0 top-0 flex h-48 flex-col justify-between py-3 text-xs text-[var(--color-text-muted)] md:h-64">
-          <span>${maxPrice.toFixed(2)}</span>
-          <span>${((maxPrice + minPrice) / 2).toFixed(2)}</span>
-          <span>${minPrice.toFixed(2)}</span>
-        </div>
-      </motion.div>
+          {/* X-axis labels */}
+          <div className="mt-2 flex justify-between px-5 text-xs text-[var(--color-text-muted)]">
+            {ticks.map((point, i) => (
+              <span key={i} className={i !== 0 && i !== ticks.length - 1 ? 'hidden sm:inline' : ''}>
+                {tickLabel(point.t, range)}
+              </span>
+            ))}
+          </div>
+
+          {/* Price range labels */}
+          <div className="pointer-events-none absolute left-0 top-0 flex h-48 flex-col justify-between py-3 text-xs text-[var(--color-text-muted)] md:h-64">
+            <span>{usd(maxPrice)}</span>
+            <span>{usd((maxPrice + minPrice) / 2)}</span>
+            <span>{usd(minPrice)}</span>
+          </div>
+        </motion.div>
+      )}
 
       {/* Footer */}
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-[var(--border)] pt-4">
-        <div className="flex items-center gap-4 text-sm">
-          <span className="text-[var(--color-text-muted)]">
-            Range: <span className="text-[var(--text-primary)]">${minPrice.toFixed(2)} - ${maxPrice.toFixed(2)}</span>
-          </span>
-          <span className={`flex items-center gap-1 ${isUp ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
-            {isUp ? (
-              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-              </svg>
-            ) : (
-              <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            )}
-            {isUp ? '+' : ''}
-            {priceChange.toFixed(2)} ({((priceChange / data[0].price) * 100).toFixed(2)}%)
-          </span>
+        <div className="flex flex-wrap items-center gap-4 text-sm">
+          {status === 'ready' && (
+            <>
+              <span className="text-[var(--color-text-muted)]">
+                Range: <span className="text-[var(--text-primary)]">{usd(minPrice)} to {usd(maxPrice)}</span>
+              </span>
+              <span className={isUp ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}>
+                {isUp ? '+' : '−'}
+                {usd(Math.abs(change))} ({isUp ? '+' : '−'}
+                {Math.abs(first > 0 ? (change / first) * 100 : 0).toFixed(2)}%)
+              </span>
+              {series && <span className="text-xs text-[var(--color-text-muted)]">Source: {series.sourceLabel}</span>}
+            </>
+          )}
         </div>
         <a
           href="https://www.tradingview.com/symbols/ETCUSD/"
@@ -214,36 +208,5 @@ export default function PriceChart({ className = '' }: PriceChartProps) {
         </a>
       </div>
     </div>
-  )
-}
-
-// Compact sparkline version for use in cards
-interface SparklineProps {
-  data: number[]
-  width?: number
-  height?: number
-  className?: string
-}
-
-export function Sparkline({ data, width = 100, height = 30, className = '' }: SparklineProps) {
-  if (data.length < 2) return null
-
-  const max = Math.max(...data)
-  const min = Math.min(...data)
-  const range = max - min || 1
-
-  const points = data.map((value, i) => {
-    const x = (i / (data.length - 1)) * width
-    const y = height - ((value - min) / range) * height
-    return `${i === 0 ? 'M' : 'L'} ${x} ${y}`
-  }).join(' ')
-
-  const isUp = data[data.length - 1] >= data[0]
-  const strokeColor = isUp ? 'var(--color-success)' : 'var(--color-error)'
-
-  return (
-    <svg width={width} height={height} className={className}>
-      <path d={points} fill="none" stroke={strokeColor} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   )
 }

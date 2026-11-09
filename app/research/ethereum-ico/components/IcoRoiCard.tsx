@@ -3,6 +3,9 @@
 import { useState } from 'react'
 import { Info } from 'lucide-react'
 import type { ExchangeRates } from '@/lib/exchange-rates'
+
+/** Rates with the ETH and BTC prices present, which only CoinGecko supplies. */
+type LiveRates = ExchangeRates & { eth_usd: number; btc_usd: number }
 import { ETH_ICO_PRICE_USD, ETH_ICO_PRICE_BTC } from '@/app/research/data/ethereumIco'
 
 const ETC_FORK_PRICE_USD = 0.615   // Jul 24, 2016 — first ETC close on CoinGecko
@@ -73,7 +76,7 @@ interface RoiData {
   symbol: string
 }
 
-function computeRoi(currency: string, rates: ExchangeRates): RoiData {
+function computeRoi(currency: string, rates: LiveRates): RoiData {
   const tokensPerHundred = 100 / ETH_ICO_PRICE_USD
   const symbol = CURRENCY_SYMBOLS[currency] ?? currency.toUpperCase()
   const fiatRate = rates.fiat_to_usd[currency] ?? 1
@@ -98,7 +101,7 @@ interface BtcRoiData {
   costBasisBtc: number
 }
 
-function computeBtcRoi(rates: ExchangeRates): BtcRoiData {
+function computeBtcRoi(rates: LiveRates): BtcRoiData {
   const BTC_REFERENCE = 0.1  // clean reference investment: 0.1 BTC
   const tokensForRef = BTC_REFERENCE / ETH_ICO_PRICE_BTC  // 0.1 / 0.0005 = 200 ETH
   const etcBtc = rates.btc_usd > 0 ? (rates.etc.usd ?? 0) / rates.btc_usd : 0
@@ -137,7 +140,26 @@ function formatValue(value: number, currency: string, symbol: string): string {
   return `${symbol}${value.toFixed(2)}`
 }
 
+/**
+ * The comparison needs ETH, ETC and BTC prices and the fiat rates together. When CoinGecko cannot be
+ * reached they are not all known, so the card says so instead of computing from partial figures.
+ */
 export default function IcoRoiCard({ rates }: { rates: ExchangeRates }) {
+  if (rates.source !== 'coingecko' || rates.eth_usd === null || rates.btc_usd === null || !rates.etc.usd) {
+    return (
+      <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-6">
+        <h2 className="text-lg font-semibold text-[var(--text-primary)]">Ethereum ICO ROI</h2>
+        <p className="mt-3 text-sm text-[var(--text-muted)]">
+          This comparison needs live ETH, ETC and BTC prices, and CoinGecko could not be reached. It returns with
+          the next price update, within ten minutes.
+        </p>
+      </div>
+    )
+  }
+  return <IcoRoiCardLive rates={rates as LiveRates} />
+}
+
+function IcoRoiCardLive({ rates }: { rates: LiveRates }) {
   const [currency, setCurrency] = useState('usd')
   const [showMore, setShowMore] = useState(false)
 

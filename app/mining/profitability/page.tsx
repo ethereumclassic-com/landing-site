@@ -9,7 +9,6 @@ import {
   formatUSD,
   formatHashrate,
   formatPower,
-  NETWORK_CONSTANTS,
   type ProfitabilityResult,
 } from '../lib/calculations'
 import { useNetworkStats } from '../hooks/useNetworkStats'
@@ -93,8 +92,8 @@ export default function MiningProfitabilityPage() {
   const [userEtcPrice, setUserEtcPrice] = useState<number | null>(null)
   const [selectedHardware, setSelectedHardware] = useState<string | null>(null)
 
-  // Effective price: user override or live price or fallback
-  const etcPrice = userEtcPrice ?? (liveStats.source === 'live' && liveStats.etcPriceUSD > 0 ? liveStats.etcPriceUSD : NETWORK_CONSTANTS.etcPriceUSD)
+  // Effective price: the reader's, else the live one. NaN without either, so USD results show a dash.
+  const etcPrice = userEtcPrice ?? liveStats.etcPriceUSD ?? NaN
 
   // Handler to update user price
   const setEtcPrice = (price: number) => setUserEtcPrice(price)
@@ -122,7 +121,7 @@ export default function MiningProfitabilityPage() {
   const topHardware = miningHardware.slice(0, 6)
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -273,7 +272,7 @@ export default function MiningProfitabilityPage() {
                   </label>
                   <input
                     type="number"
-                    value={etcPrice}
+                    value={Number.isFinite(etcPrice) ? etcPrice : ''}
                     onChange={(e) => setEtcPrice(parseFloat(e.target.value) || 0)}
                     step="0.01"
                     min="0"
@@ -378,9 +377,11 @@ export default function MiningProfitabilityPage() {
             {/* Profitability Status */}
             <div
               className={`rounded-xl border p-6 ${
-                results.isProfitable
-                  ? 'border-[var(--color-success-border)] bg-[var(--color-success)]/5'
-                  : 'border-[var(--color-error-border)] bg-[var(--color-error)]/5'
+                !Number.isFinite(results.dailyProfitUSD)
+                  ? 'border-[var(--border)] bg-[var(--panel)]'
+                  : results.isProfitable
+                    ? 'border-[var(--color-success-border)] bg-[var(--color-success)]/5'
+                    : 'border-[var(--color-error-border)] bg-[var(--color-error)]/5'
               }`}
             >
               <div className="flex items-center gap-3">
@@ -389,18 +390,22 @@ export default function MiningProfitabilityPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 ) : (
-                  <svg aria-hidden="true" className="h-8 w-8 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg aria-hidden="true" className={`h-8 w-8 ${Number.isFinite(results.dailyProfitUSD) ? 'text-[var(--color-error)]' : 'text-[var(--color-text-muted)]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                   </svg>
                 )}
                 <div>
-                  <h3 className={`text-xl font-bold ${results.isProfitable ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
-                    {results.isProfitable ? 'Profitable' : 'Not Profitable'}
+                  <h3 className={`text-xl font-bold ${!Number.isFinite(results.dailyProfitUSD) ? 'text-[var(--text-primary)]' : results.isProfitable ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
+                    {!Number.isFinite(results.dailyProfitUSD) ? (statsLoading ? 'Loading' : 'No Price') : results.isProfitable ? 'Profitable' : 'Not Profitable'}
                   </h3>
                   <p className="text-sm text-[var(--color-text-muted)]">
-                    {results.isProfitable
-                      ? `Earning ${formatUSD(results.dailyProfitUSD)} per day after power costs`
-                      : `Losing ${formatUSD(Math.abs(results.dailyProfitUSD))} per day after power costs`}
+                    {!Number.isFinite(results.dailyProfitUSD)
+                      ? statsLoading
+                        ? 'Reading the live ETC price'
+                        : 'The live ETC price is unavailable: enter a price to see earnings in USD'
+                      : results.isProfitable
+                        ? `Earning ${formatUSD(results.dailyProfitUSD)} per day after power costs`
+                        : `Losing ${formatUSD(Math.abs(results.dailyProfitUSD))} per day after power costs`}
                   </p>
                 </div>
               </div>
@@ -525,6 +530,6 @@ export default function MiningProfitabilityPage() {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -2,11 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
 import type { NetworkStats, RecentBlock } from '@/app/hooks/useNetworkStats'
-import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
-import { getBlockRewardForEra, CURRENT_ERA } from '@/app/research/data/emission'
-
-/** Reward fallback, derived so it follows the chain across a fifthing. */
-const FALLBACK_BLOCK_REWARD = getBlockRewardForEra(CURRENT_ERA)
+import { networkStatsFromPayload } from '@/lib/network-stats'
 
 interface NetworkStatsContextValue {
   stats: NetworkStats | null
@@ -42,20 +38,7 @@ export function NetworkStatsProvider({ children }: { children: React.ReactNode }
       if (!response.ok) throw new Error(`${response.status}`)
       const data = await response.json()
       if (!mountedRef.current) return
-      const mapped: NetworkStats = {
-        price: data.price ?? 0,
-        priceChange24h: data.priceChange24h ?? 0,
-        marketCap: data.marketCap ?? 0,
-        totalBlocks: data.blockHeight ?? 0,
-        totalTransactions: data.totalTransactions ?? 0,
-        totalAddresses: data.totalAddresses ?? 0,
-        avgBlockTime: data.avgBlockTime ?? NOMINAL_BLOCK_TIME_SECONDS,
-        networkUtilization: data.networkUtilization ?? 0,
-        gasPrice: data.gasPrice ?? { slow: 1, average: 2, fast: 5 },
-        avgBlockReward: data.blockReward ?? FALLBACK_BLOCK_REWARD,
-        lastUpdated: data.lastUpdated ?? new Date().toISOString(),
-        source: data.source,
-      }
+      const mapped: NetworkStats = networkStatsFromPayload(data)
       setStats(mapped)
       setBlocks(data.blocks ?? [])
       setLastUpdated(new Date())

@@ -5,7 +5,7 @@ import { OG_BASE } from '@/lib/seo'
 
 // The /tools layout appends " | Ethereum Classic" through its title template.
 const description =
-  'Convert Ethereum Classic to and from bitcoin and major currencies at current rates: US dollars, pounds, yen, Swiss francs, Canadian and Australian dollars.'
+  'Convert Ethereum Classic to and from US dollars, euros, pounds, yen, Canadian and Australian dollars, Swiss francs, yuan, bitcoin and ether, at current rates.'
 
 export const metadata: Metadata = {
   title: 'ETC Converter',

@@ -52,7 +52,7 @@ export default function HashrateChart({ initial }: { initial?: HashrateData }) {
           <div className="mt-1 text-xs text-[var(--text-muted)]">Network Hashrate</div>
         </div>
         <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] px-4 py-4">
-          <div className="text-2xl font-bold text-[var(--brand-green)]">ETChash</div>
+          <div className="text-2xl font-bold text-[var(--brand-green)]">Etchash</div>
           <div className="mt-1 text-xs text-[var(--text-muted)]">Mining Algorithm</div>
         </div>
         <div className="rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] px-4 py-4">

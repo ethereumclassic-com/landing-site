@@ -11,6 +11,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { NOMINAL_BLOCK_TIME_SECONDS } from './chain'
+import { getBlockRewardForEra, CURRENT_ERA } from '@/app/research/data/emission'
 
 const BLOCKSCOUT_API_BASE = 'https://etc.blockscout.com/api/v2'
 
@@ -307,47 +308,49 @@ export async function fetchRecentBlocks(limit: number = 10): Promise<RecentBlock
  * Format network stats for display
  */
 export function formatNetworkStats(stats: NetworkStats) {
+  // Zero is the fallback's "unknown": no live price, height or count is ever zero.
+  const known = (value: number, format: (n: number) => string) => (value > 0 ? format(value) : '—')
   return {
-    price: `$${stats.price.toFixed(2)}`,
-    priceChange: `${stats.priceChange24h >= 0 ? '+' : ''}${stats.priceChange24h.toFixed(2)}%`,
-    marketCap: formatLargeNumber(stats.marketCap),
-    blockHeight: stats.totalBlocks.toLocaleString(),
-    totalTransactions: formatLargeNumber(stats.totalTransactions),
+    price: known(stats.price, (n) => `$${n.toFixed(2)}`),
+    priceChange: stats.price > 0 ? `${stats.priceChange24h >= 0 ? '+' : ''}${stats.priceChange24h.toFixed(2)}%` : '—',
+    marketCap: known(stats.marketCap, (n) => formatLargeNumber(n, '$')),
+    blockHeight: known(stats.totalBlocks, (n) => n.toLocaleString()),
+    totalTransactions: known(stats.totalTransactions, (n) => formatLargeNumber(n)),
     avgBlockTime: `${stats.avgBlockTime.toFixed(1)}s`,
     blockReward: `${stats.avgBlockReward.toFixed(2)} ETC`,
-    gasPrice: `${stats.gasPrice.average.toFixed(2)} Gwei`,
+    gasPrice: known(stats.gasPrice.average, (n) => `${n.toFixed(2)} Gwei`),
   }
 }
 
-function formatLargeNumber(num: number): string {
-  if (num >= 1e12) return `$${(num / 1e12).toFixed(2)}T`
-  if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`
-  if (num >= 1e6) return `$${(num / 1e6).toFixed(2)}M`
-  if (num >= 1e3) return `$${(num / 1e3).toFixed(2)}K`
-  return num.toFixed(2)
+function formatLargeNumber(num: number, prefix = ''): string {
+  if (num >= 1e12) return `${prefix}${(num / 1e12).toFixed(2)}T`
+  if (num >= 1e9) return `${prefix}${(num / 1e9).toFixed(2)}B`
+  if (num >= 1e6) return `${prefix}${(num / 1e6).toFixed(2)}M`
+  if (num >= 1e3) return `${prefix}${(num / 1e3).toFixed(2)}K`
+  return `${prefix}${num.toFixed(2)}`
 }
 
 /**
- * Get fallback stats when API is unavailable
+ * Stats for when Blockscout cannot be reached. Nothing here is a reading: the figures Blockscout supplies
+ * are zero, which every formatter shows as "—", and only the nominal block time and the current era's
+ * block reward, both derived, carry values.
  */
 export function getFallbackStats(): NetworkStats {
-  // Fallback values based on Jan 2026 network data
-  // These are used when Blockscout API is unavailable
   return {
-    price: 12.75,
-    priceChange24h: -0.70,
-    marketCap: 1980000000,
-    totalBlocks: 23820000,
-    totalTransactions: 142000000,
-    totalAddresses: 553500000,
+    price: 0,
+    priceChange24h: 0,
+    marketCap: 0,
+    totalBlocks: 0,
+    totalTransactions: 0,
+    totalAddresses: 0,
     avgBlockTime: NOMINAL_BLOCK_TIME_SECONDS,
-    networkUtilization: 0.42,
+    networkUtilization: 0,
     gasPrice: {
-      slow: 1.56,
-      average: 1.89,
-      fast: 5.21,
+      slow: 0,
+      average: 0,
+      fast: 0,
     },
-    avgBlockReward: 1.6384,
+    avgBlockReward: getBlockRewardForEra(CURRENT_ERA),
     lastUpdated: new Date().toISOString(),
   }
 }

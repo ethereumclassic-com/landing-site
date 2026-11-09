@@ -163,19 +163,17 @@ function formatTimeAgo(date: Date): string {
  */
 interface LiveMarketStatsProps {
   showVolume?: boolean
-  showRank?: boolean
   showSupply?: boolean
   className?: string
 }
 
 export function LiveMarketStats({
   showVolume = true,
-  showRank = false,
   showSupply = true,
   className = '',
   initialPrice,
 }: LiveMarketStatsProps & { initialPrice?: PriceData | null }) {
-  const { marketCapFormatted, volumeFormatted, loading } = usePrice('usd', { initialData: initialPrice })
+  const { data, marketCapFormatted, volumeFormatted, loading } = usePrice('usd', { initialData: initialPrice })
 
   if (loading) {
     return (
@@ -206,16 +204,10 @@ export function LiveMarketStats({
           <p className="font-semibold text-[var(--text-primary)]">{volumeFormatted}</p>
         </div>
       )}
-      {showRank && (
-        <div className="text-center">
-          <p className="text-[var(--color-text-muted)]">Rank</p>
-          <p className="font-semibold text-[var(--text-primary)]">#28</p>
-        </div>
-      )}
       {showSupply && (
         <div className="text-center">
           <p className="text-[var(--color-text-muted)]">Circulating</p>
-          <p className="font-semibold text-[var(--text-primary)]">148.3M ETC</p>
+          <p className="font-semibold text-[var(--text-primary)]">{!data ? '...' : data.price && data.marketCap ? `~${(data.marketCap / data.price / 1e6).toFixed(1)}M ETC` : '—'}</p>
         </div>
       )}
     </div>

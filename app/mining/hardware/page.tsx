@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { miningHardware, type MiningHardware } from '../data/mining'
 import { useNetworkStats } from '../hooks/useNetworkStats'
-import { calculateHardwareProfitability, formatUSD, NETWORK_CONSTANTS, type NetworkFigures } from '../lib/calculations'
+import { calculateHardwareProfitability, formatUSD, type NetworkFigures } from '../lib/calculations'
 
 type HardwareTab = 'ASIC' | 'GPU'
 type SortOption = 'hashrate' | 'efficiency' | 'profit' | 'power'
@@ -187,7 +187,7 @@ export default function MiningHardwarePage() {
   const { stats: liveStats } = useNetworkStats()
   const [userEtcPrice, setUserEtcPrice] = useState<number | null>(null)
   const etcPrice =
-    userEtcPrice ?? (liveStats.source === 'live' && liveStats.etcPriceUSD > 0 ? liveStats.etcPriceUSD : NETWORK_CONSTANTS.etcPriceUSD)
+    userEtcPrice ?? liveStats.etcPriceUSD ?? NaN
 
   const handleSort = (option: SortOption) => {
     if (sortBy === option) {
@@ -229,7 +229,7 @@ export default function MiningHardwarePage() {
   const gpuCount = miningHardware.filter((hw) => hw.type === 'GPU').length
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -298,7 +298,7 @@ export default function MiningHardwarePage() {
                   <span className="text-sm text-[var(--color-text-muted)]">$</span>
                   <input
                     type="number"
-                    value={etcPrice}
+                    value={Number.isFinite(etcPrice) ? etcPrice : ''}
                     onChange={(e) => setUserEtcPrice(parseFloat(e.target.value) || 0)}
                     step="0.01"
                     min="0"
@@ -427,7 +427,7 @@ export default function MiningHardwarePage() {
                 </div>
                 <div>
                   <p className="font-medium text-[var(--text-primary)]">GPUs</p>
-                  <p>Versatile and resellable. Lower initial efficiency but can mine multiple algorithms. Good for hobbyists.</p>
+                  <p>Versatile and resellable. Less efficient, but can mine other algorithms too. Good for hobbyists.</p>
                 </div>
               </div>
             </div>
@@ -509,6 +509,6 @@ export default function MiningHardwarePage() {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -8,44 +8,44 @@ import { fetchExchangeRates, type ExchangeRates } from './exchange-rates'
  * produced by the same code rather than two copies that round differently.
  */
 
-/** Approximate circulating supply, for the fallback only. Moves slowly; see research/data/emission for the derived figure. */
-const CIRCULATING_SUPPLY = 148_300_000
-
 /**
- * Market cap, 24-hour volume and the 24-hour high and low are CoinGecko's own
- * figures, carried in USD and converted at the price's own rate. Only when
- * CoinGecko cannot be reached, and the price itself is the fallback, are they
- * estimated from the price.
+ * Market cap, 24-hour volume and the 24-hour high and low are CoinGecko's own figures, carried in USD
+ * and converted at the price's own rate. With Blockscout standing in, only the market cap is known.
+ * A figure no source supplies is null: pages show it as unavailable, never as an estimate.
  */
-function marketFigures(rates: ExchangeRates, price: number) {
+function marketFigures(rates: ExchangeRates, price: number | null) {
   const market = rates.market
   const usd = rates.etc.usd
-  if (market && usd) {
-    const rate = price / usd
-    return {
-      marketCap: market.market_cap_usd * rate,
-      volume24h: market.volume_24h_usd * rate,
-      high24h: market.high_24h_usd * rate,
-      low24h: market.low_24h_usd * rate,
-    }
+  if (!market || !usd || price === null) {
+    return { marketCap: null, volume24h: null, high24h: null, low24h: null }
   }
-  const marketCap = price * CIRCULATING_SUPPLY
-  return { marketCap, volume24h: marketCap * 0.03, high24h: price * 1.02, low24h: price * 0.98 }
+  const rate = price / usd
+  const scale = (value: number | null) => (value === null ? null : value * rate)
+  return {
+    marketCap: market.market_cap_usd * rate,
+    volume24h: scale(market.volume_24h_usd),
+    high24h: scale(market.high_24h_usd),
+    low24h: scale(market.low_24h_usd),
+  }
 }
 
+const round = (value: number | null, places: number) =>
+  value === null ? null : Math.round(value * 10 ** places) / 10 ** places
+
 export function formatPricePayload(rates: ExchangeRates, currency: string) {
-  const price = rates.etc[currency] ?? rates.etc.usd
-  const change24h = rates.etc_24h_change[currency] ?? rates.etc_24h_change.usd ?? 0
+  const key = currency.toLowerCase()
+  const price = rates.etc[key] ?? null
+  const change24h = rates.etc_24h_change[key] ?? (key === 'usd' ? null : rates.etc_24h_change.usd ?? null)
   const { marketCap, volume24h, high24h, low24h } = marketFigures(rates, price)
 
   return {
-    price: Math.round(price * 100) / 100,
-    change24h: Math.round(change24h * 100) / 100,
-    marketCap: Math.round(marketCap),
-    volume24h: Math.round(volume24h),
-    high24h: Math.round(high24h * 100) / 100,
-    low24h: Math.round(low24h * 100) / 100,
-    currency: currency.toLowerCase(),
+    price: round(price, 2),
+    change24h: round(change24h, 2),
+    marketCap: round(marketCap, 0),
+    volume24h: round(volume24h, 0),
+    high24h: round(high24h, 2),
+    low24h: round(low24h, 2),
+    currency: key,
     timestamp: rates.lastUpdated,
     source: rates.source,
     prices: rates.etc,
@@ -55,6 +55,8 @@ export function formatPricePayload(rates: ExchangeRates, currency: string) {
     fiat_to_usd: rates.fiat_to_usd,
   }
 }
+
+export type PricePayload = ReturnType<typeof formatPricePayload>
 
 /** Fetch and format in one step, for server components seeding usePrice. */
 export async function fetchPricePayload(currency = 'usd') {

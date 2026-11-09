@@ -1,19 +1,27 @@
 /**
  * Exchange Rates Service for Ethereum Classic
- * Fetches ETC prices and fiat exchange rates from CoinGecko API
+ * Fetches ETC prices and fiat exchange rates from CoinGecko API. When CoinGecko cannot be reached,
+ * Blockscout's ETC/USD price, 24h change and market cap stand in: Blockscout reads them from
+ * CoinGecko itself, so they agree to the cent. Anything neither source supplies is absent or null,
+ * and pages show it as unavailable rather than as an old figure.
  *
  * CoinGecko API (Free tier):
  * - Rate limit: 10-30 calls/minute
  * - No API key required for basic endpoints
  * - Docs: https://www.coingecko.com/en/api/documentation
  *
- * Cache Strategy: 24-hour file-based cache to minimize API calls
+ * Cache Strategy: 10-minute memory and file cache to minimize API calls
  */
 
 import * as fs from 'fs'
 import * as path from 'path'
+import { calculateSupplyStats, CURRENT_ERA_REFERENCE_BLOCK } from '@/app/research/data/emission'
 
 const COINGECKO_API_BASE = 'https://api.coingecko.com/api/v3'
+const BLOCKSCOUT_STATS_URL = 'https://etc.blockscout.com/api/v2/stats'
+
+/** ETC supply from block rewards at the reference height, for when CoinGecko cannot be reached. Excludes uncle rewards. */
+const ETC_SUPPLY_FALLBACK = Math.round(calculateSupplyStats(CURRENT_ERA_REFERENCE_BLOCK).totalSupply)
 
 // Cache duration: 10 minutes — matches Blockscout pull cadence
 const CACHE_DURATION_MS = 10 * 60 * 1000
@@ -23,7 +31,7 @@ const CACHE_DIR = path.join(process.cwd(), '.next', 'cache', 'rates')
 const RATES_CACHE_FILE = path.join(CACHE_DIR, 'exchange-rates.json')
 
 // Supported currencies for conversion
-export const SUPPORTED_FIAT = ['usd', 'eur', 'gbp', 'jpy', 'krw', 'cad', 'aud', 'try', 'brl', 'cny', 'inr', 'rub'] as const
+export const SUPPORTED_FIAT = ['usd', 'eur', 'gbp', 'jpy', 'krw', 'cad', 'aud', 'chf', 'try', 'brl', 'cny', 'inr', 'rub'] as const
 // BTC and ETH prices are fetched directly as source-of-truth; ETC/BTC and ETC/ETH are derived from them
 export const SUPPORTED_CRYPTO = ['btc', 'eth', 'bnb'] as const
 
@@ -60,9 +68,9 @@ export interface ExchangeRates {
   etc_24h_change: Record<string, number>
   // Fiat-to-USD rates for cross conversion
   fiat_to_usd: Record<string, number>
-  // Derived cross-asset USD prices
-  eth_usd: number  // ETH price in USD (derived: etc.usd / etc.eth)
-  btc_usd: number  // BTC price in USD (derived: etc.usd / etc.btc)
+  // ETH and BTC prices in USD, from CoinGecko. Null when CoinGecko could not be reached.
+  eth_usd: number | null
+  btc_usd: number | null
   // Token supply data
   supply: {
     etc: AssetSupply
@@ -74,18 +82,22 @@ export interface ExchangeRates {
     etc: AssetPriceHistory
     eth: AssetPriceHistory
   }
-  // ETC's market figures over the last 24 hours, in USD, from /coins/markets. Null in the fallback.
+  // ETC's market figures over the last 24 hours, in USD: from /coins/markets, or the market cap alone
+  // from Blockscout. Null when neither could be reached.
   market?: EtcMarket | null
   // Metadata
   lastUpdated: string
-  source: 'coingecko' | 'fallback'
+  source: RatesSource
 }
+
+/** coingecko: everything live. blockscout: ETC/USD, its 24h change and market cap only. fallback: no prices. */
+export type RatesSource = 'coingecko' | 'blockscout' | 'fallback'
 
 export interface EtcMarket {
   market_cap_usd: number
-  volume_24h_usd: number
-  high_24h_usd: number
-  low_24h_usd: number
+  volume_24h_usd: number | null
+  high_24h_usd: number | null
+  low_24h_usd: number | null
 }
 
 // Cache entry structure
@@ -212,8 +224,8 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
     }
 
     // ETH/USD and BTC/USD are source-of-truth: fetched directly from the most liquid markets
-    const eth_usd: number = ethData?.usd ?? 0
-    const btc_usd: number = btcData?.usd ?? 0
+    const eth_usd: number | null = ethData?.usd ?? null
+    const btc_usd: number | null = btcData?.usd ?? null
 
     // Extract ETC prices in fiat currencies
     const etc: Record<string, number> = {}
@@ -231,8 +243,8 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
     if (etcData.bnb !== undefined) etc.bnb = etcData.bnb
 
     // Derive ETC/ETH and ETC/BTC from the authoritative USD prices
-    if (eth_usd > 0) etc.eth = etc.usd / eth_usd
-    if (btc_usd > 0) etc.btc = etc.usd / btc_usd
+    if (eth_usd && eth_usd > 0) etc.eth = etc.usd / eth_usd
+    if (btc_usd && btc_usd > 0) etc.btc = etc.usd / btc_usd
 
     // Fiat-to-USD rates
     const fiat_to_usd: Record<string, number> = {}
@@ -391,64 +403,30 @@ async function fetchCoinGeckoRates(): Promise<ExchangeRates | null> {
 }
 
 /**
- * Get fallback rates when API is unavailable
- * Based on Jan 2026 data
+ * What is known when no price source can be reached: no prices at all, so no page shows an old one as
+ * current. The supplies and the all-time highs and lows stay, as the defaults the live sources override:
+ * ETC's supply is computed from the emission schedule, and the highs and lows are dated history.
  */
 export function getFallbackRates(): ExchangeRates {
   return {
-    etc: {
-      usd: 12.75,
-      eur: 12.24,
-      gbp: 10.20,
-      jpy: 1976,
-      krw: 18488,
-      cad: 18.34,
-      aud: 20.53,
-      try: 447.00,
-      brl: 78.54,
-      cny: 92.55,
-      inr: 1080,
-      rub: 1275,
-      btc: 0.00012,
-      eth: 0.0038,
-      bnb: 0.019,
-    },
-    etc_24h_change: {
-      usd: -0.70,
-      eur: -0.65,
-      gbp: -0.72,
-      btc: -0.15,
-      eth: 0.25,
-    },
-    fiat_to_usd: {
-      usd: 1,
-      eur: 0.96,
-      gbp: 0.80,
-      jpy: 155,
-      krw: 1450,
-      cad: 1.44,
-      aud: 1.61,
-      try: 35,
-      brl: 6.16,
-      cny: 7.26,
-      inr: 84.7,
-      rub: 100,
-    },
-    // Approximate Jan 2026 fallback values
-    eth_usd: 3350,
-    btc_usd: 104000,
+    etc: {},
+    etc_24h_change: {},
+    fiat_to_usd: { usd: 1 },
+    eth_usd: null,
+    btc_usd: null,
+    market: null,
     supply: {
-      etc: { total: 147_600_000, circulating: 147_600_000, max: 210_700_000 },
+      etc: { total: ETC_SUPPLY_FALLBACK, circulating: ETC_SUPPLY_FALLBACK, max: 210_700_000 },
       eth: { total: 120_400_000, circulating: 120_400_000, max: null },
       btc: { total: 19_800_000, circulating: 19_800_000, max: 21_000_000 },
     },
     history: {
       etc: {
-        ath_usd: 176.16,  atl_usd: 0.4315,
-        ath_date_usd: '2021-05-06T00:00:00.000Z',
+        ath_usd: 167.09,  atl_usd: 0.4315,
+        ath_date_usd: '2021-05-06T10:34:22.000Z',
         atl_date_usd: '2015-10-21T00:00:00.000Z',  // pre-fork low from ETH chain history
-        ath_btc: 0.00343,  atl_btc: 0.0000035,
-        ath_date_btc: '2021-05-04T00:00:00.000Z',
+        ath_btc: 0.00894331,  atl_btc: 0.0000035,
+        ath_date_btc: '2017-06-16T16:00:00.000Z',
         atl_date_btc: '2015-10-21T00:00:00.000Z',
         ath_eth: 0.042,   atl_eth: null,            // ETC/ETH ATH ~May 2021 (ETH ~$4k, ETC ~$167)
         ath_date_eth: '2021-05-06T00:00:00.000Z',
@@ -471,7 +449,34 @@ export function getFallbackRates(): ExchangeRates {
 }
 
 /**
- * Fetch exchange rates with caching
+ * ETC/USD, its 24h change and the market cap from Blockscout's /stats, which takes them from CoinGecko.
+ * Null when Blockscout has no price either.
+ */
+async function fetchBlockscoutRates(): Promise<ExchangeRates | null> {
+  try {
+    const response = await fetch(BLOCKSCOUT_STATS_URL, { headers: { Accept: 'application/json' }, next: { revalidate: 300 } })
+    if (!response.ok) return null
+    const stats: { coin_price?: string | null; coin_price_change_percentage?: number | null; market_cap?: string | null } =
+      await response.json()
+    const usd = parseFloat(stats.coin_price ?? '')
+    if (!(usd > 0)) return null
+    const marketCap = parseFloat(stats.market_cap ?? '')
+    const base = getFallbackRates()
+    return {
+      ...base,
+      etc: { usd },
+      etc_24h_change: typeof stats.coin_price_change_percentage === 'number' ? { usd: stats.coin_price_change_percentage } : {},
+      market: marketCap > 0 ? { market_cap_usd: marketCap, volume_24h_usd: null, high_24h_usd: null, low_24h_usd: null } : null,
+      lastUpdated: new Date().toISOString(),
+      source: 'blockscout',
+    }
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Fetch exchange rates with caching: CoinGecko, then Blockscout, then no prices.
  */
 export async function fetchExchangeRates(): Promise<ExchangeRates> {
   // Check cache first
@@ -480,15 +485,12 @@ export async function fetchExchangeRates(): Promise<ExchangeRates> {
     return cached
   }
 
-  // Fetch fresh data
-  const fresh = await fetchCoinGeckoRates()
-
+  const fresh = (await fetchCoinGeckoRates()) ?? (await fetchBlockscoutRates())
   if (fresh) {
     writeRatesCache(fresh)
     return fresh
   }
 
-  // Return fallback
   return getFallbackRates()
 }
 

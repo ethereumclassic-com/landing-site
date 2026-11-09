@@ -4,12 +4,15 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FadeIn } from '@/app/components/ui'
 import { useNetworkStats } from '@/app/hooks/useNetworkStats'
+import type { NetworkStats } from '@/app/hooks/useNetworkStats'
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
 import { cachedFetchJson } from '@/lib/client-fetch'
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 
+// Zero means no source supplied the figure (lib/blockscout's fallback): it shows as "—".
 function fmtUSD(n: number): string {
+  if (!(n > 0)) return '—'
   if (n >= 1_000_000_000) return `$${(n / 1_000_000_000).toFixed(2)}B`
   if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`
   if (n >= 1_000) return `$${n.toLocaleString('en-US', { maximumFractionDigits: 0 })}`
@@ -17,6 +20,7 @@ function fmtUSD(n: number): string {
 }
 
 function fmtCompact(n: number): string {
+  if (!(n > 0)) return '—'
   if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1)}B`
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`
   if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`
@@ -135,10 +139,21 @@ function SectionStat({
 
 // ── Main Export ───────────────────────────────────────────────────────────────
 
-export default function NetworkOverviewSection({ initialHashrateTHs }: { initialHashrateTHs?: number }) {
+export default function NetworkOverviewSection({
+  initialHashrateTHs,
+  initialStats,
+  initialVolume24h,
+}: {
+  initialHashrateTHs?: number
+  /** Read on the server, so the page carries the figures before the browser's own fetch returns. */
+  initialStats?: NetworkStats | null
+  initialVolume24h?: number | null
+}) {
   // 10-minute refresh matches the server-side ISR cache and lib/blockscout 10-min TTL
-  const { stats, loading } = useNetworkStats({ refreshInterval: 600_000 })
-  const [volume24h, setVolume24h] = useState<number | null>(null)
+  const { stats: liveStats, loading: liveLoading } = useNetworkStats({ refreshInterval: 600_000 })
+  const stats = liveStats ?? initialStats ?? null
+  const loading = liveLoading && !initialStats
+  const [volume24h, setVolume24h] = useState<number | null>(initialVolume24h ?? null)
   // A dash until the live figure arrives; never a typed-in one.
   const [hashrateTHs, setHashrateTHs] = useState<string>(
     initialHashrateTHs ? `${initialHashrateTHs.toFixed(1)} TH/s` : '—',
@@ -168,19 +183,19 @@ export default function NetworkOverviewSection({ initialHashrateTHs }: { initial
     {
       value: fmtUSD(price),
       label: 'ETC Price',
-      context: `${fmtPercent(priceChange)} (24h)`,
+      context: price > 0 ? `${fmtPercent(priceChange)} (24h)` : undefined,
       contextColor: priceChangeColor,
     },
     { value: fmtUSD(marketCap), label: 'Market Cap' },
     { value: fmtCompact(totalTxns), label: 'Total Transactions' },
-    { value: '2015', label: 'Network Origin' },
+    { value: '2015', label: 'Launched', fixed: true },
   ]
 
   const sectionStats = [
     {
       value: fmtUSD(marketCap),
       label: 'Market Capitalization',
-      context: 'Rank ~#55 by market cap',
+      context: 'Price × circulating supply',
     },
     {
       value: fmtCompact(totalAddresses),
@@ -201,7 +216,7 @@ export default function NetworkOverviewSection({ initialHashrateTHs }: { initial
 
   const networkRows: TableRow[] = [
     { label: 'Genesis Date', value: 'July 30, 2015' },
-    { label: 'Consensus', value: 'Proof-of-Work (ETChash)' },
+    { label: 'Consensus', value: 'Proof-of-Work (Etchash)' },
     { label: 'Chain ID', value: '61 (mainnet)' },
     { label: 'Total Blocks', value: loading ? '…' : fmtCompact(totalBlocks) },
     { label: 'Total Transactions', value: loading ? '…' : fmtCompact(totalTxns) },
@@ -214,15 +229,14 @@ export default function NetworkOverviewSection({ initialHashrateTHs }: { initial
     { label: 'ETC Price', value: loading ? '…' : fmtUSD(price) },
     {
       label: '24h Change',
-      value: loading ? '…' : fmtPercent(priceChange),
+      value: loading ? '…' : price > 0 ? fmtPercent(priceChange) : '—',
       color: loading ? undefined : priceChangeColor,
     },
     { label: 'Market Cap', value: loading ? '…' : fmtUSD(marketCap) },
-    { label: 'Market Cap Rank', value: '~#55' },
     { label: '24h Volume', value: volume24h ? fmtUSD(volume24h) : '…' },
-    { label: 'Circulating Supply', value: '~156.2M ETC' },
+    { label: 'Circulating Supply', value: loading || !price ? '…' : `~${(marketCap / price / 1e6).toFixed(1)}M ETC` },
     { label: 'Max Supply', value: '210.7M ETC' },
-    { label: 'All-Time High', value: '$167.09 (Apr 2021)' },
+    { label: 'All-Time High', value: '$167.09 (May 2021)' },
   ]
 
   return (
@@ -252,8 +266,8 @@ export default function NetworkOverviewSection({ initialHashrateTHs }: { initial
 
           <FadeIn delay={50}>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {heroStats.map((s) => (
-                <HeroStat key={s.label} {...s} loading={loading} />
+              {heroStats.map(({ fixed, ...s }) => (
+                <HeroStat key={s.label} {...s} loading={loading && !fixed} />
               ))}
             </div>
           </FadeIn>

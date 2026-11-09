@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Network Analytics',
-  description: 'Live Ethereum Classic network data — block production, transactions, and node distribution.',
+  description: 'Ethereum Classic network data: block production, transactions, fees, mining distribution and chain parameters.',
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -1,5 +1,5 @@
 // Mining profitability calculations for Ethereum Classic
-// Based on ETChash algorithm
+// Based on Etchash algorithm
 // Network data sourced from Blockscout API: https://etc.blockscout.com/api/v2/stats
 
 import { NOMINAL_BLOCK_TIME_SECONDS } from '@/lib/chain'
@@ -19,8 +19,6 @@ export const NETWORK_CONSTANTS = {
   blockTimeSeconds: NOMINAL_BLOCK_TIME_SECONDS,
   // Derived, not written down twice: this must follow blockTimeSeconds.
   blocksPerDay: Math.round(86400 / NOMINAL_BLOCK_TIME_SECONDS),
-  // Reference ETC price (fallback, should use live price from API)
-  etcPriceUSD: 12.75,
 }
 
 /** The network figures a profitability estimate depends on. */
@@ -35,7 +33,8 @@ export interface MiningInput {
   powerWatts: number // Watts
   electricityRate: number // $/kWh
   poolFeePercent: number // e.g., 1 for 1%
-  etcPrice?: number // USD, optional override
+  /** USD. Without one, the USD results are NaN, and formatUSD shows them as a dash. */
+  etcPrice?: number
   /** Live network figures, such as useNetworkStats() returns. A missing one falls back to NETWORK_CONSTANTS. */
   network?: Partial<NetworkFigures>
 }
@@ -84,7 +83,7 @@ export function calculateProfitability(input: MiningInput): ProfitabilityResult 
     powerWatts,
     electricityRate,
     poolFeePercent,
-    etcPrice = NETWORK_CONSTANTS.etcPriceUSD,
+    etcPrice = NaN,
     network,
   } = input
 
@@ -177,7 +176,7 @@ export function calculateHardwareProfitability(
   powerWatts: number,
   electricityRate: number = 0.10, // Default $0.10/kWh
   poolFeePercent: number = 1,
-  etcPrice: number = NETWORK_CONSTANTS.etcPriceUSD,
+  etcPrice: number = NaN,
   network?: Partial<NetworkFigures>
 ): HardwareProfitability {
   const result = calculateProfitability({
@@ -209,6 +208,7 @@ export function formatETC(amount: number, decimals: number = 6): string {
 }
 
 export function formatUSD(amount: number): string {
+  if (!Number.isFinite(amount)) return '—'
   const isNegative = amount < 0
   const absAmount = Math.abs(amount)
   const formatted = absAmount.toLocaleString('en-US', {

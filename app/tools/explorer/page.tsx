@@ -3,7 +3,7 @@ import Link from 'next/link'
 const mainExplorers = [
   {
     name: 'Blockscout',
-    description: 'Official ETC block explorer with comprehensive features. View transactions, addresses, tokens, and smart contract verification.',
+    description: 'The main ETC block explorer. View transactions, addresses, tokens, and smart contract verification.',
     url: 'https://etc.blockscout.com',
     features: ['Full transaction history', 'Token transfers', 'Smart contract verification', 'API access', 'Address labels'],
     recommended: true,
@@ -12,7 +12,7 @@ const mainExplorers = [
     name: 'Blockscout (Mordor)',
     description: 'Block explorer for the Mordor testnet. Test your dApps and contracts before deploying to mainnet.',
     url: 'https://etc-mordor.blockscout.com',
-    features: ['Testnet explorer', 'Contract verification', 'Faucet integration', 'API access'],
+    features: ['Testnet explorer', 'Contract verification', 'API access'],
     recommended: false,
   },
 ]
@@ -109,7 +109,7 @@ const quickLinks = [
 
 export default function ExplorerPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -145,7 +145,7 @@ export default function ExplorerPage() {
           <h2
             className="mb-6 text-xl font-semibold text-[var(--text-primary)]"
           >
-            Official Explorers
+            Explorers
           </h2>
           <div
             className="grid gap-6 md:grid-cols-2"
@@ -292,6 +292,6 @@ export default function ExplorerPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

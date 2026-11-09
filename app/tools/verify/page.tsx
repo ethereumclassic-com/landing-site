@@ -62,7 +62,7 @@ const steps = [
   {
     number: '4',
     title: 'Verify & Publish',
-    description: 'Verification is automatic. Your contract will show as verified',
+    description: 'Blockscout compiles your source and compares it with the deployed bytecode. On a match, the contract shows as verified.',
   },
 ]
 
@@ -108,7 +108,7 @@ const benefits = [
 
 export default function VerifyPage() {
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -130,8 +130,8 @@ export default function VerifyPage() {
                 Contract Verification
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Verify your smart contracts on Blockscout to make them transparent and trustworthy.
-                Users can read your code and interact with verified contracts directly.
+                Verify your smart contracts on Blockscout so anyone can read the source code behind
+                them and interact with them directly in the explorer.
               </p>
             </div>
 
@@ -255,31 +255,37 @@ export default function VerifyPage() {
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-[var(--text-primary)]">Contract Address</strong> - The deployed contract address on mainnet or testnet</span>
+                <span><strong className="text-[var(--text-primary)]">Contract Address:</strong> the deployed contract&apos;s address on mainnet or testnet</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-[var(--text-primary)]">Compiler Version</strong> - Exact Solidity/Vyper version used (e.g., v0.8.20)</span>
+                <span><strong className="text-[var(--text-primary)]">Compiler Version:</strong> the exact Solidity or Vyper version used (e.g., v0.8.24)</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-[var(--text-primary)]">Source Code</strong> - Original source files including all imports</span>
+                <span><strong className="text-[var(--text-primary)]">Source Code:</strong> the original source files, including all imports</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-[var(--text-primary)]">Constructor Arguments</strong> - ABI-encoded arguments if your contract has a constructor</span>
+                <span><strong className="text-[var(--text-primary)]">Constructor Arguments:</strong> ABI-encoded, if your contract&apos;s constructor takes any</span>
               </li>
               <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
                 <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                <span><strong className="text-[var(--text-primary)]">Optimization Settings</strong> - Whether optimizer was enabled and run count</span>
+                <span><strong className="text-[var(--text-primary)]">Optimization Settings:</strong> whether the optimizer was on, and its run count</span>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-[var(--color-text-muted)]">
+                <svg aria-hidden="true" className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--color-warning)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span><strong className="text-[var(--text-primary)]">EVM Version:</strong> the target you compiled for, such as shanghai for Ethereum Classic</span>
               </li>
             </ul>
           </div>
@@ -317,6 +323,6 @@ export default function VerifyPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

@@ -31,7 +31,8 @@ export interface MiningNetworkStats {
   blockReward: number
   blockTimeSeconds: number
   blocksPerDay: number
-  etcPriceUSD: number
+  /** Null when neither Blockscout nor CoinGecko supplied a price. */
+  etcPriceUSD: number | null
   source: 'live' | 'fallback'
   lastUpdated: string
 }
@@ -43,6 +44,7 @@ export interface MiningNetworkStats {
 export function useNetworkStats() {
   const [stats, setStats] = useState<MiningNetworkStats>({
     ...NETWORK_CONSTANTS,
+    etcPriceUSD: null,
     source: 'fallback',
     lastUpdated: new Date().toISOString(),
   })
@@ -54,7 +56,12 @@ export function useNetworkStats() {
 
     async function fetchStats() {
       try {
-        const response = await fetch('/api/network')
+        const [response, hashrate] = await Promise.all([
+          fetch('/api/network'),
+          fetch('/api/hashrate')
+            .then((r) => (r.ok ? (r.json() as Promise<{ currentTHs?: number; live?: boolean }>) : null))
+            .catch(() => null),
+        ])
 
         if (!response.ok) {
           throw new Error('Failed to fetch network stats')
@@ -69,11 +76,14 @@ export function useNetworkStats() {
             : NETWORK_CONSTANTS.blocksPerDay
 
           setStats({
-            networkHashrateMH: NETWORK_CONSTANTS.networkHashrateMH, // Blockscout doesn't provide hashrate
-            blockReward: data.blockReward || NETWORK_CONSTANTS.blockReward,
+            // Derived from difficulty and block time by lib/hashrate, behind /api/hashrate.
+            networkHashrateMH:
+              hashrate?.live && hashrate.currentTHs ? hashrate.currentTHs * 1_000_000 : NETWORK_CONSTANTS.networkHashrateMH,
+            // The protocol subsidy: a block's total reward also carries its fees.
+            blockReward: NETWORK_CONSTANTS.blockReward,
             blockTimeSeconds: data.avgBlockTime || NETWORK_CONSTANTS.blockTimeSeconds,
             blocksPerDay,
-            etcPriceUSD: data.price || NETWORK_CONSTANTS.etcPriceUSD,
+            etcPriceUSD: data.price > 0 ? data.price : null,
             source: data.source === 'blockscout' ? 'live' : 'fallback',
             lastUpdated: data.lastUpdated,
           })
@@ -132,7 +142,7 @@ export async function getNetworkStats(): Promise<MiningNetworkStats> {
       blockReward: data.blockReward || NETWORK_CONSTANTS.blockReward,
       blockTimeSeconds: data.avgBlockTime || NETWORK_CONSTANTS.blockTimeSeconds,
       blocksPerDay,
-      etcPriceUSD: data.price || NETWORK_CONSTANTS.etcPriceUSD,
+      etcPriceUSD: data.price > 0 ? data.price : null,
       source: data.source === 'blockscout' ? 'live' : 'fallback',
       lastUpdated: data.lastUpdated,
     }
@@ -140,6 +150,7 @@ export async function getNetworkStats(): Promise<MiningNetworkStats> {
     // Return fallback constants on error
     return {
       ...NETWORK_CONSTANTS,
+      etcPriceUSD: null,
       source: 'fallback',
       lastUpdated: new Date().toISOString(),
     }

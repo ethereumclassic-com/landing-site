@@ -34,7 +34,7 @@ export const priceSources: PriceSource[] = [
     name: 'CoinGecko',
     website: 'https://www.coingecko.com/en/coins/ethereum-classic',
     apiEndpoint: 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum-classic&vs_currencies=usd,btc,eth&include_24hr_change=true&include_market_cap=true&include_24hr_vol=true',
-    description: 'Leading cryptocurrency data aggregator with comprehensive market data',
+    description: 'Cryptocurrency data aggregator, and the source of this site\'s market data',
     type: 'aggregator',
     trusted: true,
   },
@@ -50,7 +50,7 @@ export const priceSources: PriceSource[] = [
     id: 'binance',
     name: 'Binance',
     website: 'https://www.binance.com/en/trade/ETC_USDT',
-    description: 'World\'s largest cryptocurrency exchange by trading volume',
+    description: 'Global cryptocurrency exchange with deep ETC liquidity',
     type: 'exchange',
     trusted: true,
   },
@@ -86,7 +86,6 @@ export const marketPairs: MarketPair[] = [
   { id: 'etc-usd', base: 'ETC', quote: 'USD', displayName: 'ETC/USD', popular: true },
   { id: 'etc-usdt', base: 'ETC', quote: 'USDT', displayName: 'ETC/USDT', popular: true },
   { id: 'etc-usdc', base: 'ETC', quote: 'USDC', displayName: 'ETC/USDC', popular: true },
-  { id: 'etc-busd', base: 'ETC', quote: 'BUSD', displayName: 'ETC/BUSD', popular: false },
   { id: 'etc-dai', base: 'ETC', quote: 'DAI', displayName: 'ETC/DAI', popular: false },
   // Crypto pairs
   { id: 'etc-btc', base: 'ETC', quote: 'BTC', displayName: 'ETC/BTC', popular: true },
@@ -121,7 +120,6 @@ export const currencies: CurrencyInfo[] = [
   // Stablecoins
   { code: 'USDT', name: 'Tether', symbol: 'USDT', type: 'stablecoin', decimals: 2 },
   { code: 'USDC', name: 'USD Coin', symbol: 'USDC', type: 'stablecoin', decimals: 2 },
-  { code: 'BUSD', name: 'Binance USD', symbol: 'BUSD', type: 'stablecoin', decimals: 2 },
   { code: 'DAI', name: 'Dai', symbol: 'DAI', type: 'stablecoin', decimals: 2 },
   // Fiat
   { code: 'USD', name: 'US Dollar', symbol: '$', type: 'fiat', decimals: 2 },
@@ -135,67 +133,6 @@ export const currencies: CurrencyInfo[] = [
   { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', type: 'fiat', decimals: 2 },
 ]
 
-// Sample exchange rates (fallback values - in production, fetch from API)
-// Updated: Jan 2026 - These should be replaced with live API data
-// TODO: Implement /api/rates endpoint with 24-hour caching
-export const sampleRates: Record<string, number> = {
-  'ETC-USD': 12.75,
-  'ETC-EUR': 12.24,      // ~0.96 EUR/USD
-  'ETC-GBP': 10.20,      // ~0.80 GBP/USD
-  'ETC-JPY': 1976,       // ~155 JPY/USD
-  'ETC-KRW': 18488,      // ~1450 KRW/USD
-  'ETC-CAD': 18.34,      // ~1.44 CAD/USD
-  'ETC-AUD': 20.53,      // ~1.61 AUD/USD
-  'ETC-TRY': 447.00,     // ~35 TRY/USD
-  'ETC-BRL': 78.54,      // ~6.16 BRL/USD
-  'ETC-BTC': 0.00012,    // ~$106k BTC
-  'ETC-ETH': 0.0038,     // ~$3350 ETH
-  'ETC-BNB': 0.019,      // ~$670 BNB
-  'ETC-USDT': 12.75,
-  'ETC-USDC': 12.75,
-  'ETC-BUSD': 12.75,
-  'ETC-DAI': 12.75,
-}
-
-// Sample market stats (fallback values - should be fetched from API in production)
-// Updated: Jan 2026
-export const sampleMarketStats: MarketStat[] = [
-  {
-    label: 'Price',
-    value: '$12.75',
-    change: '-0.70%',
-    changeDirection: 'down',
-  },
-  {
-    label: 'Market Cap',
-    value: '$1.98B',
-    change: '-0.70%',
-    changeDirection: 'down',
-    tooltip: 'Circulating supply × current price',
-  },
-  {
-    label: '24h Volume',
-    value: '$45M',
-    change: '-3.5%',
-    changeDirection: 'down',
-  },
-  {
-    label: 'Circulating Supply',
-    value: '148.3M ETC',
-    tooltip: 'Total ETC in circulation',
-  },
-  {
-    label: 'All-Time High',
-    value: '$176.16',
-    tooltip: 'May 6, 2021',
-  },
-  {
-    label: 'All-Time Low',
-    value: '$0.45',
-    tooltip: 'July 25, 2016',
-  },
-]
-
 // Historical price milestones
 export interface PriceMilestone {
   date: string
@@ -204,12 +141,12 @@ export interface PriceMilestone {
 }
 
 export const priceMilestones: PriceMilestone[] = [
-  { date: 'July 2016', price: '$0.75', event: 'ETC Genesis - DAO fork creates Ethereum Classic' },
+  { date: 'July 2016', price: '$0.62', event: 'Trading begins under the Ethereum Classic name after the DAO fork' },
   { date: 'March 2017', price: '$3.00', event: 'First major rally as crypto market heats up' },
-  { date: 'January 2018', price: '$43.00', event: 'Peak during 2017-2018 bull market' },
+  { date: 'January 2018', price: '$43.00', event: 'Peak of the 2017–2018 bull market' },
   { date: 'December 2018', price: '$3.50', event: 'Bear market bottom' },
-  { date: 'May 2021', price: '$176.16', event: 'All-time high during 2021 bull run' },
-  { date: 'November 2022', price: '$15.00', event: 'Post-ETH merge, increased mining activity' },
+  { date: 'May 2021', price: '$167.09', event: 'All-time high, during the 2021 bull market' },
+  { date: 'November 2022', price: '$15.00', event: 'After Ethereum\'s Merge, with more hashrate on ETC' },
 ]
 
 // Market resources
@@ -288,31 +225,6 @@ export function getCurrenciesByType(type: CurrencyInfo['type']): CurrencyInfo[] 
   return currencies.filter((c) => c.type === type)
 }
 
-export function getRate(from: string, to: string): number | undefined {
-  // Direct rate
-  const directKey = `${from}-${to}`
-  if (sampleRates[directKey]) return sampleRates[directKey]
-
-  // Inverse rate
-  const inverseKey = `${to}-${from}`
-  if (sampleRates[inverseKey]) return 1 / sampleRates[inverseKey]
-
-  // Cross rate through USD
-  if (from !== 'USD' && to !== 'USD') {
-    const fromUsd = sampleRates[`${from}-USD`] || (sampleRates[`USD-${from}`] ? 1 / sampleRates[`USD-${from}`] : undefined)
-    const toUsd = sampleRates[`${to}-USD`] || (sampleRates[`USD-${to}`] ? 1 / sampleRates[`USD-${to}`] : undefined)
-    if (fromUsd && toUsd) return fromUsd / toUsd
-  }
-
-  // ETC cross rate
-  if (from !== 'ETC' && to !== 'ETC') {
-    const fromEtc = getRate(from, 'ETC')
-    const toEtc = getRate('ETC', to)
-    if (fromEtc && toEtc) return fromEtc * toEtc
-  }
-
-  return undefined
-}
 
 export function formatCurrency(amount: number, currency: CurrencyInfo): string {
   const absAmount = Math.abs(amount)

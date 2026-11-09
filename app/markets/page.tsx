@@ -39,7 +39,7 @@ export default async function MarketsPage() {
   const initialPrice = await fetchPricePayload('usd')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -67,7 +67,7 @@ export default async function MarketsPage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Track Ethereum Classic price, market cap, trading volume, and historical performance data aggregated across major exchanges and data providers. Coverage includes real-time spot prices, supply metrics from ECIP-1017&apos;s 5M20 emission schedule, and regulatory status across key jurisdictions.
+            Ethereum Classic&apos;s price, market cap, trading volume and price history, from CoinGecko&apos;s data across major exchanges, with supply figures from ECIP-1017&apos;s 5M20 emission schedule.
           </p>
 
           {/* Live Price Display */}
@@ -87,7 +87,7 @@ export default async function MarketsPage() {
 
           {/* Quick Stats */}
           <div className="mt-8">
-            <LiveMarketStats showVolume showRank showSupply initialPrice={initialPrice} />
+            <LiveMarketStats showVolume showSupply initialPrice={initialPrice} />
           </div>
         </div>
       </section>
@@ -305,7 +305,7 @@ export default async function MarketsPage() {
             <div
             >
               <Link
-                href="/markets/converter"
+                href="/tools/converter"
                 className="group flex h-full flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -315,7 +315,7 @@ export default async function MarketsPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--color-primary)]">Price Converter</h3>
                 <p className="mt-2 flex-1 text-sm text-[var(--color-text-muted)]">
-                  Convert between ETC and 17+ currencies including fiat, crypto, and stablecoins.
+                  Convert ETC to and from fiat currencies, crypto and stablecoins.
                 </p>
                 <div className="mt-4 flex items-center gap-1 text-sm text-[var(--color-primary)]">
                   Open tool
@@ -329,7 +329,7 @@ export default async function MarketsPage() {
             <div
             >
               <Link
-                href="/markets/calculator"
+                href="/tools/calculator"
                 className="group flex h-full flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -353,7 +353,7 @@ export default async function MarketsPage() {
             <div
             >
               <Link
-                href="/markets/price"
+                href="/price"
                 className="group flex h-full flex-col rounded-xl border border-[var(--border)] bg-[var(--panel)] p-6 transition-all hover:border-[var(--color-primary)]/30"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -429,6 +429,6 @@ export default async function MarketsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

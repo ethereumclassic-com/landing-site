@@ -1,5 +1,5 @@
 import { fetchNetworkStats, getFallbackStats, formatNetworkStats } from './blockscout'
-import { fetchExchangeRates, getFallbackRates } from './exchange-rates'
+import { fetchExchangeRates } from './exchange-rates'
 
 /**
  * The /api/network response body, built once.
@@ -27,8 +27,9 @@ export interface NetworkPayload {
   blockRewardFormatted: string
   gasPrice: { slow: number; average: number; fast: number }
   gasPriceFormatted: string
-  ethPrice: number
-  btcPrice: number
+  /** Null when CoinGecko could not be reached: Blockscout carries no ETH or BTC price. */
+  ethPrice: number | null
+  btcPrice: number | null
   source: 'blockscout' | 'fallback'
   lastUpdated: string
   cacheAgeMinutes: number
@@ -42,8 +43,14 @@ export async function buildNetworkPayload(): Promise<NetworkPayload> {
   ])
 
   const live = liveStats !== null
-  const stats = liveStats ?? getFallbackStats()
-  const usedRates = live ? rates : getFallbackRates()
+  // With Blockscout down its chain figures are unknown, but CoinGecko may still have the price.
+  const stats = liveStats ?? {
+    ...getFallbackStats(),
+    price: rates.etc.usd ?? 0,
+    priceChange24h: rates.etc_24h_change.usd ?? 0,
+    marketCap: rates.market?.market_cap_usd ?? 0,
+  }
+  const usedRates = rates
   const formatted = formatNetworkStats(stats)
 
   const cacheAge = stats.lastUpdated

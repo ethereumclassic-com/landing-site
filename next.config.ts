@@ -5,6 +5,22 @@ const nextConfig: NextConfig = {
   // inbound links are known to be gone.
   async redirects() {
     return [
+      // The markets section's price page and tools duplicated /price and the tools section.
+      {
+        source: '/markets/price',
+        destination: '/price',
+        permanent: true,
+      },
+      {
+        source: '/markets/calculator',
+        destination: '/tools/calculator',
+        permanent: true,
+      },
+      {
+        source: '/markets/converter',
+        destination: '/tools/converter',
+        permanent: true,
+      },
       {
         source: '/research/fifthening',
         destination: '/block-reward-countdown',

@@ -25,22 +25,23 @@ export default function ToolsConverterPage() {
   const [direction, setDirection] = useState<'etc-to-fiat' | 'fiat-to-etc'>('etc-to-fiat')
   const [selectedCurrency, setSelectedCurrency] = useState('usd')
 
-  const livePrice = etcUsd ?? 25
   const numAmount = parseFloat(amount) || 0
 
-  const getRate = (code: string): number => {
+  // ETC's price in a currency, or null when no source supplied one.
+  const getRate = (code: string): number | null => {
     if (prices && prices[code]) return prices[code]
-    if (code === 'usd') return livePrice
-    return livePrice // fallback
+    if (code === 'usd') return etcUsd
+    return null
   }
 
   const rate = getRate(selectedCurrency)
   const selectedInfo = currencies.find((c) => c.code === selectedCurrency)!
 
   const converted =
-    direction === 'etc-to-fiat' ? numAmount * rate : rate > 0 ? numAmount / rate : 0
+    rate === null ? null : direction === 'etc-to-fiat' ? numAmount * rate : rate > 0 ? numAmount / rate : 0
 
-  const formatConverted = (val: number, code: string) => {
+  const formatConverted = (val: number | null, code: string) => {
+    if (val === null) return '—'
     const crypto = ['btc', 'eth']
     if (crypto.includes(code) && direction === 'etc-to-fiat') return val.toFixed(8)
     if (direction === 'fiat-to-etc') return val.toFixed(6)
@@ -49,7 +50,7 @@ export default function ToolsConverterPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
+    <div className="min-h-screen bg-[var(--bg)] pt-24 pb-16">
       {/* Hero */}
       <section className="px-6 pb-12 md:px-10 lg:px-12">
         <div className="mx-auto max-w-6xl">
@@ -70,8 +71,8 @@ export default function ToolsConverterPage() {
                 Price Converter
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-                Convert Ethereum Classic to any currency instantly. Real-time exchange
-                rates updated every 60 seconds from CoinGecko.
+                Convert Ethereum Classic to and from major currencies. Exchange rates come from
+                CoinGecko and refresh about every 10 minutes.
               </p>
             </div>
           </div>
@@ -202,7 +203,7 @@ export default function ToolsConverterPage() {
                       <tr key={qty} className="hover:bg-[var(--bg)]/50">
                         <td className="px-4 py-2.5 font-mono text-sm text-[var(--text-primary)]">{qty} ETC</td>
                         <td className="px-4 py-2.5 text-right font-mono text-sm text-[var(--color-success)]">
-                          {selectedInfo.symbol}{formatConverted(qty * rate, selectedCurrency)}
+                          {selectedInfo.symbol}{formatConverted(rate === null ? null : qty * rate, selectedCurrency)}
                         </td>
                       </tr>
                     ))}
@@ -244,6 +245,6 @@ export default function ToolsConverterPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

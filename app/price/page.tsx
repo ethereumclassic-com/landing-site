@@ -21,7 +21,7 @@ export default async function ETCPricePage() {
   const aggregators = priceSources.filter((s) => s.type === 'aggregator')
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient-light noise-overlay grid-overlay relative overflow-hidden px-6 pt-24 pb-16 md:px-10 md:pt-32 md:pb-24 lg:px-12">
         <div
@@ -49,7 +49,8 @@ export default async function ETCPricePage() {
           <p
             className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-text-secondary)]"
           >
-            Real-time ETC price data, historical performance charts, and market analysis aggregated from trusted data providers. Includes spot price, 24-hour volume, market cap, circulating supply, and historical context within ETC&apos;s fixed 5M20 emission schedule.
+            ETC&apos;s price, 24-hour volume, market cap and circulating supply from CoinGecko, with the context of
+            ETC&apos;s fixed 5M20 emission schedule.
           </p>
 
           {/* Main Price Display - Live Data */}
@@ -117,15 +118,15 @@ export default async function ETCPricePage() {
                 The ETC price is determined by market supply and demand across numerous cryptocurrency exchanges worldwide.
               </p>
               <p>
-                Unlike many cryptocurrencies, Ethereum Classic has a fixed monetary policy with a capped supply of approximately
-                210.7 million ETC, following a deflationary emission schedule similar to Bitcoin. This predictable supply makes
-                ETC attractive to investors seeking assets with transparent tokenomics.
+                Unlike many cryptocurrencies, Ethereum Classic has a fixed monetary policy: supply is capped at about
+                210.7 million ETC, and block rewards fall on a schedule similar to Bitcoin&apos;s. Anyone can see in advance
+                how much ETC will exist.
               </p>
               <p>
                 The price of ETC is influenced by several factors including overall cryptocurrency market sentiment,
                 network activity, mining hashrate, development progress, and broader macroeconomic conditions.
-                Following Ethereum&apos;s transition to Proof of Stake in 2022, ETC became the largest Proof of Work smart
-                contract platform, attracting miners and supporting its security model.
+                Since Ethereum moved to Proof of Stake in 2022, ETC has been the only mature Proof-of-Work blockchain with
+                native smart contracts, and much of the GPU hashrate that left Ethereum moved to it.
               </p>
             </div>
           </div>
@@ -241,6 +242,6 @@ export default async function ETCPricePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

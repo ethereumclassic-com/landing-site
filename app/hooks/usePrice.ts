@@ -5,7 +5,8 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 /**
  * Live ETC Price Hook
  *
- * Fetches live price data from /api/price endpoint which uses CoinGecko
+ * Fetches live price data from the /api/price endpoint, which reads CoinGecko, or Blockscout when
+ * CoinGecko is unavailable. A figure neither supplies is null and formats as "—".
  * Refreshes every 60 seconds by default
  *
  * Usage:
@@ -13,20 +14,22 @@ import { useState, useEffect, useCallback, useRef } from 'react'
  */
 
 export interface PriceData {
-  price: number
-  change24h: number
-  marketCap: number
-  volume24h: number
-  high24h: number
-  low24h: number
+  /** Null when no source supplies this figure: CoinGecko is down and Blockscout lacks it. */
+  price: number | null
+  change24h: number | null
+  marketCap: number | null
+  volume24h: number | null
+  high24h: number | null
+  low24h: number | null
   currency: string
   timestamp: string
-  source: 'coingecko' | 'fallback'
+  /** coingecko: all figures. blockscout: ETC/USD, its 24h change and market cap. fallback: none. */
+  source: 'coingecko' | 'blockscout' | 'fallback'
   prices?: Record<string, number>
   changes?: Record<string, number>
-  // Cross-asset USD prices — derived from ETC ratios in the same CoinGecko bulk call
-  eth_usd?: number
-  btc_usd?: number
+  // ETH and BTC prices in USD, from the same CoinGecko call; null without CoinGecko
+  eth_usd?: number | null
+  btc_usd?: number | null
   fiat_to_usd?: Record<string, number>
 }
 
@@ -58,7 +61,7 @@ export interface UsePriceReturn {
   loading: boolean
   error: string | null
   lastUpdated: Date | null
-  source: 'coingecko' | 'fallback' | null
+  source: PriceData['source'] | null
   refresh: () => Promise<void>
 }
 
@@ -170,16 +173,20 @@ export function usePrice(
     }
   }, [])
 
+  // '...' while the first answer is on its way; '—' once it has arrived without the figure.
+  const shown = <T,>(value: T | null | undefined, format: (v: T) => string) =>
+    !data ? '...' : value === null || value === undefined ? '—' : format(value)
+
   return {
     data,
     price: data?.price ?? null,
-    priceFormatted: data ? formatPrice(data.price, currency) : '...',
+    priceFormatted: shown(data?.price, (v) => formatPrice(v, currency)),
     change24h: data?.change24h ?? null,
-    changeFormatted: data ? formatChange(data.change24h) : '...',
+    changeFormatted: shown(data?.change24h, formatChange),
     marketCap: data?.marketCap ?? null,
-    marketCapFormatted: data ? formatLargeNumber(data.marketCap) : '...',
+    marketCapFormatted: shown(data?.marketCap, formatLargeNumber),
     volume24h: data?.volume24h ?? null,
-    volumeFormatted: data ? formatLargeNumber(data.volume24h) : '...',
+    volumeFormatted: shown(data?.volume24h, formatLargeNumber),
     loading,
     error,
     lastUpdated,

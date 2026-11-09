@@ -21,8 +21,12 @@ function formatLargeNumber(num: number): string {
 export default function LiveMarketStatsGrid({ initialPrice }: { initialPrice?: PriceData | null }) {
   const { data, loading } = usePrice('usd', { initialData: initialPrice })
 
-  const changeStr = data ? `${data.change24h >= 0 ? '+' : ''}${data.change24h.toFixed(2)}%` : undefined
-  const changeDir: 'up' | 'down' | 'neutral' = data ? (data.change24h >= 0 ? 'up' : 'down') : 'neutral'
+  const change = data?.change24h ?? null
+  const changeStr = change !== null ? `${change >= 0 ? '+' : ''}${change.toFixed(2)}%` : undefined
+  const changeDir: 'up' | 'down' | 'neutral' = change !== null ? (change >= 0 ? 'up' : 'down') : 'neutral'
+  // '...' until the first answer arrives; '—' when it arrives without the figure.
+  const shown = (value: number | null | undefined, format: (n: number) => string) =>
+    !data ? '...' : value === null || value === undefined ? '—' : format(value)
 
   const stats: Array<{
     label: string
@@ -33,36 +37,36 @@ export default function LiveMarketStatsGrid({ initialPrice }: { initialPrice?: P
   }> = [
     {
       label: 'Price',
-      value: data ? `$${data.price.toFixed(2)}` : '...',
+      value: shown(data?.price, (p) => `$${p.toFixed(2)}`),
       change: changeStr,
       changeDirection: changeDir,
     },
     {
       label: 'Market Cap',
-      value: data ? formatLargeNumber(data.marketCap) : '...',
+      value: shown(data?.marketCap, formatLargeNumber),
       change: changeStr,
       changeDirection: changeDir,
       tooltip: 'Circulating supply × current price',
     },
     {
       label: '24h Volume',
-      value: data ? formatLargeNumber(data.volume24h) : '...',
+      value: shown(data?.volume24h, formatLargeNumber),
       tooltip: 'Trading volume in last 24 hours',
     },
     {
       label: 'Circulating Supply',
-      value: '148.3M ETC',
+      value: shown(data?.price && data.marketCap ? data.marketCap / data.price : null, (s) => `~${(s / 1e6).toFixed(1)}M ETC`),
       tooltip: 'Total ETC in circulation',
     },
     {
       label: 'All-Time High',
-      value: '$176.16',
+      value: '$167.09',
       tooltip: 'May 6, 2021',
     },
     {
       label: 'All-Time Low',
-      value: '$0.45',
-      tooltip: 'July 25, 2016',
+      value: '$0.615',
+      tooltip: 'July 24, 2016',
     },
   ]
 
