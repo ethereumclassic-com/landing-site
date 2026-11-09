@@ -394,7 +394,8 @@ spec wins and the site is corrected.
 |---|---|
 | ETC technical claims, clients, upgrades | `docs/ETC-KNOWLEDGE.md` |
 | Core-Geth facts, v1.12/v1.13, security, MESS | coregeth.com, docs.coregeth.com, and `ethereumclassic/core-geth` |
-| Olympia ECIPs (1111–1122), and ECBP-1100/1110 (MESS) | the ECIPs repository |
+| The Olympia ECIPs, as the ECIPs repository defines the suite, and ECBP-1100/1110 (MESS) | the ECIPs repository |
 | EIP contents and dependencies | `eips.ethereum.org` |
 | Fukuii positioning, releases and URLs | fukuii.com, docs.fukuii.com, and `chippr-robotics/fukuii` with its `NOTICE` |
 | Chain state, height, difficulty, block reward | Blockscout |
+| The peer discovery lists: what they carry, how they are built and published, and their funding | `ethereumclassic/discv4-dns-lists` |
