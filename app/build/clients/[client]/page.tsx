@@ -17,7 +17,7 @@ import {
   CORE_GETH_ABOUT_URL,
   CORE_GETH_LATEST_RELEASE_URL,
   CORE_GETH_MESS_DEFAULT_URL,
-  CORE_GETH_RESYNC_URL,
+  CORE_GETH_MOVE_CHECK_URL,
   CORE_GETH_MIGRATE_GUIDE_URL,
   CORE_GETH_MOVE_GUIDE_PATH,
   CORE_GETH_SPONSOR_URL,
@@ -200,11 +200,12 @@ function SecuritySection({ advisories, auditUrl }: { advisories: SecurityAdvisor
             <li>
               From <code className="whitespace-nowrap">v1.12.17</code> or later, no resync: chain data carries over. An older
               release does not schedule Spiral, so its node has followed an obsolete chain since block 19,250,000
-              and has to{' '}
-              <a href={CORE_GETH_RESYNC_URL} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-primary)] hover:underline">
-                resync from scratch
+              and has to resync from scratch before it installs the <code className="whitespace-nowrap">v1.13</code>{' '}
+              line, as{' '}
+              <a href={CORE_GETH_MOVE_CHECK_URL} target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-primary)] hover:underline">
+                coregeth.com&apos;s migration guide
               </a>{' '}
-              before it installs the <code className="whitespace-nowrap">v1.13</code> line.
+              explains.
             </li>
             <li>
               <strong className="text-[var(--text-primary)]">Rotating the P2P node key is required</strong>, because

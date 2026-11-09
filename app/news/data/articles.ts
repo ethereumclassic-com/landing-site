@@ -105,11 +105,11 @@ Ask the node which release it runs. On Linux, macOS and Windows this asks the ru
 | a release older than \`v1.12.17\` | A separate case, set out under this table |
 | a \`v1.13\` release | Nothing: the node is on the \`v1.13\` line |
 
-A node on a release older than \`v1.12.17\` is a separate case. Those releases do not schedule the Spiral upgrade, so such a node left Ethereum Classic at block 19,250,000, on February 5, 2024, and everything it has stored since belongs to an obsolete chain. It cannot move in place, and a resync is the only way back:
+A node on a release older than \`v1.12.17\` is a separate case. Those releases do not schedule the Spiral upgrade, so such a node left Ethereum Classic at block 19,250,000, on February 5, 2024, and everything it has stored since belongs to an obsolete chain. It cannot move in place, and a resync is the only way back, by the route coregeth.com's migration guide gives under [Check what your node runs](https://coregeth.com/guides/migrate/#check):
 
 1. Stop the node, and remove its chain database as [Resync from scratch](https://docs.coregeth.com/operate/maintenance/#resync-from-scratch) shows. That keeps the node key, which the next step renames.
 2. Rename the old node key, as the move below does: those releases also leak bits of it (CVE-2026-26315).
-3. Install the \`v1.13\` line with the [install steps](https://coregeth.com/downloads/#install). The node starts with a new key and syncs Ethereum Classic again from its peers.
+3. Install and start the \`v1.13\` line with [Install Core-Geth](https://coregeth.com/guides/install/), coregeth.com's install guide. The node starts with a new key and syncs Ethereum Classic again from its peers.
 
 ## The move, step by step
 
@@ -127,7 +127,7 @@ Choose the platform the node runs on. The steps below are the ones in coregeth.c
 - **MESS is set explicitly.** An upgrade can change whether a node runs MESS, which decides which of two competing chains the node keeps during a deep chain reorganization, so the move sets it with \`--mess\` or \`--mess=false\`. The \`v1.13.0\` release runs with MESS on by default, and a build from source of the main branch, \`v1.13.1-unstable\`, runs with it off. Give every node you run the same setting. [Which setting fits which operator](https://docs.coregeth.com/operate/mess/#which-setting-fits-which-operator) sets out the choice.
 - **Discovery settings added for v1.12 come out,** so the node reads the bootnodes and peer discovery lists its release ships with.
 - **A container keeps its chain only where its data is mounted.** The containers tab checks where the data is before the stop, and copies it out first when it is inside the container.
-- **The chain data stays.** Nothing resyncs: the node starts again near the block it stopped at.
+- **The chain data stays.** From \`v1.12.17\` on, nothing resyncs: the node starts again near the block it stopped at. A node on an older release resyncs instead, as set out under Check what your node runs.
 
 ## If something goes wrong
 
@@ -163,7 +163,7 @@ No \`v1.12\` release archive is signed or attested. Every one rests on its publi
 
 Core-Geth is maintained in the \`ethereumclassic\` organization by Ethereum Classic's core developers and community contributors, who do the work, together with the [Ethereum Classic DAO](https://ethereumclassicdao.org), a Wyoming DAO LLC and the standing legal entity that maintains and funds the client today as its funder of last resort. The DAO does not control or lead Ethereum Classic, and it is not the only organization that can fund the work: what the work needs is steady funding from the stakeholders who depend on it, so that it no longer rests on a single backer. [coregeth.com/sponsor](https://coregeth.com/sponsor/) sets out who has funded Core-Geth and how to sponsor it, and sponsorship is arranged through donations@ethereumclassic.net.`,
     date: '2026-11-05',
-    updated: '2026-11-07',
+    updated: '2026-11-08',
     category: 'Security',
     subject: 'Core-Geth v1.13',
     featured: true,

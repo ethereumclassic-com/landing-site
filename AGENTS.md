@@ -222,13 +222,15 @@ includes transaction fees, which vary per block.
   the Ethereum Classic DAO maintains and funds it today as its funder of last
   resort. coregeth.com leads its framing. Recommend the v1.13 line, never a
   patch; the v1.12 line is vulnerable. A node on a release older than v1.12.17
-  never scheduled Spiral, so it has followed an obsolete chain since block
-  19,250,000: it resyncs from scratch (`CORE_GETH_RESYNC_URL`) and installs the
-  v1.13 line, and does not move in place. Links follow coregeth.com's own routing:
-  a reader told to install a node lands on coregeth.com/downloads/, a reader
-  moving a node on its migration guide, /guides/migrate/, and a v1.12 node that
-  has to wait on /guides/discovery/ (`CORE_GETH_MIGRATE_GUIDE_URL` and
-  `CORE_GETH_DISCOVERY_GUIDE_URL`, built from the `GUIDE_PAGES` that
+  (coregeth.com's `MOVE_FLOOR`, which `lib/core-geth-record.ts` mirrors) never
+  scheduled Spiral, so it has followed an obsolete chain since block 19,250,000:
+  it resyncs from scratch and installs the v1.13 line, and does not move in
+  place. Links follow coregeth.com's own routing: a reader told to install a
+  node lands on coregeth.com/downloads/, a reader moving a node on its migration
+  guide, /guides/migrate/, a node below that floor on the guide's check of what
+  a node runs, /guides/migrate/#check, and a v1.12 node that has to wait on
+  /guides/discovery/ (`CORE_GETH_MIGRATE_GUIDE_URL`, `CORE_GETH_MOVE_CHECK_URL`
+  and `CORE_GETH_DISCOVERY_GUIDE_URL`, built from the `GUIDE_PAGES` that
   `lib/core-geth-record.ts` mirrors). This site carries no copy of the install
   commands. The move steps are mirrored, never written by hand:
   `lib/core-geth-moves.ts` is generated from the move tabs on coregeth.com's

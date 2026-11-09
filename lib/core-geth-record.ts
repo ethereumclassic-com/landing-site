@@ -1,7 +1,7 @@
 /**
  * Core-Geth's security record, mirrored from coregeth.com so this site states the same facts.
  *
- * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit 58f6599, the
+ * Source: `ethereumclassic/core-geth-website`, `src/data/site.ts`, at commit 8d21525, the
  * published state of coregeth.com. Every statement below is that file's own text, copied whole
  * and in its order, so a sentence here reads exactly as it does on coregeth.com. Do not edit
  * the wording here: change it on coregeth.com first, then mirror it again.
@@ -35,6 +35,8 @@ export const REPO = {
 export const RECOMMENDED_LINE = "v1.13";
 
 export const EXPOSED_LINE = "v1.12";
+
+export const MOVE_FLOOR = `${EXPOSED_LINE}.17`;
 
 export const LAST_RELEASE_BEFORE_GAP = "v1.12.20";
 
@@ -150,7 +152,7 @@ export const GUIDE_PAGES = {
   migrate: {
     href: "/guides/migrate/",
     title: "Migrate Core-Geth",
-    summary: `moves a node that runs a \`${EXPOSED_LINE}\` release to the \`${RECOMMENDED_LINE}\` line, with its chain data, gives it the new P2P node key the move requires, and ends by deleting the \`${EXPOSED_LINE}\` binary once the node is stable.`,
+    summary: `moves a node that runs \`${MOVE_FLOOR}\` or a later \`${EXPOSED_LINE}\` release to the \`${RECOMMENDED_LINE}\` line, with its chain data, gives it the new P2P node key the move requires, and ends by deleting the \`${EXPOSED_LINE}\` binary once the node is stable.`,
   },
   discovery: {
     href: "/guides/discovery/",
@@ -165,8 +167,7 @@ export const MOVE_RECOMMENDATION = `Every node still on a \`${EXPOSED_LINE}\` re
 
 const MOVE_WHERE = `[Downloads](${SITE_URL}/downloads/#${UPGRADE_ANCHOR}) has the steps for each platform, including the required P2P node key rotation.`;
 
-export const UPGRADE_COST =
-  "Your chain data carries over. Budget about twenty minutes for the steps; the node is down only between its stop and its start, and each of those takes seconds.";
+export const UPGRADE_COST = `From \`${MOVE_FLOOR}\` on, your chain data carries over. Budget about twenty minutes for the steps; the node is down only between its stop and its start, and each of those takes seconds.`;
 
 export const DISCOVERY_FLAG_STEP = `A \`${EXPOSED_LINE}\` node that cannot move yet can [read the peer discovery lists and bootnodes the \`${RECOMMENDED_LINE}\` line ships](${SITE_URL}${GUIDE_PAGES.discovery.href}), a small step that closes none of the flaws the audits found in the \`${EXPOSED_LINE}\` line.`;
 
