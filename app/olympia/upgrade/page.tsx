@@ -135,7 +135,7 @@ export default function UpgradeGuidePage() {
           <FadeIn>
             <h2 className="text-2xl font-bold text-[var(--text-primary)]">What to Run Now</h2>
             <p className="mt-2 max-w-3xl text-[var(--color-text-muted)]">
-              Until a client release implements Olympia, run a current release. Each client&rsquo;s Olympia readiness is
+              Until a client release implements Olympia, run the latest release. Each client&rsquo;s Olympia readiness is
               what its maintainers publish, and{' '}
               <Link href="/olympia/clients" className="font-medium text-[var(--brand-green)] hover:underline">
                 client readiness

@@ -58,7 +58,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
 
           <div className="mt-4 flex items-center justify-between">
             <span className="text-xs text-[var(--color-text-muted)]">
-              Current: {client.currentVersion}
+              Run: {client.currentVersion}
             </span>
             <span className="text-xs font-medium text-[var(--brand-green)] group-hover:text-[var(--brand-green)]/80">
               Olympia readiness →
@@ -102,7 +102,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       {/* Version info */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">
-          <p className="text-xs text-[var(--color-text-muted)]">Current release</p>
+          <p className="text-xs text-[var(--color-text-muted)]">Latest release</p>
           <a
             href={client.latestReleaseUrl}
             target="_blank"
@@ -119,7 +119,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
       </div>
       <p className="text-sm text-[var(--color-text-muted)]">
         No released client implements Olympia, which is a proposal. When {client.name}&apos;s maintainers
-        publish a release that does, it will be listed here; until then, run the current release. See{' '}
+        publish a release that does, it will be listed here; until then, run the latest release. See{' '}
         <Link href="/olympia/upgrade" className="font-medium text-[var(--brand-green)] hover:underline">
           Olympia for node operators
         </Link>{' '}
@@ -141,7 +141,7 @@ export default function ClientUpgradeCard({ client, detail = false }: ClientUpgr
 
       {/* Install: the tasks and where their steps are, or the client's own commands */}
       <div>
-        <h2 className="text-xl font-semibold text-[var(--text-primary)]">Run the current release</h2>
+        <h2 className="text-xl font-semibold text-[var(--text-primary)]">Run the latest release</h2>
         <div className="mt-3 space-y-3">
           {client.tasks?.map(({ title, body, links }) => (
             <div key={title} className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-4">

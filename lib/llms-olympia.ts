@@ -20,7 +20,7 @@ const ADOPTED = new Set(['core', 'networking', 'interface', 'modified'])
 const UPGRADES = ['London', 'Dencun', 'Pectra', 'Fusaka', 'Glamsterdam']
 
 const LEGAL_WRAPPER =
-  'ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper Olympia DAO would use for the off-chain acts an on-chain organization cannot perform, such as signing an audit engagement Olympia DAO has voted to fund. It would be downstream of Olympia DAO in authority, and it holds no role in Olympia until Olympia DAO is operating.'
+  'ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper Olympia DAO would use for the off-chain acts an on-chain organization cannot perform, such as signing an audit engagement Olympia DAO has voted to fund. Ethereum Classic DAO would be downstream of Olympia DAO in authority, and it holds no role in Olympia until Olympia DAO is operating.'
 
 function counts() {
   const adopted = OLYMPIA_EIPS.filter((e) => ADOPTED.has(e.disposition)).length

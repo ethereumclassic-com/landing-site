@@ -76,11 +76,11 @@ export interface ClientUpgrade {
    */
   badges: string[]
   /**
-   * What to run before Olympia: a line ("v1.13 line") or "Latest release", never a version
+   * What to run before Olympia: a line ("v1.13 line") or "Newest full release", never a version
    * number, which goes stale at the client's next release.
    */
   currentVersion: string
-  /** The client's newest full release, which the current-release box links. */
+  /** The client's newest full release, which the latest-release box links. */
   latestReleaseUrl: string
   olympiaVersion: string
   githubUrl: string
@@ -134,7 +134,7 @@ export const clients: ClientUpgrade[] = [
     badges: ['Alternative', FUKUII_STATUS],
     // Its newest full release, linked rather than named: the builds between full releases are
     // marked pre-release, and releases/latest skips them.
-    currentVersion: 'Latest release',
+    currentVersion: 'Newest full release',
     latestReleaseUrl: FUKUII_LATEST_RELEASE_URL,
     olympiaVersion: 'TBD',
     githubUrl: FUKUII_REPO_URL,
@@ -250,7 +250,7 @@ export const faqs: OlympiaFAQ[] = [
   {
     question: 'What would Ethereum Classic DAO do?',
     answer:
-      'ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper it contemplates for Olympia DAO, for the off-chain acts an on-chain organization cannot perform, without acquiring authority over it. Once Olympia DAO is operating, Ethereum Classic DAO would carry out the off-chain obligations a passed proposal has fixed, such as signing the engagement for a security audit Olympia DAO voted to fund. It is downstream of Olympia DAO in authority, holds no on-chain role and no position in the ECIP process, and holds no role in anything ECIP-1114 specifies until Olympia DAO is operating.',
+      'ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper it contemplates for Olympia DAO, for the off-chain acts an on-chain organization cannot perform, without acquiring authority over it. Once Olympia DAO is operating, Ethereum Classic DAO would carry out the off-chain obligations a passed proposal has fixed, such as signing the engagement for a security audit Olympia DAO voted to fund. Ethereum Classic DAO is downstream of Olympia DAO in authority, holds no on-chain role and no position in the ECIP process, and holds no role in anything ECIP-1114 specifies until Olympia DAO is operating.',
   },
   {
     question: 'Who funds Ethereum Classic\'s development today?',
@@ -269,7 +269,7 @@ export const operatorFaqs: OlympiaFAQ[] = [
   {
     question: 'Do I need to do anything now?',
     answer:
-      'Run a current release. For Core-Geth, the recommended client, that is the v1.13 line: a node still on a v1.12 release should move to v1.13 now, following coregeth.com/downloads. Fukuii, which its maintainers mark alpha, is an alternative to try. Olympia asks nothing more of a node until a client publishes a release that implements it.',
+      'Run the latest release. For Core-Geth, the recommended client, that is the v1.13 line: a node still on a v1.12 release should move to v1.13 now, following the migration guide at coregeth.com/guides/migrate. Fukuii, which its maintainers mark alpha, is an alternative to try. Olympia asks nothing more of a node until a client publishes a release that implements it.',
   },
   {
     question: 'Which client releases implement Olympia?',

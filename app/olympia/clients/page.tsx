@@ -29,7 +29,7 @@ export default function OlympiaClientsPage() {
 
           <p className="mx-auto mt-4 max-w-2xl text-lg text-[var(--color-text-secondary)]">
             No released client implements Olympia, which is a proposal, and each client&apos;s Olympia readiness is
-            what its maintainers publish. Until a release implements it, run the current release: Core-Geth&apos;s
+            what its maintainers publish. Until a release implements it, run the latest release: Core-Geth&apos;s
             v1.13 line, the recommended client, or Fukuii, an alternative to try.
           </p>
 

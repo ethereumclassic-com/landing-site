@@ -161,7 +161,7 @@ The documentation's [ETC Cooperative transition](https://docs.coregeth.com/etc-c
 
 ## Who maintains and funds Core-Geth
 
-Core-Geth is maintained in the \`ethereumclassic\` organization by Ethereum Classic's core developers and community contributors, who do the work, together with the [Ethereum Classic DAO](https://ethereumclassicdao.org), a Wyoming DAO LLC and the standing legal entity that maintains and funds the client today as its funder of last resort. The DAO does not control or lead Ethereum Classic, and it is not the only organization that can fund the work: what the work needs is steady funding from the stakeholders who depend on it, so that it no longer rests on a single backer. [coregeth.com/sponsor](https://coregeth.com/sponsor/) sets out who has funded Core-Geth and how to sponsor it, and sponsorship is arranged through donations@ethereumclassic.net.`,
+Core-Geth is maintained in the \`ethereumclassic\` organization by Ethereum Classic's core developers and community contributors, who do the work, together with the [Ethereum Classic DAO](https://ethereumclassicdao.org), a Wyoming DAO LLC and the standing legal entity that maintains and funds the client today as its funder of last resort. Ethereum Classic DAO does not control or lead Ethereum Classic, and it is not the only organization that can fund the work: what the work needs is steady funding from the stakeholders who depend on it, so that it no longer rests on a single backer. [coregeth.com/sponsor](https://coregeth.com/sponsor/) sets out who has funded Core-Geth and how to sponsor it, and sponsorship is arranged through donations@ethereumclassic.net.`,
     date: '2026-11-05',
     updated: '2026-11-08',
     category: 'Security',

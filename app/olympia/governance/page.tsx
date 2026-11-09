@@ -152,8 +152,8 @@ export default function GovernancePage() {
             <p className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 text-sm leading-relaxed text-[var(--color-text-muted)]">
               ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper Olympia DAO would use for the
               off-chain acts an on-chain organization cannot perform, such as signing an audit engagement Olympia
-              DAO has voted to fund. It would be downstream of Olympia DAO in authority, and it holds no role in
-              Olympia until Olympia DAO is operating.{' '}
+              DAO has voted to fund. Ethereum Classic DAO would be downstream of Olympia DAO in authority, and it
+              holds no role in Olympia until Olympia DAO is operating.{' '}
               <Link href="/olympia" className="font-medium text-[var(--brand-green)] hover:underline">
                 Ethereum Classic DAO and Olympia, in full →
               </Link>

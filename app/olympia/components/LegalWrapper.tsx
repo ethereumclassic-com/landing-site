@@ -4,8 +4,8 @@ import { ecipUrl } from '@/lib/olympia-ecips'
  * Ethereum Classic DAO and Olympia, in the words ethereumclassicdao.org settled with the
  * maintainer, so the two sites say the same thing. Every sentence is read from ECIP-1114
  * §"Off-Chain Legal Interface and Donations" and ECIP-1113 §"Prohibited Features"; change it there,
- * on ethereumclassicdao.org, before changing it here. The LLC's legal name appears once, with its
- * filing ID; elsewhere it is Ethereum Classic DAO, and "the DAO" is never used for either DAO.
+ * on ethereumclassicdao.org, before changing it here. Its legal name, Ethereum Classic DAO LLC, appears
+ * once, with its filing ID; elsewhere it is Ethereum Classic DAO, and "the DAO" is never used for either DAO.
  */
 export default function LegalWrapper() {
   return (
@@ -23,8 +23,8 @@ export default function LegalWrapper() {
           passed proposal has fixed. If Olympia DAO votes to fund a security audit, for example, Ethereum
           Classic DAO signs the engagement with the auditing firm; the proposal, not Ethereum Classic DAO,
           set the auditor, the scope and the amount. In ECIP-1114&rsquo;s words, Ethereum Classic DAO is
-          downstream of Olympia DAO in authority: Olympia DAO is not its subsidiary, and it holds no position
-          in the ECIP process, which is ECIP-1000&rsquo;s.
+          downstream of Olympia DAO in authority: Olympia DAO is not its subsidiary, and Ethereum Classic DAO
+          holds no position in the ECIP process, which is ECIP-1000&rsquo;s.
         </p>
         <p>
           No off-chain entity can unilaterally approve or veto a governance action, Ethereum Classic DAO holds
