@@ -172,7 +172,7 @@ ETC's ideological foundation:
 - /block-reward-countdown: Fifthing countdown, emission curve chart, inflation rate, era history, ECIP-1017 explainer (/research/fifthing redirects here)
 - /research/ethereum-ico: Ethereum 2014 presale data: $18.5M raised at $0.308 per ETH; ROI history; tokenomics split; the 72,009,990 ETH genesis supply ETC carries today
 - /research/dao-fork: How the Ethereum Foundation forked the original Ethereum chain in 2016 and applied the ETH name and ticker to the new chain; the events that followed; Poloniex's ETC listing; Grayscale ETCG; ETC Cooperative; the DAO hacker's identification; TheDAO Security Fund (2026)
-- /research/history: Sample charts of price and chain data, with key milestones
+- /research/history: Price, hashrate, difficulty and monthly transactions since 2015, from Kraken and Blockscout, with key milestones
 - /research/ecosystem: Ecosystem metrics
 
 ### /olympia: Olympia (proposed)
