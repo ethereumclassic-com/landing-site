@@ -32,12 +32,12 @@ export function renderInline(parts: Inline[]): React.ReactNode {
             href={part.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--color-primary)] hover:underline"
+            className="break-words text-[var(--color-primary)] hover:underline"
           >
             {part.text}
           </a>
         ) : (
-          <Link key={key} href={part.href} className="text-[var(--color-primary)] hover:underline">
+          <Link key={key} href={part.href} className="break-words text-[var(--color-primary)] hover:underline">
             {part.text}
           </Link>
         )
