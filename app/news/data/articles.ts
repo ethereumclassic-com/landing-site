@@ -78,6 +78,85 @@ export const authors: Record<string, Author> = {
 export const articles: Article[] = [
   // Featured Articles - Recent and historically significant
   {
+    slug: 'etc-cooperative-winds-down',
+    title: 'ETC Cooperative Winds Down Operations: Ethereum Classic Continues',
+    metaTitle: 'ETC Cooperative Winds Down Operations',
+    excerpt:
+      'ETC Cooperative has begun winding down. Ethereum Classic continues, and its core software and public goods are developed openly at github.com/ethereumclassic.',
+    content: `On November 11, 2026, ETC Cooperative announced that it has begun winding down its operations, with most of its dissolution requirements expected to be completed by the end of 2026. From 2017, the Cooperative supported Ethereum Classic through protocol development, infrastructure, developer tools, education and community initiatives.
+
+Ethereum Classic's community recognizes and thanks the Cooperative, its contributors and everyone who helped support Ethereum Classic over the years.
+
+Announcement: [https://etccooperative.org/posts/2026-11-11-etc-cooperative-to-wind-down-operations-en](https://etccooperative.org/posts/2026-11-11-etc-cooperative-to-wind-down-operations-en)
+
+## What the announcement says
+
+- **Grants.** The Cooperative is no longer accepting grant applications or making new funding commitments. Existing grantees will be contacted directly about any work in progress.
+- **Infrastructure.** The Cooperative is making arrangements for the public infrastructure it has supported, including network nodes and the Blockscout block explorer, to continue running for a transition period after the wind-down, giving the community time to plan for its long-term support.
+
+"The network, and the community that sustains it, will continue onward," the ETC Cooperative wrote.
+
+## The network continues
+
+The wind-down of an organization does not mean the end of the network or its development. Ethereum Classic is an open-source, decentralized network that has produced blocks since July 30, 2015, and nothing in its protocol changes with the wind-down. Its core software, development tools and supporting public goods are developed openly and are accessible to everyone.
+
+The Ethereum Classic GitHub organization, [github.com/ethereumclassic](https://github.com/ethereumclassic), is the public place to explore its projects, follow development, support public goods, report issues and contribute. The public goods the Cooperative maintained are moving there: the Core-Geth client, the peer discovery lists, the bootnodes and public JSON-RPC.
+
+## Get involved
+
+Ethereum Classic's future is shaped by the people who participate in it.
+
+- **Run a node.** Help operate and support the network. [Node Clients](/build/clients) lists the clients and how to start one.
+- **Build.** Develop applications, tools and infrastructure, starting from the [Developer Hub](/build).
+- **Review.** Examine code and contribute to development at [github.com/ethereumclassic](https://github.com/ethereumclassic).
+- **Contribute.** Open issues, submit pull requests and improve existing projects. [How to Contribute](/community/contribute) shows where to start.
+- **Support public goods.** Help sustain the software and infrastructure the ecosystem depends on. [coregeth.com/sponsor](https://coregeth.com/sponsor/) sets out how to sponsor Core-Geth.
+
+Organizations may change, but Ethereum Classic remains an open network. Its continued development depends on people willing to participate, build, maintain and contribute. Code is law.
+
+## Ongoing core development
+
+Core-Geth is one example of continued open-source development within the ecosystem. The client is actively maintained at [github.com/ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth), and its maintained release line is \`v1.13\`. The work happens in public, in pull requests anyone can read, and every repository in the Ethereum Classic GitHub organization has more than one admin and more than one maintainer, so no single person or employer is a point of failure.
+
+### Why move to v1.13
+
+Node operators, mining pools and exchanges still running the legacy \`v1.12.x\` line should plan their migration to \`v1.13\`, to remain on the actively maintained release line and receive ongoing security fixes and updates. Every \`v1.12\` release ships known-vulnerable code, and one of those flaws was exploited against the Core-Geth \`v1.12\` bootnodes in March 2026. [coregeth.com/security](https://coregeth.com/security/) has the audits, and what each \`v1.12\` release fixed and left open.
+
+### Move off what the ETC Cooperative maintained
+
+With the ETC Cooperative winding down, the recommendation is to migrate away from the public goods it maintained on its own, to [github.com/ethereumclassic](https://github.com/ethereumclassic), where that infrastructure is moving:
+
+| Maintained solely by the ETC Cooperative | Where it continues |
+|---|---|
+| The client repository, \`etclabscore/core-geth\`, home of the \`v1.12.x\` releases | Core-Geth \`v1.13\`, at [github.com/ethereumclassic/core-geth](https://github.com/ethereumclassic/core-geth) |
+| The peer discovery lists \`v1.12\` reads, from \`etclabscore/discv4-dns-lists\`, which stop being updated when the Cooperative dissolves | [github.com/ethereumclassic/discv4-dns-lists](https://github.com/ethereumclassic/discv4-dns-lists), the lists \`v1.13\` reads by default |
+| The bootnodes built into \`v1.12\` | The bootnodes \`v1.13\` ships with, run by the Core-Geth maintainers, with their hosts configured in [github.com/ethereumclassic/nodes](https://github.com/ethereumclassic/nodes) |
+| Public JSON-RPC endpoints, such as \`etc.rivet.link\`, offline since late August 2026, and \`rpc.mordor.etccooperative.org\` | [github.com/ethereumclassic/public-rpc](https://github.com/ethereumclassic/public-rpc), being stood up. Until it answers, [ChainList](https://chainlist.org/chain/61) lists the endpoints operators publish |
+
+### Points of contact for stakeholders
+
+With the ETC Cooperative winding down, security@ethereumclassic.net is the point of contact for Ethereum Classic's stakeholders: mining pools, centralized exchanges and custodians, issuers of Ethereum Classic financial products, mining hardware manufacturers, block explorers and RPC providers. A person answers it: one of the core developers who maintain Core-Geth and have been with the network since its inception. Report a vulnerability privately, to that address or through [github.com/ethereumclassic/core-geth/security](https://github.com/ethereumclassic/core-geth/security/), never in a public issue.
+
+Funding for Core-Geth overlapped the ETC Cooperative's final year. Since February 2026, Ethereum Classic DAO has funded the client's maintenance and paid for its modernization into the \`v1.13\` line, which Ethereum Classic's core developers carried out. Ethereum Classic DAO maintains and funds the client today as its funder of last resort, paying for the client's development, the bootnode servers and the domains the services are published under. Ethereum Classic DAO does not control or lead Ethereum Classic and is not the only organization that can fund the work: what the work needs is steady funding from the stakeholders who depend on it. [coregeth.com/sponsor](https://coregeth.com/sponsor/) and [ethereumclassicdao.org/stewardship](https://ethereumclassicdao.org/stewardship) set out how to sponsor it, and sponsorship is arranged through donations@ethereumclassic.net.
+
+### Where to go
+
+- **Documentation and releases:** [coregeth.com](https://coregeth.com/)
+- **Migration guide:** [coregeth.com/guides/migrate/](https://coregeth.com/guides/migrate/)
+- **Security and stakeholder contact:** security@ethereumclassic.net
+- **Sponsorship:** [coregeth.com/sponsor/](https://coregeth.com/sponsor/), arranged through donations@ethereumclassic.net
+- **Step by step, with recordings:** [How to Move a Core-Geth Node from v1.12 to v1.13](/news/core-geth-v1-12-to-v1-13-migration)
+
+Before you move a node, a pool or an application to a new source of software or data, confirm which organization publishes it.`,
+    date: '2026-11-11',
+    category: 'Ecosystem',
+    subject: 'ETC Cooperative',
+    featured: true,
+    tags: ['ETC Cooperative', 'Core-Geth', 'Node Operators'],
+    author: 'ETC Community',
+    readTime: 4,
+  },
+  {
     slug: 'core-geth-v1-12-to-v1-13-migration',
     title: 'How to Move a Core-Geth Node from v1.12 to v1.13',
     metaTitle: 'Moving a Core-Geth Node From v1.12 to v1.13',
