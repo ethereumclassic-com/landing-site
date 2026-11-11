@@ -1,4 +1,4 @@
-import { getArticleBySlug } from '@/app/news/data/articles'
+import { getArticleBySlug, getRecentNews, RECENT_NEWS_DAYS } from '@/app/news/data/articles'
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
 import { apps } from '@/app/apps/data/apps'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
@@ -28,6 +28,12 @@ function listedArticle(slug: string) {
   return article
 }
 const moveGuide = listedArticle('core-geth-v1-12-to-v1-13-migration')
+
+// The articles from the last RECENT_NEWS_DAYS days, as /llms.txt lists them, read when the site is built.
+const recentNews = getRecentNews()
+const recentNewsList = recentNews.length
+  ? recentNews.map((a) => `- /news/${a.slug} (${a.date}): ${a.title}: ${a.excerpt}`).join('\n')
+  : `- None in the last ${RECENT_NEWS_DAYS} days. The feeds above list the newest articles.`
 
 export function GET() {
   const body = `# Ethereum Classic: Extended AI Context
@@ -163,6 +169,10 @@ ETC's ideological foundation:
 - RSS: https://ethereumclassic.com/news/feed.xml
 - Atom: https://ethereumclassic.com/news/atom.xml
 - JSON Feed: https://ethereumclassic.com/news/feed.json
+- Sitemap: https://ethereumclassic.com/sitemap.xml, every page on the site with its last-modified date
+
+Recent articles, from the last ${RECENT_NEWS_DAYS} days, newest first (the feeds carry more, with full text):
+${recentNewsList}
 
 ### /research: Analytics
 - /research (hub): Research and data overview

@@ -1,4 +1,4 @@
-import { getArticleBySlug } from '@/app/news/data/articles'
+import { getArticleBySlug, getRecentNews, RECENT_NEWS_DAYS } from '@/app/news/data/articles'
 import { CURRENT_ERA, getBlockRewardForEra, getEraEndBlock } from '@/app/research/data/emission'
 import { coreGethLlmsSection } from '@/lib/llms-core-geth'
 import { olympiaLlmsSummary } from '@/lib/llms-olympia'
@@ -37,6 +37,13 @@ function listedArticle(slug: string) {
   return article
 }
 const moveGuide = listedArticle('core-geth-v1-12-to-v1-13-migration')
+
+// The articles from the last RECENT_NEWS_DAYS days, read from the same data as the news page when the site is
+// built, so each deploy lists what is new without an edit here.
+const recentNews = getRecentNews()
+const recentNewsList = recentNews.length
+  ? recentNews.map((a) => `- [${a.title}](https://ethereumclassic.com/news/${a.slug}) (${a.date}): ${a.excerpt}`).join('\n')
+  : `- None in the last ${RECENT_NEWS_DAYS} days. The feeds above list the newest articles.`
 
 export function GET() {
   const body = `# Ethereum Classic (ETC)
@@ -85,7 +92,6 @@ ${commonlyMisstatedText()}
 - [Mining Pools](https://ethereumclassic.com/mining/pools): Every listed pool's ETC fee and payout scheme, its share of recent blocks, and each pool's weekly share of blocks over the past year, from Blockscout block data
 - [Build](https://ethereumclassic.com/build): Developer documentation and tools
 - [Node Clients](https://ethereumclassic.com/build/clients): Core-Geth, the recommended client, and Fukuii, an alternative to try, with the ETC plugin framework
-- [News](https://ethereumclassic.com/news): Latest Ethereum Classic news and updates
 - [Research](https://ethereumclassic.com/research): Network analytics, supply data, and reports
 - [Emission Schedule](https://ethereumclassic.com/research/emission-schedule): Supply reduction countdown, S2F charts, and era history
 - [Ethereum 2014 ICO](https://ethereumclassic.com/research/ethereum-ico): Original Ethereum presale data: $18.5M raised, and the 72M ETH genesis supply ETC carries today
@@ -104,6 +110,20 @@ ${commonlyMisstatedText()}
 - [The Olympia Treasury](https://ethereumclassic.com/olympia/treasury): The Sovereignty Vault address, how the base fee would reach it, and who could spend it
 - [Olympia DAO Governance](https://ethereumclassic.com/olympia/governance): How Olympia DAO would govern the Treasury
 - [Network Upgrade History](https://ethereumclassic.com/upgrades): Every network upgrade from Frontier through Spiral, and the proposed Olympia upgrade
+
+## News
+
+For recent news, read one of the feeds: each carries the newest articles with their full text, publication dates and tags.
+
+- [News](https://ethereumclassic.com/news): every article, newest first, filterable by category and tag
+- [RSS feed](https://ethereumclassic.com/news/feed.xml)
+- [Atom feed](https://ethereumclassic.com/news/atom.xml)
+- [JSON Feed](https://ethereumclassic.com/news/feed.json): the easiest of the three to parse
+- [Sitemap](https://ethereumclassic.com/sitemap.xml): every page on the site, with its last-modified date
+
+Recent articles, from the last ${RECENT_NEWS_DAYS} days:
+
+${recentNewsList}
 
 ## Emission Schedule ("Fifthing")
 

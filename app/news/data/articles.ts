@@ -2966,6 +2966,18 @@ export function getRecentArticles(limit: number = 10): Article[] {
   return [...articles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, limit)
 }
 
+/** How far back the llms files' "Recent articles" reach, counted back from when the site is built. */
+export const RECENT_NEWS_DAYS = 30
+
+/**
+ * The articles published in the last RECENT_NEWS_DAYS days, newest first. The llms files are written when the
+ * site is built, so each deploy lists what is new then, and the list is empty when nothing is.
+ */
+export function getRecentNews(now: number = Date.now()): Article[] {
+  const since = now - RECENT_NEWS_DAYS * 86_400_000
+  return getRecentArticles(articles.length).filter((a) => new Date(a.date).getTime() >= since)
+}
+
 /**
  * A tag's slug and its path. Tags can carry characters a URL must escape ("51% Attack"), so every link,
  * the sitemap and the tag page's own lookup go through these two, and the path is percent-encoded.
