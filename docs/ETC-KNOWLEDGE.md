@@ -253,17 +253,20 @@ the proposal at `/olympia/history`. The first Olympia ECIPs were published on Ju
 **Role**: A US 501(c)(3) non-profit that funded Ethereum Classic public goods from 2017. Its staff
 maintained Core-Geth from January 2022, at `etclabscore/core-geth`, through the Mystique and Spiral
 upgrades, alongside the peer discovery lists, the bootnodes and the public JSON-RPC endpoints. It entered
-maintenance mode at the end of 2024, stopped developing Core-Geth in 2025, and its board has communicated
-that it will dissolve, with the public goods continuing in the `ethereumclassic` GitHub organization.
+maintenance mode at the end of 2024 and stopped developing Core-Geth in 2025. On November 11, 2026 it
+announced that it has begun winding down, with most of its dissolution requirements expected to be
+completed by the end of 2026, and the public goods it maintained continue in the `ethereumclassic` GitHub
+organization.
 
 **Grants**: It took part in the ETC Grants DAO program with Bitmain from 2023 and left it on
-December 5, 2024. Its 2024 retrospective says it stays in maintenance mode, with spending minimized,
-until its funding runs out.
+December 5, 2024. Since its announcement of November 11, 2026, it accepts no grant applications and
+makes no new funding commitments.
 
 Write about it in the past tense, credited for what it funded. Never present it as a current steward,
-a grant source or a donation route, and give no dissolution date. Sources: Core-Geth's
-[ETC Cooperative transition](https://docs.coregeth.com/etc-cooperative-transition/) page and the
-Cooperative's [2024 retrospective](https://etccooperative.org/etc-cooperative-retrospective-2024.pdf).
+a grant source or a donation route, and state its dissolution timing only as its announcement does.
+Sources: its [wind-down announcement](https://etccooperative.org/posts/2026-11-11-etc-cooperative-to-wind-down-operations-en),
+Core-Geth's [ETC Cooperative transition](https://docs.coregeth.com/etc-cooperative-transition/) page and
+the Cooperative's [2024 retrospective](https://etccooperative.org/etc-cooperative-retrospective-2024.pdf).
 
 ### ETC Labs
 

@@ -87,7 +87,7 @@ ETC plugins, a planned framework, would add Ethereum Classic support to clients 
 ## Development Sustainability
 
 - **Who funds the work today.** Ethereum Classic's core developers and community contributors do the work. Ethereum Classic DAO maintains and funds the public goods kept in the ethereumclassic GitHub organization as their funder of last resort, and it does not control or lead Ethereum Classic.
-- **The ETC Cooperative.** A US 501(c)(3) non-profit that funded Ethereum Classic's public goods from 2017. It entered maintenance mode at the end of 2024, and its board has communicated that it will dissolve.
+- **The ETC Cooperative.** A US 501(c)(3) non-profit that funded Ethereum Classic's public goods from 2017. It entered maintenance mode at the end of 2024, and on November 11, 2026, it announced that it has begun winding down its operations.
 - **The legal wrapper.** ECIP-1114 names Ethereum Classic DAO LLC as the legal wrapper Olympia DAO would use for the off-chain acts an on-chain organization cannot perform, such as signing an audit engagement Olympia DAO has voted to fund. Ethereum Classic DAO would be downstream of Olympia DAO in authority, and it holds no role in Olympia until Olympia DAO is operating.
 - **On-chain contributions.** The Treasury would accept any asset at one address, so there would be one contribution address for every asset class (ECIP-1113).
 
